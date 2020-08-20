@@ -1,0 +1,50 @@
+{
+  "GameVersion": "9.0.0.1",
+  "Specs": [
+    {
+      "Class": "Priest",
+      "Spec": "Holy",
+      "SpecId": 257,
+
+      "CritBase": 0.05,
+      "HasteBase": 0.0,
+      "VersBase": 0.0,
+      "MasteryBase": 0.1,
+      "IntBase": 450.0,
+      "StamBase": 416.0,
+      "ManaBase": 100000,
+
+      // https://github.com/simulationcraft/simc/blob/shadowlands/engine/dbc/generated/sc_scale_data.inc
+      "CritCost": 35,
+      "HasteCost": 33,
+      "VersCost": 40,
+      "MasteryCost": 28,
+      "LeechCost": 21,
+      "speed_cost": 10,
+      "avoidance_cost": 14,
+      "stam_cost": 20,
+
+      "Modifiers": [
+        {
+          "Name": "BeneRenewChance",
+          "Value": 0.25
+        }
+      ],
+
+      // Spell List
+      // https://github.com/simulationcraft/simc/blob/shadowlands/engine/dbc/generated/active_spells.inc#L218
+      "Spells": [
+        {
+          "Id": 2060,
+          "Name": "Heal",
+          "ManaCost": 0.024,
+          "Range": 40.0,
+          "BaseCastTime": 2.5,
+          "IsCastTimeHasted":  true,
+          "Gcd": 1.5,
+          "Coeff1": 2.95
+        }
+      ]
+    }
+  ]
+}

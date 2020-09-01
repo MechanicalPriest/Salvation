@@ -1,4 +1,5 @@
-﻿using Salvation.Core;
+﻿using Newtonsoft.Json;
+using Salvation.Core;
 using Salvation.Core.Models.HolyPriest;
 using Salvation.Core.Profile;
 using System;
@@ -27,9 +28,9 @@ namespace Salvation.CoreTests
 
             var hpriest = new HolyPriestModel(globalConstants, basicProfile);
 
+            var spellsRaw = JsonConvert.SerializeObject(hpriest.Spells, Formatting.Indented);
 
-
-            Console.WriteLine(hpriest.Spells);
+            Console.WriteLine(spellsRaw);
         }
     }
 }

@@ -43,6 +43,7 @@ namespace Salvation.Core.Models
         internal int RawInt { get { return getRawIntellect(); } }
         internal int RawVers { get { return getRawVers(); } }
         internal int RawHaste { get { return getRawHaste(); } }
+        internal int RawMastery { get { return getRawMastery(); } }
         internal int RawMana { get { return getRawMana(); } }
 
         protected BaseModel(GlobalConstants constants, BaseProfile profile, Spec spec = Spec.None)
@@ -81,6 +82,11 @@ namespace Salvation.Core.Models
             return 1 + SpecConstants.HasteBase + (hasteRating / SpecConstants.HasteCost / 100);
         }
 
+        internal decimal GetMasteryMultiplier(int masteryRating)
+        {
+            return 1 + SpecConstants.MasteryBase + (masteryRating / SpecConstants.MasteryCost / 100);
+        }
+
         private int getRawIntellect()
         {
             return Profile.Intellect;
@@ -94,10 +100,16 @@ namespace Salvation.Core.Models
         {
             return Profile.HasteRating;
         }
+        private int getRawMastery()
+        {
+            return Profile.MasteryRating;
+        }
 
         private int getRawMana()
         {
             return SpecConstants.ManaBase;
         }
+
+
     }
 }

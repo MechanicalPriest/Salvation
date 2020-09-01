@@ -1,4 +1,5 @@
-﻿using Salvation.Core;
+﻿using Newtonsoft.Json;
+using Salvation.Core;
 using Salvation.Core.Models;
 using Salvation.Core.Models.HolyPriest;
 using Salvation.Core.Profile;
@@ -12,6 +13,8 @@ namespace Salvation.Explorer
         static void Main(string[] args)
         {
             TestHolyPriestModel();
+
+            Console.ReadLine();
         }
 
         private static void TestHolyPriestModel()
@@ -22,23 +25,21 @@ namespace Salvation.Explorer
 
             var basicProfile = new BaseProfile()
             {
-                Intellect = 978,
-                MasteryRating = 202,
+                Intellect = 1001,
+                MasteryRating = 242,
                 VersatilityRating = 139,
-                HasteRating = 282,
+                HasteRating = 242,
             };
 
             var hpriest = new HolyPriestModel(globalConstants, basicProfile);
 
-            foreach(var spell in hpriest.Spells)
-            {
-                if(spell is BaseHealingSpell healingSpell)
-                {
-                    Console.WriteLine(healingSpell.AverageHeal);
-                }
-            }
+            Console.WriteLine("------------[ Profile ]------------");
+            Console.WriteLine(JsonConvert.SerializeObject(basicProfile, Formatting.Indented));
 
-            Console.WriteLine(hpriest.Spells);
+            Console.WriteLine("------------[ Results ]------------");
+            var spellsRaw = JsonConvert.SerializeObject(hpriest.Spells, Formatting.Indented);
+
+            Console.WriteLine(spellsRaw);
         }
     }
 }

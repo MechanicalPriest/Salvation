@@ -10,14 +10,12 @@ namespace Salvation.Core.Models
         : BaseSpell
     {
 
-        public BaseHealingSpell(BaseModel model)
-            : base(model)
+        public BaseHealingSpell(BaseModel model, decimal numberOfTargetsHit)
+            : base(model, numberOfTargetsHit)
         {
-            
+
         }
 
-        protected int SpellPower { get; set; }
-
-        public virtual decimal AverageHeal { get; }
+        public virtual decimal AverageRawDirectHeal { get; }
     }
 }

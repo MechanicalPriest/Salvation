@@ -17,7 +17,16 @@ namespace Salvation.Core.Models.HolyPriest
             PrayerOfHealing = 596,
             HolyNova = 132157,
             CircleOfHealing = 204883,
-            Renew = 139
+            Renew = 139,
+            PowerWordShield = 17,
+            DivineHymn = 64843,
+            HolyWordSanctify = 34861,
+            HolyWordSerenity = 2050,
+            PrayerOfMending = 33076,
+            BindingHeal = 32546,
+            Halo = 120517,
+            DivineStar = 110744,
+            HolyWordSalvation = 265202
         }
 
 
@@ -29,7 +38,16 @@ namespace Salvation.Core.Models.HolyPriest
             Spells.Add(new PrayerOfHealing(this));
             Spells.Add(new HolyNova(this));
             Spells.Add(new CircleOfHealing(this));
-            Spells.Add(new Renew(this));
+            //Spells.Add(new Renew(this));
+            Spells.Add(new PowerWordShield(this));
+            Spells.Add(new DivineHymn(this));
+            Spells.Add(new HolyWordSanctify(this));
+            Spells.Add(new HolyWordSerenity(this));
+            Spells.Add(new PrayerOfMending(this));
+            Spells.Add(new BindingHeal(this));
+            Spells.Add(new Halo(this));
+            Spells.Add(new DivineStar(this));
+            Spells.Add(new HolyWordSalvation(this));
         }
 
         public object GetResults()

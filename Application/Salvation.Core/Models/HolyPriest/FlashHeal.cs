@@ -12,7 +12,7 @@ namespace Salvation.Core.Models.HolyPriest
         public FlashHeal(HolyPriestModel holyPriestModel, decimal numberOfTargetsHit = 0)
             : base (holyPriestModel, numberOfTargetsHit)
         {
-            SpellData = model.GetSpellById((int)HolyPriestModel.SpellIds.FlashHeal);
+            SpellData = model.GetSpellDataById((int)HolyPriestModel.SpellIds.FlashHeal);
         }
 
         private decimal calcAverageRawDirectHeal()

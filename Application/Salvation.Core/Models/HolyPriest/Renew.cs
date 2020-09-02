@@ -12,7 +12,7 @@ namespace Salvation.Core.Models.HolyPriest
         public Renew(HolyPriestModel holyPriestModel, decimal numberOfTargetsHit = 0)
             : base (holyPriestModel, numberOfTargetsHit)
         {
-            SpellData = model.GetSpellById((int)HolyPriestModel.SpellIds.Renew);
+            SpellData = model.GetSpellDataById((int)HolyPriestModel.SpellIds.Renew);
         }
 
         private decimal calcAverageRawDirectHeal()

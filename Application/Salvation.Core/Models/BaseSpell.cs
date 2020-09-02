@@ -28,7 +28,7 @@ namespace Salvation.Core.Models
         public virtual decimal HastedCastTime { get { return getHastedCastTime(); } }
         public virtual decimal HastedGcd { get { return getHastedGcd(); } }
         public virtual decimal ActualManaCost { get { return getActualManaCost(); } }
-        protected virtual decimal NumberOfTargets { get; set; }
+        public virtual decimal NumberOfTargets { get; set; }
         // 'static' fields
         public int SpellId { get; set; }
         public string Name { get; set; }
@@ -51,7 +51,7 @@ namespace Salvation.Core.Models
             // If a request to override number of targets is present, override it.
             NumberOfTargets = requestedNumberOfTargetsHit > 0 ?
                 requestedNumberOfTargetsHit :
-                 SpellData.MaxNumberOfTargets;
+                 SpellData.DefaultNumberOfTargets;
         }
 
         protected virtual decimal getHastedCastTime()

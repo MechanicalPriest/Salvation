@@ -65,11 +65,34 @@ namespace Salvation.Core.Models
             Spells = new List<BaseSpell>();
         }
 
-        internal Constants.BaseSpellData GetSpellById(int spellId)
+        internal Constants.BaseSpellData GetSpellDataById(int spellId)
         {
             Constants.BaseSpellData spell = SpecConstants.Spells.Where(s => s.Id == spellId).FirstOrDefault();
 
             return spell;
+        }
+
+        /// <summary>
+        /// Get a BaseSpell from the Spells list based on its SpellIds enum value.
+        /// </summary>
+        /// <typeparam name="T">The return type for convenience</typeparam>
+        /// <param name="spell">The referenced spell to find</param>
+        /// <returns>The BaseSpell cast to T or null if not found</returns>
+        internal T GetSpell<T>(HolyPriestModel.SpellIds spell)
+            where T : BaseSpell
+        {
+            var spellModel = Spells
+                .Where(s => s.SpellId == (int)spell)
+                .FirstOrDefault() as T;
+
+            return spellModel;
+        }
+
+        internal BaseModifier GetModifierbyName(string modifierName)
+        {
+            BaseModifier modifier = SpecConstants.Modifiers.Where(s => s.Name == modifierName).FirstOrDefault();
+
+            return modifier;
         }
 
         internal decimal GetVersMultiplier(int versRating)

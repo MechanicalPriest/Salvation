@@ -12,9 +12,9 @@
         // Casting range
         public decimal Range { get; set; }
         /// <summary>
-        /// Maximum number of targets this spell can hit
+        /// Default number of targets this spell can hit, usually its maximum targets
         /// </summary>
-        public decimal MaxNumberOfTargets { get; set; }
+        public decimal DefaultNumberOfTargets { get; set; }
         // Base cast time in seconds before haste
         public decimal BaseCastTime { get; set; }
         public bool IsCastTimeHasted{ get; set; }

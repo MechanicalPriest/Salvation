@@ -4,21 +4,20 @@ using System.Text;
 
 namespace Salvation.Core.Models.HolyPriest
 {
-    class PrayerOfHealing 
+    class Halo 
         : BaseHolyPriestHealingSpell
     {
         public override decimal AverageRawDirectHeal { get => calcAverageRawDirectHeal(); }
 
-        public PrayerOfHealing(HolyPriestModel holyPriestModel, decimal numberOfTargetsHit = 0)
+        public Halo(HolyPriestModel holyPriestModel, decimal numberOfTargetsHit = 0)
             : base (holyPriestModel, numberOfTargetsHit)
         {
-            SpellData = model.GetSpellDataById((int)HolyPriestModel.SpellIds.PrayerOfHealing);
+            SpellData = model.GetSpellDataById((int)HolyPriestModel.SpellIds.Halo);
         }
 
         private decimal calcAverageRawDirectHeal()
         {
-            // PoH's average heal is:
-            // SP% * Intellect * Vers * Hpriest Aura
+            // Halo healing is capped at a max of ~6 targets, leaving this without a fixed ceiling for TC purposes.
             decimal retVal = SpellData.Coeff1 * HolyModel.RawInt * HolyModel.GetVersMultiplier(HolyModel.RawVers) * NumberOfTargets;
 
             return retVal;

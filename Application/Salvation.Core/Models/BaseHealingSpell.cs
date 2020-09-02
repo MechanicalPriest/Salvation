@@ -16,6 +16,13 @@ namespace Salvation.Core.Models
 
         }
 
+        /// <summary>
+        /// The direct healing component
+        /// </summary>
         public virtual decimal AverageRawDirectHeal { get; }
+        /// <summary>
+        /// The direct healing component any potential additional factors (like Hpriestm astery)
+        /// </summary>
+        public virtual decimal AverageTotalHeal { get { return AverageRawDirectHeal; } }
     }
 }

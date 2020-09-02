@@ -10,11 +10,15 @@ namespace Salvation.Core.Models.HolyPriest
         protected HolyPriestModel HolyModel { get { return model as HolyPriestModel; } }
 
         public virtual decimal AverageRawMasteryHeal { get => calcAverageRawMasteryHeal(); }
+        public override decimal AverageTotalHeal { get => calcAverageTotalHeal(); }
 
         public BaseHolyPriestHealingSpell(BaseModel model, decimal numberOfTargetsHit)
             : base(model, numberOfTargetsHit)
         {
-
+            // Some notes on holy priest spells:
+            // - Everything basically interacts with mastery except renew/pw:s
+            // - Most spells are modified by crit/vers
+            // - At time of writing the hpriest spec aura is nuked and not relevant
         }
 
 
@@ -29,6 +33,11 @@ namespace Salvation.Core.Models.HolyPriest
             }
 
             return 0;
+        }
+
+        private decimal calcAverageTotalHeal()
+        {
+            return AverageRawDirectHeal + AverageRawMasteryHeal;
         }
     }
 }

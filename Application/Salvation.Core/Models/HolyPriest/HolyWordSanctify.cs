@@ -4,21 +4,19 @@ using System.Text;
 
 namespace Salvation.Core.Models.HolyPriest
 {
-    class PrayerOfHealing 
+    class HolyWordSanctify
         : BaseHolyPriestHealingSpell
     {
         public override decimal AverageRawDirectHeal { get => calcAverageRawDirectHeal(); }
 
-        public PrayerOfHealing(HolyPriestModel holyPriestModel, decimal numberOfTargetsHit = 0)
+        public HolyWordSanctify(HolyPriestModel holyPriestModel, decimal numberOfTargetsHit = 0)
             : base (holyPriestModel, numberOfTargetsHit)
         {
-            SpellData = model.GetSpellDataById((int)HolyPriestModel.SpellIds.PrayerOfHealing);
+            SpellData = model.GetSpellDataById((int)HolyPriestModel.SpellIds.HolyWordSanctify);
         }
 
         private decimal calcAverageRawDirectHeal()
         {
-            // PoH's average heal is:
-            // SP% * Intellect * Vers * Hpriest Aura
             decimal retVal = SpellData.Coeff1 * HolyModel.RawInt * HolyModel.GetVersMultiplier(HolyModel.RawVers) * NumberOfTargets;
 
             return retVal;

@@ -41,6 +41,11 @@
         {
           "Name": "PrayerOfMendingBounces",
           "Value": 4
+        },
+        {
+          // Stored as a decimal. 0.4 is 40% more healing.
+          "Name": "HolyPriestAuraHealingBonus",
+          "Value": 4
         }
       ],
 
@@ -80,7 +85,7 @@
           "Name": "Prayer of Healing",
           "ManaCost": 0.05,
           "Range": 40.0,
-          "DefaultNumberOfTargets": 5.0,
+          "DefaultNumberOfTargets": 1.0, // boucnes are set using the modifier PrayerOfMendingBounces
           "BaseCastTime": 2.0,
           "IsCastTimeHasted": true,
           "BaseCooldown": 0.0,

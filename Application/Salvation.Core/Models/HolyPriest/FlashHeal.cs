@@ -19,9 +19,13 @@ namespace Salvation.Core.Models.HolyPriest
         {
             // Flash Heal's average heal is:
             // SP% * Intellect * Vers * Hpriest Aura
-            decimal retVal = SpellData.Coeff1 * model.RawInt * model.GetVersMultiplier(model.RawVers) * NumberOfTargets;
+            decimal averageHeal = SpellData.Coeff1 
+                * model.RawInt 
+                * model.GetVersMultiplier(model.RawVers)
+                * model.GetCritMultiplier(model.RawCrit)
+                * holyPriestAuraHealingBonus;
 
-            return retVal;
+            return averageHeal * NumberOfTargets;
         }
     }
 }

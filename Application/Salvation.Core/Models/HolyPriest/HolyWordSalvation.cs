@@ -32,7 +32,11 @@ namespace Salvation.Core.Models.HolyPriest
             var pomhealing = pom == null ? 0 : pom.AverageRawDirectHeal / pomBounces * 2;
 
             // Finally it casts a direct heal on all targets
-            decimal salvHealing = SpellData.Coeff1 * HolyModel.RawInt * HolyModel.GetVersMultiplier(HolyModel.RawVers);
+            decimal salvHealing = SpellData.Coeff1 
+                * model.RawInt 
+                * model.GetVersMultiplier(model.RawVers)
+                * model.GetCritMultiplier(model.RawCrit)
+                * holyPriestAuraHealingBonus;
 
             return (renewHealing + pomhealing + salvHealing) * NumberOfTargets;
         }
@@ -50,7 +54,11 @@ namespace Salvation.Core.Models.HolyPriest
             var pomHealing = pom == null ? 0 : pom.AverageRawDirectHeal / pomBounces * 2;
 
             // Salv Healing
-            decimal salvHealing = SpellData.Coeff1 * HolyModel.RawInt * HolyModel.GetVersMultiplier(HolyModel.RawVers);
+            decimal salvHealing = SpellData.Coeff1 
+                * model.RawInt 
+                * model.GetVersMultiplier(model.RawVers)
+                * model.GetCritMultiplier(model.RawCrit)
+                * holyPriestAuraHealingBonus;
 
             // Apply mastery
             decimal retVal = (pomHealing + salvHealing) * (model.GetMasteryMultiplier(model.RawMastery) - 1);

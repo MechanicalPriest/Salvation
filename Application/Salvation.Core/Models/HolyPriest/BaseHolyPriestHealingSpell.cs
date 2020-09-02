@@ -8,6 +8,7 @@ namespace Salvation.Core.Models.HolyPriest
         : BaseHealingSpell
     {
         protected HolyPriestModel HolyModel { get { return model as HolyPriestModel; } }
+        protected decimal holyPriestAuraHealingBonus { get; }
 
         public virtual decimal AverageRawMasteryHeal { get => calcAverageRawMasteryHeal(); }
         public override decimal AverageTotalHeal { get => calcAverageTotalHeal(); }
@@ -15,6 +16,8 @@ namespace Salvation.Core.Models.HolyPriest
         public BaseHolyPriestHealingSpell(BaseModel model, decimal numberOfTargetsHit)
             : base(model, numberOfTargetsHit)
         {
+            holyPriestAuraHealingBonus = model.GetModifierbyName("HolyPriestAuraHealingBonus").Value;
+
             // Some notes on holy priest spells:
             // - Everything basically interacts with mastery except renew/pw:s
             // - Most spells are modified by crit/vers

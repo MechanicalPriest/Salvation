@@ -18,21 +18,22 @@ namespace Salvation.Core.Models.HolyPriest
         private decimal calcAverageRawDirectHeal()
         {
             // Renews's average heal is initial + HoT portion:
-            // ((SP% * Intellect * Vers) + (SP% * Intellect * Vers * Haste * 5)) * Hpriest Aura
-            decimal retVal =
-                (
-                    SpellData.Coeff1 
-                    * HolyModel.RawInt
-                    * HolyModel.GetVersMultiplier(HolyModel.RawVers)
-                ) + (
-                    SpellData.Coeff1
-                    * HolyModel.RawInt
-                    * HolyModel.GetVersMultiplier(HolyModel.RawVers)
-                    * HolyModel.GetHasteMultiplier(HolyModel.RawHaste)
-                    * 5
-                );
+            decimal averageHealFirstTick = SpellData.Coeff1 
+                * model.RawInt
+                * model.GetVersMultiplier(model.RawVers)
+                * model.GetCritMultiplier(model.RawCrit)
+                * holyPriestAuraHealingBonus;
 
-            return retVal;
+            // HoT is affected by haste
+            decimal averageHealTicks = SpellData.Coeff1
+                * model.RawInt
+                * model.GetVersMultiplier(model.RawVers)
+                * model.GetHasteMultiplier(model.RawHaste)
+                * model.GetCritMultiplier(model.RawCrit)
+                * holyPriestAuraHealingBonus
+                * 5;
+
+            return (averageHealFirstTick + averageHealTicks) * NumberOfTargets;
         }
     }
 }

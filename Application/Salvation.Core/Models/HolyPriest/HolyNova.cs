@@ -21,11 +21,13 @@ namespace Salvation.Core.Models.HolyPriest
 
         private decimal calcAverageRawDirectHeal()
         {
-            // HN's average heal is:
-            // SP% * Intellect * Vers * Hpriest Aura
-            decimal retVal = SpellData.Coeff1 * HolyModel.RawInt * HolyModel.GetVersMultiplier(HolyModel.RawVers) * NumberOfTargets;
+            decimal retVal = SpellData.Coeff1 
+                * model.RawInt 
+                * model.GetVersMultiplier(model.RawVers)
+                * model.GetCritMultiplier(model.RawCrit)
+                * holyPriestAuraHealingBonus;
 
-            return retVal;
+            return retVal * NumberOfTargets;
         }
     }
 }

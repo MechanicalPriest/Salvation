@@ -10,5 +10,6 @@ namespace Salvation.Core.Profile
         public int MasteryRating { get; set; }
         public int VersatilityRating { get; set; }
         public int HasteRating { get; set; }
+        public int CritRating { get; set; }
     }
 }

@@ -19,16 +19,22 @@ namespace Salvation.Core.Models.HolyPriest
         {
             // DH's average heal for the first tick is:
             // SP% * Intellect * Vers * Hpriest Aura
-            decimal firstTick = SpellData.Coeff1 * HolyModel.RawInt * HolyModel.GetVersMultiplier(HolyModel.RawVers);
+            decimal firstTick = SpellData.Coeff1 
+                * model.RawInt 
+                * model.GetVersMultiplier(model.RawVers)
+                * model.GetCritMultiplier(model.RawCrit)
+                * holyPriestAuraHealingBonus;
 
             // For the remaining ticks they're all modified by the +healing% aura
             var divineHymnAura = model.GetModifierbyName("DivineHymnBonusHealing");
 
             // Now the rest of the 4 ticks including the aura:
-            decimal retVal = firstTick + (firstTick * 4 * (1 + divineHymnAura.Value));
+            decimal averageHeal = firstTick + (firstTick * 4 * (1 + divineHymnAura.Value));
 
-            // Return the total healing for all targets, double it if we have 5 or less (dungeon group buff)
-            return (NumberOfTargets > 6 ? retVal : retVal * 2) * NumberOfTargets;
+            // double it if we have 5 or less (dungeon group buff)
+            averageHeal *= NumberOfTargets <= 5 ? 1 : 2;
+
+            return averageHeal * NumberOfTargets;
         }
     }
 }

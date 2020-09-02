@@ -19,9 +19,14 @@ namespace Salvation.Core.Models.HolyPriest
         {
             var pomBounces = model.GetModifierbyName("PrayerOfMendingBounces").Value;
             // PoM bounces 4 times, healing 5 (1 + 4) people total. 
-            decimal retVal = SpellData.Coeff1 * model.RawInt * model.GetVersMultiplier(model.RawVers) * (1 + pomBounces);
+            decimal averageHeal = SpellData.Coeff1 
+                * model.RawInt 
+                * model.GetVersMultiplier(model.RawVers)
+                * model.GetCritMultiplier(model.RawCrit)
+                * holyPriestAuraHealingBonus
+                * (1 + pomBounces);
 
-            return retVal;
+            return averageHeal * NumberOfTargets;
         }
     }
 }

@@ -9,6 +9,7 @@ namespace Salvation.Core.Models.HolyPriest
     {
         public override decimal AverageRawDirectHeal { get => calcAverageRawDirectHeal(); }
 
+
         public BindingHeal(HolyPriestModel holyPriestModel, decimal numberOfTargetsHit = 0)
             : base (holyPriestModel, numberOfTargetsHit)
         {
@@ -17,9 +18,13 @@ namespace Salvation.Core.Models.HolyPriest
 
         private decimal calcAverageRawDirectHeal()
         {
-            decimal retVal = SpellData.Coeff1 * model.RawInt * model.GetVersMultiplier(model.RawVers) * NumberOfTargets;
+            decimal averageHeal = SpellData.Coeff1 
+                * model.RawInt 
+                * model.GetVersMultiplier(model.RawVers)
+                * model.GetCritMultiplier(model.RawCrit)
+                * holyPriestAuraHealingBonus;
 
-            return retVal;
+            return averageHeal * NumberOfTargets;
         }
     }
 }

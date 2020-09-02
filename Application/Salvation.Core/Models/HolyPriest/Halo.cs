@@ -18,9 +18,13 @@ namespace Salvation.Core.Models.HolyPriest
         private decimal calcAverageRawDirectHeal()
         {
             // Halo healing is capped at a max of ~6 targets, leaving this without a fixed ceiling for TC purposes.
-            decimal retVal = SpellData.Coeff1 * HolyModel.RawInt * HolyModel.GetVersMultiplier(HolyModel.RawVers) * NumberOfTargets;
+            decimal averageHeal = SpellData.Coeff1 
+                * model.RawInt 
+                * model.GetVersMultiplier(model.RawVers)
+                * model.GetCritMultiplier(model.RawCrit)
+                * holyPriestAuraHealingBonus;
 
-            return retVal;
+            return averageHeal * NumberOfTargets;
         }
     }
 }

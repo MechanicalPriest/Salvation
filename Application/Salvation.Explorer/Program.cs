@@ -29,6 +29,7 @@ namespace Salvation.Explorer
                 MasteryRating = 242,
                 VersatilityRating = 139,
                 HasteRating = 242,
+                CritRating = 268,
             };
 
             var hpriest = new HolyPriestModel(globalConstants, basicProfile);

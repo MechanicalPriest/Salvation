@@ -150,21 +150,7 @@
           "Gcd": 1.5,
           "Coeff1": 1.0,
           "IsMasteryTriggered": false
-        },
-        {
-          "Id": 17,
-          "Name": "Power Word: Shield",
-          "ManaCost": 0.031,
-          "Range": 40.0,
-          "DefaultNumberOfTargets": 1.0,
-          "BaseCastTime": 0.0,
-          "IsCastTimeHasted": true,
-          "BaseCooldown": 0.0,
-          "IsCooldownHasted": false,
-          "Gcd": 1.5,
-          "Coeff1": 1.0,
-          "IsMasteryTriggered": false
-        },
+        }
         {
           "Id": 64843,
           "Name": "Divine Hymn",

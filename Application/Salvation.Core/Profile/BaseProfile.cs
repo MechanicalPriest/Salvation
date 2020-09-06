@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Salvation.Core.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,6 +7,7 @@ namespace Salvation.Core.Profile
 {
     public class BaseProfile
     {
+        public Spec SpecId { get; set; }
         public int Intellect { get; set; }
         public int MasteryRating { get; set; }
         public int VersatilityRating { get; set; }

@@ -32,11 +32,13 @@
     <Content Include="src\interface\TwoWayText.js">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="src\Modules\SpellComparison.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="public" />
     <Folder Include="src" />
     <Folder Include="src\interface\" />
+    <Folder Include="src\Modules\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />

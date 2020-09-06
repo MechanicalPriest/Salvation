@@ -40,31 +40,59 @@ function App(props) {
     masteryRating: 0,
     versatilityRating: 0
   });
+  const [modelResult, setModelResult] = useState({
+    spec: 0,
+    spells: [],
+    profile: {}
+  });
   const [loading, setLoading] = useState(true);
   const [apiErrorMessage, setApiErrorMessage] = useState('');
 
   const profileDataUrl = 'http://localhost:7071/api/DefaultProfile';
+  const modelResultUrl = 'http://localhost:7071/api/ProcessModel';
 
   // make the API request to get default profile
   useEffect(() => {
     setLoading(true);
     fetch(profileDataUrl)
       .then((response) => response.json())
-      .then((data) => {
-        console.log('Profile data received:', data);
-        setProfileData(data);
-        setLoading(false);
-      })
-      .catch(error => {
-        console.log(error);
-        setLoading(false);
-        setApiErrorMessage('Error connecting to API. See console for more details.');
-      });
+      .then(
+        (data) => {
+          console.log('Profile data received:', data);
+          setProfileData(data);
+          console.log('Set profile data:', profileData);
+          setLoading(false);
+        },
+        (error) => {
+          console.log(error);
+          setLoading(false);
+          setApiErrorMessage('Error connecting to API. See console for more details.');
+        }
+      );
   }, [profileDataUrl]);
 
   // Processing getting API results from submitted profile
   const handleUpdateClick = useCallback(() => {
-    console.log('Sending profile data to API:', profileData);
+    console.log('Sending profile data to modelling API:', JSON.stringify(profileData));
+
+    fetch(modelResultUrl,
+      {
+        method: 'POST',
+        body: JSON.stringify(profileData)})
+      .then((response) => response.json())
+      .then(
+        (data) => {
+          console.log('Modelling data received:', data);
+          setModelResult(data);
+          setLoading(false);
+        },
+        (error) => {
+          console.log(error);
+          setLoading(false);
+          setApiErrorMessage('Error connecting to modelling API. See console for more details.');
+        }
+      );
+
   }, [profileData]);
 
   // Callback method to update a profile value when changed by a TextField
@@ -105,6 +133,8 @@ function App(props) {
           </Grid>
           <Grid item xs={6}>
             <Paper className={classes.paper}>Results</Paper>
+
+            <pre>{JSON.stringify(modelResult, null, 2)}</pre>
           </Grid>
         </Grid>
       </Grid> 

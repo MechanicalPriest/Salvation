@@ -13,3 +13,6 @@ TODO:
 - [Intro to React Hooks](https://www.robinwieruch.de/react-hooks/)
 - [Api calls with hooks](https://blog.bitsrc.io/making-api-calls-with-react-hooks-748ebfc7de8c)
 - [Composition vs Inheritance](https://reactjs.org/docs/composition-vs-inheritance.html)
+
+## JS related
+- [Using Fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch)

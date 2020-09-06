@@ -26,7 +26,7 @@ namespace Salvation.Core.Models
         protected BaseSpec SpecConstants { get; private set; }
 
         // Set the spec for this model
-        protected Spec Spec = Spec.None;
+        public Spec Spec = Spec.None;
 
         public List<BaseSpell> Spells { get; private set; }
 

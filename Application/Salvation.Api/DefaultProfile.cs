@@ -22,6 +22,7 @@ namespace Salvation.Api
 
             var basicProfile = new BaseProfile()
             {
+                SpecId = Core.Models.Spec.HolyPriest,
                 Intellect = 1001,
                 MasteryRating = 242,
                 VersatilityRating = 139,

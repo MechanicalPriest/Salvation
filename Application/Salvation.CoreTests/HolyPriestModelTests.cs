@@ -19,12 +19,7 @@ namespace Salvation.CoreTests
 
             var globalConstants = ConstantsManager.ParseConstants(data);
 
-            var basicProfile = new BaseProfile()
-            {
-                Intellect = 978,
-                MasteryRating = 202,
-                VersatilityRating = 139,
-            };
+            var basicProfile = DefaultProfiles.GetDefaultProfile(Core.Models.Spec.HolyPriest);
 
             var hpriest = new HolyPriestModel(globalConstants, basicProfile);
 

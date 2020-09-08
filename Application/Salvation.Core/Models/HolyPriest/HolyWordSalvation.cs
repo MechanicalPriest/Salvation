@@ -22,8 +22,8 @@ namespace Salvation.Core.Models.HolyPriest
         {
             // Salv first applies renew to all targets
             var renew = model.GetSpell<Renew>(HolyPriestModel.SpellIds.Renew);
-            // TODO: Should probably throw something here if renew isn't being defined, as HW:Salv relies on it.
-            decimal renewHealing = renew == null ? 0 : renew.AverageRawDirectHeal;
+            
+            decimal renewHealing = renew.AverageRawDirectHeal;
 
             // Then it puts 2 stacks of PoM on all targets
             var pom = model.GetSpell<PrayerOfMending>(HolyPriestModel.SpellIds.PrayerOfMending);
@@ -64,6 +64,24 @@ namespace Salvation.Core.Models.HolyPriest
             decimal retVal = (pomHealing + salvHealing) * (model.GetMasteryMultiplier(model.RawMastery) - 1);
 
             return retVal * NumberOfTargets;
+        }
+        protected override decimal calcCastsPerMinute()
+        {
+            // Salv is (60 + (SerenityCPM + SancCPM) * SalvCDR) / (CastTime + Cooldown) + 1 / (FightLength / 60)
+            // Essentially the CDR per minute is 60 + the CDR from holy words.
+
+            var serenity = model.GetSpell<HolyWordSerenity>(HolyPriestModel.SpellIds.HolyWordSerenity);
+            var sanc = model.GetSpell<HolyWordSanctify>(HolyPriestModel.SpellIds.HolyWordSanctify);
+
+            var salvCDRBase = model.GetModifierbyName("SalvationHolyWordCDR").Value;
+
+            decimal salvCDRPerMin = 60m + (serenity.CastsPerMinute + sanc.CastsPerMinute) * salvCDRBase;
+            decimal maximumPotentialCasts = salvCDRPerMin / (HastedCastTime + HastedCooldown)
+                + 1m / (model.FightLengthSeconds / 60m);
+
+            decimal castsPerMinute = CastProfile.Efficiency * maximumPotentialCasts;
+
+            return castsPerMinute;
         }
     }
 }

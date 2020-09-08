@@ -26,5 +26,17 @@ namespace Salvation.Core.Models.HolyPriest
 
             return averageHeal * NumberOfTargets;
         }
+
+        protected override decimal calcCastsPerMinute()
+        {
+            // Halo is simply 60 / (CastTime + CD) + 1 / (FightLength / 60)
+            // Number of casts per minute plus one cast at the start of the encounter
+            decimal maximumPotentialCasts = 60m / (HastedCastTime + HastedCooldown) 
+                + 1m / (model.FightLengthSeconds / 60m);
+
+            decimal castsPerMinute = CastProfile.Efficiency * maximumPotentialCasts;
+
+            return castsPerMinute;
+        }
     }
 }

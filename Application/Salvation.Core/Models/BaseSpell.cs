@@ -1,4 +1,5 @@
 ﻿using Salvation.Core.Constants;
+using Salvation.Core.Profile;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -27,8 +28,11 @@ namespace Salvation.Core.Models
 
         public virtual decimal HastedCastTime { get { return getHastedCastTime(); } }
         public virtual decimal HastedGcd { get { return getHastedGcd(); } }
+        public virtual decimal HastedCooldown { get { return getHastedCooldown(); } }
         public virtual decimal ActualManaCost { get { return getActualManaCost(); } }
-        public virtual decimal NumberOfTargets { get; set; }
+        public virtual decimal NumberOfTargets { get; protected set; }
+        public virtual decimal CastsPerMinute { get { return calcCastsPerMinute(); } }
+        public virtual CastProfile CastProfile { get; private set; }
         // 'static' fields
         public int SpellId { get; set; }
         public string Name { get; set; }
@@ -52,6 +56,8 @@ namespace Salvation.Core.Models
             NumberOfTargets = requestedNumberOfTargetsHit > 0 ?
                 requestedNumberOfTargetsHit :
                  SpellData.DefaultNumberOfTargets;
+
+            CastProfile = model.GetCastProfile(SpellId);
         }
 
         protected virtual decimal getHastedCastTime()
@@ -65,9 +71,25 @@ namespace Salvation.Core.Models
             return SpellData.Gcd / model.GetHasteMultiplier(model.RawHaste);
         }
 
+        protected virtual decimal getHastedCooldown()
+        {
+            return SpellData.IsCooldownHasted 
+                ? SpellData.BaseCooldown / model.GetHasteMultiplier(model.RawHaste) 
+                : SpellData.BaseCooldown;
+        }
+
         protected virtual decimal getActualManaCost()
         {
             return model.RawMana * SpellData.ManaCost;
+        }
+
+        /// <summary>
+        /// Override this to calculate the Casts per minute of the spell
+        /// </summary>
+        /// <returns></returns>
+        protected virtual decimal calcCastsPerMinute()
+        {
+            return 0m;
         }
     }
 }

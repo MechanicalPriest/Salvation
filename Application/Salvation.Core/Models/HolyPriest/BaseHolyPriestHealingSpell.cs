@@ -27,7 +27,7 @@ namespace Salvation.Core.Models.HolyPriest
 
         private decimal calcAverageRawMasteryHeal()
         {
-            if (model is HolyPriestModel && SpellData.IsMasteryTriggered)
+            if (SpellData.IsMasteryTriggered)
             {
                 // TODO: Clean this up a bit, another method maybe?
                 decimal retVal = AverageRawDirectHeal * (model.GetMasteryMultiplier(model.RawMastery) - 1);
@@ -40,7 +40,13 @@ namespace Salvation.Core.Models.HolyPriest
 
         private decimal calcAverageTotalHeal()
         {
-            return AverageRawDirectHeal + AverageRawMasteryHeal;
+            var echoOfLightProfile = model.GetCastProfile((int)HolyPriestModel.SpellIds.EchoOfLight);
+
+            var totalDirectHeal = AverageRawDirectHeal * (1 - CastProfile.OverhealPercent);
+
+            var totalMasteryHeal = AverageRawMasteryHeal * (1 - echoOfLightProfile.OverhealPercent);
+
+            return totalDirectHeal + totalMasteryHeal;
         }
     }
 }

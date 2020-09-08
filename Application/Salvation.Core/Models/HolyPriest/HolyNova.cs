@@ -29,5 +29,19 @@ namespace Salvation.Core.Models.HolyPriest
 
             return retVal * NumberOfTargets;
         }
+
+        protected override decimal calcCastsPerMinute()
+        {
+            // If it's instant cast, instead use the hasted GCD as the limiting factor
+            decimal fillerCastTime = HastedCastTime == 0
+                ? HastedGcd
+                : HastedCastTime;
+
+            decimal maximumPotentialCasts = 60m / fillerCastTime;
+
+            decimal castsPerMinute = CastProfile.Efficiency * maximumPotentialCasts;
+
+            return castsPerMinute;
+        }
     }
 }

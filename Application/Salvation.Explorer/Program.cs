@@ -4,6 +4,7 @@ using Salvation.Core.Models;
 using Salvation.Core.Models.HolyPriest;
 using Salvation.Core.Profile;
 using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace Salvation.Explorer
@@ -23,16 +24,11 @@ namespace Salvation.Explorer
 
             var globalConstants = ConstantsManager.ParseConstants(data);
 
-            var basicProfile = new BaseProfile()
-            {
-                Intellect = 1001,
-                MasteryRating = 242,
-                VersatilityRating = 139,
-                HasteRating = 242,
-                CritRating = 268,
-            };
+            var basicProfile = DefaultProfiles.GetDefaultProfile(Spec.HolyPriest);
 
             var hpriest = new HolyPriestModel(globalConstants, basicProfile);
+
+            hpriest.GetResults();
 
             Console.WriteLine("------------[ Profile ]------------");
             Console.WriteLine(JsonConvert.SerializeObject(basicProfile, Formatting.Indented));

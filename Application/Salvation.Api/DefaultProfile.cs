@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Salvation.Core.Profile;
+using System.Collections.Generic;
 
 namespace Salvation.Api
 {
@@ -20,15 +21,17 @@ namespace Salvation.Api
         {
             log.LogTrace("Default profile requested.");
 
-            var basicProfile = new BaseProfile()
+            int specId;
+            var validSpec = int.TryParse(req.Query["specid"], out specId);
+
+            if(!validSpec)
             {
-                SpecId = Core.Models.Spec.HolyPriest,
-                Intellect = 1001,
-                MasteryRating = 242,
-                VersatilityRating = 139,
-                HasteRating = 242,
-                CritRating = 268,
-            };
+                // Log only the first 3 characters of the parameter
+                log.LogError("Invalid spec provided");
+                return new BadRequestResult();
+            }
+
+            var basicProfile = DefaultProfiles.GetDefaultProfile(specId);
 
             return new OkObjectResult(basicProfile);
         }

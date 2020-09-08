@@ -46,6 +46,14 @@
           // Stored as a decimal. 0.4 is 40% more healing.
           "Name": "HolyPriestAuraHealingBonus",
           "Value": 4
+        },
+        {
+          "Name": "HolyWordsBaseCDR",
+          "Value": 6
+        },
+        {
+          "Name": "SalvationHolyWordCDR",
+          "Value": 30
         }
       ],
 

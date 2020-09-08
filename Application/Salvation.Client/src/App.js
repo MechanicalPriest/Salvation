@@ -48,7 +48,7 @@ function App(props) {
   const [loading, setLoading] = useState(true);
   const [apiErrorMessage, setApiErrorMessage] = useState('');
 
-  const profileDataUrl = 'http://localhost:7071/api/DefaultProfile';
+  const profileDataUrl = 'http://localhost:7071/api/DefaultProfile?specid=257';
   const modelResultUrl = 'http://localhost:7071/api/ProcessModel';
 
   // make the API request to get default profile

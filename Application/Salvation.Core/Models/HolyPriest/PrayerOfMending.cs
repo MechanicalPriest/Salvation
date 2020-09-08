@@ -28,5 +28,37 @@ namespace Salvation.Core.Models.HolyPriest
 
             return averageHeal * NumberOfTargets;
         }
+
+        protected override decimal calcCastsPerMinute()
+        {
+            /* Efficiency is:
+            * =F294/(
+            *   IF(
+            *     (tCDPoM/(1+(S290/tCostHaste)/100)) > 0, 
+            *     60 / ((tCastTimePoM/(1+(S290/tCostHaste)/100))+(tCDPoM/(1+(S290/tCostHaste)/100)))
+            *     ,"") 
+            *   + 1/(J316/60)
+            * ) 
+            * 
+            * CPM / ((60 / (HastedPoMCT + HastedPoMCD)) + 1 / FightLengthSeconds / 60)
+            */
+
+            /* Casts per minute is:
+             * Efficiency * MaximumPotentialCasts
+             * 
+             * MaximumPotentialCasts is:
+             * 60 / (CastTime + Cooldown)
+             */
+
+
+            // Yes I'm aware hasted cast time for PoM is 0. The CD starts immediately.
+            // TODO: Decide if PoM should have a component that includes the initial cast you get
+            // or not given you have the ability to get full value out of it pre-combat.
+            decimal maximumPotentialCasts = 60m / (HastedCastTime + HastedCooldown);
+
+            decimal castsPerMinute = CastProfile.Efficiency * maximumPotentialCasts;
+
+            return castsPerMinute;
+        }
     }
 }

@@ -47,6 +47,8 @@ namespace Salvation.Core.Models
         internal int RawCrit { get { return getRawCrit(); } }
         internal int RawMana { get { return getRawMana(); } }
 
+        internal int FightLengthSeconds { get { return getFightLengthSeconds(); } }
+
         protected BaseModel(GlobalConstants constants, BaseProfile profile, Spec spec = Spec.None)
         {
             Constants = constants;
@@ -87,6 +89,20 @@ namespace Salvation.Core.Models
                 .FirstOrDefault() as T;
 
             return spellModel;
+        }
+
+        /// <summary>
+        /// Pull a cast profile from the base profile, based on spell ID
+        /// </summary>
+        /// <param name="spellId"></param>
+        /// <returns></returns>
+        internal CastProfile GetCastProfile(int spellId)
+        {
+            var castProfile = Profile.Casts?
+                .Where(c => c.SpellId == spellId)
+                .FirstOrDefault();
+
+            return castProfile;
         }
 
         internal BaseModifier GetModifierbyName(string modifierName)
@@ -141,6 +157,10 @@ namespace Salvation.Core.Models
         private int getRawMana()
         {
             return SpecConstants.ManaBase;
+        }
+        private int getFightLengthSeconds()
+        {
+            return Profile.FightLengthSeconds;
         }
 
 

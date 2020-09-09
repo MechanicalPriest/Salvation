@@ -7,15 +7,13 @@ namespace Salvation.Core.Models.HolyPriest
     class DivineHymn 
         : BaseHolyPriestHealingSpell
     {
-        public override decimal AverageRawDirectHeal { get => calcAverageRawDirectHeal(); }
-
         public DivineHymn(HolyPriestModel holyPriestModel, decimal numberOfTargetsHit = 0)
             : base (holyPriestModel, numberOfTargetsHit)
         {
             SpellData = model.GetSpellDataById((int)HolyPriestModel.SpellIds.DivineHymn);
         }
 
-        private decimal calcAverageRawDirectHeal()
+        protected override decimal calcAverageRawDirectHeal()
         {
             // DH's average heal for the first tick is:
             // SP% * Intellect * Vers * Hpriest Aura

@@ -73,13 +73,13 @@ namespace Salvation.Core.Models.HolyPriest
             }
 
             // Total healing
-            decimal totalHealing = 0;
+            //decimal totalHealing = 0;
 
             foreach(var spell in Spells)
             {
                 if(spell is BaseHolyPriestHealingSpell holySpell)
                 {
-                    totalHealing += holySpell.CastsPerMinute * holySpell.AverageTotalHeal;
+                    //totalHealing += holySpell.CastsPerMinute * holySpell.AverageTotalHeal;
                 }
             }
 
@@ -91,7 +91,7 @@ namespace Salvation.Core.Models.HolyPriest
             {
                 if (spell is BaseHolyPriestHealingSpell holySpell)
                 {
-                    totalManaSpentPerSecond += holySpell.CastsPerMinute * holySpell.ActualManaCost / 60;
+                    //totalManaSpentPerSecond += holySpell.CastsPerMinute * holySpell.ActualManaCost / 60;
                 }
             }
 

@@ -7,15 +7,13 @@ namespace Salvation.Core.Models.HolyPriest
     class Renew 
         : BaseHolyPriestHealingSpell
     {
-        public override decimal AverageRawDirectHeal { get => calcAverageRawDirectHeal(); }
-
         public Renew(HolyPriestModel holyPriestModel, decimal numberOfTargetsHit = 0)
             : base (holyPriestModel, numberOfTargetsHit)
         {
             SpellData = model.GetSpellDataById((int)HolyPriestModel.SpellIds.Renew);
         }
 
-        private decimal calcAverageRawDirectHeal()
+        protected override decimal calcAverageRawDirectHeal()
         {
             // Renews's average heal is initial + HoT portion:
             decimal averageHealFirstTick = SpellData.Coeff1 

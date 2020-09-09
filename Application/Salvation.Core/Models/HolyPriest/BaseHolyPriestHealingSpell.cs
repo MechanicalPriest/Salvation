@@ -12,7 +12,6 @@ namespace Salvation.Core.Models.HolyPriest
         protected decimal holyPriestAuraHealingBonus { get; }
 
         public virtual decimal AverageRawMasteryHeal { get => calcAverageRawMasteryHeal(); }
-        public override decimal AverageTotalHeal { get => calcAverageTotalHeal(); }
 
         public BaseHolyPriestHealingSpell(BaseModel model, decimal numberOfTargetsHit)
             : base(model, numberOfTargetsHit)
@@ -34,7 +33,7 @@ namespace Salvation.Core.Models.HolyPriest
             return result;
         }
 
-        private decimal calcAverageRawMasteryHeal()
+        protected virtual decimal calcAverageRawMasteryHeal()
         {
             if (SpellData.IsMasteryTriggered)
             {
@@ -47,7 +46,7 @@ namespace Salvation.Core.Models.HolyPriest
             return 0;
         }
 
-        private decimal calcAverageTotalHeal()
+        protected override decimal calcAverageTotalHeal()
         {
             var echoOfLightProfile = model.GetCastProfile((int)HolyPriestModel.SpellIds.EchoOfLight);
 

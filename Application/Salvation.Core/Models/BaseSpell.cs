@@ -27,17 +27,17 @@ namespace Salvation.Core.Models
 
         // calculated fields
 
-        public virtual decimal HastedCastTime { get { return getHastedCastTime(); } }
-        public virtual decimal HastedGcd { get { return getHastedGcd(); } }
-        public virtual decimal HastedCooldown { get { return getHastedCooldown(); } }
-        public virtual decimal ActualManaCost { get { return getActualManaCost(); } }
-        public virtual decimal NumberOfTargets { get; protected set; }
-        public virtual decimal CastsPerMinute { get { return calcCastsPerMinute(); } }
-        public virtual decimal MaximumCastsPerMinute { get { return calcMaximumCastsPerMinute(); } }
-        public virtual CastProfile CastProfile { get; private set; }
+        protected virtual decimal HastedCastTime { get { return getHastedCastTime(); } }
+        protected virtual decimal HastedGcd { get { return getHastedGcd(); } }
+        protected virtual decimal HastedCooldown { get { return getHastedCooldown(); } }
+        protected virtual decimal ActualManaCost { get { return getActualManaCost(); } }
+        protected virtual decimal NumberOfTargets { get; set; }
+        protected virtual decimal CastsPerMinute { get { return calcCastsPerMinute(); } }
+        protected virtual decimal MaximumCastsPerMinute { get { return calcMaximumCastsPerMinute(); } }
+        protected virtual CastProfile CastProfile { get; private set; }
         // 'static' fields
         public int SpellId { get; set; }
-        public string Name { get; set; }
+        protected string Name { get; set; }
 
         public BaseSpell (BaseModel baseModel, decimal numberOfTargetsHit)
         {

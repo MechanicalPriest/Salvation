@@ -8,15 +8,13 @@ namespace Salvation.Core.Models.HolyPriest
     class FlashHeal 
         : BaseHolyPriestHealingSpell
     {
-        public override decimal AverageRawDirectHeal { get => calcAverageRawDirectHeal(); }
-
         public FlashHeal(HolyPriestModel holyPriestModel, decimal numberOfTargetsHit = 0)
             : base (holyPriestModel, numberOfTargetsHit)
         {
             SpellData = model.GetSpellDataById((int)HolyPriestModel.SpellIds.FlashHeal);
         }
 
-        private decimal calcAverageRawDirectHeal()
+        protected override decimal calcAverageRawDirectHeal()
         {
             // Flash Heal's average heal is:
             // SP% * Intellect * Vers * Hpriest Aura
@@ -27,20 +25,6 @@ namespace Salvation.Core.Models.HolyPriest
                 * holyPriestAuraHealingBonus;
 
             return averageHeal * NumberOfTargets;
-        }
-
-        private decimal castSpell()
-        {
-            decimal baseHeal = SpellData.Coeff1
-                * model.RawInt
-                * model.GetVersMultiplier(model.RawVers)
-                // * model.GetCritMultiplier(model.RawCrit) rng this
-                * holyPriestAuraHealingBonus;
-
-            // do some RNG and figure out if crit applies not
-            // if crit applies, crit it
-
-            return baseHeal * NumberOfTargets;
         }
 
         protected override decimal calcCastsPerMinute()

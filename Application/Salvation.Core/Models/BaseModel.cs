@@ -140,8 +140,11 @@ namespace Salvation.Core.Models
 
         internal decimal GetCritMultiplier(int critRating)
         {
+            // TODO: This returns average crit. For models not being averaged...
+            // it needs to return 2(?) or 1 depending on if RNG decides it crits or not.
             return 1 + SpecConstants.CritBase + (critRating / SpecConstants.CritCost / 100);
 
+            // Pseudo code for TODO implementation
             //var statWeights = true;
             //var critPercent = SpecConstants.CritBase + (critRating / SpecConstants.CritCost / 100);
             //if (statWeights)

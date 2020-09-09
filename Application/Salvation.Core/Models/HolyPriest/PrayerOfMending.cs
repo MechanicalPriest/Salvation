@@ -7,15 +7,13 @@ namespace Salvation.Core.Models.HolyPriest
     class PrayerOfMending 
         : BaseHolyPriestHealingSpell
     {
-        public override decimal AverageRawDirectHeal { get => calcAverageRawDirectHeal(); }
-
         public PrayerOfMending(HolyPriestModel holyPriestModel, decimal numberOfTargetsHit = 0)
             : base (holyPriestModel, numberOfTargetsHit)
         {
             SpellData = model.GetSpellDataById((int)HolyPriestModel.SpellIds.PrayerOfMending);
         }
 
-        private decimal calcAverageRawDirectHeal()
+        protected override decimal calcAverageRawDirectHeal()
         {
             var pomBounces = model.GetModifierbyName("PrayerOfMendingBounces").Value;
             // PoM bounces 4 times, healing 5 (1 + 4) people total. 

@@ -8,17 +8,13 @@ namespace Salvation.Core.Models.HolyPriest
     class HolyWordSalvation 
         : BaseHolyPriestHealingSpell
     {
-        public override decimal AverageRawMasteryHeal { get => calcAverageRawMasteryHeal(); }
-
-        public override decimal AverageRawDirectHeal { get => calcAverageRawDirectHeal(); }
-
         public HolyWordSalvation(HolyPriestModel holyPriestModel, decimal numberOfTargetsHit = 0)
             : base (holyPriestModel, numberOfTargetsHit)
         {
             SpellData = model.GetSpellDataById((int)HolyPriestModel.SpellIds.HolyWordSalvation);
         }
 
-        private decimal calcAverageRawDirectHeal()
+        protected override decimal calcAverageRawDirectHeal()
         {
             // Salv first applies renew to all targets
             var renew = model.GetSpell<Renew>(HolyPriestModel.SpellIds.Renew).CastAverageSpell();
@@ -45,7 +41,7 @@ namespace Salvation.Core.Models.HolyPriest
         /// Overriding mastery calculations as renew doesn't have a mastery component.
         /// </summary>
         /// <returns></returns>
-        private decimal calcAverageRawMasteryHeal()
+        protected override decimal calcAverageRawMasteryHeal()
         {
             // TODO: split the result up to include these mini casts as children.
             // PoM healing

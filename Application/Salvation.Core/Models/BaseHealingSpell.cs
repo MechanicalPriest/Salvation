@@ -14,11 +14,13 @@ namespace Salvation.Core.Models
         /// <summary>
         /// The direct healing component
         /// </summary>
-        public virtual decimal AverageRawDirectHeal { get; }
+        protected virtual decimal AverageRawDirectHeal { get => calcAverageRawDirectHeal(); }
+
+
         /// <summary>
         /// The direct healing component any potential additional factors (like Hpriestm astery)
         /// </summary>
-        public virtual decimal AverageTotalHeal { get { return AverageRawDirectHeal; } }
+        protected virtual decimal AverageTotalHeal { get => calcAverageTotalHeal(); }
 
 
         public BaseHealingSpell(BaseModel model, decimal numberOfTargetsHit)
@@ -34,6 +36,14 @@ namespace Salvation.Core.Models
             result.Healing = AverageTotalHeal;
 
             return result;
+        }
+        protected virtual decimal calcAverageRawDirectHeal()
+        {
+            return 0;
+        }
+        protected virtual decimal calcAverageTotalHeal()
+        {
+            return 0;
         }
     }
 }

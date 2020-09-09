@@ -56,7 +56,7 @@ namespace Salvation.Core.Models.HolyPriest
             Spells.Add(new HolyWordSalvation(this));
         }
 
-        public object GetResults()
+        public override List<SpellCastResult> GetResults()
         {
             /// So what we want to do for this is calculate results for each spell.
             /// Get back result values such as raw direct/periodic healing, raw mastery healing, raw total healing
@@ -105,7 +105,7 @@ namespace Salvation.Core.Models.HolyPriest
 
             var secondsUntilOutOfMana = RawMana / totalNegativeManaPerSecond;
 
-            return 0;
+            return results;
         }
     }
 }

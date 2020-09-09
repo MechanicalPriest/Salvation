@@ -1,4 +1,5 @@
 ﻿using Salvation.Core.Constants;
+using Salvation.Core.Models.Common;
 using Salvation.Core.Models.HolyPriest;
 using Salvation.Core.Profile;
 using System;
@@ -77,6 +78,11 @@ namespace Salvation.Core.Models
                 SpecConstants = foundSpec;
 
             Spells = new List<BaseSpell>();
+        }
+
+        public virtual List<SpellCastResult> GetResults()
+        {
+            return new List<SpellCastResult>();
         }
 
         internal Constants.BaseSpellData GetSpellDataById(int spellId)

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Salvation.Core.Models.Common;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -24,6 +25,14 @@ namespace Salvation.Core.Models.HolyPriest
             // - At time of writing the hpriest spec aura is nuked and not relevant
         }
 
+        public override AveragedSpellCastResult CastAverageSpell()
+        {
+            AveragedSpellCastResult result = base.CastAverageSpell();
+
+            result.RawHealing = AverageRawDirectHeal + AverageRawMasteryHeal;
+
+            return result;
+        }
 
         private decimal calcAverageRawMasteryHeal()
         {

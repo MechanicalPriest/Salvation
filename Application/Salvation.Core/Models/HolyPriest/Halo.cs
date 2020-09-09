@@ -29,14 +29,19 @@ namespace Salvation.Core.Models.HolyPriest
 
         protected override decimal calcCastsPerMinute()
         {
-            // Halo is simply 60 / (CastTime + CD) + 1 / (FightLength / 60)
-            // Number of casts per minute plus one cast at the start of the encounter
-            decimal maximumPotentialCasts = 60m / (HastedCastTime + HastedCooldown) 
-                + 1m / (model.FightLengthSeconds / 60m);
-
-            decimal castsPerMinute = CastProfile.Efficiency * maximumPotentialCasts;
+            decimal castsPerMinute = CastProfile.Efficiency * MaximumCastsPerMinute;
 
             return castsPerMinute;
+        }
+
+        protected override decimal calcMaximumCastsPerMinute()
+        {
+            // Halo is simply 60 / (CastTime + CD) + 1 / (FightLength / 60)
+            // Number of casts per minute plus one cast at the start of the encounter
+            decimal maximumPotentialCasts = 60m / (HastedCastTime + HastedCooldown)
+                + 1m / (model.FightLengthSeconds / 60m);
+
+            return maximumPotentialCasts;
         }
     }
 }

@@ -18,6 +18,12 @@ namespace Salvation.Core.Models
         HolyPriest = 257
     }
 
+    public enum ModelType
+    {
+        Average = 0,
+        Sequence = 1
+    }
+
     public class BaseModel
     {
         // Store the configuration data for easy access by the model
@@ -26,7 +32,11 @@ namespace Salvation.Core.Models
         protected BaseSpec SpecConstants { get; private set; }
 
         // Set the spec for this model
-        public Spec Spec = Spec.None;
+        public Spec Spec { get; private set; }
+        /// <summary>
+        /// The type of model. This defines some core behaviour about how results are calculated
+        /// </summary>
+        public ModelType ModelType { get; private set; }
 
         public List<BaseSpell> Spells { get; private set; }
 
@@ -49,11 +59,12 @@ namespace Salvation.Core.Models
 
         internal int FightLengthSeconds { get { return getFightLengthSeconds(); } }
 
-        protected BaseModel(GlobalConstants constants, BaseProfile profile, Spec spec = Spec.None)
+        protected BaseModel(GlobalConstants constants, BaseProfile profile, Spec spec = Spec.None, ModelType modelType = ModelType.Average)
         {
             Constants = constants;
             Profile = profile;
             Spec = spec;
+            ModelType = modelType;
 
             if (Spec == Spec.None)
                 throw new Exception($"Spec must be set for the model.");
@@ -130,6 +141,17 @@ namespace Salvation.Core.Models
         internal decimal GetCritMultiplier(int critRating)
         {
             return 1 + SpecConstants.CritBase + (critRating / SpecConstants.CritCost / 100);
+
+            //var statWeights = true;
+            //var critPercent = SpecConstants.CritBase + (critRating / SpecConstants.CritCost / 100);
+            //if (statWeights)
+            //{
+            //    return 1 + critPercent;
+            //}
+            //else
+            //{
+            //    return Random(0, 100) > critPercent ? GetCritMultiplier : 0;
+            //}
         }
 
         private int getRawIntellect()

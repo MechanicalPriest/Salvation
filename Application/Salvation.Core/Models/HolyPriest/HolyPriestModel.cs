@@ -1,4 +1,5 @@
 ﻿using Salvation.Core.Constants;
+using Salvation.Core.Models.Common;
 using Salvation.Core.Profile;
 using System;
 using System.Collections.Generic;
@@ -61,6 +62,15 @@ namespace Salvation.Core.Models.HolyPriest
             /// Get back result values such as raw direct/periodic healing, raw mastery healing, raw total healing
             /// number of targets hit, mana cost, cast time
             /// inputs that change the results are the profile, and number of targets hit by non-capped aoe spells
+
+            // Spell results
+
+            List<SpellCastResult> results = new List<SpellCastResult>();
+
+            foreach(var spell in Spells)
+            {
+                results.Add(spell.CastAverageSpell());
+            }
 
             // Total healing
             decimal totalHealing = 0;

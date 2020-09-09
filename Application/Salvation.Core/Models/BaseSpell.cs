@@ -1,4 +1,5 @@
 ﻿using Salvation.Core.Constants;
+using Salvation.Core.Models.Common;
 using Salvation.Core.Profile;
 using System;
 using System.Collections.Generic;
@@ -32,6 +33,7 @@ namespace Salvation.Core.Models
         public virtual decimal ActualManaCost { get { return getActualManaCost(); } }
         public virtual decimal NumberOfTargets { get; protected set; }
         public virtual decimal CastsPerMinute { get { return calcCastsPerMinute(); } }
+        public virtual decimal MaximumCastsPerMinute { get { return calcMaximumCastsPerMinute(); } }
         public virtual CastProfile CastProfile { get; private set; }
         // 'static' fields
         public int SpellId { get; set; }
@@ -58,6 +60,23 @@ namespace Salvation.Core.Models
                  SpellData.DefaultNumberOfTargets;
 
             CastProfile = model.GetCastProfile(SpellId);
+        }
+
+
+        public virtual AveragedSpellCastResult CastAverageSpell()
+        {
+            AveragedSpellCastResult result = new AveragedSpellCastResult();
+
+            result.CastsPerMinute = CastsPerMinute;
+            result.CastTime = HastedCastTime;
+            result.Gcd = HastedGcd;
+            result.ManaCost = ActualManaCost;
+            result.SpellId = SpellId;
+            result.SpellName = Name;
+            result.NumberOfTargets = NumberOfTargets;
+            result.MaximumCastsPerMinute = MaximumCastsPerMinute;
+
+            return result;
         }
 
         protected virtual decimal getHastedCastTime()
@@ -88,6 +107,15 @@ namespace Salvation.Core.Models
         /// </summary>
         /// <returns></returns>
         protected virtual decimal calcCastsPerMinute()
+        {
+            return 0m;
+        }
+
+        // <summary>
+        /// Override this to calculate the Maximum Casts per minute of the spell
+        /// </summary>
+        /// <returns></returns>
+        protected virtual decimal calcMaximumCastsPerMinute()
         {
             return 0m;
         }

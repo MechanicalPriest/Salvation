@@ -31,6 +31,13 @@ namespace Salvation.Core.Models.HolyPriest
 
         protected override decimal calcCastsPerMinute()
         {
+            decimal castsPerMinute = CastProfile.Efficiency * MaximumCastsPerMinute;
+
+            return castsPerMinute;
+        }
+
+        protected override decimal calcMaximumCastsPerMinute()
+        {
             /* Efficiency is:
             * =F294/(
             *   IF(
@@ -56,9 +63,7 @@ namespace Salvation.Core.Models.HolyPriest
             // or not given you have the ability to get full value out of it pre-combat.
             decimal maximumPotentialCasts = 60m / (HastedCastTime + HastedCooldown);
 
-            decimal castsPerMinute = CastProfile.Efficiency * maximumPotentialCasts;
-
-            return castsPerMinute;
+            return maximumPotentialCasts;
         }
     }
 }

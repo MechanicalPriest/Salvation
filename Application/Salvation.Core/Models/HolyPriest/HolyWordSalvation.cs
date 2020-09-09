@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Salvation.Core.Models.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,54 +14,48 @@ namespace Salvation.Core.Models.HolyPriest
         {
             SpellData = model.GetSpellDataById((int)HolyPriestModel.SpellIds.HolyWordSalvation);
         }
+        public override AveragedSpellCastResult CastAverageSpell()
+        {
+            AveragedSpellCastResult result = base.CastAverageSpell();
+
+            // Salv first applies renew to all targets
+            var renew = new Renew(HolyModel, NumberOfTargets);
+
+            var renewResults = renew.CastAverageSpell();
+
+            renewResults.MakeCastFree();
+            renewResults.MakeCastHaveNoGcd();
+            renewResults.MakeCastInstant();
+            renewResults.MakeSpellHaveNoCasts();
+
+            result.AdditionalCasts.Add(renewResults);
+
+            // Calculate a PoM with only 1 additional bounce (Salv gives 2 stacks)
+            var pom = new PrayerOfMending(HolyModel, NumberOfTargets);
+            pom.PrayerOfMendingBounces = 1;
+
+            var pomResults = pom.CastAverageSpell();
+            pomResults.MakeCastFree();
+            pomResults.MakeCastHaveNoGcd();
+            pomResults.MakeCastInstant();
+            pomResults.MakeSpellHaveNoCasts();
+
+            result.AdditionalCasts.Add(pomResults);
+
+            return result;
+        }
+
 
         protected override decimal calcAverageRawDirectHeal()
         {
-            // Salv first applies renew to all targets
-            var renew = model.GetSpell<Renew>(HolyPriestModel.SpellIds.Renew).CastAverageSpell();
-            
-            decimal renewHealing = renew.RawHealing;
-
-            // Then it puts 2 stacks of PoM on all targets
-            var pom = model.GetSpell<PrayerOfMending>(HolyPriestModel.SpellIds.PrayerOfMending).CastAverageSpell();
-            var pomBounces = model.GetModifierbyName("PrayerOfMendingBounces").Value;
-
-            var pomhealing = pom == null ? 0 : pom.RawHealing / pomBounces * 2;
-
             // Finally it casts a direct heal on all targets
-            decimal salvHealing = SpellData.Coeff1 
+            decimal averageHeal = SpellData.Coeff1 
                 * model.RawInt 
                 * model.GetVersMultiplier(model.RawVers)
                 * model.GetCritMultiplier(model.RawCrit)
                 * holyPriestAuraHealingBonus;
 
-            return (renewHealing + pomhealing + salvHealing) * NumberOfTargets;
-        }
-
-        /// <summary>
-        /// Overriding mastery calculations as renew doesn't have a mastery component.
-        /// </summary>
-        /// <returns></returns>
-        protected override decimal calcAverageRawMasteryHeal()
-        {
-            // TODO: split the result up to include these mini casts as children.
-            // PoM healing
-            var pom = model.GetSpell<PrayerOfMending>(HolyPriestModel.SpellIds.PrayerOfMending).CastAverageSpell();
-            var pomBounces = model.GetModifierbyName("PrayerOfMendingBounces").Value;
-
-            var pomHealing = pom == null ? 0 : pom.RawHealing / pomBounces * 2;
-
-            // Salv Healing
-            decimal salvHealing = SpellData.Coeff1 
-                * model.RawInt 
-                * model.GetVersMultiplier(model.RawVers)
-                * model.GetCritMultiplier(model.RawCrit)
-                * holyPriestAuraHealingBonus;
-
-            // Apply mastery
-            decimal retVal = (pomHealing + salvHealing) * (model.GetMasteryMultiplier(model.RawMastery) - 1);
-
-            return retVal * NumberOfTargets;
+            return averageHeal * NumberOfTargets;
         }
 
 

@@ -44,5 +44,20 @@ namespace Salvation.Core.Models.Common
         {
             AdditionalCasts = new List<SpellCastResult>();
         }
+
+        public void MakeCastFree()
+        {
+            ManaCost = 0;
+        }
+
+        public void MakeCastInstant()
+        {
+            CastTime = 0;
+        }
+
+        public void MakeCastHaveNoGcd()
+        {
+            Gcd = 0;
+        }
     }
 }

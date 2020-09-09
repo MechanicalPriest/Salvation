@@ -35,12 +35,19 @@ namespace Salvation.Core.Models.Common
             {
                 return RawHealing / CastTime;
             }
-            return RawHealing / Gcd;
+
+            if (Gcd > 0)
+            {
+                return RawHealing / Gcd;
+            }
+            return 0;
         }
 
         private decimal calcRawHPM()
         {
-            return RawHealing / ManaCost;
+            if(ManaCost > 0)
+                return RawHealing / ManaCost;
+            return 0;
         }
 
         private decimal calcRawHPS()
@@ -54,12 +61,19 @@ namespace Salvation.Core.Models.Common
             {
                 return Healing / CastTime;
             }
-            return Healing / Gcd;
+
+            if (Gcd > 0)
+            {
+                return Healing / Gcd;
+            }
+            return 0;
         }
 
         private decimal calcHPM()
         {
-            return Healing / ManaCost;
+            if (ManaCost > 0)
+                return Healing / ManaCost;
+            return 0;
         }
 
         private decimal calcHPS()
@@ -74,5 +88,11 @@ namespace Salvation.Core.Models.Common
 
 
         #endregion
+
+        public void MakeSpellHaveNoCasts()
+        {
+            CastsPerMinute = 0;
+            MaximumCastsPerMinute = 0;
+        }
     }
 }

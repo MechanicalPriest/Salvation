@@ -75,7 +75,7 @@ namespace Salvation.Core.Models.HolyPriest
             // Total healing
             //decimal totalHealing = 0;
 
-            foreach(var spell in Spells)
+            foreach (var spell in Spells)
             {
                 if(spell is BaseHolyPriestHealingSpell holySpell)
                 {

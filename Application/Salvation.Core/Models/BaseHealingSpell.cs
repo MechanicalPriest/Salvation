@@ -34,6 +34,7 @@ namespace Salvation.Core.Models
             AveragedSpellCastResult result = base.CastAverageSpell();
 
             result.Healing = AverageTotalHeal;
+            result.RawHealing = AverageRawDirectHeal;
 
             return result;
         }

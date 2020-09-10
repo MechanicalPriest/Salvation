@@ -10,7 +10,7 @@ namespace Salvation.Core.Models.HolyPriest
         public HolyNova(HolyPriestModel holyPriestModel, decimal numberOfTargetsHit = 0)
             : base (holyPriestModel, numberOfTargetsHit)
         {
-            SpellData = model.GetSpellDataById((int)HolyPriestModel.SpellIds.HolyNova);
+            SpellData = model.GetSpecSpellDataById((int)HolyPriestModel.SpellIds.HolyNova);
 
             // TODO: Implement the double cast frequency using the HolyNovaDoubleCastFrequency modifier
             // TODO: Implement damage component

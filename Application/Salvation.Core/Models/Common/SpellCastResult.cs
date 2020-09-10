@@ -22,6 +22,10 @@ namespace Salvation.Core.Models.Common
         /// </summary>
         public decimal Healing { get; set; }
         /// <summary>
+        /// Total damage done
+        /// </summary>
+        public decimal Damage { get; set; }
+        /// <summary>
         /// Haste adjusted cast time. 0 is instant-cast
         /// </summary>
         public decimal CastTime { get; set; }

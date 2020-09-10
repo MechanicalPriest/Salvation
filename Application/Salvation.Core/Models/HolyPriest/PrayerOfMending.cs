@@ -12,7 +12,7 @@ namespace Salvation.Core.Models.HolyPriest
         public PrayerOfMending(HolyPriestModel holyPriestModel, decimal numberOfTargetsHit = 0)
             : base (holyPriestModel, numberOfTargetsHit)
         {
-            SpellData = model.GetSpellDataById((int)HolyPriestModel.SpellIds.PrayerOfMending);
+            SpellData = model.GetSpecSpellDataById((int)HolyPriestModel.SpellIds.PrayerOfMending);
 
             PrayerOfMendingBounces = model.GetModifierbyName("PrayerOfMendingBounces").Value;
         }

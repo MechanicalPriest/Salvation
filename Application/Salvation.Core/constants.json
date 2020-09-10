@@ -43,9 +43,14 @@
           "Value": 4.0
         },
         {
-          // Stored as a decimal. 0.4 is 40% more healing.
-          "Name": "HolyPriestAuraHealingBonus",
+          // Stored as a decimal. 1.4 is 40% more healing.
+          "Name": "HolyPriestAuraHealingMultiplier",
           "Value": 1.0
+        },
+        {
+          // Stored as a decimal. 1.4 is 40% more damage.
+          "Name": "HolyPriestAuraDamageMultiplier",
+          "Value": 1.25
         },
         {
           "Name": "HolyWordsBaseCDR",
@@ -93,7 +98,7 @@
           "Name": "Prayer of Healing",
           "ManaCost": 0.05,
           "Range": 40.0,
-          "DefaultNumberOfTargets": 1.0, // boucnes are set using the modifier PrayerOfMendingBounces
+          "DefaultNumberOfTargets": 1.0, // bounces are set using the modifier PrayerOfMendingBounces
           "BaseCastTime": 2.0,
           "IsCastTimeHasted": true,
           "BaseCooldown": 0.0,
@@ -270,8 +275,27 @@
           "Gcd": 1.5,
           "Coeff1": 1.1,
           "IsMasteryTriggered": true
+        },
+        {
+          "Id": 323673,
+          "Name": "Mindgames",
+          "ManaCost": 0.02,
+          "Range": 40.0,
+          "DefaultNumberOfTargets": 20.0,
+          "BaseCastTime": 1.5,
+          "IsCastTimeHasted": true,
+          "BaseCooldown": 45.0,
+          "IsCooldownHasted": false,
+          "Gcd": 1.5,
+          "Coeff1": 450, // Damage that heals. Comes from effect 2
+          "Coeff2": 2.0, // The mana% return. Comes from 323706 effect 3.
+          "Coeff3": 3.0, // The initial damage component
+          "IsMasteryTriggered": false
         }
       ]
     }
+  ],
+  "SharedSpells": [
+
   ]
 }

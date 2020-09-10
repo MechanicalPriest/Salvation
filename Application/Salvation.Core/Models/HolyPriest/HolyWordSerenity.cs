@@ -10,7 +10,7 @@ namespace Salvation.Core.Models.HolyPriest
         public HolyWordSerenity(HolyPriestModel holyPriestModel, decimal numberOfTargetsHit = 0)
             : base (holyPriestModel, numberOfTargetsHit)
         {
-            SpellData = model.GetSpellDataById((int)HolyPriestModel.SpellIds.HolyWordSerenity);
+            SpellData = model.GetSpecSpellDataById((int)HolyPriestModel.SpellIds.HolyWordSerenity);
         }
 
         protected override decimal calcAverageRawDirectHeal()

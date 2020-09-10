@@ -11,13 +11,15 @@ namespace Salvation.Core.Models.HolyPriest
     {
         protected HolyPriestModel HolyModel { get { return model as HolyPriestModel; } }
         protected decimal holyPriestAuraHealingBonus { get; }
+        protected decimal holyPriestAuraDamageBonus { get; }
 
         public virtual decimal AverageRawMasteryHeal { get => calcAverageRawMasteryHeal(); }
 
         public BaseHolyPriestHealingSpell(BaseModel model, decimal numberOfTargetsHit)
             : base(model, numberOfTargetsHit)
         {
-            holyPriestAuraHealingBonus = model.GetModifierbyName("HolyPriestAuraHealingBonus").Value;
+            holyPriestAuraHealingBonus = model.GetModifierbyName("HolyPriestAuraHealingMultiplier").Value;
+            holyPriestAuraDamageBonus = model.GetModifierbyName("HolyPriestAuraDamageMultiplier").Value;
 
             // Some notes on holy priest spells:
             // - Everything basically interacts with mastery except renew/pw:s

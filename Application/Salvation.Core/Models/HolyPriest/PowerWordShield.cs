@@ -10,7 +10,7 @@ namespace Salvation.Core.Models.HolyPriest
         public PowerWordShield(HolyPriestModel holyPriestModel, decimal numberOfTargetsHit = 0)
             : base (holyPriestModel, numberOfTargetsHit)
         {
-            SpellData = model.GetSpellDataById((int)HolyPriestModel.SpellIds.PowerWordShield);
+            SpellData = model.GetSpecSpellDataById((int)HolyPriestModel.SpellIds.PowerWordShield);
         }
 
         protected override decimal calcAverageRawDirectHeal()

@@ -10,7 +10,7 @@ namespace Salvation.Core.Models.HolyPriest
         public DivineHymn(HolyPriestModel holyPriestModel, decimal numberOfTargetsHit = 0)
             : base (holyPriestModel, numberOfTargetsHit)
         {
-            SpellData = model.GetSpellDataById((int)HolyPriestModel.SpellIds.DivineHymn);
+            SpellData = model.GetSpecSpellDataById((int)HolyPriestModel.SpellIds.DivineHymn);
         }
 
         protected override decimal calcAverageRawDirectHeal()

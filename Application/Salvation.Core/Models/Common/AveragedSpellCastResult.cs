@@ -28,6 +28,8 @@ namespace Salvation.Core.Models.Common
         public decimal HPM { get => calcHPM(); }
         public decimal HPS { get => calcHPS(); }
         public decimal MPS { get => calcMPS(); }
+        public decimal DPS { get => calcDPS(); }
+        public decimal DPM { get => calcDPM(); }
 
         private decimal calcRawHPCT()
         {
@@ -84,6 +86,18 @@ namespace Salvation.Core.Models.Common
         private decimal calcMPS()
         {
             return ManaCost * CastsPerMinute / 60;
+        }
+
+        private decimal calcDPS()
+        {
+            return Damage * CastsPerMinute / 60;
+        }
+
+        private decimal calcDPM()
+        {
+            if (ManaCost > 0)
+                return Damage / ManaCost;
+            return 0;
         }
 
 

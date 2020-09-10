@@ -54,6 +54,7 @@ namespace Salvation.Core.Models.HolyPriest
             Spells.Add(new Halo(this));
             Spells.Add(new DivineStar(this));
             Spells.Add(new HolyWordSalvation(this));
+            Spells.Add(new MindGames(this));
         }
 
         public override BaseModelResults GetResults()

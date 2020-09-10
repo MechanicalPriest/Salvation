@@ -61,6 +61,7 @@ namespace Salvation.Core.Profile
                     new CastProfile(238136, 0m, 0.2332m), // CosmicRipple
                     new CastProfile(17, 0m, 0.0m), // PowerWordShield
                     new CastProfile(77485, 0, 0.4224m), // Echo
+                    new CastProfile(323673, 1.0m, 0.0m), // Mindgames
                 },
                 T15Talent = 193155,
                 FightLengthSeconds = 397

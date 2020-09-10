@@ -129,9 +129,16 @@ namespace Salvation.Core.Models
             return averagedSpellCastResult;
         }
 
-        internal Constants.BaseSpellData GetSpellDataById(int spellId)
+        internal Constants.BaseSpellData GetSpecSpellDataById(int spellId)
         {
             Constants.BaseSpellData spell = SpecConstants.Spells.Where(s => s.Id == spellId).FirstOrDefault();
+
+            return spell;
+        }
+
+        internal Constants.BaseSpellData GetSharedSpellDataById(int spellId)
+        {
+            Constants.BaseSpellData spell = Constants.SharedSpells.Where(s => s.Id == spellId).FirstOrDefault();
 
             return spell;
         }
@@ -239,5 +246,9 @@ namespace Salvation.Core.Models
         }
 
 
+        public enum SpellIds
+        {
+            MindGames = 323673
+        }
     }
 }

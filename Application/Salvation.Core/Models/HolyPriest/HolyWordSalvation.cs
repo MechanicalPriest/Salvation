@@ -12,7 +12,7 @@ namespace Salvation.Core.Models.HolyPriest
         public HolyWordSalvation(HolyPriestModel holyPriestModel, decimal numberOfTargetsHit = 0)
             : base (holyPriestModel, numberOfTargetsHit)
         {
-            SpellData = model.GetSpellDataById((int)HolyPriestModel.SpellIds.HolyWordSalvation);
+            SpellData = model.GetSpecSpellDataById((int)HolyPriestModel.SpellIds.HolyWordSalvation);
         }
         public override AveragedSpellCastResult CastAverageSpell()
         {

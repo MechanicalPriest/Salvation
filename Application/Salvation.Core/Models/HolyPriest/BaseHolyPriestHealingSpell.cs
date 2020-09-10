@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Salvation.Core.Models.Common;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using static Salvation.Core.Models.HolyPriest.HolyPriestModel;
 
 namespace Salvation.Core.Models.HolyPriest
 {
@@ -11,7 +13,6 @@ namespace Salvation.Core.Models.HolyPriest
         protected decimal holyPriestAuraHealingBonus { get; }
 
         public virtual decimal AverageRawMasteryHeal { get => calcAverageRawMasteryHeal(); }
-        public override decimal AverageTotalHeal { get => calcAverageTotalHeal(); }
 
         public BaseHolyPriestHealingSpell(BaseModel model, decimal numberOfTargetsHit)
             : base(model, numberOfTargetsHit)
@@ -24,8 +25,28 @@ namespace Salvation.Core.Models.HolyPriest
             // - At time of writing the hpriest spec aura is nuked and not relevant
         }
 
+        public override AveragedSpellCastResult CastAverageSpell()
+        {
+            AveragedSpellCastResult result = base.CastAverageSpell();
 
-        private decimal calcAverageRawMasteryHeal()
+            if (SpellData.IsMasteryTriggered)
+            {
+                // Add the echo spell component
+                var echoOfLightProfile = model.GetCastProfile((int)HolyPriestModel.SpellIds.EchoOfLight);
+                AveragedSpellCastResult echo = new AveragedSpellCastResult();
+
+                echo.SpellId = (int)SpellIds.EchoOfLight;
+                echo.SpellName = "Echo of Light";
+                echo.RawHealing = AverageRawMasteryHeal;
+                echo.Healing = AverageRawMasteryHeal * (1 - echoOfLightProfile.OverhealPercent);
+
+                result.AdditionalCasts.Add(echo);
+            }
+
+            return result;
+        }
+
+        protected virtual decimal calcAverageRawMasteryHeal()
         {
             if (SpellData.IsMasteryTriggered)
             {
@@ -38,15 +59,18 @@ namespace Salvation.Core.Models.HolyPriest
             return 0;
         }
 
-        private decimal calcAverageTotalHeal()
+        /// <summary>
+        /// Factor in overhealing
+        /// </summary>
+        /// <returns></returns>
+        protected override decimal calcAverageTotalHeal()
         {
-            var echoOfLightProfile = model.GetCastProfile((int)HolyPriestModel.SpellIds.EchoOfLight);
-
+           
             var totalDirectHeal = AverageRawDirectHeal * (1 - CastProfile.OverhealPercent);
 
-            var totalMasteryHeal = AverageRawMasteryHeal * (1 - echoOfLightProfile.OverhealPercent);
+            //var totalMasteryHeal = AverageRawMasteryHeal * (1 - echoOfLightProfile.OverhealPercent);
 
-            return totalDirectHeal + totalMasteryHeal;
+            return totalDirectHeal;// + totalMasteryHeal;
         }
     }
 }

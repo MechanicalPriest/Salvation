@@ -46,7 +46,9 @@ namespace Salvation.Api
 
             var model = ModelManager.LoadModel(profile, constants);
 
-            return new JsonResult(model);
+            var results = model.GetResults();
+
+            return new JsonResult(results);
         }
     }
 }

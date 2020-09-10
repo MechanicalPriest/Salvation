@@ -40,16 +40,16 @@
         },
         {
           "Name": "PrayerOfMendingBounces",
-          "Value": 4
+          "Value": 4.0
         },
         {
           // Stored as a decimal. 0.4 is 40% more healing.
           "Name": "HolyPriestAuraHealingBonus",
-          "Value": 4
+          "Value": 1.0
         },
         {
           "Name": "HolyWordsBaseCDR",
-          "Value": 6
+          "Value": 6.0
         },
         {
           "Name": "SalvationHolyWordCDR",
@@ -206,7 +206,7 @@
           "Name": "Prayer of Mending",
           "ManaCost": 0.02,
           "Range": 40.0, // Jump range is 20y
-          "DefaultNumberOfTargets": 5.0,
+          "DefaultNumberOfTargets": 1.0,
           "BaseCastTime": 0.0,
           "IsCastTimeHasted": true,
           "BaseCooldown": 12.0,

@@ -1,4 +1,5 @@
 ﻿using Salvation.Core.Constants;
+using Salvation.Core.Models.Common;
 using Salvation.Core.Profile;
 using System;
 using System.Collections.Generic;
@@ -55,21 +56,30 @@ namespace Salvation.Core.Models.HolyPriest
             Spells.Add(new HolyWordSalvation(this));
         }
 
-        public object GetResults()
+        public override List<SpellCastResult> GetResults()
         {
             /// So what we want to do for this is calculate results for each spell.
             /// Get back result values such as raw direct/periodic healing, raw mastery healing, raw total healing
             /// number of targets hit, mana cost, cast time
             /// inputs that change the results are the profile, and number of targets hit by non-capped aoe spells
 
-            // Total healing
-            decimal totalHealing = 0;
+            // Spell results
+
+            List<SpellCastResult> results = new List<SpellCastResult>();
 
             foreach(var spell in Spells)
             {
+                results.Add(spell.CastAverageSpell());
+            }
+
+            // Total healing
+            //decimal totalHealing = 0;
+
+            foreach (var spell in Spells)
+            {
                 if(spell is BaseHolyPriestHealingSpell holySpell)
                 {
-                    totalHealing += holySpell.CastsPerMinute * holySpell.AverageTotalHeal;
+                    //totalHealing += holySpell.CastsPerMinute * holySpell.AverageTotalHeal;
                 }
             }
 
@@ -81,7 +91,7 @@ namespace Salvation.Core.Models.HolyPriest
             {
                 if (spell is BaseHolyPriestHealingSpell holySpell)
                 {
-                    totalManaSpentPerSecond += holySpell.CastsPerMinute * holySpell.ActualManaCost / 60;
+                    //totalManaSpentPerSecond += holySpell.CastsPerMinute * holySpell.ActualManaCost / 60;
                 }
             }
 
@@ -95,7 +105,7 @@ namespace Salvation.Core.Models.HolyPriest
 
             var secondsUntilOutOfMana = RawMana / totalNegativeManaPerSecond;
 
-            return 0;
+            return results;
         }
     }
 }

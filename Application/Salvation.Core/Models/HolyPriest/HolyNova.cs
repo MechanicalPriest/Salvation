@@ -7,8 +7,6 @@ namespace Salvation.Core.Models.HolyPriest
     class HolyNova 
         : BaseHolyPriestHealingSpell
     {
-        public override decimal AverageRawDirectHeal { get => calcAverageRawDirectHeal(); }
-
         public HolyNova(HolyPriestModel holyPriestModel, decimal numberOfTargetsHit = 0)
             : base (holyPriestModel, numberOfTargetsHit)
         {
@@ -19,7 +17,7 @@ namespace Salvation.Core.Models.HolyPriest
             // Holy Nova has a secondary spellID to store the healing component: 281265
         }
 
-        private decimal calcAverageRawDirectHeal()
+        protected override decimal calcAverageRawDirectHeal()
         {
             decimal retVal = SpellData.Coeff1 
                 * model.RawInt 
@@ -32,6 +30,13 @@ namespace Salvation.Core.Models.HolyPriest
 
         protected override decimal calcCastsPerMinute()
         {
+            decimal castsPerMinute = CastProfile.Efficiency * MaximumCastsPerMinute;
+
+            return castsPerMinute;
+        }
+
+        protected override decimal calcMaximumCastsPerMinute()
+        {
             // If it's instant cast, instead use the hasted GCD as the limiting factor
             decimal fillerCastTime = HastedCastTime == 0
                 ? HastedGcd
@@ -39,9 +44,7 @@ namespace Salvation.Core.Models.HolyPriest
 
             decimal maximumPotentialCasts = 60m / fillerCastTime;
 
-            decimal castsPerMinute = CastProfile.Efficiency * maximumPotentialCasts;
-
-            return castsPerMinute;
+            return maximumPotentialCasts;
         }
     }
 }

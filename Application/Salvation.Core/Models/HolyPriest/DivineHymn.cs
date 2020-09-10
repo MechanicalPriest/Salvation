@@ -7,15 +7,13 @@ namespace Salvation.Core.Models.HolyPriest
     class DivineHymn 
         : BaseHolyPriestHealingSpell
     {
-        public override decimal AverageRawDirectHeal { get => calcAverageRawDirectHeal(); }
-
         public DivineHymn(HolyPriestModel holyPriestModel, decimal numberOfTargetsHit = 0)
             : base (holyPriestModel, numberOfTargetsHit)
         {
             SpellData = model.GetSpellDataById((int)HolyPriestModel.SpellIds.DivineHymn);
         }
 
-        private decimal calcAverageRawDirectHeal()
+        protected override decimal calcAverageRawDirectHeal()
         {
             // DH's average heal for the first tick is:
             // SP% * Intellect * Vers * Hpriest Aura
@@ -39,14 +37,19 @@ namespace Salvation.Core.Models.HolyPriest
 
         protected override decimal calcCastsPerMinute()
         {
+            decimal castsPerMinute = CastProfile.Efficiency * MaximumCastsPerMinute;
+
+            return castsPerMinute;
+        }
+
+        protected override decimal calcMaximumCastsPerMinute()
+        {
             // DH is simply 60 / CD + 1 / (FightLength / 60)
             // Number of casts per minute plus one cast at the start of the encounter
             decimal maximumPotentialCasts = 60m / HastedCooldown
                 + 1m / (model.FightLengthSeconds / 60m);
 
-            decimal castsPerMinute = CastProfile.Efficiency * maximumPotentialCasts;
-
-            return castsPerMinute;
+            return maximumPotentialCasts;
         }
     }
 }

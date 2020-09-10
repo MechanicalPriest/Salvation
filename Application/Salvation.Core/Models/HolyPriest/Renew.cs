@@ -7,15 +7,13 @@ namespace Salvation.Core.Models.HolyPriest
     class Renew 
         : BaseHolyPriestHealingSpell
     {
-        public override decimal AverageRawDirectHeal { get => calcAverageRawDirectHeal(); }
-
         public Renew(HolyPriestModel holyPriestModel, decimal numberOfTargetsHit = 0)
             : base (holyPriestModel, numberOfTargetsHit)
         {
             SpellData = model.GetSpellDataById((int)HolyPriestModel.SpellIds.Renew);
         }
 
-        private decimal calcAverageRawDirectHeal()
+        protected override decimal calcAverageRawDirectHeal()
         {
             // Renews's average heal is initial + HoT portion:
             decimal averageHealFirstTick = SpellData.Coeff1 
@@ -38,6 +36,13 @@ namespace Salvation.Core.Models.HolyPriest
 
         protected override decimal calcCastsPerMinute()
         {
+            decimal castsPerMinute = CastProfile.Efficiency * MaximumCastsPerMinute;
+
+            return castsPerMinute;
+        }
+
+        protected override decimal calcMaximumCastsPerMinute()
+        {
             // If it's instant cast, instead use the hasted GCD as the limiting factor
             decimal fillerCastTime = HastedCastTime == 0
                 ? HastedGcd
@@ -45,9 +50,7 @@ namespace Salvation.Core.Models.HolyPriest
 
             decimal maximumPotentialCasts = 60m / fillerCastTime;
 
-            decimal castsPerMinute = CastProfile.Efficiency * maximumPotentialCasts;
-
-            return castsPerMinute;
+            return maximumPotentialCasts;
         }
     }
 }

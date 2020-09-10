@@ -34,7 +34,8 @@ namespace Salvation.Explorer
             Console.WriteLine(JsonConvert.SerializeObject(basicProfile, Formatting.Indented));
 
             Console.WriteLine("------------[ Results ]------------");
-            var spellsRaw = JsonConvert.SerializeObject(hpriest.Spells, Formatting.Indented);
+            var modelResults = hpriest.GetResults();
+            var spellsRaw = JsonConvert.SerializeObject(modelResults, Formatting.Indented);
 
             Console.WriteLine(spellsRaw);
         }

@@ -56,54 +56,19 @@ namespace Salvation.Core.Models.HolyPriest
             Spells.Add(new HolyWordSalvation(this));
         }
 
-        public override List<SpellCastResult> GetResults()
+        public override BaseModelResults GetResults()
         {
-            /// So what we want to do for this is calculate results for each spell.
-            /// Get back result values such as raw direct/periodic healing, raw mastery healing, raw total healing
-            /// number of targets hit, mana cost, cast time
-            /// inputs that change the results are the profile, and number of targets hit by non-capped aoe spells
+            BaseModelResults results = base.GetResults();
 
-            // Spell results
-
-            List<SpellCastResult> results = new List<SpellCastResult>();
-
-            foreach(var spell in Spells)
-            {
-                results.Add(spell.CastAverageSpell());
-            }
-
-            // Total healing
-            //decimal totalHealing = 0;
-
-            foreach (var spell in Spells)
-            {
-                if(spell is BaseHolyPriestHealingSpell holySpell)
-                {
-                    //totalHealing += holySpell.CastsPerMinute * holySpell.AverageTotalHeal;
-                }
-            }
-
-            // Total mana spent
-            // TODO: include sources of mana regeneration
-            decimal totalManaSpentPerSecond = 0;
-
-            foreach (var spell in Spells)
-            {
-                if (spell is BaseHolyPriestHealingSpell holySpell)
-                {
-                    //totalManaSpentPerSecond += holySpell.CastsPerMinute * holySpell.ActualManaCost / 60;
-                }
-            }
-
-            // Total mana regenerated
-            decimal totalRegenPerSecond = 0;
+            // Total mana regenerated is specific to Holy Priest
+            decimal totalRegenPerSecond;
 
             var regenCoeff = Profile.T15Talent == (int)HolyPriestModel.SpellIds.Enlightenment ? 1.1m : 1m;
             totalRegenPerSecond = RawMana * 0.04m * regenCoeff / 5m;
 
-            var totalNegativeManaPerSecond = totalManaSpentPerSecond - totalRegenPerSecond;
+            var totalNegativeManaPerSecond = results.TotalMPS - totalRegenPerSecond;
 
-            var secondsUntilOutOfMana = RawMana / totalNegativeManaPerSecond;
+            results.TimeToOom = RawMana / totalNegativeManaPerSecond;
 
             return results;
         }

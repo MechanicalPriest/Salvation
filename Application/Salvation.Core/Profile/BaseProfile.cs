@@ -8,6 +8,7 @@ namespace Salvation.Core.Profile
     public class BaseProfile
     {
         public Spec SpecId { get; set; }
+        public string Name { get; set; }
         public int Intellect { get; set; }
         public int MasteryRating { get; set; }
         public int VersatilityRating { get; set; }

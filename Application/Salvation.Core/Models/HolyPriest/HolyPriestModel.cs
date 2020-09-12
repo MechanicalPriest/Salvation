@@ -33,7 +33,11 @@ namespace Salvation.Core.Models.HolyPriest
 
             // Talents
             Enlightenment = 193155,
-            CosmicRipple = 238136
+            CosmicRipple = 238136,
+
+            // Cov abilities
+            MindGames = 323673,
+            FaeGuardians = 327661
         }
 
         public HolyPriestModel(GlobalConstants constants, BaseProfile profile)
@@ -55,6 +59,7 @@ namespace Salvation.Core.Models.HolyPriest
             Spells.Add(new DivineStar(this));
             Spells.Add(new HolyWordSalvation(this));
             Spells.Add(new MindGames(this));
+            Spells.Add(new FaeGuardians(this));
         }
 
         public override BaseModelResults GetResults()

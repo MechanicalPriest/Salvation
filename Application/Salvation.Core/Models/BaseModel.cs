@@ -246,9 +246,9 @@ namespace Salvation.Core.Models
         }
 
 
-        public enum SpellIds
+        public enum CommonSpellIds
         {
-            MindGames = 323673
+            
         }
     }
 }

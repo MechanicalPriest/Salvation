@@ -11,19 +11,22 @@ namespace Salvation.Core.Models.HolyPriest
         public MindGames(BaseModel model, decimal numberOfTargetsHit = 0)
             : base (model, numberOfTargetsHit)
         {
-            SpellData = model.GetSpecSpellDataById((int)BaseModel.SpellIds.MindGames);
+            SpellData = model.GetSpecSpellDataById((int)HolyPriestModel.SpellIds.MindGames);
         }
 
         protected override decimal calcAverageRawDirectHeal()
         {
-            // Midn Game's average heal is:
+            // Mind Game's average heal is:
             // $damage=${($SPS*$s2/100)*(1+$@versadmg)}
             // (SP% * Coeff1 / 100) * Vers
             decimal averageHeal = (SpellData.Coeff1 * model.RawInt / 100)
                 * model.GetVersMultiplier(model.RawVers)
                 * holyPriestAuraHealingBonus;
 
-            return averageHeal * NumberOfTargets;
+            // Mindgames absorbs the incoming hit 323701, and heals for the amount absorbed 323706. 
+            // The order of events though is Heal then Absorb.
+
+            return averageHeal * 2 * NumberOfTargets;
         }
 
         protected override decimal calcAverageDamage()
@@ -49,7 +52,7 @@ namespace Salvation.Core.Models.HolyPriest
 
         protected override decimal calcMaximumCastsPerMinute()
         {
-            // Mindgames CD isn't haste affected so it isis simply 
+            // Mindgames CD isn't haste affected so it is simply 
             // 60 / CD + 1 / (FightLength / 60)
             // Number of casts per minute plus one cast at the start of the encounter
             decimal maximumPotentialCasts = 60m / HastedCooldown

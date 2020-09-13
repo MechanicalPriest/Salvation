@@ -42,6 +42,8 @@ namespace Salvation.Core.Models.HolyPriest
             AscendedNova = 325020,
             AscendedBlast = 325283,
             AscendedEruption = 325326,
+            UnholyNova = 324724,
+            UnholyTransfusion = 325118
         }
 
         public HolyPriestModel(GlobalConstants constants, BaseProfile profile)
@@ -66,6 +68,7 @@ namespace Salvation.Core.Models.HolyPriest
             Spells.Add(new FaeGuardians(this));
             Spells.Add(new AscendedEruption(this));
             Spells.Add(new BoonOfTheAscended(this));
+            Spells.Add(new UnholyNova(this));
         }
 
         public override BaseModelResults GetResults()

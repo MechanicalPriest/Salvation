@@ -67,6 +67,8 @@ namespace Salvation.Core.Profile
                     new CastProfile(325020, 1.0m, 0.0m), // Ascended Nova
                     new CastProfile(325283, 1.0m, 0.0m), // Ascended Blast
                     new CastProfile(325326, 1.0m, 0.0m), // Ascended Eruption
+                    new CastProfile(324724, 1.0m, 0.0m), // Unholy Nova
+                    new CastProfile(325118, 1.0m, 0.0m), // Unholy Transfusion
                 },
                 T15Talent = 193155,
                 FightLengthSeconds = 397

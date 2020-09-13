@@ -346,7 +346,7 @@
           "Coeff1": 0.69, // Damage component from Effect #1
           "Coeff2": 0.38, // Healing component
           "Coeff3": 6, // Target cap of healing component
-          "IsMasteryTriggered": false
+          "IsMasteryTriggered": true
         },
         {
           "Id": 325283,
@@ -362,7 +362,7 @@
           "Gcd": 1.0,
           "Coeff1": 2.6, // Damage component from Effect #1
           "Coeff2": 100, // Healing component from the damage. Effect #2. 100 = 100%.
-          "IsMasteryTriggered": false
+          "IsMasteryTriggered": true
         },
         {
           "Id": 325326,
@@ -378,7 +378,38 @@
           "Gcd": 0.0,
           "Coeff1": 3.52, // Damage component from Effect #1
           "Coeff2": 2.22000, // Healing component from Effect #2.
-          "IsMasteryTriggered": false
+          "IsMasteryTriggered": true
+        },
+        {
+          "Id": 324724,
+          "Name": "Unholy Nova",
+          "ManaCost": 5.00,
+          "Range": 15.0, // From 325203 Effect #1
+          "DefaultNumberOfTargets": 6.0,
+          "BaseCastTime": 0.0,
+          "IsCastTimeHasted": true,
+          "BaseCooldown": 60.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 1.5,
+          "Coeff1": 1.19000, // Initial heal. 324724 #1
+          "IsMasteryTriggered": true
+        },
+        {
+          "Id": 325118,
+          "Name": "Unholy Transfusion",
+          "ManaCost": 0.00,
+          "Range": 100.0, // From 325203 Effect #1
+          "DefaultNumberOfTargets": 0.0,
+          "BaseCastTime": 0.0,
+          "IsCastTimeHasted": true,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 15.0,
+          "Gcd": 0.0,
+          "Coeff1": 0.04, // Heal from DoT component. 325118 #1
+          "Coeff2": 0.5, // DoT component. 325203 #1
+          "IsMasteryTriggered": true
         }
       ]
     }

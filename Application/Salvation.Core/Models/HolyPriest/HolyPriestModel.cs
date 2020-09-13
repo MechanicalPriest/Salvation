@@ -37,7 +37,11 @@ namespace Salvation.Core.Models.HolyPriest
 
             // Cov abilities
             MindGames = 323673,
-            FaeGuardians = 327661
+            FaeGuardians = 327661,
+            BoonOfTheAscended = 325013,
+            AscendedNova = 325020,
+            AscendedBlast = 325283,
+            AscendedEruption = 325326,
         }
 
         public HolyPriestModel(GlobalConstants constants, BaseProfile profile)
@@ -60,6 +64,8 @@ namespace Salvation.Core.Models.HolyPriest
             Spells.Add(new HolyWordSalvation(this));
             Spells.Add(new MindGames(this));
             Spells.Add(new FaeGuardians(this));
+            Spells.Add(new AscendedEruption(this));
+            Spells.Add(new BoonOfTheAscended(this));
         }
 
         public override BaseModelResults GetResults()

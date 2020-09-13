@@ -33,6 +33,7 @@ namespace Salvation.Core.Models.Common
         /// Haste adjusted cooldown at time of cast. 0 no CD.
         /// </summary>
         public decimal Cooldown { get; set; }
+        public decimal Duration { get; set; }
         /// <summary>
         /// Haste adjusted GCD. 
         /// </summary>

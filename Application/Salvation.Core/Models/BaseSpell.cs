@@ -70,6 +70,7 @@ namespace Salvation.Core.Models
             result.CastsPerMinute = CastsPerMinute;
             result.CastTime = HastedCastTime;
             result.Cooldown = HastedCooldown;
+            result.Duration = spellData.Duration;
             result.Gcd = HastedGcd;
             result.ManaCost = ActualManaCost;
             result.SpellId = SpellId;

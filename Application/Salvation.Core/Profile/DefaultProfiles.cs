@@ -63,6 +63,10 @@ namespace Salvation.Core.Profile
                     new CastProfile(77485, 0, 0.4224m), // Echo
                     new CastProfile(323673, 1.0m, 0.0m), // Mindgames
                     new CastProfile(327661, 1.0m, 0.0m), // Fae Guardians
+                    new CastProfile(325013, 1.0m, 0.0m), // Boon of the Ascended
+                    new CastProfile(325020, 1.0m, 0.0m), // Ascended Nova
+                    new CastProfile(325283, 1.0m, 0.0m), // Ascended Blast
+                    new CastProfile(325326, 1.0m, 0.0m), // Ascended Eruption
                 },
                 T15Talent = 193155,
                 FightLengthSeconds = 397

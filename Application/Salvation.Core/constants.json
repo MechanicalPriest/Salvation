@@ -59,6 +59,14 @@
         {
           "Name": "SalvationHolyWordCDR",
           "Value": 30
+        },
+        {
+          "Name": "BoonStacksPerANTarget",
+          "Value": 1
+        },
+        {
+          "Name": "BoonStacksPerABTarget",
+          "Value": 5
         }
       ],
 
@@ -307,6 +315,69 @@
           "Coeff1": -10.0, // Damage reduced. Comes from 327694 Effect #1
           "Coeff2": 100.0, // CDR increase. 100 = 100%. Comes from 327710 Effect #1
           "Coeff3": 50, // The mana return. 50 / 100 = 0.5% mana. Comes from 327703 Effect #1
+          "IsMasteryTriggered": false
+        },
+        {
+          "Id": 325013,
+          "Name": "Boon of the Ascended",
+          "ManaCost": 0.00,
+          "Range": 0.0,
+          "DefaultNumberOfTargets": 0.0,
+          "BaseCastTime": 1.5,
+          "IsCastTimeHasted": true,
+          "BaseCooldown": 180.0,
+          "IsCooldownHasted": false,
+          "Duration": 10.0,
+          "Gcd": 1.5,
+          "Coeff1": 3 // Additional % healing per stack of boon.
+        },
+        {
+          "Id": 325020,
+          "Name": "Ascended Nova",
+          "ManaCost": 0.00,
+          "Range": 8.0,
+          "DefaultNumberOfTargets": 5.0,
+          "BaseCastTime": 0.0,
+          "IsCastTimeHasted": true,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 1.0,
+          "Coeff1": 0.69, // Damage component from Effect #1
+          "Coeff2": 0.38, // Healing component
+          "Coeff3": 6, // Target cap of healing component
+          "IsMasteryTriggered": false
+        },
+        {
+          "Id": 325283,
+          "Name": "Ascended Blast",
+          "ManaCost": 0.00,
+          "Range": 40.0,
+          "DefaultNumberOfTargets": 1.0,
+          "BaseCastTime": 0.0,
+          "IsCastTimeHasted": true,
+          "BaseCooldown": 3.0,
+          "IsCooldownHasted": true,
+          "Duration": 0.0,
+          "Gcd": 1.0,
+          "Coeff1": 2.6, // Damage component from Effect #1
+          "Coeff2": 100, // Healing component from the damage. Effect #2. 100 = 100%.
+          "IsMasteryTriggered": false
+        },
+        {
+          "Id": 325326,
+          "Name": "Ascended Eruption",
+          "ManaCost": 0.00,
+          "Range": 15.0,
+          "DefaultNumberOfTargets": 5.0,
+          "BaseCastTime": 0.0,
+          "IsCastTimeHasted": true,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "Coeff1": 3.52, // Damage component from Effect #1
+          "Coeff2": 2.22000, // Healing component from Effect #2.
           "IsMasteryTriggered": false
         }
       ]

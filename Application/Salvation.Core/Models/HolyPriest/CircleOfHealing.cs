@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Salvation.Core.Constants;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -7,38 +8,23 @@ namespace Salvation.Core.Models.HolyPriest
     class CircleOfHealing 
         : BaseHolyPriestHealingSpell
     {
-        public CircleOfHealing(HolyPriestModel holyPriestModel, decimal numberOfTargetsHit = 0)
-            : base (holyPriestModel, numberOfTargetsHit)
+        public CircleOfHealing(BaseModel model, BaseSpellData spellData = null)
+            : base(model, spellData)
         {
-            SpellData = model.GetSpecSpellDataById((int)HolyPriestModel.SpellIds.CircleOfHealing);
+            if (spellData == null)
+                SpellData = model.GetSpecSpellDataById((int)HolyPriestModel.SpellIds.CircleOfHealing);
         }
 
         protected override decimal calcAverageRawDirectHeal()
         {
-            decimal totalHeal = 0m;
-            var SpellResultsStruct = new object();
+            decimal averageHeal = SpellData.Coeff1
+                * model.RawInt
+                * model.GetVersMultiplier(model.RawVers)
+                * model.GetCritMultiplier(model.RawCrit)
+                * holyPriestAuraHealingBonus;
 
-            for (var i = 0; i < NumberOfTargets; i++)
-            {
-                totalHeal += SpellData.Coeff1
-                    * model.RawInt
-                    * model.GetVersMultiplier(model.RawVers)
-                    * model.GetCritMultiplier(model.RawCrit)
-                    * holyPriestAuraHealingBonus;
-
-                // SpellResultsStruct.PopulateResults();
-            }
-
-            return totalHeal;
+            return averageHeal * SpellData.NumberOfHealingTargets;
         }
-
-        // Cast (00:00:00, CoH, 234324, DidCrit)
-        // Cast (00:00:00, CoH, 234324, DidCrit)
-        // Cast (00:00:00, CoH, 234324, DidCrit)
-        // Cast (00:00:00, CoH, 234324, DidNotCrit)
-        // Cast (00:00:00, CoH, 234324, DidNotCrit)
-        //                         v
-        // Cast (--------, CoH, 234324, --------)
 
         protected override decimal calcCastsPerMinute()
         {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Salvation.Core.Constants;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -7,10 +8,11 @@ namespace Salvation.Core.Models.HolyPriest
     class DivineHymn 
         : BaseHolyPriestHealingSpell
     {
-        public DivineHymn(HolyPriestModel holyPriestModel, decimal numberOfTargetsHit = 0)
-            : base (holyPriestModel, numberOfTargetsHit)
+        public DivineHymn(BaseModel model, BaseSpellData spellData = null)
+            : base(model, spellData)
         {
-            SpellData = model.GetSpecSpellDataById((int)HolyPriestModel.SpellIds.DivineHymn);
+            if (spellData == null)
+                SpellData = model.GetSpecSpellDataById((int)HolyPriestModel.SpellIds.DivineHymn);
         }
 
         protected override decimal calcAverageRawDirectHeal()
@@ -30,9 +32,9 @@ namespace Salvation.Core.Models.HolyPriest
             decimal averageHeal = firstTick + (firstTick * 4 * (1 + divineHymnAura.Value));
 
             // double it if we have 5 or less (dungeon group buff)
-            averageHeal *= NumberOfTargets <= 5 ? 1 : 2;
+            averageHeal *= SpellData.NumberOfHealingTargets <= 5 ? 1 : 2;
 
-            return averageHeal * NumberOfTargets;
+            return averageHeal * SpellData.NumberOfHealingTargets;
         }
 
         protected override decimal calcCastsPerMinute()

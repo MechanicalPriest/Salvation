@@ -1,4 +1,5 @@
-﻿using Salvation.Core.Models.Common;
+﻿using Salvation.Core.Constants;
+using Salvation.Core.Models.Common;
 using Salvation.Core.Models.HolyPriest;
 using System;
 using System.Collections.Generic;
@@ -9,10 +10,11 @@ namespace Salvation.Core.Models.HolyPriest
     class FaeGuardians
         : BaseHolyPriestHealingSpell
     {
-        public FaeGuardians(BaseModel model, decimal numberOfTargetsHit = 0)
-            : base (model, numberOfTargetsHit)
+        public FaeGuardians(BaseModel model, BaseSpellData spellData = null)
+            : base(model, spellData)
         {
-            SpellData = model.GetSpecSpellDataById((int)HolyPriestModel.SpellIds.FaeGuardians);
+            if (spellData == null)
+                SpellData = model.GetSpecSpellDataById((int)HolyPriestModel.SpellIds.FaeGuardians);
         }
         public override AveragedSpellCastResult CastAverageSpell()
         {
@@ -65,6 +67,7 @@ namespace Salvation.Core.Models.HolyPriest
             // DR comes in as -10, so / -100.
             // Duration should be minus the GCD of the initial cast + gcd to move pw:s over.
 
+            // TODO: Move this to configuration
             decimal targetDamageTakenPerSecond = 3000.0m;
             var pwsCast = model.GetSpell<PowerWordShield>(HolyPriestModel.SpellIds.PowerWordShield);
 

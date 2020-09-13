@@ -1,4 +1,5 @@
-﻿using Salvation.Core.Models.HolyPriest;
+﻿using Salvation.Core.Constants;
+using Salvation.Core.Models.HolyPriest;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,10 +10,11 @@ namespace Salvation.Core.Models.HolyPriest
         : BaseHolyPriestHealingSpell
     {
         private decimal cpmFromBoon;
-        public AscendedEruption(BaseModel model, decimal numberOfTargetsHit = 0)
-            : base (model, numberOfTargetsHit)
+        public AscendedEruption(BaseModel model, BaseSpellData spellData = null)
+            : base(model, spellData)
         {
-            SpellData = model.GetSpecSpellDataById((int)HolyPriestModel.SpellIds.AscendedEruption);
+            if (spellData == null)
+                SpellData = model.GetSpecSpellDataById((int)HolyPriestModel.SpellIds.AscendedEruption);
         }
 
         internal void SetCPM(decimal castsPerMinute)
@@ -33,9 +35,9 @@ namespace Salvation.Core.Models.HolyPriest
 
             averageHeal *= model.GetCritMultiplier(model.RawCrit);
 
-            averageHeal *= 1 / (decimal)Math.Sqrt((double)NumberOfTargets);                
+            averageHeal *= 1 / (decimal)Math.Sqrt((double)SpellData.NumberOfHealingTargets);                
 
-            return averageHeal * NumberOfTargets;
+            return averageHeal * SpellData.NumberOfHealingTargets;
         }
 
         protected override decimal calcAverageDamage()
@@ -48,9 +50,9 @@ namespace Salvation.Core.Models.HolyPriest
 
             averageDamage *= model.GetCritMultiplier(model.RawCrit);
 
-            averageDamage *= 1 / (decimal)Math.Sqrt((double)NumberOfTargets);
+            averageDamage *= 1 / (decimal)Math.Sqrt((double)SpellData.NumberOfDamageTargets);
 
-            return averageDamage * NumberOfTargets;
+            return averageDamage * SpellData.NumberOfDamageTargets;
         }
 
         protected override decimal calcCastsPerMinute()

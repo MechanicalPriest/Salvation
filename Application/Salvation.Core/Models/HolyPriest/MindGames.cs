@@ -1,4 +1,5 @@
-﻿using Salvation.Core.Models.HolyPriest;
+﻿using Salvation.Core.Constants;
+using Salvation.Core.Models.HolyPriest;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,10 +9,11 @@ namespace Salvation.Core.Models.HolyPriest
     class MindGames
         : BaseHolyPriestHealingSpell
     {
-        public MindGames(BaseModel model, decimal numberOfTargetsHit = 0)
-            : base (model, numberOfTargetsHit)
+        public MindGames(BaseModel model, BaseSpellData spellData = null)
+            : base(model, spellData)
         {
-            SpellData = model.GetSpecSpellDataById((int)HolyPriestModel.SpellIds.MindGames);
+            if (spellData == null)
+                SpellData = model.GetSpecSpellDataById((int)HolyPriestModel.SpellIds.MindGames);
         }
 
         protected override decimal calcAverageRawDirectHeal()
@@ -26,7 +28,7 @@ namespace Salvation.Core.Models.HolyPriest
             // Mindgames absorbs the incoming hit 323701, and heals for the amount absorbed 323706. 
             // The order of events though is Heal then Absorb.
 
-            return averageHeal * 2 * NumberOfTargets;
+            return averageHeal * 2 * SpellData.NumberOfHealingTargets;
         }
 
         protected override decimal calcAverageDamage()
@@ -37,7 +39,7 @@ namespace Salvation.Core.Models.HolyPriest
                 * holyPriestAuraDamageBonus
                 * model.GetVersMultiplier(model.RawVers);
 
-            return averageDamage;
+            return averageDamage * SpellData.NumberOfDamageTargets;
         }
 
         protected override decimal calcCastsPerMinute()

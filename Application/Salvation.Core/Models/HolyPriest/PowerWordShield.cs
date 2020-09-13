@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Salvation.Core.Constants;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -7,10 +8,11 @@ namespace Salvation.Core.Models.HolyPriest
     class PowerWordShield 
         : BaseHolyPriestHealingSpell
     {
-        public PowerWordShield(HolyPriestModel holyPriestModel, decimal numberOfTargetsHit = 0)
-            : base (holyPriestModel, numberOfTargetsHit)
+        public PowerWordShield(BaseModel model, BaseSpellData spellData = null)
+            : base(model, spellData)
         {
-            SpellData = model.GetSpecSpellDataById((int)HolyPriestModel.SpellIds.PowerWordShield);
+            if (spellData == null)
+                SpellData = model.GetSpecSpellDataById((int)HolyPriestModel.SpellIds.PowerWordShield);
         }
 
         protected override decimal calcAverageRawDirectHeal()
@@ -20,9 +22,9 @@ namespace Salvation.Core.Models.HolyPriest
                 * model.GetVersMultiplier(model.RawVers)
                 * model.GetCritMultiplier(model.RawCrit)
                 * holyPriestAuraHealingBonus
-                * 2; // PW:S has a x2 multiplier built in to it
+                * 2; // PW:S has a x2 SP% multiplier built in to it
 
-            return averageHeal * NumberOfTargets;
+            return averageHeal * SpellData.NumberOfHealingTargets;
         }
 
         protected override decimal calcCastsPerMinute()

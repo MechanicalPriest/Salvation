@@ -1,4 +1,5 @@
-﻿using Salvation.Core.Models.Common;
+﻿using Salvation.Core.Constants;
+using Salvation.Core.Models.Common;
 using Salvation.Core.Models.HolyPriest;
 using System;
 using System.Collections.Generic;
@@ -9,17 +10,18 @@ namespace Salvation.Core.Models.HolyPriest
     class UnholyNova
         : BaseHolyPriestHealingSpell
     {
-        public UnholyNova(BaseModel model, decimal numberOfTargetsHit = 0)
-            : base (model, numberOfTargetsHit)
+        public UnholyNova(BaseModel model, BaseSpellData spellData = null)
+            : base(model, spellData)
         {
-            SpellData = model.GetSpecSpellDataById((int)HolyPriestModel.SpellIds.UnholyNova);
+            if (spellData == null)
+                SpellData = model.GetSpecSpellDataById((int)HolyPriestModel.SpellIds.UnholyNova);
         }
         public override AveragedSpellCastResult CastAverageSpell()
         {
             AveragedSpellCastResult result = base.CastAverageSpell();
 
             // Apply the transufion DoT/HoT
-            var unholyTransfusion = new UnholyTransfusion(HolyModel, NumberOfTargets);
+            var unholyTransfusion = new UnholyTransfusion(HolyModel);
 
             var uhtResults = unholyTransfusion.CastAverageSpell();
 
@@ -38,7 +40,7 @@ namespace Salvation.Core.Models.HolyPriest
 
             averageHeal *= model.GetCritMultiplier(model.RawCrit);
 
-            return averageHeal * NumberOfTargets;
+            return averageHeal * SpellData.NumberOfHealingTargets;
         }
 
         protected override decimal calcCastsPerMinute()

@@ -25,8 +25,8 @@ namespace Salvation.Core.Models
         protected virtual decimal AverageDamage { get => calcAverageDamage(); }
 
 
-        public BaseHealingSpell(BaseModel model, decimal numberOfTargetsHit)
-            : base(model, numberOfTargetsHit)
+        public BaseHealingSpell(BaseModel model, BaseSpellData spellData)
+            : base(model, spellData)
         {
 
         }

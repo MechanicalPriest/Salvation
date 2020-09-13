@@ -1,4 +1,5 @@
-﻿using Salvation.Core.Models.HolyPriest;
+﻿using Salvation.Core.Constants;
+using Salvation.Core.Models.HolyPriest;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,10 +12,12 @@ namespace Salvation.Core.Models.HolyPriest
         private decimal allowedDuration;
         private decimal boonCPM;
 
-        public AscendedNova(BaseModel model, decimal numberOfTargetsHit = 0)
-            : base (model, numberOfTargetsHit)
+        public AscendedNova(BaseModel model, BaseSpellData spellData = null)
+            : base(model, spellData)
         {
-            SpellData = model.GetSpecSpellDataById((int)HolyPriestModel.SpellIds.AscendedNova);
+            if (spellData == null)
+                SpellData = model.GetSpecSpellDataById((int)HolyPriestModel.SpellIds.AscendedNova);
+
             allowedDuration = 0;
         }
 
@@ -43,7 +46,7 @@ namespace Salvation.Core.Models.HolyPriest
 
             averageHeal *= model.GetCritMultiplier(model.RawCrit);
 
-            return averageHeal * NumberOfTargets;
+            return averageHeal * SpellData.NumberOfHealingTargets;
         }
 
         protected override decimal calcAverageDamage()
@@ -55,7 +58,7 @@ namespace Salvation.Core.Models.HolyPriest
 
             averageDamage *= model.GetCritMultiplier(model.RawCrit);
 
-            return averageDamage * NumberOfTargets;
+            return averageDamage * SpellData.NumberOfDamageTargets;
         }
 
         protected override decimal calcCastsPerMinute()

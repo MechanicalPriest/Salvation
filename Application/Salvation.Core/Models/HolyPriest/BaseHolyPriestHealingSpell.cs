@@ -1,4 +1,5 @@
-﻿using Salvation.Core.Models.Common;
+﻿using Salvation.Core.Constants;
+using Salvation.Core.Models.Common;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -15,8 +16,8 @@ namespace Salvation.Core.Models.HolyPriest
 
         public virtual decimal AverageRawMasteryHeal { get => calcAverageRawMasteryHeal(); }
 
-        public BaseHolyPriestHealingSpell(BaseModel model, decimal numberOfTargetsHit)
-            : base(model, numberOfTargetsHit)
+        public BaseHolyPriestHealingSpell(BaseModel model, BaseSpellData spellData)
+            : base(model, spellData)
         {
             holyPriestAuraHealingBonus = model.GetModifierbyName("HolyPriestAuraHealingMultiplier").Value;
             holyPriestAuraDamageBonus = model.GetModifierbyName("HolyPriestAuraDamageMultiplier").Value;

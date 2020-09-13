@@ -8,7 +8,8 @@ namespace Salvation.Core.Models.Common
     public class AveragedSpellCastResult
         : SpellCastResult
     {
-        public decimal NumberOfTargets { get; set; }
+        public decimal NumberOfHealingTargets { get; set; }
+        public decimal NumberOfDamageTargets { get; set; }
         public decimal CastsPerMinute { get; set; }
         public decimal MaximumCastsPerMinute { get; set; }
 

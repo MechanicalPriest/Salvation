@@ -14,7 +14,8 @@
         /// <summary>
         /// Default number of targets this spell can hit, usually its maximum targets
         /// </summary>
-        public decimal DefaultNumberOfTargets { get; set; }
+        public decimal NumberOfHealingTargets { get; set; }
+        public decimal NumberOfDamageTargets { get; set; }
         // Base cast time in seconds before haste
         public decimal BaseCastTime { get; set; }
         public bool IsCastTimeHasted{ get; set; }

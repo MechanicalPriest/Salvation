@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Salvation.Core.Constants;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -7,10 +8,11 @@ namespace Salvation.Core.Models.HolyPriest
     class HolyNova 
         : BaseHolyPriestHealingSpell
     {
-        public HolyNova(HolyPriestModel holyPriestModel, decimal numberOfTargetsHit = 0)
-            : base (holyPriestModel, numberOfTargetsHit)
+        public HolyNova(BaseModel model, BaseSpellData spellData = null)
+            : base(model, spellData)
         {
-            SpellData = model.GetSpecSpellDataById((int)HolyPriestModel.SpellIds.HolyNova);
+            if (spellData == null)
+                SpellData = model.GetSpecSpellDataById((int)HolyPriestModel.SpellIds.HolyNova);
 
             // TODO: Implement the double cast frequency using the HolyNovaDoubleCastFrequency modifier
             // TODO: Implement damage component
@@ -25,7 +27,7 @@ namespace Salvation.Core.Models.HolyPriest
                 * model.GetCritMultiplier(model.RawCrit)
                 * holyPriestAuraHealingBonus;
 
-            return retVal * NumberOfTargets;
+            return retVal * SpellData.NumberOfHealingTargets;
         }
 
         protected override decimal calcCastsPerMinute()

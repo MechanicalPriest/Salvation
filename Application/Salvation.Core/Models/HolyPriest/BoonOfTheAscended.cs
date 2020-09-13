@@ -1,4 +1,5 @@
-﻿using Salvation.Core.Models.Common;
+﻿using Salvation.Core.Constants;
+using Salvation.Core.Models.Common;
 using Salvation.Core.Models.HolyPriest;
 using System;
 using System.Collections.Generic;
@@ -9,10 +10,11 @@ namespace Salvation.Core.Models.HolyPriest
     class BoonOfTheAscended
         : BaseHolyPriestHealingSpell
     {
-        public BoonOfTheAscended(BaseModel model, decimal numberOfTargetsHit = 0)
-            : base (model, numberOfTargetsHit)
+        public BoonOfTheAscended(BaseModel model, BaseSpellData spellData = null)
+            : base(model, spellData)
         {
-            SpellData = model.GetSpecSpellDataById((int)HolyPriestModel.SpellIds.BoonOfTheAscended);
+            if (spellData == null)
+                SpellData = model.GetSpecSpellDataById((int)HolyPriestModel.SpellIds.BoonOfTheAscended);
         }
 
         public override AveragedSpellCastResult CastAverageSpell()
@@ -67,17 +69,6 @@ namespace Salvation.Core.Models.HolyPriest
             return 0;
         }
 
-        protected override decimal calcAverageDamage()
-        {
-            // coeff3 * int * hpriest dmg mod * vers
-            decimal averageDamage = SpellData.Coeff3
-                * model.RawInt
-                * holyPriestAuraDamageBonus
-                * model.GetVersMultiplier(model.RawVers);
-
-            return averageDamage;
-        }
-
         protected override decimal calcCastsPerMinute()
         {
             if (CastProfile.Efficiency == 0)
@@ -90,19 +81,13 @@ namespace Salvation.Core.Models.HolyPriest
 
         protected override decimal calcMaximumCastsPerMinute()
         {
-            // Mindgames CD isn't haste affected so it is simply 
+            // Boon CD isn't haste affected so it is simply 
             // 60 / CD + 1 / (FightLength / 60)
             // Number of casts per minute plus one cast at the start of the encounter
             decimal maximumPotentialCasts = 60m / HastedCooldown
                 + 1m / (model.FightLengthSeconds / 60m);
 
             return maximumPotentialCasts;
-        }
-
-        protected override decimal getActualManaCost()
-        {
-            // Mindgames restores 1,000 mana (0.2%) if it actually heals you. lets presume it does still
-            return base.getActualManaCost() - (model.RawMana * SpellData.Coeff2);
         }
     }
 }

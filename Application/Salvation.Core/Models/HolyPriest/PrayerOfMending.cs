@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Salvation.Core.Constants;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -9,10 +10,11 @@ namespace Salvation.Core.Models.HolyPriest
     {
         public decimal PrayerOfMendingBounces { get; set; }
 
-        public PrayerOfMending(HolyPriestModel holyPriestModel, decimal numberOfTargetsHit = 0)
-            : base (holyPriestModel, numberOfTargetsHit)
+        public PrayerOfMending(BaseModel model, BaseSpellData spellData = null)
+            : base(model, spellData)
         {
-            SpellData = model.GetSpecSpellDataById((int)HolyPriestModel.SpellIds.PrayerOfMending);
+            if (spellData == null)
+                SpellData = model.GetSpecSpellDataById((int)HolyPriestModel.SpellIds.PrayerOfMending);
 
             PrayerOfMendingBounces = model.GetModifierbyName("PrayerOfMendingBounces").Value;
         }
@@ -28,7 +30,7 @@ namespace Salvation.Core.Models.HolyPriest
                 * holyPriestAuraHealingBonus
                 * (1 + PrayerOfMendingBounces);
 
-            return averageHeal * NumberOfTargets;
+            return averageHeal * SpellData.NumberOfHealingTargets;
         }
 
         protected override decimal calcCastsPerMinute()
@@ -40,6 +42,11 @@ namespace Salvation.Core.Models.HolyPriest
 
         protected override decimal calcMaximumCastsPerMinute()
         {
+            // A fix to the spell being modified to have no cast time and no gcd and no CD
+            // This can happen if it's a component in another spell
+            if (HastedCastTime == 0 && HastedGcd == 0 && HastedCooldown == 0)
+                return base.calcMaximumCastsPerMinute();
+
             /* Efficiency is:
             * =F294/(
             *   IF(

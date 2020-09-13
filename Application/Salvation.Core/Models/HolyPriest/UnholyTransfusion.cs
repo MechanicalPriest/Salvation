@@ -1,4 +1,5 @@
-﻿using Salvation.Core.Models.HolyPriest;
+﻿using Salvation.Core.Constants;
+using Salvation.Core.Models.HolyPriest;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,10 +9,11 @@ namespace Salvation.Core.Models.HolyPriest
     class UnholyTransfusion
         : BaseHolyPriestHealingSpell
     {
-        public UnholyTransfusion(BaseModel model, decimal numberOfTargetsHit = 0)
-            : base (model, numberOfTargetsHit)
+        public UnholyTransfusion(BaseModel model, BaseSpellData spellData = null)
+            : base(model, spellData)
         {
-            SpellData = model.GetSpecSpellDataById((int)HolyPriestModel.SpellIds.UnholyTransfusion);
+            if (spellData == null)
+                SpellData = model.GetSpecSpellDataById((int)HolyPriestModel.SpellIds.UnholyTransfusion);
         }
 
         protected override decimal calcAverageRawDirectHeal()
@@ -26,7 +28,7 @@ namespace Salvation.Core.Models.HolyPriest
 
             // For each healing target, heal every ~1.5s for heal amt
 
-            return averageHeal * NumberOfTargets * (SpellData.Duration / 1.5m);
+            return averageHeal * SpellData.NumberOfHealingTargets * (SpellData.Duration / 1.5m);
         }
 
         protected override decimal calcAverageDamage()
@@ -41,7 +43,7 @@ namespace Salvation.Core.Models.HolyPriest
             averageDamage *= model.GetCritMultiplier(model.RawCrit);
             averageDamage *= model.GetHasteMultiplier(model.RawHaste);
 
-            return averageDamage;
+            return averageDamage * SpellData.NumberOfDamageTargets;
         }
     }
 }

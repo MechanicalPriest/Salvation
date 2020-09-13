@@ -120,6 +120,11 @@ namespace Salvation.Core.Models
             {
                 foreach (var cast in averagedSpellCastResult.AdditionalCasts)
                 {
+                    if(cast is AveragedSpellCastResult avgCast)
+                    {
+                        rollupSubResult(avgCast);
+                    }
+
                     averagedSpellCastResult.RawHealing += cast.RawHealing;
                     averagedSpellCastResult.Healing += cast.Healing;
                     averagedSpellCastResult.ManaCost += cast.ManaCost;

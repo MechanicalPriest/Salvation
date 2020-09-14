@@ -70,7 +70,10 @@ namespace Salvation.Core.Profile
                     new CastProfile(324724, 1.0m, 0.0m), // Unholy Nova
                     new CastProfile(325118, 1.0m, 0.0m), // Unholy Transfusion
                 },
-                T15Talent = 193155,
+                Talents = new List<Talents>()
+                {
+                    Talents.Enlightenment
+                },
                 FightLengthSeconds = 397
             };
 

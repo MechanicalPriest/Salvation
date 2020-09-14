@@ -18,17 +18,45 @@ namespace Salvation.Core.Profile
             return GetDefaultProfile(spec);
         }
 
-        public static BaseProfile GetDefaultProfile(Spec spec)
+        public static BaseProfile GetDefaultProfile(Spec spec, Covenant covenant = Covenant.None)
         {
+            BaseProfile profile;
+
             switch (spec)
             {
                 case Spec.HolyPriest:
-                    return generateHolyPriestProfile();
+                    profile =  generateHolyPriestProfile();
+                    break;
 
                 case Spec.None:
                 default:
                     throw new ArgumentOutOfRangeException("specid", "SpecID must be a valid supported spec");
             }
+
+            switch (covenant)
+            {
+                case Covenant.Kyrian:
+                    SetToKyrian(profile);
+                    break;
+
+                case Covenant.Venthyr:
+                    SetToVenthyr(profile);
+                    break;
+
+                case Covenant.Necrolord:
+                    SetToNecrolord(profile);
+                    break;
+
+                case Covenant.NightFae:
+                    SetToNightFae(profile);
+                    break;
+
+                case Covenant.None:
+                default:
+                    break;
+            }
+
+            return profile;
         }
 
         private static BaseProfile generateHolyPriestProfile()
@@ -44,7 +72,7 @@ namespace Salvation.Core.Profile
                 CritRating = 268,
                 Casts = new List<CastProfile>()
                 {
-                    // SpellId, Efficiency, Overheal
+                    // Base Spells (SpellId, Efficiency, Overheal)
                     new CastProfile(2060, 0.0603m, 0.1084m), // FH
                     new CastProfile(2061, 0.0664m, 0.3054m), // Heal
                     new CastProfile(139, 0.0364m, 0.3643m), // Renew
@@ -63,6 +91,7 @@ namespace Salvation.Core.Profile
                     new CastProfile(17, 0m, 0.0m), // PowerWordShield
                     new CastProfile(77485, 0, 0.4224m), // Echo
                     new CastProfile(323673, 1.0m, 0.0m), // Mindgames
+                    // Covenants (SpellId, Efficiency, Overheal)
                     new CastProfile(327661, 1.0m, 0.0m), // Fae Guardians
                     new CastProfile(325013, 1.0m, 0.0m), // Boon of the Ascended
                     new CastProfile(325020, 1.0m, 0.0m), // Ascended Nova
@@ -85,6 +114,42 @@ namespace Salvation.Core.Profile
         {
             // TODO: Include more configuration to set to a specific Kyrian soulbind ?
             profile.Covenant = Covenant.Kyrian;
+            profile.Conduits = new Dictionary<Conduit, int>()
+            {
+                { Conduit.CharitableSoul, 0 }
+            };
+
+            return profile;
+        }
+
+        public static BaseProfile SetToVenthyr(BaseProfile profile)
+        {
+            // TODO: Include more configuration to set to a specific Venthyr soulbind ?
+            profile.Covenant = Covenant.Venthyr;
+            profile.Conduits = new Dictionary<Conduit, int>()
+            {
+                { Conduit.CharitableSoul, 0 }
+            };
+
+            return profile;
+        }
+
+        public static BaseProfile SetToNightFae(BaseProfile profile)
+        {
+            // TODO: Include more configuration to set to a specific NightFae soulbind ?
+            profile.Covenant = Covenant.NightFae;
+            profile.Conduits = new Dictionary<Conduit, int>()
+            {
+                { Conduit.CharitableSoul, 0 }
+            };
+
+            return profile;
+        }
+
+        public static BaseProfile SetToNecrolord(BaseProfile profile)
+        {
+            // TODO: Include more configuration to set to a specific Necrolord soulbind ?
+            profile.Covenant = Covenant.Necrolord;
             profile.Conduits = new Dictionary<Conduit, int>()
             {
                 { Conduit.CharitableSoul, 0 }

@@ -54,6 +54,7 @@ function App(props) {
   // make the API request to get default profile
   useEffect(() => {
     setLoading(true);
+    console.log('Getting profile data from api:', profileDataUrl);
     fetch(profileDataUrl)
       .then((response) => response.json())
       .then(
@@ -69,7 +70,7 @@ function App(props) {
           setApiErrorMessage('Error connecting to API. See console for more details.');
         }
       );
-  }, [profileDataUrl]);
+  }, [profileData]);
 
   // Processing getting API results from submitted profile
   const handleUpdateClick = useCallback(() => {

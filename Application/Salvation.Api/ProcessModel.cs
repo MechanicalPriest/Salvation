@@ -9,6 +9,8 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Salvation.Core.Profile;
 using Salvation.Core;
+using Salvation.Core.Constants;
+using System.Runtime.CompilerServices;
 
 namespace Salvation.Api
 {
@@ -17,7 +19,7 @@ namespace Salvation.Api
         [FunctionName("ProcessModel")]
         public static async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = null)] HttpRequest request,
-            ILogger log)
+            ILogger log, ExecutionContext context)
         {
 
             BaseProfile profile;
@@ -40,7 +42,18 @@ namespace Salvation.Api
 
             log.LogInformation("Processing a new profile: {0}", JsonConvert.SerializeObject(profile));
 
-            var data = File.ReadAllText(@"constants.json");
+            string filePath = Path.Combine(context.FunctionAppDirectory, @"constants.json");
+            string data;
+
+            try
+            {
+                data = File.ReadAllText(filePath);
+            }
+            catch(Exception ex)
+            {
+                log.LogError(ex, $"Unable to load constants file: {filePath}");
+                return new BadRequestResult();
+            }
 
             var constants = ConstantsManager.ParseConstants(data);
 

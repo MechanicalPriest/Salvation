@@ -77,7 +77,7 @@ namespace Salvation.Core.Models.HolyPriest
             // Total mana regenerated is specific to Holy Priest
             decimal totalRegenPerSecond;
 
-            var hasEnlightenment = Profile.IsTalentActive(Talents.Enlightenment);
+            var hasEnlightenment = Profile.IsTalentActive(Talent.Enlightenment);
             var regenCoeff = hasEnlightenment ? 1.1m : 1m;
             totalRegenPerSecond = RawMana * 0.04m * regenCoeff / 5m;
 

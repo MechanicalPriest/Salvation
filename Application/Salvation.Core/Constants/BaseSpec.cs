@@ -26,11 +26,13 @@ namespace Salvation.Core.Constants
 
         public List<BaseSpellData> Spells { get; set; }
         public List<BaseModifier> Modifiers { get; set; }
+        public List<ConduitData> Conduits { get; set; }
 
         public BaseSpec()
         {
             Spells = new List<BaseSpellData>();
             Modifiers = new List<BaseModifier>();
+            Conduits = new List<ConduitData>();
         }
     }
 }

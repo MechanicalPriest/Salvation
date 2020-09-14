@@ -1,4 +1,5 @@
-﻿using Salvation.Core.Models;
+﻿using Newtonsoft.Json;
+using Salvation.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -70,14 +71,40 @@ namespace Salvation.Core.Profile
                     new CastProfile(324724, 1.0m, 0.0m), // Unholy Nova
                     new CastProfile(325118, 1.0m, 0.0m), // Unholy Transfusion
                 },
-                Talents = new List<Talents>()
+                Talents = new List<Talent>()
                 {
-                    Talents.Enlightenment
+                    Talent.Enlightenment
                 },
                 FightLengthSeconds = 397
             };
 
             return basicProfile;
+        }
+
+        public static BaseProfile SetToKyrian(BaseProfile profile)
+        {
+            // TODO: Include more configuration to set to a specific Kyrian soulbind ?
+            profile.Covenant = Covenant.Kyrian;
+            profile.Conduits = new Dictionary<Conduit, int>()
+            {
+                { Conduit.CharitableSoul, 0 }
+            };
+
+            return profile;
+        }
+
+        /// <summary>
+        /// Deep clone a profile by serialising and deserialising it as JSON.
+        /// </summary>
+        /// <param name="profile">The profile to be cloned</param>
+        /// <returns>A fresh instance of the profile</returns>
+        public static BaseProfile CloneProfile(BaseProfile profile)
+        {
+            var profileString = JsonConvert.SerializeObject(profile);
+
+            var newProfile = JsonConvert.DeserializeObject<BaseProfile>(profileString);
+
+            return newProfile;
         }
     }
 }

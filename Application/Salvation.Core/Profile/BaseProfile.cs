@@ -165,6 +165,7 @@ namespace Salvation.Core.Profile
         /// Active conduits. Conduit:rank
         /// </summary>
         public Dictionary<Conduit, int> Conduits { get; set; }
+        public List<Soulbind> Soulbinds { get; set; }
 
         public Covenant Covenant { get; set; }
 
@@ -177,11 +178,19 @@ namespace Salvation.Core.Profile
             Talents = new List<Talent>();
             Covenant = Covenant.None;
             Conduits = new Dictionary<Conduit, int>();
+            Soulbinds = new List<Soulbind>();
         }
 
         public bool IsTalentActive(Talent talent)
         {
             var exists = Talents.Contains(talent);
+
+            return exists;
+        }
+
+        public bool IsSoulbindActive(Soulbind soulbind)
+        {
+            var exists = Soulbinds.Contains(soulbind);
 
             return exists;
         }

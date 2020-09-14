@@ -16,6 +16,8 @@
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
   <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
   <ItemGroup>
+    <Content Include=".env.development.local" />
+    <Content Include=".env.production" />
     <Content Include="package-lock.json" />
     <Content Include="package.json" />
     <Content Include="public\wings_banner_offset_small.png" />

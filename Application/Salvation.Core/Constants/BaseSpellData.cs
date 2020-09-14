@@ -14,7 +14,8 @@
         /// <summary>
         /// Default number of targets this spell can hit, usually its maximum targets
         /// </summary>
-        public decimal DefaultNumberOfTargets { get; set; }
+        public decimal NumberOfHealingTargets { get; set; }
+        public decimal NumberOfDamageTargets { get; set; }
         // Base cast time in seconds before haste
         public decimal BaseCastTime { get; set; }
         public bool IsCastTimeHasted{ get; set; }
@@ -24,9 +25,20 @@
         // Base GCD in seconds before haste
         public decimal Gcd { get; set; }
 
-        // Spellpower coefficient for component #1
+        /// <summary>
+        /// Spellpower coefficient for component #1
+        /// </summary>
         public decimal Coeff1 { get; set; }
+        /// <summary>
+        /// Spellpower coefficient for component #2
+        /// </summary>
+        public decimal Coeff2 { get; set; }
+        /// <summary>
+        /// Spellpower coefficient for component #3
+        /// </summary>
+        public decimal Coeff3 { get; set; }
         // If mastery is triggered for the direct heal portion
+        // TODO: Move this out to a HolyPriestSpellData inherited class
         public bool IsMasteryTriggered { get; set; }
     }
 }

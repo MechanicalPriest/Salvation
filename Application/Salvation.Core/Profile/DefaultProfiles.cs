@@ -34,6 +34,7 @@ namespace Salvation.Core.Profile
         {
             var basicProfile = new BaseProfile()
             {
+                Name = "Holy Priest Default Profile",
                 SpecId = Spec.HolyPriest,
                 Intellect = 1001,
                 MasteryRating = 242,
@@ -60,6 +61,14 @@ namespace Salvation.Core.Profile
                     new CastProfile(238136, 0m, 0.2332m), // CosmicRipple
                     new CastProfile(17, 0m, 0.0m), // PowerWordShield
                     new CastProfile(77485, 0, 0.4224m), // Echo
+                    new CastProfile(323673, 1.0m, 0.0m), // Mindgames
+                    new CastProfile(327661, 1.0m, 0.0m), // Fae Guardians
+                    new CastProfile(325013, 1.0m, 0.0m), // Boon of the Ascended
+                    new CastProfile(325020, 1.0m, 0.0m), // Ascended Nova
+                    new CastProfile(325283, 1.0m, 0.0m), // Ascended Blast
+                    new CastProfile(325326, 1.0m, 0.0m), // Ascended Eruption
+                    new CastProfile(324724, 1.0m, 0.0m), // Unholy Nova
+                    new CastProfile(325118, 1.0m, 0.0m), // Unholy Transfusion
                 },
                 T15Talent = 193155,
                 FightLengthSeconds = 397

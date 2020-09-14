@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Salvation.Core.Constants;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -7,10 +8,11 @@ namespace Salvation.Core.Models.HolyPriest
     class PrayerOfHealing 
         : BaseHolyPriestHealingSpell
     {
-        public PrayerOfHealing(HolyPriestModel holyPriestModel, decimal numberOfTargetsHit = 0)
-            : base (holyPriestModel, numberOfTargetsHit)
+        public PrayerOfHealing(BaseModel model, BaseSpellData spellData = null)
+            : base(model, spellData)
         {
-            SpellData = model.GetSpellDataById((int)HolyPriestModel.SpellIds.PrayerOfHealing);
+            if (spellData == null)
+                SpellData = model.GetSpecSpellDataById((int)HolyPriestModel.SpellIds.PrayerOfHealing);
         }
 
         protected override decimal calcAverageRawDirectHeal()
@@ -21,7 +23,7 @@ namespace Salvation.Core.Models.HolyPriest
                 * model.GetCritMultiplier(model.RawCrit)
                 * holyPriestAuraHealingBonus;
 
-            return averageHeal * NumberOfTargets;
+            return averageHeal * SpellData.NumberOfHealingTargets;
         }
 
         protected override decimal calcCastsPerMinute()

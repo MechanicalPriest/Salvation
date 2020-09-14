@@ -80,14 +80,70 @@ namespace Salvation.Core.Models
             Spells = new List<BaseSpell>();
         }
 
-        public virtual List<SpellCastResult> GetResults()
+        public virtual BaseModelResults GetResults()
         {
-            return new List<SpellCastResult>();
+            /// So what we want to do for this is calculate results for each spell.
+            /// Get back result values such as raw direct/periodic healing, raw mastery healing, raw total healing
+            /// number of targets hit, mana cost, cast time
+            /// inputs that change the results are the profile, and number of targets hit by non-capped aoe spells
+
+            BaseModelResults results = new BaseModelResults();
+
+            results.Profile = Profile;
+
+            // Spell results
+            foreach (var spell in Spells)
+            {
+                results.SpellCastResults.Add(rollupSubResult(spell.CastAverageSpell()));
+            }
+
+            // Total healing results
+            foreach (var result in results.SpellCastResults)
+            {
+                if (result is AveragedSpellCastResult averageResult)
+                {
+                    results.TotalActualHPS += averageResult.HPS;
+                    results.TotalRawHPS += averageResult.RawHPS;
+                    results.TotalMPS += averageResult.MPS;
+                }
+            }
+
+            results.TotalRawHPM = results.TotalRawHPS / results.TotalMPS;
+            results.TotalActualHPM = results.TotalActualHPS / results.TotalMPS;
+
+            return results;
         }
 
-        internal Constants.BaseSpellData GetSpellDataById(int spellId)
+        private SpellCastResult rollupSubResult(AveragedSpellCastResult averagedSpellCastResult)
+        {
+            if (averagedSpellCastResult.AdditionalCasts?.Count > 0)
+            {
+                foreach (var cast in averagedSpellCastResult.AdditionalCasts)
+                {
+                    if(cast is AveragedSpellCastResult avgCast)
+                    {
+                        rollupSubResult(avgCast);
+                    }
+
+                    averagedSpellCastResult.RawHealing += cast.RawHealing;
+                    averagedSpellCastResult.Healing += cast.Healing;
+                    averagedSpellCastResult.ManaCost += cast.ManaCost;
+                }
+            }
+
+            return averagedSpellCastResult;
+        }
+
+        internal Constants.BaseSpellData GetSpecSpellDataById(int spellId)
         {
             Constants.BaseSpellData spell = SpecConstants.Spells.Where(s => s.Id == spellId).FirstOrDefault();
+
+            return spell;
+        }
+
+        internal Constants.BaseSpellData GetSharedSpellDataById(int spellId)
+        {
+            Constants.BaseSpellData spell = Constants.SharedSpells.Where(s => s.Id == spellId).FirstOrDefault();
 
             return spell;
         }
@@ -195,5 +251,9 @@ namespace Salvation.Core.Models
         }
 
 
+        public enum CommonSpellIds
+        {
+            
+        }
     }
 }

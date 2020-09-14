@@ -9,6 +9,7 @@ namespace Salvation.Core.Constants
         public string GameVersion { get; set; }
         public List<BaseSpec> Specs { get; set; }
         public List<BaseModifier> GlobalModifiers { get; set; }
+        public List<BaseSpellData> SharedSpells { get; set; }
 
         public GlobalConstants()
         {

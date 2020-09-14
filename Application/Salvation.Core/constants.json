@@ -43,9 +43,14 @@
           "Value": 4.0
         },
         {
-          // Stored as a decimal. 0.4 is 40% more healing.
-          "Name": "HolyPriestAuraHealingBonus",
+          // Stored as a decimal. 1.4 is 40% more healing.
+          "Name": "HolyPriestAuraHealingMultiplier",
           "Value": 1.0
+        },
+        {
+          // Stored as a decimal. 1.4 is 40% more damage.
+          "Name": "HolyPriestAuraDamageMultiplier",
+          "Value": 1.25
         },
         {
           "Name": "HolyWordsBaseCDR",
@@ -54,6 +59,14 @@
         {
           "Name": "SalvationHolyWordCDR",
           "Value": 30
+        },
+        {
+          "Name": "BoonStacksPerANTarget",
+          "Value": 1
+        },
+        {
+          "Name": "BoonStacksPerABTarget",
+          "Value": 5
         }
       ],
 
@@ -65,7 +78,8 @@
           "Name": "Heal",
           "ManaCost": 0.024,
           "Range": 40.0,
-          "DefaultNumberOfTargets": 1.0,
+          "NumberOfHealingTargets": 1.0,
+          "NumberOfDamageTargets": 0.0,
           "BaseCastTime": 2.5,
           "IsCastTimeHasted": true,
           "BaseCooldown": 0.0,
@@ -79,7 +93,8 @@
           "Name": "Flash Heal",
           "ManaCost": 0.036,
           "Range": 40.0,
-          "DefaultNumberOfTargets": 1.0,
+          "NumberOfHealingTargets": 1.0,
+          "NumberOfDamageTargets": 0.0,
           "BaseCastTime": 1.5,
           "IsCastTimeHasted": true,
           "BaseCooldown": 0.0,
@@ -93,7 +108,8 @@
           "Name": "Prayer of Healing",
           "ManaCost": 0.05,
           "Range": 40.0,
-          "DefaultNumberOfTargets": 1.0, // boucnes are set using the modifier PrayerOfMendingBounces
+          "NumberOfHealingTargets": 1.0, // bounces are set using the modifier PrayerOfMendingBounces
+          "NumberOfDamageTargets": 0.0,
           "BaseCastTime": 2.0,
           "IsCastTimeHasted": true,
           "BaseCooldown": 0.0,
@@ -107,7 +123,8 @@
           "Name": "Holy Nova",
           "ManaCost": 0.016,
           "Range": 12.0,
-          "DefaultNumberOfTargets": 20.0,
+          "NumberOfHealingTargets": 20.0,
+          "NumberOfDamageTargets": 1.0,
           "BaseCastTime": 0.0,
           "IsCastTimeHasted": true,
           "BaseCooldown": 0.0,
@@ -122,7 +139,8 @@
           "ManaCost": 0.033,
           // The heal range off its target is only 30.0y
           "Range": 40.0,
-          "DefaultNumberOfTargets": 5.0,
+          "NumberOfHealingTargets": 5.0,
+          "NumberOfDamageTargets": 0.0,
           "BaseCastTime": 0.0,
           "IsCastTimeHasted": true,
           "BaseCooldown": 15.0,
@@ -136,7 +154,8 @@
           "Name": "Renew",
           "ManaCost": 0.018,
           "Range": 40.0,
-          "DefaultNumberOfTargets": 1.0,
+          "NumberOfHealingTargets": 1.0,
+          "NumberOfDamageTargets": 0.0,
           "BaseCastTime": 0.0,
           "IsCastTimeHasted": true,
           "BaseCooldown": 0.0,
@@ -150,7 +169,8 @@
           "Name": "Power Word: Shield",
           "ManaCost": 0.031,
           "Range": 40.0,
-          "DefaultNumberOfTargets": 1.0,
+          "NumberOfHealingTargets": 1.0,
+          "NumberOfDamageTargets": 0.0,
           "BaseCastTime": 0.0,
           "IsCastTimeHasted": true,
           "BaseCooldown": 0.0,
@@ -164,7 +184,8 @@
           "Name": "Divine Hymn",
           "ManaCost": 0.044,
           "Range": 40.0,
-          "DefaultNumberOfTargets": 20.0,
+          "NumberOfHealingTargets": 20.0,
+          "NumberOfDamageTargets": 0.0,
           "BaseCastTime": 8.0,
           "IsCastTimeHasted": true,
           "BaseCooldown": 180.0,
@@ -178,7 +199,8 @@
           "Name": "Holy Word: Sanctify",
           "ManaCost": 0.05,
           "Range": 40.0,
-          "DefaultNumberOfTargets": 6.0,
+          "NumberOfHealingTargets": 6.0,
+          "NumberOfDamageTargets": 0.0,
           "BaseCastTime": 0.0,
           "IsCastTimeHasted": true,
           "BaseCooldown": 60.0,
@@ -192,7 +214,8 @@
           "Name": "Holy Word: Serenity",
           "ManaCost": 0.04,
           "Range": 40.0, // aoe range is 10y
-          "DefaultNumberOfTargets": 1.0,
+          "NumberOfHealingTargets": 1.0,
+          "NumberOfDamageTargets": 0.0,
           "BaseCastTime": 0.0,
           "IsCastTimeHasted": true,
           "BaseCooldown": 60.0,
@@ -206,7 +229,8 @@
           "Name": "Prayer of Mending",
           "ManaCost": 0.02,
           "Range": 40.0, // Jump range is 20y
-          "DefaultNumberOfTargets": 1.0,
+          "NumberOfHealingTargets": 1.0,
+          "NumberOfDamageTargets": 0.0,
           "BaseCastTime": 0.0,
           "IsCastTimeHasted": true,
           "BaseCooldown": 12.0,
@@ -220,7 +244,8 @@
           "Name": "Binding Heal",
           "ManaCost": 0.034,
           "Range": 40.0,
-          "DefaultNumberOfTargets": 3.0,
+          "NumberOfHealingTargets": 3.0,
+          "NumberOfDamageTargets": 0.0,
           "BaseCastTime": 1.5,
           "IsCastTimeHasted": true,
           "BaseCooldown": 0.0,
@@ -234,7 +259,8 @@
           "Name": "Halo",
           "ManaCost": 0.027,
           "Range": 30.0,
-          "DefaultNumberOfTargets": 6.0,
+          "NumberOfHealingTargets": 6.0,
+          "NumberOfDamageTargets": 1.0,
           "BaseCastTime": 1.5,
           "IsCastTimeHasted": true,
           "BaseCooldown": 40.0,
@@ -248,7 +274,8 @@
           "Name": "Divine Star",
           "ManaCost": 0.02,
           "Range": 30.0,
-          "DefaultNumberOfTargets": 6.0,
+          "NumberOfHealingTargets": 6.0,
+          "NumberOfDamageTargets": 1.0,
           "BaseCastTime": 0.0,
           "IsCastTimeHasted": true,
           "BaseCooldown": 15.0,
@@ -262,7 +289,8 @@
           "Name": "Holy Word: Salvation",
           "ManaCost": 0.06,
           "Range": 40.0,
-          "DefaultNumberOfTargets": 20.0,
+          "NumberOfHealingTargets": 20.0,
+          "NumberOfDamageTargets": 0.0,
           "BaseCastTime": 2.5,
           "IsCastTimeHasted": true,
           "BaseCooldown": 720.0,
@@ -270,8 +298,146 @@
           "Gcd": 1.5,
           "Coeff1": 1.1,
           "IsMasteryTriggered": true
+        },
+        {
+          "Id": 323673,
+          "Name": "Mindgames",
+          "ManaCost": 0.02,
+          "Range": 40.0,
+          "NumberOfHealingTargets": 1.0,
+          "NumberOfDamageTargets": 1.0,
+          "BaseCastTime": 1.5,
+          "IsCastTimeHasted": true,
+          "BaseCooldown": 45.0,
+          "IsCooldownHasted": false,
+          "Gcd": 1.5,
+          "Coeff1": 450, // Damage that heals. Comes from effect 2
+          "Coeff2": 2.0, // The mana% return. Comes from 323706 effect 3.
+          "Coeff3": 3.0, // The initial damage component
+          "IsMasteryTriggered": false
+        },
+        {
+          "Id": 327661,
+          "Name": "Fae Guardians",
+          "ManaCost": 0.02,
+          "Range": 0.0,
+          "NumberOfHealingTargets": 0.0,
+          "NumberOfDamageTargets": 0.0,
+          "BaseCastTime": 0.0,
+          "IsCastTimeHasted": true,
+          "BaseCooldown": 90.0,
+          "IsCooldownHasted": false,
+          "Duration": 20.0,
+          "Gcd": 1.5,
+          "Coeff1": -10.0, // Damage reduced. Comes from 327694 Effect #1
+          "Coeff2": 100.0, // CDR increase. 100 = 100%. Comes from 327710 Effect #1
+          "Coeff3": 50, // The mana return. 50 / 100 = 0.5% mana. Comes from 327703 Effect #1
+          "IsMasteryTriggered": false
+        },
+        {
+          "Id": 325013,
+          "Name": "Boon of the Ascended",
+          "ManaCost": 0.00,
+          "Range": 0.0,
+          "NumberOfHealingTargets": 0.0,
+          "NumberOfDamageTargets": 0.0,
+          "BaseCastTime": 1.5,
+          "IsCastTimeHasted": true,
+          "BaseCooldown": 180.0,
+          "IsCooldownHasted": false,
+          "Duration": 10.0,
+          "Gcd": 1.5,
+          "Coeff1": 3 // Additional % healing per stack of boon.
+        },
+        {
+          "Id": 325020,
+          "Name": "Ascended Nova",
+          "ManaCost": 0.00,
+          "Range": 8.0,
+          "NumberOfHealingTargets": 5.0,
+          "NumberOfDamageTargets": 1.0,
+          "BaseCastTime": 0.0,
+          "IsCastTimeHasted": true,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 1.0,
+          "Coeff1": 0.69, // Damage component from Effect #1
+          "Coeff2": 0.38, // Healing component
+          "Coeff3": 6, // Target cap of healing component
+          "IsMasteryTriggered": true
+        },
+        {
+          "Id": 325283,
+          "Name": "Ascended Blast",
+          "ManaCost": 0.00,
+          "Range": 40.0,
+          "NumberOfHealingTargets": 1.0,
+          "NumberOfDamageTargets": 1.0,
+          "BaseCastTime": 0.0,
+          "IsCastTimeHasted": true,
+          "BaseCooldown": 3.0,
+          "IsCooldownHasted": true,
+          "Duration": 0.0,
+          "Gcd": 1.0,
+          "Coeff1": 2.6, // Damage component from Effect #1
+          "Coeff2": 100, // Healing component from the damage. Effect #2. 100 = 100%.
+          "IsMasteryTriggered": true
+        },
+        {
+          "Id": 325326,
+          "Name": "Ascended Eruption",
+          "ManaCost": 0.00,
+          "Range": 15.0,
+          "NumberOfHealingTargets": 5.0,
+          "NumberOfDamageTargets": 1.0,
+          "BaseCastTime": 0.0,
+          "IsCastTimeHasted": true,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "Coeff1": 3.52, // Damage component from Effect #1
+          "Coeff2": 2.22000, // Healing component from Effect #2.
+          "IsMasteryTriggered": true
+        },
+        {
+          "Id": 324724,
+          "Name": "Unholy Nova",
+          "ManaCost": 5.00,
+          "Range": 15.0, // From 325203 Effect #1
+          "NumberOfHealingTargets": 6.0,
+          "NumberOfDamageTargets": 1.0,
+          "BaseCastTime": 0.0,
+          "IsCastTimeHasted": true,
+          "BaseCooldown": 60.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 1.5,
+          "Coeff1": 1.19000, // Initial heal. 324724 #1
+          "IsMasteryTriggered": true
+        },
+        {
+          "Id": 325118,
+          "Name": "Unholy Transfusion",
+          "ManaCost": 0.00,
+          "Range": 100.0, // From 325203 Effect #1
+          "NumberOfHealingTargets": 1.0,
+          "NumberOfDamageTargets": 1.0,
+          "BaseCastTime": 0.0,
+          "IsCastTimeHasted": true,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 15.0,
+          "Gcd": 0.0,
+          "Coeff1": 0.04, // Heal from DoT component. 325118 #1
+          "Coeff2": 0.5, // DoT component. 325203 #1
+          "IsMasteryTriggered": true
         }
       ]
     }
+  ],
+  "SharedSpells": [
+
   ]
 }

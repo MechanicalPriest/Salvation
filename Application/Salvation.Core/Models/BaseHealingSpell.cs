@@ -22,9 +22,11 @@ namespace Salvation.Core.Models
         /// </summary>
         protected virtual decimal AverageTotalHeal { get => calcAverageTotalHeal(); }
 
+        protected virtual decimal AverageDamage { get => calcAverageDamage(); }
 
-        public BaseHealingSpell(BaseModel model, decimal numberOfTargetsHit)
-            : base(model, numberOfTargetsHit)
+
+        public BaseHealingSpell(BaseModel model, BaseSpellData spellData)
+            : base(model, spellData)
         {
 
         }
@@ -35,6 +37,7 @@ namespace Salvation.Core.Models
 
             result.Healing = AverageTotalHeal;
             result.RawHealing = AverageRawDirectHeal;
+            result.Damage = AverageDamage;
 
             return result;
         }
@@ -43,6 +46,10 @@ namespace Salvation.Core.Models
             return 0;
         }
         protected virtual decimal calcAverageTotalHeal()
+        {
+            return 0;
+        }
+        protected virtual decimal calcAverageDamage()
         {
             return 0;
         }

@@ -66,7 +66,6 @@ namespace Salvation.Core.Models.HolyPriest
             Spells.Add(new HolyWordSalvation(this));
             Spells.Add(new MindGames(this));
             Spells.Add(new FaeGuardians(this));
-            Spells.Add(new AscendedEruption(this));
             Spells.Add(new BoonOfTheAscended(this));
             Spells.Add(new UnholyNova(this));
         }

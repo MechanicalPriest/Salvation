@@ -79,7 +79,7 @@ namespace Salvation.Core.Models.HolyPriest
         /// <summary>
         /// Implements covenant ability Courageous Ascension
         /// </summary>
-        /// <param name="averageDamage">Current average damage</param>
+        /// <param name="averageDamage">Current bonus per stack</param>
         /// <returns></returns>
 
         private decimal applyCourageousAscensionConduit(decimal bonusPerStack)

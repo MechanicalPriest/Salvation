@@ -152,7 +152,7 @@ namespace Salvation.Core.Profile
             profile.Covenant = Covenant.Necrolord;
             profile.Conduits = new Dictionary<Conduit, int>()
             {
-                { Conduit.CharitableSoul, 0 }
+                { Conduit.FesteringTransfusion, 0 }
             };
 
             return profile;

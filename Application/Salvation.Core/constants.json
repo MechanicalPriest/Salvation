@@ -450,6 +450,13 @@
           "ConduitId": 87,
           "Ranks": [ 10.0, 12.0, 13.0, 14.0, 15.0, 16.0, 17.0, 18.0, 19.0, 20.0, 21.0, 22.0, 23.0, 24.0, 25.0 ],
           "Coeff1": 1 // 1 = 1%, additional damage AE does per stack
+        },
+        {
+          "Id": 337979,
+          "Name": "Festering Transfusion",
+          "ConduitId": 90,
+          "Ranks": [ 10.0, 12.0, 13.0, 14.0, 15.0, 16.0, 17.0, 18.0, 19.0, 20.0, 21.0, 22.0, 23.0, 24.0, 25.0 ],
+          "Coeff1": 5 // 5 = 5s increased duration on the DoT
         }
       ]
     }

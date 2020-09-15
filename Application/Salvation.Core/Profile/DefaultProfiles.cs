@@ -140,7 +140,7 @@ namespace Salvation.Core.Profile
             profile.Covenant = Covenant.NightFae;
             profile.Conduits = new Dictionary<Conduit, int>()
             {
-                { Conduit.CharitableSoul, 0 }
+                { Conduit.FaeFermata, 0 }
             };
 
             return profile;

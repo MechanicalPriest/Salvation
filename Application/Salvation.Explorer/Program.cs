@@ -26,7 +26,7 @@ namespace Salvation.Explorer
             var globalConstants = ConstantsManager.ParseConstants(data);
 
             var basicProfile = DefaultProfiles.GetDefaultProfile(Spec.HolyPriest);
-            DefaultProfiles.SetToNecrolord(basicProfile);
+            DefaultProfiles.SetToNightFae(basicProfile);
 
             var hpriest = new HolyPriestModel(globalConstants, basicProfile);
 

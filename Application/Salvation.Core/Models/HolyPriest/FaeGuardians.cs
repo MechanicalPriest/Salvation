@@ -1,6 +1,7 @@
 ﻿using Salvation.Core.Constants;
 using Salvation.Core.Models.Common;
 using Salvation.Core.Models.HolyPriest;
+using Salvation.Core.Profile;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -26,7 +27,8 @@ namespace Salvation.Core.Models.HolyPriest
             var divineHymnResults = divineHymn.CastAverageSpell();
 
             // Coeff2 is the "100" of 100% CDR.
-            var reducedCooldownSeconds = (SpellData.Coeff2 / 100) * SpellData.Duration;
+            var duration = applyFaeFermataConduitDuration(SpellData.Duration);
+            var reducedCooldownSeconds = (SpellData.Coeff2 / 100) * duration;
 
             // Figure out how much extra hymn we get, best case
             var percentageOfCast = reducedCooldownSeconds / divineHymnResults.Cooldown;
@@ -70,8 +72,9 @@ namespace Salvation.Core.Models.HolyPriest
             // TODO: Move this to configuration
             decimal targetDamageTakenPerSecond = 3000.0m;
             var pwsCast = model.GetSpell<PowerWordShield>(HolyPriestModel.SpellIds.PowerWordShield);
+            var duration = applyFaeFermataConduitDuration(SpellData.Duration);
 
-            decimal averageDRPC = (SpellData.Duration - pwsCast.CastAverageSpell().CastTime - HastedGcd) 
+            decimal averageDRPC = (duration - pwsCast.CastAverageSpell().CastTime - HastedGcd) 
                 * targetDamageTakenPerSecond 
                 * (SpellData.Coeff1 / -100);
 
@@ -100,6 +103,19 @@ namespace Salvation.Core.Models.HolyPriest
                 + 1m / (model.FightLengthSeconds / 60m);
 
             return maximumPotentialCasts;
+        }
+        private decimal applyFaeFermataConduitDuration(decimal duration)
+        {
+            if (model.Profile.IsConduitActive(Conduit.FaeFermata))
+            {
+
+                var rank = model.Profile.Conduits[Conduit.FaeFermata];
+                var conduitData = model.GetConduitDataById((int)Conduit.FaeFermata);
+
+                duration += conduitData.Ranks[rank] / 1000;
+            }
+            
+            return duration;
         }
     }
 }

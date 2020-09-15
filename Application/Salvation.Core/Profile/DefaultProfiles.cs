@@ -116,7 +116,7 @@ namespace Salvation.Core.Profile
             profile.Covenant = Covenant.Kyrian;
             profile.Conduits = new Dictionary<Conduit, int>()
             {
-                { Conduit.CharitableSoul, 0 }
+                { Conduit.CourageousAscension, 0 }
             };
 
             return profile;

@@ -399,6 +399,7 @@
           "Gcd": 0.0,
           "Coeff1": 3.52, // Damage component from Effect #1
           "Coeff2": 2.22000, // Healing component from Effect #2.
+          "Coeff3": 3, // Additional damage per stack of boon. 3 = 3%. From 325013 #5.
           "IsMasteryTriggered": true
         },
         {
@@ -442,6 +443,13 @@
           "ConduitId": 71,
           "Ranks": [ 10.0, 12.0, 13.0, 14.0, 15.0, 16.0, 17.0, 18.0, 19.0, 20.0, 21.0, 22.0, 23.0, 24.0, 25.0 ],
           "Coeff1": 10 // Duration of the absorb
+        },
+        {
+          "Id": 337966,
+          "Name": "Courageous Ascension",
+          "ConduitId": 87,
+          "Ranks": [ 10.0, 12.0, 13.0, 14.0, 15.0, 16.0, 17.0, 18.0, 19.0, 20.0, 21.0, 22.0, 23.0, 24.0, 25.0 ],
+          "Coeff1": 1 // 1 = 1%, additional damage AE does per stack
         }
       ]
     }

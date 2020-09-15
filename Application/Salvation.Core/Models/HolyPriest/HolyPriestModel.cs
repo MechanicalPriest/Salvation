@@ -64,10 +64,29 @@ namespace Salvation.Core.Models.HolyPriest
             Spells.Add(new Halo(this));
             Spells.Add(new DivineStar(this));
             Spells.Add(new HolyWordSalvation(this));
-            Spells.Add(new MindGames(this));
-            Spells.Add(new FaeGuardians(this));
-            Spells.Add(new BoonOfTheAscended(this));
-            Spells.Add(new UnholyNova(this));
+
+            switch (profile.Covenant)
+            {
+                case Covenant.Kyrian:
+                    Spells.Add(new BoonOfTheAscended(this));
+                    break;
+
+                case Covenant.Venthyr:
+                    Spells.Add(new MindGames(this));
+                    break;
+
+                case Covenant.Necrolord:
+                    Spells.Add(new UnholyNova(this));
+                    break;
+
+                case Covenant.NightFae:
+                    Spells.Add(new FaeGuardians(this));
+                    break;
+
+                case Covenant.None:
+                default:
+                    break;
+            }
         }
 
         public override BaseModelResults GetResults()
@@ -77,7 +96,8 @@ namespace Salvation.Core.Models.HolyPriest
             // Total mana regenerated is specific to Holy Priest
             decimal totalRegenPerSecond;
 
-            var regenCoeff = Profile.T15Talent == (int)HolyPriestModel.SpellIds.Enlightenment ? 1.1m : 1m;
+            var hasEnlightenment = Profile.IsTalentActive(Talent.Enlightenment);
+            var regenCoeff = hasEnlightenment ? 1.1m : 1m;
             totalRegenPerSecond = RawMana * 0.04m * regenCoeff / 5m;
 
             var totalNegativeManaPerSecond = results.TotalMPS - totalRegenPerSecond;

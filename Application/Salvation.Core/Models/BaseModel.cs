@@ -29,7 +29,7 @@ namespace Salvation.Core.Models
     {
         // Store the configuration data for easy access by the model
         internal GlobalConstants Constants { get; private set; }
-        protected virtual BaseProfile Profile { get; private set; }
+        internal virtual BaseProfile Profile { get; private set; }
         protected BaseSpec SpecConstants { get; private set; }
 
         // Set the spec for this model
@@ -134,18 +134,25 @@ namespace Salvation.Core.Models
             return averagedSpellCastResult;
         }
 
-        internal Constants.BaseSpellData GetSpecSpellDataById(int spellId)
+        internal BaseSpellData GetSpecSpellDataById(int spellId)
         {
-            Constants.BaseSpellData spell = SpecConstants.Spells.Where(s => s.Id == spellId).FirstOrDefault();
+            BaseSpellData spell = SpecConstants.Spells.Where(s => s.Id == spellId).FirstOrDefault();
 
             return spell;
         }
 
-        internal Constants.BaseSpellData GetSharedSpellDataById(int spellId)
+        internal BaseSpellData GetSharedSpellDataById(int spellId)
         {
-            Constants.BaseSpellData spell = Constants.SharedSpells.Where(s => s.Id == spellId).FirstOrDefault();
+            BaseSpellData spell = Constants.SharedSpells.Where(s => s.Id == spellId).FirstOrDefault();
 
             return spell;
+        }
+
+        internal ConduitData GetConduitDataById(int conduitId)
+        {
+            ConduitData conduit = SpecConstants.Conduits.Where(c => c.Id == conduitId).FirstOrDefault();
+
+            return conduit;
         }
 
         /// <summary>

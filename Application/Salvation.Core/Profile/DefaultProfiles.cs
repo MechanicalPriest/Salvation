@@ -128,7 +128,7 @@ namespace Salvation.Core.Profile
             profile.Covenant = Covenant.Venthyr;
             profile.Conduits = new Dictionary<Conduit, int>()
             {
-                { Conduit.CharitableSoul, 0 }
+                { Conduit.ShatteredPerceptions, 0 }
             };
 
             return profile;

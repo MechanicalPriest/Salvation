@@ -116,7 +116,7 @@ namespace Salvation.Core.Profile
             profile.Covenant = Covenant.Kyrian;
             profile.Conduits = new Dictionary<Conduit, int>()
             {
-                { Conduit.CharitableSoul, 0 }
+                { Conduit.CourageousAscension, 0 }
             };
 
             return profile;
@@ -128,7 +128,7 @@ namespace Salvation.Core.Profile
             profile.Covenant = Covenant.Venthyr;
             profile.Conduits = new Dictionary<Conduit, int>()
             {
-                { Conduit.CharitableSoul, 0 }
+                { Conduit.ShatteredPerceptions, 0 }
             };
 
             return profile;
@@ -140,7 +140,7 @@ namespace Salvation.Core.Profile
             profile.Covenant = Covenant.NightFae;
             profile.Conduits = new Dictionary<Conduit, int>()
             {
-                { Conduit.CharitableSoul, 0 }
+                { Conduit.FaeFermata, 0 }
             };
 
             return profile;
@@ -152,7 +152,7 @@ namespace Salvation.Core.Profile
             profile.Covenant = Covenant.Necrolord;
             profile.Conduits = new Dictionary<Conduit, int>()
             {
-                { Conduit.CharitableSoul, 0 }
+                { Conduit.FesteringTransfusion, 0 }
             };
 
             return profile;

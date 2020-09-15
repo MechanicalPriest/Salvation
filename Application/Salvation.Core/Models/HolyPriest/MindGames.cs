@@ -1,5 +1,6 @@
 ﻿using Salvation.Core.Constants;
 using Salvation.Core.Models.HolyPriest;
+using Salvation.Core.Profile;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -39,6 +40,9 @@ namespace Salvation.Core.Models.HolyPriest
                 * holyPriestAuraDamageBonus
                 * model.GetVersMultiplier(model.RawVers);
 
+            // Get the Shattered Perceptions conduit bonus damage
+            averageDamage *= getShatteredPerceptionsConduitMultiplier();
+
             return averageDamage * SpellData.NumberOfDamageTargets;
         }
 
@@ -67,6 +71,38 @@ namespace Salvation.Core.Models.HolyPriest
         {
             // Mindgames restores 1,000 mana (0.2%) if it actually heals you. lets presume it does still
             return base.getActualManaCost() - (model.RawMana * SpellData.Coeff2);
+        }
+        /// <summary>
+        /// Unused: Apply the duration component of the Shattered Perceptions conduit.
+        /// </summary>
+        /// <param name="duration"></param>
+        /// <returns></returns>
+        private decimal applyShatteredPerceptionsConduitDuration(decimal duration)
+        {
+            if (model.Profile.IsConduitActive(Conduit.ShatteredPerceptions))
+            {
+                var conduitData = model.GetConduitDataById((int)Conduit.ShatteredPerceptions);
+
+                duration += conduitData.Coeff1;
+            }
+
+            return duration;
+        }
+        /// <summary>
+        /// Get the Shattered Perceptions conduit damage multiplier 
+        /// </summary>
+        /// <returns></returns>
+        private decimal getShatteredPerceptionsConduitMultiplier()
+        {
+            if (model.Profile.IsConduitActive(Conduit.ShatteredPerceptions))
+            {
+                var rank = model.Profile.Conduits[Conduit.ShatteredPerceptions];
+                var conduitData = model.GetConduitDataById((int)Conduit.ShatteredPerceptions);
+
+                return 1 + (conduitData.Ranks[rank] / 100);
+            }
+
+            return 1;
         }
     }
 }

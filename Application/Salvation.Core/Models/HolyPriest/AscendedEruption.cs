@@ -1,5 +1,6 @@
 ﻿using Salvation.Core.Constants;
 using Salvation.Core.Models.HolyPriest;
+using Salvation.Core.Profile;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,11 +11,15 @@ namespace Salvation.Core.Models.HolyPriest
         : BaseHolyPriestHealingSpell
     {
         private decimal cpmFromBoon;
+        private decimal numberOfBoonStacks;
         public AscendedEruption(BaseModel model, BaseSpellData spellData = null)
             : base(model, spellData)
         {
             if (spellData == null)
                 SpellData = model.GetSpecSpellDataById((int)HolyPriestModel.SpellIds.AscendedEruption);
+
+            // TODO: Implement this properly through Boon as part of #14
+            numberOfBoonStacks = 10;
         }
 
         internal void SetCPM(decimal castsPerMinute)
@@ -34,6 +39,10 @@ namespace Salvation.Core.Models.HolyPriest
                 * holyPriestAuraDamageBonus; // ???
 
             averageHeal *= model.GetCritMultiplier(model.RawCrit);
+
+            var bonusPerStack = applyCourageousAscensionConduit(SpellData.Coeff3);
+
+            averageHeal *= 1 + ((bonusPerStack / 100) * numberOfBoonStacks);
 
             averageHeal *= 1 / (decimal)Math.Sqrt((double)SpellData.NumberOfHealingTargets);                
 
@@ -65,6 +74,24 @@ namespace Salvation.Core.Models.HolyPriest
         {
             // This has been overridden as it's cast everytime you cast Boon.
             return cpmFromBoon;
+        }
+
+        /// <summary>
+        /// Implements covenant ability Courageous Ascension
+        /// </summary>
+        /// <param name="averageDamage">Current bonus per stack</param>
+        /// <returns></returns>
+
+        private decimal applyCourageousAscensionConduit(decimal bonusPerStack)
+        {
+            if (model.Profile.IsConduitActive(Conduit.CourageousAscension))
+            {
+                var conduitData = model.GetConduitDataById((int)Conduit.CourageousAscension);
+
+                bonusPerStack += conduitData.Coeff1;
+            }
+
+            return bonusPerStack;
         }
     }
 }

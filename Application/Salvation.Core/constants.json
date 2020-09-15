@@ -399,6 +399,7 @@
           "Gcd": 0.0,
           "Coeff1": 3.52, // Damage component from Effect #1
           "Coeff2": 2.22000, // Healing component from Effect #2.
+          "Coeff3": 3, // Additional damage per stack of boon. 3 = 3%. From 325013 #5.
           "IsMasteryTriggered": true
         },
         {
@@ -441,7 +442,35 @@
           "Name": "Charitable Soul",
           "ConduitId": 71,
           "Ranks": [ 10.0, 12.0, 13.0, 14.0, 15.0, 16.0, 17.0, 18.0, 19.0, 20.0, 21.0, 22.0, 23.0, 24.0, 25.0 ],
-          "Coeff1": 10 // Duration of the absorb
+          "Coeff1": 10.0 // Duration of the absorb
+        },
+        {
+          "Id": 337966,
+          "Name": "Courageous Ascension",
+          "ConduitId": 87,
+          "Ranks": [ 10.0, 12.0, 13.0, 14.0, 15.0, 16.0, 17.0, 18.0, 19.0, 20.0, 21.0, 22.0, 23.0, 24.0, 25.0 ],
+          "Coeff1": 1.0 // 1 = 1%, additional damage AE does per stack
+        },
+        {
+          "Id": 337979,
+          "Name": "Festering Transfusion",
+          "ConduitId": 90,
+          "Ranks": [ 10.0, 12.0, 13.0, 14.0, 15.0, 16.0, 17.0, 18.0, 19.0, 20.0, 21.0, 22.0, 23.0, 24.0, 25.0 ],
+          "Coeff1": 5.0 // 5 = 5s increased duration on the DoT
+        },
+        {
+          "Id": 338305,
+          "Name": "Fae Fermata",
+          "ConduitId": 101,
+          "Ranks": [ 5000.0, 7000.0, 8000.0, 9000.0, 10000.0, 11000.0, 12000.0, 13000.0, 14000.0, 15000.0, 16000.0, 17000.0, 18000.0, 19000.0, 20000.0 ],
+          "Coeff1": 0.0 // unused
+        },
+        {
+          "Id": 338315,
+          "Name": "Shattered Perceptions",
+          "ConduitId": 105,
+          "Ranks": [ 20.0, 22.0, 23.0, 24.0, 25.0, 26.0, 27.0, 28.0, 29.0, 30.0, 31.0, 32.0, 33.0, 34.0, 35.0 ],
+          "Coeff1": 15.0 // Additional duration of Mindgames. value/1000. From #2
         }
       ]
     }

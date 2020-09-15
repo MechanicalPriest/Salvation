@@ -1,7 +1,9 @@
 ﻿using Salvation.Core.Constants;
 using Salvation.Core.Models.HolyPriest;
+using Salvation.Core.Profile;
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace Salvation.Core.Models.HolyPriest
@@ -52,6 +54,9 @@ namespace Salvation.Core.Models.HolyPriest
                 * holyPriestAuraDamageBonus
                 * model.GetVersMultiplier(model.RawVers);
 
+            // Apply Courageous Ascension conduit.
+            averageDamage = applyCourageousAscensionConduit(averageDamage);
+
             averageDamage *= model.GetCritMultiplier(model.RawCrit);
 
             return averageDamage * SpellData.NumberOfDamageTargets;
@@ -76,6 +81,25 @@ namespace Salvation.Core.Models.HolyPriest
             maximumPotentialCasts = maximumPotentialCasts * boonCPM;
 
             return maximumPotentialCasts;
+        }
+
+        /// <summary>
+        /// Implements covenant ability Courageous Ascension
+        /// </summary>
+        /// <param name="averageDamage">Current average damage</param>
+        /// <returns></returns>
+
+        private decimal applyCourageousAscensionConduit(decimal averageDamage)
+        {
+            if(model.Profile.IsConduitActive(Conduit.CourageousAscension))
+            {
+                var rank = model.Profile.Conduits[Conduit.CourageousAscension];
+                var conduitData = model.GetConduitDataById((int)Conduit.CourageousAscension);
+
+                averageDamage *= 1 + (conduitData.Ranks[rank] / 100);
+            }
+
+            return averageDamage;
         }
     }
 }

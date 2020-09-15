@@ -46,6 +46,8 @@ namespace Salvation.Core.Models.HolyPriest
 
             averageHeal *= model.GetCritMultiplier(model.RawCrit);
 
+            averageHeal *= 1 / (decimal)Math.Sqrt((double)SpellData.NumberOfHealingTargets);
+
             return averageHeal * SpellData.NumberOfHealingTargets;
         }
 
@@ -57,6 +59,8 @@ namespace Salvation.Core.Models.HolyPriest
                 * holyPriestAuraDamageBonus;
 
             averageDamage *= model.GetCritMultiplier(model.RawCrit);
+
+            averageDamage *= 1 / (decimal)Math.Sqrt((double)SpellData.NumberOfDamageTargets);
 
             return averageDamage * SpellData.NumberOfDamageTargets;
         }

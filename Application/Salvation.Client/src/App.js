@@ -48,12 +48,14 @@ function App(props) {
   const [loading, setLoading] = useState(true);
   const [apiErrorMessage, setApiErrorMessage] = useState('');
 
-  const profileDataUrl = 'http://localhost:7071/api/DefaultProfile?specid=257';
-  const modelResultUrl = 'http://localhost:7071/api/ProcessModel';
+  const profileDataUrl = process.env.REACT_APP_API_ROOT + '/api/DefaultProfile?specid=257';
+  const modelResultUrl = process.env.REACT_APP_API_ROOT + '/api/ProcessModel';
+
 
   // make the API request to get default profile
   useEffect(() => {
     setLoading(true);
+    console.log('Getting profile data from api:', profileDataUrl);
     fetch(profileDataUrl)
       .then((response) => response.json())
       .then(
@@ -68,7 +70,9 @@ function App(props) {
           setLoading(false);
           setApiErrorMessage('Error connecting to API. See console for more details.');
         }
-      );
+    );
+    // TODO: Investigate actually using dependencies properly to remove these disables
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [profileDataUrl]);
 
   // Processing getting API results from submitted profile
@@ -91,8 +95,9 @@ function App(props) {
           setLoading(false);
           setApiErrorMessage('Error connecting to modelling API. See console for more details.');
         }
-      );
-
+    );
+    // TODO: Investigate actually using dependencies properly to remove these disables
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [profileData]);
 
   // Callback method to update a profile value when changed by a TextField

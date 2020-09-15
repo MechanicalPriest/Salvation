@@ -2,9 +2,11 @@
 using Salvation.Core.Models.Common;
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Text;
 using static Salvation.Core.Models.HolyPriest.HolyPriestModel;
 
+[assembly: InternalsVisibleTo("Salvation.CoreTests")]
 namespace Salvation.Core.Models.HolyPriest
 {
     class BaseHolyPriestHealingSpell

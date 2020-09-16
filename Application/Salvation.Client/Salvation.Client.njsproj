@@ -20,6 +20,9 @@
     <Content Include=".env.production" />
     <Content Include="package-lock.json" />
     <Content Include="package.json" />
+    <Content Include="public\highlight-dark.css">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="public\wings_banner_offset_small.png" />
     <Content Include="README.md" />
     <Content Include="public\robots.txt" />

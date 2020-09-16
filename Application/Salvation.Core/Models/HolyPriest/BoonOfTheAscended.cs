@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Salvation.Core.Models.HolyPriest
 {
-    class BoonOfTheAscended
+    internal class BoonOfTheAscended
         : BaseHolyPriestHealingSpell
     {
         public BoonOfTheAscended(BaseModel model, BaseSpellData spellData = null)

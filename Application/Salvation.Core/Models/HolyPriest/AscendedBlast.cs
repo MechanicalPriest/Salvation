@@ -8,7 +8,7 @@ using System.Text;
 
 namespace Salvation.Core.Models.HolyPriest
 {
-    class AscendedBlast
+    internal class AscendedBlast
         : BaseHolyPriestHealingSpell
     {
         private decimal allowedDuration;

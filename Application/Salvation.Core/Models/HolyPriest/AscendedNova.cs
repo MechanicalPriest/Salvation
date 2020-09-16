@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Salvation.Core.Models.HolyPriest
 {
-    class AscendedNova
+    internal class AscendedNova
         : BaseHolyPriestHealingSpell
     {
         private decimal allowedDuration;

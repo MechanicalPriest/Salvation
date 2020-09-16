@@ -7,7 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using Salvation.Core.Models.Common;
-using Xunit;
+using NUnit.Framework;
 
 namespace Salvation.CoreTests
 {
@@ -26,7 +26,7 @@ namespace Salvation.CoreTests
             Model = new HolyPriestModel(globalConstants, basicProfile);
         }
 
-        [Fact]
+        [Test]
         public void HolyPriestModelGivesResults()
         {
             var data = GetTestConstantsJson();// File.ReadAllText(@"constants.json");
@@ -43,7 +43,7 @@ namespace Salvation.CoreTests
         }
 
         [Theory]
-        [InlineData(typeof(FlashHeal), "2368.7775761650000000000000001", "2.8507733333333333333333333332", "42.933333333333333333333333331", "441.60781955647499999999999995", "1645.3529044042090000000000001", "0", "1.3975155279503105590062111802", "1.3975155279503105590062111802", "0", "1800.000", 1, true)]
+        [TestCase(typeof(FlashHeal), "2368.7775761650000000000000001", "2.8507733333333333333333333332", "42.933333333333333333333333331", "441.60781955647499999999999995", "1645.3529044042090000000000001", "0", "1.3975155279503105590062111802", "1.3975155279503105590062111802", "0", "1800.000", 1, true)]
 
         public void HolyPriestSpellIsCorrect(Type spellType,
             string averageRawDirectHeal,
@@ -60,38 +60,38 @@ namespace Salvation.CoreTests
             bool hasEcho)
         {
             var spell = new SpellTestHarness(spellType);
-            Assert.Equal(Convert.ToDecimal(averageRawDirectHeal), spell.ExposeDecimalMethod("calcAverageRawDirectHeal"));
-            Assert.Equal(Convert.ToDecimal(castsPerMinute), spell.ExposeDecimalMethod("calcCastsPerMinute"));
-            Assert.Equal(Convert.ToDecimal(maximumCastsPerMinute), spell.ExposeDecimalMethod("calcMaximumCastsPerMinute"));
-            Assert.Equal(Convert.ToDecimal(averageRawMasteryHeal), spell.ExposeDecimalMethod("calcAverageRawMasteryHeal"));
-            Assert.Equal(Convert.ToDecimal(averageRawMasteryHeal), spell.Spell.AverageRawMasteryHeal);
-            Assert.Equal(Convert.ToDecimal(averageTotalHeal), spell.ExposeDecimalMethod("calcAverageTotalHeal"));
-            Assert.Equal(Convert.ToDecimal(averageDamage), spell.ExposeDecimalMethod("calcAverageDamage"));
-            Assert.Equal(Convert.ToDecimal(hastedCastTime), spell.ExposeDecimalMethod("getHastedCastTime"));
-            Assert.Equal(Convert.ToDecimal(hastedGcd), spell.ExposeDecimalMethod("getHastedGcd"));
-            Assert.Equal(Convert.ToDecimal(hastedCooldown), spell.ExposeDecimalMethod("getHastedCooldown"));
-            Assert.Equal(Convert.ToDecimal(actualManaCost), spell.ExposeDecimalMethod("getActualManaCost"));
+            Assert.AreEqual(Convert.ToDecimal(averageRawDirectHeal), spell.ExposeDecimalMethod("calcAverageRawDirectHeal"));
+            Assert.AreEqual(Convert.ToDecimal(castsPerMinute), spell.ExposeDecimalMethod("calcCastsPerMinute"));
+            Assert.AreEqual(Convert.ToDecimal(maximumCastsPerMinute), spell.ExposeDecimalMethod("calcMaximumCastsPerMinute"));
+            Assert.AreEqual(Convert.ToDecimal(averageRawMasteryHeal), spell.ExposeDecimalMethod("calcAverageRawMasteryHeal"));
+            Assert.AreEqual(Convert.ToDecimal(averageRawMasteryHeal), spell.Spell.AverageRawMasteryHeal);
+            Assert.AreEqual(Convert.ToDecimal(averageTotalHeal), spell.ExposeDecimalMethod("calcAverageTotalHeal"));
+            Assert.AreEqual(Convert.ToDecimal(averageDamage), spell.ExposeDecimalMethod("calcAverageDamage"));
+            Assert.AreEqual(Convert.ToDecimal(hastedCastTime), spell.ExposeDecimalMethod("getHastedCastTime"));
+            Assert.AreEqual(Convert.ToDecimal(hastedGcd), spell.ExposeDecimalMethod("getHastedGcd"));
+            Assert.AreEqual(Convert.ToDecimal(hastedCooldown), spell.ExposeDecimalMethod("getHastedCooldown"));
+            Assert.AreEqual(Convert.ToDecimal(actualManaCost), spell.ExposeDecimalMethod("getActualManaCost"));
 
             var castAverageSpell = spell.Spell.CastAverageSpell();
-            Assert.Equal(Convert.ToDecimal(averageRawDirectHeal), castAverageSpell.RawHealing);
-            Assert.Equal(Convert.ToDecimal(castsPerMinute), castAverageSpell.CastsPerMinute);
-            Assert.Equal(Convert.ToDecimal(maximumCastsPerMinute), castAverageSpell.MaximumCastsPerMinute);
-            Assert.Equal(Convert.ToDecimal(averageTotalHeal), castAverageSpell.Healing);
-            Assert.Equal(Convert.ToDecimal(averageDamage), castAverageSpell.Damage);
-            Assert.Equal(Convert.ToDecimal(hastedCastTime), castAverageSpell.CastTime);
-            Assert.Equal(Convert.ToDecimal(hastedGcd), castAverageSpell.Gcd);
-            Assert.Equal(Convert.ToDecimal(hastedCooldown), castAverageSpell.Cooldown);
-            Assert.Equal(Convert.ToDecimal(actualManaCost), castAverageSpell.ManaCost);
+            Assert.AreEqual(Convert.ToDecimal(averageRawDirectHeal), castAverageSpell.RawHealing);
+            Assert.AreEqual(Convert.ToDecimal(castsPerMinute), castAverageSpell.CastsPerMinute);
+            Assert.AreEqual(Convert.ToDecimal(maximumCastsPerMinute), castAverageSpell.MaximumCastsPerMinute);
+            Assert.AreEqual(Convert.ToDecimal(averageTotalHeal), castAverageSpell.Healing);
+            Assert.AreEqual(Convert.ToDecimal(averageDamage), castAverageSpell.Damage);
+            Assert.AreEqual(Convert.ToDecimal(hastedCastTime), castAverageSpell.CastTime);
+            Assert.AreEqual(Convert.ToDecimal(hastedGcd), castAverageSpell.Gcd);
+            Assert.AreEqual(Convert.ToDecimal(hastedCooldown), castAverageSpell.Cooldown);
+            Assert.AreEqual(Convert.ToDecimal(actualManaCost), castAverageSpell.ManaCost);
 
-            Assert.Equal(additionalCastsCount, castAverageSpell.AdditionalCasts.Count);
+            Assert.AreEqual(additionalCastsCount, castAverageSpell.AdditionalCasts.Count);
 
             var echo = castAverageSpell.AdditionalCasts.FirstOrDefault(ac => ac.SpellId == (int) HolyPriestModel.SpellIds.EchoOfLight);
 
-            Assert.Equal(hasEcho, echo != null);
+            Assert.AreEqual(hasEcho, echo != null);
 
             if (hasEcho)
             {
-                Assert.Equal(Convert.ToDecimal(averageRawMasteryHeal), echo.RawHealing);
+                Assert.AreEqual(Convert.ToDecimal(averageRawMasteryHeal), echo.RawHealing);
             }
         }
 

@@ -8,7 +8,7 @@ using System.Text;
 
 namespace Salvation.Core.Models.HolyPriest
 {
-    class FaeGuardians
+    internal class FaeGuardians
         : BaseHolyPriestHealingSpell
     {
         public FaeGuardians(BaseModel model, BaseSpellData spellData = null)

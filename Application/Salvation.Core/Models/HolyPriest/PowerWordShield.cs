@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Salvation.Core.Models.HolyPriest
 {
-    class PowerWordShield 
+    internal class PowerWordShield 
         : BaseHolyPriestHealingSpell
     {
         public PowerWordShield(BaseModel model, BaseSpellData spellData = null)

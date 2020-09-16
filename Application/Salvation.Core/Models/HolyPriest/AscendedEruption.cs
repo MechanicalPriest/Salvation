@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Salvation.Core.Models.HolyPriest
 {
-    class AscendedEruption
+    internal class AscendedEruption
         : BaseHolyPriestHealingSpell
     {
         private decimal cpmFromBoon;

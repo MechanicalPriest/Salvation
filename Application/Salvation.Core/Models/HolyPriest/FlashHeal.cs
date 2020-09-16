@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Salvation.Core.Models.HolyPriest
 {
-    class FlashHeal 
+    internal class FlashHeal 
         : BaseHolyPriestHealingSpell
     {
         public FlashHeal(BaseModel model, BaseSpellData spellData = null)

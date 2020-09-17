@@ -11,6 +11,7 @@ using Salvation.Core.Profile;
 using Salvation.Core;
 using Salvation.Core.Constants;
 using System.Runtime.CompilerServices;
+using Salvation.Core.Models;
 
 namespace Salvation.Api
 {
@@ -61,7 +62,19 @@ namespace Salvation.Api
 
             var results = model.GetResults();
 
-            return new JsonResult(results);
+            var sw = new StatWeightGenerator();
+
+            var effectiveHealingStatWeights = sw.Generate(results.Profile, 100,
+                StatWeightGenerator.StatWeightType.EffectiveHealing);
+
+            var rawHealingStatWeights = sw.Generate(results.Profile, 100,
+                StatWeightGenerator.StatWeightType.RawHealing);
+
+            return new JsonResult(new { 
+                ModelResults = results,
+                StatWeightsEffective = effectiveHealingStatWeights,
+                StatWeightsRaw = rawHealingStatWeights
+            });
         }
     }
 }

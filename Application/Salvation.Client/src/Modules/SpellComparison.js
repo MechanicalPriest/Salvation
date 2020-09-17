@@ -83,7 +83,7 @@ function Row(props) {
 }
 
 function SpellComparison(props) {
-  const results = props.data.spellCastResults
+  const results = props.data.modelResults.spellCastResults
 
   return (
     <div>

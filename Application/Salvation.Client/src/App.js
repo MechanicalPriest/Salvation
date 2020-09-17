@@ -48,9 +48,13 @@ function App(props) {
     versatilityRating: 0
   });
   const [modelResult, setModelResult] = useState({
-    spec: 0,
-    spellCastResults: [],
-    profile: {}
+    modelResults: {
+      spec: 0,
+      spellCastResults: [],
+      profile: {}
+    },
+    statWeightsEffective: {},
+    statWeightsRaw: {}
   });
   const [loading, setLoading] = useState(true);
   const [apiErrorMessage, setApiErrorMessage] = useState('');

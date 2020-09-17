@@ -43,75 +43,18 @@ namespace Salvation.Explorer
 
             Console.WriteLine(spellsRaw);
 
-            GenerateStatWeights(globalConstants);
+            GenerateStatWeights();
         }
 
-        private static void GenerateStatWeights(GlobalConstants globalConstants)
+        private static void GenerateStatWeights()
         {
-            // Build the profiles
-            List<BaseProfile> profiles = new List<BaseProfile>();
-
             var basicProfile = DefaultProfiles.GetDefaultProfile(Spec.HolyPriest);
-            profiles.Add(basicProfile);
 
-            var intProfile = DefaultProfiles.GetDefaultProfile(Spec.HolyPriest);
-            intProfile.Intellect += 10;
-            intProfile.Name = "Intellect Profile";
-            profiles.Add(intProfile);
+            var sw = new StatWeightGenerator();
+            var results = sw.Generate(basicProfile, 100, 
+                StatWeightGenerator.StatWeightType.EffectiveHealing);
 
-            var intProfile2 = JsonConvert.DeserializeObject<BaseProfile>(JsonConvert.SerializeObject(basicProfile));
-            intProfile2.Intellect += 10;
-            intProfile2.Name = "Intellect Profile";
-
-            if (JsonConvert.SerializeObject(intProfile) == JsonConvert.SerializeObject(intProfile2))
-            {
-                Console.WriteLine("yay");
-            }
-
-            var hasteProfile = DefaultProfiles.GetDefaultProfile(Spec.HolyPriest);
-            hasteProfile.HasteRating += 10;
-            hasteProfile.Name = "Haste Profile";
-            profiles.Add(hasteProfile);
-
-            var critProfile = DefaultProfiles.GetDefaultProfile(Spec.HolyPriest);
-            critProfile.CritRating += 10;
-            critProfile.Name = "Crit Profile";
-            profiles.Add(critProfile);
-
-            var versProfile = DefaultProfiles.GetDefaultProfile(Spec.HolyPriest);
-            versProfile.VersatilityRating += 10;
-            versProfile.Name = "Vers Profile";
-            profiles.Add(versProfile);
-
-            var masteryProfile = DefaultProfiles.GetDefaultProfile(Spec.HolyPriest);
-            masteryProfile.MasteryRating += 10;
-            masteryProfile.Name = "Mastery Profile";
-            profiles.Add(masteryProfile);
-
-            Console.WriteLine($"Name,RawHps,Hps,RawHpm,RawHps");
-
-            var results = new List<BaseModelResults>();
-
-            foreach (var profile in profiles)
-            {
-                if (profile.SpecId == Spec.HolyPriest)
-                {
-                    var hpriest = new HolyPriestModel(globalConstants, profile);
-
-                    var result = hpriest.GetResults();
-
-                    results.Add(result);
-
-                    Console.WriteLine($"{result.Profile.Name},{result.TotalRawHPS}," +
-                        $"{result.TotalActualHPS},{result.TotalRawHPM},{result.TotalRawHPS}");
-                }
-            }
-
-            // Calculate the HPS diff for the int profile
-            foreach(var result in results.Where(r => r.Profile.Name != "Intellect Profile"))
-            {
-                
-            }
+            Console.WriteLine(JsonConvert.SerializeObject(results, Formatting.Indented));
         }
     }
 }

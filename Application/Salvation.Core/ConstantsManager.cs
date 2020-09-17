@@ -1,7 +1,9 @@
 ﻿using Newtonsoft.Json;
 using Salvation.Core.Constants;
 using System;
+using System.Runtime.CompilerServices;
 
+[assembly: InternalsVisibleTo("Salvation.CoreTests")]
 namespace Salvation.Core
 {
     public class ConstantsManager

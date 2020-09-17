@@ -6,6 +6,7 @@ using Salvation.Core.Profile;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 using System.Text;
 
 namespace Salvation.CoreTests.Model
@@ -24,52 +25,84 @@ namespace Salvation.CoreTests.Model
 
         public BaseProfile GetBaseProfile()
         {
-            var profile = DefaultProfiles.GetDefaultProfile(Core.Models.Spec.HolyPriest);
-
-            profile.Covenant = Covenant.Venthyr;
+            var profile = DefaultProfiles.GetDefaultProfile(Spec.HolyPriest);
 
             return profile;
         }
 
         public StatWeightGenerator GetDefaultGenerator()
         {
-            var baseProfile = GetBaseProfile();
-            var numAdditionalStats = 100;
-            var sw = new StatWeightGenerator(baseProfile, numAdditionalStats);
+            var sw = new StatWeightGenerator();
 
             return sw;
         }
 
         [Test]
-        public void StatWeightGeneratorConstructorSavesValues()
+        public void SWGGenerateNoNull()
         {
             var baseProfile = GetBaseProfile();
             var numAdditionalStats = 100;
-            var sw = new StatWeightGenerator(baseProfile, numAdditionalStats);
-
-            Assert.AreEqual(baseProfile, sw.BaselineProfile);
-            Assert.AreEqual(numAdditionalStats, sw.AdditionalStats);
-        }
-
-        [Test]
-        public void StatWeightGeneratorGenerateNoNull()
-        {
             var sw = GetDefaultGenerator();
 
-            var result = sw.Generate();
+            var result = sw.Generate(baseProfile, numAdditionalStats);
 
             Assert.IsNotNull(result);
         }
 
         [Test]
-        public void StatWeightGenerateGenerateCreatesProfiles()
+        public void SWGGenerateCreatesProfiles()
         {
             var sw = GetDefaultGenerator();
+            var baseProfile = GetBaseProfile();
+            var numAdditionalStats = 100;
 
-            var result = sw.GenerateStatProfiles();
+            var result = sw.GenerateStatProfiles(baseProfile, numAdditionalStats);
 
-            Assert.NotZero(sw.StatProfiles.Count);
-            Assert.IsTrue(sw.StatProfiles.Contains(sw.BaselineProfile));
+            Assert.NotZero(result.Count);
+            Assert.IsTrue(result.Contains(baseProfile));
+        }
+
+        [Test]
+        public void SWGGenerateModelResultsGivesResults()
+        {
+            var sw = GetDefaultGenerator();
+            var baseProfile = GetBaseProfile();
+            var numAdditionalStats = 100;
+
+            var result = sw.GenerateStatProfiles(baseProfile, numAdditionalStats);
+            var results = sw.GenerateModelResults(result);
+
+            Assert.NotZero(results.Count);
+        }
+
+        [Test]
+        public void SWGGenerateEffectiveGivesResults()
+        {
+            var baseProfile = GetBaseProfile();
+            var numAdditionalStats = 100;
+            var sw = GetDefaultGenerator();
+
+            var results = sw.Generate(baseProfile, numAdditionalStats,
+                StatWeightGenerator.StatWeightType.EffectiveHealing);
+
+            Assert.NotNull(results);
+            Assert.NotZero(results.Results.Count);
+            Assert.AreEqual(results.Name, "Effective Healing");
+        }
+
+        [Test]
+        public void SWGGenerateRawGivesResults()
+        {
+            var baseProfile = GetBaseProfile();
+            var numAdditionalStats = 100;
+            var sw = GetDefaultGenerator();
+
+            var results = sw.Generate(baseProfile, numAdditionalStats,
+                StatWeightGenerator.StatWeightType.RawHealing);
+
+            Assert.NotNull(results);
+            Assert.NotZero(results.Results.Count);
+            Assert.AreEqual(results.Name, "Raw Healing");
         }
     }
 }

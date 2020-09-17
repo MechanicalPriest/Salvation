@@ -5,13 +5,18 @@ using System.Text;
 
 namespace Salvation.Core.Models
 {
-    internal class StatWeightResult
+    public class StatWeightResult
     {
         public string Name { get; set; }
-        public List<StatWeightResultEntry> Results { get; set; }    
+        public List<StatWeightResultEntry> Results { get; set; }   
+        
+        public StatWeightResult()
+        {
+            Results = new List<StatWeightResultEntry>();
+        }
     }
 
-    internal class StatWeightResultEntry
+    public class StatWeightResultEntry
     {
         public string Stat { get; set; }
         public decimal Weight { get; set; }

@@ -1,4 +1,5 @@
-﻿using Salvation.Core.Constants;
+﻿using Newtonsoft.Json;
+using Salvation.Core.Constants;
 using Salvation.Core.Models.Common;
 using Salvation.Core.Models.HolyPriest;
 using Salvation.Core.Profile;
@@ -138,6 +139,8 @@ namespace Salvation.Core.Models
         {
             BaseSpellData spell = SpecConstants.Spells.Where(s => s.Id == spellId).FirstOrDefault();
 
+            spell = JsonConvert.DeserializeObject<BaseSpellData>(JsonConvert.SerializeObject(spell));
+
             return spell;
         }
 
@@ -145,12 +148,16 @@ namespace Salvation.Core.Models
         {
             BaseSpellData spell = Constants.SharedSpells.Where(s => s.Id == spellId).FirstOrDefault();
 
+            spell = JsonConvert.DeserializeObject<BaseSpellData>(JsonConvert.SerializeObject(spell));
+
             return spell;
         }
 
         internal ConduitData GetConduitDataById(int conduitId)
         {
             ConduitData conduit = SpecConstants.Conduits.Where(c => c.Id == conduitId).FirstOrDefault();
+
+            conduit = JsonConvert.DeserializeObject<ConduitData>(JsonConvert.SerializeObject(conduit));
 
             return conduit;
         }

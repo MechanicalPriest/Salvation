@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Salvation.Core.Models.HolyPriest
 {
-    class UnholyTransfusion
+    internal class UnholyTransfusion
         : BaseHolyPriestHealingSpell
     {
         public UnholyTransfusion(BaseModel model, BaseSpellData spellData = null)
@@ -29,7 +29,7 @@ namespace Salvation.Core.Models.HolyPriest
 
             // Apply the Festering Transfusion conduit
             averageHeal *= getFesteringTransfusionConduitMultiplier();
-            var duration = applyFesteringTransfusionConduitDuration(SpellData.Duration);
+            var duration = applyFesteringTransfusionConduitDuration(Duration);
 
             // For each healing target, heal every ~1.5s for heal amt
             // TODO: Get a better number on healing events per player for the duration of UT

@@ -30,6 +30,7 @@ namespace Salvation.Core.Models
         protected virtual decimal ActualManaCost { get { return getActualManaCost(); } }
         protected virtual decimal CastsPerMinute { get { return calcCastsPerMinute(); } }
         protected virtual decimal MaximumCastsPerMinute { get { return calcMaximumCastsPerMinute(); } }
+        protected virtual decimal Duration { get { return getDuration(); } }
         protected virtual CastProfile CastProfile { get; private set; }
         // 'static' fields
         public int SpellId { get; set; }
@@ -61,7 +62,7 @@ namespace Salvation.Core.Models
             result.CastsPerMinute = CastsPerMinute;
             result.CastTime = HastedCastTime;
             result.Cooldown = HastedCooldown;
-            result.Duration = spellData.Duration;
+            result.Duration = Duration;
             result.Gcd = HastedGcd;
             result.ManaCost = ActualManaCost;
             result.SpellId = SpellId;
@@ -112,6 +113,10 @@ namespace Salvation.Core.Models
         protected virtual decimal calcMaximumCastsPerMinute()
         {
             return 0m;
+        }
+        protected virtual decimal getDuration()
+        {
+            return spellData.Duration;
         }
     }
 }

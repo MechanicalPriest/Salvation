@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Salvation.Core.Models.HolyPriest
 {
-    class BoonOfTheAscended
+    internal class BoonOfTheAscended
         : BaseHolyPriestHealingSpell
     {
         public BoonOfTheAscended(BaseModel model, BaseSpellData spellData = null)
@@ -24,7 +24,7 @@ namespace Salvation.Core.Models.HolyPriest
             // Figure out what's being cast during boon then add them all together.
 
             var ascBlast = new AscendedBlast(HolyModel);
-            ascBlast.SetAvailableCastTime(SpellData.Duration);
+            ascBlast.SetAvailableCastTime(Duration);
             ascBlast.SetBoonCPM(CastsPerMinute);
 
             var ascBlastAvgCast = ascBlast.CastAverageSpell();
@@ -35,7 +35,7 @@ namespace Salvation.Core.Models.HolyPriest
 
             // Asc nova needs to know how much free time it has to cast 
             // For this we can set its efficiency. 100% efficiency is casting for the entire 10-seconds.
-            ascNova.SetAvailableCastTime(SpellData.Duration - 
+            ascNova.SetAvailableCastTime(Duration - 
                 (ascBlastAvgCast.CastsPerMinute * ascBlastAvgCast.Gcd));
             ascNova.SetBoonCPM(CastsPerMinute);
 

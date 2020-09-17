@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Salvation.Core.Models.HolyPriest
 {
-    class Renew 
+    internal class Renew 
         : BaseHolyPriestHealingSpell
     {
         public Renew(BaseModel model, BaseSpellData spellData = null)

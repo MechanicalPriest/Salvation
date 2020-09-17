@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Salvation.Core.Models.HolyPriest
 {
-    class PrayerOfMending 
+    internal class PrayerOfMending 
         : BaseHolyPriestHealingSpell
     {
         public decimal PrayerOfMendingBounces { get; set; }

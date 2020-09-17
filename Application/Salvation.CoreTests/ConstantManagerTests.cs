@@ -1,18 +1,18 @@
 using Microsoft.VisualBasic;
 using Newtonsoft.Json;
+using NUnit.Framework;
 using Salvation.Core;
 using Salvation.Core.Constants;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Xunit;
 
 namespace Salvation.CoreTests
 {
     public class ConstantManagerTests
     {
-        [Fact]
+        [Test]
         public void SaveConstants()
         {
             GlobalConstants gc = new GlobalConstants();
@@ -61,7 +61,7 @@ namespace Salvation.CoreTests
             File.WriteAllText("constants.json", gcText);
         }
 
-        [Fact]
+        [Test]
         public void ParseConstants()
         {
             var data = File.ReadAllText(@"constants.json");

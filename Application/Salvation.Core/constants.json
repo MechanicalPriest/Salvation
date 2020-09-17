@@ -310,6 +310,7 @@
           "IsCastTimeHasted": true,
           "BaseCooldown": 45.0,
           "IsCooldownHasted": false,
+          "Duration": 5.0,
           "Gcd": 1.5,
           "Coeff1": 450, // Damage that heals. Comes from effect 2
           "Coeff2": 2.0, // The mana% return. Comes from 323706 effect 3.
@@ -470,7 +471,7 @@
           "Name": "Shattered Perceptions",
           "ConduitId": 105,
           "Ranks": [ 20.0, 22.0, 23.0, 24.0, 25.0, 26.0, 27.0, 28.0, 29.0, 30.0, 31.0, 32.0, 33.0, 34.0, 35.0 ],
-          "Coeff1": 15.0 // Additional duration of Mindgames. value/1000. From #2
+          "Coeff1": 3.0 // TODO: Figure out where this 3-second increase comes from. Additional duration of Mindgames. value/1000. From #2
         }
       ]
     }

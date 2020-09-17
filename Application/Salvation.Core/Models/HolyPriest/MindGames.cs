@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Salvation.Core.Models.HolyPriest
 {
-    class MindGames
+    internal class MindGames
         : BaseHolyPriestHealingSpell
     {
         public MindGames(BaseModel model, BaseSpellData spellData = null)
@@ -103,6 +103,16 @@ namespace Salvation.Core.Models.HolyPriest
             }
 
             return 1;
+        }
+
+        /// <summary>
+        /// Override to be able to apply the Shattered Perceptions conduit duration
+        /// </summary>
+        /// <returns></returns>
+        protected override decimal getDuration()
+        {
+            var duration = applyShatteredPerceptionsConduitDuration(base.getDuration());
+            return duration;
         }
     }
 }

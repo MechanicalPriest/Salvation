@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Salvation.Core.Models.HolyPriest
 {
-    class HolyWordSalvation 
+    internal class HolyWordSalvation 
         : BaseHolyPriestHealingSpell
     {
         public HolyWordSalvation(BaseModel model, BaseSpellData spellData = null)

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Salvation.Core.Models.HolyPriest
 {
-    class PrayerOfHealing 
+    internal class PrayerOfHealing 
         : BaseHolyPriestHealingSpell
     {
         public PrayerOfHealing(BaseModel model, BaseSpellData spellData = null)

@@ -9,7 +9,7 @@ using static Salvation.Core.Models.HolyPriest.HolyPriestModel;
 [assembly: InternalsVisibleTo("Salvation.CoreTests")]
 namespace Salvation.Core.Models.HolyPriest
 {
-    class BaseHolyPriestHealingSpell
+    internal class BaseHolyPriestHealingSpell
         : BaseHealingSpell
     {
         protected HolyPriestModel HolyModel { get { return model as HolyPriestModel; } }

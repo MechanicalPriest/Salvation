@@ -1,6 +1,7 @@
 ﻿using Salvation.Core.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -14,10 +15,15 @@ namespace Salvation.Core.Profile
 
     public enum Covenant
     {
+        [Description("None")]
         None = 0,
+        [Description("Kyrian")]
         Kyrian = 1,
+        [Description("Venthyr")]
         Venthyr = 2,
+        [Description("Night Fae")]
         NightFae = 3,
+        [Description("Necrolord")]
         Necrolord = 4,
     }
 

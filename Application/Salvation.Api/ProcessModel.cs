@@ -55,26 +55,37 @@ namespace Salvation.Api
                 log.LogError(ex, $"Unable to load constants file: {filePath}");
                 return new BadRequestResult();
             }
+            try
+            {
+                var constants = ConstantsManager.ParseConstants(data);
 
-            var constants = ConstantsManager.ParseConstants(data);
+                var model = ModelManager.LoadModel(profile, constants);
 
-            var model = ModelManager.LoadModel(profile, constants);
+                var results = model.GetResults();
 
-            var results = model.GetResults();
+                var sw = new StatWeightGenerator();
 
-            var sw = new StatWeightGenerator();
 
-            var effectiveHealingStatWeights = sw.Generate(results.Profile, 100,
-                StatWeightGenerator.StatWeightType.EffectiveHealing);
+                var effectiveHealingStatWeights = sw.Generate(results.Profile, 100,
+                    StatWeightGenerator.StatWeightType.EffectiveHealing);
 
-            var rawHealingStatWeights = sw.Generate(results.Profile, 100,
-                StatWeightGenerator.StatWeightType.RawHealing);
+                var rawHealingStatWeights = sw.Generate(results.Profile, 100,
+                    StatWeightGenerator.StatWeightType.RawHealing);
 
-            return new JsonResult(new { 
-                ModelResults = results,
-                StatWeightsEffective = effectiveHealingStatWeights,
-                StatWeightsRaw = rawHealingStatWeights
-            });
+
+                return new JsonResult(new
+                {
+                    ModelResults = results,
+                    StatWeightsEffective = effectiveHealingStatWeights,
+                    StatWeightsRaw = rawHealingStatWeights
+                });
+            }
+            catch(Exception ex)
+            {
+                log.LogError(ex, $"Unable to process model");
+                return new BadRequestResult();
+            }
+            return new BadRequestResult();
         }
     }
 }

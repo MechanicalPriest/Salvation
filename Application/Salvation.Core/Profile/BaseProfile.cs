@@ -1,4 +1,5 @@
-﻿using Salvation.Core.Models;
+﻿using Newtonsoft.Json;
+using Salvation.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -206,6 +207,11 @@ namespace Salvation.Core.Profile
             var exists = Conduits.Keys.Contains(conduit);
 
             return exists;
+        }
+
+        public static BaseProfile Clone(BaseProfile existingProfile)
+        {
+            return JsonConvert.DeserializeObject<BaseProfile>(JsonConvert.SerializeObject(existingProfile));
         }
     }
 }

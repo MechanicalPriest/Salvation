@@ -2,11 +2,13 @@
 using Salvation.Core;
 using Salvation.Core.Constants;
 using Salvation.Core.Models;
+using Salvation.Core.Models.Common;
 using Salvation.Core.Models.HolyPriest;
 using Salvation.Core.Profile;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace Salvation.Explorer
 {
@@ -46,6 +48,7 @@ namespace Salvation.Explorer
 
         private static void GenerateStatWeights(GlobalConstants globalConstants)
         {
+            // Build the profiles
             List<BaseProfile> profiles = new List<BaseProfile>();
 
             var basicProfile = DefaultProfiles.GetDefaultProfile(Spec.HolyPriest);
@@ -55,6 +58,15 @@ namespace Salvation.Explorer
             intProfile.Intellect += 10;
             intProfile.Name = "Intellect Profile";
             profiles.Add(intProfile);
+
+            var intProfile2 = JsonConvert.DeserializeObject<BaseProfile>(JsonConvert.SerializeObject(basicProfile));
+            intProfile2.Intellect += 10;
+            intProfile2.Name = "Intellect Profile";
+
+            if (JsonConvert.SerializeObject(intProfile) == JsonConvert.SerializeObject(intProfile2))
+            {
+                Console.WriteLine("yay");
+            }
 
             var hasteProfile = DefaultProfiles.GetDefaultProfile(Spec.HolyPriest);
             hasteProfile.HasteRating += 10;
@@ -78,6 +90,8 @@ namespace Salvation.Explorer
 
             Console.WriteLine($"Name,RawHps,Hps,RawHpm,RawHps");
 
+            var results = new List<BaseModelResults>();
+
             foreach (var profile in profiles)
             {
                 if (profile.SpecId == Spec.HolyPriest)
@@ -86,9 +100,17 @@ namespace Salvation.Explorer
 
                     var result = hpriest.GetResults();
 
+                    results.Add(result);
+
                     Console.WriteLine($"{result.Profile.Name},{result.TotalRawHPS}," +
                         $"{result.TotalActualHPS},{result.TotalRawHPM},{result.TotalRawHPS}");
                 }
+            }
+
+            // Calculate the HPS diff for the int profile
+            foreach(var result in results.Where(r => r.Profile.Name != "Intellect Profile"))
+            {
+                
             }
         }
     }

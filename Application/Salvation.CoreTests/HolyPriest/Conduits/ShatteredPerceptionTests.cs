@@ -61,6 +61,11 @@ namespace Salvation.CoreTests.HolyPriest.Conduits
 
             var changedModel = GetChangedModel();
             var changedResults = changedModel.GetResults();
+
+            var baseMindGames = baseResults.SpellCastResults.Where(s => s.SpellName == "Mindgames").FirstOrDefault();
+            var changedMindGames = changedResults.SpellCastResults.Where(s => s.SpellName == "Mindgames").FirstOrDefault();
+
+            Assert.Greater(changedMindGames.Duration, baseMindGames.Duration);
         }
 
         [Test]

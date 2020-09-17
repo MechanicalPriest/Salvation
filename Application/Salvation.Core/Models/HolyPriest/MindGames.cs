@@ -104,5 +104,15 @@ namespace Salvation.Core.Models.HolyPriest
 
             return 1;
         }
+
+        /// <summary>
+        /// Override to be able to apply the Shattered Perceptions conduit duration
+        /// </summary>
+        /// <returns></returns>
+        protected override decimal getDuration()
+        {
+            var duration = applyShatteredPerceptionsConduitDuration(base.getDuration());
+            return duration;
+        }
     }
 }

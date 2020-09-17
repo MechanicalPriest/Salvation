@@ -42,7 +42,7 @@ namespace Salvation.CoreTests
             Console.WriteLine(spellsRaw);
         }
 
-        [Theory]
+        [Test]
         [TestCase(typeof(FlashHeal), "2368.7775761650000000000000001", "2.8507733333333333333333333332", "42.933333333333333333333333331", "441.60781955647499999999999995", "1645.3529044042090000000000001", "0", "1.3975155279503105590062111802", "1.3975155279503105590062111802", "0", "1800.000", 1, true)]
 
         public void HolyPriestSpellIsCorrect(Type spellType,

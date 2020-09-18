@@ -9,6 +9,7 @@ using Salvation.Core.Models;
 using Salvation.Core.Models.Common;
 using Salvation.Core.Models.HolyPriest;
 using Salvation.Core.Profile;
+using Salvation.Explorer.Modelling;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -22,8 +23,6 @@ namespace Salvation.Explorer
         {
             CreateHostBuilder(args).Build().Run();
 
-            TestHolyPriestModel();
-
             Console.ReadLine();
         }
 
@@ -32,43 +31,8 @@ namespace Salvation.Explorer
                 .ConfigureServices((hostContext, services) =>
                 {
                     services.AddSingleton<IConstantsService, ConstantsService>();
-                    //services.AddHostedService<StripeHostedService>();
+                    services.AddSingleton<IHolyPriestExplorer, HolyPriestExplorer>();
+                    services.AddHostedService<Explorer>();
                 });
-    
-
-        private static void TestHolyPriestModel()
-        {
-            var constantsManager = new ConstantsService();
-            var globalConstants = constantsManager.LoadConstantsFromFile();
-
-            var basicProfile = DefaultProfiles.GetDefaultProfile(Spec.HolyPriest);
-            DefaultProfiles.SetToVenthyr(basicProfile);
-
-            var hpriest = new HolyPriestModel(globalConstants, basicProfile);
-
-            hpriest.GetResults();
-
-            Console.WriteLine("------------[ Profile ]------------");
-            Console.WriteLine(JsonConvert.SerializeObject(basicProfile, Formatting.Indented));
-
-            Console.WriteLine("------------[ Results ]------------");
-            var modelResults = hpriest.GetResults();
-            var spellsRaw = JsonConvert.SerializeObject(modelResults, Formatting.Indented);
-
-            Console.WriteLine(spellsRaw);
-
-            GenerateStatWeights(constantsManager);
-        }
-
-        private static void GenerateStatWeights(ConstantsService constantsManager)
-        {
-            var basicProfile = DefaultProfiles.GetDefaultProfile(Spec.HolyPriest);
-
-            var sw = new StatWeightGenerator(constantsManager);
-            var results = sw.Generate(basicProfile, 100, 
-                StatWeightGenerator.StatWeightType.EffectiveHealing);
-
-            Console.WriteLine(JsonConvert.SerializeObject(results, Formatting.Indented));
-        }
     }
 }

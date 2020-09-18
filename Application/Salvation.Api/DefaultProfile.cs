@@ -22,8 +22,6 @@ namespace Salvation.Api
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequest req,
             ILogger log)
         {
-            log.LogTrace("Default profile requested.");
-
             int specId;
             var validSpec = int.TryParse(req.Query["specid"], out specId);
 
@@ -36,7 +34,7 @@ namespace Salvation.Api
 
             var response = BuildProfileResponse(specId);
 
-            // REmove the .Profile to return the full response - requires client support
+            // Remove the .Profile to return the full response - requires client support
             return new OkObjectResult(response.Profile);
         }
 

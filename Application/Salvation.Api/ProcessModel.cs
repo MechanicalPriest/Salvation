@@ -30,7 +30,7 @@ namespace Salvation.Api
             [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = null)] HttpRequest request,
             ILogger log, ExecutionContext context)
         {
-
+            // Parse the incoming profile
             BaseProfile profile;
             try
             {
@@ -45,13 +45,13 @@ namespace Salvation.Api
 
             if (profile == null)
             {
-                log.LogError("Profile needs tobe provided");
+                log.LogError("Profile needs to be provided");
                 return new BadRequestResult();
             }
 
             log.LogInformation("Processing a new profile: {0}", JsonConvert.SerializeObject(profile));
 
-            
+            // Load the profile into the model and return the results
             try
             {
                 _constantsService.SetDefaultDirectory(context.FunctionAppDirectory);

@@ -12,63 +12,51 @@ namespace Salvation.CoreTests
 {
     public class ConstantManagerTests
     {
-        [Test]
-        public void SaveConstants()
+        private ConstantsManager GetCM()
         {
-            GlobalConstants gc = new GlobalConstants();
-
-            gc.GameVersion = "9.0.0.1";
-            gc.Specs.Add(new BaseSpec()
-            {
-                Class = "Priest",
-                Spec = "Holy",
-                SpecId = 257,
-                
-                CritBase = .05M,
-                HasteBase = 0,
-                VersBase = 0,
-                MasteryBase = 0.1M,
-                IntBase = 450,
-                StamBase = 416,
-                ManaBase = 100000,
-
-                Spells = new List<BaseSpellData>()
-                {
-                    new BaseSpellData()
-                    {
-                        Id = 2060,
-                        Name = "Heal",
-                        ManaCost = 0.024M,
-                        Range = 40,
-                        BaseCastTime = 2.5M,
-                        IsCastTimeHasted = true,
-                        Gcd = 1.5M,
-                        Coeff1 = 2.1M
-                    }
-                },
-
-                Modifiers = new List<BaseModifier>()
-                {
-                    new BaseModifier()
-                    {
-                        Name = "BeneRenewChance",
-                        Value = 0.25M
-                    }
-                }
-            });
-
-            var gcText = JsonConvert.SerializeObject(gc);
-            File.WriteAllText("constants.json", gcText);
+            return new ConstantsManager();
         }
 
         [Test]
-        public void ParseConstants()
+        public void CMLoadsConstantsFile()
         {
-            var data = File.ReadAllText(@"constants.json");
-
-            var result = ConstantsManager.ParseConstants(data);
+            var cm = GetCM();
+            var result = cm.LoadConstantsFromFile();
 
             Console.Write(result);
+        }
+
+        [Test]
+        public void CMHasDefaults()
+        {
+            var cm = GetCM();
+
+            Assert.IsNotEmpty(cm.DefaultFileName);
+            Assert.IsNotNull(cm.DefaultDirectory);
+        }
+
+        [Test]
+        public void CMDirectoryUpdates()
+        {
+            var cm = GetCM();
+
+            var newDirectory = "test";
+
+            cm.SetDefaultDirectory(newDirectory);
+
+            Assert.AreEqual(newDirectory, cm.DefaultDirectory);
+        }
+
+        [Test]
+        public void CMFileUpdates()
+        {
+            var cm = GetCM();
+
+            var newFile = "test.json";
+
+            cm.SetDefaultFileName(newFile);
+
+            Assert.AreEqual(newFile, cm.DefaultFileName);
         }
     }
 }

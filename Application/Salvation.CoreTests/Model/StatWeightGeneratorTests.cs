@@ -14,15 +14,6 @@ namespace Salvation.CoreTests.Model
     [TestFixture]
     class StatWeightGeneratorTests
     {
-        public GlobalConstants GetConstants()
-        {
-            var data = File.ReadAllText(@"constants.json");
-
-            var constants = ConstantsManager.ParseConstants(data);
-
-            return constants;
-        }
-
         public BaseProfile GetBaseProfile()
         {
             var profile = DefaultProfiles.GetDefaultProfile(Spec.HolyPriest);
@@ -32,7 +23,7 @@ namespace Salvation.CoreTests.Model
 
         public StatWeightGenerator GetDefaultGenerator()
         {
-            var sw = new StatWeightGenerator();
+            var sw = new StatWeightGenerator(new ConstantsManager());
 
             return sw;
         }

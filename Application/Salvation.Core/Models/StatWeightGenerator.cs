@@ -16,9 +16,11 @@ namespace Salvation.Core.Models
             Damage = 2
         }
 
-        public StatWeightGenerator()
-        {
+        private ConstantsManager constantsManager { get; set; }
 
+        public StatWeightGenerator(ConstantsManager cm)
+        {
+            constantsManager = cm;
         }
 
         public StatWeightResult Generate(
@@ -99,8 +101,7 @@ namespace Salvation.Core.Models
 
             foreach (var profile in statProfiles)
             {
-                var constantsData = File.ReadAllText("constants.json");
-                var constants = ConstantsManager.ParseConstants(constantsData);
+                var constants = constantsManager.LoadConstantsFromFile();
                 var model = ModelManager.LoadModel(profile, constants);
                 var result = model.GetResults();
 

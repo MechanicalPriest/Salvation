@@ -23,9 +23,8 @@ namespace Salvation.Explorer
 
         private static void TestHolyPriestModel()
         {
-            var data = File.ReadAllText(@"constants.json");
-
-            var globalConstants = ConstantsManager.ParseConstants(data);
+            var constantsManager = new ConstantsManager();
+            var globalConstants = constantsManager.LoadConstantsFromFile();
 
             var basicProfile = DefaultProfiles.GetDefaultProfile(Spec.HolyPriest);
             DefaultProfiles.SetToVenthyr(basicProfile);
@@ -43,14 +42,14 @@ namespace Salvation.Explorer
 
             Console.WriteLine(spellsRaw);
 
-            GenerateStatWeights();
+            GenerateStatWeights(constantsManager);
         }
 
-        private static void GenerateStatWeights()
+        private static void GenerateStatWeights(ConstantsManager constantsManager)
         {
             var basicProfile = DefaultProfiles.GetDefaultProfile(Spec.HolyPriest);
 
-            var sw = new StatWeightGenerator();
+            var sw = new StatWeightGenerator(constantsManager);
             var results = sw.Generate(basicProfile, 100, 
                 StatWeightGenerator.StatWeightType.EffectiveHealing);
 

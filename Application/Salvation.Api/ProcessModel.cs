@@ -43,28 +43,18 @@ namespace Salvation.Api
 
             log.LogInformation("Processing a new profile: {0}", JsonConvert.SerializeObject(profile));
 
-            string filePath = Path.Combine(context.FunctionAppDirectory, @"constants.json");
-            string data;
+            var constantsManager = new ConstantsManager();
+            constantsManager.SetDefaultDirectory(context.FunctionAppDirectory);
 
             try
             {
-                data = File.ReadAllText(filePath);
-            }
-            catch(Exception ex)
-            {
-                log.LogError(ex, $"Unable to load constants file: {filePath}");
-                return new BadRequestResult();
-            }
-            try
-            {
-                var constants = ConstantsManager.ParseConstants(data);
+                var constants = constantsManager.LoadConstantsFromFile();
 
                 var model = ModelManager.LoadModel(profile, constants);
 
                 var results = model.GetResults();
 
-                var sw = new StatWeightGenerator();
-
+                var sw = new StatWeightGenerator(constantsManager);
 
                 var effectiveHealingStatWeights = sw.Generate(results.Profile, 100,
                     StatWeightGenerator.StatWeightType.EffectiveHealing);
@@ -85,7 +75,6 @@ namespace Salvation.Api
                 log.LogError(ex, $"Unable to process model");
                 return new BadRequestResult();
             }
-            return new BadRequestResult();
         }
     }
 }

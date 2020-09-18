@@ -17,7 +17,7 @@ namespace Salvation.CoreTests.HolyPriest.Conduits
     {
         public GlobalConstants GetConstants()
         {
-            var constants = new ConstantsManager().LoadConstantsFromFile();
+            var constants = new ConstantsService().LoadConstantsFromFile();
 
             return constants;
         }

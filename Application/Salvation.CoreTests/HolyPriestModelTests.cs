@@ -8,6 +8,7 @@ using System.Linq;
 using System.Reflection;
 using Salvation.Core.Models.Common;
 using NUnit.Framework;
+using Salvation.Core.Constants;
 
 namespace Salvation.CoreTests
 {
@@ -19,7 +20,7 @@ namespace Salvation.CoreTests
         {
             var data = GetTestConstantsJson();// File.ReadAllText(@"constants.json");
 
-            var globalConstants = ConstantsManager.ParseConstants(data);
+            var globalConstants = new ConstantsService().ParseConstants(data);
 
             var basicProfile = DefaultProfiles.GetDefaultProfile(Core.Models.Spec.HolyPriest);
 
@@ -31,7 +32,7 @@ namespace Salvation.CoreTests
         {
             var data = GetTestConstantsJson();// File.ReadAllText(@"constants.json");
 
-            var globalConstants = ConstantsManager.ParseConstants(data);
+            var globalConstants = new ConstantsService().ParseConstants(data);
 
             var basicProfile = DefaultProfiles.GetDefaultProfile(Core.Models.Spec.HolyPriest);
 

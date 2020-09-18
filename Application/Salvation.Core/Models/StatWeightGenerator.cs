@@ -1,4 +1,6 @@
-﻿using Salvation.Core.Profile;
+﻿using Salvation.Core.Constants;
+using Salvation.Core.Interfaces.Constants;
+using Salvation.Core.Profile;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -16,9 +18,9 @@ namespace Salvation.Core.Models
             Damage = 2
         }
 
-        private ConstantsManager constantsManager { get; set; }
+        private IConstantsService constantsManager { get; set; }
 
-        public StatWeightGenerator(ConstantsManager cm)
+        public StatWeightGenerator(IConstantsService cm)
         {
             constantsManager = cm;
         }

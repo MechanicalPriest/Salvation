@@ -12,13 +12,21 @@ using Salvation.Core;
 using Salvation.Core.Constants;
 using System.Runtime.CompilerServices;
 using Salvation.Core.Models;
+using Salvation.Core.Interfaces.Constants;
 
 namespace Salvation.Api
 {
-    public static class ProcessModel
+    public class ProcessModel
     {
+        private readonly IConstantsService _constantsService;
+
+        public ProcessModel(IConstantsService constantService)
+        {
+            this._constantsService = constantService;
+        }
+
         [FunctionName("ProcessModel")]
-        public static async Task<IActionResult> Run(
+        public async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = null)] HttpRequest request,
             ILogger log, ExecutionContext context)
         {
@@ -43,18 +51,17 @@ namespace Salvation.Api
 
             log.LogInformation("Processing a new profile: {0}", JsonConvert.SerializeObject(profile));
 
-            var constantsManager = new ConstantsManager();
-            constantsManager.SetDefaultDirectory(context.FunctionAppDirectory);
-
+            
             try
             {
-                var constants = constantsManager.LoadConstantsFromFile();
+                _constantsService.SetDefaultDirectory(context.FunctionAppDirectory);
+                var constants = _constantsService.LoadConstantsFromFile();
 
                 var model = ModelManager.LoadModel(profile, constants);
 
                 var results = model.GetResults();
 
-                var sw = new StatWeightGenerator(constantsManager);
+                var sw = new StatWeightGenerator(_constantsService);
 
                 var effectiveHealingStatWeights = sw.Generate(results.Profile, 100,
                     StatWeightGenerator.StatWeightType.EffectiveHealing);

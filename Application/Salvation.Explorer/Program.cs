@@ -1,6 +1,10 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using Salvation.Core;
 using Salvation.Core.Constants;
+using Salvation.Core.Interfaces.Constants;
 using Salvation.Core.Models;
 using Salvation.Core.Models.Common;
 using Salvation.Core.Models.HolyPriest;
@@ -16,14 +20,25 @@ namespace Salvation.Explorer
     {
         static void Main(string[] args)
         {
+            CreateHostBuilder(args).Build().Run();
+
             TestHolyPriestModel();
 
             Console.ReadLine();
         }
 
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureServices((hostContext, services) =>
+                {
+                    services.AddSingleton<IConstantsService, ConstantsService>();
+                    //services.AddHostedService<StripeHostedService>();
+                });
+    
+
         private static void TestHolyPriestModel()
         {
-            var constantsManager = new ConstantsManager();
+            var constantsManager = new ConstantsService();
             var globalConstants = constantsManager.LoadConstantsFromFile();
 
             var basicProfile = DefaultProfiles.GetDefaultProfile(Spec.HolyPriest);
@@ -45,7 +60,7 @@ namespace Salvation.Explorer
             GenerateStatWeights(constantsManager);
         }
 
-        private static void GenerateStatWeights(ConstantsManager constantsManager)
+        private static void GenerateStatWeights(ConstantsService constantsManager)
         {
             var basicProfile = DefaultProfiles.GetDefaultProfile(Spec.HolyPriest);
 

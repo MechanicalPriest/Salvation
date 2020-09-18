@@ -12,9 +12,9 @@ namespace Salvation.CoreTests
 {
     public class ConstantManagerTests
     {
-        private ConstantsManager GetCM()
+        private ConstantsService GetCM()
         {
-            return new ConstantsManager();
+            return new ConstantsService();
         }
 
         [Test]
@@ -31,7 +31,7 @@ namespace Salvation.CoreTests
         {
             var cm = GetCM();
 
-            Assert.IsNotEmpty(cm.DefaultFileName);
+            Assert.IsNotEmpty(cm.DefaultFilename);
             Assert.IsNotNull(cm.DefaultDirectory);
         }
 
@@ -54,9 +54,9 @@ namespace Salvation.CoreTests
 
             var newFile = "test.json";
 
-            cm.SetDefaultFileName(newFile);
+            cm.SetDefaultFilename(newFile);
 
-            Assert.AreEqual(newFile, cm.DefaultFileName);
+            Assert.AreEqual(newFile, cm.DefaultFilename);
         }
     }
 }

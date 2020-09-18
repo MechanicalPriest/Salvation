@@ -1,25 +1,22 @@
 ﻿using Newtonsoft.Json;
-using Salvation.Core.Constants;
+using Salvation.Core.Interfaces.Constants;
 using System;
 using System.IO;
-using System.Runtime.CompilerServices;
-using System.Xml;
 
-[assembly: InternalsVisibleTo("Salvation.CoreTests")]
-namespace Salvation.Core
+namespace Salvation.Core.Constants
 {
-    public class ConstantsManager
+    public class ConstantsService : IConstantsService
     {
         public string DefaultDirectory { get; private set; }
-        public string DefaultFileName { get; private set; }
+        public string DefaultFilename { get; private set; }
 
-        public ConstantsManager()
+        public ConstantsService()
         {
-            DefaultFileName = @"constants.json";
+            DefaultFilename = @"constants.json";
             DefaultDirectory = "";
         }
 
-        public static GlobalConstants ParseConstants(string rawConstants)
+        public GlobalConstants ParseConstants(string rawConstants)
         {
             GlobalConstants constants = default(GlobalConstants);
 
@@ -40,14 +37,14 @@ namespace Salvation.Core
             DefaultDirectory = defaultFilePath;
         }
 
-        public void SetDefaultFileName(string defaultFileName)
+        public void SetDefaultFilename(string defaultFilename)
         {
-            DefaultFileName = defaultFileName;
+            DefaultFilename = defaultFilename;
         }
 
         public GlobalConstants LoadConstantsFromFile()
         {
-            string filePath = Path.Combine(DefaultDirectory, DefaultFileName);
+            string filePath = Path.Combine(DefaultDirectory, DefaultFilename);
 
             var data = File.ReadAllText(filePath);
 

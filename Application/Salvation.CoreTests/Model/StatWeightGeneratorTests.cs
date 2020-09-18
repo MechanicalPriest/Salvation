@@ -23,7 +23,7 @@ namespace Salvation.CoreTests.Model
 
         public StatWeightGenerator GetDefaultGenerator()
         {
-            var sw = new StatWeightGenerator(new ConstantsManager());
+            var sw = new StatWeightGenerator(new ConstantsService());
 
             return sw;
         }

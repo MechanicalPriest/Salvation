@@ -398,7 +398,7 @@
           "IsCooldownHasted": false,
           "Duration": 0.0,
           "Gcd": 0.0,
-          "Coeff1": 3.52, // Damage component from Effect #1
+          "Coeff1": 3.52, // Damage component from Effect #1 - this is wrong. Seems to be AB coefficient
           "Coeff2": 2.22000, // Healing component from Effect #2.
           "Coeff3": 3, // Additional damage per stack of boon. 3 = 3%. From 325013 #5.
           "IsMasteryTriggered": true

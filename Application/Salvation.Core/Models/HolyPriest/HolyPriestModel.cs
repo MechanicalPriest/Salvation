@@ -11,7 +11,7 @@ namespace Salvation.Core.Models.HolyPriest
     public class HolyPriestModel
         : BaseModel
     {
-        internal enum SpellIds
+        public enum SpellIds
         {
             // Base healing spells
             Heal = 2060,

@@ -2,10 +2,12 @@
 using Salvation.Core.Constants;
 using Salvation.Core.Interfaces.Constants;
 using Salvation.Core.Models;
+using Salvation.Core.Models.Common;
 using Salvation.Core.Models.HolyPriest;
 using Salvation.Core.Profile;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Salvation.Explorer.Modelling
@@ -13,6 +15,7 @@ namespace Salvation.Explorer.Modelling
     public interface IHolyPriestExplorer
     {
         public void TestHolyPriestModel();
+        public void CompareCovenants();
     }
 
     class HolyPriestExplorer : IHolyPriestExplorer
@@ -56,6 +59,25 @@ namespace Salvation.Explorer.Modelling
                 StatWeightGenerator.StatWeightType.EffectiveHealing);
 
             Console.WriteLine(JsonConvert.SerializeObject(results, Formatting.Indented));
+        }
+
+        public void CompareCovenants()
+        {
+            var cc = new CovenantComparisons();
+
+            var results = new List<BaseModelResults>();
+
+            //results.Add(cc.GetBaseResult()); // Maybe use this if we start using the full resultset
+            results.Add(cc.GetMindgamesResults());
+            results.Add(cc.GetFaeGuardiansDROnlyResults());
+            results.Add(cc.GetFaeGuardiansHymnCDRResults());
+
+            foreach (var result in results)
+            {
+                var covSpellResult = result.SpellCastResults.Last() as AveragedSpellCastResult;
+                Console.WriteLine($"{result.Profile.Name} - " +
+                    $"{covSpellResult.RawHealing} ({covSpellResult.RawHPS})");
+            }
         }
     }
 }

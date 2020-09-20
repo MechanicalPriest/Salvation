@@ -70,11 +70,10 @@ namespace Salvation.Core.Models.HolyPriest
             // Duration should be minus the GCD of the initial cast + gcd to move pw:s over.
 
             // TODO: Move this to configuration
-            decimal targetDamageTakenPerSecond = 3000.0m;
-            var pwsCast = model.GetSpell<PowerWordShield>(HolyPriestModel.SpellIds.PowerWordShield);
+            decimal targetDamageTakenPerSecond = 4000.0m;
             var duration = applyFaeFermataConduitDuration(Duration);
 
-            decimal averageDRPC = (duration - pwsCast.CastAverageSpell().CastTime - HastedGcd) 
+            decimal averageDRPC =  duration
                 * targetDamageTakenPerSecond 
                 * (SpellData.Coeff1 / -100);
 

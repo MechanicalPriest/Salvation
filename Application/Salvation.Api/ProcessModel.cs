@@ -11,17 +11,26 @@ using Salvation.Core.Profile;
 using Salvation.Core;
 using Salvation.Core.Constants;
 using System.Runtime.CompilerServices;
+using Salvation.Core.Models;
+using Salvation.Core.Interfaces.Constants;
 
 namespace Salvation.Api
 {
-    public static class ProcessModel
+    public class ProcessModel
     {
+        private readonly IConstantsService _constantsService;
+
+        public ProcessModel(IConstantsService constantService)
+        {
+            this._constantsService = constantService;
+        }
+
         [FunctionName("ProcessModel")]
-        public static async Task<IActionResult> Run(
+        public async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = null)] HttpRequest request,
             ILogger log, ExecutionContext context)
         {
-
+            // Parse the incoming profile
             BaseProfile profile;
             try
             {
@@ -36,32 +45,43 @@ namespace Salvation.Api
 
             if (profile == null)
             {
-                log.LogError("Profile needs tobe provided");
+                log.LogError("Profile needs to be provided");
                 return new BadRequestResult();
             }
 
             log.LogInformation("Processing a new profile: {0}", JsonConvert.SerializeObject(profile));
 
-            string filePath = Path.Combine(context.FunctionAppDirectory, @"constants.json");
-            string data;
-
+            // Load the profile into the model and return the results
             try
             {
-                data = File.ReadAllText(filePath);
+                _constantsService.SetDefaultDirectory(context.FunctionAppDirectory);
+                var constants = _constantsService.LoadConstantsFromFile();
+
+                var model = ModelManager.LoadModel(profile, constants);
+
+                var results = model.GetResults();
+
+                var sw = new StatWeightGenerator(_constantsService);
+
+                var effectiveHealingStatWeights = sw.Generate(results.Profile, 100,
+                    StatWeightGenerator.StatWeightType.EffectiveHealing);
+
+                var rawHealingStatWeights = sw.Generate(results.Profile, 100,
+                    StatWeightGenerator.StatWeightType.RawHealing);
+
+
+                return new JsonResult(new
+                {
+                    ModelResults = results,
+                    StatWeightsEffective = effectiveHealingStatWeights,
+                    StatWeightsRaw = rawHealingStatWeights
+                });
             }
             catch(Exception ex)
             {
-                log.LogError(ex, $"Unable to load constants file: {filePath}");
+                log.LogError(ex, $"Unable to process model");
                 return new BadRequestResult();
             }
-
-            var constants = ConstantsManager.ParseConstants(data);
-
-            var model = ModelManager.LoadModel(profile, constants);
-
-            var results = model.GetResults();
-
-            return new JsonResult(results);
         }
     }
 }

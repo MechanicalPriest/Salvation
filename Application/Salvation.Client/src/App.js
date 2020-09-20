@@ -6,6 +6,13 @@ import { Paper } from '@material-ui/core';
 import { CircularProgress } from '@material-ui/core';
 import TwoWayText from "./interface/TwoWayText.js";
 import "./index.css";
+import SpellComparison from "./Modules/SpellComparison";
+import Highlight from 'react-highlight.js'
+import Accordion from '@material-ui/core/Accordion';
+import AccordionSummary from '@material-ui/core/AccordionSummary';
+import AccordionDetails from '@material-ui/core/AccordionDetails';
+import Typography from '@material-ui/core/Typography';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     padding: theme.spacing(2),
-    textAlign: 'center',
+    //textAlign: 'center',
   },
 }));
 
@@ -41,9 +48,13 @@ function App(props) {
     versatilityRating: 0
   });
   const [modelResult, setModelResult] = useState({
-    spec: 0,
-    spells: [],
-    profile: {}
+    modelResults: {
+      spec: 0,
+      spellCastResults: [],
+      profile: {}
+    },
+    statWeightsEffective: {},
+    statWeightsRaw: {}
   });
   const [loading, setLoading] = useState(true);
   const [apiErrorMessage, setApiErrorMessage] = useState('');
@@ -73,7 +84,7 @@ function App(props) {
     );
     // TODO: Investigate actually using dependencies properly to remove these disables
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [profileDataUrl]);
+  }, []);
 
   // Processing getting API results from submitted profile
   const handleUpdateClick = useCallback(() => {
@@ -115,7 +126,7 @@ function App(props) {
           <Grid item xs={12} >
             <img src="wings_banner_offset_small.png" alt="Mechanical Priest Banner"/>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={12}>
             <Paper className={classes.paper}>
               <p>Enter stat ratings from character sheet</p>
               <TwoWayText label="Intellect" updateField={profileFieldChanged}
@@ -133,13 +144,22 @@ function App(props) {
                 <div>{loading === true && <CircularProgress />}</div>
                 <div>{apiErrorMessage}</div>
               </div>
-              <pre>{JSON.stringify(profileData)}</pre>
+              <Accordion>
+                <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                  <Typography className={classes.heading}>Base Profile from API</Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                  <Highlight language="json">
+                    {JSON.stringify(profileData, null, 2)}
+                  </Highlight>
+                </AccordionDetails>
+              </Accordion>              
             </Paper>
           </Grid>
-          <Grid item xs={6}>
-            <Paper className={classes.paper}>Results</Paper>
-
-            <pre>{JSON.stringify(modelResult, null, 2)}</pre>
+          <Grid item xs={12}>
+            <Paper className={classes.paper}>Results
+              <SpellComparison data={modelResult} />
+            </Paper>         
           </Grid>
         </Grid>
       </Grid> 

@@ -36,7 +36,7 @@ namespace Salvation.Core.Models.HolyPriest
             result.AdditionalCasts.Add(renewResults);
 
             // Calculate a PoM with only 1 additional bounce (Salv gives 2 stacks)
-            var pomData = model.GetSpecSpellDataById((int)HolyPriestModel.SpellIds.Renew);
+            var pomData = model.GetSpecSpellDataById((int)HolyPriestModel.SpellIds.PrayerOfMending);
             pomData.NumberOfHealingTargets = SpellData.NumberOfHealingTargets;
             pomData.ManaCost = 0m;
             pomData.Gcd = 0m;

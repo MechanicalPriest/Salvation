@@ -22,6 +22,7 @@ namespace Salvation.Explorer
         {
             holyPriestExplorer.CompareCovenants();
             holyPriestExplorer.TestHolyPriestModel();
+            holyPriestExplorer.TestNewHolyPriestModel();
 
             return Task.Delay(1);
         }

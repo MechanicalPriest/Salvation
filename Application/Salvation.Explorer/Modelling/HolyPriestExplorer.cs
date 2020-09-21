@@ -1,6 +1,8 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
 using Salvation.Core.Constants;
 using Salvation.Core.Interfaces.Constants;
+using Salvation.Core.Interfaces.Models;
 using Salvation.Core.Models;
 using Salvation.Core.Models.Common;
 using Salvation.Core.Models.HolyPriest;
@@ -14,6 +16,7 @@ namespace Salvation.Explorer.Modelling
 {
     public interface IHolyPriestExplorer
     {
+        public void TestNewHolyPriestModel();
         public void TestHolyPriestModel();
         public void CompareCovenants();
     }
@@ -21,10 +24,12 @@ namespace Salvation.Explorer.Modelling
     class HolyPriestExplorer : IHolyPriestExplorer
     {
         private readonly IConstantsService constantsService;
+        private readonly IModellingService modellingService;
 
-        public HolyPriestExplorer(IConstantsService constantsService)
+        public HolyPriestExplorer(IConstantsService constantsService, IModellingService modellingService)
         {
             this.constantsService = constantsService;
+            this.modellingService = modellingService;
         }
 
         public void TestHolyPriestModel()
@@ -78,6 +83,11 @@ namespace Salvation.Explorer.Modelling
                 Console.WriteLine($"{result.Profile.Name} - " +
                     $"{covSpellResult.RawHealing} ({covSpellResult.RawHPS})");
             }
+        }
+
+        public void TestNewHolyPriestModel()
+        {
+            modellingService.GetResults(null);
         }
     }
 }

@@ -22,6 +22,10 @@ namespace Salvation.Core.Models.Common
         /// </summary>
         public decimal Healing { get; set; }
         /// <summary>
+        /// Overhealing done
+        /// </summary>
+        public decimal Overhealing { get; set; }
+        /// <summary>
         /// Total damage done
         /// </summary>
         public decimal Damage { get; set; }

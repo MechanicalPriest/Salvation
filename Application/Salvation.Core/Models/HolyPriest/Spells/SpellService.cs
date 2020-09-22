@@ -45,6 +45,7 @@ namespace Salvation.Core.Models.HolyPriest.Spells
             result.MaximumCastsPerMinute = GetMaximumCastsPerMinute(gameState, spellData);
             result.NumberOfDamageTargets = GetNumberOfDamageTargets(gameState, spellData);
             result.NumberOfHealingTargets = GetNumberOfHealingTargets(gameState, spellData);
+            result.Overhealing = GetAverageOverhealing(gameState, spellData);
             result.RawHealing = GetAverageRawHealing(gameState, spellData);
 
             if (spellData.IsMasteryTriggered)
@@ -71,6 +72,17 @@ namespace Salvation.Core.Models.HolyPriest.Spells
                 * (1 - castProfile.OverhealPercent);
 
             return totalDirectHeal;
+        }
+
+        public decimal GetAverageOverhealing(GameState gameState, BaseSpellData spellData = null)
+        {
+            // Average healing done is raw healing * overheal
+            var castProfile = gameStateService.GetCastProfile(gameState, SpellId);
+
+            var totalOverheal = GetAverageRawHealing(gameState, spellData)
+                * castProfile.OverhealPercent;
+
+            return totalOverheal;
         }
 
         public virtual decimal GetActualCastsPerMinute(GameState gameState, BaseSpellData spellData = null)

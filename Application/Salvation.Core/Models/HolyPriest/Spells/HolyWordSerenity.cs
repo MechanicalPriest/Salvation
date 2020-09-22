@@ -12,12 +12,15 @@ using System.Text;
 
 namespace Salvation.Core.Models.HolyPriest.Spells
 {
-    public class FlashHeal : SpellService, IFlashHealSpellService
+    public class HolyWordSerenity : SpellService, IHolyWordSerenitySpellService
     {
-        public FlashHeal(IGameStateService gameStateService)
+        private readonly IFlashHealSpellService flashHealSpellService;
+
+        public HolyWordSerenity(IGameStateService gameStateService, IFlashHealSpellService flashHealSpellService)
             : base (gameStateService)
         {
-            SpellId = (int)SpellIds.FlashHeal;
+            SpellId = (int)SpellIds.HolyWordSerenity;
+            this.flashHealSpellService = flashHealSpellService;
         }
 
         public override decimal GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
@@ -27,8 +30,6 @@ namespace Salvation.Core.Models.HolyPriest.Spells
 
             var holyPriestAuraHealingBonus = gameStateService.GetModifier(gameState, "HolyPriestAuraHealingMultiplier").Value;
             
-            // Flash Heal's average heal is:
-            // SP% * Intellect * Vers * Hpriest Aura
             decimal averageHeal = spellData.Coeff1
                 * gameStateService.GetIntellect(gameState)
                 * gameStateService.GetVersatilityMultiplier(gameState)
@@ -41,21 +42,28 @@ namespace Salvation.Core.Models.HolyPriest.Spells
 
         public override decimal GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
         {
-            var hastedCastTime = GetHastedCastTime(gameState, spellData);
-            var hastedGcd = GetHastedGcd(gameState, spellData);
+            // Max casts per minute is (60 + (FH + Heal + BH * 0.5) * HwCDR) / CD + 1 / (FightLength / 60)
+            // HWCDR is 6 base, more with LOTN/other effects
+            // 1 from regular CD + reductions from fillers divided by the cooldown to get base CPM
+            // Then add the one charge we start with, 1 per fight, into seconds.
 
-            decimal fillerCastTime = hastedCastTime == 0
-                ? hastedGcd
-                : hastedCastTime;
+            // TODO: Update these to point to their spells when implemented
+            var fhCPM = flashHealSpellService.GetActualCastsPerMinute(gameState);
+            var healCPM = flashHealSpellService.GetActualCastsPerMinute(gameState);
+            var bhCPM = flashHealSpellService.GetActualCastsPerMinute(gameState);
 
-            decimal maximumPotentialCasts = 60m / fillerCastTime;
+            var hastedCD = GetHastedCooldown(gameState, spellData);
+            var fightLength = gameState.Profile.FightLengthSeconds;
+
+            // TODO: Add other HW CDR increasing effects.
+            var hwCDRBase = gameStateService.GetModifier(gameState, "HolyWordsBaseCDR").Value;
+
+            decimal hwCDR = (fhCPM + healCPM + bhCPM * 0.5m) * hwCDRBase;
+
+            decimal maximumPotentialCasts = (60m + hwCDR) / hastedCD
+                + 1m / (fightLength / 60m);
 
             return maximumPotentialCasts;
-        }
-
-        public override decimal GetAverageDamage(GameState gameState, BaseSpellData spellData = null)
-        {
-            return 0m;
         }
     }
 }

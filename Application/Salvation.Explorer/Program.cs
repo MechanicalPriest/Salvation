@@ -39,6 +39,7 @@ namespace Salvation.Explorer
                     services.AddSingleton<IModellingService, HolyPriestModellingService>();
                     // Spells
                     services.AddSingleton<IFlashHealSpellService, FlashHeal>();
+                    services.AddSingleton<IHolyWordSerenitySpellService, HolyWordSerenity>();
 
                     // Application service
                     services.AddHostedService<Explorer>();

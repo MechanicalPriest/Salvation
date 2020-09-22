@@ -52,7 +52,7 @@ namespace Salvation.Core.Models.HolyPriest.Spells
 
         public virtual decimal GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
         {
-            throw new NotImplementedException();
+            return 0m;
         }
 
         public virtual decimal GetAverageHealing(GameState gameState, BaseSpellData spellData = null)
@@ -80,7 +80,7 @@ namespace Salvation.Core.Models.HolyPriest.Spells
 
         public virtual decimal GetAverageDamage(GameState gameState, BaseSpellData spellData = null)
         {
-            throw new NotImplementedException();
+            return 0m;
         }
 
         public virtual decimal GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)

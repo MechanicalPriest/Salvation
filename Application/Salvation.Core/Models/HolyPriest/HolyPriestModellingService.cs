@@ -16,12 +16,14 @@ namespace Salvation.Core.Models.HolyPriest
         public List<ISpellService> Spells { get; private set; }
 
         public HolyPriestModellingService(IConstantsService constantsService,
-            IFlashHealSpellService fhService)
+            IFlashHealSpellService flashHealService,
+            IHolyWordSerenitySpellService serenitySpellService)
         {
             this.constantsService = constantsService;
 
             Spells = new List<ISpellService>();
-            Spells.Add(fhService);
+            Spells.Add(flashHealService);
+            Spells.Add(serenitySpellService);
         }
 
         public BaseModelResults GetResults(GameState state)

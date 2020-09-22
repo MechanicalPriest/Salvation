@@ -130,7 +130,7 @@
           "BaseCooldown": 0.0,
           "IsCooldownHasted": false,
           "Gcd": 1.5,
-          "Coeff1": 0.14,
+          "Coeff1": 0.18,
           "IsMasteryTriggered": true
         },
         {

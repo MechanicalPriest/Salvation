@@ -43,6 +43,7 @@ namespace Salvation.Api
             builder.Services.AddSingleton<IDivineHymnSpellService, DivineHymn>();
             builder.Services.AddSingleton<IDivineStarSpellService, DivineStar>();
             builder.Services.AddSingleton<IHaloSpellService, Halo>();
+            builder.Services.AddSingleton<IHolyNovaSpellService, HolyNova>();
         }
     }
 }

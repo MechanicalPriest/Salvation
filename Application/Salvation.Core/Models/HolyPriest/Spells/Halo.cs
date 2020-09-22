@@ -13,19 +13,19 @@ using System.Text;
 
 namespace Salvation.Core.Models.HolyPriest.Spells
 {
-    public class DivineStar : SpellService, IDivineStarSpellService
+    public class Halo : SpellService, IHaloSpellService
     {
-        public DivineStar(IGameStateService gameStateService,
+        public Halo(IGameStateService gameStateService,
             IModellingJournal journal)
             : base (gameStateService, journal)
         {
-            SpellId = (int)SpellIds.DivineStar;
+            SpellId = (int)SpellIds.Halo;
         }
 
         public override decimal GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
         {
             if(spellData == null)
-                spellData = gameStateService.GetSpellData(gameState, SpellIds.DivineStar);
+                spellData = gameStateService.GetSpellData(gameState, SpellIds.Halo);
 
             var holyPriestAuraHealingBonus = gameStateService.GetModifier(gameState, "HolyPriestAuraHealingMultiplier").Value;
             
@@ -34,20 +34,21 @@ namespace Salvation.Core.Models.HolyPriest.Spells
                 * gameStateService.GetVersatilityMultiplier(gameState)
                 * holyPriestAuraHealingBonus;
 
-            journal.Entry($"[{spellData.Name}] Testable: {averageHeal:0.##} (per pass)");
+            journal.Entry($"[{spellData.Name}] Testable: {averageHeal:0.##}");
 
-            averageHeal *= 2 // Add the second pass-back through each target
-                * gameStateService.GetCriticalStrikeMultiplier(gameState);
+            averageHeal *= gameStateService.GetCriticalStrikeMultiplier(gameState);
 
-            // Divine Star caps at roughly 6 targets worth of healing
+            // Halo caps at roughly 6 targets worth of healing
             return averageHeal * Math.Min(6, spellData.NumberOfHealingTargets);
         }
 
         public override decimal GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)
-                spellData = gameStateService.GetSpellData(gameState, SpellIds.DivineStar);
+                spellData = gameStateService.GetSpellData(gameState, SpellIds.Halo);
 
+            // Halo is simply 60 / (CastTime + CD) + 1 / (FightLength / 60)
+            // Number of casts per minute plus one cast at the start of the encounter
             var hastedCastTime = GetHastedCastTime(gameState, spellData);
             var hastedCd = GetHastedCooldown(gameState, spellData);
             var fightLength = gameState.Profile.FightLengthSeconds;

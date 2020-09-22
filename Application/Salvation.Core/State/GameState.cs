@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Salvation.Core.Models
+namespace Salvation.Core.State
 {
     public class GameState
     {

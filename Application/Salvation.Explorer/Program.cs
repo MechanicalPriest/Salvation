@@ -1,14 +1,14 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
-using Salvation.Core;
 using Salvation.Core.Constants;
 using Salvation.Core.Interfaces.Constants;
-using Salvation.Core.Models;
-using Salvation.Core.Models.Common;
+using Salvation.Core.Interfaces.Models;
+using Salvation.Core.Interfaces.Models.HolyPriest.Spells;
+using Salvation.Core.Interfaces.State;
 using Salvation.Core.Models.HolyPriest;
-using Salvation.Core.Profile;
+using Salvation.Core.Models.HolyPriest.Spells;
+using Salvation.Core.State;
 using Salvation.Explorer.Modelling;
 using System;
 using System.Collections.Generic;
@@ -30,8 +30,17 @@ namespace Salvation.Explorer
             Host.CreateDefaultBuilder(args)
                 .ConfigureServices((hostContext, services) =>
                 {
+                    // Common services
                     services.AddSingleton<IConstantsService, ConstantsService>();
+                    services.AddSingleton<IGameStateService, GameStateService>();
+
+                    // Holy Priest specific services
                     services.AddSingleton<IHolyPriestExplorer, HolyPriestExplorer>();
+                    services.AddSingleton<IModellingService, HolyPriestModellingService>();
+                    // Spells
+                    services.AddSingleton<IFlashHealSpellService, FlashHeal>();
+
+                    // Application service
                     services.AddHostedService<Explorer>();
                 });
     }

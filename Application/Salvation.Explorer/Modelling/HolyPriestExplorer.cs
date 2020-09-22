@@ -7,6 +7,7 @@ using Salvation.Core.Models;
 using Salvation.Core.Models.Common;
 using Salvation.Core.Models.HolyPriest;
 using Salvation.Core.Profile;
+using Salvation.Core.State;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -87,7 +88,11 @@ namespace Salvation.Explorer.Modelling
 
         public void TestNewHolyPriestModel()
         {
-            modellingService.GetResults(null);
+            GameState state = new GameState();
+            state.Constants = constantsService.LoadConstantsFromFile();
+            state.Profile = DefaultProfiles.GetDefaultProfile(Spec.HolyPriest);
+
+            var results = modellingService.GetResults(state);
         }
     }
 }

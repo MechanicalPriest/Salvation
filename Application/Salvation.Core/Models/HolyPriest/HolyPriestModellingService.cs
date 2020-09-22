@@ -2,6 +2,7 @@
 using Salvation.Core.Interfaces.Models;
 using Salvation.Core.Interfaces.Models.HolyPriest.Spells;
 using Salvation.Core.Profile;
+using Salvation.Core.State;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -9,7 +10,7 @@ using System.Text;
 
 namespace Salvation.Core.Models.HolyPriest
 {
-    class HolyPriestModellingService : IModellingService
+    public class HolyPriestModellingService : IModellingService
     {
         private readonly IConstantsService constantsService;
         public List<ISpellService> Spells { get; private set; }
@@ -19,17 +20,17 @@ namespace Salvation.Core.Models.HolyPriest
         {
             this.constantsService = constantsService;
 
+            Spells = new List<ISpellService>();
             Spells.Add(fhService);
         }
 
-        public BaseModelResults GetResults(BaseProfile profile)
+        public BaseModelResults GetResults(GameState state)
         {
             var results = new BaseModelResults();
-            var constants = constantsService.LoadConstantsFromFile();
 
             foreach(var spell in Spells)
             {
-                var castResults = spell.GetCastResults(null, null);
+                var castResults = spell.GetCastResults(state, null);
                 results.SpellCastResults.Add(castResults);
             }
 

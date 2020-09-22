@@ -48,6 +48,7 @@ namespace Salvation.Explorer
                     services.AddSingleton<IRenewSpellService, Renew>();
                     services.AddSingleton<IPrayerOfMendingSpellService, PrayerOfMending>();
                     services.AddSingleton<IPrayerOfHealingSpellService, PrayerOfHealing>();
+                    services.AddSingleton<IHealSpellService, Heal>();
 
                     // Application service
                     services.AddHostedService<Explorer>();

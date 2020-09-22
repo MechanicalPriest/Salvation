@@ -2,6 +2,12 @@
 using Microsoft.Extensions.DependencyInjection;
 using Salvation.Core.Constants;
 using Salvation.Core.Interfaces.Constants;
+using Salvation.Core.Interfaces.Models;
+using Salvation.Core.Interfaces.Models.HolyPriest.Spells;
+using Salvation.Core.Interfaces.State;
+using Salvation.Core.Models.HolyPriest;
+using Salvation.Core.Models.HolyPriest.Spells;
+using Salvation.Core.State;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,14 +18,16 @@ namespace Salvation.Api
     public class Startup : FunctionsStartup
     {
         public override void Configure(IFunctionsHostBuilder builder)
-        {
-            //builder.Services.AddHttpClient();
+        {            
+            // Common services
+            builder.Services.AddSingleton<IConstantsService, ConstantsService>();
+            builder.Services.AddSingleton<IGameStateService, GameStateService>();
 
-            builder.Services.AddSingleton<IConstantsService>((s) => {
-                return new ConstantsService();
-            });
-
-            //builder.Services.AddSingleton<ILoggerProvider, MyLoggerProvider>();
+            // Holy Priest specific services
+            builder.Services.AddSingleton<IModellingService, HolyPriestModellingService>();
+            // Spells
+            builder.Services.AddSingleton<IFlashHealSpellService, FlashHeal>();
+            builder.Services.AddSingleton<IHolyWordSerenitySpellService, HolyWordSerenity>();            
         }
     }
 }

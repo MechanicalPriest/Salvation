@@ -13,16 +13,20 @@ using Salvation.Core.Constants;
 using System.Runtime.CompilerServices;
 using Salvation.Core.Models;
 using Salvation.Core.Interfaces.Constants;
+using Salvation.Core.Interfaces.Models;
+using Salvation.Core.State;
 
 namespace Salvation.Api
 {
     public class ProcessModel
     {
         private readonly IConstantsService _constantsService;
+        private readonly IModellingService _modellingService;
 
-        public ProcessModel(IConstantsService constantService)
+        public ProcessModel(IConstantsService constantService, IModellingService modellingService)
         {
             this._constantsService = constantService;
+            this._modellingService = modellingService;
         }
 
         [FunctionName("ProcessModel")]
@@ -55,26 +59,28 @@ namespace Salvation.Api
             try
             {
                 _constantsService.SetDefaultDirectory(context.FunctionAppDirectory);
-                var constants = _constantsService.LoadConstantsFromFile();
-
-                var model = ModelManager.LoadModel(profile, constants);
-
-                var results = model.GetResults();
 
                 var sw = new StatWeightGenerator(_constantsService);
 
-                var effectiveHealingStatWeights = sw.Generate(results.Profile, 100,
+                var effectiveHealingStatWeights = sw.Generate(profile, 100,
                     StatWeightGenerator.StatWeightType.EffectiveHealing);
 
-                var rawHealingStatWeights = sw.Generate(results.Profile, 100,
+                var rawHealingStatWeights = sw.Generate(profile, 100,
                     StatWeightGenerator.StatWeightType.RawHealing);
 
+                //--------------
+                GameState state = new GameState();
+                state.Constants = _constantsService.LoadConstantsFromFile();
+                state.Profile = profile;
+                var results = _modellingService.GetResults(state);
 
+                //------------------------------
                 return new JsonResult(new
                 {
                     ModelResults = results,
                     StatWeightsEffective = effectiveHealingStatWeights,
-                    StatWeightsRaw = rawHealingStatWeights
+                    StatWeightsRaw = rawHealingStatWeights,
+                    State = state
                 });
             }
             catch(Exception ex)

@@ -1,6 +1,7 @@
 ﻿using Salvation.Core.Interfaces.Constants;
 using Salvation.Core.Interfaces.Models;
 using Salvation.Core.Interfaces.Models.HolyPriest.Spells;
+using Salvation.Core.Models.Common;
 using Salvation.Core.Profile;
 using Salvation.Core.State;
 using System;
@@ -34,6 +35,31 @@ namespace Salvation.Core.Models.HolyPriest
             {
                 var castResults = spell.GetCastResults(state, null);
                 results.SpellCastResults.Add(castResults);
+            }
+
+            RollUpResults(results, results.SpellCastResults);
+
+            results.TotalRawHPM = results.TotalRawHPS / results.TotalMPS;
+            results.TotalActualHPM = results.TotalActualHPS / results.TotalMPS;
+
+            return results;
+        }
+
+        private BaseModelResults RollUpResults(BaseModelResults results, List<SpellCastResult> spells)
+        {
+            foreach(var spellResult in spells)
+            {
+                if (spellResult is AveragedSpellCastResult averageResult)
+                {
+                    results.TotalActualHPS += averageResult.HPS;
+                    results.TotalRawHPS += averageResult.RawHPS;
+                    results.TotalMPS += averageResult.MPS;
+
+                    if(averageResult.AdditionalCasts.Count > 0)
+                    {
+                        RollUpResults(results, averageResult.AdditionalCasts);
+                    }
+                }
             }
 
             return results;

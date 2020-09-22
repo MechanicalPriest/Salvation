@@ -18,6 +18,7 @@ namespace Salvation.Core.Models
         public decimal TotalRawHPM { get; set; }
         public decimal TotalActualHPM { get; set; }
         public decimal TimeToOom { get; set; }
+        public AveragedSpellCastResult OverallResults { get; set; }
 
         public BaseModelResults()
         {

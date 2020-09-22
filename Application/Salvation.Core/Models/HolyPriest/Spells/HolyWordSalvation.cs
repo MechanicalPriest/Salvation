@@ -1,5 +1,6 @@
 ﻿using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
+using Salvation.Core.Interfaces;
 using Salvation.Core.Interfaces.Models;
 using Salvation.Core.Interfaces.Models.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
@@ -20,10 +21,11 @@ namespace Salvation.Core.Models.HolyPriest.Spells
         private readonly IPrayerOfMendingSpellService prayerOfMendingSpellService;
 
         public HolyWordSalvation(IGameStateService gameStateService,
+            IModellingJournal journal,
             IHolyWordSerenitySpellService serenitySpellService,
             IRenewSpellService renewSpellService,
             IPrayerOfMendingSpellService prayerOfMendingSpellService)
-            : base (gameStateService)
+            : base (gameStateService, journal)
         {
             SpellId = (int)SpellIds.HolyWordSalvation;
             this.serenitySpellService = serenitySpellService;
@@ -50,9 +52,12 @@ namespace Salvation.Core.Models.HolyPriest.Spells
 
         public override decimal GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
         {
+            if (spellData == null)
+                spellData = gameStateService.GetSpellData(gameState, SpellIds.HolyWordSalvation);
+
             // Salv is (60 + (SerenityCPM + SancCPM) * SalvCDR) / (CastTime + Cooldown) + 1 / (FightLength / 60)
             // Essentially the CDR per minute is 60 + the CDR from holy words.
-            
+
             // TODO: Add sanc here properly once implemented
             var serenityCPM = serenitySpellService.GetActualCastsPerMinute(gameState);
             var sancCPM = serenitySpellService.GetActualCastsPerMinute(gameState);
@@ -72,6 +77,9 @@ namespace Salvation.Core.Models.HolyPriest.Spells
 
         public override AveragedSpellCastResult GetCastResults(GameState gameState, BaseSpellData spellData = null)
         {
+            if (spellData == null)
+                spellData = gameStateService.GetSpellData(gameState, SpellIds.HolyWordSalvation);
+
             AveragedSpellCastResult result = base.GetCastResults(gameState, spellData);
 
             // We need to add a 0-cost renew:

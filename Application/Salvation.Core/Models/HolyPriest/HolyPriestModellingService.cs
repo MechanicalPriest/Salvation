@@ -21,7 +21,8 @@ namespace Salvation.Core.Models.HolyPriest
             IHolyWordSerenitySpellService serenitySpellService,
             IHolyWordSalvationSpellService holyWordSalvationSpellService,
             IRenewSpellService renewSpellService,
-            IPrayerOfMendingSpellService prayerOfMendingSpellService)
+            IPrayerOfMendingSpellService prayerOfMendingSpellService,
+            IPrayerOfHealingSpellService prayerOfHealingSpellService)
         {
             this.constantsService = constantsService;
 
@@ -31,6 +32,7 @@ namespace Salvation.Core.Models.HolyPriest
             Spells.Add(holyWordSalvationSpellService);
             Spells.Add(renewSpellService);
             Spells.Add(prayerOfMendingSpellService);
+            Spells.Add(prayerOfHealingSpellService);
         }
 
         public BaseModelResults GetResults(GameState state)

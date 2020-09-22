@@ -108,7 +108,7 @@
           "Name": "Prayer of Healing",
           "ManaCost": 0.05,
           "Range": 40.0,
-          "NumberOfHealingTargets": 1.0, // bounces are set using the modifier PrayerOfMendingBounces
+          "NumberOfHealingTargets": 5.0,
           "NumberOfDamageTargets": 0.0,
           "BaseCastTime": 2.0,
           "IsCastTimeHasted": true,
@@ -229,7 +229,7 @@
           "Name": "Prayer of Mending",
           "ManaCost": 0.02,
           "Range": 40.0, // Jump range is 20y
-          "NumberOfHealingTargets": 1.0,
+          "NumberOfHealingTargets": 1.0, // bounces are set using Coeff2
           "NumberOfDamageTargets": 0.0,
           "BaseCastTime": 0.0,
           "IsCastTimeHasted": true,

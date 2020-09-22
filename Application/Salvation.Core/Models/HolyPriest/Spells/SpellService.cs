@@ -1,5 +1,6 @@
 ﻿using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
+using Salvation.Core.Interfaces;
 using Salvation.Core.Interfaces.Models;
 using Salvation.Core.Interfaces.Models.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
@@ -15,12 +16,15 @@ namespace Salvation.Core.Models.HolyPriest.Spells
     public class SpellService : ISpellService
     {
         protected readonly IGameStateService gameStateService;
+        protected readonly IModellingJournal journal;
 
         public virtual int SpellId { get; protected set; }
 
-        public SpellService(IGameStateService gameStateService)
+        public SpellService(IGameStateService gameStateService,
+            IModellingJournal journal)
         {
             this.gameStateService = gameStateService;
+            this.journal = journal;
             SpellId = 0;
         }
 

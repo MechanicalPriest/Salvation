@@ -1,5 +1,6 @@
 ﻿using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
+using Salvation.Core.Interfaces;
 using Salvation.Core.Interfaces.Models;
 using Salvation.Core.Interfaces.Models.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
@@ -14,8 +15,9 @@ namespace Salvation.Core.Models.HolyPriest.Spells
 {
     public class Renew : SpellService, IRenewSpellService
     {
-        public Renew(IGameStateService gameStateService)
-            : base (gameStateService)
+        public Renew(IGameStateService gameStateService,
+            IModellingJournal journal)
+            : base (gameStateService, journal)
         {
             SpellId = (int)SpellIds.Renew;
         }
@@ -52,6 +54,9 @@ namespace Salvation.Core.Models.HolyPriest.Spells
 
         public override decimal GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
         {
+            if (spellData == null)
+                spellData = gameStateService.GetSpellData(gameState, SpellIds.Renew);
+
             var hastedCastTime = GetHastedCastTime(gameState, spellData);
             var hastedGcd = GetHastedGcd(gameState, spellData);
             var hastedCd = GetHastedCooldown(gameState, spellData);

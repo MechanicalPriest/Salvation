@@ -1,5 +1,6 @@
 ﻿using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
+using Salvation.Core.Interfaces;
 using Salvation.Core.Interfaces.Models;
 using Salvation.Core.Interfaces.Models.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
@@ -16,8 +17,10 @@ namespace Salvation.Core.Models.HolyPriest.Spells
     {
         private readonly IFlashHealSpellService flashHealSpellService;
 
-        public HolyWordSerenity(IGameStateService gameStateService, IFlashHealSpellService flashHealSpellService)
-            : base (gameStateService)
+        public HolyWordSerenity(IGameStateService gameStateService,
+            IModellingJournal journal, 
+            IFlashHealSpellService flashHealSpellService)
+            : base (gameStateService, journal)
         {
             SpellId = (int)SpellIds.HolyWordSerenity;
             this.flashHealSpellService = flashHealSpellService;
@@ -42,6 +45,9 @@ namespace Salvation.Core.Models.HolyPriest.Spells
 
         public override decimal GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
         {
+            if (spellData == null)
+                spellData = gameStateService.GetSpellData(gameState, SpellIds.HolyWordSerenity);
+
             // Max casts per minute is (60 + (FH + Heal + BH * 0.5) * HwCDR) / CD + 1 / (FightLength / 60)
             // HWCDR is 6 base, more with LOTN/other effects
             // 1 from regular CD + reductions from fillers divided by the cooldown to get base CPM

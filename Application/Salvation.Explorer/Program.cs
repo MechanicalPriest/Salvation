@@ -52,6 +52,7 @@ namespace Salvation.Explorer
                     services.AddSingleton<IBindingHealSpellService, BindingHeal>();
                     services.AddSingleton<IHolyWordSanctifySpellService, HolyWordSanctify>();
                     services.AddSingleton<ICircleOfHealingSpellService, CircleOfHealing>();
+                    services.AddSingleton<IDivineHymnSpellService, DivineHymn>();
 
                     // Application service
                     services.AddHostedService<Explorer>();

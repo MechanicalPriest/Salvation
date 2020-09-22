@@ -32,7 +32,7 @@ namespace Salvation.Core.Models.HolyPriest
             decimal averageHeal = firstTick + (firstTick * 4 * (1 + divineHymnAura.Value));
 
             // double it if we have 5 or less (dungeon group buff)
-            averageHeal *= SpellData.NumberOfHealingTargets <= 5 ? 1 : 2;
+            averageHeal *= SpellData.NumberOfHealingTargets <= 5 ? 2 : 1;
 
             return averageHeal * SpellData.NumberOfHealingTargets;
         }

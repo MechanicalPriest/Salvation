@@ -41,9 +41,9 @@ namespace Salvation.Core.Models.HolyPriest
             pomData.ManaCost = 0m;
             pomData.Gcd = 0m;
             pomData.BaseCastTime = 0m;
+            pomData.Coeff2 = 2;
 
             var pom = new PrayerOfMending(HolyModel, pomData);
-            pom.PrayerOfMendingBounces = 1;
 
             var pomResults = pom.CastAverageSpell();
 

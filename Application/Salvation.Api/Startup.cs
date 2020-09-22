@@ -28,6 +28,9 @@ namespace Salvation.Api
             // Spells
             builder.Services.AddSingleton<IFlashHealSpellService, FlashHeal>();
             builder.Services.AddSingleton<IHolyWordSerenitySpellService, HolyWordSerenity>();            
+            builder.Services.AddSingleton<IHolyWordSalvationSpellService, HolyWordSalvation>();            
+            builder.Services.AddSingleton<IRenewSpellService, Renew>();            
+            builder.Services.AddSingleton<IPrayerOfMendingSpellService, PrayerOfMending>();
         }
     }
 }

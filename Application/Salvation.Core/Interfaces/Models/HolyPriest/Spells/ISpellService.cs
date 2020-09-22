@@ -40,6 +40,9 @@ namespace Salvation.Core.Interfaces.Models.HolyPriest.Spells
         /// Get the average healing one cast of the spell does factoring in overheal
         /// </summary>
         public decimal GetAverageHealing(GameState gameState, BaseSpellData spellData = null);
+        /// <summary>
+        /// Get the average overhealing done from one cast of the spell
+        /// </summary>
         public decimal GetAverageOverhealing(GameState gameState, BaseSpellData spellData = null);
         /// <summary>
         /// Get the number of targets the healing component of the spell cast hits

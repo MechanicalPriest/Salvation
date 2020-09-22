@@ -40,6 +40,9 @@ namespace Salvation.Explorer
                     // Spells
                     services.AddSingleton<IFlashHealSpellService, FlashHeal>();
                     services.AddSingleton<IHolyWordSerenitySpellService, HolyWordSerenity>();
+                    services.AddSingleton<IHolyWordSalvationSpellService, HolyWordSalvation>();
+                    services.AddSingleton<IRenewSpellService, Renew>();
+                    services.AddSingleton<IPrayerOfMendingSpellService, PrayerOfMending>();
 
                     // Application service
                     services.AddHostedService<Explorer>();

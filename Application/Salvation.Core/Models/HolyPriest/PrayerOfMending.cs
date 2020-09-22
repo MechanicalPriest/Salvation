@@ -8,15 +8,11 @@ namespace Salvation.Core.Models.HolyPriest
     internal class PrayerOfMending 
         : BaseHolyPriestHealingSpell
     {
-        public decimal PrayerOfMendingBounces { get; set; }
-
         public PrayerOfMending(BaseModel model, BaseSpellData spellData = null)
             : base(model, spellData)
         {
             if (spellData == null)
                 SpellData = model.GetSpecSpellDataById((int)HolyPriestModel.SpellIds.PrayerOfMending);
-
-            PrayerOfMendingBounces = model.GetModifierbyName("PrayerOfMendingBounces").Value;
         }
 
         protected override decimal calcAverageRawDirectHeal()
@@ -28,7 +24,7 @@ namespace Salvation.Core.Models.HolyPriest
                 * model.GetVersMultiplier(model.RawVers)
                 * model.GetCritMultiplier(model.RawCrit)
                 * holyPriestAuraHealingBonus
-                * (1 + PrayerOfMendingBounces);
+                * SpellData.Coeff2;
 
             return averageHeal * SpellData.NumberOfHealingTargets;
         }

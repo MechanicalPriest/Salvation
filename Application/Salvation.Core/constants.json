@@ -39,8 +39,8 @@
           "Value": 0.1
         },
         {
-          "Name": "PrayerOfMendingBounces",
-          "Value": 4.0
+          "Name": "PrayerOfMendingInitialStacks",
+          "Value": 5.0
         },
         {
           // Stored as a decimal. 1.4 is 40% more healing.
@@ -237,6 +237,7 @@
           "IsCooldownHasted": true,
           "Gcd": 1.5,
           "Coeff1": 0.61, // comes from 33110
+          "Coeff2": 5, // number of initial PoM stacks. from 33076 #1
           "IsMasteryTriggered": true
         },
         {

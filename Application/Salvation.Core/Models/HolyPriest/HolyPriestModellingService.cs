@@ -18,13 +18,19 @@ namespace Salvation.Core.Models.HolyPriest
 
         public HolyPriestModellingService(IConstantsService constantsService,
             IFlashHealSpellService flashHealService,
-            IHolyWordSerenitySpellService serenitySpellService)
+            IHolyWordSerenitySpellService serenitySpellService,
+            IHolyWordSalvationSpellService holyWordSalvationSpellService,
+            IRenewSpellService renewSpellService,
+            IPrayerOfMendingSpellService prayerOfMendingSpellService)
         {
             this.constantsService = constantsService;
 
             Spells = new List<ISpellService>();
             Spells.Add(flashHealService);
             Spells.Add(serenitySpellService);
+            Spells.Add(holyWordSalvationSpellService);
+            Spells.Add(renewSpellService);
+            Spells.Add(prayerOfMendingSpellService);
         }
 
         public BaseModelResults GetResults(GameState state)

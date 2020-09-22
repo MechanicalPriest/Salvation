@@ -26,7 +26,7 @@ namespace Salvation.Core.Models.HolyPriest.Spells
         public override decimal GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
         {
             if(spellData == null)
-                spellData = gameStateService.GetSpellData(gameState, SpellIds.FlashHeal);
+                spellData = gameStateService.GetSpellData(gameState, SpellIds.HolyWordSerenity);
 
             var holyPriestAuraHealingBonus = gameStateService.GetModifier(gameState, "HolyPriestAuraHealingMultiplier").Value;
             

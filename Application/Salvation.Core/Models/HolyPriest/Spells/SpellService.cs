@@ -154,11 +154,17 @@ namespace Salvation.Core.Models.HolyPriest.Spells
 
         public virtual decimal GetNumberOfHealingTargets(GameState gameState, BaseSpellData spellData = null)
         {
+            if (spellData == null)
+                spellData = gameStateService.GetSpellData(gameState, (SpellIds)SpellId);
+
             return spellData.NumberOfHealingTargets;
         }
 
         public virtual decimal GetNumberOfDamageTargets(GameState gameState, BaseSpellData spellData = null)
         {
+            if (spellData == null)
+                spellData = gameStateService.GetSpellData(gameState, (SpellIds)SpellId);
+
             return spellData.NumberOfDamageTargets;
         }
 

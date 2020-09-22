@@ -15,6 +15,7 @@ using Salvation.Core.Models;
 using Salvation.Core.Interfaces.Constants;
 using Salvation.Core.Interfaces.Models;
 using Salvation.Core.State;
+using Salvation.Core.Interfaces;
 
 namespace Salvation.Api
 {
@@ -22,11 +23,15 @@ namespace Salvation.Api
     {
         private readonly IConstantsService _constantsService;
         private readonly IModellingService _modellingService;
+        private readonly IModellingJournal _journal;
 
-        public ProcessModel(IConstantsService constantService, IModellingService modellingService)
+        public ProcessModel(IConstantsService constantService, 
+            IModellingService modellingService,
+            IModellingJournal journal)
         {
             this._constantsService = constantService;
             this._modellingService = modellingService;
+            this._journal = journal;
         }
 
         [FunctionName("ProcessModel")]
@@ -80,7 +85,8 @@ namespace Salvation.Api
                     ModelResults = results,
                     StatWeightsEffective = effectiveHealingStatWeights,
                     StatWeightsRaw = rawHealingStatWeights,
-                    State = state
+                    State = state,
+                    Journal = _journal.GetJournal(true)
                 });
             }
             catch(Exception ex)

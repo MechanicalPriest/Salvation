@@ -34,6 +34,8 @@ namespace Salvation.Core.Models.HolyPriest.Spells
                 * gameStateService.GetVersatilityMultiplier(gameState)
                 * holyPriestAuraHealingBonus;
 
+            journal.Entry($"[{spellData.Name}] Testable: {averageHeal:0.##}");
+
             averageHeal *= gameStateService.GetCriticalStrikeMultiplier(gameState)
                 * spellData.Coeff2; // Coeff2 is number of initial stacks
 

@@ -92,6 +92,16 @@ function SpellComparison(props) {
       </TableContainer>
       <Accordion>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+          <Typography>Journal Entries</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Highlight language="json">
+            {JSON.stringify(props.data.journal, null, 2)}
+          </Highlight>
+        </AccordionDetails>
+      </Accordion> 
+      <Accordion>
+        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
           <Typography>Modelling response from API</Typography>
         </AccordionSummary>
         <AccordionDetails>

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Salvation.Core
 {
-    class ModellingJournal : IModellingJournal
+    public class ModellingJournal : IModellingJournal
     {
         private List<string> journalEntries { get; set; }
 

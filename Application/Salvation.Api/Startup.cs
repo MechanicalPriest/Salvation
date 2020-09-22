@@ -1,6 +1,8 @@
 ﻿using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
+using Salvation.Core;
 using Salvation.Core.Constants;
+using Salvation.Core.Interfaces;
 using Salvation.Core.Interfaces.Constants;
 using Salvation.Core.Interfaces.Models;
 using Salvation.Core.Interfaces.Models.HolyPriest.Spells;
@@ -22,9 +24,11 @@ namespace Salvation.Api
             // Common services
             builder.Services.AddSingleton<IConstantsService, ConstantsService>();
             builder.Services.AddSingleton<IGameStateService, GameStateService>();
+            builder.Services.AddSingleton<IModellingJournal, ModellingJournal>();
 
             // Holy Priest specific services
             builder.Services.AddSingleton<IModellingService, HolyPriestModellingService>();
+
             // Spells
             builder.Services.AddSingleton<IFlashHealSpellService, FlashHeal>();
             builder.Services.AddSingleton<IHolyWordSerenitySpellService, HolyWordSerenity>();            

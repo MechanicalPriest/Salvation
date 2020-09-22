@@ -1,7 +1,9 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Salvation.Core;
 using Salvation.Core.Constants;
+using Salvation.Core.Interfaces;
 using Salvation.Core.Interfaces.Constants;
 using Salvation.Core.Interfaces.Models;
 using Salvation.Core.Interfaces.Models.HolyPriest.Spells;
@@ -33,10 +35,12 @@ namespace Salvation.Explorer
                     // Common services
                     services.AddSingleton<IConstantsService, ConstantsService>();
                     services.AddSingleton<IGameStateService, GameStateService>();
+                    services.AddSingleton<IModellingJournal, ModellingJournal>();
 
                     // Holy Priest specific services
                     services.AddSingleton<IHolyPriestExplorer, HolyPriestExplorer>();
                     services.AddSingleton<IModellingService, HolyPriestModellingService>();
+
                     // Spells
                     services.AddSingleton<IFlashHealSpellService, FlashHeal>();
                     services.AddSingleton<IHolyWordSerenitySpellService, HolyWordSerenity>();

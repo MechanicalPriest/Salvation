@@ -35,6 +35,8 @@ namespace Salvation.Core.Models.HolyPriest.Spells
                 * gameStateService.GetVersatilityMultiplier(gameState)
                 * holyPriestAuraHealingBonus;
 
+            journal.Entry($"[{spellData.Name}] Testable: {averageHealFirstTick:0.##} (first)");
+
             averageHealFirstTick *= gameStateService.GetCriticalStrikeMultiplier(gameState)
                 * gameStateService.GetHasteMultiplier(gameState);
 
@@ -43,11 +45,13 @@ namespace Salvation.Core.Models.HolyPriest.Spells
             decimal averageHealTicks = spellData.Coeff1
                 * gameStateService.GetIntellect(gameState)
                 * gameStateService.GetVersatilityMultiplier(gameState)
+                * gameStateService.GetHasteMultiplier(gameState)
                 * holyPriestAuraHealingBonus
                 * 5;
 
-            averageHealTicks *= gameStateService.GetCriticalStrikeMultiplier(gameState)
-                * gameStateService.GetHasteMultiplier(gameState);
+            journal.Entry($"[{spellData.Name}] Testable: {averageHealTicks:0.##} (ticks)");
+
+            averageHealTicks *= gameStateService.GetCriticalStrikeMultiplier(gameState);
 
             return (averageHealFirstTick + averageHealTicks) * spellData.NumberOfHealingTargets;
         }

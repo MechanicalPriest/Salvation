@@ -38,6 +38,7 @@ namespace Salvation.Api
             builder.Services.AddSingleton<IPrayerOfHealingSpellService, PrayerOfHealing>();
             builder.Services.AddSingleton<IHealSpellService, Heal>();
             builder.Services.AddSingleton<IBindingHealSpellService, BindingHeal>();
+            builder.Services.AddSingleton<IHolyWordSanctifySpellService, HolyWordSanctify>();
         }
     }
 }

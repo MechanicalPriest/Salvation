@@ -29,18 +29,20 @@ namespace Salvation.Core.Models.HolyPriest
             IRenewSpellService renewSpellService,
             IPrayerOfMendingSpellService prayerOfMendingSpellService,
             IPrayerOfHealingSpellService prayerOfHealingSpellService,
-            IHealSpellService healSpellService)
+            IHealSpellService healSpellService,
+            IBindingHealSpellService bindingHealSpellService)
         {
             this.constantsService = constantsService;
             this.journal = journal;
             Spells = new List<ISpellService>();
             Spells.Add(flashHealService);
+            Spells.Add(healSpellService);
+            Spells.Add(renewSpellService);
+            Spells.Add(prayerOfHealingSpellService);
+            Spells.Add(bindingHealSpellService);
+            Spells.Add(prayerOfMendingSpellService);
             Spells.Add(serenitySpellService);
             Spells.Add(holyWordSalvationSpellService);
-            Spells.Add(renewSpellService);
-            Spells.Add(prayerOfMendingSpellService);
-            Spells.Add(prayerOfHealingSpellService);
-            Spells.Add(healSpellService);
         }
 
         public BaseModelResults GetResults(GameState state)

@@ -37,6 +37,7 @@ namespace Salvation.Api
             builder.Services.AddSingleton<IPrayerOfMendingSpellService, PrayerOfMending>();
             builder.Services.AddSingleton<IPrayerOfHealingSpellService, PrayerOfHealing>();
             builder.Services.AddSingleton<IHealSpellService, Heal>();
+            builder.Services.AddSingleton<IBindingHealSpellService, BindingHeal>();
         }
     }
 }

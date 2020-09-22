@@ -17,16 +17,19 @@ namespace Salvation.Core.Models.HolyPriest.Spells
     {
         private readonly IFlashHealSpellService flashHealSpellService;
         private readonly IHealSpellService healSpellService;
+        private readonly IBindingHealSpellService bindingHealSpellService;
 
         public HolyWordSerenity(IGameStateService gameStateService,
             IModellingJournal journal, 
             IFlashHealSpellService flashHealSpellService,
-            IHealSpellService healSpellService)
+            IHealSpellService healSpellService,
+            IBindingHealSpellService bindingHealSpellService)
             : base (gameStateService, journal)
         {
             SpellId = (int)SpellIds.HolyWordSerenity;
             this.flashHealSpellService = flashHealSpellService;
             this.healSpellService = healSpellService;
+            this.bindingHealSpellService = bindingHealSpellService;
         }
 
         public override decimal GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
@@ -61,7 +64,7 @@ namespace Salvation.Core.Models.HolyPriest.Spells
             // TODO: Update these to point to their spells when implemented
             var fhCPM = flashHealSpellService.GetActualCastsPerMinute(gameState);
             var healCPM = healSpellService.GetActualCastsPerMinute(gameState);
-            var bhCPM = flashHealSpellService.GetActualCastsPerMinute(gameState);
+            var bhCPM = bindingHealSpellService.GetActualCastsPerMinute(gameState);
 
             var hastedCD = GetHastedCooldown(gameState, spellData);
             var fightLength = gameState.Profile.FightLengthSeconds;

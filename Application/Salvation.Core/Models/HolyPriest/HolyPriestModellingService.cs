@@ -31,7 +31,8 @@ namespace Salvation.Core.Models.HolyPriest
             IPrayerOfHealingSpellService prayerOfHealingSpellService,
             IHealSpellService healSpellService,
             IBindingHealSpellService bindingHealSpellService,
-            IHolyWordSanctifySpellService holyWordSanctifySpellService)
+            IHolyWordSanctifySpellService holyWordSanctifySpellService,
+            ICircleOfHealingSpellService circleOfHealingSpellService)
         {
             this.constantsService = constantsService;
             this.journal = journal;
@@ -42,6 +43,7 @@ namespace Salvation.Core.Models.HolyPriest
             Spells.Add(prayerOfHealingSpellService);
             Spells.Add(bindingHealSpellService);
             Spells.Add(prayerOfMendingSpellService);
+            Spells.Add(circleOfHealingSpellService);
             Spells.Add(holyWordSerenitySpellService);
             Spells.Add(holyWordSanctifySpellService);
             Spells.Add(holyWordSalvationSpellService);

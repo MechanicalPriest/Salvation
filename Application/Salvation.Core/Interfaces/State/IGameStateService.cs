@@ -25,6 +25,7 @@ namespace Salvation.Core.Interfaces.State
         public decimal GetIntellect(GameState state);
         public decimal GetVersatilityMultiplier(GameState state);
         public decimal GetCriticalStrikeMultiplier(GameState state);
+        public decimal GetMasteryMultiplier(GameState state);
         public decimal GetHasteMultiplier(GameState state);
         public decimal GetBaseManaAmount(GameState state);
     }

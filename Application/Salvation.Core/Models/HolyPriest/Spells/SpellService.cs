@@ -47,6 +47,13 @@ namespace Salvation.Core.Models.HolyPriest.Spells
             result.NumberOfHealingTargets = GetNumberOfHealingTargets(gameState, spellData);
             result.RawHealing = GetAverageRawHealing(gameState, spellData);
 
+            if (spellData.IsMasteryTriggered)
+            {
+                var echoResult = GetHolyPriestMasteryResult(gameState, spellData);
+                if (echoResult != null)
+                    result.AdditionalCasts.Add(echoResult);
+            }
+
             return result;
         }
 
@@ -142,5 +149,33 @@ namespace Salvation.Core.Models.HolyPriest.Spells
         {
             return spellData.NumberOfDamageTargets;
         }
+
+        // This should probably be moved to another class/helper
+        #region Holy Priest Specific
+
+        /// <summary>
+        /// This does NOT check to see if mastery applies to this spell
+        /// </summary>
+        public virtual AveragedSpellCastResult GetHolyPriestMasteryResult(GameState gameState, BaseSpellData spellData)
+        {
+            AveragedSpellCastResult result = new AveragedSpellCastResult();
+
+            if (spellData == null)
+                spellData = gameStateService.GetSpellData(gameState, (SpellIds)SpellId);
+
+            var averageMasteryHeal = GetAverageRawHealing(gameState, spellData)
+                * (gameStateService.GetMasteryMultiplier(gameState) - 1);
+
+            var castProfile = gameStateService.GetCastProfile(gameState, (int)SpellIds.EchoOfLight);
+
+            result.SpellId = (int)SpellIds.EchoOfLight;
+            result.SpellName = "Echo of Light";
+            result.RawHealing = averageMasteryHeal;
+            result.Healing = averageMasteryHeal * (1 - castProfile.OverhealPercent);
+            
+            return result;
+        }
+
+        #endregion
     }
 }

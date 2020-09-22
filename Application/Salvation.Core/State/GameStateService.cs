@@ -52,6 +52,14 @@ namespace Salvation.Core.State
             return 1 + specData.VersBase + (state.Profile.VersatilityRating / specData.VersCost / 100);
         }
 
+        public decimal GetMasteryMultiplier(GameState state)
+        {
+            // TODO: Add other sources of mastery increase here
+            var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.SpecId).FirstOrDefault();
+
+            return 1 + specData.MasteryBase + (state.Profile.MasteryRating / specData.MasteryCost / 100);
+        }
+
         public decimal GetIntellect(GameState state)
         {
             // TODO: Add other sources of int increase here

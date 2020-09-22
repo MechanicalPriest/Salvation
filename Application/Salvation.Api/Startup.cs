@@ -41,6 +41,7 @@ namespace Salvation.Api
             builder.Services.AddSingleton<IHolyWordSanctifySpellService, HolyWordSanctify>();
             builder.Services.AddSingleton<ICircleOfHealingSpellService, CircleOfHealing>();
             builder.Services.AddSingleton<IDivineHymnSpellService, DivineHymn>();
+            builder.Services.AddSingleton<IDivineStarSpellService, DivineStar>();
         }
     }
 }

@@ -80,7 +80,7 @@ namespace Salvation.Core.Models.HolyPriest
             {
                 if (IsSpellBeingCast(state, (SpellIds)spell.SpellId))
                 {
-                    var castResults = spell.GetCastResults(state, null);
+                    var castResults = spell.GetCastResults(state);
                     results.SpellCastResults.Add(castResults);
                 }
                 else

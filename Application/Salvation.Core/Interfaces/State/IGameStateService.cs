@@ -20,7 +20,7 @@ namespace Salvation.Core.Interfaces.State
         BaseModifier GetModifier(GameState state, string modifierName);
         CastProfile GetCastProfile(GameState state, int spellId);
         ConduitData GetConduitData(GameState state, Conduit conduitId);
-
+        Covenant GetActiveCovenant(GameState state);
 
         // Player Stats
         decimal GetIntellect(GameState state);

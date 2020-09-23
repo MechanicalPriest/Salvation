@@ -112,5 +112,10 @@ namespace Salvation.Core.State
 
             return rank;
         }
+
+        public Covenant GetActiveCovenant(GameState state)
+        {
+            return state.Profile.Covenant;
+        }
     }
 }

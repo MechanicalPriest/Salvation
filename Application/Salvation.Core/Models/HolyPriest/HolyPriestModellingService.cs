@@ -1,7 +1,9 @@
-﻿using Salvation.Core.Interfaces;
+﻿using Salvation.Core.Constants.Data;
+using Salvation.Core.Interfaces;
 using Salvation.Core.Interfaces.Constants;
 using Salvation.Core.Interfaces.Models;
 using Salvation.Core.Interfaces.Models.HolyPriest.Spells;
+using Salvation.Core.Interfaces.State;
 using Salvation.Core.Models.Common;
 using Salvation.Core.Profile;
 using Salvation.Core.State;
@@ -16,12 +18,12 @@ namespace Salvation.Core.Models.HolyPriest
 {
     public class HolyPriestModellingService : IModellingService
     {
-        private readonly IConstantsService constantsService;
+        private readonly IGameStateService gameStateService;
         private readonly IModellingJournal journal;
 
         public List<ISpellService> Spells { get; private set; }
 
-        public HolyPriestModellingService(IConstantsService constantsService,
+        public HolyPriestModellingService(IGameStateService gameStateService,
             IModellingJournal journal,
             IFlashHealSpellService flashHealService,
             IHolyWordSerenitySpellService holyWordSerenitySpellService,
@@ -37,10 +39,12 @@ namespace Salvation.Core.Models.HolyPriest
             IDivineStarSpellService divineStarSpellService,
             IHaloSpellService haloSpellService,
             IHolyNovaSpellService holyNovaSpellService,
-            IPowerWordShieldSpellService powerWordShieldSpellService)
+            IPowerWordShieldSpellService powerWordShieldSpellService,
+            IFaeGuardiansSpellService faeGuardiansSpellService)
         {
-            this.constantsService = constantsService;
+            this.gameStateService = gameStateService;
             this.journal = journal;
+
             Spells = new List<ISpellService>();
             Spells.Add(flashHealService);
             Spells.Add(healSpellService);
@@ -57,20 +61,28 @@ namespace Salvation.Core.Models.HolyPriest
             Spells.Add(holyWordSanctifySpellService);
             Spells.Add(divineHymnSpellService);
             Spells.Add(holyWordSalvationSpellService);
+            Spells.Add(faeGuardiansSpellService);
         }
 
         public BaseModelResults GetResults(GameState state)
         {
             var results = new BaseModelResults();
 
-            journal.Entry($"Beginning results run started at {DateTime.Now:yyyy.MM.dd HH:mm:ss:ffff}.");
+            journal.Entry($"Results run started at {DateTime.Now:yyyy.MM.dd HH:mm:ss:ffff}.");
             var sw = new Stopwatch();
             sw.Start();
 
             foreach (var spell in Spells)
             {
-                var castResults = spell.GetCastResults(state, null);
-                results.SpellCastResults.Add(castResults);
+                if (IsSpellBeingCast(state, (SpellIds)spell.SpellId))
+                {
+                    var castResults = spell.GetCastResults(state, null);
+                    results.SpellCastResults.Add(castResults);
+                }
+                else
+                {
+                    journal.Entry($"[{spell.SpellId}] Skipped casting due to profile.");
+                }
             }
 
             RollUpResults(results, results.SpellCastResults);
@@ -85,6 +97,32 @@ namespace Salvation.Core.Models.HolyPriest
             journal.Entry($"Results run done in {sw.ElapsedMilliseconds}ms.");
 
             return results;
+        }
+
+        /// <summary>
+        /// Check to see if this spell should be cast as part of the modelling
+        /// </summary>
+        public bool IsSpellBeingCast(GameState state, SpellIds spellId)
+        {
+            switch (spellId)
+            {
+                case SpellIds.AscendedBlast:
+                case SpellIds.AscendedEruption:
+                case SpellIds.AscendedNova:
+                    return gameStateService.GetActiveCovenant(state) == Covenant.Kyrian;
+
+                case SpellIds.MindGames:
+                    return gameStateService.GetActiveCovenant(state) == Covenant.Venthyr;
+                
+                case SpellIds.FaeGuardians:
+                    return gameStateService.GetActiveCovenant(state) == Covenant.NightFae;
+                
+                case SpellIds.UnholyNova:
+                    return gameStateService.GetActiveCovenant(state) == Covenant.Necrolord;
+                
+                default:
+                    return true;
+            }
         }
 
         private BaseModelResults RollUpResults(BaseModelResults results, List<SpellCastResult> spells)

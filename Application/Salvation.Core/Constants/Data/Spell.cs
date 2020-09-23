@@ -29,7 +29,7 @@ namespace Salvation.Core.Constants.Data
         CosmicRipple = 238136,
 
         // Cov abilities
-        MindGames = 323673,
+        Mindgames = 323673,
         FaeGuardians = 327661,
         BoonOfTheAscended = 325013,
         AscendedNova = 325020,

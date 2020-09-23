@@ -59,6 +59,7 @@ namespace Salvation.Explorer
                     services.AddSingleton<IPowerWordShieldSpellService, PowerWordShield>();
                     // Covenants
                     services.AddSingleton<IFaeGuardiansSpellService, FaeGuardians>();
+                    services.AddSingleton<IMindgamesSpellService, Mindgames>();
 
                     // Application service
                     services.AddHostedService<Explorer>();

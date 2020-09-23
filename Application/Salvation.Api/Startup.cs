@@ -48,6 +48,7 @@ namespace Salvation.Api
 
             // Covenants
             builder.Services.AddSingleton<IFaeGuardiansSpellService, FaeGuardians>();
+            builder.Services.AddSingleton<IMindgamesSpellService, Mindgames>();
         }
     }
 }

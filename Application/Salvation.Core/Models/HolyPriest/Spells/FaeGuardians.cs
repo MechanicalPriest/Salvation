@@ -124,6 +124,7 @@ namespace Salvation.Core.Models.HolyPriest.Spells
             var baseDuration = base.GetDuration(gameState, spellData);
 
             // Apply the Fae Fermata conduit if applicable
+            // TODO: Shift this out to another method maybe, for testing?
             if (gameStateService.IsConduitActive(gameState, Conduit.FaeFermata))
             {
 

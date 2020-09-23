@@ -40,7 +40,8 @@ namespace Salvation.Core.Models.HolyPriest
             IHaloSpellService haloSpellService,
             IHolyNovaSpellService holyNovaSpellService,
             IPowerWordShieldSpellService powerWordShieldSpellService,
-            IFaeGuardiansSpellService faeGuardiansSpellService)
+            IFaeGuardiansSpellService faeGuardiansSpellService,
+            IMindgamesSpellService mindgamesSpellService)
         {
             this.gameStateService = gameStateService;
             this.journal = journal;
@@ -62,6 +63,7 @@ namespace Salvation.Core.Models.HolyPriest
             Spells.Add(divineHymnSpellService);
             Spells.Add(holyWordSalvationSpellService);
             Spells.Add(faeGuardiansSpellService);
+            Spells.Add(mindgamesSpellService);
         }
 
         public BaseModelResults GetResults(GameState state)
@@ -111,7 +113,7 @@ namespace Salvation.Core.Models.HolyPriest
                 case SpellIds.AscendedNova:
                     return gameStateService.GetActiveCovenant(state) == Covenant.Kyrian;
 
-                case SpellIds.MindGames:
+                case SpellIds.Mindgames:
                     return gameStateService.GetActiveCovenant(state) == Covenant.Venthyr;
                 
                 case SpellIds.FaeGuardians:

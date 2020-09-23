@@ -34,7 +34,7 @@ namespace Salvation.Core.Models.HolyPriest.Spells
                 * gameStateService.GetVersatilityMultiplier(gameState)
                 * holyPriestAuraHealingBonus;
 
-            journal.Entry($"[{spellData.Name}] Testable: {averageHeal:0.##} (per pass)");
+            journal.Entry($"[{spellData.Name}] Tooltip: {averageHeal:0.##} (per pass)");
 
             averageHeal *= 2 // Add the second pass-back through each target
                 * gameStateService.GetCriticalStrikeMultiplier(gameState);

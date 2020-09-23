@@ -13,19 +13,49 @@ using System.Text;
 
 namespace Salvation.Core.Models.HolyPriest.Spells
 {
-    public class FlashHeal : SpellService, IFlashHealSpellService
+    public class PowerWordShield : SpellService, IPowerWordShieldSpellService
     {
-        public FlashHeal(IGameStateService gameStateService,
+        public PowerWordShield(IGameStateService gameStateService,
             IModellingJournal journal)
             : base (gameStateService, journal)
         {
-            SpellId = (int)SpellIds.FlashHeal;
+            SpellId = (int)SpellIds.PowerWordShield;
+        }
+
+        public override AveragedSpellCastResult GetCastResults(GameState gameState, BaseSpellData spellData = null)
+        {
+            AveragedSpellCastResult result = base.GetCastResults(gameState, spellData);
+
+            if (gameStateService.IsConduitActive(gameState, Conduit.CharitableSoul))
+            {
+                var csSpellData = gameStateService.GetConduitData(gameState, Conduit.CharitableSoul);
+
+                // Turn the rank value into a multiplier. "Rank" 10 = 0.10
+                var rank = gameStateService.GetConduitRank(gameState, Conduit.CharitableSoul);
+                var rankMulti = csSpellData.Ranks[rank] / 100;
+
+                AveragedSpellCastResult csComponent = new AveragedSpellCastResult();
+                csComponent.SpellId = csSpellData.Id;
+                csComponent.SpellName = csSpellData.Name;
+                csComponent.RawHealing = result.RawHealing * rankMulti;
+                csComponent.Healing = result.Healing * rankMulti;
+                csComponent.Cooldown = 0;
+                csComponent.Duration = 0;
+                csComponent.Gcd = 0;
+                csComponent.ManaCost = 0;
+                csComponent.NumberOfHealingTargets = 1;
+                csComponent.MakeSpellHaveNoCasts();
+
+                result.AdditionalCasts.Add(csComponent);
+            }
+
+            return result;
         }
 
         public override decimal GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
         {
             if(spellData == null)
-                spellData = gameStateService.GetSpellData(gameState, SpellIds.FlashHeal);
+                spellData = gameStateService.GetSpellData(gameState, SpellIds.PowerWordShield);
 
             var holyPriestAuraHealingBonus = gameStateService.GetModifier(gameState, "HolyPriestAuraHealingMultiplier").Value;
             
@@ -34,7 +64,8 @@ namespace Salvation.Core.Models.HolyPriest.Spells
             decimal averageHeal = spellData.Coeff1
                 * gameStateService.GetIntellect(gameState)
                 * gameStateService.GetVersatilityMultiplier(gameState)
-                * holyPriestAuraHealingBonus;
+                * holyPriestAuraHealingBonus
+                * 2; // PW:S has a x2 SP% multiplier built in to it
 
             journal.Entry($"[{spellData.Name}] Tooltip: {averageHeal:0.##}");
 
@@ -46,7 +77,7 @@ namespace Salvation.Core.Models.HolyPriest.Spells
         public override decimal GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)
-                spellData = gameStateService.GetSpellData(gameState, SpellIds.FlashHeal);
+                spellData = gameStateService.GetSpellData(gameState, SpellIds.PowerWordShield);
 
             var hastedCastTime = GetHastedCastTime(gameState, spellData);
             var hastedGcd = GetHastedGcd(gameState, spellData);

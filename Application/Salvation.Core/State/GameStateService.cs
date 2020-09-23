@@ -85,5 +85,32 @@ namespace Salvation.Core.State
 
             return spell;
         }
+
+        public ConduitData GetConduitData(GameState state, Conduit conduitId)
+        {
+            var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.SpecId).FirstOrDefault();
+
+            ConduitData conduit = specData.Conduits
+                .Where(c => c.Id == (int)conduitId).FirstOrDefault();
+
+            conduit = JsonConvert.DeserializeObject<ConduitData>(
+                JsonConvert.SerializeObject(conduit));
+
+            return conduit;
+        }
+
+        public bool IsConduitActive(GameState state, Conduit conduit)
+        {
+            var exists = state.Profile.Conduits.Keys.Contains(conduit);
+
+            return exists;
+        }
+
+        public int GetConduitRank(GameState state, Conduit conduit)
+        {
+            var rank = state.Profile.Conduits[conduit];
+
+            return rank;
+        }
     }
 }

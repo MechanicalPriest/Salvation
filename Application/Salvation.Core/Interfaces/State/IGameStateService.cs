@@ -19,14 +19,19 @@ namespace Salvation.Core.Interfaces.State
         BaseSpellData GetSpellData(GameState state, SpellIds spellId);
         BaseModifier GetModifier(GameState state, string modifierName);
         CastProfile GetCastProfile(GameState state, int spellId);
+        ConduitData GetConduitData(GameState state, Conduit conduitId);
 
 
         // Player Stats
-        public decimal GetIntellect(GameState state);
-        public decimal GetVersatilityMultiplier(GameState state);
-        public decimal GetCriticalStrikeMultiplier(GameState state);
-        public decimal GetMasteryMultiplier(GameState state);
-        public decimal GetHasteMultiplier(GameState state);
-        public decimal GetBaseManaAmount(GameState state);
+        decimal GetIntellect(GameState state);
+        decimal GetVersatilityMultiplier(GameState state);
+        decimal GetCriticalStrikeMultiplier(GameState state);
+        decimal GetMasteryMultiplier(GameState state);
+        decimal GetHasteMultiplier(GameState state);
+        decimal GetBaseManaAmount(GameState state);
+
+        // Player Configuration
+        bool IsConduitActive(GameState state, Conduit conduit);
+        int GetConduitRank(GameState state, Conduit conduit);
     }
 }

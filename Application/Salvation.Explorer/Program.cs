@@ -56,6 +56,7 @@ namespace Salvation.Explorer
                     services.AddSingleton<IDivineStarSpellService, DivineStar>();
                     services.AddSingleton<IHaloSpellService, Halo>();
                     services.AddSingleton<IHolyNovaSpellService, HolyNova>();
+                    services.AddSingleton<IPowerWordShieldSpellService, PowerWordShield>();
 
                     // Application service
                     services.AddHostedService<Explorer>();

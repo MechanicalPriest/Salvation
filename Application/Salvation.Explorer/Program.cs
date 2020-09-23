@@ -60,6 +60,8 @@ namespace Salvation.Explorer
                     // Covenants
                     services.AddSingleton<IFaeGuardiansSpellService, FaeGuardians>();
                     services.AddSingleton<IMindgamesSpellService, Mindgames>();
+                    services.AddSingleton<IUnholyNovaSpellService, UnholyNova>();
+                    services.AddSingleton<IUnholyTransfusionSpellService, UnholyTransfusion>();
 
                     // Application service
                     services.AddHostedService<Explorer>();

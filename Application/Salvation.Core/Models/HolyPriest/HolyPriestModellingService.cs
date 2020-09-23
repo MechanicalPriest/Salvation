@@ -41,7 +41,8 @@ namespace Salvation.Core.Models.HolyPriest
             IHolyNovaSpellService holyNovaSpellService,
             IPowerWordShieldSpellService powerWordShieldSpellService,
             IFaeGuardiansSpellService faeGuardiansSpellService,
-            IMindgamesSpellService mindgamesSpellService)
+            IMindgamesSpellService mindgamesSpellService,
+            IUnholyNovaSpellService unholyNovaSpellService)
         {
             this.gameStateService = gameStateService;
             this.journal = journal;
@@ -64,6 +65,7 @@ namespace Salvation.Core.Models.HolyPriest
             Spells.Add(holyWordSalvationSpellService);
             Spells.Add(faeGuardiansSpellService);
             Spells.Add(mindgamesSpellService);
+            Spells.Add(unholyNovaSpellService);
         }
 
         public BaseModelResults GetResults(GameState state)

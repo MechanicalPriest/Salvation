@@ -22,7 +22,8 @@ namespace Salvation.Core.Models.HolyPriest.Spells
             SpellId = (int)SpellIds.UnholyTransfusion;
         }
 
-        public override decimal GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
+        public override decimal GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null,
+            Dictionary<string, decimal> moreData = null)
         {
             if(spellData == null)
                 spellData = gameStateService.GetSpellData(gameState, SpellIds.UnholyTransfusion);
@@ -41,15 +42,16 @@ namespace Salvation.Core.Models.HolyPriest.Spells
             averageHeal *= gameStateService.GetCriticalStrikeMultiplier(gameState);
 
             // Apply the Festering Transfusion conduit
-            averageHeal *= GetFesteringTransfusionConduitMultiplier(gameState, spellData);
-            var duration = GetDuration(gameState, spellData);
+            averageHeal *= GetFesteringTransfusionConduitMultiplier(gameState, spellData, moreData);
+            var duration = GetDuration(gameState, spellData, moreData);
 
             // For each healing target, heal every ~1.5s for heal amt
             // TODO: Get a better number on healing events per player for the duration of UT
-            return averageHeal * spellData.NumberOfHealingTargets * (duration / 1.5m);
+            return averageHeal * GetNumberOfHealingTargets(gameState, spellData, moreData) * (duration / 1.5m);
         }
 
-        public override decimal GetAverageDamage(GameState gameState, BaseSpellData spellData = null)
+        public override decimal GetAverageDamage(GameState gameState, BaseSpellData spellData = null,
+            Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
                 spellData = gameStateService.GetSpellData(gameState, SpellIds.UnholyTransfusion);
@@ -69,22 +71,24 @@ namespace Salvation.Core.Models.HolyPriest.Spells
             averageDamage *= gameStateService.GetHasteMultiplier(gameState);
 
             // Apply the Festering Transfusion conduit
-            averageDamage *= GetFesteringTransfusionConduitMultiplier(gameState, spellData);
+            averageDamage *= GetFesteringTransfusionConduitMultiplier(gameState, spellData, moreData);
 
-            return averageDamage * spellData.NumberOfDamageTargets;
+            return averageDamage * GetNumberOfDamageTargets(gameState, spellData, moreData);
         }
 
-        public override decimal GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
+        public override decimal GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null,
+            Dictionary<string, decimal> moreData = null)
         {
             return 0m;
         }
 
-        public override decimal GetDuration(GameState gameState, BaseSpellData spellData = null)
+        public override decimal GetDuration(GameState gameState, BaseSpellData spellData = null,
+            Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
                 spellData = gameStateService.GetSpellData(gameState, SpellIds.UnholyTransfusion);
 
-            var baseDuration = base.GetDuration(gameState, spellData);
+            var baseDuration = base.GetDuration(gameState, spellData, moreData);
 
             // TODO: Shift this out to another method maybe, for testing?
             if (gameStateService.IsConduitActive(gameState, Conduit.FesteringTransfusion))
@@ -100,7 +104,8 @@ namespace Salvation.Core.Models.HolyPriest.Spells
             return baseDuration;
         }
 
-        internal decimal GetFesteringTransfusionConduitMultiplier(GameState gameState, BaseSpellData spellData = null)
+        internal decimal GetFesteringTransfusionConduitMultiplier(GameState gameState, BaseSpellData spellData = null,
+            Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
                 spellData = gameStateService.GetSpellData(gameState, SpellIds.UnholyTransfusion);

@@ -28,7 +28,8 @@ namespace Salvation.Core.Models.HolyPriest.Spells
             SpellId = 0;
         }
 
-        public virtual AveragedSpellCastResult GetCastResults(GameState gameState, BaseSpellData spellData = null)
+        public virtual AveragedSpellCastResult GetCastResults(GameState gameState, BaseSpellData spellData = null,
+            Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
                 spellData = gameStateService.GetSpellData(gameState, (SpellIds)SpellId);
@@ -38,23 +39,23 @@ namespace Salvation.Core.Models.HolyPriest.Spells
             result.SpellName = spellData.Name;
             result.SpellId = SpellId;
 
-            result.CastsPerMinute = GetActualCastsPerMinute(gameState, spellData);
-            result.CastTime = GetHastedCastTime(gameState, spellData);
-            result.Cooldown = GetHastedCooldown(gameState, spellData);
-            result.Damage = GetAverageDamage(gameState, spellData);
-            result.Duration = GetDuration(gameState, spellData);
-            result.Gcd = GetHastedGcd(gameState, spellData);
-            result.Healing = GetAverageHealing(gameState, spellData);
-            result.ManaCost = GetActualManaCost(gameState, spellData);
-            result.MaximumCastsPerMinute = GetMaximumCastsPerMinute(gameState, spellData);
-            result.NumberOfDamageTargets = GetNumberOfDamageTargets(gameState, spellData);
-            result.NumberOfHealingTargets = GetNumberOfHealingTargets(gameState, spellData);
-            result.Overhealing = GetAverageOverhealing(gameState, spellData);
-            result.RawHealing = GetAverageRawHealing(gameState, spellData);
+            result.CastsPerMinute = GetActualCastsPerMinute(gameState, spellData, moreData);
+            result.CastTime = GetHastedCastTime(gameState, spellData, moreData);
+            result.Cooldown = GetHastedCooldown(gameState, spellData, moreData);
+            result.Damage = GetAverageDamage(gameState, spellData, moreData);
+            result.Duration = GetDuration(gameState, spellData, moreData);
+            result.Gcd = GetHastedGcd(gameState, spellData, moreData);
+            result.Healing = GetAverageHealing(gameState, spellData, moreData);
+            result.ManaCost = GetActualManaCost(gameState, spellData, moreData);
+            result.MaximumCastsPerMinute = GetMaximumCastsPerMinute(gameState, spellData, moreData);
+            result.NumberOfDamageTargets = GetNumberOfDamageTargets(gameState, spellData, moreData);
+            result.NumberOfHealingTargets = GetNumberOfHealingTargets(gameState, spellData, moreData);
+            result.Overhealing = GetAverageOverhealing(gameState, spellData, moreData);
+            result.RawHealing = GetAverageRawHealing(gameState, spellData, moreData);
 
             if (spellData.IsMasteryTriggered)
             {
-                var echoResult = GetHolyPriestMasteryResult(gameState, spellData);
+                var echoResult = GetHolyPriestMasteryResult(gameState, spellData, moreData);
                 if (echoResult != null)
                     result.AdditionalCasts.Add(echoResult);
             }
@@ -62,56 +63,63 @@ namespace Salvation.Core.Models.HolyPriest.Spells
             return result;
         }
 
-        public virtual decimal GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
+        public virtual decimal GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null,
+            Dictionary<string, decimal> moreData = null)
         {
             return 0m;
         }
 
-        public virtual decimal GetAverageHealing(GameState gameState, BaseSpellData spellData = null)
+        public virtual decimal GetAverageHealing(GameState gameState, BaseSpellData spellData = null,
+            Dictionary<string, decimal> moreData = null)
         {
             // Average healing done is raw healing * overheal
             var castProfile = gameStateService.GetCastProfile(gameState, SpellId);
 
-            var totalDirectHeal = GetAverageRawHealing(gameState, spellData) 
+            var totalDirectHeal = GetAverageRawHealing(gameState, spellData, moreData)
                 * (1 - castProfile.OverhealPercent);
 
             return totalDirectHeal;
         }
 
-        public decimal GetAverageOverhealing(GameState gameState, BaseSpellData spellData = null)
+        public decimal GetAverageOverhealing(GameState gameState, BaseSpellData spellData = null,
+            Dictionary<string, decimal> moreData = null)
         {
             // Average healing done is raw healing * overheal
             var castProfile = gameStateService.GetCastProfile(gameState, SpellId);
 
-            var totalOverheal = GetAverageRawHealing(gameState, spellData)
+            var totalOverheal = GetAverageRawHealing(gameState, spellData, moreData)
                 * castProfile.OverhealPercent;
 
             return totalOverheal;
         }
 
-        public virtual decimal GetActualCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
+        public virtual decimal GetActualCastsPerMinute(GameState gameState, BaseSpellData spellData = null,
+            Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
                 spellData = gameStateService.GetSpellData(gameState, (SpellIds)SpellId);
 
             var castProfile = gameStateService.GetCastProfile(gameState, SpellId);
 
-            decimal castsPerMinute = castProfile.Efficiency * GetMaximumCastsPerMinute(gameState, spellData);
+            decimal castsPerMinute = castProfile.Efficiency * GetMaximumCastsPerMinute(gameState, spellData, moreData);
 
             return castsPerMinute;
         }
 
-        public virtual decimal GetAverageDamage(GameState gameState, BaseSpellData spellData = null)
+        public virtual decimal GetAverageDamage(GameState gameState, BaseSpellData spellData = null,
+            Dictionary<string, decimal> moreData = null)
         {
             return 0m;
         }
 
-        public virtual decimal GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
+        public virtual decimal GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null,
+            Dictionary<string, decimal> moreData = null)
         {
             throw new NotImplementedException();
         }
 
-        public virtual decimal GetHastedCastTime(GameState gameState, BaseSpellData spellData = null)
+        public virtual decimal GetHastedCastTime(GameState gameState, BaseSpellData spellData = null,
+            Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
                 spellData = gameStateService.GetSpellData(gameState, (SpellIds)SpellId);
@@ -120,7 +128,8 @@ namespace Salvation.Core.Models.HolyPriest.Spells
                 : spellData.BaseCastTime;
         }
 
-        public virtual decimal GetHastedGcd(GameState gameState, BaseSpellData spellData = null)
+        public virtual decimal GetHastedGcd(GameState gameState, BaseSpellData spellData = null,
+            Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
                 spellData = gameStateService.GetSpellData(gameState, (SpellIds)SpellId);
@@ -128,7 +137,8 @@ namespace Salvation.Core.Models.HolyPriest.Spells
             return spellData.Gcd / gameStateService.GetHasteMultiplier(gameState);
         }
 
-        public virtual decimal GetHastedCooldown(GameState gameState, BaseSpellData spellData = null)
+        public virtual decimal GetHastedCooldown(GameState gameState, BaseSpellData spellData = null,
+            Dictionary<string, decimal> moreData = null)
         {
             if(spellData == null)
                 spellData = gameStateService.GetSpellData(gameState, (SpellIds)SpellId);
@@ -138,7 +148,8 @@ namespace Salvation.Core.Models.HolyPriest.Spells
                 : spellData.BaseCooldown;
         }
 
-        public virtual decimal GetActualManaCost(GameState gameState, BaseSpellData spellData = null)
+        public virtual decimal GetActualManaCost(GameState gameState, BaseSpellData spellData = null,
+            Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
                 spellData = gameStateService.GetSpellData(gameState, (SpellIds)SpellId);
@@ -148,7 +159,8 @@ namespace Salvation.Core.Models.HolyPriest.Spells
             return baseMana * spellData.ManaCost;
         }
 
-        public virtual decimal GetDuration(GameState gameState, BaseSpellData spellData = null)
+        public virtual decimal GetDuration(GameState gameState, BaseSpellData spellData = null,
+            Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
                 spellData = gameStateService.GetSpellData(gameState, (SpellIds)SpellId);
@@ -156,7 +168,8 @@ namespace Salvation.Core.Models.HolyPriest.Spells
             return spellData.Duration;
         }
 
-        public virtual decimal GetNumberOfHealingTargets(GameState gameState, BaseSpellData spellData = null)
+        public virtual decimal GetNumberOfHealingTargets(GameState gameState, BaseSpellData spellData = null,
+            Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
                 spellData = gameStateService.GetSpellData(gameState, (SpellIds)SpellId);
@@ -164,7 +177,8 @@ namespace Salvation.Core.Models.HolyPriest.Spells
             return spellData.NumberOfHealingTargets;
         }
 
-        public virtual decimal GetNumberOfDamageTargets(GameState gameState, BaseSpellData spellData = null)
+        public virtual decimal GetNumberOfDamageTargets(GameState gameState, BaseSpellData spellData = null,
+            Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
                 spellData = gameStateService.GetSpellData(gameState, (SpellIds)SpellId);
@@ -178,14 +192,15 @@ namespace Salvation.Core.Models.HolyPriest.Spells
         /// <summary>
         /// This does NOT check to see if mastery applies to this spell
         /// </summary>
-        public virtual AveragedSpellCastResult GetHolyPriestMasteryResult(GameState gameState, BaseSpellData spellData)
+        public virtual AveragedSpellCastResult GetHolyPriestMasteryResult(GameState gameState, BaseSpellData spellData,
+            Dictionary<string, decimal> moreData = null)
         {
             AveragedSpellCastResult result = new AveragedSpellCastResult();
 
             if (spellData == null)
                 spellData = gameStateService.GetSpellData(gameState, (SpellIds)SpellId);
 
-            var averageMasteryHeal = GetAverageRawHealing(gameState, spellData)
+            var averageMasteryHeal = GetAverageRawHealing(gameState, spellData, moreData)
                 * (gameStateService.GetMasteryMultiplier(gameState) - 1);
 
             var castProfile = gameStateService.GetCastProfile(gameState, (int)SpellIds.EchoOfLight);

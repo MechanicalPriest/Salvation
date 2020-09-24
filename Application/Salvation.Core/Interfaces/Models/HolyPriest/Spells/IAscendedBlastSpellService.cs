@@ -10,7 +10,6 @@ namespace Salvation.Core.Interfaces.Models.HolyPriest.Spells
 {
     public interface IAscendedBlastSpellService : ISpellService
     {
-        AveragedSpellCastResult GetCastResults(GameState gameState, BaseSpellData spellData, decimal castableTimeframe, decimal boonActualCPM);
-        decimal GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData, decimal castableTimeframe, decimal boonActualCPM);
+
     }
 }

@@ -22,7 +22,8 @@ namespace Salvation.Core.Models.HolyPriest.Spells
             SpellId = (int)SpellIds.Renew;
         }
 
-        public override decimal GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
+        public override decimal GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null,
+            Dictionary<string, decimal> moreData = null)
         {
             if(spellData == null)
                 spellData = gameStateService.GetSpellData(gameState, SpellIds.Renew);
@@ -53,17 +54,18 @@ namespace Salvation.Core.Models.HolyPriest.Spells
 
             averageHealTicks *= gameStateService.GetCriticalStrikeMultiplier(gameState);
 
-            return (averageHealFirstTick + averageHealTicks) * spellData.NumberOfHealingTargets;
+            return (averageHealFirstTick + averageHealTicks) * GetNumberOfHealingTargets(gameState, spellData, moreData);
         }
 
-        public override decimal GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
+        public override decimal GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null,
+            Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
                 spellData = gameStateService.GetSpellData(gameState, SpellIds.Renew);
 
-            var hastedCastTime = GetHastedCastTime(gameState, spellData);
-            var hastedGcd = GetHastedGcd(gameState, spellData);
-            var hastedCd = GetHastedCooldown(gameState, spellData);
+            var hastedCastTime = GetHastedCastTime(gameState, spellData, moreData);
+            var hastedGcd = GetHastedGcd(gameState, spellData, moreData);
+            var hastedCd = GetHastedCooldown(gameState, spellData, moreData);
 
             // A fix to the spell being modified to have no cast time and no gcd and no CD
             // This can happen if it's a component in another spell

@@ -1,4 +1,5 @@
-﻿using Salvation.Core.Constants;
+﻿using Microsoft.VisualBasic.FileIO;
+using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
 using Salvation.Core.Interfaces;
 using Salvation.Core.Interfaces.Models;
@@ -22,7 +23,8 @@ namespace Salvation.Core.Models.HolyPriest.Spells
             SpellId = (int)SpellIds.AscendedBlast;
         }
 
-        public override decimal GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
+        public override decimal GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null,
+            Dictionary<string, decimal> moreData = null)
         {
             if(spellData == null)
                 spellData = gameStateService.GetSpellData(gameState, SpellIds.AscendedBlast);
@@ -30,17 +32,18 @@ namespace Salvation.Core.Models.HolyPriest.Spells
             // AB does ST damage and heals a random friendly (5 stack)
             // Coeff2 being 100 = 100%.
 
-            decimal averageDamage = GetAverageDamage(gameState, spellData);
+            decimal averageDamage = GetAverageDamage(gameState, spellData, moreData);
 
             decimal averageHeal = (spellData.Coeff2 / 100)
                 * averageDamage;
 
             journal.Entry($"[{spellData.Name}] Tooltip: {averageHeal:0.##}");
 
-            return averageHeal * spellData.NumberOfHealingTargets;
+            return averageHeal * GetNumberOfHealingTargets(gameState, spellData, moreData);
         }
 
-        public override decimal GetAverageDamage(GameState gameState, BaseSpellData spellData = null)
+        public override decimal GetAverageDamage(GameState gameState, BaseSpellData spellData = null,
+            Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
                 spellData = gameStateService.GetSpellData(gameState, SpellIds.AscendedBlast);
@@ -68,69 +71,38 @@ namespace Salvation.Core.Models.HolyPriest.Spells
 
             averageDamage *= gameStateService.GetCriticalStrikeMultiplier(gameState);
 
-            return averageDamage * spellData.NumberOfDamageTargets;
+            return averageDamage * GetNumberOfDamageTargets(gameState, spellData, moreData);
         }
 
-        public AveragedSpellCastResult GetCastResults(GameState gameState, BaseSpellData spellData, decimal castableTimeframe, decimal boonActualCPM)
-        {
-            if (spellData == null)
-                spellData = gameStateService.GetSpellData(gameState, (SpellIds)SpellId);
-
-            AveragedSpellCastResult result = new AveragedSpellCastResult();
-
-            result.SpellName = spellData.Name;
-            result.SpellId = SpellId;
-
-            // TODO: Move this to a Dictionary<string, decimal> style optional params object
-            result.CastsPerMinute = GetActualCastsPerMinute(gameState, spellData, castableTimeframe, boonActualCPM);
-            result.CastTime = GetHastedCastTime(gameState, spellData);
-            result.Cooldown = GetHastedCooldown(gameState, spellData);
-            result.Damage = GetAverageDamage(gameState, spellData);
-            result.Duration = GetDuration(gameState, spellData);
-            result.Gcd = GetHastedGcd(gameState, spellData);
-            result.Healing = GetAverageHealing(gameState, spellData);
-            result.ManaCost = GetActualManaCost(gameState, spellData);
-            result.MaximumCastsPerMinute = GetMaximumCastsPerMinute(gameState, spellData);
-            result.NumberOfDamageTargets = GetNumberOfDamageTargets(gameState, spellData);
-            result.NumberOfHealingTargets = GetNumberOfHealingTargets(gameState, spellData);
-            result.Overhealing = GetAverageOverhealing(gameState, spellData);
-            result.RawHealing = GetAverageRawHealing(gameState, spellData);
-
-            if (spellData.IsMasteryTriggered)
-            {
-                var echoResult = GetHolyPriestMasteryResult(gameState, spellData);
-                if (echoResult != null)
-                    result.AdditionalCasts.Add(echoResult);
-            }
-
-            return result;
-        }
-
-        public override AveragedSpellCastResult GetCastResults(GameState gameState, BaseSpellData spellData = null)
-        {
-            throw new NotImplementedException();
-        }
-
-        public decimal GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData, decimal castableTimeframe, decimal boonActualCPM)
+        public override decimal GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData,
+            Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
                 spellData = gameStateService.GetSpellData(gameState, SpellIds.AscendedBlast);
 
-            var hastedCooldown = GetHastedCooldown(gameState, spellData);
-            var hastedGcd = GetHastedGcd(gameState, spellData);
+            if (moreData == null)
+                throw new ArgumentNullException("moreData");
+
+            if (!moreData.ContainsKey("BoonOfTheAscended.CPM"))
+                throw new ArgumentOutOfRangeException("moreData", "Does not contain BoonOfTheAscended.CPM");
+
+            var boonCPM = moreData["BoonOfTheAscended.CPM"];
+
+            if (!moreData.ContainsKey("BoonOfTheAscended.Duration"))
+                throw new ArgumentOutOfRangeException("moreData", "Does not contain BoonOfTheAscended.Duration");
+
+            var allowedDuration = moreData["BoonOfTheAscended.Duration"];
+
+            var hastedCooldown = GetHastedCooldown(gameState, spellData, moreData);
+            var hastedGcd = GetHastedGcd(gameState, spellData, moreData);
 
             // Initial cast, and divide the remaining duration up by cooldown for remaining casts
-            decimal maximumPotentialCasts = 1 + (castableTimeframe - hastedGcd) / hastedCooldown;
+            decimal maximumPotentialCasts = 1 + (allowedDuration - hastedGcd) / hastedCooldown;
 
             // This is the maximum potential casts per Boon CD
-            maximumPotentialCasts = maximumPotentialCasts * boonActualCPM;
+            maximumPotentialCasts = maximumPotentialCasts * boonCPM;
 
             return maximumPotentialCasts;
-        }
-
-        public override decimal GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
-        {
-            throw new NotImplementedException();
         }
     }
 }

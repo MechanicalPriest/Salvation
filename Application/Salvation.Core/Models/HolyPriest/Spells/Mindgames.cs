@@ -24,7 +24,8 @@ namespace Salvation.Core.Models.HolyPriest.Spells
             SpellId = (int)SpellIds.Mindgames;
         }
 
-        public override decimal GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
+        public override decimal GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null,
+            Dictionary<string, decimal> moreData = null)
         {
             if(spellData == null)
                 spellData = gameStateService.GetSpellData(gameState, SpellIds.Mindgames);
@@ -43,10 +44,11 @@ namespace Salvation.Core.Models.HolyPriest.Spells
             // Mindgames absorbs the incoming hit 323701, and heals for the amount absorbed 323706. 
             // The order of events though is Heal then Absorb/Damage.
 
-            return averageHeal * 2 * spellData.NumberOfHealingTargets;
+            return averageHeal * 2 * GetNumberOfHealingTargets(gameState, spellData, moreData);
         }
 
-        public override decimal GetAverageDamage(GameState gameState, BaseSpellData spellData = null)
+        public override decimal GetAverageDamage(GameState gameState, BaseSpellData spellData = null,
+            Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
                 spellData = gameStateService.GetSpellData(gameState, SpellIds.Mindgames);
@@ -71,15 +73,16 @@ namespace Salvation.Core.Models.HolyPriest.Spells
                 averageDamage *= (1 + (conduitData.Ranks[rank] / 100));
             }
 
-            return averageDamage * spellData.NumberOfDamageTargets;
+            return averageDamage * GetNumberOfDamageTargets(gameState, spellData, moreData);
         }
 
-        public override decimal GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
+        public override decimal GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null,
+            Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
                 spellData = gameStateService.GetSpellData(gameState, SpellIds.Mindgames);
 
-            var hastedCd = GetHastedCooldown(gameState, spellData);
+            var hastedCd = GetHastedCooldown(gameState, spellData, moreData);
             var fightLength = gameState.Profile.FightLengthSeconds;
 
             decimal maximumPotentialCasts = 60m / hastedCd
@@ -88,12 +91,13 @@ namespace Salvation.Core.Models.HolyPriest.Spells
             return maximumPotentialCasts;
         }
 
-        public override decimal GetDuration(GameState gameState, BaseSpellData spellData = null)
+        public override decimal GetDuration(GameState gameState, BaseSpellData spellData = null,
+            Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
                 spellData = gameStateService.GetSpellData(gameState, SpellIds.Mindgames);
 
-            var baseDuration = base.GetDuration(gameState, spellData);
+            var baseDuration = base.GetDuration(gameState, spellData, moreData);
 
             // Apply the duration component of the Shattered Perceptions conduit.
             // TODO: Shift this out to another method maybe, for testing?

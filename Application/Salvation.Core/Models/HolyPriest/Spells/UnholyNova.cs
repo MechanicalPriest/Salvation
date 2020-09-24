@@ -26,12 +26,13 @@ namespace Salvation.Core.Models.HolyPriest.Spells
             this.unholyTransfuionSpellService = unholyTransfuionSpellService;
         }
 
-        public override AveragedSpellCastResult GetCastResults(GameState gameState, BaseSpellData spellData = null)
+        public override AveragedSpellCastResult GetCastResults(GameState gameState, BaseSpellData spellData = null,
+            Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
                 spellData = gameStateService.GetSpellData(gameState, SpellIds.UnholyNova);
 
-            AveragedSpellCastResult result = base.GetCastResults(gameState, spellData);
+            AveragedSpellCastResult result = base.GetCastResults(gameState, spellData, moreData);
 
             // Apply the transufion DoT/HoT
             var unholyTransfusionSpellData = gameStateService.GetSpellData(gameState, SpellIds.UnholyTransfusion);
@@ -43,7 +44,8 @@ namespace Salvation.Core.Models.HolyPriest.Spells
             return result;
         }
 
-        public override decimal GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
+        public override decimal GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null,
+            Dictionary<string, decimal> moreData = null)
         {
             if(spellData == null)
                 spellData = gameStateService.GetSpellData(gameState, SpellIds.UnholyNova);
@@ -59,16 +61,17 @@ namespace Salvation.Core.Models.HolyPriest.Spells
 
             averageHeal *= gameStateService.GetCriticalStrikeMultiplier(gameState);
 
-            return averageHeal * spellData.NumberOfHealingTargets;
+            return averageHeal * GetNumberOfHealingTargets(gameState, spellData, moreData);
         }
 
-        public override decimal GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
+        public override decimal GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null,
+            Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
                 spellData = gameStateService.GetSpellData(gameState, SpellIds.UnholyNova);
 
-            var hastedCastTime = GetHastedCastTime(gameState, spellData);
-            var hastedCd = GetHastedCooldown(gameState, spellData);
+            var hastedCastTime = GetHastedCastTime(gameState, spellData, moreData);
+            var hastedCd = GetHastedCooldown(gameState, spellData, moreData);
             var fightLength = gameState.Profile.FightLengthSeconds;
 
             decimal maximumPotentialCasts = 60m / (hastedCastTime + hastedCd)

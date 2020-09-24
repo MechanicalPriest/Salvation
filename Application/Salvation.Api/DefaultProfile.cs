@@ -18,7 +18,7 @@ namespace Salvation.Api
     public static class DefaultProfile
     {
         [FunctionName("DefaultProfile")]
-        public static async Task<IActionResult> Run(
+        public static IActionResult Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequest req,
             ILogger log)
         {

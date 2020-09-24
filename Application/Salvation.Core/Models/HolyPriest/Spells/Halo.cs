@@ -22,7 +22,8 @@ namespace Salvation.Core.Models.HolyPriest.Spells
             SpellId = (int)SpellIds.Halo;
         }
 
-        public override decimal GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
+        public override decimal GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null,
+            Dictionary<string, decimal> moreData = null)
         {
             if(spellData == null)
                 spellData = gameStateService.GetSpellData(gameState, SpellIds.Halo);
@@ -39,18 +40,19 @@ namespace Salvation.Core.Models.HolyPriest.Spells
             averageHeal *= gameStateService.GetCriticalStrikeMultiplier(gameState);
 
             // Halo caps at roughly 6 targets worth of healing
-            return averageHeal * Math.Min(6, spellData.NumberOfHealingTargets);
+            return averageHeal * Math.Min(6, GetNumberOfHealingTargets(gameState, spellData, moreData));
         }
 
-        public override decimal GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
+        public override decimal GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null,
+            Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
                 spellData = gameStateService.GetSpellData(gameState, SpellIds.Halo);
 
             // Halo is simply 60 / (CastTime + CD) + 1 / (FightLength / 60)
             // Number of casts per minute plus one cast at the start of the encounter
-            var hastedCastTime = GetHastedCastTime(gameState, spellData);
-            var hastedCd = GetHastedCooldown(gameState, spellData);
+            var hastedCastTime = GetHastedCastTime(gameState, spellData, moreData);
+            var hastedCd = GetHastedCooldown(gameState, spellData, moreData);
             var fightLength = gameState.Profile.FightLengthSeconds;
 
             decimal maximumPotentialCasts = 60m / (hastedCastTime + hastedCd)

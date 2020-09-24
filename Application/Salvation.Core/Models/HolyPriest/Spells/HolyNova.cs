@@ -22,7 +22,8 @@ namespace Salvation.Core.Models.HolyPriest.Spells
             SpellId = (int)SpellIds.HolyNova;
         }
 
-        public override decimal GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
+        public override decimal GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null,
+            Dictionary<string, decimal> moreData = null)
         {
             if(spellData == null)
                 spellData = gameStateService.GetSpellData(gameState, SpellIds.HolyNova);
@@ -38,16 +39,17 @@ namespace Salvation.Core.Models.HolyPriest.Spells
 
             averageHeal *= gameStateService.GetCriticalStrikeMultiplier(gameState);
             // TODO: Implement the SQRT scaling for holy nova after testing how it works more
-            return averageHeal * spellData.NumberOfHealingTargets;
+            return averageHeal * GetNumberOfHealingTargets(gameState, spellData, moreData);
         }
 
-        public override decimal GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
+        public override decimal GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null,
+            Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
                 spellData = gameStateService.GetSpellData(gameState, SpellIds.HolyNova);
 
-            var hastedCastTime = GetHastedCastTime(gameState, spellData);
-            var hastedGcd = GetHastedGcd(gameState, spellData);
+            var hastedCastTime = GetHastedCastTime(gameState, spellData, moreData);
+            var hastedGcd = GetHastedGcd(gameState, spellData, moreData);
 
             decimal fillerCastTime = hastedCastTime == 0
                 ? hastedGcd

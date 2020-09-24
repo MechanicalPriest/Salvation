@@ -22,9 +22,10 @@ namespace Salvation.Core.Models.HolyPriest.Spells
             SpellId = (int)SpellIds.PowerWordShield;
         }
 
-        public override AveragedSpellCastResult GetCastResults(GameState gameState, BaseSpellData spellData = null)
+        public override AveragedSpellCastResult GetCastResults(GameState gameState, BaseSpellData spellData = null,
+            Dictionary<string, decimal> moreData = null)
         {
-            AveragedSpellCastResult result = base.GetCastResults(gameState, spellData);
+            AveragedSpellCastResult result = base.GetCastResults(gameState, spellData, moreData);
 
             if (gameStateService.IsConduitActive(gameState, Conduit.CharitableSoul))
             {
@@ -52,7 +53,8 @@ namespace Salvation.Core.Models.HolyPriest.Spells
             return result;
         }
 
-        public override decimal GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
+        public override decimal GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null,
+            Dictionary<string, decimal> moreData = null)
         {
             if(spellData == null)
                 spellData = gameStateService.GetSpellData(gameState, SpellIds.PowerWordShield);
@@ -71,16 +73,17 @@ namespace Salvation.Core.Models.HolyPriest.Spells
 
             averageHeal *= gameStateService.GetCriticalStrikeMultiplier(gameState);
 
-            return averageHeal * spellData.NumberOfHealingTargets;
+            return averageHeal * GetNumberOfHealingTargets(gameState, spellData, moreData);
         }
 
-        public override decimal GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
+        public override decimal GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null,
+            Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
                 spellData = gameStateService.GetSpellData(gameState, SpellIds.PowerWordShield);
 
-            var hastedCastTime = GetHastedCastTime(gameState, spellData);
-            var hastedGcd = GetHastedGcd(gameState, spellData);
+            var hastedCastTime = GetHastedCastTime(gameState, spellData, moreData);
+            var hastedGcd = GetHastedGcd(gameState, spellData, moreData);
 
             decimal fillerCastTime = hastedCastTime == 0
                 ? hastedGcd

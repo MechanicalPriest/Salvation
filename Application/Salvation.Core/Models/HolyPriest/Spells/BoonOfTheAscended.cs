@@ -29,12 +29,13 @@ namespace Salvation.Core.Models.HolyPriest.Spells
             this.ascendedNovaSpellService = ascendedNovaSpellService;
         }
 
-        public override AveragedSpellCastResult GetCastResults(GameState gameState, BaseSpellData spellData = null)
+        public override AveragedSpellCastResult GetCastResults(GameState gameState, BaseSpellData spellData = null,
+            Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
                 spellData = gameStateService.GetSpellData(gameState, SpellIds.BoonOfTheAscended);
 
-            AveragedSpellCastResult result = base.GetCastResults(gameState, spellData);
+            AveragedSpellCastResult result = base.GetCastResults(gameState, spellData, moreData);
 
             // Boon of the Ascended is a short duration
             // Ascended Blast with a cooldown is usually cast as often as possible using efficiency
@@ -43,21 +44,36 @@ namespace Salvation.Core.Models.HolyPriest.Spells
 
             // AB 
             // based on the duration and the Boon CPM, figure out how often it's being cast
-            var duration = GetDuration(gameState, spellData);
-            var boonCPM = GetActualCastsPerMinute(gameState, spellData);
+            var duration = GetDuration(gameState, spellData, moreData);
+            var boonCPM = GetActualCastsPerMinute(gameState, spellData, moreData);
+
+            var abMoreData = new Dictionary<string, decimal>()
+            {
+                ["BoonOfTheAscended.Duration"] = duration,
+                ["BoonOfTheAscended.CPM"] = boonCPM
+            };
 
             var abSpellData = gameStateService.GetSpellData(gameState, SpellIds.AscendedBlast);
 
-            var abResults = ascendedBlastSpellService.GetCastResults(gameState, abSpellData);
+            var abResults = ascendedBlastSpellService.GetCastResults(gameState, abSpellData, abMoreData);
             result.AdditionalCasts.Add(abResults);
 
             // AN
-            var leftoverCastTime = GetDuration(gameState, spellData) -
+            var leftoverCastTime = GetDuration(gameState, spellData, moreData) -
                 (abResults.CastsPerMinute * abResults.Gcd);
+
+            // Construct the extra data AN needs to know about to run
+            var anMoreData = new Dictionary<string, decimal>()
+            {
+                ["BoonOfTheAscended.LeftoverDuration"] = leftoverCastTime,
+                ["BoonOfTheAscended.CPM"] = boonCPM
+            };
+            moreData.Add("BoonOfTheAscended.Duration", leftoverCastTime);
 
             var anSpellData = gameStateService.GetSpellData(gameState, SpellIds.AscendedBlast);
 
-            var anResults = ascendedNovaSpellService.GetCastResults(gameState, anSpellData);
+            var anResults = ascendedNovaSpellService.GetCastResults(gameState, anSpellData, anMoreData);
+
             result.AdditionalCasts.Add(anResults);
 
             // AE
@@ -65,13 +81,14 @@ namespace Salvation.Core.Models.HolyPriest.Spells
             return result;
         }
 
-        public override decimal GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
+        public override decimal GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null,
+            Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
                 spellData = gameStateService.GetSpellData(gameState, SpellIds.BoonOfTheAscended);
 
-            var hastedCastTime = GetHastedCastTime(gameState, spellData);
-            var hastedCd = GetHastedCooldown(gameState, spellData);
+            var hastedCastTime = GetHastedCastTime(gameState, spellData, moreData);
+            var hastedCd = GetHastedCooldown(gameState, spellData, moreData);
             var fightLength = gameState.Profile.FightLengthSeconds;
 
             decimal maximumPotentialCasts = 60m / (hastedCastTime + hastedCd)

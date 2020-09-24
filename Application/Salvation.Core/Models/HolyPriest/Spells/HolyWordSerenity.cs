@@ -32,7 +32,8 @@ namespace Salvation.Core.Models.HolyPriest.Spells
             this.bindingHealSpellService = bindingHealSpellService;
         }
 
-        public override decimal GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
+        public override decimal GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null,
+            Dictionary<string, decimal> moreData = null)
         {
             if(spellData == null)
                 spellData = gameStateService.GetSpellData(gameState, SpellIds.HolyWordSerenity);
@@ -48,10 +49,11 @@ namespace Salvation.Core.Models.HolyPriest.Spells
 
             averageHeal *= gameStateService.GetCriticalStrikeMultiplier(gameState);
 
-            return averageHeal * spellData.NumberOfHealingTargets;
+            return averageHeal * GetNumberOfHealingTargets(gameState, spellData, moreData);
         }
 
-        public override decimal GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
+        public override decimal GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null,
+            Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
                 spellData = gameStateService.GetSpellData(gameState, SpellIds.HolyWordSerenity);
@@ -66,7 +68,7 @@ namespace Salvation.Core.Models.HolyPriest.Spells
             var healCPM = healSpellService.GetActualCastsPerMinute(gameState);
             var bhCPM = bindingHealSpellService.GetActualCastsPerMinute(gameState);
 
-            var hastedCD = GetHastedCooldown(gameState, spellData);
+            var hastedCD = GetHastedCooldown(gameState, spellData, moreData);
             var fightLength = gameState.Profile.FightLengthSeconds;
 
             // TODO: Add other HW CDR increasing effects.

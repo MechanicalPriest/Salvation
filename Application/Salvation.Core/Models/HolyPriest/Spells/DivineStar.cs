@@ -22,7 +22,8 @@ namespace Salvation.Core.Models.HolyPriest.Spells
             SpellId = (int)SpellIds.DivineStar;
         }
 
-        public override decimal GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
+        public override decimal GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null,
+            Dictionary<string, decimal> moreData = null)
         {
             if(spellData == null)
                 spellData = gameStateService.GetSpellData(gameState, SpellIds.DivineStar);
@@ -40,16 +41,17 @@ namespace Salvation.Core.Models.HolyPriest.Spells
                 * gameStateService.GetCriticalStrikeMultiplier(gameState);
 
             // Divine Star caps at roughly 6 targets worth of healing
-            return averageHeal * Math.Min(6, spellData.NumberOfHealingTargets);
+            return averageHeal * Math.Min(6, GetNumberOfHealingTargets(gameState, spellData, moreData));
         }
 
-        public override decimal GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
+        public override decimal GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null,
+            Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
                 spellData = gameStateService.GetSpellData(gameState, SpellIds.DivineStar);
 
-            var hastedCastTime = GetHastedCastTime(gameState, spellData);
-            var hastedCd = GetHastedCooldown(gameState, spellData);
+            var hastedCastTime = GetHastedCastTime(gameState, spellData, moreData);
+            var hastedCd = GetHastedCooldown(gameState, spellData, moreData);
             var fightLength = gameState.Profile.FightLengthSeconds;
 
             decimal maximumPotentialCasts = 60m / (hastedCastTime + hastedCd)

@@ -62,6 +62,10 @@ namespace Salvation.Explorer
                     services.AddSingleton<IMindgamesSpellService, Mindgames>();
                     services.AddSingleton<IUnholyNovaSpellService, UnholyNova>();
                     services.AddSingleton<IUnholyTransfusionSpellService, UnholyTransfusion>();
+                    services.AddSingleton<IBoonOfTheAscendedSpellService, BoonOfTheAscended>();
+                    services.AddSingleton<IAscendedBlastSpellService, AscendedBlast>();
+                    services.AddSingleton<IAscendedNovaSpellService, AscendedNova>();
+                    services.AddSingleton<IAscendedEruptionSpellService, AscendedEruption>();
 
                     // Application service
                     services.AddHostedService<Explorer>();

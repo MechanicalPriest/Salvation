@@ -51,6 +51,10 @@ namespace Salvation.Api
             builder.Services.AddSingleton<IMindgamesSpellService, Mindgames>();
             builder.Services.AddSingleton<IUnholyNovaSpellService, UnholyNova>();
             builder.Services.AddSingleton<IUnholyTransfusionSpellService, UnholyTransfusion>();
+            builder.Services.AddSingleton<IBoonOfTheAscendedSpellService, BoonOfTheAscended>();
+            builder.Services.AddSingleton<IAscendedBlastSpellService, AscendedBlast>();
+            builder.Services.AddSingleton<IAscendedNovaSpellService, AscendedNova>();
+            builder.Services.AddSingleton<IAscendedEruptionSpellService, AscendedEruption>();
         }
     }
 }

@@ -42,7 +42,8 @@ namespace Salvation.Core.Models.HolyPriest
             IPowerWordShieldSpellService powerWordShieldSpellService,
             IFaeGuardiansSpellService faeGuardiansSpellService,
             IMindgamesSpellService mindgamesSpellService,
-            IUnholyNovaSpellService unholyNovaSpellService)
+            IUnholyNovaSpellService unholyNovaSpellService,
+            IBoonOfTheAscendedSpellService boonOfTheAscendedSpellService)
         {
             this.gameStateService = gameStateService;
             this.journal = journal;
@@ -66,6 +67,7 @@ namespace Salvation.Core.Models.HolyPriest
             Spells.Add(faeGuardiansSpellService);
             Spells.Add(mindgamesSpellService);
             Spells.Add(unholyNovaSpellService);
+            Spells.Add(boonOfTheAscendedSpellService);
         }
 
         public BaseModelResults GetResults(GameState state)
@@ -110,9 +112,7 @@ namespace Salvation.Core.Models.HolyPriest
         {
             switch (spellId)
             {
-                case SpellIds.AscendedBlast:
-                case SpellIds.AscendedEruption:
-                case SpellIds.AscendedNova:
+                case SpellIds.BoonOfTheAscended:
                     return gameStateService.GetActiveCovenant(state) == Covenant.Kyrian;
 
                 case SpellIds.Mindgames:

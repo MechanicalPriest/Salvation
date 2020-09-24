@@ -37,7 +37,7 @@ namespace Salvation.Core.Models.HolyPriest.Spells
             decimal averageHeal = (spellData.Coeff2 / 100)
                 * averageDamage;
 
-            journal.Entry($"[{spellData.Name}] Tooltip: {averageHeal:0.##}");
+            journal.Entry($"[{spellData.Name}] Tooltip: {spellData.Coeff2}% of Dmg");
 
             return averageHeal * GetNumberOfHealingTargets(gameState, spellData, moreData);
         }
@@ -50,7 +50,7 @@ namespace Salvation.Core.Models.HolyPriest.Spells
 
             var holyPriestAuraDamageBonus = gameStateService.GetModifier(gameState, "HolyPriestAuraDamageMultiplier").Value;
 
-            // coeff3 * int * hpriest dmg mod * vers
+            // coeff1 * int * hpriest dmg mod * vers
             decimal averageDamage = spellData.Coeff1
                 * gameStateService.GetIntellect(gameState)
                 * gameStateService.GetVersatilityMultiplier(gameState)

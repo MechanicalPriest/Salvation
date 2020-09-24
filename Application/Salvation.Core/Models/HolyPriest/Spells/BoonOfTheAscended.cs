@@ -17,16 +17,19 @@ namespace Salvation.Core.Models.HolyPriest.Spells
     {
         private readonly IAscendedBlastSpellService ascendedBlastSpellService;
         private readonly IAscendedNovaSpellService ascendedNovaSpellService;
+        private readonly IAscendedEruptionSpellService ascendedEruptionSpellService;
 
         public BoonOfTheAscended(IGameStateService gameStateService,
             IModellingJournal journal,
             IAscendedBlastSpellService ascendedBlastSpellService,
-            IAscendedNovaSpellService ascendedNovaSpellService)
+            IAscendedNovaSpellService ascendedNovaSpellService,
+            IAscendedEruptionSpellService ascendedEruptionSpellService)
             : base (gameStateService, journal)
         {
             SpellId = (int)SpellIds.BoonOfTheAscended;
             this.ascendedBlastSpellService = ascendedBlastSpellService;
             this.ascendedNovaSpellService = ascendedNovaSpellService;
+            this.ascendedEruptionSpellService = ascendedEruptionSpellService;
         }
 
         public override AveragedSpellCastResult GetCastResults(GameState gameState, BaseSpellData spellData = null,
@@ -47,36 +50,42 @@ namespace Salvation.Core.Models.HolyPriest.Spells
             var duration = GetDuration(gameState, spellData, moreData);
             var boonCPM = GetActualCastsPerMinute(gameState, spellData, moreData);
 
+            // Construct the extra data AB needs to know about to run
             var abMoreData = new Dictionary<string, decimal>()
             {
                 ["BoonOfTheAscended.Duration"] = duration,
                 ["BoonOfTheAscended.CPM"] = boonCPM
             };
 
-            var abSpellData = gameStateService.GetSpellData(gameState, SpellIds.AscendedBlast);
-
-            var abResults = ascendedBlastSpellService.GetCastResults(gameState, abSpellData, abMoreData);
+            var abResults = ascendedBlastSpellService.GetCastResults(gameState, null, abMoreData);
             result.AdditionalCasts.Add(abResults);
 
             // AN
             var leftoverCastTime = GetDuration(gameState, spellData, moreData) -
                 (abResults.CastsPerMinute * abResults.Gcd);
 
-            // Construct the extra data AN needs to know about to run
             var anMoreData = new Dictionary<string, decimal>()
             {
                 ["BoonOfTheAscended.LeftoverDuration"] = leftoverCastTime,
                 ["BoonOfTheAscended.CPM"] = boonCPM
             };
-            moreData.Add("BoonOfTheAscended.Duration", leftoverCastTime);
 
-            var anSpellData = gameStateService.GetSpellData(gameState, SpellIds.AscendedBlast);
-
-            var anResults = ascendedNovaSpellService.GetCastResults(gameState, anSpellData, anMoreData);
+            var anResults = ascendedNovaSpellService.GetCastResults(gameState, null, anMoreData);
 
             result.AdditionalCasts.Add(anResults);
 
             // AE
+            // 1 base stack + 5 per AB + 1 per AE target
+            var boonStacks = 1 + abResults.CastsPerMinute * 5 + anResults.CastsPerMinute * anResults.NumberOfDamageTargets;
+            var aeMoreData = new Dictionary<string, decimal>()
+            {
+                ["BoonOfTheAscended.BoonStacks"] = boonStacks,
+                ["BoonOfTheAscended.CPM"] = boonCPM
+            };
+
+            var aeResults = ascendedEruptionSpellService.GetCastResults(gameState, null, aeMoreData);
+
+            anResults.AdditionalCasts.Add(aeResults);
 
             return result;
         }

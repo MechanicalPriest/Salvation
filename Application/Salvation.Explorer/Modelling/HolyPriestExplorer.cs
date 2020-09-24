@@ -4,6 +4,7 @@ using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
 using Salvation.Core.Interfaces.Constants;
 using Salvation.Core.Interfaces.Modelling;
+using Salvation.Core.Interfaces.Profile;
 using Salvation.Core.Modelling;
 using Salvation.Core.Modelling.Common;
 using Salvation.Core.Modelling.HolyPriest;
@@ -27,11 +28,15 @@ namespace Salvation.Explorer.Modelling
     {
         private readonly IConstantsService constantsService;
         private readonly IModellingService modellingService;
+        private readonly IProfileGenerationService holyPriestProfileGeneratior;
 
-        public HolyPriestExplorer(IConstantsService constantsService, IModellingService modellingService)
+        public HolyPriestExplorer(IConstantsService constantsService, 
+            IModellingService modellingService,
+            IProfileGenerationService holyPriestProfileGeneratior)
         {
             this.constantsService = constantsService;
             this.modellingService = modellingService;
+            this.holyPriestProfileGeneratior = holyPriestProfileGeneratior;
         }
 
         public void TestHolyPriestModel()
@@ -43,7 +48,8 @@ namespace Salvation.Explorer.Modelling
 
         public void GenerateStatWeights(IConstantsService constantsManager)
         {
-            var basicProfile = DefaultProfiles.GetDefaultProfile(Spec.HolyPriest);
+            var profileGen = new ProfileGenerationService();
+            var basicProfile = profileGen.GetDefaultProfile(Spec.HolyPriest);
 
             StatWeightGenerator sw = new StatWeightGenerator(constantsManager);
             var results = sw.Generate(basicProfile, 100,
@@ -75,7 +81,7 @@ namespace Salvation.Explorer.Modelling
         {
             GameState state = new GameState();
             state.Constants = constantsService.LoadConstantsFromFile();
-            state.Profile = DefaultProfiles.GetDefaultProfile(Spec.HolyPriest);
+            state.Profile = holyPriestProfileGeneratior.GetDefaultProfile(Spec.HolyPriest);
 
             var results = modellingService.GetResults(state);
         }

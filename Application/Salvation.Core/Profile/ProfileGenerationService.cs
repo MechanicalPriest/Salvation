@@ -1,68 +1,95 @@
 ﻿using Newtonsoft.Json;
 using Salvation.Core.Constants.Data;
-using Salvation.Core.Modelling;
+using Salvation.Core.Interfaces;
+using Salvation.Core.Interfaces.Profile;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Salvation.Core.Profile
 {
-    /// <summary>
-    /// TODO: Move this somewhere nicer, essentially just boilerplate code to help testing and development
-    /// </summary>
-    public class DefaultProfiles
+    public class ProfileGenerationService : IProfileGenerationService
     {
-        public static BaseProfile GetDefaultProfile(int specId)
+        public ProfileGenerationService()
         {
-            var spec = (Spec)specId;
-
-            return GetDefaultProfile(spec);
+            
         }
 
-        public static BaseProfile GetDefaultProfile(Spec spec, Covenant covenant = Covenant.None)
+        public PlayerProfile GetDefaultProfile(Spec spec)
         {
-            BaseProfile profile;
+            PlayerProfile profile;
 
             switch (spec)
             {
                 case Spec.HolyPriest:
-                    profile =  generateHolyPriestProfile();
+                    profile = GenerateHolyPriestProfile();
                     break;
 
                 case Spec.None:
                 default:
-                    throw new ArgumentOutOfRangeException("specid", "SpecID must be a valid supported spec");
-            }
-
-            switch (covenant)
-            {
-                case Covenant.Kyrian:
-                    SetToKyrian(profile);
-                    break;
-
-                case Covenant.Venthyr:
-                    SetToVenthyr(profile);
-                    break;
-
-                case Covenant.Necrolord:
-                    SetToNecrolord(profile);
-                    break;
-
-                case Covenant.NightFae:
-                    SetToNightFae(profile);
-                    break;
-
-                case Covenant.None:
-                default:
-                    break;
+                    throw new ArgumentOutOfRangeException("Spec", "Spec must be a valid supported spec.");
             }
 
             return profile;
         }
 
-        private static BaseProfile generateHolyPriestProfile()
+        public void AddConduit(PlayerProfile profile, Conduit conduit, int rank)
         {
-            var basicProfile = new BaseProfile()
+            if (profile.Conduits.ContainsKey(conduit))
+            {
+                profile.Conduits[conduit] = rank;
+            }
+
+            profile.Conduits.Add(conduit, rank);
+        }
+
+        public void RemoveConduit(PlayerProfile profile, Conduit conduit)
+        {
+            if (profile.Conduits.ContainsKey(conduit))
+            {
+                profile.Conduits.Remove(conduit);
+            }
+        }
+
+        public void AddTalent(PlayerProfile profile, Talent talent)
+        {
+            if (!profile.Talents.Contains(talent))
+                profile.Talents.Add(talent);
+        }
+
+        public void RemoveTalent(PlayerProfile profile, Talent talent)
+        {
+            if (profile.Talents.Contains(talent))
+                profile.Talents.Remove(talent);
+        }
+
+        /// <summary>
+        /// Swap the profiles covenant. This includes logic to 
+        /// </summary>
+        /// <param name="cleanupCovenantData">Override to false to not touch soulbinds, conduits etc</param>
+        public void SetCovenant(PlayerProfile profile, Covenant covenant, bool cleanupCovenantData = true)
+        {
+            // Wipe the existing covenant data if we're setting a new covenant
+            if (cleanupCovenantData)
+                RemoveCovenantData(profile);
+
+            profile.Covenant = covenant;
+        }
+
+        public void RemoveCovenantData(PlayerProfile profile)
+        {
+            profile.Covenant = Covenant.None;
+
+            // Wipe soulbinds
+            profile.Soulbinds = new List<Soulbind>();
+
+            // Wipe conduits
+            profile.Conduits = new Dictionary<Conduit, int>();
+        }
+
+        private PlayerProfile GenerateHolyPriestProfile()
+        {
+            var basicProfile = new PlayerProfile()
             {
                 Name = "Holy Priest Default Profile",
                 SpecId = Spec.HolyPriest,
@@ -111,64 +138,16 @@ namespace Salvation.Core.Profile
             return basicProfile;
         }
 
-        public static BaseProfile SetToKyrian(BaseProfile profile)
-        {
-            // TODO: Include more configuration to set to a specific Kyrian soulbind ?
-            profile.Covenant = Covenant.Kyrian;
-            profile.Conduits = new Dictionary<Conduit, int>()
-            {
-                { Conduit.CourageousAscension, 0 }
-            };
-
-            return profile;
-        }
-
-        public static BaseProfile SetToVenthyr(BaseProfile profile)
-        {
-            // TODO: Include more configuration to set to a specific Venthyr soulbind ?
-            profile.Covenant = Covenant.Venthyr;
-            profile.Conduits = new Dictionary<Conduit, int>()
-            {
-                { Conduit.ShatteredPerceptions, 0 }
-            };
-
-            return profile;
-        }
-
-        public static BaseProfile SetToNightFae(BaseProfile profile)
-        {
-            // TODO: Include more configuration to set to a specific NightFae soulbind ?
-            profile.Covenant = Covenant.NightFae;
-            profile.Conduits = new Dictionary<Conduit, int>()
-            {
-                { Conduit.FaeFermata, 0 }
-            };
-
-            return profile;
-        }
-
-        public static BaseProfile SetToNecrolord(BaseProfile profile)
-        {
-            // TODO: Include more configuration to set to a specific Necrolord soulbind ?
-            profile.Covenant = Covenant.Necrolord;
-            profile.Conduits = new Dictionary<Conduit, int>()
-            {
-                { Conduit.FesteringTransfusion, 0 }
-            };
-
-            return profile;
-        }
-
         /// <summary>
         /// Deep clone a profile by serialising and deserialising it as JSON.
         /// </summary>
         /// <param name="profile">The profile to be cloned</param>
         /// <returns>A fresh instance of the profile</returns>
-        public static BaseProfile CloneProfile(BaseProfile profile)
+        public PlayerProfile CloneProfile(PlayerProfile profile)
         {
             var profileString = JsonConvert.SerializeObject(profile);
 
-            var newProfile = JsonConvert.DeserializeObject<BaseProfile>(profileString);
+            var newProfile = JsonConvert.DeserializeObject<PlayerProfile>(profileString);
 
             return newProfile;
         }

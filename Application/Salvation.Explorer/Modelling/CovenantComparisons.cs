@@ -21,7 +21,7 @@ namespace Salvation.Explorer.Modelling
         // 1. Add covenant
         // 2. Update the efficiency usage
 
-        public BaseProfile GetBaseProfile()
+        public PlayerProfile GetBaseProfile()
         {
             //BaseProfile profile;
 

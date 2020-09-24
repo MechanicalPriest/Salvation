@@ -33,7 +33,7 @@ namespace Salvation.Core.Profile
 
     
 
-    public class BaseProfile
+    public class PlayerProfile
     {
         public Spec SpecId { get; set; }
         public string Name { get; set; }
@@ -61,7 +61,7 @@ namespace Salvation.Core.Profile
         // Misc info
         public int FightLengthSeconds { get; set; }
 
-        public BaseProfile()
+        public PlayerProfile()
         {
             Casts = new List<CastProfile>();
             Talents = new List<Talent>();
@@ -91,9 +91,9 @@ namespace Salvation.Core.Profile
             return exists;
         }
 
-        public static BaseProfile Clone(BaseProfile existingProfile)
+        public static PlayerProfile Clone(PlayerProfile existingProfile)
         {
-            return JsonConvert.DeserializeObject<BaseProfile>(JsonConvert.SerializeObject(existingProfile));
+            return JsonConvert.DeserializeObject<PlayerProfile>(JsonConvert.SerializeObject(existingProfile));
         }
     }
 }

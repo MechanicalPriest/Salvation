@@ -15,9 +15,10 @@ namespace Salvation.CoreTests.Model
     [TestFixture]
     class StatWeightGeneratorTests
     {
-        public BaseProfile GetBaseProfile()
+        public PlayerProfile GetBaseProfile()
         {
-            var profile = DefaultProfiles.GetDefaultProfile(Spec.HolyPriest);
+            var profileGen = new ProfileGenerationService();
+            var profile = profileGen.GetDefaultProfile(Spec.HolyPriest);
 
             return profile;
         }

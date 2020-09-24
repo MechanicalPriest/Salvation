@@ -27,7 +27,7 @@ namespace Salvation.Core.Modelling
         }
 
         public StatWeightResult Generate(
-            BaseProfile baseProfile, 
+            PlayerProfile baseProfile, 
             int numAdditionalStats,
             StatWeightType swType = StatWeightType.EffectiveHealing)
         {
@@ -59,38 +59,38 @@ namespace Salvation.Core.Modelling
             return result;
         }
 
-        internal List<BaseProfile> GenerateStatProfiles(
-            BaseProfile baselineProfile, int numAdditionalStats)
+        internal List<PlayerProfile> GenerateStatProfiles(
+            PlayerProfile baselineProfile, int numAdditionalStats)
         {
-            var statProfiles = new List<BaseProfile>();
+            var statProfiles = new List<PlayerProfile>();
             statProfiles.Add(baselineProfile);
 
             // Int
-            var intProfile = BaseProfile.Clone(baselineProfile);
+            var intProfile = PlayerProfile.Clone(baselineProfile);
             intProfile.Intellect += numAdditionalStats;
             intProfile.Name = "Intellect Profile";
             statProfiles.Add(intProfile);
 
             // Haste
-            var hasteProfile = BaseProfile.Clone(baselineProfile);
+            var hasteProfile = PlayerProfile.Clone(baselineProfile);
             hasteProfile.HasteRating += numAdditionalStats;
             hasteProfile.Name = "Haste Profile";
             statProfiles.Add(hasteProfile);
             
             // Crit
-            var critProfile = BaseProfile.Clone(baselineProfile);
+            var critProfile = PlayerProfile.Clone(baselineProfile);
             critProfile.CritRating += numAdditionalStats;
             critProfile.Name = "Crit Profile";
             statProfiles.Add(critProfile);
 
             // Vers
-            var versProfile = BaseProfile.Clone(baselineProfile);
+            var versProfile = PlayerProfile.Clone(baselineProfile);
             versProfile.VersatilityRating += numAdditionalStats;
             versProfile.Name = "Vers Profile";
             statProfiles.Add(versProfile);
 
             // Mastery
-            var masteryProfile = BaseProfile.Clone(baselineProfile);
+            var masteryProfile = PlayerProfile.Clone(baselineProfile);
             masteryProfile.MasteryRating += numAdditionalStats;
             masteryProfile.Name = "Mastery Profile";
             statProfiles.Add(masteryProfile);
@@ -98,7 +98,7 @@ namespace Salvation.Core.Modelling
             return statProfiles;
         }
 
-        internal List<BaseModelResults> GenerateModelResults(List<BaseProfile> statProfiles)
+        internal List<BaseModelResults> GenerateModelResults(List<PlayerProfile> statProfiles)
         {
             var results = new List<BaseModelResults>();
 

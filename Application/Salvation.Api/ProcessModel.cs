@@ -40,11 +40,11 @@ namespace Salvation.Api
             ILogger log, ExecutionContext context)
         {
             // Parse the incoming profile
-            BaseProfile profile;
+            PlayerProfile profile;
             try
             {
                 string requestBody = await new StreamReader(request.Body).ReadToEndAsync();
-                profile = JsonConvert.DeserializeObject<BaseProfile>(requestBody);
+                profile = JsonConvert.DeserializeObject<PlayerProfile>(requestBody);
             }
             catch (Exception ex)
             {

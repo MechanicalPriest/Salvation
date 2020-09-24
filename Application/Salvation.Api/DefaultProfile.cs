@@ -9,16 +9,23 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Salvation.Core.Profile;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Reflection;
 using System.Linq;
+using Salvation.Core.Interfaces.Profile;
+using Salvation.Core.Constants.Data;
 
 namespace Salvation.Api
 {
-    public static class DefaultProfile
+    public class DefaultProfile
     {
+        private readonly IProfileGenerationService profileGenerationService;
+
+        public DefaultProfile(IProfileGenerationService profileGenerationService)
+        {
+            this.profileGenerationService = profileGenerationService;
+        }
+
         [FunctionName("DefaultProfile")]
-        public static IActionResult Run(
+        public IActionResult Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequest req,
             ILogger log)
         {
@@ -40,21 +47,21 @@ namespace Salvation.Api
 
         internal class ProfileResponse
         {
-            public BaseProfile Profile;
+            public PlayerProfile Profile;
             public Dictionary<string, int> Covenants;
         }
 
-        private static ProfileResponse BuildProfileResponse(int specId)
+        private ProfileResponse BuildProfileResponse(int specId)
         {
             ProfileResponse response = new ProfileResponse();
 
-            response.Profile = DefaultProfiles.GetDefaultProfile(specId);
+            response.Profile = profileGenerationService.GetDefaultProfile((Spec)specId);
             response.Covenants = GetCovenants();
 
             return response;
         }
 
-        private static Dictionary<string, int> GetCovenants()
+        private Dictionary<string, int> GetCovenants()
         {
             var covenantList = Enum.GetValues(typeof(Covenant)).Cast<Covenant>();
 
@@ -66,28 +73,6 @@ namespace Salvation.Api
             }
 
             return values;
-        }
-
-        public static string GetDescription<T>(this T value)
-        where T : Enum
-        {
-            Type type = value.GetType();
-            string name = Enum.GetName(type, value);
-            if (name != null)
-            {
-                FieldInfo field = type.GetField(name);
-                if (field != null)
-                {
-                    DescriptionAttribute attr =
-                           Attribute.GetCustomAttribute(field,
-                             typeof(DescriptionAttribute)) as DescriptionAttribute;
-                    if (attr != null)
-                    {
-                        return attr.Description;
-                    }
-                }
-            }
-            return null;
         }
     }
 

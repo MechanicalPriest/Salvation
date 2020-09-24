@@ -8,7 +8,7 @@ namespace Salvation.Core.State
 {
     public class GameState
     {
-        public BaseProfile Profile { get; set; }
+        public PlayerProfile Profile { get; set; }
         public GlobalConstants Constants { get; set; }
 
     }

@@ -9,7 +9,7 @@ namespace Salvation.Core.Modelling.Common
     {
         public List<AveragedSpellCastResult> SpellCastResults;
 
-        public BaseProfile Profile { get; set; }
+        public PlayerProfile Profile { get; set; }
 
         public decimal TotalActualHPS { get; set; }
         public decimal TotalRawHPS { get; set; }

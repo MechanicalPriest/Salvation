@@ -65,13 +65,15 @@ namespace Salvation.Api
             {
                 _constantsService.SetDefaultDirectory(context.FunctionAppDirectory);
 
-                var sw = new StatWeightGenerator(_constantsService);
+                //var sw = new StatWeightGenerator(_constantsService);
 
-                var effectiveHealingStatWeights = sw.Generate(profile, 100,
-                    StatWeightGenerator.StatWeightType.EffectiveHealing);
+                var effectiveHealingStatWeights = 0;
+                //sw.Generate(profile, 100,
+                //    StatWeightGenerator.StatWeightType.EffectiveHealing);
 
-                var rawHealingStatWeights = sw.Generate(profile, 100,
-                    StatWeightGenerator.StatWeightType.RawHealing);
+                var rawHealingStatWeights = 0;
+                //sw.Generate(profile, 100,
+                //    StatWeightGenerator.StatWeightType.RawHealing);
 
                 //--------------
                 GameState state = new GameState();

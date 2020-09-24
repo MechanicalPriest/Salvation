@@ -37,7 +37,7 @@ namespace Salvation.Core.Models.HolyPriest.Spells
             decimal averageHeal = (spellData.Coeff2 / 100)
                 * averageDamage;
 
-            journal.Entry($"[{spellData.Name}] Tooltip: {spellData.Coeff2}% of Dmg");
+            journal.Entry($"[{spellData.Name}] Tooltip (Heal): {spellData.Coeff2}% of Dmg");
 
             return averageHeal * GetNumberOfHealingTargets(gameState, spellData, moreData);
         }

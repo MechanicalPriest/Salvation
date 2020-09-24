@@ -58,8 +58,6 @@ namespace Salvation.Api
             response.Profile = profileGenerationService.GetDefaultProfile((Spec)specId);
             response.Covenants = GetCovenants();
 
-            profileGenerationService.SetCovenant(response.Profile, Covenant.Kyrian);
-
             return response;
         }
 

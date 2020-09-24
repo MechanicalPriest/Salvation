@@ -151,7 +151,7 @@ namespace Salvation.Core.Modelling.Common
 
         private decimal calcOPS()
         {
-            throw new NotImplementedException();
+            return Overhealing * CastsPerMinute / 60;
         }
 
 

@@ -104,10 +104,11 @@ namespace Salvation.Core.Models
             foreach (var profile in statProfiles)
             {
                 var constants = constantsManager.LoadConstantsFromFile();
-                var model = ModelManager.LoadModel(profile, constants);
-                var result = model.GetResults();
+                // TODO: Create a new state and throw that against the ModellingService
+                //var model = ModelManager.LoadModel(profile, constants);
+                //var result = model.GetResults();
 
-                results.Add(result);
+                //results.Add(result);
             }
 
             return results;

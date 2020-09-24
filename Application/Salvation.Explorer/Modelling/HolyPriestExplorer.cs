@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using Salvation.Core.Constants;
+using Salvation.Core.Constants.Data;
 using Salvation.Core.Interfaces.Constants;
 using Salvation.Core.Interfaces.Models;
 using Salvation.Core.Models;
@@ -36,22 +37,6 @@ namespace Salvation.Explorer.Modelling
         public void TestHolyPriestModel()
         {
             var globalConstants = constantsService.LoadConstantsFromFile();
-
-            var basicProfile = DefaultProfiles.GetDefaultProfile(Spec.HolyPriest);
-            DefaultProfiles.SetToVenthyr(basicProfile);
-
-            var hpriest = new HolyPriestModel(globalConstants, basicProfile);
-
-            hpriest.GetResults();
-
-            Console.WriteLine("------------[ Profile ]------------");
-            Console.WriteLine(JsonConvert.SerializeObject(basicProfile, Formatting.Indented));
-
-            Console.WriteLine("------------[ Results ]------------");
-            var modelResults = hpriest.GetResults();
-            var spellsRaw = JsonConvert.SerializeObject(modelResults, Formatting.Indented);
-
-            Console.WriteLine(spellsRaw);
 
             GenerateStatWeights(constantsService);
         }

@@ -8,7 +8,7 @@ namespace Salvation.Core.Models
 {
     public class BaseModelResults
     {
-        public List<SpellCastResult> SpellCastResults;
+        public List<AveragedSpellCastResult> SpellCastResults;
 
         public BaseProfile Profile { get; set; }
 
@@ -22,7 +22,7 @@ namespace Salvation.Core.Models
 
         public BaseModelResults()
         {
-            SpellCastResults = new List<SpellCastResult>();
+            SpellCastResults = new List<AveragedSpellCastResult>();
         }
     }
 }

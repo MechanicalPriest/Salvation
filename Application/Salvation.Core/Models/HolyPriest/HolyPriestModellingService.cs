@@ -96,10 +96,24 @@ namespace Salvation.Core.Models.HolyPriest
             results.TotalRawHPM = results.TotalRawHPS / results.TotalMPS;
             results.TotalActualHPM = results.TotalActualHPS / results.TotalMPS;
 
+            // Mana regen / time to oom
+            // TODO: re-implement Enlightenment
+            //var hasEnlightenment = Profile.IsTalentActive(Talent.Enlightenment);
+            //var regenCoeff = hasEnlightenment ? 1.1m : 1m; // This is the 1 below
+
+            // TODO: Add a get total mana pool amount for cases where mana pool isn't base
+            var rawMana = gameStateService.GetBaseManaAmount(state);
+            decimal totalRegenPerSecond = rawMana * 0.04m * 1 / 5m;
+
+            var totalNegativeManaPerSecond = results.TotalMPS - totalRegenPerSecond;
+            results.TimeToOom = rawMana / totalNegativeManaPerSecond;
+
             sw.Stop();
             journal.Entry($"Results: RawHPS ({results.TotalRawHPS:0.##}) HPS ({results.TotalActualHPS:0.##}) " +
                 $"MPS ({results.TotalMPS:0.##})");
             journal.Entry($"Results: RawHPM ({results.TotalRawHPM:0.##}) HPM ({results.TotalActualHPM:0.##})");
+            journal.Entry($"Results: TtOoM {results.TimeToOom}s.");
+
             journal.Entry($"Results run done in {sw.ElapsedMilliseconds}ms.");
 
             return results;
@@ -129,20 +143,17 @@ namespace Salvation.Core.Models.HolyPriest
             }
         }
 
-        private BaseModelResults RollUpResults(BaseModelResults results, List<SpellCastResult> spells)
+        private BaseModelResults RollUpResults(BaseModelResults results, List<AveragedSpellCastResult> spells)
         {
             foreach(var spellResult in spells)
             {
-                if (spellResult is AveragedSpellCastResult averageResult)
-                {
-                    results.TotalActualHPS += averageResult.HPS;
-                    results.TotalRawHPS += averageResult.RawHPS;
-                    results.TotalMPS += averageResult.MPS;
+                results.TotalActualHPS += spellResult.HPS;
+                results.TotalRawHPS += spellResult.RawHPS;
+                results.TotalMPS += spellResult.MPS;
 
-                    if(averageResult.AdditionalCasts.Count > 0)
-                    {
-                        RollUpResults(results, averageResult.AdditionalCasts);
-                    }
+                if(spellResult.AdditionalCasts.Count > 0)
+                {
+                    RollUpResults(results, spellResult.AdditionalCasts);
                 }
             }
 

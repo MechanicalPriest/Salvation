@@ -15,8 +15,6 @@ namespace Salvation.Core.Models.HolyPriest.Spells
 {
     public class Mindgames : SpellService, IMindgamesSpellService
     {
-        private readonly IDivineHymnSpellService divineHymnSpellService;
-
         public Mindgames(IGameStateService gameStateService,
             IModellingJournal journal)
             : base (gameStateService, journal)

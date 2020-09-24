@@ -1,4 +1,5 @@
 ﻿using Salvation.Core.Constants;
+using Salvation.Core.Constants.Data;
 using Salvation.Core.Models;
 using Salvation.Core.Models.HolyPriest;
 using Salvation.Core.Profile;
@@ -9,6 +10,9 @@ using System.Text;
 
 namespace Salvation.Explorer.Modelling
 {
+    /// <summary>
+    /// TODO: Replace all of these calls with the new modelling service
+    /// </summary>
     class CovenantComparisons
     {
         // The goal for this class is to build a bunch of different profiles to 
@@ -19,11 +23,13 @@ namespace Salvation.Explorer.Modelling
 
         public BaseProfile GetBaseProfile()
         {
-            BaseProfile profile;
+            //BaseProfile profile;
 
-            profile = DefaultProfiles.GetDefaultProfile(Core.Models.Spec.HolyPriest);
+            //profile = DefaultProfiles.GetDefaultProfile(Core.Models.Spec.HolyPriest);
 
-            return profile;
+            //return profile;
+
+            return null;
         }
 
         public BaseModelResults GetBaseResult()
@@ -32,9 +38,11 @@ namespace Salvation.Explorer.Modelling
 
             var constants = new ConstantsService().LoadConstantsFromFile();
 
-            var holyPriest = new HolyPriestModel(constants, profile);
+            //var holyPriest = new HolyPriestModel(constants, profile);
 
-            return holyPriest.GetResults();
+            //return holyPriest.GetResults();
+
+            return null;
         }
 
         public BaseModelResults GetMindgamesResults()
@@ -45,7 +53,7 @@ namespace Salvation.Explorer.Modelling
             profile.Name = "Mindgames";
 
             var mindgamesEfficiency = profile.Casts.Where(
-                c => c.SpellId == (int)HolyPriestModel.SpellIds.MindGames).FirstOrDefault();
+                c => c.SpellId == (int)SpellIds.Mindgames).FirstOrDefault();
 
             if (mindgamesEfficiency == null)
                 throw new ArgumentNullException("mindgames");
@@ -55,9 +63,11 @@ namespace Salvation.Explorer.Modelling
 
             var constants = new ConstantsService().LoadConstantsFromFile();
 
-            var holyPriest = new HolyPriestModel(constants, profile);
+            //var holyPriest = new HolyPriestModel(constants, profile);
 
-            return holyPriest.GetResults();
+            //return holyPriest.GetResults();
+
+            return null;
         }
 
         public BaseModelResults GetFaeGuardiansDROnlyResults()
@@ -68,7 +78,7 @@ namespace Salvation.Explorer.Modelling
             profile.Name = "Fae Guardians - DR only 4k DTPS";
 
             var fgEfficiency = profile.Casts.Where(
-                c => c.SpellId == (int)HolyPriestModel.SpellIds.FaeGuardians).FirstOrDefault();
+                c => c.SpellId == (int)SpellIds.FaeGuardians).FirstOrDefault();
 
             if (fgEfficiency == null)
                 throw new ArgumentNullException("fae guardians");
@@ -78,15 +88,17 @@ namespace Salvation.Explorer.Modelling
 
             // Remove any DH casts
             var dhEfficiency = profile.Casts.Where(
-                c => c.SpellId == (int)HolyPriestModel.SpellIds.FaeGuardians).FirstOrDefault();
+                c => c.SpellId == (int)SpellIds.FaeGuardians).FirstOrDefault();
 
             dhEfficiency.Efficiency = 0m;
 
             var constants = new ConstantsService().LoadConstantsFromFile();
 
-            var holyPriest = new HolyPriestModel(constants, profile);
+            //var holyPriest = new HolyPriestModel(constants, profile);
 
-            return holyPriest.GetResults();
+            //return holyPriest.GetResults();
+
+            return null;
         }
 
         public BaseModelResults GetFaeGuardiansHymnCDRResults()
@@ -97,7 +109,7 @@ namespace Salvation.Explorer.Modelling
             profile.Name = "Fae Guardians - DR + Hymn";
 
             var fgEfficiency = profile.Casts.Where(
-                c => c.SpellId == (int)HolyPriestModel.SpellIds.FaeGuardians).FirstOrDefault();
+                c => c.SpellId == (int)SpellIds.FaeGuardians).FirstOrDefault();
 
             if (fgEfficiency == null)
                 throw new ArgumentNullException("fae guardians");
@@ -107,9 +119,11 @@ namespace Salvation.Explorer.Modelling
 
             var constants = new ConstantsService().LoadConstantsFromFile();
 
-            var holyPriest = new HolyPriestModel(constants, profile);
+            //var holyPriest = new HolyPriestModel(constants, profile);
 
-            return holyPriest.GetResults();
+            //return holyPriest.GetResults();
+
+            return null;
         }
     }
 }

@@ -14,8 +14,4 @@
     </None>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Spells\" />
-  </ItemGroup>
-
 </Project>

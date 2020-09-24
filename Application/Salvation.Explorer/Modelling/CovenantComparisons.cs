@@ -1,7 +1,7 @@
 ﻿using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
-using Salvation.Core.Models;
-using Salvation.Core.Models.HolyPriest;
+using Salvation.Core.Modelling.Common;
+using Salvation.Core.Modelling.HolyPriest;
 using Salvation.Core.Profile;
 using System;
 using System.Collections.Generic;

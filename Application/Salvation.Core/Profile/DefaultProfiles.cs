@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Salvation.Core.Constants.Data;
-using Salvation.Core.Models;
+using Salvation.Core.Modelling;
 using System;
 using System.Collections.Generic;
 using System.Text;

@@ -1,6 +1,6 @@
 ﻿using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
-using Salvation.Core.Models;
+using Salvation.Core.Modelling;
 using Salvation.Core.Profile;
 using Salvation.Core.State;
 using System;

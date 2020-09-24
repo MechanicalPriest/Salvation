@@ -11,9 +11,9 @@ using Salvation.Core.Profile;
 using Salvation.Core;
 using Salvation.Core.Constants;
 using System.Runtime.CompilerServices;
-using Salvation.Core.Models;
+using Salvation.Core.Modelling;
 using Salvation.Core.Interfaces.Constants;
-using Salvation.Core.Interfaces.Models;
+using Salvation.Core.Interfaces.Modelling;
 using Salvation.Core.State;
 using Salvation.Core.Interfaces;
 

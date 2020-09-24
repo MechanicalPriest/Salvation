@@ -39,6 +39,7 @@ namespace Salvation.Explorer
                     services.AddSingleton<IGameStateService, GameStateService>();
                     services.AddSingleton<IModellingJournal, ModellingJournal>();
                     services.AddSingleton<IProfileGenerationService, ProfileGenerationService>();
+                    services.AddSingleton<IComparisonModeller<CovenantComparisons>, CovenantComparisons>();
 
                     // Holy Priest specific services
                     services.AddSingleton<IHolyPriestExplorer, HolyPriestExplorer>();

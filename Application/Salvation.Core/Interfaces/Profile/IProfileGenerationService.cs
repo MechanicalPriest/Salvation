@@ -18,5 +18,7 @@ namespace Salvation.Core.Interfaces.Profile
         void RemoveTalent(PlayerProfile profile, Talent talent);
         void SetCovenant(PlayerProfile profile, Covenant covenant, bool cleanupCovenantData = true);
         void RemoveCovenantData(PlayerProfile profile);
+        void SetSpellCastProfile(PlayerProfile profile, CastProfile castProfile);
+        void SetProfileName(PlayerProfile profile, string profileName);
     }
 }

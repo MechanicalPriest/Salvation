@@ -67,6 +67,14 @@
         {
           "Name": "BoonStacksPerABTarget",
           "Value": 5
+        },
+        {
+          "Name": "FaeGuardianFaerieDTPS",
+          "Value": 4000.0
+        },
+        {
+          "Name": "FaeBenevolentFaerieSelfUptime", // 1 = 100%
+          "Value": 1.0
         }
       ],
 

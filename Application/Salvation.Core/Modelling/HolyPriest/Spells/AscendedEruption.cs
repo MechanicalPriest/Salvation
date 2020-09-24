@@ -58,7 +58,9 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             averageHeal *= 1 + ((bonusPerStack / 100) * numberOfBoonStacks);
 
             // Apply 1/SQRT() scaling
-            averageHeal *= 1 / (decimal)Math.Sqrt((double)GetNumberOfHealingTargets(gameState, spellData, moreData));
+            // Healing scales down with the number of enemy + friendly targets, see Issue #24
+            var numTargetReduction = GetNumberOfHealingTargets(gameState, spellData, moreData) + GetNumberOfDamageTargets(gameState, spellData, moreData);
+            averageHeal *= 1 / (decimal)Math.Sqrt((double)numTargetReduction);
 
             return averageHeal * GetNumberOfHealingTargets(gameState, spellData, moreData);
         }
@@ -96,8 +98,10 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             averageHeal *= 1 + ((bonusPerStack / 100) * numberOfBoonStacks);
             journal.Entry($"[{spellData.Name}] Stacks: {numberOfBoonStacks:0.##} Bonus/stack: {bonusPerStack:0.##}");
 
-            // Apply 1/SQRT() scaling
-            averageHeal *= 1 / (decimal)Math.Sqrt((double)GetNumberOfHealingTargets(gameState, spellData, moreData));
+            // Apply 1/SQRT() 
+            // Damage scales down with the number of enemy + friendly targets, see Issue #52
+            var numTargetReduction = GetNumberOfHealingTargets(gameState, spellData, moreData) + GetNumberOfDamageTargets(gameState, spellData, moreData);
+            averageHeal *= 1 / (decimal)Math.Sqrt((double)numTargetReduction);
 
             return averageHeal * GetNumberOfHealingTargets(gameState, spellData, moreData);
         }
@@ -110,15 +114,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         public override decimal GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null,
             Dictionary<string, decimal> moreData = null)
         {
-            if (moreData == null)
-                throw new ArgumentNullException("moreData");
-
-            if (!moreData.ContainsKey("BoonOfTheAscended.CPM"))
-                throw new ArgumentOutOfRangeException("moreData", "Does not contain BoonOfTheAscended.CPM");
-
-            var boonCPM = moreData["BoonOfTheAscended.CPM"];
-
-            return boonCPM;
+            return 0m;
         }
 
         /// <summary>

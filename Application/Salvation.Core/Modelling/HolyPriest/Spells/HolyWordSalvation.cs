@@ -107,6 +107,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             pomSpellData.ManaCost = 0;
             pomSpellData.Gcd = 0;
             pomSpellData.BaseCastTime = 0;
+            pomSpellData.BaseCooldown = 0;
             pomSpellData.Coeff2 = 2; // Number of initial stacks
             pomSpellData.NumberOfHealingTargets = GetNumberOfHealingTargets(gameState, spellData, moreData);
 

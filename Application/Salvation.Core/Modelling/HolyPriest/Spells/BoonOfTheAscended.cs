@@ -79,13 +79,12 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             var boonStacks = 1 + abResults.CastsPerMinute * 5 + anResults.CastsPerMinute * anResults.NumberOfDamageTargets;
             var aeMoreData = new Dictionary<string, decimal>()
             {
-                ["BoonOfTheAscended.BoonStacks"] = boonStacks,
-                ["BoonOfTheAscended.CPM"] = boonCPM
+                ["BoonOfTheAscended.BoonStacks"] = boonStacks
             };
 
             var aeResults = ascendedEruptionSpellService.GetCastResults(gameState, null, aeMoreData);
 
-            anResults.AdditionalCasts.Add(aeResults);
+            result.AdditionalCasts.Add(aeResults);
 
             return result;
         }

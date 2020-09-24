@@ -1,4 +1,5 @@
-﻿using Salvation.Core.Constants.Data;
+﻿using Salvation.Core.Constants;
+using Salvation.Core.Constants.Data;
 using Salvation.Core.Interfaces;
 using Salvation.Core.Interfaces.Constants;
 using Salvation.Core.Interfaces.Modelling;
@@ -73,6 +74,7 @@ namespace Salvation.Core.Modelling.HolyPriest
         public BaseModelResults GetResults(GameState state)
         {
             var results = new BaseModelResults();
+            results.Profile = state.Profile;
 
             journal.Entry($"Results run started at {DateTime.Now:yyyy.MM.dd HH:mm:ss:ffff}.");
             var sw = new Stopwatch();
@@ -91,6 +93,7 @@ namespace Salvation.Core.Modelling.HolyPriest
                 }
             }
 
+            // Create a sumamry for each spell cast that's a sum of its children
             RollUpResults(results, results.SpellCastResults);
 
             results.TotalRawHPM = results.TotalRawHPS / results.TotalMPS;
@@ -143,21 +146,103 @@ namespace Salvation.Core.Modelling.HolyPriest
             }
         }
 
-        private BaseModelResults RollUpResults(BaseModelResults results, List<AveragedSpellCastResult> spells)
+        private void RollUpResults(BaseModelResults results, List<AveragedSpellCastResult> spells)
         {
+            var newSpells = new List<AveragedSpellCastResult>();
+
             foreach(var spellResult in spells)
+            {
+                newSpells.Add(RollUpResultsSummary(spellResult));
+            }
+
+            results.RolledUpResultsSummary = newSpells;
+
+            foreach(var spellResult in results.RolledUpResultsSummary)
             {
                 results.TotalActualHPS += spellResult.HPS;
                 results.TotalRawHPS += spellResult.RawHPS;
                 results.TotalMPS += spellResult.MPS;
+            }
+        }
 
-                if(spellResult.AdditionalCasts.Count > 0)
-                {
-                    RollUpResults(results, spellResult.AdditionalCasts);
-                }
+        /// <summary>
+        /// Create a AveragedSpellCastResult that is a combined total of all its children
+        /// </summary>
+        /// <param name="castResult"></param>
+        /// <returns></returns>
+        private AveragedSpellCastResult RollUpResultsSummary(AveragedSpellCastResult castResult)
+        {
+            var resultSummary = new AveragedSpellCastResult();
+
+            Console.WriteLine($"[{castResult.SpellName}] Rolling up");
+
+            // Things that are properties of the cast
+            resultSummary.CastsPerMinute = castResult.CastsPerMinute;
+            resultSummary.CastTime = castResult.CastTime;
+            resultSummary.Cooldown = castResult.Cooldown;
+            resultSummary.Duration = castResult.Duration;
+            resultSummary.Gcd = castResult.Gcd;
+            resultSummary.MaximumCastsPerMinute = castResult.MaximumCastsPerMinute;
+            resultSummary.NumberOfDamageTargets = castResult.NumberOfDamageTargets;
+            resultSummary.NumberOfHealingTargets = castResult.NumberOfHealingTargets;
+            resultSummary.SpellId = castResult.SpellId;
+            resultSummary.SpellName = castResult.SpellName;
+
+            // Properties that are sums of all the parts
+            var spellParts = new List<AveragedSpellCastResult>();
+            spellParts.Add(castResult);
+
+            // If this spell is actually being cast, roll up its parts to calculate total HPS
+            if(castResult.CastsPerMinute > 0)
+                RollUpSpellParts(resultSummary, spellParts);
+            else
+            {
+                // If it's not, set a bunch of "Per cast" values.
+                resultSummary.Healing = castResult.Healing;
+                resultSummary.RawHealing = castResult.RawHealing;
+                resultSummary.Overhealing = castResult.Overhealing;
+                resultSummary.Damage = castResult.Damage;
+                resultSummary.ManaCost = castResult.ManaCost;
             }
 
-            return results;
+            resultSummary.AdditionalCasts.Add(castResult);
+
+            Console.WriteLine($"[{resultSummary.SpellName}] added doing {resultSummary.RawHealing:0.##} raw healing");
+
+            return resultSummary;
+        }
+
+        /// <summary>
+        /// Roll up recursive subchildren into the main result summary for the spell
+        /// </summary>
+        private void RollUpSpellParts(AveragedSpellCastResult resultSummary, List<AveragedSpellCastResult> spellParts, decimal parentCPM = 0)
+        {
+            // Loop over each child and figure out how much it provides to the ResultSUmmary for this spell
+            foreach (var part in spellParts)
+            {
+                var partCPM = part.CastsPerMinute;
+                // Try to set the CPM from the parent if its 0
+                if (part.CastsPerMinute == 0)
+                { 
+                    // If there is a parent set, use its CPM then.
+                    partCPM = parentCPM;
+                }
+
+                // Add the amount of healing per cast OF THE SUMMARY SPELL to it
+                resultSummary.Healing += part.Healing * partCPM / resultSummary.CastsPerMinute;
+                resultSummary.RawHealing += part.RawHealing * partCPM / resultSummary.CastsPerMinute;
+                resultSummary.Overhealing += part.Overhealing * partCPM / resultSummary.CastsPerMinute;
+                resultSummary.Damage += part.Damage * partCPM / resultSummary.CastsPerMinute;
+                resultSummary.ManaCost += part.ManaCost * partCPM / resultSummary.CastsPerMinute;
+                
+                Console.WriteLine($"[{resultSummary.SpellName}] child added doing {part.RawHealing:0.##} " +
+                        $"raw healing (total now: {resultSummary.RawHealing:0.##}) from {part.SpellName} " +
+                        $"with {partCPM:0.##}CPM (actual = {part.CastsPerMinute:0.##})");
+
+                // Now roll up all of this parts children, setting this part as the parent for CPM purposes
+                if (part.AdditionalCasts.Count > 0)
+                    RollUpSpellParts(resultSummary, part.AdditionalCasts, partCPM);                
+            }
         }
     }
 }

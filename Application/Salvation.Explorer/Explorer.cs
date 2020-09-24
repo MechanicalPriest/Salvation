@@ -20,7 +20,7 @@ namespace Salvation.Explorer
 
         public Task StartAsync(CancellationToken cancellationToken)
         {
-            //holyPriestExplorer.CompareCovenants();
+            holyPriestExplorer.CompareCovenants();
             //holyPriestExplorer.TestHolyPriestModel(); // Test stat weights
             holyPriestExplorer.TestNewHolyPriestModel();
 

@@ -21,6 +21,8 @@ namespace Salvation.Core.Interfaces.State
         CastProfile GetCastProfile(GameState state, int spellId);
         ConduitData GetConduitData(GameState state, Conduit conduitId);
         Covenant GetActiveCovenant(GameState state);
+        void OverrideSpellData(GameState state, BaseSpellData newData);
+        void OverrideModifier(GameState state, BaseModifier newModifier);
 
         // Player Stats
         decimal GetIntellect(GameState state);

@@ -4,6 +4,7 @@ using Salvation.Core.Interfaces;
 using Salvation.Core.Interfaces.Profile;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Salvation.Core.Profile
@@ -85,6 +86,18 @@ namespace Salvation.Core.Profile
 
             // Wipe conduits
             profile.Conduits = new Dictionary<Conduit, int>();
+        }
+
+        public void SetSpellCastProfile(PlayerProfile profile, CastProfile castProfile)
+        {
+            profile.Casts.RemoveAll(c => c.SpellId == castProfile.SpellId);
+
+            profile.Casts.Add(castProfile);
+        }
+
+        public void SetProfileName(PlayerProfile profile, string profileName)
+        {
+            profile.Name = profileName;
         }
 
         private PlayerProfile GenerateHolyPriestProfile()

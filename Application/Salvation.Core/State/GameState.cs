@@ -11,5 +11,15 @@ namespace Salvation.Core.State
         public PlayerProfile Profile { get; set; }
         public GlobalConstants Constants { get; set; }
 
+        public GameState()
+        {
+
+        }
+
+        public GameState(PlayerProfile profile, GlobalConstants constants)
+        {
+            Profile = profile;
+            Constants = constants;
+        }
     }
 }

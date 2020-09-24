@@ -8,6 +8,7 @@ namespace Salvation.Core.Modelling.Common
     public class BaseModelResults
     {
         public List<AveragedSpellCastResult> SpellCastResults;
+        public List<AveragedSpellCastResult> RolledUpResultsSummary;
 
         public PlayerProfile Profile { get; set; }
 
@@ -22,6 +23,12 @@ namespace Salvation.Core.Modelling.Common
         public BaseModelResults()
         {
             SpellCastResults = new List<AveragedSpellCastResult>();
+            RolledUpResultsSummary = new List<AveragedSpellCastResult>();
+        }
+
+        public override string ToString()
+        {
+            return $"[{Profile?.Name}] RawHPS: {TotalRawHPS} ActualHPS: {TotalActualHPS}";
         }
     }
 }

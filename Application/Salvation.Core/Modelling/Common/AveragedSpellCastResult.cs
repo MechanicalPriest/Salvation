@@ -59,6 +59,11 @@ namespace Salvation.Core.Modelling.Common
             AdditionalCasts = new List<AveragedSpellCastResult>();
         }
 
+        public override string ToString()
+        {
+            return $"[{SpellName}(id={SpellId})] RawHPS: {RawHPS:0.##} HPS: {HPS:0.##} CPM: {CastsPerMinute:0.##} MaxCPM: {MaximumCastsPerMinute:0.##}";
+        }
+
         #region Calculated Fields
 
         public decimal RawHPCT { get => calcRawHPCT(); }
@@ -67,6 +72,10 @@ namespace Salvation.Core.Modelling.Common
         public decimal HPCT { get => calcHPCT(); }
         public decimal HPM { get => calcHPM(); }
         public decimal HPS { get => calcHPS(); }
+        /// <summary>
+        /// Overhealing per second
+        /// </summary>
+        public decimal OPS { get => calcOPS(); }
         public decimal MPS { get => calcMPS(); }
         public decimal DPS { get => calcDPS(); }
         public decimal DPM { get => calcDPM(); }
@@ -138,6 +147,11 @@ namespace Salvation.Core.Modelling.Common
             if (ManaCost > 0)
                 return Damage / ManaCost;
             return 0;
+        }
+
+        private decimal calcOPS()
+        {
+            throw new NotImplementedException();
         }
 
 

@@ -43,6 +43,11 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             // Coeff2 is the "100" of 100% CDR.
             var duration = GetDuration(gameState, spellData, moreData);
+
+            // Adjust the self duration based on config
+            decimal selfUptime = gameStateService.GetModifier(gameState, "FaeBenevolentFaerieSelfUptime").Value;
+            duration *= selfUptime;
+
             var reducedCooldownSeconds = (spellData.Coeff2 / 100) * duration;
 
             // Figure out how much extra hymn we get, best case
@@ -89,7 +94,8 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             // Duration should be minus the GCD of the initial cast + gcd to move pw:s over.
 
             // TODO: Move this to configuration
-            decimal targetDamageTakenPerSecond = 4000.0m;
+            decimal targetDamageTakenPerSecond = gameStateService.GetModifier(gameState, "FaeGuardianFaerieDTPS").Value;
+
             var duration = GetDuration(gameState, spellData, moreData);
 
             journal.Entry($"[{spellData.Name}] DR: {spellData.Coeff1}% DTPS: {targetDamageTakenPerSecond} Duration: {duration}s");

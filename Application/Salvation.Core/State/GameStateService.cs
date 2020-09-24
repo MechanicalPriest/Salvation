@@ -25,6 +25,8 @@ namespace Salvation.Core.State
                 .Where(c => c.SpellId == spellId)
                 .FirstOrDefault();
 
+            castProfile = JsonConvert.DeserializeObject<CastProfile>(JsonConvert.SerializeObject(castProfile));
+
             return castProfile;
         }
 
@@ -72,6 +74,8 @@ namespace Salvation.Core.State
 
             var modifier = specData.Modifiers.Where(s => s.Name == modifierName).FirstOrDefault();
 
+            modifier = JsonConvert.DeserializeObject<BaseModifier>(JsonConvert.SerializeObject(modifier));
+
             return modifier;
         }
 
@@ -116,6 +120,32 @@ namespace Salvation.Core.State
         public Covenant GetActiveCovenant(GameState state)
         {
             return state.Profile.Covenant;
+        }
+
+        public void OverrideSpellData(GameState state, BaseSpellData newData)
+        {
+            var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.SpecId).FirstOrDefault();
+
+            var requestedData = specData.Spells.Where(s => s.Id == newData.Id).FirstOrDefault();
+
+            if (requestedData == null)
+                return;
+
+            specData.Spells.Remove(requestedData);
+            specData.Spells.Add(newData);
+        }
+
+        public void OverrideModifier(GameState state, BaseModifier newModifier)
+        {
+            var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.SpecId).FirstOrDefault();
+
+            var requestedModifier = specData.Modifiers.Where(s => s.Name == newModifier.Name).FirstOrDefault();
+
+            if (requestedModifier == null)
+                return;
+
+            specData.Modifiers.Remove(requestedModifier);
+            specData.Modifiers.Add(newModifier);
         }
     }
 }

@@ -29,14 +29,17 @@ namespace Salvation.Explorer.Modelling
         private readonly IConstantsService constantsService;
         private readonly IModellingService modellingService;
         private readonly IProfileGenerationService holyPriestProfileGeneratior;
+        private readonly IComparisonModeller<CovenantComparisons> comparisonModellerCovenant;
 
         public HolyPriestExplorer(IConstantsService constantsService, 
             IModellingService modellingService,
-            IProfileGenerationService holyPriestProfileGeneratior)
+            IProfileGenerationService holyPriestProfileGeneratior,
+            IComparisonModeller<CovenantComparisons> comparisonModellerCovenant)
         {
             this.constantsService = constantsService;
             this.modellingService = modellingService;
             this.holyPriestProfileGeneratior = holyPriestProfileGeneratior;
+            this.comparisonModellerCovenant = comparisonModellerCovenant;
         }
 
         public void TestHolyPriestModel()
@@ -60,21 +63,7 @@ namespace Salvation.Explorer.Modelling
 
         public void CompareCovenants()
         {
-            var cc = new CovenantComparisons();
-
-            var results = new List<BaseModelResults>();
-
-            //results.Add(cc.GetBaseResult()); // Maybe use this if we start using the full resultset
-            results.Add(cc.GetMindgamesResults());
-            results.Add(cc.GetFaeGuardiansDROnlyResults());
-            results.Add(cc.GetFaeGuardiansHymnCDRResults());
-
-            foreach (var result in results)
-            {
-                var covSpellResult = result.SpellCastResults.Last() as AveragedSpellCastResult;
-                Console.WriteLine($"{result.Profile.Name} - " +
-                    $"{covSpellResult.RawHealing} ({covSpellResult.RawHPS})");
-            }
+            var results = comparisonModellerCovenant.RunComparison();
         }
 
         public void TestNewHolyPriestModel()

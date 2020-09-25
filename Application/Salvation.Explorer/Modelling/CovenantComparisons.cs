@@ -50,7 +50,7 @@ namespace Salvation.Explorer.Modelling
             var states = new List<GameState>();
 
             states.Add(GetBaseState());
-            //states.AddRange(GetBoonStates());
+            states.AddRange(GetBoonStates());
             states.AddRange(GetUnholyNovaStates());
             states.Add(GetMindgamesState());
             states.Add(GetFaeGuardianState("Fae 4k DTPS Only", 4000, 0));
@@ -78,6 +78,11 @@ namespace Salvation.Explorer.Modelling
                         $"RawHPS: {result.Value.TotalRawHPS - baselineResults.TotalRawHPS:0.##} " +
                         $"ActualHPS: {result.Value.TotalActualHPS - baselineResults.TotalActualHPS:0.##} ");
                 }
+            }
+
+            foreach (var result in results)
+            {
+                Console.WriteLine($"{result.Key}, {result.Value.TotalRawHPS - baselineResults.TotalRawHPS:0.##}");
             }
 
             return results;
@@ -130,8 +135,8 @@ namespace Salvation.Explorer.Modelling
             // E: 1, 2, 3, 4, 5, 10
 
             var casts = new int[3, 2] { { 1, 1 }, { 1, 0 }, { 0, 1 } };
-            var enemies = new List<decimal>() { 1, 2, 3, 4, 5, 10 };
-            var friendlies = new List<decimal>() { 1, 5, 10, 20, 30 };
+            var enemies = new List<decimal>() { 1, 5, 10 };
+            var friendlies = new List<decimal>() { 1, 5, 10, 20 };
 
             for (var i = 0; i < casts.GetLength(0); i++)
             {

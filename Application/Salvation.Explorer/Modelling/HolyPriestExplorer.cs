@@ -12,6 +12,7 @@ using Salvation.Core.Profile;
 using Salvation.Core.State;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -63,7 +64,18 @@ namespace Salvation.Explorer.Modelling
 
         public void CompareCovenants()
         {
-            var results = comparisonModellerCovenant.RunComparison();
+            var results = comparisonModellerCovenant.RunComparison() as Dictionary<string, BaseModelResults>;
+
+            StringBuilder sb = new StringBuilder();
+
+            var baselineResults = results.Where(a => a.Key == "Baseline").FirstOrDefault().Value;
+
+            foreach (var result in results)
+            {
+                sb.AppendLine($"{result.Key}, {result.Value.TotalRawHPS - baselineResults.TotalRawHPS:0.##}");
+            }
+
+            File.WriteAllText("covenant_results.csv", sb.ToString());
         }
 
         public void TestNewHolyPriestModel()

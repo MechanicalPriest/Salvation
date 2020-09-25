@@ -9,6 +9,7 @@ using Salvation.Core.Interfaces.Modelling;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.Profile;
 using Salvation.Core.Interfaces.State;
+using Salvation.Core.Modelling;
 using Salvation.Core.Modelling.HolyPriest;
 using Salvation.Core.Modelling.HolyPriest.Spells;
 using Salvation.Core.Profile;
@@ -39,7 +40,8 @@ namespace Salvation.Explorer
                     services.AddSingleton<IGameStateService, GameStateService>();
                     services.AddSingleton<IModellingJournal, ModellingJournal>();
                     services.AddSingleton<IProfileGenerationService, ProfileGenerationService>();
-                    services.AddSingleton<IComparisonModeller<CovenantComparisons>, CovenantComparisons>();
+                    services.AddSingleton<IComparisonModeller<CovenantComparisonsResult>, CovenantComparisons>();
+                    services.AddSingleton<IStatWeightGenerationService, StatWeightGenerator>();
 
                     // Holy Priest specific services
                     services.AddSingleton<IHolyPriestExplorer, HolyPriestExplorer>();

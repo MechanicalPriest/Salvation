@@ -35,5 +35,8 @@ namespace Salvation.Core.Interfaces.State
         // Player Configuration
         bool IsConduitActive(GameState state, Conduit conduit);
         int GetConduitRank(GameState state, Conduit conduit);
+
+        // Utility
+        GameState CloneGameState(GameState state);
     }
 }

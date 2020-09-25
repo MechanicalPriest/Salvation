@@ -1,7 +1,10 @@
 ﻿using Salvation.Core.Constants;
 using Salvation.Core.Interfaces.Constants;
+using Salvation.Core.Interfaces.Modelling;
+using Salvation.Core.Interfaces.State;
 using Salvation.Core.Modelling.Common;
 using Salvation.Core.Profile;
+using Salvation.Core.State;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -10,7 +13,7 @@ using System.Text;
 
 namespace Salvation.Core.Modelling
 {
-    public class StatWeightGenerator
+    public class StatWeightGenerator : IStatWeightGenerationService
     {
         public enum StatWeightType
         {
@@ -19,15 +22,26 @@ namespace Salvation.Core.Modelling
             Damage = 2
         }
 
-        private IConstantsService constantsManager { get; set; }
+        private readonly IModellingService modellingService;
+        private readonly IGameStateService gameStateService;
+               
 
-        public StatWeightGenerator(IConstantsService cm)
+        public StatWeightGenerator(IModellingService modellingService,
+            IGameStateService gameStateService)
         {
-            constantsManager = cm;
+            this.modellingService = modellingService;
+            this.gameStateService = gameStateService;
         }
 
+        /// <summary>
+        /// Generate stat weight results based on a specific gamestate by adding a specific 
+        /// number of extra stats
+        /// </summary>
+        /// <param name="baseState">The baseline state</param>
+        /// <param name="numAdditionalStats">Number of additional stats to add</param>
+        /// <param name="swType">Type of stat weights to generate</param>
         public StatWeightResult Generate(
-            PlayerProfile baseProfile, 
+            GameState baseState, 
             int numAdditionalStats,
             StatWeightType swType = StatWeightType.EffectiveHealing)
         {
@@ -35,7 +49,7 @@ namespace Salvation.Core.Modelling
 
             // The following stages generate stat weights:
             // 1. Build a profile off of the base for each stat
-            var statProfiles = GenerateStatProfiles(baseProfile, numAdditionalStats);
+            var statProfiles = GenerateStatProfiles(baseState, numAdditionalStats);
 
             // 2. Get results for each profile
             List<BaseModelResults> modelResults = GenerateModelResults(statProfiles);
@@ -44,10 +58,10 @@ namespace Salvation.Core.Modelling
             switch (swType)
             {
                 case StatWeightType.EffectiveHealing:
-                    result = GenerateEffectiveHealingStatWeights(modelResults, "Effective Healing", baseProfile.Name, "Intellect Profile");
+                    result = GenerateEffectiveHealingStatWeights(modelResults, "Effective Healing", baseState.Profile.Name, "Intellect Profile");
                     break;
                 case StatWeightType.RawHealing:
-                    result = GenerateRawHealingStatWeights(modelResults, "Raw Healing", baseProfile.Name, "Intellect Profile");
+                    result = GenerateRawHealingStatWeights(modelResults, "Raw Healing", baseState.Profile.Name, "Intellect Profile");
                     break;
                 case StatWeightType.Damage:
                     //result = GenerateDamageStatWeights(modelResults);
@@ -59,57 +73,59 @@ namespace Salvation.Core.Modelling
             return result;
         }
 
-        internal List<PlayerProfile> GenerateStatProfiles(
-            PlayerProfile baselineProfile, int numAdditionalStats)
+        /// <summary>
+        /// Create each of the profiles to have stat weights generated for
+        /// </summary>
+        /// <param name="baselineState">The baseline gamestate</param>
+        /// <param name="numAdditionalStats">Additional stats to be added</param>
+        internal List<GameState> GenerateStatProfiles(
+            GameState baselineState, int numAdditionalStats)
         {
-            var statProfiles = new List<PlayerProfile>();
-            statProfiles.Add(baselineProfile);
+            var states = new List<GameState>();
+            states.Add(baselineState);
 
             // Int
-            var intProfile = PlayerProfile.Clone(baselineProfile);
-            intProfile.Intellect += numAdditionalStats;
-            intProfile.Name = "Intellect Profile";
-            statProfiles.Add(intProfile);
+            var intState = gameStateService.CloneGameState(baselineState);
+            intState.Profile.Intellect += numAdditionalStats;
+            intState.Profile.Name = "Intellect Profile";
+            states.Add(intState);
 
             // Haste
-            var hasteProfile = PlayerProfile.Clone(baselineProfile);
-            hasteProfile.HasteRating += numAdditionalStats;
-            hasteProfile.Name = "Haste Profile";
-            statProfiles.Add(hasteProfile);
-            
+            var hasteState = gameStateService.CloneGameState(baselineState);
+            hasteState.Profile.HasteRating += numAdditionalStats;
+            hasteState.Profile.Name = "Haste Profile";
+            states.Add(hasteState);
+
             // Crit
-            var critProfile = PlayerProfile.Clone(baselineProfile);
-            critProfile.CritRating += numAdditionalStats;
-            critProfile.Name = "Crit Profile";
-            statProfiles.Add(critProfile);
+            var critState = gameStateService.CloneGameState(baselineState);
+            critState.Profile.CritRating += numAdditionalStats;
+            critState.Profile.Name = "Crit Profile";
+            states.Add(critState);
 
             // Vers
-            var versProfile = PlayerProfile.Clone(baselineProfile);
-            versProfile.VersatilityRating += numAdditionalStats;
-            versProfile.Name = "Vers Profile";
-            statProfiles.Add(versProfile);
+            var versState = gameStateService.CloneGameState(baselineState);
+            versState.Profile.VersatilityRating += numAdditionalStats;
+            versState.Profile.Name = "Vers Profile";
+            states.Add(versState);
 
             // Mastery
-            var masteryProfile = PlayerProfile.Clone(baselineProfile);
-            masteryProfile.MasteryRating += numAdditionalStats;
-            masteryProfile.Name = "Mastery Profile";
-            statProfiles.Add(masteryProfile);
+            var masteryState = gameStateService.CloneGameState(baselineState);
+            masteryState.Profile.MasteryRating += numAdditionalStats;
+            masteryState.Profile.Name = "Mastery Profile";
+            states.Add(masteryState);
 
-            return statProfiles;
+            return states;
         }
 
-        internal List<BaseModelResults> GenerateModelResults(List<PlayerProfile> statProfiles)
+        internal List<BaseModelResults> GenerateModelResults(List<GameState> states)
         {
             var results = new List<BaseModelResults>();
 
-            foreach (var profile in statProfiles)
+            foreach (var state in states)
             {
-                var constants = constantsManager.LoadConstantsFromFile();
-                // TODO: Create a new state and throw that against the ModellingService
-                //var model = ModelManager.LoadModel(profile, constants);
-                //var result = model.GetResults();
+                var result = modellingService.GetResults(state);
 
-                //results.Add(result);
+                results.Add(result);
             }
 
             return results;

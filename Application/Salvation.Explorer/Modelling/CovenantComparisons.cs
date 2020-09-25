@@ -15,10 +15,21 @@ using System.Text;
 
 namespace Salvation.Explorer.Modelling
 {
+    public class CovenantComparisonsResult
+    {
+        public Dictionary<string, BaseModelResults> Results { get; set; }
+
+        public CovenantComparisonsResult() { Results = new Dictionary<string, BaseModelResults>(); }
+        public CovenantComparisonsResult(Dictionary<string, BaseModelResults> results) 
+        { 
+            Results = results; 
+        }
+    }
+
     /// <summary>
     /// TODO: Replace all of these calls with the new modelling service
     /// </summary>
-    class CovenantComparisons : IComparisonModeller<CovenantComparisons>
+    class CovenantComparisons : IComparisonModeller<CovenantComparisonsResult>
     {
         private readonly IProfileGenerationService profileGenerationService;
         private readonly IModellingService modellingService;
@@ -42,7 +53,7 @@ namespace Salvation.Explorer.Modelling
             this.gameStateService = gameStateService;
         }
 
-        public object RunComparison()
+        public CovenantComparisonsResult RunComparison()
         {
             var results = new Dictionary<string, BaseModelResults>();
 
@@ -70,22 +81,8 @@ namespace Salvation.Explorer.Modelling
             }
 
             var baselineResults = results.Where(a => a.Key == "Baseline").FirstOrDefault().Value;
-            if(baselineResults != null)
-            {
-                foreach(var result in results)
-                {
-                    Console.WriteLine($"[{result.Key}] " +
-                        $"RawHPS: {result.Value.TotalRawHPS - baselineResults.TotalRawHPS:0.##} " +
-                        $"ActualHPS: {result.Value.TotalActualHPS - baselineResults.TotalActualHPS:0.##} ");
-                }
-            }
 
-            foreach (var result in results)
-            {
-                Console.WriteLine($"{result.Key}, {result.Value.TotalRawHPS - baselineResults.TotalRawHPS:0.##}");
-            }
-
-            return results;
+            return new CovenantComparisonsResult(results);
         }
 
         public PlayerProfile GetBaseProfile()

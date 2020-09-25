@@ -21,17 +21,20 @@ namespace Salvation.Api
 {
     public class ProcessModel
     {
-        private readonly IConstantsService _constantsService;
-        private readonly IModellingService _modellingService;
-        private readonly IModellingJournal _journal;
+        private readonly IConstantsService constantsService;
+        private readonly IModellingService modellingService;
+        private readonly IModellingJournal journal;
+        private readonly IStatWeightGenerationService statWeightGenerationService;
 
         public ProcessModel(IConstantsService constantService, 
             IModellingService modellingService,
-            IModellingJournal journal)
+            IModellingJournal journal,
+            IStatWeightGenerationService statWeightGenerationService)
         {
-            this._constantsService = constantService;
-            this._modellingService = modellingService;
-            this._journal = journal;
+            this.constantsService = constantService;
+            this.modellingService = modellingService;
+            this.journal = journal;
+            this.statWeightGenerationService = statWeightGenerationService;
         }
 
         [FunctionName("ProcessModel")]
@@ -63,32 +66,30 @@ namespace Salvation.Api
             // Load the profile into the model and return the results
             try
             {
-                _constantsService.SetDefaultDirectory(context.FunctionAppDirectory);
-
-                //var sw = new StatWeightGenerator(_constantsService);
-
-                var effectiveHealingStatWeights = 0;
-                //sw.Generate(profile, 100,
-                //    StatWeightGenerator.StatWeightType.EffectiveHealing);
-
-                var rawHealingStatWeights = 0;
-                //sw.Generate(profile, 100,
-                //    StatWeightGenerator.StatWeightType.RawHealing);
-
-                //--------------
-                GameState state = new GameState();
-                state.Constants = _constantsService.LoadConstantsFromFile();
-                state.Profile = profile;
-                var results = _modellingService.GetResults(state);
+                constantsService.SetDefaultDirectory(context.FunctionAppDirectory);
 
                 //------------------------------
+                GameState state = new GameState();
+                state.Constants = constantsService.LoadConstantsFromFile();
+                state.Profile = profile;
+
+                var results = modellingService.GetResults(state);
+
+                var effectiveHealingStatWeights = statWeightGenerationService.Generate(state, 100,
+                    StatWeightGenerator.StatWeightType.EffectiveHealing);
+
+                var rawHealingStatWeights = statWeightGenerationService.Generate(state, 100,
+                    StatWeightGenerator.StatWeightType.RawHealing);
+
+                //------------------------------
+
                 return new JsonResult(new
                 {
                     ModelResults = results,
                     StatWeightsEffective = effectiveHealingStatWeights,
                     StatWeightsRaw = rawHealingStatWeights,
                     State = state,
-                    Journal = _journal.GetJournal(true)
+                    Journal = journal.GetJournal(true)
                 });
             }
             catch(Exception ex)

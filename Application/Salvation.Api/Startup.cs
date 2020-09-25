@@ -8,6 +8,7 @@ using Salvation.Core.Interfaces.Modelling;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.Profile;
 using Salvation.Core.Interfaces.State;
+using Salvation.Core.Modelling;
 using Salvation.Core.Modelling.HolyPriest;
 using Salvation.Core.Modelling.HolyPriest.Spells;
 using Salvation.Core.Profile;
@@ -28,6 +29,7 @@ namespace Salvation.Api
             builder.Services.AddSingleton<IGameStateService, GameStateService>();
             builder.Services.AddSingleton<IModellingJournal, ModellingJournal>();
             builder.Services.AddSingleton<IProfileGenerationService, ProfileGenerationService>();
+            builder.Services.AddSingleton<IStatWeightGenerationService, StatWeightGenerator>();
 
             // Holy Priest specific services
             builder.Services.AddSingleton<IModellingService, HolyPriestModellingService>();

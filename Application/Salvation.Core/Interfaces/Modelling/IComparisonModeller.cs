@@ -6,6 +6,6 @@ namespace Salvation.Core.Interfaces.Modelling
 {
     public interface IComparisonModeller<T>
     {
-        public object RunComparison();
+        public T RunComparison();
     }
 }

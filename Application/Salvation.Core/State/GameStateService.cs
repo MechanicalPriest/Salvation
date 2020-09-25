@@ -147,5 +147,14 @@ namespace Salvation.Core.State
             specData.Modifiers.Remove(requestedModifier);
             specData.Modifiers.Add(newModifier);
         }
+
+        public GameState CloneGameState(GameState state)
+        {
+            var stateString = JsonConvert.SerializeObject(state);
+
+            var newState = JsonConvert.DeserializeObject<GameState>(stateString);
+
+            return newState;
+        }
     }
 }

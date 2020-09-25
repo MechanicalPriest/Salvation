@@ -20,7 +20,7 @@ namespace Salvation.Explorer.Modelling
 {
     public interface IHolyPriestExplorer
     {
-        public void TestNewHolyPriestModel();
+        public void GenerateStatWeights();
         public void TestHolyPriestModel();
         public void CompareCovenants();
     }
@@ -30,33 +30,31 @@ namespace Salvation.Explorer.Modelling
         private readonly IConstantsService constantsService;
         private readonly IModellingService modellingService;
         private readonly IProfileGenerationService holyPriestProfileGeneratior;
-        private readonly IComparisonModeller<CovenantComparisons> comparisonModellerCovenant;
+        private readonly IComparisonModeller<CovenantComparisonsResult> comparisonModellerCovenant;
+        private readonly IStatWeightGenerationService statWeightGenerationService;
+        private readonly IProfileGenerationService profileGenerationService;
 
         public HolyPriestExplorer(IConstantsService constantsService, 
             IModellingService modellingService,
             IProfileGenerationService holyPriestProfileGeneratior,
-            IComparisonModeller<CovenantComparisons> comparisonModellerCovenant)
+            IComparisonModeller<CovenantComparisonsResult> comparisonModellerCovenant,
+            IStatWeightGenerationService statWeightGenerationService,
+            IProfileGenerationService profileGenerationService)
         {
             this.constantsService = constantsService;
             this.modellingService = modellingService;
             this.holyPriestProfileGeneratior = holyPriestProfileGeneratior;
             this.comparisonModellerCovenant = comparisonModellerCovenant;
+            this.statWeightGenerationService = statWeightGenerationService;
+            this.profileGenerationService = profileGenerationService;
         }
 
-        public void TestHolyPriestModel()
+        public void GenerateStatWeights()
         {
-            var globalConstants = constantsService.LoadConstantsFromFile();
+            var state = new GameState(profileGenerationService.GetDefaultProfile(Spec.HolyPriest),
+                constantsService.LoadConstantsFromFile());
 
-            GenerateStatWeights(constantsService);
-        }
-
-        public void GenerateStatWeights(IConstantsService constantsManager)
-        {
-            var profileGen = new ProfileGenerationService();
-            var basicProfile = profileGen.GetDefaultProfile(Spec.HolyPriest);
-
-            StatWeightGenerator sw = new StatWeightGenerator(constantsManager);
-            var results = sw.Generate(basicProfile, 100,
+            var results = statWeightGenerationService.Generate(state, 100,
                 StatWeightGenerator.StatWeightType.EffectiveHealing);
 
             Console.WriteLine(JsonConvert.SerializeObject(results, Formatting.Indented));
@@ -64,7 +62,7 @@ namespace Salvation.Explorer.Modelling
 
         public void CompareCovenants()
         {
-            var results = comparisonModellerCovenant.RunComparison() as Dictionary<string, BaseModelResults>;
+            var results = comparisonModellerCovenant.RunComparison().Results;
 
             StringBuilder sb = new StringBuilder();
 
@@ -78,7 +76,7 @@ namespace Salvation.Explorer.Modelling
             File.WriteAllText("covenant_results.csv", sb.ToString());
         }
 
-        public void TestNewHolyPriestModel()
+        public void TestHolyPriestModel()
         {
             GameState state = new GameState();
             state.Constants = constantsService.LoadConstantsFromFile();

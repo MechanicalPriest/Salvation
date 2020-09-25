@@ -174,7 +174,7 @@ namespace Salvation.Core.Modelling.HolyPriest
         {
             var resultSummary = new AveragedSpellCastResult();
 
-            Console.WriteLine($"[{castResult.SpellName}] Rolling up");
+            //Console.WriteLine($"[{castResult.SpellName}] Rolling up");
 
             // Things that are properties of the cast
             resultSummary.CastsPerMinute = castResult.CastsPerMinute;
@@ -207,7 +207,7 @@ namespace Salvation.Core.Modelling.HolyPriest
 
             resultSummary.AdditionalCasts.Add(castResult);
 
-            Console.WriteLine($"[{resultSummary.SpellName}] added doing {resultSummary.RawHealing:0.##} raw healing");
+            //Console.WriteLine($"[{resultSummary.SpellName}] added doing {resultSummary.RawHealing:0.##} raw healing");
 
             return resultSummary;
         }
@@ -235,9 +235,9 @@ namespace Salvation.Core.Modelling.HolyPriest
                 resultSummary.Damage += part.Damage * partCPM / resultSummary.CastsPerMinute;
                 resultSummary.ManaCost += part.ManaCost * partCPM / resultSummary.CastsPerMinute;
                 
-                Console.WriteLine($"[{resultSummary.SpellName}] child added doing {part.RawHealing:0.##} " +
-                        $"raw healing (total now: {resultSummary.RawHealing:0.##}) from {part.SpellName} " +
-                        $"with {partCPM:0.##}CPM (actual = {part.CastsPerMinute:0.##})");
+                //Console.WriteLine($"[{resultSummary.SpellName}] child added doing {part.RawHealing:0.##} " +
+                //        $"raw healing (total now: {resultSummary.RawHealing:0.##}) from {part.SpellName} " +
+                //        $"with {partCPM:0.##}CPM (actual = {part.CastsPerMinute:0.##})");
 
                 // Now roll up all of this parts children, setting this part as the parent for CPM purposes
                 if (part.AdditionalCasts.Count > 0)

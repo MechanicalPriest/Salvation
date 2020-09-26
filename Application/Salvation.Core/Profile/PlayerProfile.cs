@@ -7,24 +7,8 @@ using System.Linq;
 
 namespace Salvation.Core.Profile
 {
-    public enum Talent
-    {
-        Enlightenment = 193155, // T15
-    }
-
-    public enum Covenant
-    {
-        [Description("None")]
-        None = 0,
-        [Description("Kyrian")]
-        Kyrian = 1,
-        [Description("Venthyr")]
-        Venthyr = 2,
-        [Description("Night Fae")]
-        NightFae = 3,
-        [Description("Necrolord")]
-        Necrolord = 4,
-    }
+    
+    
 
 
 

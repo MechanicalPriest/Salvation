@@ -10,6 +10,20 @@ namespace Salvation.Core.Constants.Data
         HolyPriest = 257
     }
 
+    public enum Covenant
+    {
+        [Description("None")]
+        None = 0,
+        [Description("Kyrian")]
+        Kyrian = 1,
+        [Description("Venthyr")]
+        Venthyr = 2,
+        [Description("Night Fae")]
+        NightFae = 3,
+        [Description("Necrolord")]
+        Necrolord = 4,
+    }
+
     public static class EnumExtensions
     {
         public static string GetDescription<T>(this T value)

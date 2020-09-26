@@ -67,7 +67,7 @@ function Row(props) {
 }
 
 function SpellComparison(props) {
-  const results = props.data.modelResults.spellCastResults
+  const results = props.data.modelResults.rolledUpResultsSummary
 
   return (
     <div>
@@ -90,6 +90,16 @@ function SpellComparison(props) {
           </TableBody>
         </Table>
       </TableContainer>
+      <Accordion>
+        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+          <Typography>Journal Entries</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Highlight language="json">
+            {JSON.stringify(props.data.journal, null, 2)}
+          </Highlight>
+        </AccordionDetails>
+      </Accordion> 
       <Accordion>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
           <Typography>Modelling response from API</Typography>

@@ -1,61 +1,84 @@
 ﻿using Newtonsoft.Json;
-using Salvation.Core.Constants;
+using Salvation.Core.Constants.Data;
 using Salvation.Core.Interfaces.Constants;
-using Salvation.Core.Models;
-using Salvation.Core.Models.HolyPriest;
-using Salvation.Core.Profile;
+using Salvation.Core.Interfaces.Modelling;
+using Salvation.Core.Interfaces.Profile;
+using Salvation.Core.Modelling;
+using Salvation.Core.State;
 using System;
-using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace Salvation.Explorer.Modelling
 {
     public interface IHolyPriestExplorer
     {
+        public void GenerateStatWeights();
         public void TestHolyPriestModel();
+        public void CompareCovenants();
     }
 
     class HolyPriestExplorer : IHolyPriestExplorer
     {
-        private readonly IConstantsService constantsService;
+        private readonly IConstantsService _constantsService;
+        private readonly IModellingService _modellingService;
+        private readonly IProfileGenerationService _holyPriestProfileGeneratior;
+        private readonly IComparisonModeller<CovenantComparisonsResult> _comparisonModellerCovenant;
+        private readonly IStatWeightGenerationService _statWeightGenerationService;
+        private readonly IProfileGenerationService _profileGenerationService;
 
-        public HolyPriestExplorer(IConstantsService constantsService)
+        public HolyPriestExplorer(IConstantsService constantsService,
+            IModellingService modellingService,
+            IProfileGenerationService holyPriestProfileGeneratior,
+            IComparisonModeller<CovenantComparisonsResult> comparisonModellerCovenant,
+            IStatWeightGenerationService statWeightGenerationService,
+            IProfileGenerationService profileGenerationService)
         {
-            this.constantsService = constantsService;
+            _constantsService = constantsService;
+            _modellingService = modellingService;
+            _holyPriestProfileGeneratior = holyPriestProfileGeneratior;
+            _comparisonModellerCovenant = comparisonModellerCovenant;
+            _statWeightGenerationService = statWeightGenerationService;
+            _profileGenerationService = profileGenerationService;
+        }
+
+        public void GenerateStatWeights()
+        {
+            var state = new GameState(_profileGenerationService.GetDefaultProfile(Spec.HolyPriest),
+                _constantsService.LoadConstantsFromFile());
+
+            var results = _statWeightGenerationService.Generate(state, 100,
+                StatWeightGenerator.StatWeightType.EffectiveHealing);
+
+            Console.WriteLine(JsonConvert.SerializeObject(results, Formatting.Indented));
+        }
+
+        public void CompareCovenants()
+        {
+            var results = _comparisonModellerCovenant.RunComparison().Results;
+
+            StringBuilder sb = new StringBuilder();
+
+            var baselineResults = results.Where(a => a.Key == "Baseline").FirstOrDefault().Value;
+
+            foreach (var result in results)
+            {
+                sb.AppendLine($"{result.Key}, {result.Value.TotalRawHPS - baselineResults.TotalRawHPS:0.##}");
+            }
+
+            File.WriteAllText("covenant_results.csv", sb.ToString());
         }
 
         public void TestHolyPriestModel()
         {
-            var globalConstants = constantsService.LoadConstantsFromFile();
+            GameState state = new GameState
+            {
+                Constants = _constantsService.LoadConstantsFromFile(),
+                Profile = _holyPriestProfileGeneratior.GetDefaultProfile(Spec.HolyPriest)
+            };
 
-            var basicProfile = DefaultProfiles.GetDefaultProfile(Spec.HolyPriest);
-            DefaultProfiles.SetToVenthyr(basicProfile);
-
-            var hpriest = new HolyPriestModel(globalConstants, basicProfile);
-
-            hpriest.GetResults();
-
-            Console.WriteLine("------------[ Profile ]------------");
-            Console.WriteLine(JsonConvert.SerializeObject(basicProfile, Formatting.Indented));
-
-            Console.WriteLine("------------[ Results ]------------");
-            var modelResults = hpriest.GetResults();
-            var spellsRaw = JsonConvert.SerializeObject(modelResults, Formatting.Indented);
-
-            Console.WriteLine(spellsRaw);
-
-            GenerateStatWeights(constantsService);
-        }
-
-        public void GenerateStatWeights(IConstantsService constantsManager)
-        {
-            var basicProfile = DefaultProfiles.GetDefaultProfile(Spec.HolyPriest);
-
-            StatWeightGenerator sw = new StatWeightGenerator(constantsManager);
-            var results = sw.Generate(basicProfile, 100,
-                StatWeightGenerator.StatWeightType.EffectiveHealing);
-
-            Console.WriteLine(JsonConvert.SerializeObject(results, Formatting.Indented));
+            var results = _modellingService.GetResults(state);
         }
     }
 }

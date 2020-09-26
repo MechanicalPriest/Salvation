@@ -39,8 +39,8 @@
           "Value": 0.1
         },
         {
-          "Name": "PrayerOfMendingBounces",
-          "Value": 4.0
+          "Name": "PrayerOfMendingInitialStacks",
+          "Value": 5.0
         },
         {
           // Stored as a decimal. 1.4 is 40% more healing.
@@ -67,6 +67,14 @@
         {
           "Name": "BoonStacksPerABTarget",
           "Value": 5
+        },
+        {
+          "Name": "FaeGuardianFaerieDTPS",
+          "Value": 4000.0
+        },
+        {
+          "Name": "FaeBenevolentFaerieSelfUptime", // 1 = 100%
+          "Value": 1.0
         }
       ],
 
@@ -108,7 +116,7 @@
           "Name": "Prayer of Healing",
           "ManaCost": 0.05,
           "Range": 40.0,
-          "NumberOfHealingTargets": 1.0, // bounces are set using the modifier PrayerOfMendingBounces
+          "NumberOfHealingTargets": 5.0,
           "NumberOfDamageTargets": 0.0,
           "BaseCastTime": 2.0,
           "IsCastTimeHasted": true,
@@ -130,7 +138,7 @@
           "BaseCooldown": 0.0,
           "IsCooldownHasted": false,
           "Gcd": 1.5,
-          "Coeff1": 0.14,
+          "Coeff1": 0.18,
           "IsMasteryTriggered": true
         },
         {
@@ -229,7 +237,7 @@
           "Name": "Prayer of Mending",
           "ManaCost": 0.02,
           "Range": 40.0, // Jump range is 20y
-          "NumberOfHealingTargets": 1.0,
+          "NumberOfHealingTargets": 1.0, // bounces are set using Coeff2
           "NumberOfDamageTargets": 0.0,
           "BaseCastTime": 0.0,
           "IsCastTimeHasted": true,
@@ -237,6 +245,7 @@
           "IsCooldownHasted": true,
           "Gcd": 1.5,
           "Coeff1": 0.61, // comes from 33110
+          "Coeff2": 5, // number of initial PoM stacks. from 33076 #1
           "IsMasteryTriggered": true
         },
         {
@@ -398,7 +407,7 @@
           "IsCooldownHasted": false,
           "Duration": 0.0,
           "Gcd": 0.0,
-          "Coeff1": 3.52, // Damage component from Effect #1
+          "Coeff1": 3.52, // Damage component from Effect #1 - this is wrong. Seems to be AB coefficient
           "Coeff2": 2.22000, // Healing component from Effect #2.
           "Coeff3": 3, // Additional damage per stack of boon. 3 = 3%. From 325013 #5.
           "IsMasteryTriggered": true

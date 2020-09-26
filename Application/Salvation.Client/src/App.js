@@ -51,6 +51,7 @@ function App(props) {
     modelResults: {
       spec: 0,
       spellCastResults: [],
+      rolledUpResultsSummary: [],
       profile: {}
     },
     statWeightsEffective: {},

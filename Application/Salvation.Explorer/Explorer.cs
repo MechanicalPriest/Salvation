@@ -1,9 +1,5 @@
 ﻿using Microsoft.Extensions.Hosting;
 using Salvation.Explorer.Modelling;
-using System;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -11,16 +7,18 @@ namespace Salvation.Explorer
 {
     class Explorer : IHostedService
     {
-        private readonly IHolyPriestExplorer holyPriestExplorer;
+        private readonly IHolyPriestExplorer _holyPriestExplorer;
 
         public Explorer(IHolyPriestExplorer holyPriestExplorer)
         {
-            this.holyPriestExplorer = holyPriestExplorer;
+            _holyPriestExplorer = holyPriestExplorer;
         }
 
         public Task StartAsync(CancellationToken cancellationToken)
         {
-            holyPriestExplorer.TestHolyPriestModel();
+            _holyPriestExplorer.GenerateStatWeights();
+            _holyPriestExplorer.CompareCovenants();
+            _holyPriestExplorer.TestHolyPriestModel(); // Test stat weights
 
             return Task.Delay(1);
         }

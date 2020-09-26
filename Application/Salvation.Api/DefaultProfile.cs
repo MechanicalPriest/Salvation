@@ -1,31 +1,34 @@
-using System;
-using System.IO;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
+using Salvation.Core.Constants.Data;
+using Salvation.Core.Interfaces.Profile;
 using Salvation.Core.Profile;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Reflection;
 using System.Linq;
 
 namespace Salvation.Api
 {
-    public static class DefaultProfile
+    public class DefaultProfile
     {
+        private readonly IProfileGenerationService _profileGenerationService;
+
+        public DefaultProfile(IProfileGenerationService profileGenerationService)
+        {
+            _profileGenerationService = profileGenerationService;
+        }
+
         [FunctionName("DefaultProfile")]
-        public static async Task<IActionResult> Run(
+        public IActionResult Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequest req,
             ILogger log)
         {
-            int specId;
-            var validSpec = int.TryParse(req.Query["specid"], out specId);
+            var validSpec = int.TryParse(req.Query["specid"], out int specId);
 
-            if(!validSpec)
+            if (!validSpec)
             {
                 // Log only the first 3 characters of the parameter
                 log.LogError("Invalid spec provided");
@@ -40,21 +43,22 @@ namespace Salvation.Api
 
         internal class ProfileResponse
         {
-            public BaseProfile Profile;
+            public PlayerProfile Profile;
             public Dictionary<string, int> Covenants;
         }
 
-        private static ProfileResponse BuildProfileResponse(int specId)
+        private ProfileResponse BuildProfileResponse(int specId)
         {
-            ProfileResponse response = new ProfileResponse();
-
-            response.Profile = DefaultProfiles.GetDefaultProfile(specId);
-            response.Covenants = GetCovenants();
+            ProfileResponse response = new ProfileResponse
+            {
+                Profile = _profileGenerationService.GetDefaultProfile((Spec)specId),
+                Covenants = GetCovenants()
+            };
 
             return response;
         }
 
-        private static Dictionary<string, int> GetCovenants()
+        private Dictionary<string, int> GetCovenants()
         {
             var covenantList = Enum.GetValues(typeof(Covenant)).Cast<Covenant>();
 
@@ -67,31 +71,9 @@ namespace Salvation.Api
 
             return values;
         }
-
-        public static string GetDescription<T>(this T value)
-        where T : Enum
-        {
-            Type type = value.GetType();
-            string name = Enum.GetName(type, value);
-            if (name != null)
-            {
-                FieldInfo field = type.GetField(name);
-                if (field != null)
-                {
-                    DescriptionAttribute attr =
-                           Attribute.GetCustomAttribute(field,
-                             typeof(DescriptionAttribute)) as DescriptionAttribute;
-                    if (attr != null)
-                    {
-                        return attr.Description;
-                    }
-                }
-            }
-            return null;
-        }
     }
 
 
 
-    
+
 }

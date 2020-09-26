@@ -1,42 +1,38 @@
 ﻿using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
 using Salvation.Core.Interfaces;
-using Salvation.Core.Interfaces.Modelling;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.Modelling.Common;
-using Salvation.Core.Profile;
 using Salvation.Core.State;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
     public class BoonOfTheAscended : SpellService, IBoonOfTheAscendedSpellService
     {
-        private readonly IAscendedBlastSpellService ascendedBlastSpellService;
-        private readonly IAscendedNovaSpellService ascendedNovaSpellService;
-        private readonly IAscendedEruptionSpellService ascendedEruptionSpellService;
+        private readonly IAscendedBlastSpellService _ascendedBlastSpellService;
+        private readonly IAscendedNovaSpellService _ascendedNovaSpellService;
+        private readonly IAscendedEruptionSpellService _ascendedEruptionSpellService;
 
         public BoonOfTheAscended(IGameStateService gameStateService,
             IModellingJournal journal,
             IAscendedBlastSpellService ascendedBlastSpellService,
             IAscendedNovaSpellService ascendedNovaSpellService,
             IAscendedEruptionSpellService ascendedEruptionSpellService)
-            : base (gameStateService, journal)
+            : base(gameStateService, journal)
         {
             SpellId = (int)SpellIds.BoonOfTheAscended;
-            this.ascendedBlastSpellService = ascendedBlastSpellService;
-            this.ascendedNovaSpellService = ascendedNovaSpellService;
-            this.ascendedEruptionSpellService = ascendedEruptionSpellService;
+            _ascendedBlastSpellService = ascendedBlastSpellService;
+            _ascendedNovaSpellService = ascendedNovaSpellService;
+            _ascendedEruptionSpellService = ascendedEruptionSpellService;
         }
 
         public override AveragedSpellCastResult GetCastResults(GameState gameState, BaseSpellData spellData = null,
             Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
-                spellData = gameStateService.GetSpellData(gameState, SpellIds.BoonOfTheAscended);
+                spellData = _gameStateService.GetSpellData(gameState, SpellIds.BoonOfTheAscended);
 
             AveragedSpellCastResult result = base.GetCastResults(gameState, spellData, moreData);
 
@@ -57,7 +53,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
                 ["BoonOfTheAscended.CPM"] = boonCPM
             };
 
-            var abResults = ascendedBlastSpellService.GetCastResults(gameState, null, abMoreData);
+            var abResults = _ascendedBlastSpellService.GetCastResults(gameState, null, abMoreData);
             result.AdditionalCasts.Add(abResults);
 
             // AN
@@ -70,7 +66,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
                 ["BoonOfTheAscended.CPM"] = boonCPM
             };
 
-            var anResults = ascendedNovaSpellService.GetCastResults(gameState, null, anMoreData);
+            var anResults = _ascendedNovaSpellService.GetCastResults(gameState, null, anMoreData);
 
             result.AdditionalCasts.Add(anResults);
 
@@ -82,7 +78,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
                 ["BoonOfTheAscended.BoonStacks"] = boonStacks
             };
 
-            var aeResults = ascendedEruptionSpellService.GetCastResults(gameState, null, aeMoreData);
+            var aeResults = _ascendedEruptionSpellService.GetCastResults(gameState, null, aeMoreData);
 
             result.AdditionalCasts.Add(aeResults);
 
@@ -93,7 +89,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
-                spellData = gameStateService.GetSpellData(gameState, SpellIds.BoonOfTheAscended);
+                spellData = _gameStateService.GetSpellData(gameState, SpellIds.BoonOfTheAscended);
 
             var hastedCastTime = GetHastedCastTime(gameState, spellData, moreData);
             var hastedCd = GetHastedCooldown(gameState, spellData, moreData);

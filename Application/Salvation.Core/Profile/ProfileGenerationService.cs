@@ -1,11 +1,8 @@
 ﻿using Newtonsoft.Json;
 using Salvation.Core.Constants.Data;
-using Salvation.Core.Interfaces;
 using Salvation.Core.Interfaces.Profile;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Salvation.Core.Profile
 {
@@ -13,7 +10,7 @@ namespace Salvation.Core.Profile
     {
         public ProfileGenerationService()
         {
-            
+
         }
 
         public PlayerProfile GetDefaultProfile(Spec spec)

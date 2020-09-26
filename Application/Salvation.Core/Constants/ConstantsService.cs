@@ -18,13 +18,13 @@ namespace Salvation.Core.Constants
 
         public GlobalConstants ParseConstants(string rawConstants)
         {
-            GlobalConstants constants = default(GlobalConstants);
+            GlobalConstants constants = default;
 
             try
             {
                 constants = JsonConvert.DeserializeObject<GlobalConstants>(rawConstants);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine("Error deserialising constants: " + ex.Message);
             }

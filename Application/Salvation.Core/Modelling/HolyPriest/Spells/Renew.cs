@@ -1,15 +1,10 @@
 ﻿using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
 using Salvation.Core.Interfaces;
-using Salvation.Core.Interfaces.Modelling;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
-using Salvation.Core.Modelling.Common;
-using Salvation.Core.Profile;
 using Salvation.Core.State;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
@@ -17,7 +12,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
     {
         public Renew(IGameStateService gameStateService,
             IModellingJournal journal)
-            : base (gameStateService, journal)
+            : base(gameStateService, journal)
         {
             SpellId = (int)SpellIds.Renew;
         }
@@ -25,34 +20,34 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         public override decimal GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null,
             Dictionary<string, decimal> moreData = null)
         {
-            if(spellData == null)
-                spellData = gameStateService.GetSpellData(gameState, SpellIds.Renew);
+            if (spellData == null)
+                spellData = _gameStateService.GetSpellData(gameState, SpellIds.Renew);
 
-            var holyPriestAuraHealingBonus = gameStateService.GetModifier(gameState, "HolyPriestAuraHealingMultiplier").Value;
+            var holyPriestAuraHealingBonus = _gameStateService.GetModifier(gameState, "HolyPriestAuraHealingMultiplier").Value;
 
             // Renews's average heal is initial + HoT portion:
             decimal averageHealFirstTick = spellData.Coeff1
-                * gameStateService.GetIntellect(gameState)
-                * gameStateService.GetVersatilityMultiplier(gameState)
+                * _gameStateService.GetIntellect(gameState)
+                * _gameStateService.GetVersatilityMultiplier(gameState)
                 * holyPriestAuraHealingBonus;
 
-            journal.Entry($"[{spellData.Name}] Tooltip: {averageHealFirstTick:0.##} (first)");
+            _journal.Entry($"[{spellData.Name}] Tooltip: {averageHealFirstTick:0.##} (first)");
 
-            averageHealFirstTick *= gameStateService.GetCriticalStrikeMultiplier(gameState)
-                * gameStateService.GetHasteMultiplier(gameState);
+            averageHealFirstTick *= _gameStateService.GetCriticalStrikeMultiplier(gameState)
+                * _gameStateService.GetHasteMultiplier(gameState);
 
 
             // HoT is affected by haste
             decimal averageHealTicks = spellData.Coeff1
-                * gameStateService.GetIntellect(gameState)
-                * gameStateService.GetVersatilityMultiplier(gameState)
-                * gameStateService.GetHasteMultiplier(gameState)
+                * _gameStateService.GetIntellect(gameState)
+                * _gameStateService.GetVersatilityMultiplier(gameState)
+                * _gameStateService.GetHasteMultiplier(gameState)
                 * holyPriestAuraHealingBonus
                 * 5;
 
-            journal.Entry($"[{spellData.Name}] Tooltip: {averageHealTicks:0.##} (ticks)");
+            _journal.Entry($"[{spellData.Name}] Tooltip: {averageHealTicks:0.##} (ticks)");
 
-            averageHealTicks *= gameStateService.GetCriticalStrikeMultiplier(gameState);
+            averageHealTicks *= _gameStateService.GetCriticalStrikeMultiplier(gameState);
 
             return (averageHealFirstTick + averageHealTicks) * GetNumberOfHealingTargets(gameState, spellData, moreData);
         }
@@ -61,7 +56,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
-                spellData = gameStateService.GetSpellData(gameState, SpellIds.Renew);
+                spellData = _gameStateService.GetSpellData(gameState, SpellIds.Renew);
 
             var hastedCastTime = GetHastedCastTime(gameState, spellData, moreData);
             var hastedGcd = GetHastedGcd(gameState, spellData, moreData);

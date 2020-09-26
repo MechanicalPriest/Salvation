@@ -1,21 +1,18 @@
-using System;
-using System.IO;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using Salvation.Core.Profile;
-using Salvation.Core;
-using Salvation.Core.Constants;
-using System.Runtime.CompilerServices;
-using Salvation.Core.Modelling;
+using Salvation.Core.Interfaces;
 using Salvation.Core.Interfaces.Constants;
 using Salvation.Core.Interfaces.Modelling;
+using Salvation.Core.Modelling;
+using Salvation.Core.Profile;
 using Salvation.Core.State;
-using Salvation.Core.Interfaces;
+using System;
+using System.IO;
+using System.Threading.Tasks;
 
 namespace Salvation.Api
 {
@@ -26,7 +23,7 @@ namespace Salvation.Api
         private readonly IModellingJournal journal;
         private readonly IStatWeightGenerationService statWeightGenerationService;
 
-        public ProcessModel(IConstantsService constantService, 
+        public ProcessModel(IConstantsService constantService,
             IModellingService modellingService,
             IModellingJournal journal,
             IStatWeightGenerationService statWeightGenerationService)
@@ -92,7 +89,7 @@ namespace Salvation.Api
                     Journal = journal.GetJournal(true)
                 });
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 log.LogError(ex, $"Unable to process model");
                 return new BadRequestResult();

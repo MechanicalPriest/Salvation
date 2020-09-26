@@ -4,9 +4,7 @@ using Salvation.Core.Constants.Data;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.Profile;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Salvation.Core.State
 {

@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Salvation.Core;
 using Salvation.Core.Constants;
 using Salvation.Core.Interfaces;
@@ -16,9 +15,6 @@ using Salvation.Core.Profile;
 using Salvation.Core.State;
 using Salvation.Explorer.Modelling;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 
 namespace Salvation.Explorer
 {

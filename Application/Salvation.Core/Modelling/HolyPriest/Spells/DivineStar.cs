@@ -1,15 +1,11 @@
 ﻿using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
 using Salvation.Core.Interfaces;
-using Salvation.Core.Interfaces.Modelling;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
-using Salvation.Core.Modelling.Common;
-using Salvation.Core.Profile;
 using Salvation.Core.State;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
@@ -17,7 +13,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
     {
         public DivineStar(IGameStateService gameStateService,
             IModellingJournal journal)
-            : base (gameStateService, journal)
+            : base(gameStateService, journal)
         {
             SpellId = (int)SpellIds.DivineStar;
         }
@@ -25,20 +21,20 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         public override decimal GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null,
             Dictionary<string, decimal> moreData = null)
         {
-            if(spellData == null)
-                spellData = gameStateService.GetSpellData(gameState, SpellIds.DivineStar);
+            if (spellData == null)
+                spellData = _gameStateService.GetSpellData(gameState, SpellIds.DivineStar);
 
-            var holyPriestAuraHealingBonus = gameStateService.GetModifier(gameState, "HolyPriestAuraHealingMultiplier").Value;
-            
+            var holyPriestAuraHealingBonus = _gameStateService.GetModifier(gameState, "HolyPriestAuraHealingMultiplier").Value;
+
             decimal averageHeal = spellData.Coeff1
-                * gameStateService.GetIntellect(gameState)
-                * gameStateService.GetVersatilityMultiplier(gameState)
+                * _gameStateService.GetIntellect(gameState)
+                * _gameStateService.GetVersatilityMultiplier(gameState)
                 * holyPriestAuraHealingBonus;
 
-            journal.Entry($"[{spellData.Name}] Tooltip: {averageHeal:0.##} (per pass)");
+            _journal.Entry($"[{spellData.Name}] Tooltip: {averageHeal:0.##} (per pass)");
 
             averageHeal *= 2 // Add the second pass-back through each target
-                * gameStateService.GetCriticalStrikeMultiplier(gameState);
+                * _gameStateService.GetCriticalStrikeMultiplier(gameState);
 
             // Divine Star caps at roughly 6 targets worth of healing
             return averageHeal * Math.Min(6, GetNumberOfHealingTargets(gameState, spellData, moreData));
@@ -48,7 +44,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
-                spellData = gameStateService.GetSpellData(gameState, SpellIds.DivineStar);
+                spellData = _gameStateService.GetSpellData(gameState, SpellIds.DivineStar);
 
             var hastedCastTime = GetHastedCastTime(gameState, spellData, moreData);
             var hastedCd = GetHastedCooldown(gameState, spellData, moreData);

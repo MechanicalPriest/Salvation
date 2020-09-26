@@ -1,51 +1,47 @@
 ﻿using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
 using Salvation.Core.Interfaces;
-using Salvation.Core.Interfaces.Modelling;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.Modelling.Common;
-using Salvation.Core.Profile;
 using Salvation.Core.State;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
     public class FaeGuardians : SpellService, IFaeGuardiansSpellService
     {
-        private readonly IDivineHymnSpellService divineHymnSpellService;
+        private readonly IDivineHymnSpellService _divineHymnSpellService;
 
         public FaeGuardians(IGameStateService gameStateService,
             IModellingJournal journal,
             IDivineHymnSpellService divineHymnSpellService)
-            : base (gameStateService, journal)
+            : base(gameStateService, journal)
         {
             SpellId = (int)SpellIds.FaeGuardians;
-            this.divineHymnSpellService = divineHymnSpellService;
+            _divineHymnSpellService = divineHymnSpellService;
         }
 
         public override AveragedSpellCastResult GetCastResults(GameState gameState, BaseSpellData spellData = null,
             Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
-                spellData = gameStateService.GetSpellData(gameState, SpellIds.FaeGuardians);
+                spellData = _gameStateService.GetSpellData(gameState, SpellIds.FaeGuardians);
 
             AveragedSpellCastResult result = base.GetCastResults(gameState, spellData, moreData);
 
             // Only real way to model any kind of healing contribution from this is presuming it
             // grants you additional CDR on hymn, rather than being cast on other targets.
-            var divineHymnSpellData = gameStateService.GetSpellData(gameState, SpellIds.DivineHymn);
+            var divineHymnSpellData = _gameStateService.GetSpellData(gameState, SpellIds.DivineHymn);
             divineHymnSpellData.ManaCost = 0;
 
-            var divineHymnResults = divineHymnSpellService.GetCastResults(gameState, divineHymnSpellData, moreData);
+            var divineHymnResults = _divineHymnSpellService.GetCastResults(gameState, divineHymnSpellData, moreData);
 
             // Coeff2 is the "100" of 100% CDR.
             var duration = GetDuration(gameState, spellData, moreData);
 
             // Adjust the self duration based on config
-            decimal selfUptime = gameStateService.GetModifier(gameState, "FaeBenevolentFaerieSelfUptime").Value;
+            decimal selfUptime = _gameStateService.GetModifier(gameState, "FaeBenevolentFaerieSelfUptime").Value;
             duration *= selfUptime;
 
             var reducedCooldownSeconds = (spellData.Coeff2 / 100) * duration;
@@ -75,8 +71,8 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         public override decimal GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null,
             Dictionary<string, decimal> moreData = null)
         {
-            if(spellData == null)
-                spellData = gameStateService.GetSpellData(gameState, SpellIds.FaeGuardians);
+            if (spellData == null)
+                spellData = _gameStateService.GetSpellData(gameState, SpellIds.FaeGuardians);
 
             // Night Fae has 3 components:
             // Wrathful - returns some mana so healing from that returned mana?
@@ -94,11 +90,11 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             // Duration should be minus the GCD of the initial cast + gcd to move pw:s over.
 
             // TODO: Move this to configuration
-            decimal targetDamageTakenPerSecond = gameStateService.GetModifier(gameState, "FaeGuardianFaerieDTPS").Value;
+            decimal targetDamageTakenPerSecond = _gameStateService.GetModifier(gameState, "FaeGuardianFaerieDTPS").Value;
 
             var duration = GetDuration(gameState, spellData, moreData);
 
-            journal.Entry($"[{spellData.Name}] DR: {spellData.Coeff1}% DTPS: {targetDamageTakenPerSecond} Duration: {duration}s");
+            _journal.Entry($"[{spellData.Name}] DR: {spellData.Coeff1}% DTPS: {targetDamageTakenPerSecond} Duration: {duration}s");
 
             decimal averageDRPC = duration
                 * targetDamageTakenPerSecond
@@ -114,7 +110,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
-                spellData = gameStateService.GetSpellData(gameState, SpellIds.FaeGuardians);
+                spellData = _gameStateService.GetSpellData(gameState, SpellIds.FaeGuardians);
 
             var hastedCd = GetHastedCooldown(gameState, spellData, moreData);
             var fightLength = gameState.Profile.FightLengthSeconds;
@@ -129,17 +125,17 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
-                spellData = gameStateService.GetSpellData(gameState, SpellIds.FaeGuardians);
+                spellData = _gameStateService.GetSpellData(gameState, SpellIds.FaeGuardians);
 
             var baseDuration = base.GetDuration(gameState, spellData, moreData);
 
             // Apply the Fae Fermata conduit if applicable
             // TODO: Shift this out to another method maybe, for testing?
-            if (gameStateService.IsConduitActive(gameState, Conduit.FaeFermata))
+            if (_gameStateService.IsConduitActive(gameState, Conduit.FaeFermata))
             {
 
-                var rank = gameStateService.GetConduitRank(gameState, Conduit.FaeFermata);
-                var conduitData = gameStateService.GetConduitData(gameState, Conduit.FaeFermata);
+                var rank = _gameStateService.GetConduitRank(gameState, Conduit.FaeFermata);
+                var conduitData = _gameStateService.GetConduitData(gameState, Conduit.FaeFermata);
 
                 var addedDuration = conduitData.Ranks[rank] / 1000;
                 baseDuration += addedDuration;

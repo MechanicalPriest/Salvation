@@ -1,7 +1,5 @@
 ﻿using Salvation.Core.Profile;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Salvation.Core.Modelling.Common
 {

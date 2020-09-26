@@ -1,15 +1,10 @@
 ﻿using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
 using Salvation.Core.Interfaces;
-using Salvation.Core.Interfaces.Modelling;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
-using Salvation.Core.Modelling.Common;
-using Salvation.Core.Profile;
 using Salvation.Core.State;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
@@ -17,7 +12,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
     {
         public DivineHymn(IGameStateService gameStateService,
             IModellingJournal journal)
-            : base (gameStateService, journal)
+            : base(gameStateService, journal)
         {
             SpellId = (int)SpellIds.DivineHymn;
         }
@@ -25,29 +20,29 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         public override decimal GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null,
             Dictionary<string, decimal> moreData = null)
         {
-            if(spellData == null)
-                spellData = gameStateService.GetSpellData(gameState, SpellIds.DivineHymn);
+            if (spellData == null)
+                spellData = _gameStateService.GetSpellData(gameState, SpellIds.DivineHymn);
 
-            var holyPriestAuraHealingBonus = gameStateService.GetModifier(gameState, "HolyPriestAuraHealingMultiplier").Value;
-            var divineHymnAura = gameStateService.GetModifier(gameState, "DivineHymnBonusHealing").Value;
+            var holyPriestAuraHealingBonus = _gameStateService.GetModifier(gameState, "HolyPriestAuraHealingMultiplier").Value;
+            var divineHymnAura = _gameStateService.GetModifier(gameState, "DivineHymnBonusHealing").Value;
 
             // DH's average heal for the first tick is:
             // SP% * Intellect * Vers * Hpriest Aura
             decimal firstTickRaid = spellData.Coeff1
-                * gameStateService.GetIntellect(gameState)
-                * gameStateService.GetVersatilityMultiplier(gameState)
+                * _gameStateService.GetIntellect(gameState)
+                * _gameStateService.GetVersatilityMultiplier(gameState)
                 * holyPriestAuraHealingBonus;
 
             // double it if we have 5 or less (dungeon group buff)
             decimal firstTickParty = firstTickRaid * 2;
 
-            journal.Entry($"[{spellData.Name}] Tooltip: {firstTickRaid:0.##} & {firstTickParty:0.##} (first tick)");
-            journal.Entry($"[{spellData.Name}] Tooltip: {firstTickRaid * 5:0.##} & {firstTickParty * 5:0.##} (all ticks)");
+            _journal.Entry($"[{spellData.Name}] Tooltip: {firstTickRaid:0.##} & {firstTickParty:0.##} (first tick)");
+            _journal.Entry($"[{spellData.Name}] Tooltip: {firstTickRaid * 5:0.##} & {firstTickParty * 5:0.##} (all ticks)");
 
             // Pick whether we're in part or raid
             decimal firstTick = GetNumberOfHealingTargets(gameState, spellData, moreData) <= 5 ? firstTickParty : firstTickRaid;
 
-            firstTick *= gameStateService.GetCriticalStrikeMultiplier(gameState);
+            firstTick *= _gameStateService.GetCriticalStrikeMultiplier(gameState);
 
             // Now the rest of the 4 ticks including the aura:
             decimal averageHeal = firstTick + (firstTick * 4 * (1 + divineHymnAura));
@@ -59,7 +54,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
-                spellData = gameStateService.GetSpellData(gameState, SpellIds.DivineHymn);
+                spellData = _gameStateService.GetSpellData(gameState, SpellIds.DivineHymn);
 
             var hastedCooldown = GetHastedCooldown(gameState, spellData, moreData);
             var fightLength = gameState.Profile.FightLengthSeconds;

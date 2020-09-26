@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Salvation.Core.Constants.Data
+﻿namespace Salvation.Core.Constants.Data
 {
     /// <summary>
     /// TODO: Automatically populate this from covenant_data.inc

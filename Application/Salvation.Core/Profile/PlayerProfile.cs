@@ -1,12 +1,9 @@
 ﻿using Newtonsoft.Json;
 using Salvation.Core.Constants.Data;
-using Salvation.Core.Modelling;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
 
 namespace Salvation.Core.Profile
 {
@@ -29,9 +26,9 @@ namespace Salvation.Core.Profile
         Necrolord = 4,
     }
 
-    
 
-    
+
+
 
     public class PlayerProfile
     {

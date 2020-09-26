@@ -1,15 +1,11 @@
 ﻿using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
 using Salvation.Core.Interfaces;
-using Salvation.Core.Interfaces.Modelling;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
-using Salvation.Core.Modelling.Common;
-using Salvation.Core.Profile;
 using Salvation.Core.State;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
@@ -17,26 +13,26 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
     {
         public AscendedNova(IGameStateService gameStateService,
             IModellingJournal journal)
-            : base (gameStateService, journal)
+            : base(gameStateService, journal)
         {
             SpellId = (int)SpellIds.AscendedNova;
         }
 
         public override decimal GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null, Dictionary<string, decimal> moreData = null)
         {
-            if(spellData == null)
-                spellData = gameStateService.GetSpellData(gameState, SpellIds.AscendedNova);
+            if (spellData == null)
+                spellData = _gameStateService.GetSpellData(gameState, SpellIds.AscendedNova);
 
-            var holyPriestAuraHealingBonus = gameStateService.GetModifier(gameState, "HolyPriestAuraHealingMultiplier").Value;
-            
+            var holyPriestAuraHealingBonus = _gameStateService.GetModifier(gameState, "HolyPriestAuraHealingMultiplier").Value;
+
             decimal averageHeal = spellData.Coeff2
-                * gameStateService.GetIntellect(gameState)
-                * gameStateService.GetVersatilityMultiplier(gameState)
+                * _gameStateService.GetIntellect(gameState)
+                * _gameStateService.GetVersatilityMultiplier(gameState)
                 * holyPriestAuraHealingBonus;
 
-            journal.Entry($"[{spellData.Name}] Tooltip: {averageHeal:0.##}");
+            _journal.Entry($"[{spellData.Name}] Tooltip: {averageHeal:0.##}");
 
-            averageHeal *= gameStateService.GetCriticalStrikeMultiplier(gameState);
+            averageHeal *= _gameStateService.GetCriticalStrikeMultiplier(gameState);
 
             // Apply the 1/sqrt() scaling based on no. targets
             averageHeal *= 1 / (decimal)Math.Sqrt((double)GetNumberOfHealingTargets(gameState, spellData, moreData));
@@ -47,18 +43,18 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         public override decimal GetAverageDamage(GameState gameState, BaseSpellData spellData = null, Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
-                spellData = gameStateService.GetSpellData(gameState, SpellIds.AscendedNova);
+                spellData = _gameStateService.GetSpellData(gameState, SpellIds.AscendedNova);
 
-            var holyPriestAuraDamageBonus = gameStateService.GetModifier(gameState, "HolyPriestAuraDamageMultiplier").Value;
+            var holyPriestAuraDamageBonus = _gameStateService.GetModifier(gameState, "HolyPriestAuraDamageMultiplier").Value;
 
             decimal averageDamage = spellData.Coeff1
-                * gameStateService.GetIntellect(gameState)
-                * gameStateService.GetVersatilityMultiplier(gameState)
+                * _gameStateService.GetIntellect(gameState)
+                * _gameStateService.GetVersatilityMultiplier(gameState)
                 * holyPriestAuraDamageBonus;
 
-            journal.Entry($"[{spellData.Name}] Tooltip (Dmg): {averageDamage:0.##}");
+            _journal.Entry($"[{spellData.Name}] Tooltip (Dmg): {averageDamage:0.##}");
 
-            averageDamage *= gameStateService.GetCriticalStrikeMultiplier(gameState);
+            averageDamage *= _gameStateService.GetCriticalStrikeMultiplier(gameState);
 
             averageDamage *= 1 / (decimal)Math.Sqrt((double)GetNumberOfDamageTargets(gameState, spellData, moreData));
 
@@ -68,12 +64,12 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         public override decimal GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null, Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
-                spellData = gameStateService.GetSpellData(gameState, SpellIds.AscendedNova);
+                spellData = _gameStateService.GetSpellData(gameState, SpellIds.AscendedNova);
 
             if (moreData == null)
                 throw new ArgumentNullException("moreData");
 
-            if(!moreData.ContainsKey("BoonOfTheAscended.CPM"))
+            if (!moreData.ContainsKey("BoonOfTheAscended.CPM"))
                 throw new ArgumentOutOfRangeException("moreData", "Does not contain BoonOfTheAscended.CPM");
 
             var boonCPM = moreData["BoonOfTheAscended.CPM"];

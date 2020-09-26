@@ -13,9 +13,6 @@ using Salvation.Core.Modelling.HolyPriest;
 using Salvation.Core.Modelling.HolyPriest.Spells;
 using Salvation.Core.Profile;
 using Salvation.Core.State;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 [assembly: FunctionsStartup(typeof(Salvation.Api.Startup))]
 namespace Salvation.Api
@@ -23,7 +20,7 @@ namespace Salvation.Api
     public class Startup : FunctionsStartup
     {
         public override void Configure(IFunctionsHostBuilder builder)
-        {            
+        {
             // Common services
             builder.Services.AddSingleton<IConstantsService, ConstantsService>();
             builder.Services.AddSingleton<IGameStateService, GameStateService>();
@@ -36,9 +33,9 @@ namespace Salvation.Api
 
             // Spells
             builder.Services.AddSingleton<IFlashHealSpellService, FlashHeal>();
-            builder.Services.AddSingleton<IHolyWordSerenitySpellService, HolyWordSerenity>();            
-            builder.Services.AddSingleton<IHolyWordSalvationSpellService, HolyWordSalvation>();            
-            builder.Services.AddSingleton<IRenewSpellService, Renew>();            
+            builder.Services.AddSingleton<IHolyWordSerenitySpellService, HolyWordSerenity>();
+            builder.Services.AddSingleton<IHolyWordSalvationSpellService, HolyWordSalvation>();
+            builder.Services.AddSingleton<IRenewSpellService, Renew>();
             builder.Services.AddSingleton<IPrayerOfMendingSpellService, PrayerOfMending>();
             builder.Services.AddSingleton<IPrayerOfHealingSpellService, PrayerOfHealing>();
             builder.Services.AddSingleton<IHealSpellService, Heal>();

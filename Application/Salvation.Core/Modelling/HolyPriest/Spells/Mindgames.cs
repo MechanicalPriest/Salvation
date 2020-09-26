@@ -1,15 +1,10 @@
 ﻿using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
 using Salvation.Core.Interfaces;
-using Salvation.Core.Interfaces.Modelling;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
-using Salvation.Core.Modelling.Common;
-using Salvation.Core.Profile;
 using Salvation.Core.State;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
@@ -17,7 +12,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
     {
         public Mindgames(IGameStateService gameStateService,
             IModellingJournal journal)
-            : base (gameStateService, journal)
+            : base(gameStateService, journal)
         {
             SpellId = (int)SpellIds.Mindgames;
         }
@@ -25,19 +20,19 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         public override decimal GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null,
             Dictionary<string, decimal> moreData = null)
         {
-            if(spellData == null)
-                spellData = gameStateService.GetSpellData(gameState, SpellIds.Mindgames);
+            if (spellData == null)
+                spellData = _gameStateService.GetSpellData(gameState, SpellIds.Mindgames);
 
-            var holyPriestAuraHealingBonus = gameStateService.GetModifier(gameState, "HolyPriestAuraHealingMultiplier").Value;
+            var holyPriestAuraHealingBonus = _gameStateService.GetModifier(gameState, "HolyPriestAuraHealingMultiplier").Value;
 
             // Mind Game's average heal is:
             // $damage=${($SPS*$s2/100)*(1+$@versadmg)}
             // (SP% * Coeff1 / 100) * Vers
-            decimal averageHeal = (spellData.Coeff1 * gameStateService.GetIntellect(gameState) / 100)
-                * gameStateService.GetVersatilityMultiplier(gameState)
+            decimal averageHeal = (spellData.Coeff1 * _gameStateService.GetIntellect(gameState) / 100)
+                * _gameStateService.GetVersatilityMultiplier(gameState)
                 * holyPriestAuraHealingBonus;
 
-            journal.Entry($"[{spellData.Name}] Tooltip: {averageHeal:0.##}");
+            _journal.Entry($"[{spellData.Name}] Tooltip: {averageHeal:0.##}");
 
             // Mindgames absorbs the incoming hit 323701, and heals for the amount absorbed 323706. 
             // The order of events though is Heal then Absorb/Damage.
@@ -49,24 +44,24 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
-                spellData = gameStateService.GetSpellData(gameState, SpellIds.Mindgames);
+                spellData = _gameStateService.GetSpellData(gameState, SpellIds.Mindgames);
 
-            var holyPriestAuraDamageBonus = gameStateService.GetModifier(gameState, "HolyPriestAuraDamageMultiplier").Value;
+            var holyPriestAuraDamageBonus = _gameStateService.GetModifier(gameState, "HolyPriestAuraDamageMultiplier").Value;
 
             // coeff3 * int * hpriest dmg mod * vers
             decimal averageDamage = spellData.Coeff3
-                * gameStateService.GetIntellect(gameState)
+                * _gameStateService.GetIntellect(gameState)
                 * holyPriestAuraDamageBonus
-                * gameStateService.GetVersatilityMultiplier(gameState);
+                * _gameStateService.GetVersatilityMultiplier(gameState);
 
-            journal.Entry($"[{spellData.Name}] Tooltip (Dmg): {averageDamage:0.##}");
+            _journal.Entry($"[{spellData.Name}] Tooltip (Dmg): {averageDamage:0.##}");
 
             // Get the Shattered Perceptions conduit bonus damage
             // TODO: Shift this out to another method maybe, for testing?
-            if (gameStateService.IsConduitActive(gameState, Conduit.ShatteredPerceptions))
+            if (_gameStateService.IsConduitActive(gameState, Conduit.ShatteredPerceptions))
             {
-                var rank = gameStateService.GetConduitRank(gameState, Conduit.ShatteredPerceptions);
-                var conduitData = gameStateService.GetConduitData(gameState, Conduit.ShatteredPerceptions);
+                var rank = _gameStateService.GetConduitRank(gameState, Conduit.ShatteredPerceptions);
+                var conduitData = _gameStateService.GetConduitData(gameState, Conduit.ShatteredPerceptions);
 
                 averageDamage *= (1 + (conduitData.Ranks[rank] / 100));
             }
@@ -78,7 +73,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
-                spellData = gameStateService.GetSpellData(gameState, SpellIds.Mindgames);
+                spellData = _gameStateService.GetSpellData(gameState, SpellIds.Mindgames);
 
             var hastedCd = GetHastedCooldown(gameState, spellData, moreData);
             var fightLength = gameState.Profile.FightLengthSeconds;
@@ -93,15 +88,15 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
-                spellData = gameStateService.GetSpellData(gameState, SpellIds.Mindgames);
+                spellData = _gameStateService.GetSpellData(gameState, SpellIds.Mindgames);
 
             var baseDuration = base.GetDuration(gameState, spellData, moreData);
 
             // Apply the duration component of the Shattered Perceptions conduit.
             // TODO: Shift this out to another method maybe, for testing?
-            if (gameStateService.IsConduitActive(gameState, Conduit.ShatteredPerceptions))
+            if (_gameStateService.IsConduitActive(gameState, Conduit.ShatteredPerceptions))
             {
-                var conduitData = gameStateService.GetConduitData(gameState, Conduit.ShatteredPerceptions);
+                var conduitData = _gameStateService.GetConduitData(gameState, Conduit.ShatteredPerceptions);
 
                 // The added duration is the same regardless of rank
                 baseDuration += conduitData.Coeff1;

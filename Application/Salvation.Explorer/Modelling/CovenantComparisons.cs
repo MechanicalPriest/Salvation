@@ -1,17 +1,13 @@
-﻿using Salvation.Core.Constants;
-using Salvation.Core.Constants.Data;
+﻿using Salvation.Core.Constants.Data;
 using Salvation.Core.Interfaces.Constants;
 using Salvation.Core.Interfaces.Modelling;
 using Salvation.Core.Interfaces.Profile;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.Modelling.Common;
-using Salvation.Core.Modelling.HolyPriest;
 using Salvation.Core.Profile;
 using Salvation.Core.State;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Salvation.Explorer.Modelling
 {
@@ -20,9 +16,9 @@ namespace Salvation.Explorer.Modelling
         public Dictionary<string, BaseModelResults> Results { get; set; }
 
         public CovenantComparisonsResult() { Results = new Dictionary<string, BaseModelResults>(); }
-        public CovenantComparisonsResult(Dictionary<string, BaseModelResults> results) 
-        { 
-            Results = results; 
+        public CovenantComparisonsResult(Dictionary<string, BaseModelResults> results)
+        {
+            Results = results;
         }
     }
 
@@ -31,10 +27,10 @@ namespace Salvation.Explorer.Modelling
     /// </summary>
     class CovenantComparisons : IComparisonModeller<CovenantComparisonsResult>
     {
-        private readonly IProfileGenerationService profileGenerationService;
-        private readonly IModellingService modellingService;
-        private readonly IConstantsService constantsService;
-        private readonly IGameStateService gameStateService;
+        private readonly IProfileGenerationService _profileGenerationService;
+        private readonly IModellingService _modellingService;
+        private readonly IConstantsService _constantsService;
+        private readonly IGameStateService _gameStateService;
 
         // The goal for this class is to build a bunch of different profiles to 
         // show how the covenant abilities work in various scenarios
@@ -47,10 +43,10 @@ namespace Salvation.Explorer.Modelling
             IConstantsService constantsService,
             IGameStateService gameStateService)
         {
-            this.profileGenerationService = profileGenerationService;
-            this.modellingService = modellingService;
-            this.constantsService = constantsService;
-            this.gameStateService = gameStateService;
+            _profileGenerationService = profileGenerationService;
+            _modellingService = modellingService;
+            _constantsService = constantsService;
+            _gameStateService = gameStateService;
         }
 
         public CovenantComparisonsResult RunComparison()
@@ -60,9 +56,9 @@ namespace Salvation.Explorer.Modelling
             // Generate all the states to run
             var states = new List<GameState>();
 
-            states.Add(GetBaseState());
             states.AddRange(GetBoonStates());
             states.AddRange(GetUnholyNovaStates());
+            states.Add(GetBaseState());
             states.Add(GetMindgamesState());
             states.Add(GetFaeGuardianState("Fae 4k DTPS Only", 4000, 0));
             states.Add(GetFaeGuardianState("Fae 5k DTPS Only", 5000, 0));
@@ -75,7 +71,7 @@ namespace Salvation.Explorer.Modelling
             // Run them
             foreach (var state in states)
             {
-                var modelResult = modellingService.GetResults(state);
+                var modelResult = _modellingService.GetResults(state);
 
                 results.Add(modelResult.Profile.Name, modelResult);
             }
@@ -87,7 +83,7 @@ namespace Salvation.Explorer.Modelling
 
         public PlayerProfile GetBaseProfile()
         {
-            var baseProfile = profileGenerationService.GetDefaultProfile(Spec.HolyPriest);
+            var baseProfile = _profileGenerationService.GetDefaultProfile(Spec.HolyPriest);
 
             return baseProfile;
         }
@@ -95,9 +91,9 @@ namespace Salvation.Explorer.Modelling
         public GameState GetBaseState()
         {
             var profile = GetBaseProfile();
-            var constants = constantsService.LoadConstantsFromFile();
+            var constants = _constantsService.LoadConstantsFromFile();
 
-            profileGenerationService.SetProfileName(profile, "Baseline");
+            _profileGenerationService.SetProfileName(profile, "Baseline");
 
             var state = new GameState(profile, constants);
 
@@ -107,11 +103,11 @@ namespace Salvation.Explorer.Modelling
         public GameState GetMindgamesState()
         {
             var profile = GetBaseProfile();
-            var constants = constantsService.LoadConstantsFromFile();
+            var constants = _constantsService.LoadConstantsFromFile();
 
-            profileGenerationService.SetCovenant(profile, Covenant.Venthyr);
-            profileGenerationService.SetProfileName(profile, "Mindgames on CD");
-            profileGenerationService.SetSpellCastProfile(profile, new CastProfile()
+            _profileGenerationService.SetCovenant(profile, Covenant.Venthyr);
+            _profileGenerationService.SetProfileName(profile, "Mindgames on CD");
+            _profileGenerationService.SetSpellCastProfile(profile, new CastProfile()
             {
                 SpellId = (int)SpellIds.Mindgames,
                 Efficiency = 1m,
@@ -161,23 +157,23 @@ namespace Salvation.Explorer.Modelling
             decimal enemyTargets, decimal friendlyTargets)
         {
             var profile = GetBaseProfile();
-            var constants = constantsService.LoadConstantsFromFile();
+            var constants = _constantsService.LoadConstantsFromFile();
 
-            profileGenerationService.SetCovenant(profile, Covenant.Kyrian);
-            profileGenerationService.SetProfileName(profile, profileName);
-            profileGenerationService.SetSpellCastProfile(profile, new CastProfile()
+            _profileGenerationService.SetCovenant(profile, Covenant.Kyrian);
+            _profileGenerationService.SetProfileName(profile, profileName);
+            _profileGenerationService.SetSpellCastProfile(profile, new CastProfile()
             {
                 SpellId = (int)SpellIds.AscendedBlast,
                 Efficiency = abEfficiency,
                 OverhealPercent = 0m
             });
-            profileGenerationService.SetSpellCastProfile(profile, new CastProfile()
+            _profileGenerationService.SetSpellCastProfile(profile, new CastProfile()
             {
                 SpellId = (int)SpellIds.AscendedNova,
                 Efficiency = anEfficiency,
                 OverhealPercent = 0m
             });
-            profileGenerationService.SetSpellCastProfile(profile, new CastProfile()
+            _profileGenerationService.SetSpellCastProfile(profile, new CastProfile()
             {
                 SpellId = (int)SpellIds.AscendedEruption,
                 Efficiency = 1m,
@@ -186,31 +182,31 @@ namespace Salvation.Explorer.Modelling
 
             var state = new GameState(profile, constants);
 
-            var anData = gameStateService.GetSpellData(state, SpellIds.AscendedNova);
+            var anData = _gameStateService.GetSpellData(state, SpellIds.AscendedNova);
 
             anData.NumberOfHealingTargets = friendlyTargets;
             anData.NumberOfDamageTargets = enemyTargets;
 
-            var aeData = gameStateService.GetSpellData(state, SpellIds.AscendedEruption);
+            var aeData = _gameStateService.GetSpellData(state, SpellIds.AscendedEruption);
 
             aeData.NumberOfHealingTargets = friendlyTargets;
             aeData.NumberOfDamageTargets = enemyTargets;
 
-            gameStateService.OverrideSpellData(state, anData);
-            gameStateService.OverrideSpellData(state, aeData);
+            _gameStateService.OverrideSpellData(state, anData);
+            _gameStateService.OverrideSpellData(state, aeData);
 
             return state;
         }
 
-        public GameState GetFaeGuardianState(string profileName, decimal guardianDTPS, 
+        public GameState GetFaeGuardianState(string profileName, decimal guardianDTPS,
             decimal selfCDRUsage)
         {
             var profile = GetBaseProfile();
-            var constants = constantsService.LoadConstantsFromFile();
+            var constants = _constantsService.LoadConstantsFromFile();
 
-            profileGenerationService.SetCovenant(profile, Covenant.NightFae);
-            profileGenerationService.SetProfileName(profile, profileName);
-            profileGenerationService.SetSpellCastProfile(profile, new CastProfile()
+            _profileGenerationService.SetCovenant(profile, Covenant.NightFae);
+            _profileGenerationService.SetProfileName(profile, profileName);
+            _profileGenerationService.SetSpellCastProfile(profile, new CastProfile()
             {
                 SpellId = (int)SpellIds.FaeGuardians,
                 Efficiency = 1m,
@@ -219,14 +215,14 @@ namespace Salvation.Explorer.Modelling
 
             var state = new GameState(profile, constants);
 
-            var dtpsModifier = gameStateService.GetModifier(state, "FaeGuardianFaerieDTPS");
+            var dtpsModifier = _gameStateService.GetModifier(state, "FaeGuardianFaerieDTPS");
             dtpsModifier.Value = guardianDTPS;
 
-            gameStateService.OverrideModifier(state, dtpsModifier);
-            var selfCDRUsageModifier = gameStateService.GetModifier(state, "FaeBenevolentFaerieSelfUptime");
+            _gameStateService.OverrideModifier(state, dtpsModifier);
+            var selfCDRUsageModifier = _gameStateService.GetModifier(state, "FaeBenevolentFaerieSelfUptime");
             selfCDRUsageModifier.Value = selfCDRUsage;
 
-            gameStateService.OverrideModifier(state, selfCDRUsageModifier);
+            _gameStateService.OverrideModifier(state, selfCDRUsageModifier);
 
             return state;
         }
@@ -252,11 +248,11 @@ namespace Salvation.Explorer.Modelling
         public GameState GetUnholyNovaState(string profileName, decimal friendlyTargets)
         {
             var profile = GetBaseProfile();
-            var constants = constantsService.LoadConstantsFromFile();
+            var constants = _constantsService.LoadConstantsFromFile();
 
-            profileGenerationService.SetCovenant(profile, Covenant.Necrolord);
-            profileGenerationService.SetProfileName(profile, profileName);
-            profileGenerationService.SetSpellCastProfile(profile, new CastProfile()
+            _profileGenerationService.SetCovenant(profile, Covenant.Necrolord);
+            _profileGenerationService.SetProfileName(profile, profileName);
+            _profileGenerationService.SetSpellCastProfile(profile, new CastProfile()
             {
                 SpellId = (int)SpellIds.UnholyNova,
                 Efficiency = 1,
@@ -265,16 +261,16 @@ namespace Salvation.Explorer.Modelling
 
             var state = new GameState(profile, constants);
 
-            var unData = gameStateService.GetSpellData(state, SpellIds.UnholyNova);
+            var unData = _gameStateService.GetSpellData(state, SpellIds.UnholyNova);
 
             unData.NumberOfHealingTargets = friendlyTargets;
 
-            var utData = gameStateService.GetSpellData(state, SpellIds.UnholyTransfusion);
+            var utData = _gameStateService.GetSpellData(state, SpellIds.UnholyTransfusion);
 
             utData.NumberOfHealingTargets = friendlyTargets;
 
-            gameStateService.OverrideSpellData(state, unData);
-            gameStateService.OverrideSpellData(state, utData);
+            _gameStateService.OverrideSpellData(state, unData);
+            _gameStateService.OverrideSpellData(state, utData);
 
             return state;
         }

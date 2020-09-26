@@ -1,27 +1,24 @@
-using System;
-using System.IO;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
+using Salvation.Core.Constants.Data;
+using Salvation.Core.Interfaces.Profile;
 using Salvation.Core.Profile;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using Salvation.Core.Interfaces.Profile;
-using Salvation.Core.Constants.Data;
 
 namespace Salvation.Api
 {
     public class DefaultProfile
     {
-        private readonly IProfileGenerationService profileGenerationService;
+        private readonly IProfileGenerationService _profileGenerationService;
 
         public DefaultProfile(IProfileGenerationService profileGenerationService)
         {
-            this.profileGenerationService = profileGenerationService;
+            _profileGenerationService = profileGenerationService;
         }
 
         [FunctionName("DefaultProfile")]
@@ -29,10 +26,9 @@ namespace Salvation.Api
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequest req,
             ILogger log)
         {
-            int specId;
-            var validSpec = int.TryParse(req.Query["specid"], out specId);
+            var validSpec = int.TryParse(req.Query["specid"], out int specId);
 
-            if(!validSpec)
+            if (!validSpec)
             {
                 // Log only the first 3 characters of the parameter
                 log.LogError("Invalid spec provided");
@@ -53,10 +49,11 @@ namespace Salvation.Api
 
         private ProfileResponse BuildProfileResponse(int specId)
         {
-            ProfileResponse response = new ProfileResponse();
-
-            response.Profile = profileGenerationService.GetDefaultProfile((Spec)specId);
-            response.Covenants = GetCovenants();
+            ProfileResponse response = new ProfileResponse
+            {
+                Profile = _profileGenerationService.GetDefaultProfile((Spec)specId),
+                Covenants = GetCovenants()
+            };
 
             return response;
         }
@@ -78,5 +75,5 @@ namespace Salvation.Api
 
 
 
-    
+
 }

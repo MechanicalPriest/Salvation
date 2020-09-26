@@ -1,32 +1,30 @@
 ﻿using Salvation.Core.Interfaces;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Salvation.Core
 {
     public class ModellingJournal : IModellingJournal
     {
-        private List<string> journalEntries { get; set; }
+        private List<string> JournalEntries { get; set; }
 
         public ModellingJournal()
         {
-            journalEntries = new List<string>();
+            JournalEntries = new List<string>();
         }
         public void Entry(string message)
         {
-            journalEntries.Add(message);
+            JournalEntries.Add(message);
         }
 
         public List<string> GetJournal(bool removeDuplicates = false)
         {
-            if(removeDuplicates)
+            if (removeDuplicates)
             {
-                return journalEntries.Distinct().ToList();
+                return JournalEntries.Distinct().ToList();
             }
 
-            return journalEntries;
+            return JournalEntries;
         }
     }
 }

@@ -1,12 +1,7 @@
 ﻿using Salvation.Core.Constants;
-using Salvation.Core.Modelling;
 using Salvation.Core.Modelling.Common;
-using Salvation.Core.Modelling.HolyPriest;
-using Salvation.Core.Profile;
 using Salvation.Core.State;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Salvation.Core.Interfaces.Modelling.HolyPriest.Spells
 {
@@ -48,7 +43,7 @@ namespace Salvation.Core.Interfaces.Modelling.HolyPriest.Spells
         /// Get the number of targets the healing component of the spell cast hits
         /// </summary>
         public decimal GetNumberOfHealingTargets(GameState gameState, BaseSpellData spellData = null, Dictionary<string, decimal> moreData = null);
-        
+
         // Damage values
 
         /// <summary>
@@ -59,7 +54,7 @@ namespace Salvation.Core.Interfaces.Modelling.HolyPriest.Spells
         /// Get the number of targets the damage component of the spell cast hits
         /// </summary>
         public decimal GetNumberOfDamageTargets(GameState gameState, BaseSpellData spellData = null, Dictionary<string, decimal> moreData = null);
-        
+
         // Cast values
 
         /// <summary>
@@ -90,7 +85,7 @@ namespace Salvation.Core.Interfaces.Modelling.HolyPriest.Spells
         /// Get the duration of the cast. Typically for buffs/debuffs and DoTs/HoTs.
         /// </summary>
         public decimal GetDuration(GameState gameState, BaseSpellData spellData = null, Dictionary<string, decimal> moreData = null);
-        
+
     }
 
     /// <summary>

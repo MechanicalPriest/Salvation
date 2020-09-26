@@ -2,7 +2,7 @@
 
 namespace Salvation.Utility.SpellDataDump
 {
-    
+
 
     class SpellDataVersion
     {

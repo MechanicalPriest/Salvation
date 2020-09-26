@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Dynamic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Salvation.Core.Modelling.Common
 {
@@ -66,23 +63,23 @@ namespace Salvation.Core.Modelling.Common
 
         #region Calculated Fields
 
-        public decimal RawHPCT { get => calcRawHPCT(); }
-        public decimal RawHPM { get => calcRawHPM(); }
-        public decimal RawHPS { get => calcRawHPS(); }
-        public decimal HPCT { get => calcHPCT(); }
-        public decimal HPM { get => calcHPM(); }
-        public decimal HPS { get => calcHPS(); }
+        public decimal RawHPCT { get => CalcRawHPCT(); }
+        public decimal RawHPM { get => CalcRawHPM(); }
+        public decimal RawHPS { get => CalcRawHPS(); }
+        public decimal HPCT { get => CalcHPCT(); }
+        public decimal HPM { get => CalcHPM(); }
+        public decimal HPS { get => CalcHPS(); }
         /// <summary>
         /// Overhealing per second
         /// </summary>
-        public decimal OPS { get => calcOPS(); }
-        public decimal MPS { get => calcMPS(); }
-        public decimal DPS { get => calcDPS(); }
-        public decimal DPM { get => calcDPM(); }
+        public decimal OPS { get => CalcOPS(); }
+        public decimal MPS { get => CalcMPS(); }
+        public decimal DPS { get => CalcDPS(); }
+        public decimal DPM { get => CalcDPM(); }
 
-        private decimal calcRawHPCT()
+        private decimal CalcRawHPCT()
         {
-            if(CastTime > 0)
+            if (CastTime > 0)
             {
                 return RawHealing / CastTime;
             }
@@ -94,19 +91,19 @@ namespace Salvation.Core.Modelling.Common
             return 0;
         }
 
-        private decimal calcRawHPM()
+        private decimal CalcRawHPM()
         {
-            if(ManaCost > 0)
+            if (ManaCost > 0)
                 return RawHealing / ManaCost;
             return 0;
         }
 
-        private decimal calcRawHPS()
+        private decimal CalcRawHPS()
         {
             return RawHealing * CastsPerMinute / 60;
         }
 
-        private decimal calcHPCT()
+        private decimal CalcHPCT()
         {
             if (CastTime > 0)
             {
@@ -120,36 +117,36 @@ namespace Salvation.Core.Modelling.Common
             return 0;
         }
 
-        private decimal calcHPM()
+        private decimal CalcHPM()
         {
             if (ManaCost > 0)
                 return Healing / ManaCost;
             return 0;
         }
 
-        private decimal calcHPS()
+        private decimal CalcHPS()
         {
             return Healing * CastsPerMinute / 60;
         }
 
-        private decimal calcMPS()
+        private decimal CalcMPS()
         {
             return ManaCost * CastsPerMinute / 60;
         }
 
-        private decimal calcDPS()
+        private decimal CalcDPS()
         {
             return Damage * CastsPerMinute / 60;
         }
 
-        private decimal calcDPM()
+        private decimal CalcDPM()
         {
             if (ManaCost > 0)
                 return Damage / ManaCost;
             return 0;
         }
 
-        private decimal calcOPS()
+        private decimal CalcOPS()
         {
             return Overhealing * CastsPerMinute / 60;
         }

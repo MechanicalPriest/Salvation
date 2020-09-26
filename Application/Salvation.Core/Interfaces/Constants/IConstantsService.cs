@@ -1,7 +1,4 @@
 ﻿using Salvation.Core.Constants;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Salvation.Core.Interfaces.Constants
 {
@@ -9,7 +6,7 @@ namespace Salvation.Core.Interfaces.Constants
     {
         GlobalConstants LoadConstantsFromFile();
         GlobalConstants ParseConstants(string rawConstants);
-        string DefaultDirectory { get; } 
+        string DefaultDirectory { get; }
         string DefaultFilename { get; }
         void SetDefaultDirectory(string defaultFilePath);
         void SetDefaultFilename(string defaultFilename);

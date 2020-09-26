@@ -1,53 +1,48 @@
 ﻿using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
 using Salvation.Core.Interfaces;
-using Salvation.Core.Interfaces.Modelling;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
-using Salvation.Core.Modelling.Common;
-using Salvation.Core.Profile;
 using Salvation.Core.State;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
     public class HolyWordSanctify : SpellService, IHolyWordSanctifySpellService
     {
-        private readonly IPrayerOfHealingSpellService prayerOfHealingSpellService;
-        private readonly IRenewSpellService renewSpellService;
-        private readonly IBindingHealSpellService bindingHealSpellService;
+        private readonly IPrayerOfHealingSpellService _prayerOfHealingSpellService;
+        private readonly IRenewSpellService _renewSpellService;
+        private readonly IBindingHealSpellService _bindingHealSpellService;
 
         public HolyWordSanctify(IGameStateService gameStateService,
-            IModellingJournal journal, 
+            IModellingJournal journal,
             IPrayerOfHealingSpellService prayerOfHealingSpellService,
             IRenewSpellService renewSpellService,
             IBindingHealSpellService bindingHealSpellService)
-            : base (gameStateService, journal)
+            : base(gameStateService, journal)
         {
             SpellId = (int)SpellIds.HolyWordSanctify;
-            this.prayerOfHealingSpellService = prayerOfHealingSpellService;
-            this.renewSpellService = renewSpellService;
-            this.bindingHealSpellService = bindingHealSpellService;
+            _prayerOfHealingSpellService = prayerOfHealingSpellService;
+            _renewSpellService = renewSpellService;
+            _bindingHealSpellService = bindingHealSpellService;
         }
 
         public override decimal GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null,
             Dictionary<string, decimal> moreData = null)
         {
-            if(spellData == null)
-                spellData = gameStateService.GetSpellData(gameState, SpellIds.HolyWordSanctify);
+            if (spellData == null)
+                spellData = _gameStateService.GetSpellData(gameState, SpellIds.HolyWordSanctify);
 
-            var holyPriestAuraHealingBonus = gameStateService.GetModifier(gameState, "HolyPriestAuraHealingMultiplier").Value;
-            
+            var holyPriestAuraHealingBonus = _gameStateService.GetModifier(gameState, "HolyPriestAuraHealingMultiplier").Value;
+
             decimal averageHeal = spellData.Coeff1
-                * gameStateService.GetIntellect(gameState)
-                * gameStateService.GetVersatilityMultiplier(gameState)
+                * _gameStateService.GetIntellect(gameState)
+                * _gameStateService.GetVersatilityMultiplier(gameState)
                 * holyPriestAuraHealingBonus;
 
-            journal.Entry($"[{spellData.Name}] Tooltip: {averageHeal:0.##}");
+            _journal.Entry($"[{spellData.Name}] Tooltip: {averageHeal:0.##}");
 
-            averageHeal *= gameStateService.GetCriticalStrikeMultiplier(gameState);
+            averageHeal *= _gameStateService.GetCriticalStrikeMultiplier(gameState);
 
             return averageHeal * GetNumberOfHealingTargets(gameState, spellData, moreData);
         }
@@ -56,7 +51,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
-                spellData = gameStateService.GetSpellData(gameState, SpellIds.HolyWordSanctify);
+                spellData = _gameStateService.GetSpellData(gameState, SpellIds.HolyWordSanctify);
 
             // Max casts per minute is (60 + (FH + Heal + BH * 0.5) * HwCDR) / CD + 1 / (FightLength / 60)
             // HWCDR is 6 base, more with LOTN/other effects
@@ -64,15 +59,15 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             // Then add the one charge we start with, 1 per fight, into seconds.
 
             // TODO: Update these to point to their spells when implemented
-            var pohCPM = prayerOfHealingSpellService.GetActualCastsPerMinute(gameState);
-            var renewCPM = renewSpellService.GetActualCastsPerMinute(gameState);
-            var bhCPM = bindingHealSpellService.GetActualCastsPerMinute(gameState);
+            var pohCPM = _prayerOfHealingSpellService.GetActualCastsPerMinute(gameState);
+            var renewCPM = _renewSpellService.GetActualCastsPerMinute(gameState);
+            var bhCPM = _bindingHealSpellService.GetActualCastsPerMinute(gameState);
 
             var hastedCD = GetHastedCooldown(gameState, spellData, moreData);
             var fightLength = gameState.Profile.FightLengthSeconds;
 
             // TODO: Add other HW CDR increasing effects.
-            var hwCDRBase = gameStateService.GetModifier(gameState, "HolyWordsBaseCDR").Value;
+            var hwCDRBase = _gameStateService.GetModifier(gameState, "HolyWordsBaseCDR").Value;
 
             decimal hwCDR = (pohCPM + bhCPM * 0.5m + renewCPM * 1m / 3m) * hwCDRBase;
 

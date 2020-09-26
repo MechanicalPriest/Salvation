@@ -18,7 +18,7 @@
         public decimal NumberOfDamageTargets { get; set; }
         // Base cast time in seconds before haste
         public decimal BaseCastTime { get; set; }
-        public bool IsCastTimeHasted{ get; set; }
+        public bool IsCastTimeHasted { get; set; }
         public decimal BaseCooldown { get; set; }
         public bool IsCooldownHasted { get; set; }
         public decimal Duration { get; set; }

@@ -15,7 +15,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             IModellingJournal journal)
             : base(gameStateService, journal)
         {
-            SpellId = (int)SpellIds.PowerWordShield;
+            SpellId = (int)Spell.PowerWordShield;
         }
 
         public override AveragedSpellCastResult GetCastResults(GameState gameState, BaseSpellData spellData = null,
@@ -53,7 +53,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, SpellIds.PowerWordShield);
+                spellData = _gameStateService.GetSpellData(gameState, Spell.PowerWordShield);
 
             var holyPriestAuraHealingBonus = _gameStateService.GetModifier(gameState, "HolyPriestAuraHealingMultiplier").Value;
 
@@ -76,7 +76,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, SpellIds.PowerWordShield);
+                spellData = _gameStateService.GetSpellData(gameState, Spell.PowerWordShield);
 
             var hastedCastTime = GetHastedCastTime(gameState, spellData, moreData);
             var hastedGcd = GetHastedGcd(gameState, spellData, moreData);

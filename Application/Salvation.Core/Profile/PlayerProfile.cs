@@ -38,6 +38,7 @@ namespace Salvation.Core.Profile
         public List<Soulbind> Soulbinds { get; set; }
 
         public Covenant Covenant { get; set; }
+        public List<Spell> Legendaries { get; set; }
 
         // Misc info
         public int FightLengthSeconds { get; set; }
@@ -49,6 +50,7 @@ namespace Salvation.Core.Profile
             Covenant = Covenant.None;
             Conduits = new Dictionary<Conduit, int>();
             Soulbinds = new List<Soulbind>();
+            Legendaries = new List<Spell>();
         }
 
         public bool IsTalentActive(Talent talent)

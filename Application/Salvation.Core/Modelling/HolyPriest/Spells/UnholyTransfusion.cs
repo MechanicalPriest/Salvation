@@ -14,14 +14,14 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             IModellingJournal journal)
             : base(gameStateService, journal)
         {
-            SpellId = (int)SpellIds.UnholyTransfusion;
+            SpellId = (int)Spell.UnholyTransfusion;
         }
 
         public override decimal GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null,
             Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, SpellIds.UnholyTransfusion);
+                spellData = _gameStateService.GetSpellData(gameState, Spell.UnholyTransfusion);
 
             var holyPriestAuraHealingBonus = _gameStateService.GetModifier(gameState, "HolyPriestAuraHealingMultiplier").Value;
 
@@ -49,7 +49,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, SpellIds.UnholyTransfusion);
+                spellData = _gameStateService.GetSpellData(gameState, Spell.UnholyTransfusion);
 
             var holyPriestAuraDamageBonus = _gameStateService.GetModifier(gameState, "HolyPriestAuraDamageMultiplier").Value;
 
@@ -81,7 +81,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, SpellIds.UnholyTransfusion);
+                spellData = _gameStateService.GetSpellData(gameState, Spell.UnholyTransfusion);
 
             var baseDuration = base.GetDuration(gameState, spellData, moreData);
 
@@ -102,7 +102,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         internal decimal GetFesteringTransfusionConduitMultiplier(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, SpellIds.UnholyTransfusion);
+                spellData = _gameStateService.GetSpellData(gameState, Spell.UnholyTransfusion);
 
             if (_gameStateService.IsConduitActive(gameState, Conduit.FesteringTransfusion))
             {

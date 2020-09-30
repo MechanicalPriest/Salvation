@@ -14,14 +14,14 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             IModellingJournal journal)
             : base(gameStateService, journal)
         {
-            SpellId = (int)SpellIds.DivineHymn;
+            SpellId = (int)Spell.DivineHymn;
         }
 
         public override decimal GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null,
             Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, SpellIds.DivineHymn);
+                spellData = _gameStateService.GetSpellData(gameState, Spell.DivineHymn);
 
             var holyPriestAuraHealingBonus = _gameStateService.GetModifier(gameState, "HolyPriestAuraHealingMultiplier").Value;
             var divineHymnAura = _gameStateService.GetModifier(gameState, "DivineHymnBonusHealing").Value;
@@ -54,7 +54,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, SpellIds.DivineHymn);
+                spellData = _gameStateService.GetSpellData(gameState, Spell.DivineHymn);
 
             var hastedCooldown = GetHastedCooldown(gameState, spellData, moreData);
             var fightLength = gameState.Profile.FightLengthSeconds;

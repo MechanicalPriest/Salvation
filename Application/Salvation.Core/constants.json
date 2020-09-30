@@ -444,6 +444,11 @@
           "Coeff1": 0.04, // Heal from DoT component. 325118 #1
           "Coeff2": 0.5, // DoT component. 325203 #1
           "IsMasteryTriggered": true
+        },
+        {
+          "Id": 336314,
+          "Name": "Harmonious Apparatus",
+          "Coeff1": 4.0 // CDR component from effect #1
         }
       ],
       "Conduits": [
@@ -481,6 +486,13 @@
           "ConduitId": 105,
           "Ranks": [ 20.0, 22.0, 23.0, 24.0, 25.0, 26.0, 27.0, 28.0, 29.0, 30.0, 31.0, 32.0, 33.0, 34.0, 35.0 ],
           "Coeff1": 3.0 // TODO: Figure out where this 3-second increase comes from. Additional duration of Mindgames. value/1000. From #2
+        },
+        {
+          "Id": 338345,
+          "Name": "Holy Oration",
+          "ConduitId": 116,
+          "Ranks": [ 5.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0, 17.0, 18.0, 19.0, 20.0 ],
+          "Coeff1": 0.0 // unused
         }
       ]
     }

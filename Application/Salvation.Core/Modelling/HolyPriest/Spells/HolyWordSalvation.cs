@@ -24,7 +24,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             IPrayerOfMendingSpellService prayerOfMendingSpellService)
             : base(gameStateService, journal)
         {
-            SpellId = (int)SpellIds.HolyWordSalvation;
+            SpellId = (int)Spell.HolyWordSalvation;
             _serenitySpellService = serenitySpellService;
             _holyWordSanctifySpellService = holyWordSanctifySpellService;
             _renewSpellService = renewSpellService;
@@ -34,7 +34,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         public override decimal GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null, Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, SpellIds.HolyWordSalvation);
+                spellData = _gameStateService.GetSpellData(gameState, Spell.HolyWordSalvation);
 
             var holyPriestAuraHealingBonus = _gameStateService.GetModifier(gameState, "HolyPriestAuraHealingMultiplier").Value;
 
@@ -54,23 +54,25 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, SpellIds.HolyWordSalvation);
+                spellData = _gameStateService.GetSpellData(gameState, Spell.HolyWordSalvation);
 
             // Salv is (60 + (SerenityCPM + SancCPM) * SalvCDR) / (CastTime + Cooldown) + 1 / (FightLength / 60)
             // Essentially the CDR per minute is 60 + the CDR from holy words.
 
             // TODO: Add sanc here properly once implemented
-            var serenityCPM = _serenitySpellService.GetActualCastsPerMinute(gameState);
-            var sancCPM = _holyWordSanctifySpellService.GetActualCastsPerMinute(gameState);
-
-            var salvCDRBase = _gameStateService.GetModifier(gameState, "SalvationHolyWordCDR").Value;
+            var cpmSerenity = _serenitySpellService.GetActualCastsPerMinute(gameState);
+            var cpmSanctify = _holyWordSanctifySpellService.GetActualCastsPerMinute(gameState);
 
             var hastedCD = GetHastedCooldown(gameState, spellData, moreData);
             var hastedCT = GetHastedCastTime(gameState, spellData, moreData);
             var fightLength = gameState.Profile.FightLengthSeconds;
 
-            decimal salvCDRPerMin = 60m + (serenityCPM + sancCPM) * salvCDRBase;
-            decimal maximumPotentialCasts = salvCDRPerMin / (hastedCT + hastedCD)
+            var hwCDRSerenity = _gameStateService.GetTotalHolyWordCooldownReduction(gameState, Spell.HolyWordSerenity);
+            var hwCDRSanctify = _gameStateService.GetTotalHolyWordCooldownReduction(gameState, Spell.HolyWordSanctify);
+
+            decimal salvCDRPerMin = cpmSerenity * hwCDRSerenity + 
+                cpmSanctify * hwCDRSanctify;
+            decimal maximumPotentialCasts = (60m + salvCDRPerMin) / (hastedCT + hastedCD)
                 + 1m / (fightLength / 60m);
 
             return maximumPotentialCasts;
@@ -80,12 +82,12 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, SpellIds.HolyWordSalvation);
+                spellData = _gameStateService.GetSpellData(gameState, Spell.HolyWordSalvation);
 
             AveragedSpellCastResult result = base.GetCastResults(gameState, spellData, moreData);
 
             // We need to add a 0-cost renew:
-            var renewSpellData = _gameStateService.GetSpellData(gameState, SpellIds.Renew);
+            var renewSpellData = _gameStateService.GetSpellData(gameState, Spell.Renew);
 
             renewSpellData.ManaCost = 0;
             renewSpellData.Gcd = 0;
@@ -97,7 +99,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             result.AdditionalCasts.Add(renewResult);
 
-            var pomSpellData = _gameStateService.GetSpellData(gameState, SpellIds.PrayerOfMending);
+            var pomSpellData = _gameStateService.GetSpellData(gameState, Spell.PrayerOfMending);
 
             pomSpellData.ManaCost = 0;
             pomSpellData.Gcd = 0;

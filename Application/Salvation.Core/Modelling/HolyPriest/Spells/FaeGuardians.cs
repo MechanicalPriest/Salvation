@@ -18,7 +18,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             IDivineHymnSpellService divineHymnSpellService)
             : base(gameStateService, journal)
         {
-            SpellId = (int)SpellIds.FaeGuardians;
+            SpellId = (int)Spell.FaeGuardians;
             _divineHymnSpellService = divineHymnSpellService;
         }
 
@@ -26,13 +26,13 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, SpellIds.FaeGuardians);
+                spellData = _gameStateService.GetSpellData(gameState, Spell.FaeGuardians);
 
             AveragedSpellCastResult result = base.GetCastResults(gameState, spellData, moreData);
 
             // Only real way to model any kind of healing contribution from this is presuming it
             // grants you additional CDR on hymn, rather than being cast on other targets.
-            var divineHymnSpellData = _gameStateService.GetSpellData(gameState, SpellIds.DivineHymn);
+            var divineHymnSpellData = _gameStateService.GetSpellData(gameState, Spell.DivineHymn);
             divineHymnSpellData.ManaCost = 0;
 
             var divineHymnResults = _divineHymnSpellService.GetCastResults(gameState, divineHymnSpellData, moreData);
@@ -72,7 +72,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, SpellIds.FaeGuardians);
+                spellData = _gameStateService.GetSpellData(gameState, Spell.FaeGuardians);
 
             // Night Fae has 3 components:
             // Wrathful - returns some mana so healing from that returned mana?
@@ -110,7 +110,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, SpellIds.FaeGuardians);
+                spellData = _gameStateService.GetSpellData(gameState, Spell.FaeGuardians);
 
             var hastedCd = GetHastedCooldown(gameState, spellData, moreData);
             var fightLength = gameState.Profile.FightLengthSeconds;
@@ -125,7 +125,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, SpellIds.FaeGuardians);
+                spellData = _gameStateService.GetSpellData(gameState, Spell.FaeGuardians);
 
             var baseDuration = base.GetDuration(gameState, spellData, moreData);
 

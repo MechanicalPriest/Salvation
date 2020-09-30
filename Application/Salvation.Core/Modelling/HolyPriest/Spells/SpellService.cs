@@ -29,7 +29,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, (SpellIds)SpellId);
+                spellData = _gameStateService.GetSpellData(gameState, (Spell)SpellId);
 
             AveragedSpellCastResult result = new AveragedSpellCastResult
             {
@@ -95,7 +95,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, (SpellIds)SpellId);
+                spellData = _gameStateService.GetSpellData(gameState, (Spell)SpellId);
 
             var castProfile = _gameStateService.GetCastProfile(gameState, SpellId);
 
@@ -120,7 +120,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, (SpellIds)SpellId);
+                spellData = _gameStateService.GetSpellData(gameState, (Spell)SpellId);
 
             return spellData.IsCastTimeHasted ? spellData.BaseCastTime / _gameStateService.GetHasteMultiplier(gameState)
                 : spellData.BaseCastTime;
@@ -130,7 +130,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, (SpellIds)SpellId);
+                spellData = _gameStateService.GetSpellData(gameState, (Spell)SpellId);
 
             return spellData.Gcd / _gameStateService.GetHasteMultiplier(gameState);
         }
@@ -139,7 +139,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, (SpellIds)SpellId);
+                spellData = _gameStateService.GetSpellData(gameState, (Spell)SpellId);
 
             return spellData.IsCooldownHasted
                 ? spellData.BaseCooldown / _gameStateService.GetHasteMultiplier(gameState)
@@ -150,7 +150,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, (SpellIds)SpellId);
+                spellData = _gameStateService.GetSpellData(gameState, (Spell)SpellId);
 
             var baseMana = _gameStateService.GetBaseManaAmount(gameState);
 
@@ -161,7 +161,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, (SpellIds)SpellId);
+                spellData = _gameStateService.GetSpellData(gameState, (Spell)SpellId);
 
             return spellData.Duration;
         }
@@ -170,7 +170,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, (SpellIds)SpellId);
+                spellData = _gameStateService.GetSpellData(gameState, (Spell)SpellId);
 
             return spellData.NumberOfHealingTargets;
         }
@@ -179,7 +179,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, (SpellIds)SpellId);
+                spellData = _gameStateService.GetSpellData(gameState, (Spell)SpellId);
 
             return spellData.NumberOfDamageTargets;
         }
@@ -196,14 +196,14 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             AveragedSpellCastResult result = new AveragedSpellCastResult();
 
             if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, (SpellIds)SpellId);
+                spellData = _gameStateService.GetSpellData(gameState, (Spell)SpellId);
 
             var averageMasteryHeal = GetAverageRawHealing(gameState, spellData, moreData)
                 * (_gameStateService.GetMasteryMultiplier(gameState) - 1);
 
-            var castProfile = _gameStateService.GetCastProfile(gameState, (int)SpellIds.EchoOfLight);
+            var castProfile = _gameStateService.GetCastProfile(gameState, (int)Spell.EchoOfLight);
 
-            result.SpellId = (int)SpellIds.EchoOfLight;
+            result.SpellId = (int)Spell.EchoOfLight;
             result.SpellName = "Echo of Light";
             result.RawHealing = averageMasteryHeal;
             result.Healing = averageMasteryHeal * (1 - castProfile.OverhealPercent);

@@ -2,6 +2,7 @@
 using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
 using Salvation.Core.Interfaces.State;
+using Salvation.Core.Modelling.HolyPriest.Spells;
 using Salvation.Core.Profile;
 using System;
 using System.Linq;
@@ -77,7 +78,7 @@ namespace Salvation.Core.State
             return modifier;
         }
 
-        public BaseSpellData GetSpellData(GameState state, SpellIds spellId)
+        public BaseSpellData GetSpellData(GameState state, Spell spellId)
         {
             var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.SpecId).FirstOrDefault();
 
@@ -110,7 +111,9 @@ namespace Salvation.Core.State
 
         public int GetConduitRank(GameState state, Conduit conduit)
         {
-            var rank = state.Profile.Conduits[conduit];
+            var rank = 0;
+            if (state.Profile.Conduits.ContainsKey(conduit))
+                rank = state.Profile.Conduits[conduit];
 
             return rank;
         }
@@ -118,6 +121,20 @@ namespace Salvation.Core.State
         public Covenant GetActiveCovenant(GameState state)
         {
             return state.Profile.Covenant;
+        }
+
+        public bool IsTalentActive(GameState state, Talent talent)
+        {
+            var exists = state.Profile.Talents.Contains(talent);
+
+            return exists;
+        }
+
+        public bool IsLegendaryActive(GameState state, Spell legendary)
+        {
+            var exists = state.Profile.Legendaries.Contains(legendary);
+
+            return exists;
         }
 
         public void OverrideSpellData(GameState state, BaseSpellData newData)
@@ -154,5 +171,87 @@ namespace Salvation.Core.State
 
             return newState;
         }
+
+        #region Holy Priest Specific
+        // TODO: Move this out to a holy priest specific file at some point.
+
+        public decimal GetTotalHolyWordCooldownReduction(GameState state, Spell spell, bool isApotheosisActive = false)
+        {
+            // Only let Apoth actually benefit if apoth is talented
+            if (!IsTalentActive(state, Talent.Apotheosis))
+                isApotheosisActive = false;
+
+            var hwCDRBase = GetModifier(state, "HolyWordsBaseCDR").Value;
+            var salvCDRBase = GetModifier(state, "SalvationHolyWordCDR").Value;
+            var haCDRBase = GetSpellData(state, Spell.HarmoniousApparatus).Coeff1;
+            var isLotnActive = IsTalentActive(state, Talent.LightOfTheNaaru);
+
+            // Holy Oration
+            var isHolyOrationActive = IsConduitActive(state, Conduit.HolyOration);
+            var holyOrationModifier = 0m;
+            if (isHolyOrationActive)
+            {
+                var holyOrationRank = GetConduitRank(state, Conduit.HolyOration);
+                var holyOrationSpellData = GetConduitData(state, Conduit.HolyOration);
+
+                holyOrationModifier = holyOrationSpellData.Ranks[holyOrationRank] / 100;
+            }
+
+            var returnCDR = 0m;
+
+            // This is a bit more verbose than it needs to be for the sake of clarity
+            // See #58 for some of the testing/math behind these values
+            switch (spell)
+            {
+                case Spell.FlashHeal:
+                case Spell.Heal:
+                case Spell.PrayerOfHealing:
+                    returnCDR = hwCDRBase;
+                    returnCDR *= isLotnActive ? 1m + 1m / 3m : 1m; // LotN adds 33% more CDR.
+                    returnCDR *= isApotheosisActive ? 4m : 1m; // Aptheosis adds 200% more CDR
+                    // Apply this last as it's additive overall and not multiplicative with others
+                    returnCDR += isHolyOrationActive ? hwCDRBase * holyOrationModifier : 0m;
+                    break;
+
+                case Spell.BindingHeal:
+                    returnCDR = hwCDRBase / 2m; // Binding heal gets half the CDR benefit
+                    returnCDR *= isLotnActive ? 1m + 1m / 3m : 1m; // LotN adds 33% more CDR.
+                    returnCDR *= isApotheosisActive ? 4m : 1m; // Aptheosis adds 200% more CDR
+                    // Apply this last as it's additive overall and not multiplicative with others
+                    returnCDR += isHolyOrationActive ? (hwCDRBase / 2m) * holyOrationModifier : 0m;
+                    break;
+
+                case Spell.Renew:
+                    returnCDR = hwCDRBase / 3m; // Renew gets a third of the CDR benefit
+                    returnCDR *= isLotnActive ? 1m + 1m / 3m : 1m; // LotN adds 33% more CDR.
+                    returnCDR *= isApotheosisActive ? 4m : 1m; // Aptheosis adds 200% more CDR
+                    // Apply this last as it's additive overall and not multiplicative with others
+                    returnCDR += isHolyOrationActive ? (hwCDRBase / 3m) * holyOrationModifier : 0m;
+                    break;
+
+                case Spell.CircleOfHealing:
+                case Spell.PrayerOfMending:
+                    returnCDR = haCDRBase;
+                    returnCDR *= isLotnActive ? 1m + 1m / 3m : 1m; // LotN adds 33% more CDR.
+                    returnCDR *= isApotheosisActive ? 4m : 1m; // Aptheosis adds 200% more CDR
+                    // Apply this last as it's additive overall and not multiplicative with others
+                    returnCDR += isHolyOrationActive ? haCDRBase * holyOrationModifier : 0m;
+                    break;
+
+                case Spell.HolyWordSerenity:
+                case Spell.HolyWordSanctify:
+                    returnCDR = salvCDRBase;
+                    // Apply this last as it's additive overall and not multiplicative with others
+                    returnCDR += isHolyOrationActive ? salvCDRBase * holyOrationModifier : 0;
+                    break;
+
+                default:
+                    break;
+            }
+
+            return returnCDR;
+        }
+
+        #endregion
     }
 }

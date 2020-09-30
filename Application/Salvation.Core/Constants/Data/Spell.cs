@@ -1,6 +1,6 @@
 ﻿namespace Salvation.Core.Constants.Data
 {
-    public enum SpellIds
+    public enum Spell
     {
         // Base healing spells
         Heal = 2060,
@@ -32,6 +32,9 @@
         AscendedBlast = 325283,
         AscendedEruption = 325326,
         UnholyNova = 324724,
-        UnholyTransfusion = 325118
+        UnholyTransfusion = 325118,
+
+        // Legendaries
+        HarmoniousApparatus = 336314
     }
 }

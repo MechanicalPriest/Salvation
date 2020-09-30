@@ -109,7 +109,7 @@ namespace Salvation.Explorer.Modelling
             _profileGenerationService.SetProfileName(profile, "Mindgames on CD");
             _profileGenerationService.SetSpellCastProfile(profile, new CastProfile()
             {
-                SpellId = (int)SpellIds.Mindgames,
+                SpellId = (int)Spell.Mindgames,
                 Efficiency = 1m,
                 OverhealPercent = 0m
             });
@@ -163,31 +163,31 @@ namespace Salvation.Explorer.Modelling
             _profileGenerationService.SetProfileName(profile, profileName);
             _profileGenerationService.SetSpellCastProfile(profile, new CastProfile()
             {
-                SpellId = (int)SpellIds.AscendedBlast,
+                SpellId = (int)Spell.AscendedBlast,
                 Efficiency = abEfficiency,
                 OverhealPercent = 0m
             });
             _profileGenerationService.SetSpellCastProfile(profile, new CastProfile()
             {
-                SpellId = (int)SpellIds.AscendedNova,
+                SpellId = (int)Spell.AscendedNova,
                 Efficiency = anEfficiency,
                 OverhealPercent = 0m
             });
             _profileGenerationService.SetSpellCastProfile(profile, new CastProfile()
             {
-                SpellId = (int)SpellIds.AscendedEruption,
+                SpellId = (int)Spell.AscendedEruption,
                 Efficiency = 1m,
                 OverhealPercent = 0m
             });
 
             var state = new GameState(profile, constants);
 
-            var anData = _gameStateService.GetSpellData(state, SpellIds.AscendedNova);
+            var anData = _gameStateService.GetSpellData(state, Spell.AscendedNova);
 
             anData.NumberOfHealingTargets = friendlyTargets;
             anData.NumberOfDamageTargets = enemyTargets;
 
-            var aeData = _gameStateService.GetSpellData(state, SpellIds.AscendedEruption);
+            var aeData = _gameStateService.GetSpellData(state, Spell.AscendedEruption);
 
             aeData.NumberOfHealingTargets = friendlyTargets;
             aeData.NumberOfDamageTargets = enemyTargets;
@@ -208,7 +208,7 @@ namespace Salvation.Explorer.Modelling
             _profileGenerationService.SetProfileName(profile, profileName);
             _profileGenerationService.SetSpellCastProfile(profile, new CastProfile()
             {
-                SpellId = (int)SpellIds.FaeGuardians,
+                SpellId = (int)Spell.FaeGuardians,
                 Efficiency = 1m,
                 OverhealPercent = 0m
             });
@@ -254,18 +254,18 @@ namespace Salvation.Explorer.Modelling
             _profileGenerationService.SetProfileName(profile, profileName);
             _profileGenerationService.SetSpellCastProfile(profile, new CastProfile()
             {
-                SpellId = (int)SpellIds.UnholyNova,
+                SpellId = (int)Spell.UnholyNova,
                 Efficiency = 1,
                 OverhealPercent = 0m
             });
 
             var state = new GameState(profile, constants);
 
-            var unData = _gameStateService.GetSpellData(state, SpellIds.UnholyNova);
+            var unData = _gameStateService.GetSpellData(state, Spell.UnholyNova);
 
             unData.NumberOfHealingTargets = friendlyTargets;
 
-            var utData = _gameStateService.GetSpellData(state, SpellIds.UnholyTransfusion);
+            var utData = _gameStateService.GetSpellData(state, Spell.UnholyTransfusion);
 
             utData.NumberOfHealingTargets = friendlyTargets;
 

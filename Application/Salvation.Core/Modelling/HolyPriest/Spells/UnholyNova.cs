@@ -18,7 +18,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             IUnholyTransfusionSpellService unholyTransfuionSpellService)
             : base(gameStateService, journal)
         {
-            SpellId = (int)SpellIds.UnholyNova;
+            SpellId = (int)Spell.UnholyNova;
             _unholyTransfuionSpellService = unholyTransfuionSpellService;
         }
 
@@ -26,12 +26,12 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, SpellIds.UnholyNova);
+                spellData = _gameStateService.GetSpellData(gameState, Spell.UnholyNova);
 
             AveragedSpellCastResult result = base.GetCastResults(gameState, spellData, moreData);
 
             // Apply the transufion DoT/HoT
-            var unholyTransfusionSpellData = _gameStateService.GetSpellData(gameState, SpellIds.UnholyTransfusion);
+            var unholyTransfusionSpellData = _gameStateService.GetSpellData(gameState, Spell.UnholyTransfusion);
 
             var uhtResults = _unholyTransfuionSpellService.GetCastResults(gameState, unholyTransfusionSpellData);
 
@@ -44,7 +44,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, SpellIds.UnholyNova);
+                spellData = _gameStateService.GetSpellData(gameState, Spell.UnholyNova);
 
             var holyPriestAuraHealingBonus = _gameStateService.GetModifier(gameState, "HolyPriestAuraHealingMultiplier").Value;
 
@@ -64,7 +64,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, SpellIds.UnholyNova);
+                spellData = _gameStateService.GetSpellData(gameState, Spell.UnholyNova);
 
             var hastedCastTime = GetHastedCastTime(gameState, spellData, moreData);
             var hastedCd = GetHastedCooldown(gameState, spellData, moreData);

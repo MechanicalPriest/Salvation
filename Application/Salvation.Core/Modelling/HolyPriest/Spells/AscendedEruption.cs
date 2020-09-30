@@ -15,14 +15,14 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             IModellingJournal journal)
             : base(gameStateService, journal)
         {
-            SpellId = (int)SpellIds.AscendedEruption;
+            SpellId = (int)Spell.AscendedEruption;
         }
 
         public override decimal GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null,
             Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, SpellIds.AscendedEruption);
+                spellData = _gameStateService.GetSpellData(gameState, Spell.AscendedEruption);
 
             if (moreData == null)
                 throw new ArgumentNullException("moreData");
@@ -64,7 +64,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         public override decimal GetAverageDamage(GameState gameState, BaseSpellData spellData = null, Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, SpellIds.AscendedEruption);
+                spellData = _gameStateService.GetSpellData(gameState, Spell.AscendedEruption);
 
             if (moreData == null)
                 throw new ArgumentNullException("moreData");
@@ -119,7 +119,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         public decimal GetBoonBonusDamagePerStack(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, SpellIds.AscendedEruption);
+                spellData = _gameStateService.GetSpellData(gameState, Spell.AscendedEruption);
 
             // The bonus is stored as an int. 3 = 3%
             var bonusPerStack = spellData.Coeff3;

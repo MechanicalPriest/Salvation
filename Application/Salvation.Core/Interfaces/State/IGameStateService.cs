@@ -12,7 +12,7 @@ namespace Salvation.Core.Interfaces.State
     public interface IGameStateService
     {
         // Global constants
-        BaseSpellData GetSpellData(GameState state, SpellIds spellId);
+        BaseSpellData GetSpellData(GameState state, Spell spellId);
         BaseModifier GetModifier(GameState state, string modifierName);
         CastProfile GetCastProfile(GameState state, int spellId);
         ConduitData GetConduitData(GameState state, Conduit conduitId);
@@ -31,8 +31,12 @@ namespace Salvation.Core.Interfaces.State
         // Player Configuration
         bool IsConduitActive(GameState state, Conduit conduit);
         int GetConduitRank(GameState state, Conduit conduit);
+        bool IsLegendaryActive(GameState state, Spell legendary);
 
         // Utility
         GameState CloneGameState(GameState state);
+
+        // Holy Priest specific
+        decimal GetTotalHolyWordCooldownReduction(GameState state, Spell spell, bool IsApotheosisActive = false);
     }
 }

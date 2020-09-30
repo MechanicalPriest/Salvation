@@ -22,7 +22,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             IAscendedEruptionSpellService ascendedEruptionSpellService)
             : base(gameStateService, journal)
         {
-            SpellId = (int)SpellIds.BoonOfTheAscended;
+            SpellId = (int)Spell.BoonOfTheAscended;
             _ascendedBlastSpellService = ascendedBlastSpellService;
             _ascendedNovaSpellService = ascendedNovaSpellService;
             _ascendedEruptionSpellService = ascendedEruptionSpellService;
@@ -32,7 +32,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, SpellIds.BoonOfTheAscended);
+                spellData = _gameStateService.GetSpellData(gameState, Spell.BoonOfTheAscended);
 
             AveragedSpellCastResult result = base.GetCastResults(gameState, spellData, moreData);
 
@@ -89,7 +89,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, SpellIds.BoonOfTheAscended);
+                spellData = _gameStateService.GetSpellData(gameState, Spell.BoonOfTheAscended);
 
             var hastedCastTime = GetHastedCastTime(gameState, spellData, moreData);
             var hastedCd = GetHastedCooldown(gameState, spellData, moreData);

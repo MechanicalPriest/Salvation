@@ -81,7 +81,7 @@ namespace Salvation.Core.Modelling.HolyPriest
 
             foreach (var spell in Spells)
             {
-                if (IsSpellBeingCast(state, (SpellIds)spell.SpellId))
+                if (IsSpellBeingCast(state, (Spell)spell.SpellId))
                 {
                     var castResults = spell.GetCastResults(state);
                     results.SpellCastResults.Add(castResults);
@@ -124,20 +124,20 @@ namespace Salvation.Core.Modelling.HolyPriest
         /// <summary>
         /// Check to see if this spell should be cast as part of the modelling
         /// </summary>
-        public bool IsSpellBeingCast(GameState state, SpellIds spellId)
+        public bool IsSpellBeingCast(GameState state, Spell spellId)
         {
             switch (spellId)
             {
-                case SpellIds.BoonOfTheAscended:
+                case Spell.BoonOfTheAscended:
                     return _gameStateService.GetActiveCovenant(state) == Covenant.Kyrian;
 
-                case SpellIds.Mindgames:
+                case Spell.Mindgames:
                     return _gameStateService.GetActiveCovenant(state) == Covenant.Venthyr;
 
-                case SpellIds.FaeGuardians:
+                case Spell.FaeGuardians:
                     return _gameStateService.GetActiveCovenant(state) == Covenant.NightFae;
 
-                case SpellIds.UnholyNova:
+                case Spell.UnholyNova:
                     return _gameStateService.GetActiveCovenant(state) == Covenant.Necrolord;
 
                 default:

@@ -15,14 +15,14 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             IModellingJournal journal)
             : base(gameStateService, journal)
         {
-            SpellId = (int)SpellIds.AscendedBlast;
+            SpellId = (int)Spell.AscendedBlast;
         }
 
         public override decimal GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null,
             Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, SpellIds.AscendedBlast);
+                spellData = _gameStateService.GetSpellData(gameState, Spell.AscendedBlast);
 
             // AB does ST damage and heals a random friendly (5 stack)
             // Coeff2 being 100 = 100%.
@@ -41,7 +41,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, SpellIds.AscendedBlast);
+                spellData = _gameStateService.GetSpellData(gameState, Spell.AscendedBlast);
 
             var holyPriestAuraDamageBonus = _gameStateService.GetModifier(gameState, "HolyPriestAuraDamageMultiplier").Value;
 
@@ -73,7 +73,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             Dictionary<string, decimal> moreData = null)
         {
             if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, SpellIds.AscendedBlast);
+                spellData = _gameStateService.GetSpellData(gameState, Spell.AscendedBlast);
 
             if (moreData == null)
                 throw new ArgumentNullException("moreData");

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
+using Salvation.Api.Services;
 using Salvation.Core;
 using Salvation.Core.Constants;
 using Salvation.Core.Interfaces;
@@ -13,6 +14,7 @@ using Salvation.Core.Modelling.HolyPriest;
 using Salvation.Core.Modelling.HolyPriest.Spells;
 using Salvation.Core.Profile;
 using Salvation.Core.State;
+using SimcProfileParser;
 
 [assembly: FunctionsStartup(typeof(Salvation.Api.Startup))]
 namespace Salvation.Api
@@ -21,6 +23,9 @@ namespace Salvation.Api
     {
         public override void Configure(IFunctionsHostBuilder builder)
         {
+            // Api services
+            builder.Services.AddSingleton<IApiResultService, ApiResultService>();
+
             // Common services
             builder.Services.AddSingleton<IConstantsService, ConstantsService>();
             builder.Services.AddSingleton<IGameStateService, GameStateService>();
@@ -57,6 +62,9 @@ namespace Salvation.Api
             builder.Services.AddSingleton<IAscendedBlastSpellService, AscendedBlast>();
             builder.Services.AddSingleton<IAscendedNovaSpellService, AscendedNova>();
             builder.Services.AddSingleton<IAscendedEruptionSpellService, AscendedEruption>();
+
+            // SimcProfileParser
+            builder.Services.AddSimcProfileParser();
         }
     }
 }

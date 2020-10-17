@@ -13,8 +13,8 @@
       "IntBase": 450.0,
       "StamBase": 416.0,
       "ManaBase": 50000,
-
       // https://github.com/simulationcraft/simc/blob/shadowlands/engine/dbc/generated/sc_scale_data.inc
+      /* Level 60 values */
       "CritCost": 35,
       "HasteCost": 33,
       "VersCost": 40,
@@ -23,6 +23,16 @@
       "speed_cost": 10,
       "avoidance_cost": 14,
       "stam_cost": 20,
+      /* Level 50 values
+      "CritCost": 10.67083793,
+      "HasteCost": 10.06107577,
+      "VersCost": 12.19524335,
+      "MasteryCost": 8.536670344,
+      "LeechCost": 21,
+      "speed_cost": 10,
+      "avoidance_cost": 14,
+      "stam_cost": 20,*/
+
 
       "Modifiers": [
         {

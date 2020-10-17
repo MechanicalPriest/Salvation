@@ -23,6 +23,7 @@
         // Talents
         Enlightenment = 193155,
         CosmicRipple = 238136,
+        Benediction = 193157,
 
         // Cov abilities
         Mindgames = 323673,

@@ -5,7 +5,7 @@
         /// <summary>
         /// ID of the spell
         /// </summary>
-        public int Id { get; set; }
+        public uint Id { get; set; }
         public string Name { get; set; }
         // Mana cost as a percentage
         public decimal ManaCost { get; set; }

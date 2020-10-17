@@ -82,7 +82,7 @@ namespace Salvation.Core.State
         {
             var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.SpecId).FirstOrDefault();
 
-            BaseSpellData spell = specData.Spells.Where(s => s.Id == (int)spellId).FirstOrDefault();
+            BaseSpellData spell = specData.Spells.Where(s => s.Id == (uint)spellId).FirstOrDefault();
 
             spell = JsonConvert.DeserializeObject<BaseSpellData>(JsonConvert.SerializeObject(spell));
 

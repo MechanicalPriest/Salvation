@@ -14,6 +14,8 @@ using Salvation.Core.Modelling.HolyPriest.Spells;
 using Salvation.Core.Profile;
 using Salvation.Core.State;
 using Salvation.Explorer.Modelling;
+using Salvation.Utility.SpellDataUpdate;
+using SimcProfileParser;
 using System;
 
 namespace Salvation.Explorer
@@ -69,8 +71,18 @@ namespace Salvation.Explorer
                     services.AddSingleton<IAscendedNovaSpellService, AscendedNova>();
                     services.AddSingleton<IAscendedEruptionSpellService, AscendedEruption>();
 
+                    // Utility services
+                    services.AddSingleton<ISpellDataUpdateService, SpellDataUpdateService>();
+                    services.AddSingleton<ISpellDataService<HolyPriestSpellDataService>, HolyPriestSpellDataService>();
+
+                    services.AddSimcProfileParser();
+
                     // Application service
-                    services.AddHostedService<Explorer>();
+                    services.AddHostedService<Explorer>(serviceProvider =>
+                        new Explorer(
+                            args,
+                            serviceProvider.GetService<IHolyPriestExplorer>(),
+                            serviceProvider.GetService<ISpellDataUpdateService>()));
                 });
     }
 }

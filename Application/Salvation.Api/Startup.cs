@@ -1,6 +1,5 @@
 ﻿using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
-using Salvation.Api.Services;
 using Salvation.Core;
 using Salvation.Core.Constants;
 using Salvation.Core.Interfaces;
@@ -23,9 +22,6 @@ namespace Salvation.Api
     {
         public override void Configure(IFunctionsHostBuilder builder)
         {
-            // Api services
-            builder.Services.AddSingleton<IApiResultService, ApiResultService>();
-
             // Common services
             builder.Services.AddSingleton<IConstantsService, ConstantsService>();
             builder.Services.AddSingleton<IGameStateService, GameStateService>();

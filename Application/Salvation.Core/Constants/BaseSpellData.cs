@@ -1,4 +1,6 @@
-﻿namespace Salvation.Core.Constants
+﻿using System.Collections.Generic;
+
+namespace Salvation.Core.Constants
 {
     public class BaseSpellData
     {
@@ -10,7 +12,7 @@
         // Mana cost as a percentage
         public decimal ManaCost { get; set; }
         // Casting range
-        public decimal Range { get; set; }
+        public double MaxRange { get; set; }
         /// <summary>
         /// Default number of targets this spell can hit, usually its maximum targets
         /// </summary>
@@ -40,5 +42,12 @@
         // If mastery is triggered for the direct heal portion
         // TODO: Move this out to a HolyPriestSpellData inherited class
         public bool IsMasteryTriggered { get; set; }
+
+        public IList<BaseSpellDataEffect> Effects { get; set; }
+
+        public BaseSpellData()
+        {
+            Effects = new List<BaseSpellDataEffect>();
+        }
     }
 }

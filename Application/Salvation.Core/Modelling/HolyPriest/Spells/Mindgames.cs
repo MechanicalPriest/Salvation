@@ -17,7 +17,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             SpellId = (int)Spell.Mindgames;
         }
 
-        public override decimal GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
+        public override double GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, Spell.Mindgames);
@@ -27,7 +27,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             // Mind Game's average heal is:
             // $damage=${($SPS*$s2/100)*(1+$@versadmg)}
             // (SP% * Coeff1 / 100) * Vers
-            decimal averageHeal = (spellData.Coeff1 * _gameStateService.GetIntellect(gameState) / 100)
+            double averageHeal = (spellData.Coeff1 * _gameStateService.GetIntellect(gameState) / 100)
                 * _gameStateService.GetVersatilityMultiplier(gameState)
                 * holyPriestAuraHealingBonus;
 
@@ -36,10 +36,10 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             // Mindgames absorbs the incoming hit 323701, and heals for the amount absorbed 323706. 
             // The order of events though is Heal then Absorb/Damage.
 
-            return averageHeal * 2 * (decimal)GetNumberOfHealingTargets(gameState, spellData);
+            return averageHeal * 2 * GetNumberOfHealingTargets(gameState, spellData);
         }
 
-        public override decimal GetAverageDamage(GameState gameState, BaseSpellData spellData = null)
+        public override double GetAverageDamage(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, Spell.Mindgames);
@@ -47,7 +47,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             var holyPriestAuraDamageBonus = _gameStateService.GetModifier(gameState, "HolyPriestAuraDamageMultiplier").Value;
 
             // coeff3 * int * hpriest dmg mod * vers
-            decimal averageDamage = spellData.Coeff3
+            double averageDamage = spellData.Coeff3
                 * _gameStateService.GetIntellect(gameState)
                 * holyPriestAuraDamageBonus
                 * _gameStateService.GetVersatilityMultiplier(gameState);
@@ -61,13 +61,13 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
                 var rank = _gameStateService.GetConduitRank(gameState, Conduit.ShatteredPerceptions);
                 var conduitData = _gameStateService.GetConduitData(gameState, Conduit.ShatteredPerceptions);
 
-                averageDamage *= (1 + (conduitData.Ranks[rank] / 100));
+                averageDamage *= (1d + (conduitData.Ranks[rank] / 100d));
             }
 
             return averageDamage * GetNumberOfDamageTargets(gameState, spellData);
         }
 
-        public override decimal GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
+        public override double GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, Spell.Mindgames);
@@ -75,13 +75,13 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             var hastedCd = GetHastedCooldown(gameState, spellData);
             var fightLength = gameState.Profile.FightLengthSeconds;
 
-            decimal maximumPotentialCasts = 60m / hastedCd
-                + 1m / (fightLength / 60m);
+            double maximumPotentialCasts = 60d / hastedCd
+                + 1d / (fightLength / 60d);
 
             return maximumPotentialCasts;
         }
 
-        public override decimal GetDuration(GameState gameState, BaseSpellData spellData = null)
+        public override double GetDuration(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, Spell.Mindgames);

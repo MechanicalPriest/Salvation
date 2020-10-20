@@ -47,8 +47,8 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             // Construct the extra data AB needs to know about to run
             var abSpellData = _gameStateService.GetSpellData(gameState, Spell.AscendedBlast);
-            abSpellData.Overrides[Override.CastsPerMinute] = (double)boonCPM;
-            abSpellData.Overrides[Override.AllowedDuration] = (double)duration;
+            abSpellData.Overrides[Override.CastsPerMinute] = boonCPM;
+            abSpellData.Overrides[Override.AllowedDuration] = duration;
 
             var abResults = _ascendedBlastSpellService.GetCastResults(gameState, abSpellData);
             result.AdditionalCasts.Add(abResults);
@@ -58,8 +58,8 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
                 (abResults.CastsPerMinute * abResults.Gcd);
 
             var anSpellData = _gameStateService.GetSpellData(gameState, Spell.AscendedNova);
-            anSpellData.Overrides[Override.CastsPerMinute] = (double)boonCPM;
-            anSpellData.Overrides[Override.AllowedDuration] = (double)leftoverCastTime;
+            anSpellData.Overrides[Override.CastsPerMinute] = boonCPM;
+            anSpellData.Overrides[Override.AllowedDuration] = leftoverCastTime;
 
             var anResults = _ascendedNovaSpellService.GetCastResults(gameState, anSpellData);
 
@@ -70,7 +70,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             var boonStacks = 1 + abResults.CastsPerMinute * 5 + anResults.CastsPerMinute * anResults.NumberOfDamageTargets;
 
             var aeSpellData = _gameStateService.GetSpellData(gameState, Spell.AscendedNova);
-            aeSpellData.Overrides[Override.ResultMultiplier] = (double)boonStacks;
+            aeSpellData.Overrides[Override.ResultMultiplier] = boonStacks;
 
             var aeResults = _ascendedEruptionSpellService.GetCastResults(gameState, aeSpellData);
 
@@ -79,7 +79,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             return result;
         }
 
-        public override decimal GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
+        public override double GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, Spell.BoonOfTheAscended);
@@ -88,8 +88,8 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             var hastedCd = GetHastedCooldown(gameState, spellData);
             var fightLength = gameState.Profile.FightLengthSeconds;
 
-            decimal maximumPotentialCasts = 60m / (hastedCastTime + hastedCd)
-                + 1m / (fightLength / 60m);
+            double maximumPotentialCasts = 60d / (hastedCastTime + hastedCd)
+                + 1d / (fightLength / 60d);
 
             return maximumPotentialCasts;
         }

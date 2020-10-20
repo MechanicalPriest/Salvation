@@ -17,7 +17,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             SpellId = (int)Spell.DivineHymn;
         }
 
-        public override decimal GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
+        public override double GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, Spell.DivineHymn);
@@ -27,29 +27,29 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             // DH's average heal for the first tick is:
             // SP% * Intellect * Vers * Hpriest Aura
-            decimal firstTickRaid = spellData.Coeff1
+            double firstTickRaid = spellData.Coeff1
                 * _gameStateService.GetIntellect(gameState)
                 * _gameStateService.GetVersatilityMultiplier(gameState)
                 * holyPriestAuraHealingBonus;
 
             // double it if we have 5 or less (dungeon group buff)
-            decimal firstTickParty = firstTickRaid * 2;
+            double firstTickParty = firstTickRaid * 2;
 
             _journal.Entry($"[{spellData.Name}] Tooltip: {firstTickRaid:0.##} & {firstTickParty:0.##} (first tick)");
             _journal.Entry($"[{spellData.Name}] Tooltip: {firstTickRaid * 5:0.##} & {firstTickParty * 5:0.##} (all ticks)");
 
             // Pick whether we're in part or raid
-            decimal firstTick = GetNumberOfHealingTargets(gameState, spellData) <= 5 ? firstTickParty : firstTickRaid;
+            double firstTick = GetNumberOfHealingTargets(gameState, spellData) <= 5 ? firstTickParty : firstTickRaid;
 
             firstTick *= _gameStateService.GetCriticalStrikeMultiplier(gameState);
 
             // Now the rest of the 4 ticks including the aura:
-            decimal averageHeal = firstTick + (firstTick * 4 * (1 + divineHymnAura));
+            double averageHeal = firstTick + (firstTick * 4 * (1 + divineHymnAura));
 
-            return averageHeal * (decimal)GetNumberOfHealingTargets(gameState, spellData);
+            return averageHeal * GetNumberOfHealingTargets(gameState, spellData);
         }
 
-        public override decimal GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
+        public override double GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, Spell.DivineHymn);
@@ -59,8 +59,8 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             // DH is simply 60 / CD + 1 / (FightLength / 60)
             // Number of casts per minute plus one cast at the start of the encounter
-            decimal maximumPotentialCasts = 60m / hastedCooldown
-                + 1m / (fightLength / 60m);
+            double maximumPotentialCasts = 60d / hastedCooldown
+                + 1d / (fightLength / 60d);
 
             return maximumPotentialCasts;
         }

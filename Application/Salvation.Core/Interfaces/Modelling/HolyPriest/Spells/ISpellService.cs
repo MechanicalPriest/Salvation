@@ -30,15 +30,15 @@ namespace Salvation.Core.Interfaces.Modelling.HolyPriest.Spells
         /// <summary>
         /// Get the average healing one cast of the spell does, excluding overheal
         /// </summary>
-        public decimal GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null);
+        public double GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null);
         /// <summary>
         /// Get the average healing one cast of the spell does factoring in overheal
         /// </summary>
-        public decimal GetAverageHealing(GameState gameState, BaseSpellData spellData = null);
+        public double GetAverageHealing(GameState gameState, BaseSpellData spellData = null);
         /// <summary>
         /// Get the average overhealing done from one cast of the spell
         /// </summary>
-        public decimal GetAverageOverhealing(GameState gameState, BaseSpellData spellData = null);
+        public double GetAverageOverhealing(GameState gameState, BaseSpellData spellData = null);
         /// <summary>
         /// Get the number of targets the healing component of the spell cast hits
         /// </summary>
@@ -49,42 +49,42 @@ namespace Salvation.Core.Interfaces.Modelling.HolyPriest.Spells
         /// <summary>
         /// Get the average damage one cast of the spell does
         /// </summary>
-        public decimal GetAverageDamage(GameState gameState, BaseSpellData spellData = null);
+        public double GetAverageDamage(GameState gameState, BaseSpellData spellData = null);
         /// <summary>
         /// Get the number of targets the damage component of the spell cast hits
         /// </summary>
-        public decimal GetNumberOfDamageTargets(GameState gameState, BaseSpellData spellData = null);
+        public double GetNumberOfDamageTargets(GameState gameState, BaseSpellData spellData = null);
 
         // Cast values
 
         /// <summary>
         /// Get the Hasted Cast Time. Should return the regular cast time if it's not affected by haste.
         /// </summary>
-        public decimal GetHastedCastTime(GameState gameState, BaseSpellData spellData = null);
+        public double GetHastedCastTime(GameState gameState, BaseSpellData spellData = null);
         /// <summary>
         /// Get the Hasted GCD
         /// </summary>
-        public decimal GetHastedGcd(GameState gameState, BaseSpellData spellData = null);
+        public double GetHastedGcd(GameState gameState, BaseSpellData spellData = null);
         /// <summary>
         /// Get the Hasted Cooldown. Should return the regular cooldown if it's not affected by haste.
         /// </summary>
-        public decimal GetHastedCooldown(GameState gameState, BaseSpellData spellData = null);
+        public double GetHastedCooldown(GameState gameState, BaseSpellData spellData = null);
         /// <summary>
         /// Get the actual mana cost, taking into account mana reduction factors and using the base mana pool.
         /// </summary>
-        public decimal GetActualManaCost(GameState gameState, BaseSpellData spellData = null);
+        public double GetActualManaCost(GameState gameState, BaseSpellData spellData = null);
         /// <summary>
         /// Get the actual number of casts per minute. This is the efficiency-modified maximum casts
         /// </summary>
-        public decimal GetActualCastsPerMinute(GameState gameState, BaseSpellData spellData = null);
+        public double GetActualCastsPerMinute(GameState gameState, BaseSpellData spellData = null);
         /// <summary>
         /// Get the maximum potential casts per minute using the current cast profile
         /// </summary>
-        public decimal GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null);
+        public double GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null);
         /// <summary>
         /// Get the duration of the cast. Typically for buffs/debuffs and DoTs/HoTs.
         /// </summary>
-        public decimal GetDuration(GameState gameState, BaseSpellData spellData = null);
+        public double GetDuration(GameState gameState, BaseSpellData spellData = null);
 
     }
 

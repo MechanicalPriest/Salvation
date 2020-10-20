@@ -18,7 +18,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             SpellId = (int)Spell.AscendedEruption;
         }
 
-        public override decimal GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
+        public override double GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, Spell.AscendedEruption);
@@ -26,7 +26,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             if (!spellData.Overrides.ContainsKey(Override.ResultMultiplier))
                 throw new ArgumentOutOfRangeException("Overrides", "Does not contain ResultMultiplier");
 
-            var numberOfBoonStacks = (decimal)spellData.Overrides[Override.ResultMultiplier];
+            var numberOfBoonStacks = spellData.Overrides[Override.ResultMultiplier];
 
             var holyPriestAuraHealingBonus = _gameStateService.GetModifier(gameState, "HolyPriestAuraHealingMultiplier").Value;
             var holyPriestAuraDamageBonus = _gameStateService.GetModifier(gameState, "HolyPriestAuraDamageMultiplier").Value;
@@ -34,7 +34,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             // --Boon of the Ascended--
             // AE explodes at the end healing 3% more per stack to all friendlies (15y)
 
-            decimal averageHeal = spellData.Coeff2
+            double averageHeal = spellData.Coeff2
                 * _gameStateService.GetIntellect(gameState)
                 * _gameStateService.GetVersatilityMultiplier(gameState)
                 * holyPriestAuraHealingBonus // This may not affect it? No way to test though.
@@ -47,17 +47,17 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             var bonusPerStack = GetBoonBonusDamagePerStack(gameState, spellData);
 
             // Apply boon stack healing bonus
-            averageHeal *= 1 + ((bonusPerStack / 100) * numberOfBoonStacks);
+            averageHeal *= 1 + ((bonusPerStack / 100d) * numberOfBoonStacks);
 
             // Apply 1/SQRT() scaling
             // Healing scales down with the number of enemy + friendly targets, see Issue #24
-            var numTargetReduction = (decimal)GetNumberOfHealingTargets(gameState, spellData) + GetNumberOfDamageTargets(gameState, spellData);
-            averageHeal *= 1 / (decimal)Math.Sqrt((double)numTargetReduction);
+            var numTargetReduction = GetNumberOfHealingTargets(gameState, spellData) + GetNumberOfDamageTargets(gameState, spellData);
+            averageHeal *= 1d / Math.Sqrt(numTargetReduction);
 
-            return averageHeal * (decimal)GetNumberOfHealingTargets(gameState, spellData);
+            return averageHeal * GetNumberOfHealingTargets(gameState, spellData);
         }
 
-        public override decimal GetAverageDamage(GameState gameState, BaseSpellData spellData = null)
+        public override double GetAverageDamage(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, Spell.AscendedEruption);
@@ -65,14 +65,14 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             if (!spellData.Overrides.ContainsKey(Override.ResultMultiplier))
                 throw new ArgumentOutOfRangeException("Overrides", "Does not contain ResultMultiplier");
 
-            var numberOfBoonStacks = (decimal)spellData.Overrides[Override.ResultMultiplier];
+            var numberOfBoonStacks = spellData.Overrides[Override.ResultMultiplier];
 
             var holyPriestAuraDamageBonus = _gameStateService.GetModifier(gameState, "HolyPriestAuraDamageMultiplier").Value;
 
             // --Boon of the Ascended--
             // AE explodes at the end healing 3% more per stack to all friendlies (15y)
 
-            decimal averageHeal = spellData.Coeff1
+            double averageHeal = spellData.Coeff1
                 * _gameStateService.GetIntellect(gameState)
                 * _gameStateService.GetVersatilityMultiplier(gameState)
                 * holyPriestAuraDamageBonus; // ??? scales with the damage aura for reasons
@@ -84,31 +84,31 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             var bonusPerStack = GetBoonBonusDamagePerStack(gameState, spellData);
 
             // Apply boon stack damage bonus
-            averageHeal *= 1 + ((bonusPerStack / 100) * numberOfBoonStacks);
+            averageHeal *= 1d + ((bonusPerStack / 100d) * numberOfBoonStacks);
             _journal.Entry($"[{spellData.Name}] Stacks: {numberOfBoonStacks:0.##} Bonus/stack: {bonusPerStack:0.##}");
 
             // Apply 1/SQRT() 
             // Damage scales down with the number of enemy + friendly targets, see Issue #52
-            var numTargetReduction = (decimal)GetNumberOfHealingTargets(gameState, spellData) + GetNumberOfDamageTargets(gameState, spellData);
-            averageHeal *= 1 / (decimal)Math.Sqrt((double)numTargetReduction);
+            var numTargetReduction = GetNumberOfHealingTargets(gameState, spellData) + GetNumberOfDamageTargets(gameState, spellData);
+            averageHeal *= 1d / Math.Sqrt(numTargetReduction);
 
-            return averageHeal * (decimal)GetNumberOfHealingTargets(gameState, spellData);
+            return averageHeal * GetNumberOfHealingTargets(gameState, spellData);
         }
 
-        public override decimal GetActualCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
+        public override double GetActualCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
         {
             return GetMaximumCastsPerMinute(gameState, spellData);
         }
 
-        public override decimal GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
+        public override double GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
         {
-            return 0m;
+            return 0d;
         }
 
         /// <summary>
         /// Get the bonus damage per stack of boon. It's stored as an int, 3 = 3% bonus damage per stack
         /// </summary>
-        public decimal GetBoonBonusDamagePerStack(GameState gameState, BaseSpellData spellData = null)
+        public double GetBoonBonusDamagePerStack(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, Spell.AscendedEruption);

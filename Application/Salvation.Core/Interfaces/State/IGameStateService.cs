@@ -21,12 +21,12 @@ namespace Salvation.Core.Interfaces.State
         void OverrideModifier(GameState state, BaseModifier newModifier);
 
         // Player Stats
-        decimal GetIntellect(GameState state);
-        decimal GetVersatilityMultiplier(GameState state);
-        decimal GetCriticalStrikeMultiplier(GameState state);
-        decimal GetMasteryMultiplier(GameState state);
-        decimal GetHasteMultiplier(GameState state);
-        decimal GetBaseManaAmount(GameState state);
+        double GetIntellect(GameState state);
+        double GetVersatilityMultiplier(GameState state);
+        double GetCriticalStrikeMultiplier(GameState state);
+        double GetMasteryMultiplier(GameState state);
+        double GetHasteMultiplier(GameState state);
+        double GetBaseManaAmount(GameState state);
 
         // Player Configuration
         bool IsConduitActive(GameState state, Conduit conduit);
@@ -37,6 +37,6 @@ namespace Salvation.Core.Interfaces.State
         GameState CloneGameState(GameState state);
 
         // Holy Priest specific
-        decimal GetTotalHolyWordCooldownReduction(GameState state, Spell spell, bool IsApotheosisActive = false);
+        double GetTotalHolyWordCooldownReduction(GameState state, Spell spell, bool IsApotheosisActive = false);
     }
 }

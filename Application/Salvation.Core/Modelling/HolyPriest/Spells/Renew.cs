@@ -17,7 +17,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             SpellId = (int)Spell.Renew;
         }
 
-        public override decimal GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
+        public override double GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, Spell.Renew);
@@ -25,7 +25,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             var holyPriestAuraHealingBonus = _gameStateService.GetModifier(gameState, "HolyPriestAuraHealingMultiplier").Value;
 
             // Renews's average heal is initial + HoT portion:
-            decimal averageHealFirstTick = spellData.Coeff1
+            double averageHealFirstTick = spellData.Coeff1
                 * _gameStateService.GetIntellect(gameState)
                 * _gameStateService.GetVersatilityMultiplier(gameState)
                 * holyPriestAuraHealingBonus;
@@ -37,7 +37,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
 
             // HoT is affected by haste
-            decimal averageHealTicks = spellData.Coeff1
+            double averageHealTicks = spellData.Coeff1
                 * _gameStateService.GetIntellect(gameState)
                 * _gameStateService.GetVersatilityMultiplier(gameState)
                 * _gameStateService.GetHasteMultiplier(gameState)
@@ -48,10 +48,10 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             averageHealTicks *= _gameStateService.GetCriticalStrikeMultiplier(gameState);
 
-            return (averageHealFirstTick + averageHealTicks) * (decimal)GetNumberOfHealingTargets(gameState, spellData);
+            return (averageHealFirstTick + averageHealTicks) * GetNumberOfHealingTargets(gameState, spellData);
         }
 
-        public override decimal GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
+        public override double GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, Spell.Renew);
@@ -65,11 +65,11 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             if (hastedCastTime == 0 && hastedGcd == 0 && hastedCd == 0)
                 return 0;
 
-            decimal fillerCastTime = hastedCastTime == 0
+            double fillerCastTime = hastedCastTime == 0d
                 ? hastedGcd
                 : hastedCastTime;
 
-            decimal maximumPotentialCasts = 60m / fillerCastTime;
+            double maximumPotentialCasts = 60d / fillerCastTime;
 
             return maximumPotentialCasts;
         }

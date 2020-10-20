@@ -105,7 +105,7 @@ namespace Salvation.Core.Modelling.HolyPriest
 
             // TODO: Add a get total mana pool amount for cases where mana pool isn't base
             var rawMana = _gameStateService.GetBaseManaAmount(state);
-            decimal totalRegenPerSecond = rawMana * 0.04m * 1 / 5m;
+            double totalRegenPerSecond = rawMana * 0.04d * 1 / 5d;
 
             var totalNegativeManaPerSecond = results.TotalMPS - totalRegenPerSecond;
             results.TimeToOom = rawMana / totalNegativeManaPerSecond;
@@ -217,7 +217,7 @@ namespace Salvation.Core.Modelling.HolyPriest
         /// <summary>
         /// Roll up recursive subchildren into the main result summary for the spell
         /// </summary>
-        private void RollUpSpellParts(AveragedSpellCastResult resultSummary, List<AveragedSpellCastResult> spellParts, decimal parentCPM = 0)
+        private void RollUpSpellParts(AveragedSpellCastResult resultSummary, List<AveragedSpellCastResult> spellParts, double parentCPM = 0)
         {
             // Loop over each child and figure out how much it provides to the ResultSUmmary for this spell
             foreach (var part in spellParts)

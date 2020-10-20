@@ -30,14 +30,14 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             _circleOfHealingSpellService = circleOfHealingSpellService;
         }
 
-        public override decimal GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
+        public override double GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, Spell.HolyWordSanctify);
 
             var holyPriestAuraHealingBonus = _gameStateService.GetModifier(gameState, "HolyPriestAuraHealingMultiplier").Value;
 
-            decimal averageHeal = spellData.Coeff1
+            double averageHeal = spellData.Coeff1
                 * _gameStateService.GetIntellect(gameState)
                 * _gameStateService.GetVersatilityMultiplier(gameState)
                 * holyPriestAuraHealingBonus;
@@ -46,10 +46,10 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             averageHeal *= _gameStateService.GetCriticalStrikeMultiplier(gameState);
 
-            return averageHeal * (decimal)GetNumberOfHealingTargets(gameState, spellData);
+            return averageHeal * GetNumberOfHealingTargets(gameState, spellData);
         }
 
-        public override decimal GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
+        public override double GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, Spell.HolyWordSanctify);
@@ -71,7 +71,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             var hwCDRBindingHeal = _gameStateService.GetTotalHolyWordCooldownReduction(gameState, Spell.BindingHeal);
             var hwCDRRenew = _gameStateService.GetTotalHolyWordCooldownReduction(gameState, Spell.Renew);
 
-            decimal hwCDR = cpmPoH * hwCDRPoH +
+            double hwCDR = cpmPoH * hwCDRPoH +
                 cpmBindingHeal * hwCDRBindingHeal +
                 cpmRenew * hwCDRRenew;
 
@@ -82,8 +82,8 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
                 hwCDR += cpmCoH * hwCDRCoH;
             }
 
-            decimal maximumPotentialCasts = (60m + hwCDR) / hastedCD
-                + 1m / (fightLength / 60m);
+            double maximumPotentialCasts = (60d + hwCDR) / hastedCD
+                + 1d / (fightLength / 60d);
 
             return maximumPotentialCasts;
         }

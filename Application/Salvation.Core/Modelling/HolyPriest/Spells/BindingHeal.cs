@@ -17,14 +17,14 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             SpellId = (int)Spell.BindingHeal;
         }
 
-        public override decimal GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
+        public override double GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, Spell.BindingHeal);
 
             var holyPriestAuraHealingBonus = _gameStateService.GetModifier(gameState, "HolyPriestAuraHealingMultiplier").Value;
 
-            decimal averageHeal = spellData.Coeff1
+            double averageHeal = spellData.Coeff1
                 * _gameStateService.GetIntellect(gameState)
                 * _gameStateService.GetVersatilityMultiplier(gameState)
                 * holyPriestAuraHealingBonus;
@@ -33,10 +33,10 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             averageHeal *= _gameStateService.GetCriticalStrikeMultiplier(gameState);
 
-            return averageHeal * (decimal)GetNumberOfHealingTargets(gameState, spellData);
+            return averageHeal * GetNumberOfHealingTargets(gameState, spellData);
         }
 
-        public override decimal GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
+        public override double GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, Spell.BindingHeal);
@@ -44,11 +44,11 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             var hastedCastTime = GetHastedCastTime(gameState, spellData);
             var hastedGcd = GetHastedGcd(gameState, spellData);
 
-            decimal fillerCastTime = hastedCastTime == 0
+            double fillerCastTime = hastedCastTime == 0
                 ? hastedGcd
                 : hastedCastTime;
 
-            decimal maximumPotentialCasts = 60m / fillerCastTime;
+            double maximumPotentialCasts = 60d / fillerCastTime;
 
             return maximumPotentialCasts;
         }

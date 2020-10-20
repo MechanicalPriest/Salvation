@@ -17,7 +17,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             SpellId = (int)Spell.UnholyTransfusion;
         }
 
-        public override decimal GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
+        public override double GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, Spell.UnholyTransfusion);
@@ -26,7 +26,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             // Flash Heal's average heal is:
             // SP% * Intellect * Vers * Hpriest Aura
-            decimal averageHeal = spellData.Coeff1
+            double averageHeal = spellData.Coeff1
                 * _gameStateService.GetIntellect(gameState)
                 * _gameStateService.GetVersatilityMultiplier(gameState)
                 * holyPriestAuraHealingBonus;
@@ -41,10 +41,10 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             // For each healing target, heal every ~1.5s for heal amt
             // TODO: Get a better number on healing events per player for the duration of UT
-            return averageHeal * (decimal)GetNumberOfHealingTargets(gameState, spellData) * (duration / 1.5m);
+            return averageHeal * GetNumberOfHealingTargets(gameState, spellData) * (duration / 1.5d);
         }
 
-        public override decimal GetAverageDamage(GameState gameState, BaseSpellData spellData = null)
+        public override double GetAverageDamage(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, Spell.UnholyTransfusion);
@@ -52,7 +52,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             var holyPriestAuraDamageBonus = _gameStateService.GetModifier(gameState, "HolyPriestAuraDamageMultiplier").Value;
 
             // coeff2 * int * hpriest dmg mod * vers
-            decimal averageDamage = spellData.Coeff2
+            double averageDamage = spellData.Coeff2
                 * _gameStateService.GetIntellect(gameState)
                 * holyPriestAuraDamageBonus
                 * _gameStateService.GetVersatilityMultiplier(gameState)
@@ -69,12 +69,12 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             return averageDamage * GetNumberOfDamageTargets(gameState, spellData);
         }
 
-        public override decimal GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
+        public override double GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
         {
-            return 0m;
+            return 0d;
         }
 
-        public override decimal GetDuration(GameState gameState, BaseSpellData spellData = null)
+        public override double GetDuration(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, Spell.UnholyTransfusion);
@@ -95,7 +95,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             return baseDuration;
         }
 
-        internal decimal GetFesteringTransfusionConduitMultiplier(GameState gameState, BaseSpellData spellData = null)
+        internal double GetFesteringTransfusionConduitMultiplier(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, Spell.UnholyTransfusion);

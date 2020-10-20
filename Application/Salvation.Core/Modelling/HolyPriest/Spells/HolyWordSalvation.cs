@@ -31,14 +31,14 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             _prayerOfMendingSpellService = prayerOfMendingSpellService;
         }
 
-        public override decimal GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
+        public override double GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, Spell.HolyWordSalvation);
 
             var holyPriestAuraHealingBonus = _gameStateService.GetModifier(gameState, "HolyPriestAuraHealingMultiplier").Value;
 
-            decimal averageHeal = spellData.Coeff1
+            double averageHeal = spellData.Coeff1
                 * _gameStateService.GetIntellect(gameState)
                 * _gameStateService.GetVersatilityMultiplier(gameState)
                 * holyPriestAuraHealingBonus;
@@ -47,10 +47,10 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             averageHeal *= _gameStateService.GetCriticalStrikeMultiplier(gameState);
 
-            return averageHeal * (decimal)GetNumberOfHealingTargets(gameState, spellData);
+            return averageHeal * GetNumberOfHealingTargets(gameState, spellData);
         }
 
-        public override decimal GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
+        public override double GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, Spell.HolyWordSalvation);
@@ -69,10 +69,10 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             var hwCDRSerenity = _gameStateService.GetTotalHolyWordCooldownReduction(gameState, Spell.HolyWordSerenity);
             var hwCDRSanctify = _gameStateService.GetTotalHolyWordCooldownReduction(gameState, Spell.HolyWordSanctify);
 
-            decimal salvCDRPerMin = cpmSerenity * hwCDRSerenity + 
+            double salvCDRPerMin = cpmSerenity * hwCDRSerenity + 
                 cpmSanctify * hwCDRSanctify;
-            decimal maximumPotentialCasts = (60m + salvCDRPerMin) / (hastedCT + hastedCD)
-                + 1m / (fightLength / 60m);
+            double maximumPotentialCasts = (60d + salvCDRPerMin) / (hastedCT + hastedCD)
+                + 1d / (fightLength / 60d);
 
             return maximumPotentialCasts;
         }

@@ -4,10 +4,10 @@ namespace Salvation.Core.Modelling.Common
 {
     public class AveragedSpellCastResult
     {
-        public decimal NumberOfHealingTargets { get; set; }
-        public decimal NumberOfDamageTargets { get; set; }
-        public decimal CastsPerMinute { get; set; }
-        public decimal MaximumCastsPerMinute { get; set; }
+        public double NumberOfHealingTargets { get; set; }
+        public double NumberOfDamageTargets { get; set; }
+        public double CastsPerMinute { get; set; }
+        public double MaximumCastsPerMinute { get; set; }
 
         public int SpellId { get; set; }
         public string SpellName { get; set; }
@@ -15,36 +15,36 @@ namespace Salvation.Core.Modelling.Common
         /// <summary>
         /// Raw healing done excluding overheal
         /// </summary>
-        public decimal RawHealing { get; set; }
+        public double RawHealing { get; set; }
         /// <summary>
         /// Healing done accounting for overheal
         /// </summary>
-        public decimal Healing { get; set; }
+        public double Healing { get; set; }
         /// <summary>
         /// Overhealing done
         /// </summary>
-        public decimal Overhealing { get; set; }
+        public double Overhealing { get; set; }
         /// <summary>
         /// Total damage done
         /// </summary>
-        public decimal Damage { get; set; }
+        public double Damage { get; set; }
         /// <summary>
         /// Haste adjusted cast time. 0 is instant-cast
         /// </summary>
-        public decimal CastTime { get; set; }
+        public double CastTime { get; set; }
         /// <summary>
         /// Haste adjusted cooldown at time of cast. 0 no CD.
         /// </summary>
-        public decimal Cooldown { get; set; }
-        public decimal Duration { get; set; }
+        public double Cooldown { get; set; }
+        public double Duration { get; set; }
         /// <summary>
         /// Haste adjusted GCD. 
         /// </summary>
-        public decimal Gcd { get; set; }
+        public double Gcd { get; set; }
         /// <summary>
         /// Actual mana cost value of this spell cast
         /// </summary>
-        public decimal ManaCost { get; set; }
+        public double ManaCost { get; set; }
 
         /// <summary>
         /// Additional spell cast results
@@ -63,21 +63,21 @@ namespace Salvation.Core.Modelling.Common
 
         #region Calculated Fields
 
-        public decimal RawHPCT { get => CalcRawHPCT(); }
-        public decimal RawHPM { get => CalcRawHPM(); }
-        public decimal RawHPS { get => CalcRawHPS(); }
-        public decimal HPCT { get => CalcHPCT(); }
-        public decimal HPM { get => CalcHPM(); }
-        public decimal HPS { get => CalcHPS(); }
+        public double RawHPCT { get => CalcRawHPCT(); }
+        public double RawHPM { get => CalcRawHPM(); }
+        public double RawHPS { get => CalcRawHPS(); }
+        public double HPCT { get => CalcHPCT(); }
+        public double HPM { get => CalcHPM(); }
+        public double HPS { get => CalcHPS(); }
         /// <summary>
         /// Overhealing per second
         /// </summary>
-        public decimal OPS { get => CalcOPS(); }
-        public decimal MPS { get => CalcMPS(); }
-        public decimal DPS { get => CalcDPS(); }
-        public decimal DPM { get => CalcDPM(); }
+        public double OPS { get => CalcOPS(); }
+        public double MPS { get => CalcMPS(); }
+        public double DPS { get => CalcDPS(); }
+        public double DPM { get => CalcDPM(); }
 
-        private decimal CalcRawHPCT()
+        private double CalcRawHPCT()
         {
             if (CastTime > 0)
             {
@@ -91,19 +91,19 @@ namespace Salvation.Core.Modelling.Common
             return 0;
         }
 
-        private decimal CalcRawHPM()
+        private double CalcRawHPM()
         {
             if (ManaCost > 0)
                 return RawHealing / ManaCost;
             return 0;
         }
 
-        private decimal CalcRawHPS()
+        private double CalcRawHPS()
         {
             return RawHealing * CastsPerMinute / 60;
         }
 
-        private decimal CalcHPCT()
+        private double CalcHPCT()
         {
             if (CastTime > 0)
             {
@@ -117,36 +117,36 @@ namespace Salvation.Core.Modelling.Common
             return 0;
         }
 
-        private decimal CalcHPM()
+        private double CalcHPM()
         {
             if (ManaCost > 0)
                 return Healing / ManaCost;
             return 0;
         }
 
-        private decimal CalcHPS()
+        private double CalcHPS()
         {
             return Healing * CastsPerMinute / 60;
         }
 
-        private decimal CalcMPS()
+        private double CalcMPS()
         {
             return ManaCost * CastsPerMinute / 60;
         }
 
-        private decimal CalcDPS()
+        private double CalcDPS()
         {
             return Damage * CastsPerMinute / 60;
         }
 
-        private decimal CalcDPM()
+        private double CalcDPM()
         {
             if (ManaCost > 0)
                 return Damage / ManaCost;
             return 0;
         }
 
-        private decimal CalcOPS()
+        private double CalcOPS()
         {
             return Overhealing * CastsPerMinute / 60;
         }

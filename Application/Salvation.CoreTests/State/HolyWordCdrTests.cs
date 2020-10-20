@@ -40,7 +40,7 @@ namespace Salvation.CoreTests.State
         }
 
         [TestCaseSource(typeof(HolyWordTestSpells), "BaseValueTests")]
-        public decimal HWCDR_Base_Values(Spell spell)
+        public double HWCDR_Base_Values(Spell spell)
         {
             // Arrange
 
@@ -53,7 +53,7 @@ namespace Salvation.CoreTests.State
         }
 
         [TestCaseSource(typeof(HolyWordTestSpells), "LotnValueTests")]
-        public decimal HWCDR_LotN_Values(Spell spell)
+        public double HWCDR_LotN_Values(Spell spell)
         {
             // Arrange
             _state.Profile.Talents.Add(Talent.LightOfTheNaaru);
@@ -66,7 +66,7 @@ namespace Salvation.CoreTests.State
         }
 
         [TestCaseSource(typeof(HolyWordTestSpells), "LotnHoValueTests")]
-        public decimal HWCDR_LotN_HO_Values(Spell spell)
+        public double HWCDR_LotN_HO_Values(Spell spell)
         {
             // Arrange
             _state.Profile.Talents.Add(Talent.LightOfTheNaaru);
@@ -80,7 +80,7 @@ namespace Salvation.CoreTests.State
         }
 
         [TestCaseSource(typeof(HolyWordTestSpells), "HoValueTests")]
-        public decimal HWCDR_HO_Values(Spell spell)
+        public double HWCDR_HO_Values(Spell spell)
         {
             // Arrange
             _state.Profile.Conduits.Add(Conduit.HolyOration, 0);
@@ -93,7 +93,7 @@ namespace Salvation.CoreTests.State
         }
 
         [TestCaseSource(typeof(HolyWordTestSpells), nameof(HolyWordTestSpells.ApothValueTests))]
-        public decimal HWCDR_Apoth_Values(Spell spell)
+        public double HWCDR_Apoth_Values(Spell spell)
         {
             // Arrange
             _state.Profile.Talents.Add(Talent.Apotheosis);
@@ -106,7 +106,7 @@ namespace Salvation.CoreTests.State
         }
 
         [TestCaseSource(typeof(HolyWordTestSpells), nameof(HolyWordTestSpells.ApothHoValueTests))]
-        public decimal HWCDR_Apoth_HO_Values(Spell spell)
+        public double HWCDR_Apoth_HO_Values(Spell spell)
         {
             // Arrange
             _state.Profile.Talents.Add(Talent.Apotheosis);
@@ -126,90 +126,90 @@ namespace Salvation.CoreTests.State
         {
             get
             {
-                yield return new TestCaseData(Spell.FlashHeal).Returns(6m);
-                yield return new TestCaseData(Spell.Heal).Returns(6m);
-                yield return new TestCaseData(Spell.PrayerOfHealing).Returns(6m);
-                yield return new TestCaseData(Spell.BindingHeal).Returns(3m);
-                yield return new TestCaseData(Spell.Renew).Returns(2m);
-                yield return new TestCaseData(Spell.CircleOfHealing).Returns(4m);
-                yield return new TestCaseData(Spell.PrayerOfMending).Returns(4m);
-                yield return new TestCaseData(Spell.HolyWordSerenity).Returns(30m);
-                yield return new TestCaseData(Spell.HolyWordSanctify).Returns(30m);
+                yield return new TestCaseData(Spell.FlashHeal).Returns(6d);
+                yield return new TestCaseData(Spell.Heal).Returns(6d);
+                yield return new TestCaseData(Spell.PrayerOfHealing).Returns(6d);
+                yield return new TestCaseData(Spell.BindingHeal).Returns(3d);
+                yield return new TestCaseData(Spell.Renew).Returns(2d);
+                yield return new TestCaseData(Spell.CircleOfHealing).Returns(4d);
+                yield return new TestCaseData(Spell.PrayerOfMending).Returns(4d);
+                yield return new TestCaseData(Spell.HolyWordSerenity).Returns(30d);
+                yield return new TestCaseData(Spell.HolyWordSanctify).Returns(30d);
             }
         }
         public static IEnumerable LotnValueTests
         {
             get
             {
-                yield return new TestCaseData(Spell.FlashHeal).Returns(8m);
-                yield return new TestCaseData(Spell.Heal).Returns(8m);
-                yield return new TestCaseData(Spell.PrayerOfHealing).Returns(8m);
-                yield return new TestCaseData(Spell.BindingHeal).Returns(4m);
-                yield return new TestCaseData(Spell.Renew).Returns(2.6666666667m);
-                yield return new TestCaseData(Spell.CircleOfHealing).Returns(5.3333333333m);
-                yield return new TestCaseData(Spell.PrayerOfMending).Returns(5.3333333333m);
-                yield return new TestCaseData(Spell.HolyWordSerenity).Returns(30m);
-                yield return new TestCaseData(Spell.HolyWordSanctify).Returns(30m);
+                yield return new TestCaseData(Spell.FlashHeal).Returns(8d);
+                yield return new TestCaseData(Spell.Heal).Returns(8d);
+                yield return new TestCaseData(Spell.PrayerOfHealing).Returns(8d);
+                yield return new TestCaseData(Spell.BindingHeal).Returns(4d);
+                yield return new TestCaseData(Spell.Renew).Returns(2.6666666667d);
+                yield return new TestCaseData(Spell.CircleOfHealing).Returns(5.3333333333d);
+                yield return new TestCaseData(Spell.PrayerOfMending).Returns(5.3333333333d);
+                yield return new TestCaseData(Spell.HolyWordSerenity).Returns(30d);
+                yield return new TestCaseData(Spell.HolyWordSanctify).Returns(30d);
             }
         }
         public static IEnumerable LotnHoValueTests
         {
             get
             {
-                yield return new TestCaseData(Spell.FlashHeal).Returns(8.3m);
-                yield return new TestCaseData(Spell.Heal).Returns(8.3m);
-                yield return new TestCaseData(Spell.PrayerOfHealing).Returns(8.3m);
-                yield return new TestCaseData(Spell.BindingHeal).Returns(4.15m);
-                yield return new TestCaseData(Spell.Renew).Returns(2.7666666667m);
-                yield return new TestCaseData(Spell.CircleOfHealing).Returns(5.5333333333m);
-                yield return new TestCaseData(Spell.PrayerOfMending).Returns(5.5333333333m);
-                yield return new TestCaseData(Spell.HolyWordSerenity).Returns(31.5m);
-                yield return new TestCaseData(Spell.HolyWordSanctify).Returns(31.5m);
+                yield return new TestCaseData(Spell.FlashHeal).Returns(8.3d);
+                yield return new TestCaseData(Spell.Heal).Returns(8.3d);
+                yield return new TestCaseData(Spell.PrayerOfHealing).Returns(8.3d);
+                yield return new TestCaseData(Spell.BindingHeal).Returns(4.15d);
+                yield return new TestCaseData(Spell.Renew).Returns(2.7666666667d);
+                yield return new TestCaseData(Spell.CircleOfHealing).Returns(5.5333333333d);
+                yield return new TestCaseData(Spell.PrayerOfMending).Returns(5.5333333333d);
+                yield return new TestCaseData(Spell.HolyWordSerenity).Returns(31.5d);
+                yield return new TestCaseData(Spell.HolyWordSanctify).Returns(31.5d);
             }
         }
         public static IEnumerable HoValueTests
         {
             get
             {
-                yield return new TestCaseData(Spell.FlashHeal).Returns(6.3m);
-                yield return new TestCaseData(Spell.Heal).Returns(6.3m);
-                yield return new TestCaseData(Spell.PrayerOfHealing).Returns(6.3m);
-                yield return new TestCaseData(Spell.BindingHeal).Returns(3.15m);
-                yield return new TestCaseData(Spell.Renew).Returns(2.1m);
-                yield return new TestCaseData(Spell.CircleOfHealing).Returns(4.2m);
-                yield return new TestCaseData(Spell.PrayerOfMending).Returns(4.2m);
-                yield return new TestCaseData(Spell.HolyWordSerenity).Returns(31.5m);
-                yield return new TestCaseData(Spell.HolyWordSanctify).Returns(31.5m);
+                yield return new TestCaseData(Spell.FlashHeal).Returns(6.3d);
+                yield return new TestCaseData(Spell.Heal).Returns(6.3d);
+                yield return new TestCaseData(Spell.PrayerOfHealing).Returns(6.3d);
+                yield return new TestCaseData(Spell.BindingHeal).Returns(3.15d);
+                yield return new TestCaseData(Spell.Renew).Returns(2.1d);
+                yield return new TestCaseData(Spell.CircleOfHealing).Returns(4.2d);
+                yield return new TestCaseData(Spell.PrayerOfMending).Returns(4.2d);
+                yield return new TestCaseData(Spell.HolyWordSerenity).Returns(31.5d);
+                yield return new TestCaseData(Spell.HolyWordSanctify).Returns(31.5d);
             }
         }
         public static IEnumerable ApothValueTests
         {
             get
             {
-                yield return new TestCaseData(Spell.FlashHeal).Returns(24m);
-                yield return new TestCaseData(Spell.Heal).Returns(24m);
-                yield return new TestCaseData(Spell.PrayerOfHealing).Returns(24m);
-                yield return new TestCaseData(Spell.BindingHeal).Returns(12m);
-                yield return new TestCaseData(Spell.Renew).Returns(8m);
-                yield return new TestCaseData(Spell.CircleOfHealing).Returns(16m);
-                yield return new TestCaseData(Spell.PrayerOfMending).Returns(16m);
-                yield return new TestCaseData(Spell.HolyWordSerenity).Returns(30m);
-                yield return new TestCaseData(Spell.HolyWordSanctify).Returns(30m);
+                yield return new TestCaseData(Spell.FlashHeal).Returns(24d);
+                yield return new TestCaseData(Spell.Heal).Returns(24d);
+                yield return new TestCaseData(Spell.PrayerOfHealing).Returns(24d);
+                yield return new TestCaseData(Spell.BindingHeal).Returns(12d);
+                yield return new TestCaseData(Spell.Renew).Returns(8d);
+                yield return new TestCaseData(Spell.CircleOfHealing).Returns(16d);
+                yield return new TestCaseData(Spell.PrayerOfMending).Returns(16d);
+                yield return new TestCaseData(Spell.HolyWordSerenity).Returns(30d);
+                yield return new TestCaseData(Spell.HolyWordSanctify).Returns(30d);
             }
         }
         public static IEnumerable ApothHoValueTests
         {
             get
             {
-                yield return new TestCaseData(Spell.FlashHeal).Returns(24.3m);
-                yield return new TestCaseData(Spell.Heal).Returns(24.3m);
-                yield return new TestCaseData(Spell.PrayerOfHealing).Returns(24.3m);
-                yield return new TestCaseData(Spell.BindingHeal).Returns(12.15m);
-                yield return new TestCaseData(Spell.Renew).Returns(8.1m);
-                yield return new TestCaseData(Spell.CircleOfHealing).Returns(16.2m);
-                yield return new TestCaseData(Spell.PrayerOfMending).Returns(16.2m);
-                yield return new TestCaseData(Spell.HolyWordSerenity).Returns(31.5m);
-                yield return new TestCaseData(Spell.HolyWordSanctify).Returns(31.5m);
+                yield return new TestCaseData(Spell.FlashHeal).Returns(24.3d);
+                yield return new TestCaseData(Spell.Heal).Returns(24.3d);
+                yield return new TestCaseData(Spell.PrayerOfHealing).Returns(24.3d);
+                yield return new TestCaseData(Spell.BindingHeal).Returns(12.15d);
+                yield return new TestCaseData(Spell.Renew).Returns(8.1d);
+                yield return new TestCaseData(Spell.CircleOfHealing).Returns(16.2d);
+                yield return new TestCaseData(Spell.PrayerOfMending).Returns(16.2d);
+                yield return new TestCaseData(Spell.HolyWordSerenity).Returns(31.5d);
+                yield return new TestCaseData(Spell.HolyWordSanctify).Returns(31.5d);
             }
         }
     }

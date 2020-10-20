@@ -18,7 +18,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             SpellId = (int)Spell.AscendedBlast;
         }
 
-        public override decimal GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
+        public override double GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, Spell.AscendedBlast);
@@ -26,17 +26,17 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             // AB does ST damage and heals a random friendly (5 stack)
             // Coeff2 being 100 = 100%.
 
-            decimal averageDamage = GetAverageDamage(gameState, spellData);
+            double averageDamage = GetAverageDamage(gameState, spellData);
 
-            decimal averageHeal = (spellData.Coeff2 / 100)
+            double averageHeal = (spellData.Coeff2 / 100d)
                 * averageDamage;
 
             _journal.Entry($"[{spellData.Name}] Tooltip (Heal): {spellData.Coeff2}% of Dmg");
 
-            return averageHeal * (decimal)GetNumberOfHealingTargets(gameState, spellData);
+            return averageHeal * GetNumberOfHealingTargets(gameState, spellData);
         }
 
-        public override decimal GetAverageDamage(GameState gameState, BaseSpellData spellData = null)
+        public override double GetAverageDamage(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, Spell.AscendedBlast);
@@ -44,7 +44,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             var holyPriestAuraDamageBonus = _gameStateService.GetModifier(gameState, "HolyPriestAuraDamageMultiplier").Value;
 
             // coeff1 * int * hpriest dmg mod * vers
-            decimal averageDamage = spellData.Coeff1
+            var averageDamage = spellData.Coeff1
                 * _gameStateService.GetIntellect(gameState)
                 * _gameStateService.GetVersatilityMultiplier(gameState)
                 * holyPriestAuraDamageBonus;
@@ -54,7 +54,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             {
                 var rank = _gameStateService.GetConduitRank(gameState, Conduit.CourageousAscension);
                 var conduitData = _gameStateService.GetConduitData(gameState, Conduit.CourageousAscension);
-                var damageMulti = (1 + (conduitData.Ranks[rank] / 100));
+                var damageMulti = (1d + (conduitData.Ranks[rank] / 100));
                 _journal.Entry($"[{spellData.Name}] Applying Courageous Ascension conduit (r{rank + 1}): {damageMulti:0.##}");
 
                 averageDamage *= damageMulti;
@@ -67,7 +67,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             return averageDamage * GetNumberOfDamageTargets(gameState, spellData);
         }
 
-        public override decimal GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData)
+        public override double GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData)
         {
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, Spell.AscendedBlast);
@@ -75,18 +75,18 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             if (!spellData.Overrides.ContainsKey(Override.CastsPerMinute))
                 throw new ArgumentOutOfRangeException("Overrides", "Does not contain CastsPerMinute");
 
-            var boonCPM = (decimal)spellData.Overrides[Override.CastsPerMinute];
+            var boonCPM = spellData.Overrides[Override.CastsPerMinute];
 
             if (!spellData.Overrides.ContainsKey(Override.AllowedDuration))
                 throw new ArgumentOutOfRangeException("moreData", "Does not contain AllowedDuration");
 
-            var allowedDuration = (decimal)spellData.Overrides[Override.AllowedDuration];
+            var allowedDuration = spellData.Overrides[Override.AllowedDuration];
 
             var hastedCooldown = GetHastedCooldown(gameState, spellData);
             var hastedGcd = GetHastedGcd(gameState, spellData);
 
             // Initial cast, and divide the remaining duration up by cooldown for remaining casts
-            decimal maximumPotentialCasts = 1 + (allowedDuration - hastedGcd) / hastedCooldown;
+            var maximumPotentialCasts = 1d + (allowedDuration - hastedGcd) / hastedCooldown;
 
             // This is the maximum potential casts per Boon CD
             maximumPotentialCasts = maximumPotentialCasts * boonCPM;

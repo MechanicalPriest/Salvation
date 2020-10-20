@@ -40,7 +40,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             var duration = GetDuration(gameState, spellData);
 
             // Adjust the self duration based on config
-            decimal selfUptime = _gameStateService.GetModifier(gameState, "FaeBenevolentFaerieSelfUptime").Value;
+            double selfUptime = _gameStateService.GetModifier(gameState, "FaeBenevolentFaerieSelfUptime").Value;
             duration *= selfUptime;
 
             var reducedCooldownSeconds = (spellData.Coeff2 / 100) * duration;
@@ -67,7 +67,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             return result;
         }
 
-        public override decimal GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
+        public override double GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, Spell.FaeGuardians);
@@ -88,13 +88,13 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             // Duration should be minus the GCD of the initial cast + gcd to move pw:s over.
 
             // TODO: Move this to configuration
-            decimal targetDamageTakenPerSecond = _gameStateService.GetModifier(gameState, "FaeGuardianFaerieDTPS").Value;
+            double targetDamageTakenPerSecond = _gameStateService.GetModifier(gameState, "FaeGuardianFaerieDTPS").Value;
 
             var duration = GetDuration(gameState, spellData);
 
             _journal.Entry($"[{spellData.Name}] DR: {spellData.Coeff1}% DTPS: {targetDamageTakenPerSecond} Duration: {duration}s");
 
-            decimal averageDRPC = duration
+            double averageDRPC = duration
                 * targetDamageTakenPerSecond
                 * (spellData.Coeff1 / -100);
 
@@ -104,7 +104,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             return averageDRPC;
         }
 
-        public override decimal GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
+        public override double GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, Spell.FaeGuardians);
@@ -112,13 +112,13 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             var hastedCd = GetHastedCooldown(gameState, spellData);
             var fightLength = gameState.Profile.FightLengthSeconds;
 
-            decimal maximumPotentialCasts = 60m / hastedCd
-                + 1m / (fightLength / 60m);
+            double maximumPotentialCasts = 60d / hastedCd
+                + 1d / (fightLength / 60d);
 
             return maximumPotentialCasts;
         }
 
-        public override decimal GetDuration(GameState gameState, BaseSpellData spellData = null)
+        public override double GetDuration(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, Spell.FaeGuardians);

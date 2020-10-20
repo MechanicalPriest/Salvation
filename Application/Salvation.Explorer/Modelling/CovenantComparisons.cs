@@ -1,4 +1,5 @@
-﻿using Salvation.Core.Constants.Data;
+﻿using Salvation.Core.Constants;
+using Salvation.Core.Constants.Data;
 using Salvation.Core.Interfaces.Constants;
 using Salvation.Core.Interfaces.Modelling;
 using Salvation.Core.Interfaces.Profile;
@@ -129,7 +130,7 @@ namespace Salvation.Explorer.Modelling
 
             var casts = new int[3, 2] { { 1, 1 }, { 1, 0 }, { 0, 1 } };
             var enemies = new List<decimal>() { 1, 5, 10 };
-            var friendlies = new List<decimal>() { 1, 5, 10, 20 };
+            var friendlies = new List<double>() { 1, 5, 10, 20 };
 
             for (var i = 0; i < casts.GetLength(0); i++)
             {
@@ -154,7 +155,7 @@ namespace Salvation.Explorer.Modelling
         }
 
         public GameState GetBoonState(string profileName, decimal abEfficiency, decimal anEfficiency,
-            decimal enemyTargets, decimal friendlyTargets)
+            decimal enemyTargets, double friendlyTargets)
         {
             var profile = GetBaseProfile();
             var constants = _constantsService.LoadConstantsFromFile();
@@ -184,12 +185,12 @@ namespace Salvation.Explorer.Modelling
 
             var anData = _gameStateService.GetSpellData(state, Spell.AscendedNova);
 
-            anData.NumberOfHealingTargets = friendlyTargets;
+            anData.Overrides[Override.NumberOfHealingTargets] = friendlyTargets;
             anData.NumberOfDamageTargets = enemyTargets;
 
             var aeData = _gameStateService.GetSpellData(state, Spell.AscendedEruption);
 
-            aeData.NumberOfHealingTargets = friendlyTargets;
+            aeData.Overrides[Override.NumberOfHealingTargets] = friendlyTargets;
             aeData.NumberOfDamageTargets = enemyTargets;
 
             _gameStateService.OverrideSpellData(state, anData);
@@ -232,7 +233,7 @@ namespace Salvation.Explorer.Modelling
             // Combinations:
             // F: 1, 5, 10, 20, 30
 
-            var friendlies = new List<decimal>() { 1, 5, 10, 20, 30 };
+            var friendlies = new List<double>() { 1, 5, 10, 20, 30 };
 
             foreach (var numFriendly in friendlies)
             {
@@ -245,7 +246,7 @@ namespace Salvation.Explorer.Modelling
             return results;
         }
 
-        public GameState GetUnholyNovaState(string profileName, decimal friendlyTargets)
+        public GameState GetUnholyNovaState(string profileName, double friendlyTargets)
         {
             var profile = GetBaseProfile();
             var constants = _constantsService.LoadConstantsFromFile();
@@ -263,11 +264,11 @@ namespace Salvation.Explorer.Modelling
 
             var unData = _gameStateService.GetSpellData(state, Spell.UnholyNova);
 
-            unData.NumberOfHealingTargets = friendlyTargets;
+            unData.Overrides[Override.NumberOfHealingTargets] = friendlyTargets;
 
             var utData = _gameStateService.GetSpellData(state, Spell.UnholyTransfusion);
 
-            utData.NumberOfHealingTargets = friendlyTargets;
+            utData.Overrides[Override.NumberOfHealingTargets] = friendlyTargets;
 
             _gameStateService.OverrideSpellData(state, unData);
             _gameStateService.OverrideSpellData(state, utData);

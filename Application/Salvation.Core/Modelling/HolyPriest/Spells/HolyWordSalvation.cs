@@ -31,7 +31,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             _prayerOfMendingSpellService = prayerOfMendingSpellService;
         }
 
-        public override decimal GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null, Dictionary<string, decimal> moreData = null)
+        public override decimal GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, Spell.HolyWordSalvation);
@@ -47,11 +47,10 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             averageHeal *= _gameStateService.GetCriticalStrikeMultiplier(gameState);
 
-            return averageHeal * GetNumberOfHealingTargets(gameState, spellData, moreData);
+            return averageHeal * (decimal)GetNumberOfHealingTargets(gameState, spellData);
         }
 
-        public override decimal GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null,
-            Dictionary<string, decimal> moreData = null)
+        public override decimal GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, Spell.HolyWordSalvation);
@@ -63,8 +62,8 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             var cpmSerenity = _serenitySpellService.GetActualCastsPerMinute(gameState);
             var cpmSanctify = _holyWordSanctifySpellService.GetActualCastsPerMinute(gameState);
 
-            var hastedCD = GetHastedCooldown(gameState, spellData, moreData);
-            var hastedCT = GetHastedCastTime(gameState, spellData, moreData);
+            var hastedCD = GetHastedCooldown(gameState, spellData);
+            var hastedCT = GetHastedCastTime(gameState, spellData);
             var fightLength = gameState.Profile.FightLengthSeconds;
 
             var hwCDRSerenity = _gameStateService.GetTotalHolyWordCooldownReduction(gameState, Spell.HolyWordSerenity);
@@ -78,13 +77,12 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             return maximumPotentialCasts;
         }
 
-        public override AveragedSpellCastResult GetCastResults(GameState gameState, BaseSpellData spellData = null,
-            Dictionary<string, decimal> moreData = null)
+        public override AveragedSpellCastResult GetCastResults(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, Spell.HolyWordSalvation);
+                spellData = _gameStateService.GetSpellData(gameState, Spell.HolyWordSalvation);  
 
-            AveragedSpellCastResult result = base.GetCastResults(gameState, spellData, moreData);
+            AveragedSpellCastResult result = base.GetCastResults(gameState, spellData);
 
             // We need to add a 0-cost renew:
             var renewSpellData = _gameStateService.GetSpellData(gameState, Spell.Renew);
@@ -92,7 +90,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             renewSpellData.ManaCost = 0;
             renewSpellData.Gcd = 0;
             renewSpellData.BaseCastTime = 0;
-            renewSpellData.NumberOfHealingTargets = GetNumberOfHealingTargets(gameState, spellData, moreData);
+            renewSpellData.Overrides[Override.NumberOfHealingTargets] = GetNumberOfHealingTargets(gameState, spellData);
 
             // grab the result of the spell cast
             var renewResult = _renewSpellService.GetCastResults(gameState, renewSpellData);
@@ -106,7 +104,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             pomSpellData.BaseCastTime = 0;
             pomSpellData.BaseCooldown = 0;
             pomSpellData.Coeff2 = 2; // Number of initial stacks
-            pomSpellData.NumberOfHealingTargets = GetNumberOfHealingTargets(gameState, spellData, moreData);
+            pomSpellData.Overrides[Override.NumberOfHealingTargets] = GetNumberOfHealingTargets(gameState, spellData);
 
             // grab the result of the spell cast
             var pomResult = _prayerOfMendingSpellService.GetCastResults(gameState, pomSpellData);

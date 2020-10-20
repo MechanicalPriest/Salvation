@@ -22,23 +22,22 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             _divineHymnSpellService = divineHymnSpellService;
         }
 
-        public override AveragedSpellCastResult GetCastResults(GameState gameState, BaseSpellData spellData = null,
-            Dictionary<string, decimal> moreData = null)
+        public override AveragedSpellCastResult GetCastResults(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, Spell.FaeGuardians);
 
-            AveragedSpellCastResult result = base.GetCastResults(gameState, spellData, moreData);
+            AveragedSpellCastResult result = base.GetCastResults(gameState, spellData);
 
             // Only real way to model any kind of healing contribution from this is presuming it
             // grants you additional CDR on hymn, rather than being cast on other targets.
             var divineHymnSpellData = _gameStateService.GetSpellData(gameState, Spell.DivineHymn);
             divineHymnSpellData.ManaCost = 0;
 
-            var divineHymnResults = _divineHymnSpellService.GetCastResults(gameState, divineHymnSpellData, moreData);
+            var divineHymnResults = _divineHymnSpellService.GetCastResults(gameState, divineHymnSpellData);
 
             // Coeff2 is the "100" of 100% CDR.
-            var duration = GetDuration(gameState, spellData, moreData);
+            var duration = GetDuration(gameState, spellData);
 
             // Adjust the self duration based on config
             decimal selfUptime = _gameStateService.GetModifier(gameState, "FaeBenevolentFaerieSelfUptime").Value;
@@ -68,8 +67,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             return result;
         }
 
-        public override decimal GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null,
-            Dictionary<string, decimal> moreData = null)
+        public override decimal GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, Spell.FaeGuardians);
@@ -92,7 +90,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             // TODO: Move this to configuration
             decimal targetDamageTakenPerSecond = _gameStateService.GetModifier(gameState, "FaeGuardianFaerieDTPS").Value;
 
-            var duration = GetDuration(gameState, spellData, moreData);
+            var duration = GetDuration(gameState, spellData);
 
             _journal.Entry($"[{spellData.Name}] DR: {spellData.Coeff1}% DTPS: {targetDamageTakenPerSecond} Duration: {duration}s");
 
@@ -106,13 +104,12 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             return averageDRPC;
         }
 
-        public override decimal GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null,
-            Dictionary<string, decimal> moreData = null)
+        public override decimal GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, Spell.FaeGuardians);
 
-            var hastedCd = GetHastedCooldown(gameState, spellData, moreData);
+            var hastedCd = GetHastedCooldown(gameState, spellData);
             var fightLength = gameState.Profile.FightLengthSeconds;
 
             decimal maximumPotentialCasts = 60m / hastedCd
@@ -121,13 +118,12 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             return maximumPotentialCasts;
         }
 
-        public override decimal GetDuration(GameState gameState, BaseSpellData spellData = null,
-            Dictionary<string, decimal> moreData = null)
+        public override decimal GetDuration(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, Spell.FaeGuardians);
 
-            var baseDuration = base.GetDuration(gameState, spellData, moreData);
+            var baseDuration = base.GetDuration(gameState, spellData);
 
             // Apply the Fae Fermata conduit if applicable
             // TODO: Shift this out to another method maybe, for testing?

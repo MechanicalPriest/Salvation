@@ -17,8 +17,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             SpellId = (int)Spell.Renew;
         }
 
-        public override decimal GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null,
-            Dictionary<string, decimal> moreData = null)
+        public override decimal GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, Spell.Renew);
@@ -49,18 +48,17 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             averageHealTicks *= _gameStateService.GetCriticalStrikeMultiplier(gameState);
 
-            return (averageHealFirstTick + averageHealTicks) * GetNumberOfHealingTargets(gameState, spellData, moreData);
+            return (averageHealFirstTick + averageHealTicks) * (decimal)GetNumberOfHealingTargets(gameState, spellData);
         }
 
-        public override decimal GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null,
-            Dictionary<string, decimal> moreData = null)
+        public override decimal GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, Spell.Renew);
 
-            var hastedCastTime = GetHastedCastTime(gameState, spellData, moreData);
-            var hastedGcd = GetHastedGcd(gameState, spellData, moreData);
-            var hastedCd = GetHastedCooldown(gameState, spellData, moreData);
+            var hastedCastTime = GetHastedCastTime(gameState, spellData);
+            var hastedGcd = GetHastedGcd(gameState, spellData);
+            var hastedCd = GetHastedCooldown(gameState, spellData);
 
             // A fix to the spell being modified to have no cast time and no gcd and no CD
             // This can happen if it's a component in another spell
@@ -74,6 +72,16 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             decimal maximumPotentialCasts = 60m / fillerCastTime;
 
             return maximumPotentialCasts;
+        }
+
+        public override double GetNumberOfHealingTargets(GameState gameState, BaseSpellData spellData = null)
+        {
+            var numTargets = base.GetNumberOfHealingTargets(gameState, spellData);
+
+            if(numTargets == 0)
+                numTargets = 1;
+
+            return numTargets;
         }
     }
 }

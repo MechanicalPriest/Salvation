@@ -1,9 +1,28 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Salvation.Core.Constants
 {
+    public enum Override
+    {
+        NumberOfHealingTargets,
+        NumberOfDamageTargets,
+        CastsPerMinute,
+        Duration,
+        /// <summary>
+        /// Used to store the allowed duration a spell can use to calculate its CPM from 
+        /// (for things like buff windows)
+        /// </summary>
+        AllowedDuration,
+        /// <summary>
+        /// Stores a multiplier that affects the result, typically from an external 
+        /// source like storing Boon of the Ascended stacks to buff AscendedEruption
+        /// </summary>
+        ResultMultiplier
+    }
+
     public class BaseSpellData
     {
         /// <summary>
@@ -15,10 +34,6 @@ namespace Salvation.Core.Constants
         public double ManaCost { get; set; }
         // Casting range
         public double MaxRange { get; set; }
-        /// <summary>
-        /// Default number of targets this spell can hit, usually its maximum targets
-        /// </summary>
-        public decimal NumberOfHealingTargets { get; set; }
         public decimal NumberOfDamageTargets { get; set; }
         // Base cast time in seconds before haste
         public decimal BaseCastTime { get; set; }
@@ -46,10 +61,16 @@ namespace Salvation.Core.Constants
         public bool IsMasteryTriggered { get; set; }
 
         public IList<BaseSpellDataEffect> Effects { get; set; }
+        /// <summary>
+        /// Stores value overrides for this particular spell
+        /// </summary>
+        [JsonIgnore]
+        public Dictionary<Override, double> Overrides { get; set; }
 
         public BaseSpellData()
         {
             Effects = new List<BaseSpellDataEffect>();
+            Overrides = new Dictionary<Override, double>();
         }
 
         /// <summary>

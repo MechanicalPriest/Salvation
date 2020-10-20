@@ -18,19 +18,15 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             SpellId = (int)Spell.AscendedEruption;
         }
 
-        public override decimal GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null,
-            Dictionary<string, decimal> moreData = null)
+        public override decimal GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, Spell.AscendedEruption);
 
-            if (moreData == null)
-                throw new ArgumentNullException("moreData");
+            if (!spellData.Overrides.ContainsKey(Override.ResultMultiplier))
+                throw new ArgumentOutOfRangeException("Overrides", "Does not contain ResultMultiplier");
 
-            if (!moreData.ContainsKey("BoonOfTheAscended.BoonStacks"))
-                throw new ArgumentOutOfRangeException("moreData", "Does not contain BoonOfTheAscended.BoonStacks");
-
-            var numberOfBoonStacks = moreData["BoonOfTheAscended.BoonStacks"];
+            var numberOfBoonStacks = (decimal)spellData.Overrides[Override.ResultMultiplier];
 
             var holyPriestAuraHealingBonus = _gameStateService.GetModifier(gameState, "HolyPriestAuraHealingMultiplier").Value;
             var holyPriestAuraDamageBonus = _gameStateService.GetModifier(gameState, "HolyPriestAuraDamageMultiplier").Value;
@@ -55,24 +51,21 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             // Apply 1/SQRT() scaling
             // Healing scales down with the number of enemy + friendly targets, see Issue #24
-            var numTargetReduction = GetNumberOfHealingTargets(gameState, spellData, moreData) + GetNumberOfDamageTargets(gameState, spellData, moreData);
+            var numTargetReduction = (decimal)GetNumberOfHealingTargets(gameState, spellData) + GetNumberOfDamageTargets(gameState, spellData);
             averageHeal *= 1 / (decimal)Math.Sqrt((double)numTargetReduction);
 
-            return averageHeal * GetNumberOfHealingTargets(gameState, spellData, moreData);
+            return averageHeal * (decimal)GetNumberOfHealingTargets(gameState, spellData);
         }
 
-        public override decimal GetAverageDamage(GameState gameState, BaseSpellData spellData = null, Dictionary<string, decimal> moreData = null)
+        public override decimal GetAverageDamage(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, Spell.AscendedEruption);
 
-            if (moreData == null)
-                throw new ArgumentNullException("moreData");
+            if (!spellData.Overrides.ContainsKey(Override.ResultMultiplier))
+                throw new ArgumentOutOfRangeException("Overrides", "Does not contain ResultMultiplier");
 
-            if (!moreData.ContainsKey("BoonOfTheAscended.BoonStacks"))
-                throw new ArgumentOutOfRangeException("moreData", "Does not contain BoonOfTheAscended.BoonStacks");
-
-            var numberOfBoonStacks = moreData["BoonOfTheAscended.BoonStacks"];
+            var numberOfBoonStacks = (decimal)spellData.Overrides[Override.ResultMultiplier];
 
             var holyPriestAuraDamageBonus = _gameStateService.GetModifier(gameState, "HolyPriestAuraDamageMultiplier").Value;
 
@@ -96,19 +89,18 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             // Apply 1/SQRT() 
             // Damage scales down with the number of enemy + friendly targets, see Issue #52
-            var numTargetReduction = GetNumberOfHealingTargets(gameState, spellData, moreData) + GetNumberOfDamageTargets(gameState, spellData, moreData);
+            var numTargetReduction = (decimal)GetNumberOfHealingTargets(gameState, spellData) + GetNumberOfDamageTargets(gameState, spellData);
             averageHeal *= 1 / (decimal)Math.Sqrt((double)numTargetReduction);
 
-            return averageHeal * GetNumberOfHealingTargets(gameState, spellData, moreData);
+            return averageHeal * (decimal)GetNumberOfHealingTargets(gameState, spellData);
         }
 
-        public override decimal GetActualCastsPerMinute(GameState gameState, BaseSpellData spellData = null, Dictionary<string, decimal> moreData = null)
+        public override decimal GetActualCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
         {
-            return GetMaximumCastsPerMinute(gameState, spellData, moreData);
+            return GetMaximumCastsPerMinute(gameState, spellData);
         }
 
-        public override decimal GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null,
-            Dictionary<string, decimal> moreData = null)
+        public override decimal GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
         {
             return 0m;
         }

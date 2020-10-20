@@ -18,8 +18,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             SpellId = (int)Spell.AscendedBlast;
         }
 
-        public override decimal GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null,
-            Dictionary<string, decimal> moreData = null)
+        public override decimal GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, Spell.AscendedBlast);
@@ -27,18 +26,17 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             // AB does ST damage and heals a random friendly (5 stack)
             // Coeff2 being 100 = 100%.
 
-            decimal averageDamage = GetAverageDamage(gameState, spellData, moreData);
+            decimal averageDamage = GetAverageDamage(gameState, spellData);
 
             decimal averageHeal = (spellData.Coeff2 / 100)
                 * averageDamage;
 
             _journal.Entry($"[{spellData.Name}] Tooltip (Heal): {spellData.Coeff2}% of Dmg");
 
-            return averageHeal * GetNumberOfHealingTargets(gameState, spellData, moreData);
+            return averageHeal * (decimal)GetNumberOfHealingTargets(gameState, spellData);
         }
 
-        public override decimal GetAverageDamage(GameState gameState, BaseSpellData spellData = null,
-            Dictionary<string, decimal> moreData = null)
+        public override decimal GetAverageDamage(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, Spell.AscendedBlast);
@@ -66,30 +64,26 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             averageDamage *= _gameStateService.GetCriticalStrikeMultiplier(gameState);
 
-            return averageDamage * GetNumberOfDamageTargets(gameState, spellData, moreData);
+            return averageDamage * GetNumberOfDamageTargets(gameState, spellData);
         }
 
-        public override decimal GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData,
-            Dictionary<string, decimal> moreData = null)
+        public override decimal GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData)
         {
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, Spell.AscendedBlast);
 
-            if (moreData == null)
-                throw new ArgumentNullException("moreData");
+            if (!spellData.Overrides.ContainsKey(Override.CastsPerMinute))
+                throw new ArgumentOutOfRangeException("Overrides", "Does not contain CastsPerMinute");
 
-            if (!moreData.ContainsKey("BoonOfTheAscended.CPM"))
-                throw new ArgumentOutOfRangeException("moreData", "Does not contain BoonOfTheAscended.CPM");
+            var boonCPM = (decimal)spellData.Overrides[Override.CastsPerMinute];
 
-            var boonCPM = moreData["BoonOfTheAscended.CPM"];
+            if (!spellData.Overrides.ContainsKey(Override.AllowedDuration))
+                throw new ArgumentOutOfRangeException("moreData", "Does not contain AllowedDuration");
 
-            if (!moreData.ContainsKey("BoonOfTheAscended.Duration"))
-                throw new ArgumentOutOfRangeException("moreData", "Does not contain BoonOfTheAscended.Duration");
+            var allowedDuration = (decimal)spellData.Overrides[Override.AllowedDuration];
 
-            var allowedDuration = moreData["BoonOfTheAscended.Duration"];
-
-            var hastedCooldown = GetHastedCooldown(gameState, spellData, moreData);
-            var hastedGcd = GetHastedGcd(gameState, spellData, moreData);
+            var hastedCooldown = GetHastedCooldown(gameState, spellData);
+            var hastedGcd = GetHastedGcd(gameState, spellData);
 
             // Initial cast, and divide the remaining duration up by cooldown for remaining casts
             decimal maximumPotentialCasts = 1 + (allowedDuration - hastedGcd) / hastedCooldown;

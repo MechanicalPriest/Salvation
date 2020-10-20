@@ -17,8 +17,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             SpellId = (int)Spell.FlashHeal;
         }
 
-        public override decimal GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null,
-            Dictionary<string, decimal> moreData = null)
+        public override decimal GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, Spell.FlashHeal);
@@ -36,17 +35,16 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             averageHeal *= _gameStateService.GetCriticalStrikeMultiplier(gameState);
 
-            return averageHeal * GetNumberOfHealingTargets(gameState, spellData, moreData);
+            return averageHeal * (decimal)GetNumberOfHealingTargets(gameState, spellData);
         }
 
-        public override decimal GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null,
-            Dictionary<string, decimal> moreData = null)
+        public override decimal GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, Spell.FlashHeal);
 
-            var hastedCastTime = GetHastedCastTime(gameState, spellData, moreData);
-            var hastedGcd = GetHastedGcd(gameState, spellData, moreData);
+            var hastedCastTime = GetHastedCastTime(gameState, spellData);
+            var hastedGcd = GetHastedGcd(gameState, spellData);
 
             decimal fillerCastTime = hastedCastTime == 0
                 ? hastedGcd

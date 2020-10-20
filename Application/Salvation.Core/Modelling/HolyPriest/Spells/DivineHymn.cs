@@ -17,8 +17,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             SpellId = (int)Spell.DivineHymn;
         }
 
-        public override decimal GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null,
-            Dictionary<string, decimal> moreData = null)
+        public override decimal GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, Spell.DivineHymn);
@@ -40,23 +39,22 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             _journal.Entry($"[{spellData.Name}] Tooltip: {firstTickRaid * 5:0.##} & {firstTickParty * 5:0.##} (all ticks)");
 
             // Pick whether we're in part or raid
-            decimal firstTick = GetNumberOfHealingTargets(gameState, spellData, moreData) <= 5 ? firstTickParty : firstTickRaid;
+            decimal firstTick = GetNumberOfHealingTargets(gameState, spellData) <= 5 ? firstTickParty : firstTickRaid;
 
             firstTick *= _gameStateService.GetCriticalStrikeMultiplier(gameState);
 
             // Now the rest of the 4 ticks including the aura:
             decimal averageHeal = firstTick + (firstTick * 4 * (1 + divineHymnAura));
 
-            return averageHeal * GetNumberOfHealingTargets(gameState, spellData, moreData);
+            return averageHeal * (decimal)GetNumberOfHealingTargets(gameState, spellData);
         }
 
-        public override decimal GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null,
-            Dictionary<string, decimal> moreData = null)
+        public override decimal GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, Spell.DivineHymn);
 
-            var hastedCooldown = GetHastedCooldown(gameState, spellData, moreData);
+            var hastedCooldown = GetHastedCooldown(gameState, spellData);
             var fightLength = gameState.Profile.FightLengthSeconds;
 
             // DH is simply 60 / CD + 1 / (FightLength / 60)

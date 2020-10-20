@@ -154,6 +154,12 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             return spellData.Duration;
         }
 
+        /// <summary>
+        /// Gets the number of healing targets the spell will hit by checking spelldata overrides
+        /// </summary>
+        /// <param name="gameState"></param>
+        /// <param name="spellData"></param>
+        /// <returns></returns>
         public virtual double GetNumberOfHealingTargets(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData.Overrides.ContainsKey(Override.NumberOfHealingTargets))

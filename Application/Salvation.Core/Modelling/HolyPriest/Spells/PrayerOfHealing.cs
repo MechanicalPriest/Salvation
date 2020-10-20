@@ -52,5 +52,18 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             return maximumPotentialCasts;
         }
+
+        public override double GetNumberOfHealingTargets(GameState gameState, BaseSpellData spellData = null)
+        {
+            var numTargets = base.GetNumberOfHealingTargets(gameState, spellData);
+
+            if (numTargets == 0)
+            {
+                // PoH stores its number of targets in 288930.BaseValue
+                numTargets = spellData.GetEffect(288930).BaseValue;
+            }                
+
+            return numTargets;
+        }
     }
 }

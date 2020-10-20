@@ -83,7 +83,7 @@ namespace Salvation.Core.Constants
             var effect = Effects?.Where(e => e.Id == effectId).FirstOrDefault();
 
             if (effect == null)
-                throw new ArgumentNullException($"Effect list does not contain effect: {effectId}");
+                throw new ArgumentNullException($"Effect list does not contain effect: {effectId} for spell: {Name} ({Id})");
 
             return effect;
         }

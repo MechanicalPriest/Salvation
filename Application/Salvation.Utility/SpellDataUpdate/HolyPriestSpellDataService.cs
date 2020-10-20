@@ -21,22 +21,81 @@ namespace Salvation.Utility.SpellDataUpdate
             _spells = new List<uint>()
             {
                 // Talents
-                (uint)Spell.AscendedBlast,
+                (uint)Spell.Enlightenment,
+                (uint)Spell.CosmicRipple,
+                (uint)Spell.BindingHeal,
+                (uint)Spell.Halo,
+                (uint)Spell.DivineStar,
                 (uint)Spell.Benediction,
+                (uint)Spell.HolyWordSalvation,
+
+                // Spells
+                (uint)Spell.Heal,
                 (uint)Spell.FlashHeal,
+                (uint)Spell.PrayerOfHealing,
+                (uint)Spell.HolyNova,
                 (uint)Spell.CircleOfHealing,
+                (uint)Spell.Renew,
+                (uint)Spell.PowerWordShield,
+                (uint)Spell.DivineHymn,
+                (uint)Spell.HolyWordSanctify,
+                (uint)Spell.HolyWordSerenity,
+                (uint)Spell.PrayerOfMending,
+                (uint)Spell.EchoOfLight,
+
+                // Covenant
+                (uint)Spell.Mindgames,
+                (uint)Spell.FaeGuardians,
+                (uint)Spell.BoonOfTheAscended,
+                (uint)Spell.AscendedNova,
+                (uint)Spell.AscendedBlast,
+                (uint)Spell.AscendedEruption,
+                (uint)Spell.UnholyNova,
+                (uint)Spell.UnholyTransfusion,
+
+                // Legendaries
+                (uint)Spell.HarmoniousApparatus,
+
+                // Conduits
+                (uint)Spell.CharitableSoul,
+                (uint)Spell.CourageousAscension,
+                (uint)Spell.FesteringTransfusion,
+                (uint)Spell.FaeFermata,
+                (uint)Spell.ShatteredPerceptions,
+                (uint)Spell.HolyOration,
             };
         }
 
         public async Task<BaseSpec> Generate()
         {
             var spec = new BaseSpec();
+            spec.Class = "Priest";
+            spec.Spec = "Holy";
+            spec.SpecId = 257;
+
+            spec.CritBase = 0.05;
+            spec.HasteBase = 0.0;
+            spec.VersBase = 0.0;
+            spec.MasteryBase = 0.1;
+            spec.IntBase = 450;
+            spec.StamBase = 416;
+            spec.ManaBase = 50000; // __base_mp in sc_scale_data.inc
+
+            // These come from __combat_ratings in sc_scale_data.inc
+            spec.CritCost = 35;
+            spec.HasteCost = 33;
+            spec.VersCost = 40; // Ver damage taken cost is 80
+            spec.MasteryCost = 28; // This is the 35 base cost * 0.80 holy priest modifier
+            spec.LeechCost = 21;
+            spec.SpeedCost = 10;
+            spec.AvoidanceCost = 14;
+            spec.StamCost = 20;
+
+            // Add the spells
             var spells = new List<BaseSpellData>();
 
             foreach(var spell in _spells)
             {
-                
-
                 // TODO: feed up level 60 from somewhere else
                 var spellOptions = new SimcSpellOptions()
                 {
@@ -65,14 +124,14 @@ namespace Salvation.Utility.SpellDataUpdate
             {
                 Id = spell.SpellId,
                 Name = spell.Name,
-                // newSpell.ManaCost = ; // TODO: Need SimcProfileParser issue #46 resolved
+                ManaCost = spell.PowerCost, // TODO: Need SimcProfileParser issue #46 resolved
                 MaxRange = spell.MaxRange,
                 //newSpell.NumberOfHealingTargets = spellData.MaxTargets; // TODO: Confirm this on a spell with MaxTargets set
                 //newSpell.NumberOfDamageTargets = spellData.MaxTargets; // TODO: Confirm this on a spell with MaxTargets set
                 BaseCastTime = spell.CastTime,
                 //newSpell.IsCastTimeHasted = ; // TODO: Is this even stored anywhere? Probably not... but I think everything is hasted anyway. remove?
                 BaseCooldown = spell.Cooldown,
-                //newSpell.IsCooldownHasted = ; // TODO: No clue where this is stored? - stored in the Priest class aura.
+                //newSpell.IsCooldownHasted = ; // Stored in the Priest class aura. Done in ApplyOverrides()
                 //newSpell.Duration = ; // So this is stored in the effects and can probably be removed.
                 Gcd = spell.Gcd / 1000
                 //newSpell.Coeff1; // This and coeff 2 and 3 make way for the spell effect data.
@@ -86,6 +145,8 @@ namespace Salvation.Utility.SpellDataUpdate
                 if(newEffect != null)
                     newSpell.Effects.Add(newEffect);
             }
+
+            ApplyOverrides(newSpell);
 
             return newSpell;
         }
@@ -105,6 +166,25 @@ namespace Salvation.Utility.SpellDataUpdate
             };
 
             return newEffect;
+        }
+
+        /// <summary>
+        /// Apply overrides to specific spells as needed. This is either for spells that the 
+        /// </summary>
+        /// <param name="baseSpellData"></param>
+        /// <returns></returns>
+        internal void ApplyOverrides(BaseSpellData baseSpellData)
+        {
+            switch (baseSpellData.Id)
+            {
+                case (uint)Spell.CircleOfHealing:
+                case (uint)Spell.PrayerOfMending:
+                    // This comes from the Priest aura 137030 effect #1 179714
+                    baseSpellData.IsCooldownHasted = true;
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

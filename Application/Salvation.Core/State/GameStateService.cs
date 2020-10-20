@@ -15,7 +15,7 @@ namespace Salvation.Core.State
         {
             var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.SpecId).FirstOrDefault();
 
-            return specData.ManaBase;
+            return (decimal)specData.ManaBase;
         }
 
         public CastProfile GetCastProfile(GameState state, int spellId)
@@ -34,7 +34,7 @@ namespace Salvation.Core.State
             // TODO: Add other sources of crit increase here
             var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.SpecId).FirstOrDefault();
 
-            return 1 + specData.CritBase + (state.Profile.CritRating / specData.CritCost / 100);
+            return 1 + (decimal)specData.CritBase + (state.Profile.CritRating / (decimal)specData.CritCost / 100);
         }
 
         public decimal GetHasteMultiplier(GameState state)
@@ -42,7 +42,7 @@ namespace Salvation.Core.State
             // TODO: Add other sources of haste increase here
             var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.SpecId).FirstOrDefault();
 
-            return 1 + specData.HasteBase + (state.Profile.HasteRating / specData.HasteCost / 100);
+            return 1 + (decimal)specData.HasteBase + (state.Profile.HasteRating / (decimal)specData.HasteCost / 100);
         }
 
         public decimal GetVersatilityMultiplier(GameState state)
@@ -50,7 +50,7 @@ namespace Salvation.Core.State
             // TODO: Add other sources of vers increase here
             var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.SpecId).FirstOrDefault();
 
-            return 1 + specData.VersBase + (state.Profile.VersatilityRating / specData.VersCost / 100);
+            return 1 + (decimal)specData.VersBase + (state.Profile.VersatilityRating / (decimal)specData.VersCost / 100);
         }
 
         public decimal GetMasteryMultiplier(GameState state)
@@ -58,7 +58,7 @@ namespace Salvation.Core.State
             // TODO: Add other sources of mastery increase here
             var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.SpecId).FirstOrDefault();
 
-            return 1 + specData.MasteryBase + (state.Profile.MasteryRating / specData.MasteryCost / 100);
+            return 1 + (decimal)specData.MasteryBase + (state.Profile.MasteryRating / (decimal)specData.MasteryCost / 100);
         }
 
         public decimal GetIntellect(GameState state)

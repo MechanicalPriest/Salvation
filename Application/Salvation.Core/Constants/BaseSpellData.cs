@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Salvation.Core.Constants
 {
@@ -10,7 +12,7 @@ namespace Salvation.Core.Constants
         public uint Id { get; set; }
         public string Name { get; set; }
         // Mana cost as a percentage
-        public decimal ManaCost { get; set; }
+        public double ManaCost { get; set; }
         // Casting range
         public double MaxRange { get; set; }
         /// <summary>
@@ -48,6 +50,21 @@ namespace Salvation.Core.Constants
         public BaseSpellData()
         {
             Effects = new List<BaseSpellDataEffect>();
+        }
+
+        /// <summary>
+        /// Helper method to either get the requested effect ID or throw an exception
+        /// </summary>
+        /// <param name="effectId">ID of the effect to get</param>
+        /// <returns>The effect as specified by the supplied effectId</returns>
+        public BaseSpellDataEffect GetEffect(uint effectId)
+        {
+            var effect = Effects?.Where(e => e.Id == effectId).FirstOrDefault();
+
+            if (effect == null)
+                throw new ArgumentNullException($"Effect list does not contain effect: {effectId}");
+
+            return effect;
         }
     }
 }

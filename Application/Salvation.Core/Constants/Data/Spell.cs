@@ -36,6 +36,14 @@
         UnholyTransfusion = 325118,
 
         // Legendaries
-        HarmoniousApparatus = 336314
+        HarmoniousApparatus = 336314,
+
+        // Conduits
+        CharitableSoul = 337715,
+        CourageousAscension = 337966,
+        FesteringTransfusion = 337979,
+        FaeFermata = 338305,
+        ShatteredPerceptions = 338315,
+        HolyOration = 338345,
     }
 }

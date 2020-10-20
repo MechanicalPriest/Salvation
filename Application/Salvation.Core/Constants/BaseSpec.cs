@@ -7,21 +7,24 @@ namespace Salvation.Core.Constants
         public string Class { get; set; }
         public string Spec { get; set; }
         public int SpecId { get; set; }
-        public int ManaBase { get; set; }
+        public double ManaBase { get; set; }
 
 
-        public decimal CritBase { get; set; }
-        public decimal HasteBase { get; set; }
-        public decimal VersBase { get; set; }
-        public decimal MasteryBase { get; set; }
-        public decimal IntBase { get; set; }
-        public decimal StamBase { get; set; }
+        public double CritBase { get; set; }
+        public double HasteBase { get; set; }
+        public double VersBase { get; set; }
+        public double MasteryBase { get; set; }
+        public double IntBase { get; set; }
+        public double StamBase { get; set; }
 
-        public decimal CritCost { get; set; }
-        public decimal HasteCost { get; set; }
-        public decimal VersCost { get; set; }
-        public decimal MasteryCost { get; set; }
-        public decimal LeechCost { get; set; }
+        public double CritCost { get; set; }
+        public double HasteCost { get; set; }
+        public double VersCost { get; set; }
+        public double MasteryCost { get; set; }
+        public double LeechCost { get; set; }
+        public double SpeedCost { get; set; }
+        public double AvoidanceCost { get; set; }
+        public double StamCost { get; set; }
 
 
         public List<BaseSpellData> Spells { get; set; }

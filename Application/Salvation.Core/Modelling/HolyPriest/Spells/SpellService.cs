@@ -154,7 +154,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             var baseMana = _gameStateService.GetBaseManaAmount(gameState);
 
-            return baseMana * spellData.ManaCost;
+            return baseMana * (decimal)spellData.ManaCost;
         }
 
         public virtual decimal GetDuration(GameState gameState, BaseSpellData spellData = null,

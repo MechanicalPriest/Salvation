@@ -124,11 +124,11 @@ namespace Salvation.Utility.SpellDataUpdate
             {
                 Id = spell.SpellId,
                 Name = spell.Name,
-                ManaCost = spell.PowerCost, // TODO: Need SimcProfileParser issue #46 resolved
+                ManaCost = spell.PowerCost,
                 MaxRange = spell.MaxRange,
                 BaseCastTime = spell.CastTime,
                 BaseCooldown = spell.Cooldown,
-                //newSpell.Duration = ; // So this is stored in the effects and can probably be removed.
+                Duration = spell.Duration,
                 Gcd = spell.Gcd / 1000
                 //newSpell.Coeff1; // This and coeff 2 and 3 make way for the spell effect data.
                 //newSpell.IsMasteryTriggered = ; // So this another weird one. Anything that has a healing effect of type 10 (Direct Heal) seems to proc it.

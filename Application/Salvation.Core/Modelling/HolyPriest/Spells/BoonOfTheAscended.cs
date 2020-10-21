@@ -54,8 +54,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             result.AdditionalCasts.Add(abResults);
 
             // AN
-            var leftoverCastTime = GetDuration(gameState, spellData) -
-                (abResults.CastsPerMinute * abResults.Gcd);
+            var leftoverCastTime = duration - (abResults.CastsPerMinute * abResults.Gcd);
 
             var anSpellData = _gameStateService.GetSpellData(gameState, Spell.AscendedNova);
             anSpellData.Overrides[Override.CastsPerMinute] = boonCPM;

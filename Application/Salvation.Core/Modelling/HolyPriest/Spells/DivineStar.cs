@@ -25,7 +25,10 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             var holyPriestAuraHealingBonus = _gameStateService.GetModifier(gameState, "HolyPriestAuraHealingMultiplier").Value;
 
-            double averageHeal = spellData.Coeff1
+            var divstarHealData = _gameStateService.GetSpellData(gameState, Spell.DivineStarHeal);
+            var healingSp = spellData.GetEffect(122873).SpCoefficient;
+
+            double averageHeal = healingSp
                 * _gameStateService.GetIntellect(gameState)
                 * _gameStateService.GetVersatilityMultiplier(gameState)
                 * holyPriestAuraHealingBonus;

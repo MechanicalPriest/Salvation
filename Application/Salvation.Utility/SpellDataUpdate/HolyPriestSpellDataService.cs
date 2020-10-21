@@ -25,7 +25,11 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.CosmicRipple,
                 (uint)Spell.BindingHeal,
                 (uint)Spell.Halo,
+                (uint)Spell.HaloHeal,
+                (uint)Spell.HaloDamage,
                 (uint)Spell.DivineStar,
+                (uint)Spell.DivineStarHeal,
+                (uint)Spell.DivineStarDamage,
                 (uint)Spell.Benediction,
                 (uint)Spell.HolyWordSalvation,
 
@@ -34,6 +38,7 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.FlashHeal,
                 (uint)Spell.PrayerOfHealing,
                 (uint)Spell.HolyNova,
+                (uint)Spell.HolyNovaHeal,
                 (uint)Spell.CircleOfHealing,
                 (uint)Spell.Renew,
                 (uint)Spell.PowerWordShield,
@@ -135,7 +140,6 @@ namespace Salvation.Utility.SpellDataUpdate
                 BaseCooldown = spell.Cooldown,
                 Duration = spell.Duration,
                 Gcd = spell.Gcd / 1000
-                //newSpell.Coeff1; // This and coeff 2 and 3 make way for the spell effect data.
                 //newSpell.IsMasteryTriggered = ; // So this another weird one. Anything that has a healing effect of type 10 (Direct Heal) seems to proc it.
             };
             

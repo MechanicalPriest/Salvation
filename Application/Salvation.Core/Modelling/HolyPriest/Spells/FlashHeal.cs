@@ -26,7 +26,9 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             // Flash Heal's average heal is:
             // SP% * Intellect * Vers * Hpriest Aura
-            double averageHeal = spellData.Coeff1
+            var healingSp = spellData.GetEffect(613).SpCoefficient;
+
+            double averageHeal = healingSp
                 * _gameStateService.GetIntellect(gameState)
                 * _gameStateService.GetVersatilityMultiplier(gameState)
                 * holyPriestAuraHealingBonus;

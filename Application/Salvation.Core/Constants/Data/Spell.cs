@@ -7,6 +7,10 @@
         FlashHeal = 2061,
         PrayerOfHealing = 596,
         HolyNova = 132157,
+        /// <summary>
+        /// Stores the healing sp coefficient
+        /// </summary>
+        HolyNovaHeal = 132157,
         CircleOfHealing = 204883,
         Renew = 139,
         PowerWordShield = 17,
@@ -27,7 +31,11 @@
         PrayerOfMendingBuff = 41635,
         BindingHeal = 32546,
         Halo = 120517,
+        HaloHeal = 120692,
+        HaloDamage = 120696,
         DivineStar = 110744,
+        DivineStarHeal = 110745,
+        DivineStarDamage = 122128,
         HolyWordSalvation = 265202,
         EchoOfLight = 77485,
 

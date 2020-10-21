@@ -24,8 +24,10 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             var holyPriestAuraHealingBonus = _gameStateService.GetModifier(gameState, "HolyPriestAuraHealingMultiplier").Value;
 
+            var healingSp = spellData.GetEffect(95).SpCoefficient;
+
             // Renews's average heal is initial + HoT portion:
-            double averageHealFirstTick = spellData.Coeff1
+            double averageHealFirstTick = healingSp
                 * _gameStateService.GetIntellect(gameState)
                 * _gameStateService.GetVersatilityMultiplier(gameState)
                 * holyPriestAuraHealingBonus;
@@ -37,7 +39,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
 
             // HoT is affected by haste
-            double averageHealTicks = spellData.Coeff1
+            double averageHealTicks = healingSp
                 * _gameStateService.GetIntellect(gameState)
                 * _gameStateService.GetVersatilityMultiplier(gameState)
                 * _gameStateService.GetHasteMultiplier(gameState)

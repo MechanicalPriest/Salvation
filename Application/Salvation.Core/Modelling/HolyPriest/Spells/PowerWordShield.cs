@@ -55,13 +55,16 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             var holyPriestAuraHealingBonus = _gameStateService.GetModifier(gameState, "HolyPriestAuraHealingMultiplier").Value;
 
-            // Flash Heal's average heal is:
             // SP% * Intellect * Vers * Hpriest Aura
-            double averageHeal = spellData.Coeff1
+            // TODO: For some reason PW:S is done kinda weird. No basevalue of spcoeff.
+            // It just seems to use $shield=${$SP*1.8*(1+$@versadmg)*
+            //var absorbSp = spellData.GetEffect(13).SpCoefficient;
+            var absorbSp = 1.8; 
+
+            double averageHeal = absorbSp
                 * _gameStateService.GetIntellect(gameState)
                 * _gameStateService.GetVersatilityMultiplier(gameState)
-                * holyPriestAuraHealingBonus
-                * 2; // PW:S has a x2 SP% multiplier built in to it
+                * holyPriestAuraHealingBonus;
 
             _journal.Entry($"[{spellData.Name}] Tooltip: {averageHeal:0.##}");
 

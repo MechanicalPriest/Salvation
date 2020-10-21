@@ -300,7 +300,7 @@
           "BaseCooldown": 15.0,
           "IsCooldownHasted": false,
           "Gcd": 1.5,
-          "Coeff1": 0.7, // comes from 110745
+          "Coeff1": 0.7, // comes frosm 110745
           "IsMasteryTriggered": true
         },
         {

@@ -183,7 +183,7 @@ namespace Salvation.Core.State
 
             var hwCDRBase = GetModifier(state, "HolyWordsBaseCDR").Value;
             var salvCDRBase = GetModifier(state, "SalvationHolyWordCDR").Value;
-            var haCDRBase = GetSpellData(state, Spell.HarmoniousApparatus).Coeff1;
+            var haCDRBase = GetSpellData(state, Spell.HarmoniousApparatus).GetEffect(833714).BaseValue;
             var isLotnActive = IsTalentActive(state, Talent.LightOfTheNaaru);
 
             // Holy Oration

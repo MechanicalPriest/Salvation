@@ -27,7 +27,9 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             var pomHealData = _gameStateService.GetSpellData(gameState, Spell.PrayerOfMendingHeal);
 
-            double averageHeal = spellData.Coeff1
+            var healingSp = pomHealData.GetEffect(22918).SpCoefficient;
+
+            double averageHeal = healingSp
                 * _gameStateService.GetIntellect(gameState)
                 * _gameStateService.GetVersatilityMultiplier(gameState)
                 * holyPriestAuraHealingBonus;

@@ -27,7 +27,9 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             // DH's average heal for the first tick is:
             // SP% * Intellect * Vers * Hpriest Aura
-            double firstTickRaid = spellData.Coeff1
+            var healingSp = spellData.GetEffect(59162).TriggerSpell.GetEffect(59165).SpCoefficient;
+
+            double firstTickRaid = healingSp
                 * _gameStateService.GetIntellect(gameState)
                 * _gameStateService.GetVersatilityMultiplier(gameState)
                 * holyPriestAuraHealingBonus;

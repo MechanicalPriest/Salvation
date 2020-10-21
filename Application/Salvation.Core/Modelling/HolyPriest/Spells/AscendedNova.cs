@@ -25,7 +25,10 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             var holyPriestAuraHealingBonus = _gameStateService.GetModifier(gameState, "HolyPriestAuraHealingMultiplier").Value;
 
-            double averageHeal = spellData.Coeff2
+            // AN has a trigger spell in one of its effects which containst the SP coefficient
+            var healingSp = spellData.GetEffect(815031).TriggerSpell.GetEffect(815030).SpCoefficient;
+
+            double averageHeal = healingSp
                 * _gameStateService.GetIntellect(gameState)
                 * _gameStateService.GetVersatilityMultiplier(gameState)
                 * holyPriestAuraHealingBonus;
@@ -47,7 +50,9 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             var holyPriestAuraDamageBonus = _gameStateService.GetModifier(gameState, "HolyPriestAuraDamageMultiplier").Value;
 
-            double averageDamage = spellData.Coeff1
+            var damageSp = spellData.GetEffect(814997).SpCoefficient;
+
+            double averageDamage = damageSp
                 * _gameStateService.GetIntellect(gameState)
                 * _gameStateService.GetVersatilityMultiplier(gameState)
                 * holyPriestAuraDamageBonus;

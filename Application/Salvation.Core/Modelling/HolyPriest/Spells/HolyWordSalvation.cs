@@ -103,8 +103,8 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             pomSpellData.Gcd = 0;
             pomSpellData.BaseCastTime = 0;
             pomSpellData.BaseCooldown = 0;
-            pomSpellData.Coeff2 = 2; // Number of initial stacks
             pomSpellData.Overrides[Override.NumberOfHealingTargets] = GetNumberOfHealingTargets(gameState, spellData);
+            pomSpellData.Overrides[Override.ResultMultiplier] = 2; // Force the number of stacks
 
             // grab the result of the spell cast
             var pomResult = _prayerOfMendingSpellService.GetCastResults(gameState, pomSpellData);

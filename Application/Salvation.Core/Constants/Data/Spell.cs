@@ -13,7 +13,18 @@
         DivineHymn = 64843,
         HolyWordSanctify = 34861,
         HolyWordSerenity = 2050,
+        /// <summary>
+        /// The PoM spell cast
+        /// </summary>
         PrayerOfMending = 33076,
+        /// <summary>
+        /// The PoM spell that heals people
+        /// </summary>
+        PrayerOfMendingHeal = 33110,
+        /// <summary>
+        /// The PoM buff people get when it is cast on/bounces to them
+        /// </summary>
+        PrayerOfMendingBuff = 41635,
         BindingHeal = 32546,
         Halo = 120517,
         DivineStar = 110744,
@@ -28,12 +39,18 @@
         // Cov abilities
         Mindgames = 323673,
         FaeGuardians = 327661,
+        BenevolentFaerie = 327710,
+        GuardianFaerie = 327694,
         BoonOfTheAscended = 325013,
         AscendedNova = 325020,
         AscendedBlast = 325283,
         AscendedEruption = 325326,
         UnholyNova = 324724,
         UnholyTransfusion = 325118,
+        /// <summary>
+        /// The enemy debuff applied that does damage
+        /// </summary>
+        UnholyTransfusionDebuff = 325203,
 
         // Legendaries
         HarmoniousApparatus = 336314,

@@ -41,17 +41,22 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.HolyWordSanctify,
                 (uint)Spell.HolyWordSerenity,
                 (uint)Spell.PrayerOfMending,
+                (uint)Spell.PrayerOfMendingBuff,
+                (uint)Spell.PrayerOfMendingHeal,
                 (uint)Spell.EchoOfLight,
 
                 // Covenant
                 (uint)Spell.Mindgames,
                 (uint)Spell.FaeGuardians,
+                (uint)Spell.BenevolentFaerie,
+                (uint)Spell.GuardianFaerie,
                 (uint)Spell.BoonOfTheAscended,
                 (uint)Spell.AscendedNova,
                 (uint)Spell.AscendedBlast,
                 (uint)Spell.AscendedEruption,
                 (uint)Spell.UnholyNova,
                 (uint)Spell.UnholyTransfusion,
+                (uint)Spell.UnholyTransfusionDebuff,
 
                 // Legendaries
                 (uint)Spell.HarmoniousApparatus,

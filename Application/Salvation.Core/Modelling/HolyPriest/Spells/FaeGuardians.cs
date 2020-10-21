@@ -43,7 +43,12 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             double selfUptime = _gameStateService.GetModifier(gameState, "FaeBenevolentFaerieSelfUptime").Value;
             duration *= selfUptime;
 
-            var reducedCooldownSeconds = (spellData.Coeff2 / 100) * duration;
+            var beneFaerieData = _gameStateService.GetSpellData(gameState, Spell.BenevolentFaerie);
+
+            // This value is the CDR increase, 100 = 100%
+            var cdrModifier = beneFaerieData.GetEffect(819312).BaseValue;
+
+            var reducedCooldownSeconds = (cdrModifier / 100) * duration;
 
             // Figure out how much extra hymn we get, best case
             var percentageOfCast = reducedCooldownSeconds / divineHymnResults.Cooldown;
@@ -92,11 +97,16 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             var duration = GetDuration(gameState, spellData);
 
-            _journal.Entry($"[{spellData.Name}] DR: {spellData.Coeff1}% DTPS: {targetDamageTakenPerSecond} Duration: {duration}s");
+            var guardianFaerieData = _gameStateService.GetSpellData(gameState, Spell.GuardianFaerie);
+
+            // This value is a negative integer. -10 = -10%
+            var baseDamageReduction = guardianFaerieData.GetEffect(819281).BaseValue;
+
+            _journal.Entry($"[{spellData.Name}] DR: {baseDamageReduction}% DTPS: {targetDamageTakenPerSecond} Duration: {duration}s");
 
             double averageDRPC = duration
                 * targetDamageTakenPerSecond
-                * (spellData.Coeff1 / -100);
+                * (baseDamageReduction / 100);
 
             // Benevolent
             // See GetAverageSpell()

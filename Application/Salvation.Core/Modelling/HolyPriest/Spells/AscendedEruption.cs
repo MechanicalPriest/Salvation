@@ -33,8 +33,9 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             // --Boon of the Ascended--
             // AE explodes at the end healing 3% more per stack to all friendlies (15y)
+            var healingSp = spellData.GetEffect(815532).SpCoefficient;
 
-            double averageHeal = spellData.Coeff2
+            double averageHeal = healingSp
                 * _gameStateService.GetIntellect(gameState)
                 * _gameStateService.GetVersatilityMultiplier(gameState)
                 * holyPriestAuraHealingBonus // This may not affect it? No way to test though.
@@ -71,8 +72,9 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             // --Boon of the Ascended--
             // AE explodes at the end healing 3% more per stack to all friendlies (15y)
+            var damageSp = spellData.GetEffect(815531).SpCoefficient;
 
-            double averageHeal = spellData.Coeff1
+            double averageHeal = damageSp
                 * _gameStateService.GetIntellect(gameState)
                 * _gameStateService.GetVersatilityMultiplier(gameState)
                 * holyPriestAuraDamageBonus; // ??? scales with the damage aura for reasons

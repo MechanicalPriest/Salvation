@@ -4,6 +4,7 @@ using Salvation.Core.Interfaces;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.State;
+using System;
 using System.Collections.Generic;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
@@ -24,6 +25,8 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             var holyPriestAuraHealingBonus = _gameStateService.GetModifier(gameState, "HolyPriestAuraHealingMultiplier").Value;
 
+            var pomHealData = _gameStateService.GetSpellData(gameState, Spell.PrayerOfMendingHeal);
+
             double averageHeal = spellData.Coeff1
                 * _gameStateService.GetIntellect(gameState)
                 * _gameStateService.GetVersatilityMultiplier(gameState)
@@ -31,8 +34,15 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             _journal.Entry($"[{spellData.Name}] Tooltip: {averageHeal:0.##}");
 
+            // Number of initial PoM stacks
+            var numPoMStacks = spellData.GetEffect(22870).BaseValue;
+
+            // Override used by Salvation to apply 2-stack PoMs
+            if (spellData.Overrides.ContainsKey(Override.ResultMultiplier))
+                numPoMStacks = spellData.Overrides[Override.AllowedDuration];
+
             averageHeal *= _gameStateService.GetCriticalStrikeMultiplier(gameState)
-                * spellData.Coeff2; // Coeff2 is number of initial stacks
+                * numPoMStacks; 
 
             return averageHeal * GetNumberOfHealingTargets(gameState, spellData);
         }

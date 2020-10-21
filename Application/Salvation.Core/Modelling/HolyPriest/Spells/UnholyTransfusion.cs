@@ -24,9 +24,10 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             var holyPriestAuraHealingBonus = _gameStateService.GetModifier(gameState, "HolyPriestAuraHealingMultiplier").Value;
 
-            // Flash Heal's average heal is:
+            var healingSp = spellData.GetEffect(815191).SpCoefficient;
+
             // SP% * Intellect * Vers * Hpriest Aura
-            double averageHeal = spellData.Coeff1
+            double averageHeal = healingSp
                 * _gameStateService.GetIntellect(gameState)
                 * _gameStateService.GetVersatilityMultiplier(gameState)
                 * holyPriestAuraHealingBonus;
@@ -51,8 +52,11 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             var holyPriestAuraDamageBonus = _gameStateService.GetModifier(gameState, "HolyPriestAuraDamageMultiplier").Value;
 
+            var damageSpellData = _gameStateService.GetSpellData(gameState, Spell.UnholyTransfusionDebuff);
+            var damageSp = damageSpellData.GetEffect(815346).SpCoefficient;
+
             // coeff2 * int * hpriest dmg mod * vers
-            double averageDamage = spellData.Coeff2
+            double averageDamage = damageSp
                 * _gameStateService.GetIntellect(gameState)
                 * holyPriestAuraDamageBonus
                 * _gameStateService.GetVersatilityMultiplier(gameState)

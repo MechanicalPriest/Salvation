@@ -5,7 +5,6 @@ using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.State;
 using System;
-using System.Collections.Generic;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
@@ -47,7 +46,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             averageHeal *= _gameStateService.GetCriticalStrikeMultiplier(gameState);
 
-            var bonusPerStack = GetBoonBonusDamagePerStack(gameState, spellData);
+            var bonusPerStack = GetBoonBonusDamagePerStack(gameState);
 
             // Apply boon stack healing bonus
             averageHeal *= 1 + ((bonusPerStack / 100d) * numberOfBoonStacks);
@@ -85,7 +84,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             averageHeal *= _gameStateService.GetCriticalStrikeMultiplier(gameState);
 
-            var bonusPerStack = GetBoonBonusDamagePerStack(gameState, spellData);
+            var bonusPerStack = GetBoonBonusDamagePerStack(gameState);
 
             // Apply boon stack damage bonus
             averageHeal *= 1d + ((bonusPerStack / 100d) * numberOfBoonStacks);
@@ -112,11 +111,8 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         /// <summary>
         /// Get the bonus damage per stack of boon. It's stored as an int, 3 = 3% bonus damage per stack
         /// </summary>
-        public double GetBoonBonusDamagePerStack(GameState gameState, BaseSpellData spellData = null)
+        public double GetBoonBonusDamagePerStack(GameState gameState)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, Spell.AscendedEruption);
-
             // The bonus is stored as an int. 3 = 3%
             var boonSpellData = _gameStateService.GetSpellData(gameState, Spell.AscendedEruption);
             var bonusPerStack = boonSpellData.GetEffect(815475).BaseValue;

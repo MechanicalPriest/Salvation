@@ -2,9 +2,7 @@
 using Salvation.Core.Constants.Data;
 using SimcProfileParser.Interfaces;
 using SimcProfileParser.Model.Generated;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Salvation.Utility.SpellDataUpdate
@@ -78,33 +76,35 @@ namespace Salvation.Utility.SpellDataUpdate
 
         public async Task<BaseSpec> Generate()
         {
-            var spec = new BaseSpec();
-            spec.Class = "Priest";
-            spec.Spec = "Holy";
-            spec.SpecId = 257;
+            var spec = new BaseSpec
+            {
+                Class = "Priest",
+                Spec = "Holy",
+                SpecId = 257,
 
-            spec.CritBase = 0.05;
-            spec.HasteBase = 0.0;
-            spec.VersBase = 0.0;
-            spec.MasteryBase = 0.1;
-            spec.IntBase = 450;
-            spec.StamBase = 416;
-            spec.ManaBase = 50000; // __base_mp in sc_scale_data.inc
+                CritBase = 0.05,
+                HasteBase = 0.0,
+                VersBase = 0.0,
+                MasteryBase = 0.1,
+                IntBase = 450,
+                StamBase = 416,
+                ManaBase = 50000, // __base_mp in sc_scale_data.inc
 
-            // These come from __combat_ratings in sc_scale_data.inc
-            spec.CritCost = 35;
-            spec.HasteCost = 33;
-            spec.VersCost = 40; // Ver damage taken cost is 80
-            spec.MasteryCost = 28; // This is the 35 base cost * 0.80 holy priest modifier
-            spec.LeechCost = 21;
-            spec.SpeedCost = 10;
-            spec.AvoidanceCost = 14;
-            spec.StamCost = 20;
+                // These come from __combat_ratings in sc_scale_data.inc
+                CritCost = 35,
+                HasteCost = 33,
+                VersCost = 40, // Ver damage taken cost is 80
+                MasteryCost = 28, // This is the 35 base cost * 0.80 holy priest modifier
+                LeechCost = 21,
+                SpeedCost = 10,
+                AvoidanceCost = 14,
+                StamCost = 20
+            };
 
             // Add the spells
             var spells = new List<BaseSpellData>();
 
-            foreach(var spell in _spells)
+            foreach (var spell in _spells)
             {
                 // TODO: feed up level 60 from somewhere else
                 var spellOptions = new SimcSpellOptions()
@@ -143,12 +143,12 @@ namespace Salvation.Utility.SpellDataUpdate
                 ConduitRanks = spell.ConduitRanks
                 //newSpell.IsMasteryTriggered = ; // So this another weird one. Anything that has a healing effect of type 10 (Direct Heal) seems to proc it.
             };
-            
+
             foreach (var effect in spell.Effects)
             {
                 var newEffect = GetBaseSpellDataEffect(effect);
 
-                if(newEffect != null)
+                if (newEffect != null)
                     newSpell.Effects.Add(newEffect);
             }
 

@@ -5,7 +5,6 @@ using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.Modelling.Common;
 using Salvation.Core.State;
-using System.Collections.Generic;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
@@ -30,16 +29,18 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
                 var rank = _gameStateService.GetConduitRank(gameState, Conduit.CharitableSoul);
                 var rankMulti = csSpellData.ConduitRanks[rank] / 100;
 
-                AveragedSpellCastResult csComponent = new AveragedSpellCastResult();
-                csComponent.SpellId = (int)Spell.CharitableSoul;
-                csComponent.SpellName = csSpellData.Name;
-                csComponent.RawHealing = result.RawHealing * rankMulti;
-                csComponent.Healing = result.Healing * rankMulti;
-                csComponent.Cooldown = 0;
-                csComponent.Duration = 0;
-                csComponent.Gcd = 0;
-                csComponent.ManaCost = 0;
-                csComponent.NumberOfHealingTargets = 1;
+                AveragedSpellCastResult csComponent = new AveragedSpellCastResult
+                {
+                    SpellId = (int)Spell.CharitableSoul,
+                    SpellName = csSpellData.Name,
+                    RawHealing = result.RawHealing * rankMulti,
+                    Healing = result.Healing * rankMulti,
+                    Cooldown = 0,
+                    Duration = 0,
+                    Gcd = 0,
+                    ManaCost = 0,
+                    NumberOfHealingTargets = 1
+                };
                 csComponent.MakeSpellHaveNoCasts();
 
                 result.AdditionalCasts.Add(csComponent);
@@ -60,7 +61,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             // TODO: For some reason PW:S is done kinda weird. No basevalue of spcoeff.
             // It just seems to use $shield=${$SP*1.8*(1+$@versadmg)*
             //var absorbSp = spellData.GetEffect(13).SpCoefficient;
-            var absorbSp = 1.8; 
+            var absorbSp = 1.8;
 
             double averageHeal = absorbSp
                 * _gameStateService.GetIntellect(gameState)

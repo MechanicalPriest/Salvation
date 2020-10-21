@@ -4,8 +4,6 @@ using Salvation.Core.Interfaces;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.State;
-using System;
-using System.Collections.Generic;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
@@ -45,7 +43,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
                 numPoMStacks = spellData.Overrides[Override.AllowedDuration];
 
             averageHeal *= _gameStateService.GetCriticalStrikeMultiplier(gameState)
-                * numPoMStacks; 
+                * numPoMStacks;
 
             return averageHeal * GetNumberOfHealingTargets(gameState, spellData);
         }

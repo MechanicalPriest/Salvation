@@ -5,7 +5,6 @@ using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.Modelling.Common;
 using Salvation.Core.State;
-using System.Collections.Generic;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
@@ -72,7 +71,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             var hwCDRSerenity = _gameStateService.GetTotalHolyWordCooldownReduction(gameState, Spell.HolyWordSerenity);
             var hwCDRSanctify = _gameStateService.GetTotalHolyWordCooldownReduction(gameState, Spell.HolyWordSanctify);
 
-            double salvCDRPerMin = cpmSerenity * hwCDRSerenity + 
+            double salvCDRPerMin = cpmSerenity * hwCDRSerenity +
                 cpmSanctify * hwCDRSanctify;
             double maximumPotentialCasts = (60d + salvCDRPerMin) / (hastedCT + hastedCD)
                 + 1d / (fightLength / 60d);
@@ -83,7 +82,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         public override AveragedSpellCastResult GetCastResults(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, Spell.HolyWordSalvation);  
+                spellData = _gameStateService.GetSpellData(gameState, Spell.HolyWordSalvation);
 
             AveragedSpellCastResult result = base.GetCastResults(gameState, spellData);
 

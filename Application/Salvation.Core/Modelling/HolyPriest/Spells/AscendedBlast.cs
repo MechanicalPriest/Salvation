@@ -5,7 +5,6 @@ using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.State;
 using System;
-using System.Collections.Generic;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
@@ -91,7 +90,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             var maximumPotentialCasts = 1d + (allowedDuration - hastedGcd) / hastedCooldown;
 
             // This is the maximum potential casts per Boon CD
-            maximumPotentialCasts = maximumPotentialCasts * boonCPM;
+            maximumPotentialCasts *= boonCPM;
 
             return maximumPotentialCasts;
         }

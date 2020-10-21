@@ -4,7 +4,6 @@ using Salvation.Core.Interfaces.Modelling;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.Modelling.Common;
-using Salvation.Core.Profile;
 using Salvation.Core.State;
 using System;
 using System.Collections.Generic;
@@ -126,23 +125,14 @@ namespace Salvation.Core.Modelling.HolyPriest
         /// </summary>
         public bool IsSpellBeingCast(GameState state, Spell spellId)
         {
-            switch (spellId)
+            return spellId switch
             {
-                case Spell.BoonOfTheAscended:
-                    return _gameStateService.GetActiveCovenant(state) == Covenant.Kyrian;
-
-                case Spell.Mindgames:
-                    return _gameStateService.GetActiveCovenant(state) == Covenant.Venthyr;
-
-                case Spell.FaeGuardians:
-                    return _gameStateService.GetActiveCovenant(state) == Covenant.NightFae;
-
-                case Spell.UnholyNova:
-                    return _gameStateService.GetActiveCovenant(state) == Covenant.Necrolord;
-
-                default:
-                    return true;
-            }
+                Spell.BoonOfTheAscended => _gameStateService.GetActiveCovenant(state) == Covenant.Kyrian,
+                Spell.Mindgames => _gameStateService.GetActiveCovenant(state) == Covenant.Venthyr,
+                Spell.FaeGuardians => _gameStateService.GetActiveCovenant(state) == Covenant.NightFae,
+                Spell.UnholyNova => _gameStateService.GetActiveCovenant(state) == Covenant.Necrolord,
+                _ => true,
+            };
         }
 
         private void RollUpResults(BaseModelResults results, List<AveragedSpellCastResult> spells)

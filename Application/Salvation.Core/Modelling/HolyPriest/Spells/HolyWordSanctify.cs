@@ -4,7 +4,6 @@ using Salvation.Core.Interfaces;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.State;
-using System.Collections.Generic;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
@@ -78,7 +77,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
                 cpmBindingHeal * hwCDRBindingHeal +
                 cpmRenew * hwCDRRenew;
 
-            if(_gameStateService.IsLegendaryActive(gameState, Spell.HarmoniousApparatus))
+            if (_gameStateService.IsLegendaryActive(gameState, Spell.HarmoniousApparatus))
             {
                 var cpmCoH = _circleOfHealingSpellService.GetActualCastsPerMinute(gameState);
                 var hwCDRCoH = _gameStateService.GetTotalHolyWordCooldownReduction(gameState, Spell.CircleOfHealing);

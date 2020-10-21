@@ -1,17 +1,14 @@
-using System;
-using System.IO;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
-using SimcProfileParser.Model.Generated;
 using SimcProfileParser.Interfaces;
-using System.ComponentModel.DataAnnotations;
-using System.Web.Http;
+using SimcProfileParser.Model.Generated;
 using SimcProfileParser.Model.RawData;
+using System;
+using System.Threading.Tasks;
+using System.Web.Http;
 
 namespace Salvation.Api
 {
@@ -35,16 +32,16 @@ namespace Salvation.Api
                 spellOptions.SpellId = Convert.ToUInt32(id.Value);
             else
                 return new BadRequestErrorMessageResult("ID must be a valid SpellId");
-                
-            if(req.Query.ContainsKey("itemLevel"))
+
+            if (req.Query.ContainsKey("itemLevel"))
             {
-                if(!req.Query.ContainsKey("itemQuality"))
+                if (!req.Query.ContainsKey("itemQuality"))
                     return new BadRequestErrorMessageResult("itemQuality must be specified");
 
                 if (!req.Query.ContainsKey("itemInventoryType"))
                     return new BadRequestErrorMessageResult("itemInventoryType must be specified");
 
-                if(!int.TryParse(req.Query["itemLevel"], out int itemLevel))
+                if (!int.TryParse(req.Query["itemLevel"], out int itemLevel))
                     return new BadRequestErrorMessageResult("itemLevel provided was not recognised");
 
                 if (!Enum.TryParse(req.Query["itemQuality"], out ItemQuality itemQuality))
@@ -78,7 +75,7 @@ namespace Salvation.Api
                 var spell = await _simcGenerationService.GenerateSpellAsync(spellOptions);
                 return new OkObjectResult(spell);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 log.LogError(ex, ex.Message);
                 return new BadRequestErrorMessageResult(ex.Message);

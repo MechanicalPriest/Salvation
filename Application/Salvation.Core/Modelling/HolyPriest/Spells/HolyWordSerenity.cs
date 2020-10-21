@@ -4,7 +4,6 @@ using Salvation.Core.Interfaces;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.State;
-using System.Collections.Generic;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
@@ -73,8 +72,8 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             var hwCDRHeal = _gameStateService.GetTotalHolyWordCooldownReduction(gameState, Spell.Heal);
             var hwCDRBindingHeal = _gameStateService.GetTotalHolyWordCooldownReduction(gameState, Spell.BindingHeal);
 
-            double hwCDR = cpmFlashHeal * hwCDRFlashHeal + 
-                cpmHeal * hwCDRHeal + 
+            double hwCDR = cpmFlashHeal * hwCDRFlashHeal +
+                cpmHeal * hwCDRHeal +
                 cpmBindingHeal * hwCDRBindingHeal;
 
             if (_gameStateService.IsLegendaryActive(gameState, Spell.HarmoniousApparatus))

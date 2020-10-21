@@ -66,9 +66,11 @@ namespace Salvation.Api
                 _constantsService.SetDefaultDirectory(context.FunctionAppDirectory);
 
                 //------------------------------
-                GameState state = new GameState();
-                state.Constants = _constantsService.LoadConstantsFromFile();
-                state.Profile = profile;
+                GameState state = new GameState
+                {
+                    Constants = _constantsService.LoadConstantsFromFile(),
+                    Profile = profile
+                };
 
                 var results = _modellingService.GetResults(state);
 

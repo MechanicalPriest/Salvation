@@ -15,18 +15,11 @@ namespace Salvation.Core.Profile
 
         public PlayerProfile GetDefaultProfile(Spec spec)
         {
-            PlayerProfile profile;
-
-            switch (spec)
+            PlayerProfile profile = spec switch
             {
-                case Spec.HolyPriest:
-                    profile = GenerateHolyPriestProfile();
-                    break;
-
-                case Spec.None:
-                default:
-                    throw new ArgumentOutOfRangeException("Spec", "Spec must be a valid supported spec.");
-            }
+                Spec.HolyPriest => GenerateHolyPriestProfile(),
+                _ => throw new ArgumentOutOfRangeException("Spec", "Spec must be a valid supported spec."),
+            };
 
             return profile;
         }

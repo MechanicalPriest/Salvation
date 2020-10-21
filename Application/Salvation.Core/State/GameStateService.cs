@@ -2,7 +2,6 @@
 using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
 using Salvation.Core.Interfaces.State;
-using Salvation.Core.Modelling.HolyPriest.Spells;
 using Salvation.Core.Profile;
 using System;
 using System.Linq;

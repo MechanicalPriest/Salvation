@@ -7,8 +7,6 @@ using Salvation.Core.Profile;
 using Salvation.Core.State;
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Salvation.CoreTests.State
 {

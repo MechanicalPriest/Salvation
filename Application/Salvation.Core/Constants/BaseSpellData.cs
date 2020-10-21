@@ -34,10 +34,8 @@ namespace Salvation.Core.Constants
         public double ManaCost { get; set; }
         // Casting range
         public double MaxRange { get; set; }
-        public double NumberOfDamageTargets { get; set; }
         // Base cast time in seconds before haste
         public double BaseCastTime { get; set; }
-        public bool IsCastTimeHasted { get; set; }
         public double BaseCooldown { get; set; }
         public bool IsCooldownHasted { get; set; }
         public double Duration { get; set; }

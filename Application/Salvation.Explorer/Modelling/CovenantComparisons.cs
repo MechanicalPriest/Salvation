@@ -186,12 +186,12 @@ namespace Salvation.Explorer.Modelling
             var anData = _gameStateService.GetSpellData(state, Spell.AscendedNova);
 
             anData.Overrides[Override.NumberOfHealingTargets] = friendlyTargets;
-            anData.NumberOfDamageTargets = enemyTargets;
+            anData.Overrides[Override.NumberOfDamageTargets] = enemyTargets;
 
             var aeData = _gameStateService.GetSpellData(state, Spell.AscendedEruption);
 
             aeData.Overrides[Override.NumberOfHealingTargets] = friendlyTargets;
-            aeData.NumberOfDamageTargets = enemyTargets;
+            aeData.Overrides[Override.NumberOfDamageTargets] = enemyTargets;
 
             _gameStateService.OverrideSpellData(state, anData);
             _gameStateService.OverrideSpellData(state, aeData);

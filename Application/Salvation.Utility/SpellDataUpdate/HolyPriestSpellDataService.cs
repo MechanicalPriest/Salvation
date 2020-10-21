@@ -126,12 +126,8 @@ namespace Salvation.Utility.SpellDataUpdate
                 Name = spell.Name,
                 ManaCost = spell.PowerCost, // TODO: Need SimcProfileParser issue #46 resolved
                 MaxRange = spell.MaxRange,
-                //newSpell.NumberOfHealingTargets = spellData.MaxTargets; // TODO: Confirm this on a spell with MaxTargets set
-                //newSpell.NumberOfDamageTargets = spellData.MaxTargets; // TODO: Confirm this on a spell with MaxTargets set
                 BaseCastTime = spell.CastTime,
-                //newSpell.IsCastTimeHasted = ; // TODO: Is this even stored anywhere? Probably not... but I think everything is hasted anyway. remove?
                 BaseCooldown = spell.Cooldown,
-                //newSpell.IsCooldownHasted = ; // Stored in the Priest class aura. Done in ApplyOverrides()
                 //newSpell.Duration = ; // So this is stored in the effects and can probably be removed.
                 Gcd = spell.Gcd / 1000
                 //newSpell.Coeff1; // This and coeff 2 and 3 make way for the spell effect data.

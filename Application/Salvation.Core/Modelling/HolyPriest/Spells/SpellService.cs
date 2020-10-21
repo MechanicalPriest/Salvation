@@ -162,17 +162,26 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         /// <returns></returns>
         public virtual double GetNumberOfHealingTargets(GameState gameState, BaseSpellData spellData = null)
         {
+            var profileData = _gameStateService.GetCastProfile(gameState, SpellId);
+
+            var numTargets = profileData.AverageHealingTargets;
+
             if (spellData.Overrides.ContainsKey(Override.NumberOfHealingTargets))
-                return spellData.Overrides[Override.NumberOfHealingTargets];
-            return 0;
+                numTargets = spellData.Overrides[Override.NumberOfHealingTargets];
+
+            return numTargets;
         }
 
         public virtual double GetNumberOfDamageTargets(GameState gameState, BaseSpellData spellData = null)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, (Spell)SpellId);
+            var profileData = _gameStateService.GetCastProfile(gameState, SpellId);
 
-            return spellData.NumberOfDamageTargets;
+            var numTargets = profileData.AverageDamageTargets;
+
+            if (spellData.Overrides.ContainsKey(Override.NumberOfDamageTargets))
+                numTargets = spellData.Overrides[Override.NumberOfDamageTargets];
+
+            return numTargets;
         }
 
         // This should probably be moved to another class/helper
@@ -199,6 +208,26 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             result.Healing = averageMasteryHeal * (1 - castProfile.OverhealPercent);
 
             return result;
+        }
+
+        public virtual double GetMinimumHealTargets(GameState gameState, BaseSpellData spellData)
+        {
+            return 0;
+        }
+
+        public virtual double GetMaximumHealTargets(GameState gameState, BaseSpellData spellData)
+        {
+            return 0;
+        }
+
+        public virtual double GetMinimumDamageTargets(GameState gameState, BaseSpellData spellData)
+        {
+            return 0;
+        }
+
+        public virtual double GetMaximumDamageTargets(GameState gameState, BaseSpellData spellData)
+        {
+            return 0;
         }
 
         #endregion

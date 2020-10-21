@@ -95,14 +95,14 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             return baseDuration;
         }
 
-        public override double GetNumberOfHealingTargets(GameState gameState, BaseSpellData spellData = null)
+        public override double GetMaximumHealTargets(GameState gameState, BaseSpellData spellData)
         {
-            var numTargets = base.GetNumberOfHealingTargets(gameState, spellData);
+            return 1;
+        }
 
-            if (numTargets == 0)
-                numTargets = 1;
-
-            return numTargets;
+        public override double GetMaximumDamageTargets(GameState gameState, BaseSpellData spellData)
+        {
+            return 1;
         }
 
         internal double GetFesteringTransfusionConduitMultiplier(GameState gameState, BaseSpellData spellData = null)

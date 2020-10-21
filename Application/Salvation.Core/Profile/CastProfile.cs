@@ -11,17 +11,22 @@
         /// How much this spell overheals for on average
         /// </summary>
         public double OverhealPercent { get; set; }
+        public double AverageHealingTargets { get; set; }
+        public double AverageDamageTargets { get; set; }
 
         public CastProfile()
         {
 
         }
 
-        public CastProfile(int spellId, double efficiency, double overhealPercent)
+        public CastProfile(int spellId, double efficiency, double overhealPercent,
+            double avgHealingTargets, double avgDamageTargets)
         {
             SpellId = spellId;
             Efficiency = efficiency;
             OverhealPercent = overhealPercent;
+            AverageHealingTargets = avgHealingTargets;
+            AverageDamageTargets = avgDamageTargets;
         }
     }
 }

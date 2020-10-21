@@ -114,7 +114,8 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
                 spellData = _gameStateService.GetSpellData(gameState, Spell.AscendedEruption);
 
             // The bonus is stored as an int. 3 = 3%
-            var bonusPerStack = spellData.Coeff3;
+            var boonSpellData = _gameStateService.GetSpellData(gameState, Spell.AscendedEruption);
+            var bonusPerStack = boonSpellData.GetEffect(815475).BaseValue;
 
             if (_gameStateService.IsConduitActive(gameState, Conduit.CourageousAscension))
             {

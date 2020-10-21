@@ -50,10 +50,6 @@ namespace Salvation.Core.Constants
         /// Spellpower coefficient for component #2
         /// </summary>
         public double Coeff2 { get; set; }
-        /// <summary>
-        /// Spellpower coefficient for component #3
-        /// </summary>
-        public double Coeff3 { get; set; }
         // If mastery is triggered for the direct heal portion
         // TODO: Move this out to a HolyPriestSpellData inherited class
         public bool IsMasteryTriggered { get; set; }

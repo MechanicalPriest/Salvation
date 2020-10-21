@@ -2,6 +2,18 @@
 {
     public enum Spell
     {
+        /// <summary>
+        /// 179715 - Direct heal bonus
+        /// 191076 - Periodic heal bonus
+        /// 191077 - Direct damage bonus
+        /// 191078 - Periodic damage bonus
+        /// 191079 - SW:D damage reduction
+        /// 869198 - Mana regen bonus
+        /// 871790 - SW:P direct damage bonus
+        /// 871791 - SW:P periodic damage bonus
+        /// </summary>
+        HolyPriest = 137031,
+
         // Base healing spells
         Heal = 2060,
         FlashHeal = 2061,

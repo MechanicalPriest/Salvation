@@ -111,38 +111,43 @@ namespace Salvation.Core.Profile
                 Casts = new List<CastProfile>()
                 {
                     // Base Spells (SpellId, Efficiency, Overheal)
-                    new CastProfile(2060, 0.0603d, 0.1084d, 1, 0), // FH
-                    new CastProfile(2061, 0.0664d, 0.3054d, 1, 0), // Heal
-                    new CastProfile(139, 0.0364d, 0.3643d, 1 , 0), // Renew
-                    new CastProfile(33076, 0.9056d, 0.0219d, 1, 0), // PrayerOfMending
-                    new CastProfile(596, 0.2931d, 0.2715d, 5, 0), // PrayerOfHealing
-                    new CastProfile(132157, 0.0034d, 0.15d, 20, 1), // HolyNova
-                    new CastProfile(2050, 0.677d, 0.1515d, 1, 0), // HolyWordSerenity
-                    new CastProfile(34861, 0.7822d, 0.3234d, 6, 0), // HolyWordSanctify
-                    new CastProfile(64843, 0.8805d, 0.314d, 20, 0), // DivineHymn
-                    new CastProfile(32546, 0d, 0d, 3, 0), // BindingHeal
-                    new CastProfile(204883, 0.8653d, 0.1417d, 5, 0), // CircleOfHealing
-                    new CastProfile(110744, 0d, 0d, 6, 1), // DivineStar
-                    new CastProfile(120517, 0.7596d, 0.3658d, 6, 1), // Halo
-                    new CastProfile(265202, 0.874d, 0.3142d, 20, 0), // HolyWordSalvation
-                    new CastProfile(238136, 0d, 0.2332d, 5, 0), // CosmicRipple
-                    new CastProfile(17, 0d, 0.0d, 1, 0), // PowerWordShield
-                    new CastProfile(77485, 0d, 0.4224d, 1, 0), // Echo
+                    new CastProfile((int)Spell.FlashHeal, 0.0603d, 0.1084d, 1, 0), // FH
+                    new CastProfile((int)Spell.Heal, 0.0664d, 0.3054d, 1, 0), // Heal
+                    new CastProfile((int)Spell.Renew, 0.0364d, 0.3643d, 1 , 0), // Renew
+                    new CastProfile((int)Spell.PrayerOfMending, 0.9056d, 0.0219d, 1, 0), // PrayerOfMending
+                    new CastProfile((int)Spell.PrayerOfHealing, 0.2931d, 0.2715d, 5, 0), // PrayerOfHealing
+                    new CastProfile((int)Spell.HolyNova, 0.0034d, 0.15d, 20, 1), // HolyNova
+                    new CastProfile((int)Spell.HolyWordSerenity, 0.677d, 0.1515d, 1, 0), // HolyWordSerenity
+                    new CastProfile((int)Spell.HolyWordSanctify, 0.7822d, 0.3234d, 6, 0), // HolyWordSanctify
+                    new CastProfile((int)Spell.DivineHymn, 0.8805d, 0.314d, 20, 0), // DivineHymn
+                    new CastProfile((int)Spell.BindingHeal, 0d, 0d, 3, 0), // BindingHeal
+                    new CastProfile((int)Spell.CircleOfHealing, 0.8653d, 0.1417d, 5, 0), // CircleOfHealing
+                    new CastProfile((int)Spell.DivineStar, 0d, 0d, 6, 1), // DivineStar
+                    new CastProfile((int)Spell.Halo, 0.7596d, 0.3658d, 6, 1), // Halo
+                    new CastProfile((int)Spell.HolyWordSalvation, 0.874d, 0.3142d, 20, 0), // HolyWordSalvation
+                    new CastProfile((int)Spell.CosmicRipple, 0d, 0.2332d, 5, 0), // CosmicRipple
+                    new CastProfile((int)Spell.PowerWordShield, 0d, 0.0d, 1, 0), // PowerWordShield
+                    new CastProfile((int)Spell.EchoOfLight, 0d, 0.4224d, 1, 0), // Echo
                     // Covenants (SpellId, Efficiency, Overheal)
-                    new CastProfile(323673, 1.0d, 0.0d, 1, 1), // Mindgames
-                    new CastProfile(327661, 1.0d, 0.0d, 0, 0), // Fae Guardians
-                    new CastProfile(325013, 1.0d, 0.0d, 0, 0), // Boon of the Ascended
-                    new CastProfile(325020, 1.0d, 0.0d, 5, 1), // Ascended Nova
-                    new CastProfile(325283, 1.0d, 0.0d, 1, 1), // Ascended Blast
-                    new CastProfile(325326, 1.0d, 0.0d, 5, 1), // Ascended Eruption
-                    new CastProfile(324724, 1.0d, 0.0d, 6, 1), // Unholy Nova
-                    new CastProfile(325118, 1.0d, 0.0d, 1, 1), // Unholy Transfusion
+                    new CastProfile((int)Spell.Mindgames, 1.0d, 0.0d, 1, 1), // Mindgames
+                    new CastProfile((int)Spell.FaeGuardians, 1.0d, 0.0d, 0, 0), // Fae Guardians
+                    new CastProfile((int)Spell.BoonOfTheAscended, 1.0d, 0.0d, 0, 0), // Boon of the Ascended
+                    new CastProfile((int)Spell.AscendedNova, 1.0d, 0.0d, 5, 1), // Ascended Nova
+                    new CastProfile((int)Spell.AscendedBlast, 1.0d, 0.0d, 1, 1), // Ascended Blast
+                    new CastProfile((int)Spell.AscendedEruption, 1.0d, 0.0d, 5, 1), // Ascended Eruption
+                    new CastProfile((int)Spell.UnholyNova, 1.0d, 0.0d, 6, 1), // Unholy Nova
+                    new CastProfile((int)Spell.UnholyTransfusion, 1.0d, 0.0d, 1, 1), // Unholy Transfusion
                 },
                 Talents = new List<Talent>()
                 {
                     Talent.Enlightenment
                 },
-                FightLengthSeconds = 397
+                FightLengthSeconds = 397,
+                PlaystyleEntries = new List<PlaystyleEntry>()
+                {
+                    new PlaystyleEntry("FaeBenevolentFaerieSelfUptime", 1, (uint)Spell.BenevolentFaerie),
+                    new PlaystyleEntry("FaeGuardianFaerieDTPS", 4000, (uint)Spell.GuardianFaerie),
+                }
             };
 
             return basicProfile;

@@ -183,6 +183,26 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             return numTargets;
         }
 
+        public virtual double GetMinimumHealTargets(GameState gameState, BaseSpellData spellData)
+        {
+            return 0;
+        }
+
+        public virtual double GetMaximumHealTargets(GameState gameState, BaseSpellData spellData)
+        {
+            return 0;
+        }
+
+        public virtual double GetMinimumDamageTargets(GameState gameState, BaseSpellData spellData)
+        {
+            return 0;
+        }
+
+        public virtual double GetMaximumDamageTargets(GameState gameState, BaseSpellData spellData)
+        {
+            return 0;
+        }
+
         // This should probably be moved to another class/helper
         #region Holy Priest Specific
 
@@ -207,26 +227,6 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             result.Healing = averageMasteryHeal * (1 - castProfile.OverhealPercent);
 
             return result;
-        }
-
-        public virtual double GetMinimumHealTargets(GameState gameState, BaseSpellData spellData)
-        {
-            return 0;
-        }
-
-        public virtual double GetMaximumHealTargets(GameState gameState, BaseSpellData spellData)
-        {
-            return 0;
-        }
-
-        public virtual double GetMinimumDamageTargets(GameState gameState, BaseSpellData spellData)
-        {
-            return 0;
-        }
-
-        public virtual double GetMaximumDamageTargets(GameState gameState, BaseSpellData spellData)
-        {
-            return 0;
         }
 
         #endregion

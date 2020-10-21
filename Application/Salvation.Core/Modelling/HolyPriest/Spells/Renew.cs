@@ -22,7 +22,11 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, Spell.Renew);
 
-            var holyPriestAuraHealingBonus = _gameStateService.GetModifier(gameState, "HolyPriestAuraHealingMultiplier").Value;
+            var holyPriestAuraHealingBonus = _gameStateService.GetSpellData(gameState, Spell.HolyPriest)
+                .GetEffect(179715).BaseValue;
+
+            var holyPriestAuraHealingPeriodicBonus = _gameStateService.GetSpellData(gameState, Spell.HolyPriest)
+                .GetEffect(191076).BaseValue;
 
             var healingSp = spellData.GetEffect(95).SpCoefficient;
 
@@ -43,7 +47,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
                 * _gameStateService.GetIntellect(gameState)
                 * _gameStateService.GetVersatilityMultiplier(gameState)
                 * _gameStateService.GetHasteMultiplier(gameState)
-                * holyPriestAuraHealingBonus
+                * holyPriestAuraHealingPeriodicBonus
                 * 5;
 
             _journal.Entry($"[{spellData.Name}] Tooltip: {averageHealTicks:0.##} (ticks)");

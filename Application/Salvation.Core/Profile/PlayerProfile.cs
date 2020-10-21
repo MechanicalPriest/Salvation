@@ -42,6 +42,7 @@ namespace Salvation.Core.Profile
 
         // Misc info
         public int FightLengthSeconds { get; set; }
+        public List<PlaystyleEntry> PlaystyleEntries { get; set; }
 
         public PlayerProfile()
         {
@@ -51,6 +52,7 @@ namespace Salvation.Core.Profile
             Conduits = new Dictionary<Conduit, int>();
             Soulbinds = new List<Soulbind>();
             Legendaries = new List<Spell>();
+            PlaystyleEntries = new List<PlaystyleEntry>();
         }
 
         public bool IsTalentActive(Talent talent)

@@ -216,14 +216,14 @@ namespace Salvation.Explorer.Modelling
 
             var state = new GameState(profile, constants);
 
-            var dtpsModifier = _gameStateService.GetModifier(state, "FaeGuardianFaerieDTPS");
+            var dtpsModifier = _gameStateService.GetPlaystyle(state, "FaeGuardianFaerieDTPS");
             dtpsModifier.Value = guardianDTPS;
 
-            _gameStateService.OverrideModifier(state, dtpsModifier);
-            var selfCDRUsageModifier = _gameStateService.GetModifier(state, "FaeBenevolentFaerieSelfUptime");
+            _gameStateService.OverridePlaystyle(state, dtpsModifier);
+            var selfCDRUsageModifier = _gameStateService.GetPlaystyle(state, "FaeBenevolentFaerieSelfUptime");
             selfCDRUsageModifier.Value = selfCDRUsage;
 
-            _gameStateService.OverrideModifier(state, selfCDRUsageModifier);
+            _gameStateService.OverridePlaystyle(state, selfCDRUsageModifier);
 
             return state;
         }

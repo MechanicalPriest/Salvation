@@ -67,17 +67,6 @@ namespace Salvation.Core.State
             return state.Profile.Intellect;
         }
 
-        public BaseModifier GetModifier(GameState state, string modifierName)
-        {
-            var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.SpecId).FirstOrDefault();
-
-            var modifier = specData.Modifiers.Where(s => s.Name == modifierName).FirstOrDefault();
-
-            modifier = JsonConvert.DeserializeObject<BaseModifier>(JsonConvert.SerializeObject(modifier));
-
-            return modifier;
-        }
-
         public BaseSpellData GetSpellData(GameState state, Spell spellId)
         {
             var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.SpecId).FirstOrDefault();
@@ -150,17 +139,39 @@ namespace Salvation.Core.State
             specData.Spells.Add(newData);
         }
 
-        public void OverrideModifier(GameState state, BaseModifier newModifier)
+        /// <summary>
+        /// Get a playstyle entry based on the supplied unique name
+        /// </summary>
+        /// <param name="state"></param>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public PlaystyleEntry GetPlaystyle(GameState state, string name)
         {
-            var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.SpecId).FirstOrDefault();
+            var playstyleEntry = state.Profile.PlaystyleEntries?
+                .Where(p => p.Name.ToLower() == name.ToLower())
+                .FirstOrDefault();
 
-            var requestedModifier = specData.Modifiers.Where(s => s.Name == newModifier.Name).FirstOrDefault();
+            playstyleEntry = JsonConvert.DeserializeObject<PlaystyleEntry>(JsonConvert.SerializeObject(playstyleEntry));
 
-            if (requestedModifier == null)
+            return playstyleEntry;
+        }
+
+        /// <summary>
+        /// Delete an existing playstyle entry if present, and replace it with the supplied one
+        /// </summary>
+        /// <param name="state"></param>
+        /// <param name="newPlaystyle"></param>
+        public void OverridePlaystyle(GameState state, PlaystyleEntry newPlaystyle)
+        {
+            var playstyleEntry = state.Profile.PlaystyleEntries?
+                .Where(p => p.Name.ToLower() == newPlaystyle.Name.ToLower())
+                .FirstOrDefault();
+
+            if (playstyleEntry == null)
                 return;
 
-            specData.Modifiers.Remove(requestedModifier);
-            specData.Modifiers.Add(newModifier);
+            state.Profile.PlaystyleEntries.Remove(playstyleEntry);
+            state.Profile.PlaystyleEntries.Add(newPlaystyle);
         }
 
         public GameState CloneGameState(GameState state)
@@ -181,8 +192,11 @@ namespace Salvation.Core.State
             if (!IsTalentActive(state, Talent.Apotheosis))
                 isApotheosisActive = false;
 
-            var hwCDRBase = GetModifier(state, "HolyWordsBaseCDR").Value;
-            var salvCDRBase = GetModifier(state, "SalvationHolyWordCDR").Value;
+            var serenityCDRBase = GetSpellData(state, Spell.HolyWordSerenity).GetEffect(709474).BaseValue;
+            var sancCDRPoH = GetSpellData(state, Spell.HolyWordSanctify).GetEffect(709475).BaseValue;
+            var sancCDRRenew = GetSpellData(state, Spell.HolyWordSanctify).GetEffect(709476).BaseValue;
+            var bhCDR = GetSpellData(state, Spell.BindingHeal).GetEffect(325998).BaseValue;
+            var salvCDRBase = GetSpellData(state, Spell.HolyWordSalvation).GetEffect(709211).BaseValue;
             var haCDRBase = GetSpellData(state, Spell.HarmoniousApparatus).GetEffect(833714).BaseValue;
             var isLotnActive = IsTalentActive(state, Talent.LightOfTheNaaru);
 
@@ -205,28 +219,34 @@ namespace Salvation.Core.State
             {
                 case Spell.FlashHeal:
                 case Spell.Heal:
-                case Spell.PrayerOfHealing:
-                    returnCDR = hwCDRBase;
+                    returnCDR = serenityCDRBase;
                     returnCDR *= isLotnActive ? 1d + 1d / 3d : 1d; // LotN adds 33% more CDR.
                     returnCDR *= isApotheosisActive ? 4d : 1d; // Aptheosis adds 200% more CDR
                     // Apply this last as it's additive overall and not multiplicative with others
-                    returnCDR += isHolyOrationActive ? hwCDRBase * holyOrationModifier : 0d;
+                    returnCDR += isHolyOrationActive ? serenityCDRBase * holyOrationModifier : 0d;
+                    break;
+                case Spell.PrayerOfHealing:
+                    returnCDR = sancCDRPoH;
+                    returnCDR *= isLotnActive ? 1d + 1d / 3d : 1d; // LotN adds 33% more CDR.
+                    returnCDR *= isApotheosisActive ? 4d : 1d; // Aptheosis adds 200% more CDR
+                    // Apply this last as it's additive overall and not multiplicative with others
+                    returnCDR += isHolyOrationActive ? sancCDRPoH * holyOrationModifier : 0d;
                     break;
 
                 case Spell.BindingHeal:
-                    returnCDR = hwCDRBase / 2d; // Binding heal gets half the CDR benefit
+                    returnCDR = bhCDR; // Binding heal gets half the CDR benefit
                     returnCDR *= isLotnActive ? 1d + 1d / 3d : 1d; // LotN adds 33% more CDR.
                     returnCDR *= isApotheosisActive ? 4d : 1d; // Aptheosis adds 200% more CDR
                     // Apply this last as it's additive overall and not multiplicative with others
-                    returnCDR += isHolyOrationActive ? (hwCDRBase / 2d) * holyOrationModifier : 0d;
+                    returnCDR += isHolyOrationActive ? bhCDR * holyOrationModifier : 0d;
                     break;
 
                 case Spell.Renew:
-                    returnCDR = hwCDRBase / 3d; // Renew gets a third of the CDR benefit
+                    returnCDR = sancCDRRenew; // Renew gets a third of the CDR benefit
                     returnCDR *= isLotnActive ? 1d + 1d / 3d : 1d; // LotN adds 33% more CDR.
                     returnCDR *= isApotheosisActive ? 4d : 1d; // Aptheosis adds 200% more CDR
                     // Apply this last as it's additive overall and not multiplicative with others
-                    returnCDR += isHolyOrationActive ? (hwCDRBase / 3d) * holyOrationModifier : 0d;
+                    returnCDR += isHolyOrationActive ? sancCDRRenew * holyOrationModifier : 0d;
                     break;
 
                 case Spell.CircleOfHealing:

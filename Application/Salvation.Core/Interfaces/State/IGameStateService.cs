@@ -13,12 +13,12 @@ namespace Salvation.Core.Interfaces.State
     {
         // Global constants
         BaseSpellData GetSpellData(GameState state, Spell spellId);
-        BaseModifier GetModifier(GameState state, string modifierName);
         CastProfile GetCastProfile(GameState state, int spellId);
         ConduitData GetConduitData(GameState state, Conduit conduitId);
+        PlaystyleEntry GetPlaystyle(GameState state, string name);
         Covenant GetActiveCovenant(GameState state);
         void OverrideSpellData(GameState state, BaseSpellData newData);
-        void OverrideModifier(GameState state, BaseModifier newModifier);
+        void OverridePlaystyle(GameState state, PlaystyleEntry newPlaystyle);
 
         // Player Stats
         double GetIntellect(GameState state);

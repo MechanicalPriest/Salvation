@@ -22,8 +22,10 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, Spell.DivineHymn);
 
-            var holyPriestAuraHealingBonus = _gameStateService.GetModifier(gameState, "HolyPriestAuraHealingMultiplier").Value;
-            var divineHymnAura = _gameStateService.GetModifier(gameState, "DivineHymnBonusHealing").Value;
+            var holyPriestAuraHealingBonus = _gameStateService.GetSpellData(gameState, Spell.HolyPriest)
+                .GetEffect(179715).BaseValue;
+
+            var divineHymnAura = spellData.GetEffect(59162).TriggerSpell.GetEffect(59166).BaseValue;
 
             // DH's average heal for the first tick is:
             // SP% * Intellect * Vers * Hpriest Aura

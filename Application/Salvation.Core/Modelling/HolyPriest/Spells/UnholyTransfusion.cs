@@ -22,7 +22,8 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, Spell.UnholyTransfusion);
 
-            var holyPriestAuraHealingBonus = _gameStateService.GetModifier(gameState, "HolyPriestAuraHealingMultiplier").Value;
+            var holyPriestAuraHealingBonus = _gameStateService.GetSpellData(gameState, Spell.HolyPriest)
+                .GetEffect(179715).BaseValue;
 
             var healingSp = spellData.GetEffect(815191).SpCoefficient;
 
@@ -50,7 +51,8 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, Spell.UnholyTransfusion);
 
-            var holyPriestAuraDamageBonus = _gameStateService.GetModifier(gameState, "HolyPriestAuraDamageMultiplier").Value;
+            var holyPriestAuraDamagePeriodicBonus = _gameStateService.GetSpellData(gameState, Spell.HolyPriest)
+                .GetEffect(191078).BaseValue;
 
             var damageSpellData = _gameStateService.GetSpellData(gameState, Spell.UnholyTransfusionDebuff);
             var damageSp = damageSpellData.GetEffect(815346).SpCoefficient;
@@ -58,7 +60,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             // coeff2 * int * hpriest dmg mod * vers
             double averageDamage = damageSp
                 * _gameStateService.GetIntellect(gameState)
-                * holyPriestAuraDamageBonus
+                * holyPriestAuraDamagePeriodicBonus
                 * _gameStateService.GetVersatilityMultiplier(gameState)
                 * 5; // Number of ticks
 

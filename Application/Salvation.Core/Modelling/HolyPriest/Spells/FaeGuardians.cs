@@ -40,7 +40,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             var duration = GetDuration(gameState, spellData);
 
             // Adjust the self duration based on config
-            double selfUptime = _gameStateService.GetModifier(gameState, "FaeBenevolentFaerieSelfUptime").Value;
+            double selfUptime = _gameStateService.GetPlaystyle(gameState, "FaeBenevolentFaerieSelfUptime").Value;
             duration *= selfUptime;
 
             var beneFaerieData = _gameStateService.GetSpellData(gameState, Spell.BenevolentFaerie);
@@ -93,7 +93,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             // Duration should be minus the GCD of the initial cast + gcd to move pw:s over.
 
             // TODO: Move this to configuration
-            double targetDamageTakenPerSecond = _gameStateService.GetModifier(gameState, "FaeGuardianFaerieDTPS").Value;
+            double targetDamageTakenPerSecond = _gameStateService.GetPlaystyle(gameState, "FaeGuardianFaerieDTPS").Value;
 
             var duration = GetDuration(gameState, spellData);
 

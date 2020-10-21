@@ -24,14 +24,14 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             if (_gameStateService.IsConduitActive(gameState, Conduit.CharitableSoul))
             {
-                var csSpellData = _gameStateService.GetConduitData(gameState, Conduit.CharitableSoul);
+                var csSpellData = _gameStateService.GetSpellData(gameState, Spell.CharitableSoul);
 
                 // Turn the rank value into a multiplier. "Rank" 10 = 0.10
                 var rank = _gameStateService.GetConduitRank(gameState, Conduit.CharitableSoul);
-                var rankMulti = csSpellData.Ranks[rank] / 100;
+                var rankMulti = csSpellData.ConduitRanks[rank] / 100;
 
                 AveragedSpellCastResult csComponent = new AveragedSpellCastResult();
-                csComponent.SpellId = csSpellData.Id;
+                csComponent.SpellId = (int)Spell.CharitableSoul;
                 csComponent.SpellName = csSpellData.Name;
                 csComponent.RawHealing = result.RawHealing * rankMulti;
                 csComponent.Healing = result.Healing * rankMulti;

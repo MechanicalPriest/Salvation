@@ -90,13 +90,15 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             // TODO: Shift this out to another method maybe, for testing?
             if (_gameStateService.IsConduitActive(gameState, Conduit.FesteringTransfusion))
             {
-                var conduitData = _gameStateService.GetConduitData(gameState, Conduit.FesteringTransfusion);
+                var conduitData = _gameStateService.GetSpellData(gameState, Spell.FesteringTransfusion);
+
+                var extraDuration = conduitData.GetEffect(836285).BaseValue / 1000;
 
                 // The added duration is the same regardless of rank
                 _journal.Entry($"[{spellData.Name}] Applying FesteringTransfusion ({(int)Conduit.FesteringTransfusion}) conduit " +
-                    $"duration: {conduitData.Coeff1:0.##}");
+                    $"duration: {extraDuration:0.##}");
 
-                baseDuration += conduitData.Coeff1;
+                baseDuration += extraDuration;
             }
             return baseDuration;
         }
@@ -119,9 +121,9 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             if (_gameStateService.IsConduitActive(gameState, Conduit.FesteringTransfusion))
             {
                 var rank = _gameStateService.GetConduitRank(gameState, Conduit.FesteringTransfusion);
-                var conduitData = _gameStateService.GetConduitData(gameState, Conduit.FesteringTransfusion);
+                var conduitData = _gameStateService.GetSpellData(gameState, Spell.FesteringTransfusion);
 
-                var multiplier = 1 + (conduitData.Ranks[rank] / 100);
+                var multiplier = 1 + (conduitData.ConduitRanks[rank] / 100);
 
                 _journal.Entry($"[{spellData.Name}] Applying FesteringTransfusion ({(int)Conduit.FesteringTransfusion}) conduit " +
                     $"multiplier: {multiplier:0.##}");

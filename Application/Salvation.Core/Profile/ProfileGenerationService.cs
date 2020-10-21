@@ -31,7 +31,7 @@ namespace Salvation.Core.Profile
             return profile;
         }
 
-        public void AddConduit(PlayerProfile profile, Conduit conduit, int rank)
+        public void AddConduit(PlayerProfile profile, Conduit conduit, uint rank)
         {
             if (profile.Conduits.ContainsKey(conduit))
             {
@@ -82,7 +82,7 @@ namespace Salvation.Core.Profile
             profile.Soulbinds = new List<Soulbind>();
 
             // Wipe conduits
-            profile.Conduits = new Dictionary<Conduit, int>();
+            profile.Conduits = new Dictionary<Conduit, uint>();
         }
 
         public void SetSpellCastProfile(PlayerProfile profile, CastProfile castProfile)

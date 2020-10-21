@@ -137,13 +137,14 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             // Apply the Fae Fermata conduit if applicable
             // TODO: Shift this out to another method maybe, for testing?
+            // TODO: Fae Fermata needs updating to the new version
             if (_gameStateService.IsConduitActive(gameState, Conduit.FaeFermata))
             {
 
                 var rank = _gameStateService.GetConduitRank(gameState, Conduit.FaeFermata);
-                var conduitData = _gameStateService.GetConduitData(gameState, Conduit.FaeFermata);
+                var conduitData = _gameStateService.GetSpellData(gameState, Spell.FaeFermata);
 
-                var addedDuration = conduitData.Ranks[rank] / 1000;
+                var addedDuration = conduitData.ConduitRanks[rank] / 1000;
                 baseDuration += addedDuration;
             }
             return baseDuration;

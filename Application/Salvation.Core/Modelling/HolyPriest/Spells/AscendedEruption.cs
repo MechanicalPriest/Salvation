@@ -123,9 +123,9 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             if (_gameStateService.IsConduitActive(gameState, Conduit.CourageousAscension))
             {
-                var conduitData = _gameStateService.GetConduitData(gameState, Conduit.CourageousAscension);
+                var conduitData = _gameStateService.GetSpellData(gameState, Spell.CourageousAscension);
 
-                bonusPerStack += conduitData.Coeff1;
+                bonusPerStack += conduitData.GetEffect(842371).BaseValue;
             }
 
             return bonusPerStack;

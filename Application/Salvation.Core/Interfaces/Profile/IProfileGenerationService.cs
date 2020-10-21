@@ -9,7 +9,7 @@ namespace Salvation.Core.Interfaces.Profile
         PlayerProfile CloneProfile(PlayerProfile profile);
 
 
-        void AddConduit(PlayerProfile profile, Conduit conduit, int rank);
+        void AddConduit(PlayerProfile profile, Conduit conduit, uint rank);
         void RemoveConduit(PlayerProfile profile, Conduit conduit);
         void AddTalent(PlayerProfile profile, Talent talent);
         void RemoveTalent(PlayerProfile profile, Talent talent);

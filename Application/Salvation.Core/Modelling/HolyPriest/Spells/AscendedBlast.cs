@@ -55,8 +55,8 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             if (_gameStateService.IsConduitActive(gameState, Conduit.CourageousAscension))
             {
                 var rank = _gameStateService.GetConduitRank(gameState, Conduit.CourageousAscension);
-                var conduitData = _gameStateService.GetConduitData(gameState, Conduit.CourageousAscension);
-                var damageMulti = (1d + (conduitData.Ranks[rank] / 100));
+                var conduitData = _gameStateService.GetSpellData(gameState, Spell.CourageousAscension);
+                var damageMulti = (1d + (conduitData.ConduitRanks[rank] / 100));
                 _journal.Entry($"[{spellData.Name}] Applying Courageous Ascension conduit (r{rank + 1}): {damageMulti:0.##}");
 
                 averageDamage *= damageMulti;

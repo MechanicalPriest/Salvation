@@ -46,12 +46,13 @@ namespace Salvation.Explorer
                         break;
                 }
             }
+            System.Console.WriteLine("Done running all tasks. Ctrl + C to exit");
         }
 
-        public Task StopAsync(CancellationToken cancellationToken)
+        public async Task StopAsync(CancellationToken cancellationToken)
         {
-            //throw new NotImplementedException();
-            return Task.Delay(1);
+            await Task.Delay(1);
+            return;
         }
     }
 }

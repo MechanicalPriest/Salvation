@@ -64,9 +64,9 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             if (_gameStateService.IsConduitActive(gameState, Conduit.ShatteredPerceptions))
             {
                 var rank = _gameStateService.GetConduitRank(gameState, Conduit.ShatteredPerceptions);
-                var conduitData = _gameStateService.GetConduitData(gameState, Conduit.ShatteredPerceptions);
+                var conduitData = _gameStateService.GetSpellData(gameState, Spell.ShatteredPerceptions);
 
-                averageDamage *= (1d + (conduitData.Ranks[rank] / 100d));
+                averageDamage *= (1d + (conduitData.ConduitRanks[rank] / 100d));
             }
 
             return averageDamage * GetNumberOfDamageTargets(gameState, spellData);
@@ -97,10 +97,10 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             // TODO: Shift this out to another method maybe, for testing?
             if (_gameStateService.IsConduitActive(gameState, Conduit.ShatteredPerceptions))
             {
-                var conduitData = _gameStateService.GetConduitData(gameState, Conduit.ShatteredPerceptions);
+                var conduitData = _gameStateService.GetSpellData(gameState, Spell.ShatteredPerceptions);
 
                 // The added duration is the same regardless of rank
-                baseDuration += conduitData.Coeff1;
+                baseDuration += conduitData.GetEffect(836828).BaseValue / 1000;
             }
             return baseDuration;
         }

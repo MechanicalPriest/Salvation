@@ -78,19 +78,6 @@ namespace Salvation.Core.State
             return spell;
         }
 
-        public ConduitData GetConduitData(GameState state, Conduit conduitId)
-        {
-            var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.SpecId).FirstOrDefault();
-
-            ConduitData conduit = specData.Conduits
-                .Where(c => c.Id == (int)conduitId).FirstOrDefault();
-
-            conduit = JsonConvert.DeserializeObject<ConduitData>(
-                JsonConvert.SerializeObject(conduit));
-
-            return conduit;
-        }
-
         public bool IsConduitActive(GameState state, Conduit conduit)
         {
             var exists = state.Profile.Conduits.Keys.Contains(conduit);
@@ -98,9 +85,9 @@ namespace Salvation.Core.State
             return exists;
         }
 
-        public int GetConduitRank(GameState state, Conduit conduit)
+        public uint GetConduitRank(GameState state, Conduit conduit)
         {
-            var rank = 0;
+            var rank = 0u;
             if (state.Profile.Conduits.ContainsKey(conduit))
                 rank = state.Profile.Conduits[conduit];
 
@@ -198,6 +185,7 @@ namespace Salvation.Core.State
             var bhCDR = GetSpellData(state, Spell.BindingHeal).GetEffect(325998).BaseValue;
             var salvCDRBase = GetSpellData(state, Spell.HolyWordSalvation).GetEffect(709211).BaseValue;
             var haCDRBase = GetSpellData(state, Spell.HarmoniousApparatus).GetEffect(833714).BaseValue;
+
             var isLotnActive = IsTalentActive(state, Talent.LightOfTheNaaru);
 
             // Holy Oration
@@ -206,9 +194,9 @@ namespace Salvation.Core.State
             if (isHolyOrationActive)
             {
                 var holyOrationRank = GetConduitRank(state, Conduit.HolyOration);
-                var holyOrationSpellData = GetConduitData(state, Conduit.HolyOration);
+                var holyOrationSpellData = GetSpellData(state, Spell.HolyOration);
 
-                holyOrationModifier = holyOrationSpellData.Ranks[holyOrationRank] / 100;
+                holyOrationModifier = holyOrationSpellData.ConduitRanks[holyOrationRank] / 100;
             }
 
             var returnCDR = 0d;

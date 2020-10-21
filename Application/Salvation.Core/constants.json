@@ -26,17 +26,11 @@
           "Name": "Enlightenment",
           "ManaCost": 0.0,
           "MaxRange": 0.0,
-          "NumberOfHealingTargets": 0.0,
-          "NumberOfDamageTargets": 0.0,
           "BaseCastTime": 0.0,
-          "IsCastTimeHasted": false,
           "BaseCooldown": 0.0,
           "IsCooldownHasted": false,
           "Duration": 0.0,
           "Gcd": 0.0,
-          "Coeff1": 0.0,
-          "Coeff2": 0.0,
-          "Coeff3": 0.0,
           "IsMasteryTriggered": false,
           "Effects": [
             {
@@ -46,24 +40,19 @@
               "TriggerSpellid": 0,
               "TriggerSpell": null
             }
-          ]
+          ],
+          "ConduitRanks": {}
         },
         {
           "Id": 238136,
           "Name": "Cosmic Ripple",
           "ManaCost": 0.0,
           "MaxRange": 0.0,
-          "NumberOfHealingTargets": 0.0,
-          "NumberOfDamageTargets": 0.0,
           "BaseCastTime": 0.0,
-          "IsCastTimeHasted": false,
           "BaseCooldown": 0.0,
           "IsCooldownHasted": false,
           "Duration": 0.0,
           "Gcd": 0.0,
-          "Coeff1": 0.0,
-          "Coeff2": 0.0,
-          "Coeff3": 0.0,
           "IsMasteryTriggered": false,
           "Effects": [
             {
@@ -73,24 +62,19 @@
               "TriggerSpellid": 0,
               "TriggerSpell": null
             }
-          ]
+          ],
+          "ConduitRanks": {}
         },
         {
           "Id": 32546,
           "Name": "Binding Heal",
           "ManaCost": 0.0,
           "MaxRange": 40.0,
-          "NumberOfHealingTargets": 0.0,
-          "NumberOfDamageTargets": 0.0,
           "BaseCastTime": 1500.0,
-          "IsCastTimeHasted": false,
           "BaseCooldown": 0.0,
           "IsCooldownHasted": false,
           "Duration": 0.0,
           "Gcd": 1.0,
-          "Coeff1": 0.0,
-          "Coeff2": 0.0,
-          "Coeff3": 0.0,
           "IsMasteryTriggered": false,
           "Effects": [
             {
@@ -121,24 +105,19 @@
               "TriggerSpellid": 0,
               "TriggerSpell": null
             }
-          ]
+          ],
+          "ConduitRanks": {}
         },
         {
           "Id": 120517,
           "Name": "Halo",
           "ManaCost": 0.0,
           "MaxRange": 30.0,
-          "NumberOfHealingTargets": 0.0,
-          "NumberOfDamageTargets": 0.0,
           "BaseCastTime": 1500.0,
-          "IsCastTimeHasted": false,
           "BaseCooldown": 40000.0,
           "IsCooldownHasted": false,
-          "Duration": 0.0,
+          "Duration": 3200.0,
           "Gcd": 1.0,
-          "Coeff1": 0.0,
-          "Coeff2": 0.0,
-          "Coeff3": 0.0,
           "IsMasteryTriggered": false,
           "Effects": [
             {
@@ -148,24 +127,63 @@
               "TriggerSpellid": 0,
               "TriggerSpell": null
             }
-          ]
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 120692,
+          "Name": "Halo",
+          "ManaCost": 0.0,
+          "MaxRange": 100.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "IsMasteryTriggered": false,
+          "Effects": [
+            {
+              "Id": 140516,
+              "BaseValue": 0.0,
+              "SpCoefficient": 1.44,
+              "TriggerSpellid": 0,
+              "TriggerSpell": null
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 120696,
+          "Name": "Halo",
+          "ManaCost": 0.0,
+          "MaxRange": 100.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "IsMasteryTriggered": false,
+          "Effects": [
+            {
+              "Id": 140527,
+              "BaseValue": 0.0,
+              "SpCoefficient": 1.03,
+              "TriggerSpellid": 0,
+              "TriggerSpell": null
+            }
+          ],
+          "ConduitRanks": {}
         },
         {
           "Id": 110744,
           "Name": "Divine Star",
           "ManaCost": 0.0,
           "MaxRange": 30.0,
-          "NumberOfHealingTargets": 0.0,
-          "NumberOfDamageTargets": 0.0,
           "BaseCastTime": 0.0,
-          "IsCastTimeHasted": false,
           "BaseCooldown": 15000.0,
           "IsCooldownHasted": false,
-          "Duration": 0.0,
+          "Duration": 15000.0,
           "Gcd": 1.0,
-          "Coeff1": 0.0,
-          "Coeff2": 0.0,
-          "Coeff3": 0.0,
           "IsMasteryTriggered": false,
           "Effects": [
             {
@@ -175,24 +193,63 @@
               "TriggerSpellid": 0,
               "TriggerSpell": null
             }
-          ]
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 110745,
+          "Name": "Divine Star",
+          "ManaCost": 0.0,
+          "MaxRange": 100.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "IsMasteryTriggered": false,
+          "Effects": [
+            {
+              "Id": 122873,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.7,
+              "TriggerSpellid": 0,
+              "TriggerSpell": null
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 122128,
+          "Name": "Divine Star",
+          "ManaCost": 0.0,
+          "MaxRange": 100.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "IsMasteryTriggered": false,
+          "Effects": [
+            {
+              "Id": 153526,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.4,
+              "TriggerSpellid": 0,
+              "TriggerSpell": null
+            }
+          ],
+          "ConduitRanks": {}
         },
         {
           "Id": 193157,
           "Name": "Benediction",
           "ManaCost": 0.0,
           "MaxRange": 0.0,
-          "NumberOfHealingTargets": 0.0,
-          "NumberOfDamageTargets": 0.0,
           "BaseCastTime": 0.0,
-          "IsCastTimeHasted": false,
           "BaseCooldown": 0.0,
           "IsCooldownHasted": false,
           "Duration": 0.0,
           "Gcd": 0.0,
-          "Coeff1": 0.0,
-          "Coeff2": 0.0,
-          "Coeff3": 0.0,
           "IsMasteryTriggered": false,
           "Effects": [
             {
@@ -202,24 +259,19 @@
               "TriggerSpellid": 0,
               "TriggerSpell": null
             }
-          ]
+          ],
+          "ConduitRanks": {}
         },
         {
           "Id": 265202,
           "Name": "Holy Word: Salvation",
           "ManaCost": 0.0,
           "MaxRange": 40.0,
-          "NumberOfHealingTargets": 0.0,
-          "NumberOfDamageTargets": 0.0,
           "BaseCastTime": 2500.0,
-          "IsCastTimeHasted": false,
           "BaseCooldown": 720000.0,
           "IsCooldownHasted": false,
           "Duration": 0.0,
           "Gcd": 1.0,
-          "Coeff1": 0.0,
-          "Coeff2": 0.0,
-          "Coeff3": 0.0,
           "IsMasteryTriggered": false,
           "Effects": [
             {
@@ -243,24 +295,19 @@
               "TriggerSpellid": 0,
               "TriggerSpell": null
             }
-          ]
+          ],
+          "ConduitRanks": {}
         },
         {
           "Id": 2060,
           "Name": "Heal",
           "ManaCost": 0.0,
           "MaxRange": 40.0,
-          "NumberOfHealingTargets": 0.0,
-          "NumberOfDamageTargets": 0.0,
           "BaseCastTime": 2500.0,
-          "IsCastTimeHasted": false,
           "BaseCooldown": 0.0,
           "IsCooldownHasted": false,
           "Duration": 0.0,
           "Gcd": 1.0,
-          "Coeff1": 0.0,
-          "Coeff2": 0.0,
-          "Coeff3": 0.0,
           "IsMasteryTriggered": false,
           "Effects": [
             {
@@ -270,24 +317,19 @@
               "TriggerSpellid": 0,
               "TriggerSpell": null
             }
-          ]
+          ],
+          "ConduitRanks": {}
         },
         {
           "Id": 2061,
           "Name": "Flash Heal",
           "ManaCost": 0.0,
           "MaxRange": 40.0,
-          "NumberOfHealingTargets": 0.0,
-          "NumberOfDamageTargets": 0.0,
           "BaseCastTime": 1500.0,
-          "IsCastTimeHasted": false,
           "BaseCooldown": 0.0,
           "IsCooldownHasted": false,
           "Duration": 0.0,
           "Gcd": 1.0,
-          "Coeff1": 0.0,
-          "Coeff2": 0.0,
-          "Coeff3": 0.0,
           "IsMasteryTriggered": false,
           "Effects": [
             {
@@ -297,24 +339,19 @@
               "TriggerSpellid": 0,
               "TriggerSpell": null
             }
-          ]
+          ],
+          "ConduitRanks": {}
         },
         {
           "Id": 596,
           "Name": "Prayer of Healing",
           "ManaCost": 0.0,
           "MaxRange": 40.0,
-          "NumberOfHealingTargets": 0.0,
-          "NumberOfDamageTargets": 0.0,
           "BaseCastTime": 2000.0,
-          "IsCastTimeHasted": false,
           "BaseCooldown": 0.0,
           "IsCooldownHasted": false,
           "Duration": 0.0,
           "Gcd": 1.0,
-          "Coeff1": 0.0,
-          "Coeff2": 0.0,
-          "Coeff3": 0.0,
           "IsMasteryTriggered": false,
           "Effects": [
             {
@@ -327,17 +364,11 @@
                 "Name": "Prayer of Healing",
                 "ManaCost": 0.0,
                 "MaxRange": 50000.0,
-                "NumberOfHealingTargets": 0.0,
-                "NumberOfDamageTargets": 0.0,
                 "BaseCastTime": 0.0,
-                "IsCastTimeHasted": false,
                 "BaseCooldown": 0.0,
                 "IsCooldownHasted": false,
                 "Duration": 0.0,
                 "Gcd": 0.0,
-                "Coeff1": 0.0,
-                "Coeff2": 0.0,
-                "Coeff3": 0.0,
                 "IsMasteryTriggered": false,
                 "Effects": [
                   {
@@ -347,7 +378,8 @@
                     "TriggerSpellid": 0,
                     "TriggerSpell": null
                   }
-                ]
+                ],
+                "ConduitRanks": {}
               }
             },
             {
@@ -364,24 +396,19 @@
               "TriggerSpellid": 0,
               "TriggerSpell": null
             }
-          ]
+          ],
+          "ConduitRanks": {}
         },
         {
           "Id": 132157,
           "Name": "Holy Nova",
           "ManaCost": 0.0,
           "MaxRange": 0.0,
-          "NumberOfHealingTargets": 0.0,
-          "NumberOfDamageTargets": 0.0,
           "BaseCastTime": 0.0,
-          "IsCastTimeHasted": false,
           "BaseCooldown": 0.0,
           "IsCooldownHasted": false,
           "Duration": 0.0,
           "Gcd": 1.0,
-          "Coeff1": 0.0,
-          "Coeff2": 0.0,
-          "Coeff3": 0.0,
           "IsMasteryTriggered": false,
           "Effects": [
             {
@@ -401,17 +428,11 @@
                 "Name": "Holy Nova",
                 "ManaCost": 0.0,
                 "MaxRange": 0.0,
-                "NumberOfHealingTargets": 0.0,
-                "NumberOfDamageTargets": 0.0,
                 "BaseCastTime": 0.0,
-                "IsCastTimeHasted": false,
                 "BaseCooldown": 0.0,
                 "IsCooldownHasted": false,
                 "Duration": 0.0,
                 "Gcd": 0.0,
-                "Coeff1": 0.0,
-                "Coeff2": 0.0,
-                "Coeff3": 0.0,
                 "IsMasteryTriggered": false,
                 "Effects": [
                   {
@@ -421,7 +442,8 @@
                     "TriggerSpellid": 0,
                     "TriggerSpell": null
                   }
-                ]
+                ],
+                "ConduitRanks": {}
               }
             },
             {
@@ -431,24 +453,76 @@
               "TriggerSpellid": 0,
               "TriggerSpell": null
             }
-          ]
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 132157,
+          "Name": "Holy Nova",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 1.0,
+          "IsMasteryTriggered": false,
+          "Effects": [
+            {
+              "Id": 170810,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.18,
+              "TriggerSpellid": 0,
+              "TriggerSpell": null
+            },
+            {
+              "Id": 709210,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "TriggerSpellid": 281265,
+              "TriggerSpell": {
+                "Id": 281265,
+                "Name": "Holy Nova",
+                "ManaCost": 0.0,
+                "MaxRange": 0.0,
+                "BaseCastTime": 0.0,
+                "BaseCooldown": 0.0,
+                "IsCooldownHasted": false,
+                "Duration": 0.0,
+                "Gcd": 0.0,
+                "IsMasteryTriggered": false,
+                "Effects": [
+                  {
+                    "Id": 739572,
+                    "BaseValue": 0.0,
+                    "SpCoefficient": 0.18,
+                    "TriggerSpellid": 0,
+                    "TriggerSpell": null
+                  }
+                ],
+                "ConduitRanks": {}
+              }
+            },
+            {
+              "Id": 845266,
+              "BaseValue": 5.0,
+              "SpCoefficient": 0.0,
+              "TriggerSpellid": 0,
+              "TriggerSpell": null
+            }
+          ],
+          "ConduitRanks": {}
         },
         {
           "Id": 204883,
           "Name": "Circle of Healing",
           "ManaCost": 0.0,
           "MaxRange": 40.0,
-          "NumberOfHealingTargets": 0.0,
-          "NumberOfDamageTargets": 0.0,
           "BaseCastTime": 0.0,
-          "IsCastTimeHasted": false,
           "BaseCooldown": 15000.0,
           "IsCooldownHasted": true,
           "Duration": 0.0,
           "Gcd": 1.0,
-          "Coeff1": 0.0,
-          "Coeff2": 0.0,
-          "Coeff3": 0.0,
           "IsMasteryTriggered": false,
           "Effects": [
             {
@@ -465,24 +539,19 @@
               "TriggerSpellid": 0,
               "TriggerSpell": null
             }
-          ]
+          ],
+          "ConduitRanks": {}
         },
         {
           "Id": 139,
           "Name": "Renew",
           "ManaCost": 0.0,
           "MaxRange": 40.0,
-          "NumberOfHealingTargets": 0.0,
-          "NumberOfDamageTargets": 0.0,
           "BaseCastTime": 0.0,
-          "IsCastTimeHasted": false,
           "BaseCooldown": 0.0,
           "IsCooldownHasted": false,
-          "Duration": 0.0,
+          "Duration": 15000.0,
           "Gcd": 1.0,
-          "Coeff1": 0.0,
-          "Coeff2": 0.0,
-          "Coeff3": 0.0,
           "IsMasteryTriggered": false,
           "Effects": [
             {
@@ -499,24 +568,19 @@
               "TriggerSpellid": 0,
               "TriggerSpell": null
             }
-          ]
+          ],
+          "ConduitRanks": {}
         },
         {
           "Id": 17,
           "Name": "Power Word: Shield",
           "ManaCost": 0.0,
           "MaxRange": 40.0,
-          "NumberOfHealingTargets": 0.0,
-          "NumberOfDamageTargets": 0.0,
           "BaseCastTime": 0.0,
-          "IsCastTimeHasted": false,
           "BaseCooldown": 0.0,
           "IsCooldownHasted": false,
-          "Duration": 0.0,
+          "Duration": 15000.0,
           "Gcd": 1.0,
-          "Coeff1": 0.0,
-          "Coeff2": 0.0,
-          "Coeff3": 0.0,
           "IsMasteryTriggered": false,
           "Effects": [
             {
@@ -526,24 +590,19 @@
               "TriggerSpellid": 0,
               "TriggerSpell": null
             }
-          ]
+          ],
+          "ConduitRanks": {}
         },
         {
           "Id": 64843,
           "Name": "Divine Hymn",
           "ManaCost": 0.0,
           "MaxRange": 40.0,
-          "NumberOfHealingTargets": 0.0,
-          "NumberOfDamageTargets": 0.0,
           "BaseCastTime": 0.0,
-          "IsCastTimeHasted": false,
           "BaseCooldown": 180000.0,
           "IsCooldownHasted": false,
-          "Duration": 0.0,
+          "Duration": 8000.0,
           "Gcd": 1.0,
-          "Coeff1": 0.0,
-          "Coeff2": 0.0,
-          "Coeff3": 0.0,
           "IsMasteryTriggered": false,
           "Effects": [
             {
@@ -556,17 +615,11 @@
                 "Name": "Divine Hymn",
                 "ManaCost": 0.0,
                 "MaxRange": 40.0,
-                "NumberOfHealingTargets": 0.0,
-                "NumberOfDamageTargets": 0.0,
                 "BaseCastTime": 0.0,
-                "IsCastTimeHasted": false,
                 "BaseCooldown": 0.0,
                 "IsCooldownHasted": false,
-                "Duration": 0.0,
+                "Duration": 8000.0,
                 "Gcd": 0.0,
-                "Coeff1": 0.0,
-                "Coeff2": 0.0,
-                "Coeff3": 0.0,
                 "IsMasteryTriggered": false,
                 "Effects": [
                   {
@@ -583,7 +636,8 @@
                     "TriggerSpellid": 0,
                     "TriggerSpell": null
                   }
-                ]
+                ],
+                "ConduitRanks": {}
               }
             },
             {
@@ -607,24 +661,19 @@
               "TriggerSpellid": 0,
               "TriggerSpell": null
             }
-          ]
+          ],
+          "ConduitRanks": {}
         },
         {
           "Id": 34861,
           "Name": "Holy Word: Sanctify",
           "ManaCost": 0.0,
           "MaxRange": 40.0,
-          "NumberOfHealingTargets": 0.0,
-          "NumberOfDamageTargets": 0.0,
           "BaseCastTime": 0.0,
-          "IsCastTimeHasted": false,
           "BaseCooldown": 60000.0,
           "IsCooldownHasted": false,
           "Duration": 0.0,
           "Gcd": 1.0,
-          "Coeff1": 0.0,
-          "Coeff2": 0.0,
-          "Coeff3": 0.0,
           "IsMasteryTriggered": false,
           "Effects": [
             {
@@ -655,24 +704,19 @@
               "TriggerSpellid": 0,
               "TriggerSpell": null
             }
-          ]
+          ],
+          "ConduitRanks": {}
         },
         {
           "Id": 2050,
           "Name": "Holy Word: Serenity",
           "ManaCost": 0.0,
           "MaxRange": 40.0,
-          "NumberOfHealingTargets": 0.0,
-          "NumberOfDamageTargets": 0.0,
           "BaseCastTime": 0.0,
-          "IsCastTimeHasted": false,
           "BaseCooldown": 0.0,
           "IsCooldownHasted": false,
           "Duration": 0.0,
           "Gcd": 1.0,
-          "Coeff1": 0.0,
-          "Coeff2": 0.0,
-          "Coeff3": 0.0,
           "IsMasteryTriggered": false,
           "Effects": [
             {
@@ -689,24 +733,19 @@
               "TriggerSpellid": 0,
               "TriggerSpell": null
             }
-          ]
+          ],
+          "ConduitRanks": {}
         },
         {
           "Id": 33076,
           "Name": "Prayer of Mending",
           "ManaCost": 0.0,
           "MaxRange": 40.0,
-          "NumberOfHealingTargets": 0.0,
-          "NumberOfDamageTargets": 0.0,
           "BaseCastTime": 1500.0,
-          "IsCastTimeHasted": false,
           "BaseCooldown": 12000.0,
           "IsCooldownHasted": true,
           "Duration": 0.0,
           "Gcd": 1.0,
-          "Coeff1": 0.0,
-          "Coeff2": 0.0,
-          "Coeff3": 0.0,
           "IsMasteryTriggered": false,
           "Effects": [
             {
@@ -716,24 +755,63 @@
               "TriggerSpellid": 0,
               "TriggerSpell": null
             }
-          ]
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 41635,
+          "Name": "Prayer of Mending",
+          "ManaCost": 0.0,
+          "MaxRange": 50000.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 30000.0,
+          "Gcd": 1.0,
+          "IsMasteryTriggered": false,
+          "Effects": [
+            {
+              "Id": 33141,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "TriggerSpellid": 0,
+              "TriggerSpell": null
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 33110,
+          "Name": "Prayer of Mending",
+          "ManaCost": 0.0,
+          "MaxRange": 50000.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "IsMasteryTriggered": false,
+          "Effects": [
+            {
+              "Id": 22918,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.61,
+              "TriggerSpellid": 0,
+              "TriggerSpell": null
+            }
+          ],
+          "ConduitRanks": {}
         },
         {
           "Id": 77485,
           "Name": "Mastery: Echo of Light",
           "ManaCost": 0.0,
           "MaxRange": 0.0,
-          "NumberOfHealingTargets": 0.0,
-          "NumberOfDamageTargets": 0.0,
           "BaseCastTime": 0.0,
-          "IsCastTimeHasted": false,
           "BaseCooldown": 0.0,
           "IsCooldownHasted": false,
           "Duration": 0.0,
           "Gcd": 0.0,
-          "Coeff1": 0.0,
-          "Coeff2": 0.0,
-          "Coeff3": 0.0,
           "IsMasteryTriggered": false,
           "Effects": [
             {
@@ -750,24 +828,19 @@
               "TriggerSpellid": 0,
               "TriggerSpell": null
             }
-          ]
+          ],
+          "ConduitRanks": {}
         },
         {
           "Id": 323673,
           "Name": "Mindgames",
           "ManaCost": 0.0,
           "MaxRange": 40.0,
-          "NumberOfHealingTargets": 0.0,
-          "NumberOfDamageTargets": 0.0,
           "BaseCastTime": 1500.0,
-          "IsCastTimeHasted": false,
           "BaseCooldown": 45000.0,
           "IsCooldownHasted": false,
-          "Duration": 0.0,
+          "Duration": 5000.0,
           "Gcd": 1.0,
-          "Coeff1": 0.0,
-          "Coeff2": 0.0,
-          "Coeff3": 0.0,
           "IsMasteryTriggered": false,
           "Effects": [
             {
@@ -801,17 +874,11 @@
                 "Name": "Mindgames",
                 "ManaCost": 0.0,
                 "MaxRange": 100.0,
-                "NumberOfHealingTargets": 0.0,
-                "NumberOfDamageTargets": 0.0,
                 "BaseCastTime": 0.0,
-                "IsCastTimeHasted": false,
                 "BaseCooldown": 0.0,
                 "IsCooldownHasted": false,
-                "Duration": 0.0,
+                "Duration": 6000.0,
                 "Gcd": 0.0,
-                "Coeff1": 0.0,
-                "Coeff2": 0.0,
-                "Coeff3": 0.0,
                 "IsMasteryTriggered": false,
                 "Effects": [
                   {
@@ -821,7 +888,8 @@
                     "TriggerSpellid": 0,
                     "TriggerSpell": null
                   }
-                ]
+                ],
+                "ConduitRanks": {}
               }
             },
             {
@@ -834,17 +902,11 @@
                 "Name": "Mindgames",
                 "ManaCost": 0.0,
                 "MaxRange": 100.0,
-                "NumberOfHealingTargets": 0.0,
-                "NumberOfDamageTargets": 0.0,
                 "BaseCastTime": 0.0,
-                "IsCastTimeHasted": false,
                 "BaseCooldown": 0.0,
                 "IsCooldownHasted": false,
-                "Duration": 0.0,
+                "Duration": 6000.0,
                 "Gcd": 0.0,
-                "Coeff1": 0.0,
-                "Coeff2": 0.0,
-                "Coeff3": 0.0,
                 "IsMasteryTriggered": false,
                 "Effects": [
                   {
@@ -854,7 +916,8 @@
                     "TriggerSpellid": 0,
                     "TriggerSpell": null
                   }
-                ]
+                ],
+                "ConduitRanks": {}
               }
             },
             {
@@ -871,24 +934,19 @@
               "TriggerSpellid": 0,
               "TriggerSpell": null
             }
-          ]
+          ],
+          "ConduitRanks": {}
         },
         {
           "Id": 327661,
           "Name": "Fae Guardians",
           "ManaCost": 0.0,
           "MaxRange": 0.0,
-          "NumberOfHealingTargets": 0.0,
-          "NumberOfDamageTargets": 0.0,
           "BaseCastTime": 0.0,
-          "IsCastTimeHasted": false,
           "BaseCooldown": 90000.0,
           "IsCooldownHasted": false,
-          "Duration": 0.0,
+          "Duration": 20000.0,
           "Gcd": 1.0,
-          "Coeff1": 0.0,
-          "Coeff2": 0.0,
-          "Coeff3": 0.0,
           "IsMasteryTriggered": false,
           "Effects": [
             {
@@ -898,24 +956,91 @@
               "TriggerSpellid": 0,
               "TriggerSpell": null
             }
-          ]
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 327710,
+          "Name": "Benevolent Faerie",
+          "ManaCost": 0.0,
+          "MaxRange": 100.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 20000.0,
+          "Gcd": 0.0,
+          "IsMasteryTriggered": false,
+          "Effects": [
+            {
+              "Id": 819312,
+              "BaseValue": 100.0,
+              "SpCoefficient": 0.0,
+              "TriggerSpellid": 0,
+              "TriggerSpell": null
+            },
+            {
+              "Id": 868651,
+              "BaseValue": 100.0,
+              "SpCoefficient": 0.0,
+              "TriggerSpellid": 0,
+              "TriggerSpell": null
+            },
+            {
+              "Id": 868652,
+              "BaseValue": 100.0,
+              "SpCoefficient": 0.0,
+              "TriggerSpellid": 0,
+              "TriggerSpell": null
+            },
+            {
+              "Id": 868655,
+              "BaseValue": 100.0,
+              "SpCoefficient": 0.0,
+              "TriggerSpellid": 0,
+              "TriggerSpell": null
+            },
+            {
+              "Id": 868656,
+              "BaseValue": 100.0,
+              "SpCoefficient": 0.0,
+              "TriggerSpellid": 0,
+              "TriggerSpell": null
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 327694,
+          "Name": "Guardian Faerie",
+          "ManaCost": 0.0,
+          "MaxRange": 100.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 20000.0,
+          "Gcd": 0.0,
+          "IsMasteryTriggered": false,
+          "Effects": [
+            {
+              "Id": 819281,
+              "BaseValue": -10.0,
+              "SpCoefficient": 0.0,
+              "TriggerSpellid": 0,
+              "TriggerSpell": null
+            }
+          ],
+          "ConduitRanks": {}
         },
         {
           "Id": 325013,
           "Name": "Boon of the Ascended",
           "ManaCost": 0.0,
           "MaxRange": 0.0,
-          "NumberOfHealingTargets": 0.0,
-          "NumberOfDamageTargets": 0.0,
           "BaseCastTime": 1500.0,
-          "IsCastTimeHasted": false,
           "BaseCooldown": 180000.0,
           "IsCooldownHasted": false,
-          "Duration": 0.0,
+          "Duration": 10000.0,
           "Gcd": 1.0,
-          "Coeff1": 0.0,
-          "Coeff2": 0.0,
-          "Coeff3": 0.0,
           "IsMasteryTriggered": false,
           "Effects": [
             {
@@ -974,24 +1099,19 @@
               "TriggerSpellid": 0,
               "TriggerSpell": null
             }
-          ]
+          ],
+          "ConduitRanks": {}
         },
         {
           "Id": 325020,
           "Name": "Ascended Nova",
           "ManaCost": 0.0,
           "MaxRange": 0.0,
-          "NumberOfHealingTargets": 0.0,
-          "NumberOfDamageTargets": 0.0,
           "BaseCastTime": 0.0,
-          "IsCastTimeHasted": false,
           "BaseCooldown": 0.0,
           "IsCooldownHasted": false,
           "Duration": 0.0,
           "Gcd": 1.0,
-          "Coeff1": 0.0,
-          "Coeff2": 0.0,
-          "Coeff3": 0.0,
           "IsMasteryTriggered": false,
           "Effects": [
             {
@@ -1011,17 +1131,11 @@
                 "Name": "Ascended Nova",
                 "ManaCost": 0.0,
                 "MaxRange": 0.0,
-                "NumberOfHealingTargets": 0.0,
-                "NumberOfDamageTargets": 0.0,
                 "BaseCastTime": 0.0,
-                "IsCastTimeHasted": false,
                 "BaseCooldown": 0.0,
                 "IsCooldownHasted": false,
                 "Duration": 0.0,
                 "Gcd": 0.0,
-                "Coeff1": 0.0,
-                "Coeff2": 0.0,
-                "Coeff3": 0.0,
                 "IsMasteryTriggered": false,
                 "Effects": [
                   {
@@ -1038,7 +1152,8 @@
                     "TriggerSpellid": 0,
                     "TriggerSpell": null
                   }
-                ]
+                ],
+                "ConduitRanks": {}
               }
             },
             {
@@ -1048,24 +1163,19 @@
               "TriggerSpellid": 0,
               "TriggerSpell": null
             }
-          ]
+          ],
+          "ConduitRanks": {}
         },
         {
           "Id": 325283,
           "Name": "Ascended Blast",
           "ManaCost": 0.0,
           "MaxRange": 40.0,
-          "NumberOfHealingTargets": 0.0,
-          "NumberOfDamageTargets": 0.0,
           "BaseCastTime": 0.0,
-          "IsCastTimeHasted": false,
           "BaseCooldown": 3000.0,
           "IsCooldownHasted": false,
           "Duration": 0.0,
           "Gcd": 1.0,
-          "Coeff1": 0.0,
-          "Coeff2": 0.0,
-          "Coeff3": 0.0,
           "IsMasteryTriggered": false,
           "Effects": [
             {
@@ -1089,24 +1199,19 @@
               "TriggerSpellid": 0,
               "TriggerSpell": null
             }
-          ]
+          ],
+          "ConduitRanks": {}
         },
         {
           "Id": 325326,
           "Name": "Ascended Eruption",
           "ManaCost": 0.0,
           "MaxRange": 0.0,
-          "NumberOfHealingTargets": 0.0,
-          "NumberOfDamageTargets": 0.0,
           "BaseCastTime": 0.0,
-          "IsCastTimeHasted": false,
           "BaseCooldown": 0.0,
           "IsCooldownHasted": false,
           "Duration": 0.0,
           "Gcd": 0.0,
-          "Coeff1": 0.0,
-          "Coeff2": 0.0,
-          "Coeff3": 0.0,
           "IsMasteryTriggered": false,
           "Effects": [
             {
@@ -1123,24 +1228,19 @@
               "TriggerSpellid": 0,
               "TriggerSpell": null
             }
-          ]
+          ],
+          "ConduitRanks": {}
         },
         {
           "Id": 324724,
           "Name": "Unholy Nova",
           "ManaCost": 0.0,
           "MaxRange": 40.0,
-          "NumberOfHealingTargets": 0.0,
-          "NumberOfDamageTargets": 0.0,
           "BaseCastTime": 0.0,
-          "IsCastTimeHasted": false,
           "BaseCooldown": 60000.0,
           "IsCooldownHasted": false,
           "Duration": 0.0,
           "Gcd": 1.0,
-          "Coeff1": 0.0,
-          "Coeff2": 0.0,
-          "Coeff3": 0.0,
           "IsMasteryTriggered": false,
           "Effects": [
             {
@@ -1157,24 +1257,19 @@
               "TriggerSpellid": 0,
               "TriggerSpell": null
             }
-          ]
+          ],
+          "ConduitRanks": {}
         },
         {
           "Id": 325118,
           "Name": "Unholy Transfusion",
           "ManaCost": 0.0,
           "MaxRange": 100.0,
-          "NumberOfHealingTargets": 0.0,
-          "NumberOfDamageTargets": 0.0,
           "BaseCastTime": 0.0,
-          "IsCastTimeHasted": false,
           "BaseCooldown": 0.0,
           "IsCooldownHasted": false,
           "Duration": 0.0,
           "Gcd": 0.0,
-          "Coeff1": 0.0,
-          "Coeff2": 0.0,
-          "Coeff3": 0.0,
           "IsMasteryTriggered": false,
           "Effects": [
             {
@@ -1184,24 +1279,69 @@
               "TriggerSpellid": 0,
               "TriggerSpell": null
             }
-          ]
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 325203,
+          "Name": "Unholy Transfusion",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 60000.0,
+          "IsCooldownHasted": false,
+          "Duration": 15000.0,
+          "Gcd": 1.0,
+          "IsMasteryTriggered": false,
+          "Effects": [
+            {
+              "Id": 815346,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.5,
+              "TriggerSpellid": 0,
+              "TriggerSpell": null
+            },
+            {
+              "Id": 815347,
+              "BaseValue": 1.0,
+              "SpCoefficient": 0.0,
+              "TriggerSpellid": 325118,
+              "TriggerSpell": {
+                "Id": 325118,
+                "Name": "Unholy Transfusion",
+                "ManaCost": 0.0,
+                "MaxRange": 100.0,
+                "BaseCastTime": 0.0,
+                "BaseCooldown": 0.0,
+                "IsCooldownHasted": false,
+                "Duration": 0.0,
+                "Gcd": 0.0,
+                "IsMasteryTriggered": false,
+                "Effects": [
+                  {
+                    "Id": 815191,
+                    "BaseValue": 0.0,
+                    "SpCoefficient": 0.04,
+                    "TriggerSpellid": 0,
+                    "TriggerSpell": null
+                  }
+                ],
+                "ConduitRanks": {}
+              }
+            }
+          ],
+          "ConduitRanks": {}
         },
         {
           "Id": 336314,
           "Name": "Harmonious Apparatus",
           "ManaCost": 0.0,
           "MaxRange": 0.0,
-          "NumberOfHealingTargets": 0.0,
-          "NumberOfDamageTargets": 0.0,
           "BaseCastTime": 0.0,
-          "IsCastTimeHasted": false,
           "BaseCooldown": 0.0,
           "IsCooldownHasted": false,
           "Duration": 0.0,
           "Gcd": 0.0,
-          "Coeff1": 0.0,
-          "Coeff2": 0.0,
-          "Coeff3": 0.0,
           "IsMasteryTriggered": false,
           "Effects": [
             {
@@ -1211,24 +1351,19 @@
               "TriggerSpellid": 0,
               "TriggerSpell": null
             }
-          ]
+          ],
+          "ConduitRanks": {}
         },
         {
           "Id": 337715,
           "Name": "Charitable Soul",
           "ManaCost": 0.0,
           "MaxRange": 0.0,
-          "NumberOfHealingTargets": 0.0,
-          "NumberOfDamageTargets": 0.0,
           "BaseCastTime": 0.0,
-          "IsCastTimeHasted": false,
           "BaseCooldown": 0.0,
           "IsCooldownHasted": false,
           "Duration": 0.0,
           "Gcd": 0.0,
-          "Coeff1": 0.0,
-          "Coeff2": 0.0,
-          "Coeff3": 0.0,
           "IsMasteryTriggered": false,
           "Effects": [
             {
@@ -1238,24 +1373,35 @@
               "TriggerSpellid": 0,
               "TriggerSpell": null
             }
-          ]
+          ],
+          "ConduitRanks": {
+            "0": 10.0,
+            "1": 11.0,
+            "2": 12.0,
+            "3": 13.0,
+            "4": 14.0,
+            "5": 15.0,
+            "6": 16.0,
+            "7": 17.0,
+            "8": 18.0,
+            "9": 19.0,
+            "10": 20.0,
+            "11": 21.0,
+            "12": 22.0,
+            "13": 23.0,
+            "14": 24.0
+          }
         },
         {
           "Id": 337966,
           "Name": "Courageous Ascension",
           "ManaCost": 0.0,
           "MaxRange": 0.0,
-          "NumberOfHealingTargets": 0.0,
-          "NumberOfDamageTargets": 0.0,
           "BaseCastTime": 0.0,
-          "IsCastTimeHasted": false,
           "BaseCooldown": 0.0,
           "IsCooldownHasted": false,
           "Duration": 0.0,
           "Gcd": 0.0,
-          "Coeff1": 0.0,
-          "Coeff2": 0.0,
-          "Coeff3": 0.0,
           "IsMasteryTriggered": false,
           "Effects": [
             {
@@ -1272,24 +1418,35 @@
               "TriggerSpellid": 0,
               "TriggerSpell": null
             }
-          ]
+          ],
+          "ConduitRanks": {
+            "0": 20.0,
+            "1": 22.0,
+            "2": 24.0,
+            "3": 26.0,
+            "4": 28.0,
+            "5": 30.0,
+            "6": 32.0,
+            "7": 34.0,
+            "8": 36.0,
+            "9": 38.0,
+            "10": 40.0,
+            "11": 42.0,
+            "12": 44.0,
+            "13": 46.0,
+            "14": 48.0
+          }
         },
         {
           "Id": 337979,
           "Name": "Festering Transfusion",
           "ManaCost": 0.0,
           "MaxRange": 0.0,
-          "NumberOfHealingTargets": 0.0,
-          "NumberOfDamageTargets": 0.0,
           "BaseCastTime": 0.0,
-          "IsCastTimeHasted": false,
           "BaseCooldown": 0.0,
           "IsCooldownHasted": false,
           "Duration": 0.0,
           "Gcd": 0.0,
-          "Coeff1": 0.0,
-          "Coeff2": 0.0,
-          "Coeff3": 0.0,
           "IsMasteryTriggered": false,
           "Effects": [
             {
@@ -1306,24 +1463,35 @@
               "TriggerSpellid": 0,
               "TriggerSpell": null
             }
-          ]
+          ],
+          "ConduitRanks": {
+            "0": 5.0,
+            "1": 5.5,
+            "2": 6.0,
+            "3": 6.5,
+            "4": 7.0,
+            "5": 7.5,
+            "6": 8.0,
+            "7": 8.5,
+            "8": 9.0,
+            "9": 9.5,
+            "10": 10.0,
+            "11": 10.5,
+            "12": 11.0,
+            "13": 11.5,
+            "14": 12.0
+          }
         },
         {
           "Id": 338305,
           "Name": "Fae Fermata",
           "ManaCost": 0.0,
           "MaxRange": 0.0,
-          "NumberOfHealingTargets": 0.0,
-          "NumberOfDamageTargets": 0.0,
           "BaseCastTime": 0.0,
-          "IsCastTimeHasted": false,
           "BaseCooldown": 0.0,
           "IsCooldownHasted": false,
           "Duration": 0.0,
           "Gcd": 0.0,
-          "Coeff1": 0.0,
-          "Coeff2": 0.0,
-          "Coeff3": 0.0,
           "IsMasteryTriggered": false,
           "Effects": [
             {
@@ -1340,24 +1508,35 @@
               "TriggerSpellid": 0,
               "TriggerSpell": null
             }
-          ]
+          ],
+          "ConduitRanks": {
+            "0": 3000.0,
+            "1": 3300.0,
+            "2": 3600.0,
+            "3": 3900.0,
+            "4": 4200.0,
+            "5": 4500.0,
+            "6": 4800.0,
+            "7": 5100.0,
+            "8": 5400.0,
+            "9": 5700.0,
+            "10": 6000.0,
+            "11": 6300.0,
+            "12": 6600.0,
+            "13": 6900.0,
+            "14": 7200.0
+          }
         },
         {
           "Id": 338315,
           "Name": "Shattered Perceptions",
           "ManaCost": 0.0,
           "MaxRange": 0.0,
-          "NumberOfHealingTargets": 0.0,
-          "NumberOfDamageTargets": 0.0,
           "BaseCastTime": 0.0,
-          "IsCastTimeHasted": false,
           "BaseCooldown": 0.0,
           "IsCooldownHasted": false,
           "Duration": 0.0,
           "Gcd": 0.0,
-          "Coeff1": 0.0,
-          "Coeff2": 0.0,
-          "Coeff3": 0.0,
           "IsMasteryTriggered": false,
           "Effects": [
             {
@@ -1381,24 +1560,35 @@
               "TriggerSpellid": 0,
               "TriggerSpell": null
             }
-          ]
+          ],
+          "ConduitRanks": {
+            "0": 10.0,
+            "1": 11.0,
+            "2": 12.0,
+            "3": 13.0,
+            "4": 14.0,
+            "5": 15.0,
+            "6": 16.0,
+            "7": 17.0,
+            "8": 18.0,
+            "9": 19.0,
+            "10": 20.0,
+            "11": 21.0,
+            "12": 22.0,
+            "13": 23.0,
+            "14": 24.0
+          }
         },
         {
           "Id": 338345,
           "Name": "Holy Oration",
           "ManaCost": 0.0,
           "MaxRange": 0.0,
-          "NumberOfHealingTargets": 0.0,
-          "NumberOfDamageTargets": 0.0,
           "BaseCastTime": 0.0,
-          "IsCastTimeHasted": false,
           "BaseCooldown": 0.0,
           "IsCooldownHasted": false,
           "Duration": 0.0,
           "Gcd": 0.0,
-          "Coeff1": 0.0,
-          "Coeff2": 0.0,
-          "Coeff3": 0.0,
           "IsMasteryTriggered": false,
           "Effects": [
             {
@@ -1408,10 +1598,26 @@
               "TriggerSpellid": 0,
               "TriggerSpell": null
             }
-          ]
+          ],
+          "ConduitRanks": {
+            "0": 6.0,
+            "1": 6.6,
+            "2": 7.2,
+            "3": 7.8,
+            "4": 8.4,
+            "5": 9.0,
+            "6": 9.6,
+            "7": 10.2,
+            "8": 10.8,
+            "9": 11.4,
+            "10": 12.0,
+            "11": 12.6,
+            "12": 13.2,
+            "13": 13.8,
+            "14": 14.4
+          }
         }
       ],
-      "Modifiers": [],
       "Conduits": []
     }
   ],

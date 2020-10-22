@@ -54,6 +54,9 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
         public override double GetMaximumHealTargets(GameState gameState, BaseSpellData spellData)
         {
+            if (spellData == null)
+                spellData = _gameStateService.GetSpellData(gameState, Spell.CircleOfHealing);
+
             // CoH stores its number of targets in 302437.BaseValue
             var numTargets = spellData.GetEffect(302437).BaseValue;
 

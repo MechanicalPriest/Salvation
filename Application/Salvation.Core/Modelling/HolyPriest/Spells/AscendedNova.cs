@@ -93,6 +93,9 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
         public override double GetMaximumHealTargets(GameState gameState, BaseSpellData spellData)
         {
+            if (spellData == null)
+                spellData = _gameStateService.GetSpellData(gameState, Spell.AscendedNova);
+
             // AN stores its max heal targets in the trigger spells effect
             var numTargets = spellData.GetEffect(815031)
                     .TriggerSpell.GetEffect(844031).BaseValue;

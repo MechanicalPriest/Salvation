@@ -91,7 +91,10 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
         public override double GetMaximumHealTargets(GameState gameState, BaseSpellData spellData)
         {
-            // CoH stores its max number of targets in 288932.BaseValue
+            if (spellData == null)
+                spellData = _gameStateService.GetSpellData(gameState, Spell.HolyWordSanctify);
+
+            // Sanc stores its max number of targets in 288932.BaseValue
             var numTargets = spellData.GetEffect(288932).BaseValue;
 
             return numTargets;

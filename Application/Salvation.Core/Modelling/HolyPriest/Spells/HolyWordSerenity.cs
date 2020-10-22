@@ -93,5 +93,16 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         {
             return 1;
         }
+
+        public override double GetHastedCooldown(GameState gameState, BaseSpellData spellData = null)
+        {
+            if (spellData == null)
+                spellData = _gameStateService.GetSpellData(gameState, (Spell)SpellId);
+
+            // Cooldown for Serenity is stored in the chargecooldown instead as it has charges
+            return spellData.IsCooldownHasted
+                ? spellData.ChargeCooldown / _gameStateService.GetHasteMultiplier(gameState)
+                : spellData.ChargeCooldown;
+        }
     }
 }

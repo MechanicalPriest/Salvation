@@ -41,6 +41,8 @@ namespace Salvation.Core.Constants
         public double Duration { get; set; }
         // Base GCD in seconds before haste
         public double Gcd { get; set; }
+        public uint ChargeCooldown { get; set; }
+        public uint Charges { get; set; }
         // If mastery is triggered for the direct heal portion
         // TODO: Move this out to a HolyPriestSpellData inherited class
         public bool IsMasteryTriggered { get; set; }

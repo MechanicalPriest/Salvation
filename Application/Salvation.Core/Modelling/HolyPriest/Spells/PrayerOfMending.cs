@@ -40,7 +40,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             // Override used by Salvation to apply 2-stack PoMs
             if (spellData.Overrides.ContainsKey(Override.ResultMultiplier))
-                numPoMStacks = spellData.Overrides[Override.AllowedDuration];
+                numPoMStacks = spellData.Overrides[Override.ResultMultiplier];
 
             averageHeal *= _gameStateService.GetCriticalStrikeMultiplier(gameState)
                 * numPoMStacks;

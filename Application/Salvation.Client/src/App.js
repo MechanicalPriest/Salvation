@@ -55,7 +55,8 @@ function App(props) {
       profile: {}
     },
     statWeightsEffective: {},
-    statWeightsRaw: {}
+    statWeightsRaw: {},
+    journal: []
   });
   const [loading, setLoading] = useState(true);
   const [apiErrorMessage, setApiErrorMessage] = useState('');

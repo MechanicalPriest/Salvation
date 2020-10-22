@@ -18,6 +18,8 @@ namespace Salvation.Utility.SpellDataUpdate
             _simcGenerationService = simcGenerationService;
             _spells = new List<uint>()
             {
+                (uint)Spell.HolyPriest,
+
                 // Talents
                 (uint)Spell.Enlightenment,
                 (uint)Spell.CosmicRipple,
@@ -36,7 +38,6 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.FlashHeal,
                 (uint)Spell.PrayerOfHealing,
                 (uint)Spell.HolyNova,
-                (uint)Spell.HolyNovaHeal,
                 (uint)Spell.CircleOfHealing,
                 (uint)Spell.Renew,
                 (uint)Spell.PowerWordShield,
@@ -138,6 +139,8 @@ namespace Salvation.Utility.SpellDataUpdate
                 MaxRange = spell.MaxRange,
                 BaseCastTime = spell.CastTime,
                 BaseCooldown = spell.Cooldown,
+                ChargeCooldown = spell.ChargeCooldown,
+                Charges = spell.Charges,
                 Duration = spell.Duration,
                 Gcd = spell.Gcd / 1000,
                 ConduitRanks = spell.ConduitRanks

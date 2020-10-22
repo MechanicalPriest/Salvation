@@ -23,7 +23,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
                 spellData = _gameStateService.GetSpellData(gameState, Spell.AscendedNova);
 
             var holyPriestAuraHealingBonus = _gameStateService.GetSpellData(gameState, Spell.HolyPriest)
-                .GetEffect(179715).BaseValue;
+                .GetEffect(179715).BaseValue / 100 + 1;
             // AN has a trigger spell in one of its effects which containst the SP coefficient
             var healingSp = spellData.GetEffect(815031).TriggerSpell.GetEffect(815030).SpCoefficient;
 
@@ -48,7 +48,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
                 spellData = _gameStateService.GetSpellData(gameState, Spell.AscendedNova);
 
             var holyPriestAuraDamageBonus = _gameStateService.GetSpellData(gameState, Spell.HolyPriest)
-                .GetEffect(191077).BaseValue;
+                .GetEffect(191077).BaseValue / 100 + 1;
 
             var damageSp = spellData.GetEffect(814997).SpCoefficient;
 

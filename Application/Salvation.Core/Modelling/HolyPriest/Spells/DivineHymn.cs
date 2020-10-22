@@ -22,7 +22,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
                 spellData = _gameStateService.GetSpellData(gameState, Spell.DivineHymn);
 
             var holyPriestAuraHealingBonus = _gameStateService.GetSpellData(gameState, Spell.HolyPriest)
-                .GetEffect(179715).BaseValue;
+                .GetEffect(179715).BaseValue / 100 + 1;
 
             var divineHymnAura = spellData.GetEffect(59162).TriggerSpell.GetEffect(59166).BaseValue;
 

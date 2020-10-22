@@ -28,9 +28,9 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             var numberOfBoonStacks = spellData.Overrides[Override.ResultMultiplier];
 
             var holyPriestAuraHealingBonus = _gameStateService.GetSpellData(gameState, Spell.HolyPriest)
-                .GetEffect(179715).BaseValue;
+                .GetEffect(179715).BaseValue / 100 + 1;
             var holyPriestAuraDamageBonus = _gameStateService.GetSpellData(gameState, Spell.HolyPriest)
-                .GetEffect(191077).BaseValue;
+                .GetEffect(191077).BaseValue / 100 + 1;
 
             // --Boon of the Ascended--
             // AE explodes at the end healing 3% more per stack to all friendlies (15y)
@@ -70,7 +70,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             var numberOfBoonStacks = spellData.Overrides[Override.ResultMultiplier];
 
             var holyPriestAuraDamageBonus = _gameStateService.GetSpellData(gameState, Spell.HolyPriest)
-                .GetEffect(191077).BaseValue;
+                .GetEffect(191077).BaseValue / 100 + 1;
             // --Boon of the Ascended--
             // AE explodes at the end healing 3% more per stack to all friendlies (15y)
             var damageSp = spellData.GetEffect(815531).SpCoefficient;

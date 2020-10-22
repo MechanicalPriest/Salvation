@@ -22,7 +22,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
                 spellData = _gameStateService.GetSpellData(gameState, Spell.Mindgames);
 
             var holyPriestAuraHealingBonus = _gameStateService.GetSpellData(gameState, Spell.HolyPriest)
-                .GetEffect(179715).BaseValue;
+                .GetEffect(179715).BaseValue / 100 + 1;
 
             var healingSp = spellData.GetEffect(812776).BaseValue;
 
@@ -47,7 +47,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
                 spellData = _gameStateService.GetSpellData(gameState, Spell.Mindgames);
 
             var holyPriestAuraDamageBonus = _gameStateService.GetSpellData(gameState, Spell.HolyPriest)
-                .GetEffect(191077).BaseValue;
+                .GetEffect(191077).BaseValue / 100 + 1;
 
             // coeff * int * hpriest dmg mod * vers
             var reverseDamageSp = spellData.GetEffect(812771).SpCoefficient;

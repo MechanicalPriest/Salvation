@@ -22,7 +22,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
                 spellData = _gameStateService.GetSpellData(gameState, Spell.UnholyTransfusion);
 
             var holyPriestAuraHealingBonus = _gameStateService.GetSpellData(gameState, Spell.HolyPriest)
-                .GetEffect(179715).BaseValue;
+                .GetEffect(179715).BaseValue / 100 + 1;
 
             var healingSp = spellData.GetEffect(815191).SpCoefficient;
 
@@ -51,7 +51,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
                 spellData = _gameStateService.GetSpellData(gameState, Spell.UnholyTransfusion);
 
             var holyPriestAuraDamagePeriodicBonus = _gameStateService.GetSpellData(gameState, Spell.HolyPriest)
-                .GetEffect(191078).BaseValue;
+                .GetEffect(191078).BaseValue / 100 + 1;
 
             var damageSpellData = _gameStateService.GetSpellData(gameState, Spell.UnholyTransfusionDebuff);
             var damageSp = damageSpellData.GetEffect(815346).SpCoefficient;

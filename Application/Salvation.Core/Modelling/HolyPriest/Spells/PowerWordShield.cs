@@ -55,7 +55,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
                 spellData = _gameStateService.GetSpellData(gameState, Spell.PowerWordShield);
 
             var holyPriestAuraHealingBonus = _gameStateService.GetSpellData(gameState, Spell.HolyPriest)
-                .GetEffect(179715).BaseValue;
+                .GetEffect(179715).BaseValue / 100 + 1;
 
             // SP% * Intellect * Vers * Hpriest Aura
             // TODO: For some reason PW:S is done kinda weird. No basevalue of spcoeff.

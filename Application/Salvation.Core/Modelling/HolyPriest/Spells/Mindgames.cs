@@ -20,17 +20,13 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, Spell.Mindgames);
 
-            var holyPriestAuraHealingBonus = _gameStateService.GetSpellData(gameState, Spell.HolyPriest)
-                .GetEffect(179715).BaseValue / 100 + 1;
-
             var healingSp = spellData.GetEffect(812776).BaseValue;
 
             // Mind Game's average heal is:
             // $damage=${($SPS*$s2/100)*(1+$@versadmg)}
-            // (SP% * Coeff1 / 100) * Vers
+            // The heal doesn't scale with the healing aura. See Issue #72
             double averageHeal = (healingSp * _gameStateService.GetIntellect(gameState) / 100)
-                * _gameStateService.GetVersatilityMultiplier(gameState)
-                * holyPriestAuraHealingBonus;
+                * _gameStateService.GetVersatilityMultiplier(gameState);
 
             _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {averageHeal:0.##}");
 

@@ -21,10 +21,11 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, Spell.AscendedEruption);
 
-            if (!spellData.Overrides.ContainsKey(Override.ResultMultiplier))
-                throw new ArgumentOutOfRangeException("Overrides", "Does not contain ResultMultiplier");
+            // Default to the 1 stack we automatically get if not provided.
+            var numberOfBoonStacks = 1d;
 
-            var numberOfBoonStacks = spellData.Overrides[Override.ResultMultiplier];
+            if (spellData.Overrides.ContainsKey(Override.ResultMultiplier))
+                numberOfBoonStacks = spellData.Overrides[Override.ResultMultiplier];
 
             var holyPriestAuraHealingBonus = _gameStateService.GetSpellData(gameState, Spell.HolyPriest)
                 .GetEffect(179715).BaseValue / 100 + 1;
@@ -45,7 +46,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             averageHeal *= _gameStateService.GetCriticalStrikeMultiplier(gameState);
 
-            var bonusPerStack = GetBoonBonusDamagePerStack(gameState);
+            var bonusPerStack = GetBoonBonusPerStack(gameState);
 
             // Apply boon stack healing bonus
             averageHeal *= 1 + ((bonusPerStack / 100d) * numberOfBoonStacks);
@@ -63,10 +64,11 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, Spell.AscendedEruption);
 
-            if (!spellData.Overrides.ContainsKey(Override.ResultMultiplier))
-                throw new ArgumentOutOfRangeException("Overrides", "Does not contain ResultMultiplier");
+            // Default to the 1 stack we automatically get if not provided.
+            var numberOfBoonStacks = 1d;
 
-            var numberOfBoonStacks = spellData.Overrides[Override.ResultMultiplier];
+            if (spellData.Overrides.ContainsKey(Override.ResultMultiplier))
+                numberOfBoonStacks = spellData.Overrides[Override.ResultMultiplier];
 
             var holyPriestAuraDamageBonus = _gameStateService.GetSpellData(gameState, Spell.HolyPriest)
                 .GetEffect(191077).BaseValue / 100 + 1;
@@ -83,7 +85,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             averageHeal *= _gameStateService.GetCriticalStrikeMultiplier(gameState);
 
-            var bonusPerStack = GetBoonBonusDamagePerStack(gameState);
+            var bonusPerStack = GetBoonBonusPerStack(gameState);
 
             // Apply boon stack damage bonus
             averageHeal *= 1d + ((bonusPerStack / 100d) * numberOfBoonStacks);
@@ -110,10 +112,10 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         /// <summary>
         /// Get the bonus damage per stack of boon. It's stored as an int, 3 = 3% bonus damage per stack
         /// </summary>
-        public double GetBoonBonusDamagePerStack(GameState gameState)
+        public double GetBoonBonusPerStack(GameState gameState)
         {
             // The bonus is stored as an int. 3 = 3%
-            var boonSpellData = _gameStateService.GetSpellData(gameState, Spell.AscendedEruption);
+            var boonSpellData = _gameStateService.GetSpellData(gameState, Spell.BoonOfTheAscended);
             var bonusPerStack = boonSpellData.GetEffect(815475).BaseValue;
 
             if (_gameStateService.IsConduitActive(gameState, Conduit.CourageousAscension))

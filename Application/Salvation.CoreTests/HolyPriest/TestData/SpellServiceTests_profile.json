@@ -1,11 +1,11 @@
 {
   "SpecId": 257,
   "Name": "Holy Priest Default Profile",
-  "Intellect": 1001,
-  "MasteryRating": 242,
-  "VersatilityRating": 139,
-  "HasteRating": 242,
-  "CritRating": 268,
+  "Intellect": 981,
+  "MasteryRating": 263,
+  "VersatilityRating": 98,
+  "HasteRating": 256,
+  "CritRating": 217,
   "Casts": [
     {
       "SpellId": 2061,

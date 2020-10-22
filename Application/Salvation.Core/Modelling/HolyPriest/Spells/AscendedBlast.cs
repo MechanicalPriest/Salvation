@@ -27,6 +27,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             double averageDamage = GetAverageDamage(gameState, spellData);
             var healTransferAmount = spellData.GetEffect(815550).BaseValue / 100d;
 
+            // Doesn't seem to be effected by the healing aura multiplier
             double averageHeal = healTransferAmount * averageDamage;
 
             _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip (Heal): {healTransferAmount}% of Dmg");

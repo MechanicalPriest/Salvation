@@ -53,19 +53,15 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, Spell.PowerWordShield);
 
-            var holyPriestAuraHealingBonus = _gameStateService.GetSpellData(gameState, Spell.HolyPriest)
-                .GetEffect(179715).BaseValue / 100 + 1;
-
             // SP% * Intellect * Vers * Hpriest Aura
             // TODO: For some reason PW:S is done kinda weird. No basevalue of spcoeff.
             // It just seems to use $shield=${$SP*1.8*(1+$@versadmg)*
-            //var absorbSp = spellData.GetEffect(13).SpCoefficient;
+            // It also doesn't scaling with the healing aura bonus, see issue #71
             var absorbSp = 1.8;
 
             double averageHeal = absorbSp
                 * _gameStateService.GetIntellect(gameState)
-                * _gameStateService.GetVersatilityMultiplier(gameState)
-                * holyPriestAuraHealingBonus;
+                * _gameStateService.GetVersatilityMultiplier(gameState);
 
             _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {averageHeal:0.##}");
 

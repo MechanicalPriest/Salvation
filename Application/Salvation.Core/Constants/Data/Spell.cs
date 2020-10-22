@@ -66,7 +66,7 @@
         /// <summary>
         /// The enemy debuff applied that does damage
         /// </summary>
-        UnholyTransfusionDebuff = 325203,
+        UnholyTransfusionDoT = 325203,
 
         // Legendaries
         HarmoniousApparatus = 336314,

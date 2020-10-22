@@ -39,9 +39,10 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             averageHeal *= GetFesteringTransfusionConduitMultiplier(gameState, spellData);
             var duration = GetDuration(gameState, spellData);
 
-            // For each healing target, heal every ~1.5s for heal amt
-            // TODO: Get a better number on healing events per player for the duration of UT
-            return averageHeal * GetNumberOfHealingTargets(gameState, spellData) * (duration / 1.5d);
+            // For each healing target, heal every ~3s? This is lowballing it slightly until the bug is confirmed/fixed
+            // You seem to get a proc every time it ticks and then a proc when you damage it .. ish - with an ICD maybe
+            // This does not work like this though, see Issue #73
+            return averageHeal * GetNumberOfHealingTargets(gameState, spellData) * (duration / 3d);
         }
 
         public override double GetAverageDamage(GameState gameState, BaseSpellData spellData = null)
@@ -52,7 +53,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             var holyPriestAuraDamagePeriodicBonus = _gameStateService.GetSpellData(gameState, Spell.HolyPriest)
                 .GetEffect(191078).BaseValue / 100 + 1;
 
-            var damageSpellData = _gameStateService.GetSpellData(gameState, Spell.UnholyTransfusionDebuff);
+            var damageSpellData = _gameStateService.GetSpellData(gameState, Spell.UnholyTransfusionDoT);
             var damageSp = damageSpellData.GetEffect(815346).SpCoefficient;
 
             // coeff2 * int * hpriest dmg mod * vers
@@ -83,7 +84,10 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, Spell.UnholyTransfusion);
 
-            var baseDuration = base.GetDuration(gameState, spellData);
+            var damageSpellData = _gameStateService.GetSpellData(gameState, Spell.UnholyTransfusionDoT);
+
+            // Duration is stored in the DoT spell's data.
+            var baseDuration = damageSpellData.Duration / 1000;
 
             // TODO: Shift this out to another method maybe, for testing?
             if (_gameStateService.IsConduitActive(gameState, Conduit.FesteringTransfusion))

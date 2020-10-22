@@ -60,7 +60,7 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.AscendedEruption,
                 (uint)Spell.UnholyNova,
                 (uint)Spell.UnholyTransfusion,
-                (uint)Spell.UnholyTransfusionDebuff,
+                (uint)Spell.UnholyTransfusionDoT,
 
                 // Legendaries
                 (uint)Spell.HarmoniousApparatus,

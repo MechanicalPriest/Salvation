@@ -53,6 +53,11 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             return maximumPotentialCasts;
         }
 
+        public override double GetMinimumHealTargets(GameState gameState, BaseSpellData spellData)
+        {
+            return 1;
+        }
+
         public override double GetMaximumHealTargets(GameState gameState, BaseSpellData spellData)
         {
             if (spellData == null)

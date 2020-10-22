@@ -85,6 +85,11 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             return numTargets;
         }
 
+        public override double GetMinimumHealTargets(GameState gameState, BaseSpellData spellData)
+        {
+            return 1;
+        }
+
         public override double GetMaximumDamageTargets(GameState gameState, BaseSpellData spellData)
         {
             return double.MaxValue;

@@ -114,6 +114,11 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             return result;
         }
 
+        public override double GetMinimumHealTargets(GameState gameState, BaseSpellData spellData)
+        {
+            return 1;
+        }
+
         public override double GetMaximumHealTargets(GameState gameState, BaseSpellData spellData)
         {
             // TODO: Clamp to raid size?

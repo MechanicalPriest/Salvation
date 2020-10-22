@@ -15,11 +15,10 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         private readonly IAscendedEruptionSpellService _ascendedEruptionSpellService;
 
         public BoonOfTheAscended(IGameStateService gameStateService,
-            IModellingJournal journal,
             IAscendedBlastSpellService ascendedBlastSpellService,
             IAscendedNovaSpellService ascendedNovaSpellService,
             IAscendedEruptionSpellService ascendedEruptionSpellService)
-            : base(gameStateService, journal)
+            : base(gameStateService)
         {
             SpellId = (int)Spell.BoonOfTheAscended;
             _ascendedBlastSpellService = ascendedBlastSpellService;

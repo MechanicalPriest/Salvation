@@ -13,9 +13,8 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         private readonly IDivineHymnSpellService _divineHymnSpellService;
 
         public FaeGuardians(IGameStateService gameStateService,
-            IModellingJournal journal,
             IDivineHymnSpellService divineHymnSpellService)
-            : base(gameStateService, journal)
+            : base(gameStateService)
         {
             SpellId = (int)Spell.FaeGuardians;
             _divineHymnSpellService = divineHymnSpellService;
@@ -101,7 +100,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             // This value is a negative integer. -10 = -10%
             var baseDamageReduction = guardianFaerieData.GetEffect(819281).BaseValue;
 
-            _journal.Entry($"[{spellData.Name}] DR: {baseDamageReduction}% DTPS: {targetDamageTakenPerSecond} Duration: {duration}s");
+            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] DR: {baseDamageReduction}% DTPS: {targetDamageTakenPerSecond} Duration: {duration}s");
 
             double averageDRPC = duration
                 * targetDamageTakenPerSecond

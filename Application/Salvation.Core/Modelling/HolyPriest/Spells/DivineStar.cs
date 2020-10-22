@@ -10,9 +10,8 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
     public class DivineStar : SpellService, IDivineStarSpellService
     {
-        public DivineStar(IGameStateService gameStateService,
-            IModellingJournal journal)
-            : base(gameStateService, journal)
+        public DivineStar(IGameStateService gameStateService)
+            : base(gameStateService)
         {
             SpellId = (int)Spell.DivineStar;
         }
@@ -33,7 +32,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
                 * _gameStateService.GetVersatilityMultiplier(gameState)
                 * holyPriestAuraHealingBonus;
 
-            _journal.Entry($"[{spellData.Name}] Tooltip: {averageHeal:0.##} (per pass)");
+            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {averageHeal:0.##} (per pass)");
 
             averageHeal *= 2 // Add the second pass-back through each target
                 * _gameStateService.GetCriticalStrikeMultiplier(gameState);

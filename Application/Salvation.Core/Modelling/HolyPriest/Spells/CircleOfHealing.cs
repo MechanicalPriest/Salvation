@@ -9,9 +9,8 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
     public class CircleOfHealing : SpellService, ICircleOfHealingSpellService
     {
-        public CircleOfHealing(IGameStateService gameStateService,
-            IModellingJournal journal)
-            : base(gameStateService, journal)
+        public CircleOfHealing(IGameStateService gameStateService)
+            : base(gameStateService)
         {
             SpellId = (int)Spell.CircleOfHealing;
         }
@@ -31,7 +30,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
                 * _gameStateService.GetVersatilityMultiplier(gameState)
                 * holyPriestAuraHealingBonus;
 
-            _journal.Entry($"[{spellData.Name}] Tooltip: {averageHeal:0.##}");
+            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {averageHeal:0.##}");
 
             averageHeal *= _gameStateService.GetCriticalStrikeMultiplier(gameState);
 

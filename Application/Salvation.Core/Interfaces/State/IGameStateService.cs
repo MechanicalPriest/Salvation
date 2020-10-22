@@ -2,6 +2,7 @@
 using Salvation.Core.Constants.Data;
 using Salvation.Core.Profile;
 using Salvation.Core.State;
+using System.Collections.Generic;
 
 namespace Salvation.Core.Interfaces.State
 {
@@ -34,6 +35,8 @@ namespace Salvation.Core.Interfaces.State
 
         // Utility
         GameState CloneGameState(GameState state);
+        public List<string> GetJournal(GameState state, bool removeDuplicates = false);
+        public void JournalEntry(GameState state, string message);
 
         // Holy Priest specific
         double GetTotalHolyWordCooldownReduction(GameState state, Spell spell, bool IsApotheosisActive = false);

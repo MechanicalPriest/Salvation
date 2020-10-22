@@ -9,9 +9,8 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
     public class PrayerOfMending : SpellService, IPrayerOfMendingSpellService
     {
-        public PrayerOfMending(IGameStateService gameStateService,
-            IModellingJournal journal)
-            : base(gameStateService, journal)
+        public PrayerOfMending(IGameStateService gameStateService)
+            : base(gameStateService)
         {
             SpellId = (int)Spell.PrayerOfMending;
         }
@@ -33,7 +32,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
                 * _gameStateService.GetVersatilityMultiplier(gameState)
                 * holyPriestAuraHealingBonus;
 
-            _journal.Entry($"[{spellData.Name}] Tooltip: {averageHeal:0.##}");
+            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {averageHeal:0.##}");
 
             // Number of initial PoM stacks
             var numPoMStacks = spellData.GetEffect(22870).BaseValue;

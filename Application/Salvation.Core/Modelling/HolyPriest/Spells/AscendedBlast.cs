@@ -10,9 +10,8 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
     public class AscendedBlast : SpellService, IAscendedBlastSpellService
     {
-        public AscendedBlast(IGameStateService gameStateService,
-            IModellingJournal journal)
-            : base(gameStateService, journal)
+        public AscendedBlast(IGameStateService gameStateService)
+            : base(gameStateService)
         {
             SpellId = (int)Spell.AscendedBlast;
         }
@@ -30,7 +29,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             double averageHeal = healTransferAmount * averageDamage;
 
-            _journal.Entry($"[{spellData.Name}] Tooltip (Heal): {healTransferAmount}% of Dmg");
+            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip (Heal): {healTransferAmount}% of Dmg");
 
             return averageHeal * GetNumberOfHealingTargets(gameState, spellData);
         }
@@ -56,12 +55,12 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
                 var rank = _gameStateService.GetConduitRank(gameState, Conduit.CourageousAscension);
                 var conduitData = _gameStateService.GetSpellData(gameState, Spell.CourageousAscension);
                 var damageMulti = (1d + (conduitData.ConduitRanks[rank] / 100));
-                _journal.Entry($"[{spellData.Name}] Applying Courageous Ascension conduit (r{rank + 1}): {damageMulti:0.##}");
+                _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Applying Courageous Ascension conduit (r{rank + 1}): {damageMulti:0.##}");
 
                 averageDamage *= damageMulti;
             }
 
-            _journal.Entry($"[{spellData.Name}] Tooltip (Dmg): {averageDamage:0.##}");
+            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip (Dmg): {averageDamage:0.##}");
 
             averageDamage *= _gameStateService.GetCriticalStrikeMultiplier(gameState);
 

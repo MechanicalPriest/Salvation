@@ -9,9 +9,8 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
     public class Mindgames : SpellService, IMindgamesSpellService
     {
-        public Mindgames(IGameStateService gameStateService,
-            IModellingJournal journal)
-            : base(gameStateService, journal)
+        public Mindgames(IGameStateService gameStateService)
+            : base(gameStateService)
         {
             SpellId = (int)Spell.Mindgames;
         }
@@ -33,7 +32,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
                 * _gameStateService.GetVersatilityMultiplier(gameState)
                 * holyPriestAuraHealingBonus;
 
-            _journal.Entry($"[{spellData.Name}] Tooltip: {averageHeal:0.##}");
+            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {averageHeal:0.##}");
 
             // Mindgames absorbs the incoming hit 323701, and heals for the amount absorbed 323706. 
             // The order of events though is Heal then Absorb/Damage.
@@ -56,7 +55,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
                 * holyPriestAuraDamageBonus
                 * _gameStateService.GetVersatilityMultiplier(gameState);
 
-            _journal.Entry($"[{spellData.Name}] Tooltip (Dmg): {averageDamage:0.##}");
+            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip (Dmg): {averageDamage:0.##}");
 
             // Get the Shattered Perceptions conduit bonus damage
             // TODO: Shift this out to another method maybe, for testing?

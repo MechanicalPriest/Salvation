@@ -9,9 +9,8 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
     public class HolyNova : SpellService, IHolyNovaSpellService
     {
-        public HolyNova(IGameStateService gameStateService,
-            IModellingJournal journal)
-            : base(gameStateService, journal)
+        public HolyNova(IGameStateService gameStateService)
+            : base(gameStateService)
         {
             SpellId = (int)Spell.HolyNova;
         }
@@ -31,7 +30,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
                 * _gameStateService.GetVersatilityMultiplier(gameState)
                 * holyPriestAuraHealingBonus;
 
-            _journal.Entry($"[{spellData.Name}] Tooltip: {averageHeal:0.##}");
+            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {averageHeal:0.##}");
 
             averageHeal *= _gameStateService.GetCriticalStrikeMultiplier(gameState);
             // TODO: Implement the SQRT scaling for holy nova after testing how it works more

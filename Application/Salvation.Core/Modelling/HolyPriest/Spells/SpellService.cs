@@ -12,15 +12,12 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
     public class SpellService : ISpellService
     {
         protected readonly IGameStateService _gameStateService;
-        protected readonly IModellingJournal _journal;
 
         public virtual int SpellId { get; protected set; }
 
-        public SpellService(IGameStateService gameStateService,
-            IModellingJournal journal)
+        public SpellService(IGameStateService gameStateService)
         {
             _gameStateService = gameStateService;
-            _journal = journal;
             SpellId = 0;
         }
 

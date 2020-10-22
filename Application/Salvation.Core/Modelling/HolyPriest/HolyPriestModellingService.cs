@@ -14,12 +14,10 @@ namespace Salvation.Core.Modelling.HolyPriest
     public class HolyPriestModellingService : IModellingService
     {
         private readonly IGameStateService _gameStateService;
-        private readonly IModellingJournal _journal;
 
         public List<ISpellService> Spells { get; private set; }
 
         public HolyPriestModellingService(IGameStateService gameStateService,
-            IModellingJournal journal,
             IFlashHealSpellService flashHealService,
             IHolyWordSerenitySpellService holyWordSerenitySpellService,
             IHolyWordSalvationSpellService holyWordSalvationSpellService,
@@ -41,7 +39,6 @@ namespace Salvation.Core.Modelling.HolyPriest
             IBoonOfTheAscendedSpellService boonOfTheAscendedSpellService)
         {
             _gameStateService = gameStateService;
-            _journal = journal;
 
             Spells = new List<ISpellService>
             {
@@ -74,7 +71,7 @@ namespace Salvation.Core.Modelling.HolyPriest
                 Profile = state.Profile
             };
 
-            _journal.Entry($"Results run started at {DateTime.Now:yyyy.MM.dd HH:mm:ss:ffff}.");
+            _gameStateService.JournalEntry(state, $"Results run started at {DateTime.Now:yyyy.MM.dd HH:mm:ss:ffff}.");
             var sw = new Stopwatch();
             sw.Start();
 
@@ -87,7 +84,7 @@ namespace Salvation.Core.Modelling.HolyPriest
                 }
                 else
                 {
-                    _journal.Entry($"[{spell.SpellId}] Skipped casting due to profile.");
+                    _gameStateService.JournalEntry(state, $"[{spell.SpellId}] Skipped casting due to profile.");
                 }
             }
 
@@ -110,12 +107,12 @@ namespace Salvation.Core.Modelling.HolyPriest
             results.TimeToOom = rawMana / totalNegativeManaPerSecond;
 
             sw.Stop();
-            _journal.Entry($"Results: RawHPS ({results.TotalRawHPS:0.##}) HPS ({results.TotalActualHPS:0.##}) " +
+            _gameStateService.JournalEntry(state, $"Results: RawHPS ({results.TotalRawHPS:0.##}) HPS ({results.TotalActualHPS:0.##}) " +
                 $"MPS ({results.TotalMPS:0.##})");
-            _journal.Entry($"Results: RawHPM ({results.TotalRawHPM:0.##}) HPM ({results.TotalActualHPM:0.##})");
-            _journal.Entry($"Results: TtOoM {results.TimeToOom}s.");
+            _gameStateService.JournalEntry(state, $"Results: RawHPM ({results.TotalRawHPM:0.##}) HPM ({results.TotalActualHPM:0.##})");
+            _gameStateService.JournalEntry(state, $"Results: TtOoM {results.TimeToOom}s.");
 
-            _journal.Entry($"Results run done in {sw.ElapsedMilliseconds}ms.");
+            _gameStateService.JournalEntry(state, $"Results run done in {sw.ElapsedMilliseconds}ms.");
 
             return results;
         }

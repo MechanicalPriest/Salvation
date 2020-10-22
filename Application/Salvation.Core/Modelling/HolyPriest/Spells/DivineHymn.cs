@@ -9,9 +9,8 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
     public class DivineHymn : SpellService, IDivineHymnSpellService
     {
-        public DivineHymn(IGameStateService gameStateService,
-            IModellingJournal journal)
-            : base(gameStateService, journal)
+        public DivineHymn(IGameStateService gameStateService)
+            : base(gameStateService)
         {
             SpellId = (int)Spell.DivineHymn;
         }
@@ -38,8 +37,8 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             // double it if we have 5 or less (dungeon group buff)
             double firstTickParty = firstTickRaid * 2;
 
-            _journal.Entry($"[{spellData.Name}] Tooltip: {firstTickRaid:0.##} & {firstTickParty:0.##} (first tick)");
-            _journal.Entry($"[{spellData.Name}] Tooltip: {firstTickRaid * 5:0.##} & {firstTickParty * 5:0.##} (all ticks)");
+            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {firstTickRaid:0.##} & {firstTickParty:0.##} (first tick)");
+            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {firstTickRaid * 5:0.##} & {firstTickParty * 5:0.##} (all ticks)");
 
             // Pick whether we're in part or raid
             double firstTick = GetNumberOfHealingTargets(gameState, spellData) <= 5 ? firstTickParty : firstTickRaid;

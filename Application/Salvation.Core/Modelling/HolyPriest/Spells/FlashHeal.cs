@@ -9,9 +9,8 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
     public class FlashHeal : SpellService, IFlashHealSpellService
     {
-        public FlashHeal(IGameStateService gameStateService,
-            IModellingJournal journal)
-            : base(gameStateService, journal)
+        public FlashHeal(IGameStateService gameStateService)
+            : base(gameStateService)
         {
             SpellId = (int)Spell.FlashHeal;
         }
@@ -33,7 +32,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
                 * _gameStateService.GetVersatilityMultiplier(gameState)
                 * holyPriestAuraHealingBonus;
 
-            _journal.Entry($"[{spellData.Name}] Tooltip: {averageHeal:0.##}");
+            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {averageHeal:0.##}");
 
             averageHeal *= _gameStateService.GetCriticalStrikeMultiplier(gameState);
 

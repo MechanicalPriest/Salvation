@@ -10,9 +10,8 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
     public class AscendedEruption : SpellService, IAscendedEruptionSpellService
     {
-        public AscendedEruption(IGameStateService gameStateService,
-            IModellingJournal journal)
-            : base(gameStateService, journal)
+        public AscendedEruption(IGameStateService gameStateService)
+            : base(gameStateService)
         {
             SpellId = (int)Spell.AscendedEruption;
         }
@@ -42,7 +41,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
                 * holyPriestAuraHealingBonus // This may not affect it? No way to test though.
                 * holyPriestAuraDamageBonus; // ??? scales with the damage aura for reasons
 
-            _journal.Entry($"[{spellData.Name}] Tooltip: {averageHeal:0.##}");
+            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {averageHeal:0.##}");
 
             averageHeal *= _gameStateService.GetCriticalStrikeMultiplier(gameState);
 
@@ -80,7 +79,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
                 * _gameStateService.GetVersatilityMultiplier(gameState)
                 * holyPriestAuraDamageBonus; // ??? scales with the damage aura for reasons
 
-            _journal.Entry($"[{spellData.Name}] Tooltip: {averageHeal:0.##}");
+            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {averageHeal:0.##}");
 
             averageHeal *= _gameStateService.GetCriticalStrikeMultiplier(gameState);
 
@@ -88,7 +87,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             // Apply boon stack damage bonus
             averageHeal *= 1d + ((bonusPerStack / 100d) * numberOfBoonStacks);
-            _journal.Entry($"[{spellData.Name}] Stacks: {numberOfBoonStacks:0.##} Bonus/stack: {bonusPerStack:0.##}");
+            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Stacks: {numberOfBoonStacks:0.##} Bonus/stack: {bonusPerStack:0.##}");
 
             // Apply 1/SQRT() 
             // Damage scales down with the number of enemy + friendly targets, see Issue #52

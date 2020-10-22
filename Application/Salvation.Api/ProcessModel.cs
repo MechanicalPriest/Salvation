@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using Salvation.Core.Interfaces;
 using Salvation.Core.Interfaces.Constants;
 using Salvation.Core.Interfaces.Modelling;
+using Salvation.Core.Interfaces.State;
 using Salvation.Core.Modelling;
 using Salvation.Core.Profile;
 using Salvation.Core.State;
@@ -20,18 +21,18 @@ namespace Salvation.Api
     {
         private readonly IConstantsService _constantsService;
         private readonly IModellingService _modellingService;
-        private readonly IModellingJournal _journal;
         private readonly IStatWeightGenerationService _statWeightGenerationService;
+        private readonly IGameStateService _gameStateService;
 
         public ProcessModel(IConstantsService constantService,
             IModellingService modellingService,
-            IModellingJournal journal,
-            IStatWeightGenerationService statWeightGenerationService)
+            IStatWeightGenerationService statWeightGenerationService,
+            IGameStateService gameStateService)
         {
             _constantsService = constantService;
             _modellingService = modellingService;
-            _journal = journal;
             _statWeightGenerationService = statWeightGenerationService;
+            _gameStateService = gameStateService;
         }
 
         [FunctionName("ProcessModel")]
@@ -88,7 +89,7 @@ namespace Salvation.Api
                     StatWeightsEffective = effectiveHealingStatWeights,
                     StatWeightsRaw = rawHealingStatWeights,
                     State = state,
-                    Journal = _journal.GetJournal(true)
+                    Journal = _gameStateService.GetJournal(state)
                 });
             }
             catch (Exception ex)

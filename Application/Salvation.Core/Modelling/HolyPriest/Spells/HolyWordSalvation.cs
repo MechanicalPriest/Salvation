@@ -16,12 +16,11 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         private readonly IPrayerOfMendingSpellService _prayerOfMendingSpellService;
 
         public HolyWordSalvation(IGameStateService gameStateService,
-            IModellingJournal journal,
             IHolyWordSerenitySpellService serenitySpellService,
             IHolyWordSanctifySpellService holyWordSanctifySpellService,
             IRenewSpellService renewSpellService,
             IPrayerOfMendingSpellService prayerOfMendingSpellService)
-            : base(gameStateService, journal)
+            : base(gameStateService)
         {
             SpellId = (int)Spell.HolyWordSalvation;
             _serenitySpellService = serenitySpellService;
@@ -45,7 +44,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
                 * _gameStateService.GetVersatilityMultiplier(gameState)
                 * holyPriestAuraHealingBonus;
 
-            _journal.Entry($"[{spellData.Name}] Tooltip: {averageHeal:0.##}");
+            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {averageHeal:0.##}");
 
             averageHeal *= _gameStateService.GetCriticalStrikeMultiplier(gameState);
 

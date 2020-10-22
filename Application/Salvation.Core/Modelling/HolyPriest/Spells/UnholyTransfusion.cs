@@ -9,9 +9,8 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
     public class UnholyTransfusion : SpellService, IUnholyTransfusionSpellService
     {
-        public UnholyTransfusion(IGameStateService gameStateService,
-            IModellingJournal journal)
-            : base(gameStateService, journal)
+        public UnholyTransfusion(IGameStateService gameStateService)
+            : base(gameStateService)
         {
             SpellId = (int)Spell.UnholyTransfusion;
         }
@@ -32,7 +31,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
                 * _gameStateService.GetVersatilityMultiplier(gameState)
                 * holyPriestAuraHealingBonus;
 
-            _journal.Entry($"[{spellData.Name}] Tooltip: {averageHeal:0.##}");
+            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {averageHeal:0.##}");
 
             averageHeal *= _gameStateService.GetCriticalStrikeMultiplier(gameState);
 
@@ -63,7 +62,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
                 * _gameStateService.GetVersatilityMultiplier(gameState)
                 * 5; // Number of ticks
 
-            _journal.Entry($"[{spellData.Name}] Tooltip (Dmg): {averageDamage:0.##} (tick)");
+            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip (Dmg): {averageDamage:0.##} (tick)");
 
             averageDamage *= _gameStateService.GetCriticalStrikeMultiplier(gameState);
             averageDamage *= _gameStateService.GetHasteMultiplier(gameState);
@@ -94,7 +93,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
                 var extraDuration = conduitData.GetEffect(836285).BaseValue / 1000;
 
                 // The added duration is the same regardless of rank
-                _journal.Entry($"[{spellData.Name}] Applying FesteringTransfusion ({(int)Conduit.FesteringTransfusion}) conduit " +
+                _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Applying FesteringTransfusion ({(int)Conduit.FesteringTransfusion}) conduit " +
                     $"duration: {extraDuration:0.##}");
 
                 baseDuration += extraDuration;
@@ -124,7 +123,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
                 var multiplier = 1 + (conduitData.ConduitRanks[rank] / 100);
 
-                _journal.Entry($"[{spellData.Name}] Applying FesteringTransfusion ({(int)Conduit.FesteringTransfusion}) conduit " +
+                _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Applying FesteringTransfusion ({(int)Conduit.FesteringTransfusion}) conduit " +
                     $"multiplier: {multiplier:0.##}");
 
                 return multiplier;

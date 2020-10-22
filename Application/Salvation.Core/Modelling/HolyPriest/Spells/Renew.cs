@@ -9,9 +9,8 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
     public class Renew : SpellService, IRenewSpellService
     {
-        public Renew(IGameStateService gameStateService,
-            IModellingJournal journal)
-            : base(gameStateService, journal)
+        public Renew(IGameStateService gameStateService)
+            : base(gameStateService)
         {
             SpellId = (int)Spell.Renew;
         }
@@ -35,7 +34,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
                 * _gameStateService.GetVersatilityMultiplier(gameState)
                 * holyPriestAuraHealingBonus;
 
-            _journal.Entry($"[{spellData.Name}] Tooltip: {averageHealFirstTick:0.##} (first)");
+            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {averageHealFirstTick:0.##} (first)");
 
             averageHealFirstTick *= _gameStateService.GetCriticalStrikeMultiplier(gameState)
                 * _gameStateService.GetHasteMultiplier(gameState);
@@ -49,7 +48,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
                 * holyPriestAuraHealingPeriodicBonus
                 * 5;
 
-            _journal.Entry($"[{spellData.Name}] Tooltip: {averageHealTicks:0.##} (ticks)");
+            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {averageHealTicks:0.##} (ticks)");
 
             averageHealTicks *= _gameStateService.GetCriticalStrikeMultiplier(gameState);
 

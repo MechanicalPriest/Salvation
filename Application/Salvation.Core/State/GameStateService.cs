@@ -4,6 +4,7 @@ using Salvation.Core.Constants.Data;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.Profile;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Salvation.Core.State
@@ -167,6 +168,20 @@ namespace Salvation.Core.State
             var newState = JsonConvert.DeserializeObject<GameState>(stateString);
 
             return newState;
+        }
+        public void JournalEntry(GameState state, string message)
+        {
+            state.JournalEntries.Add(message);
+        }
+
+        public List<string> GetJournal(GameState state, bool removeDuplicates = false)
+        {
+            if (removeDuplicates)
+            {
+                return state.JournalEntries.Distinct().ToList();
+            }
+
+            return state.JournalEntries;
         }
 
         #region Holy Priest Specific

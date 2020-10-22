@@ -10,9 +10,8 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
     public class AscendedNova : SpellService, IAscendedNovaSpellService
     {
-        public AscendedNova(IGameStateService gameStateService,
-            IModellingJournal journal)
-            : base(gameStateService, journal)
+        public AscendedNova(IGameStateService gameStateService)
+            : base(gameStateService)
         {
             SpellId = (int)Spell.AscendedNova;
         }
@@ -32,7 +31,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
                 * _gameStateService.GetVersatilityMultiplier(gameState)
                 * holyPriestAuraHealingBonus;
 
-            _journal.Entry($"[{spellData.Name}] Tooltip: {averageHeal:0.##}");
+            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {averageHeal:0.##}");
 
             averageHeal *= _gameStateService.GetCriticalStrikeMultiplier(gameState);
 
@@ -57,7 +56,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
                 * _gameStateService.GetVersatilityMultiplier(gameState)
                 * holyPriestAuraDamageBonus;
 
-            _journal.Entry($"[{spellData.Name}] Tooltip (Dmg): {averageDamage:0.##}");
+            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip (Dmg): {averageDamage:0.##}");
 
             averageDamage *= _gameStateService.GetCriticalStrikeMultiplier(gameState);
 

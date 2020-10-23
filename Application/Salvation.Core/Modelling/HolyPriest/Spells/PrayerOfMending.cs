@@ -4,6 +4,7 @@ using Salvation.Core.Interfaces;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.State;
+using System;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
@@ -74,6 +75,25 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         public override double GetMaximumHealTargets(GameState gameState, BaseSpellData spellData)
         {
             return 1;
+        }
+
+        public override double GetHastedCastTime(GameState gameState, BaseSpellData spellData = null)
+        {
+            if (spellData == null)
+                spellData = _gameStateService.GetSpellData(gameState, (Spell)SpellId);
+
+            if (spellData == null)
+                throw new ArgumentOutOfRangeException(nameof(SpellId),
+                    $"Spelldata for SpellId ({SpellId}) not found");
+
+            // Apply PoM rank 2 to reduce the cast time by 100%.
+            var pomRank2 = _gameStateService.GetSpellData(gameState, Spell.PrayerOfMendingRank2);
+
+            var castTimeMulti = pomRank2.GetEffect(806684).BaseValue;
+
+            spellData.BaseCastTime *= (1d + castTimeMulti / 100d);
+
+            return base.GetHastedCastTime(gameState, spellData);
         }
     }
 }

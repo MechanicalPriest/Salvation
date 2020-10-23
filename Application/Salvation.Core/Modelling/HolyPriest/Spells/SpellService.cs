@@ -115,7 +115,13 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, (Spell)SpellId);
 
-            return spellData.BaseCastTime / _gameStateService.GetHasteMultiplier(gameState);
+            if (spellData == null)
+                throw new ArgumentOutOfRangeException(nameof(SpellId),
+                    $"Spelldata for SpellId ({SpellId}) not found");
+
+            // Get the hasted cast time in seconds
+            var hastedCastTime = spellData.BaseCastTime / 1000 / _gameStateService.GetHasteMultiplier(gameState);
+            return hastedCastTime;
         }
 
         public virtual double GetHastedGcd(GameState gameState, BaseSpellData spellData = null)

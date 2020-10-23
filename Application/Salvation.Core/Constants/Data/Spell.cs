@@ -37,6 +37,10 @@
         /// The PoM buff people get when it is cast on/bounces to them
         /// </summary>
         PrayerOfMendingBuff = 41635,
+        /// <summary>
+        /// Makes PoM instant cast
+        /// </summary>
+        PrayerOfMendingRank2 = 319912,
         BindingHeal = 32546,
         Halo = 120517,
         HaloHeal = 120692,

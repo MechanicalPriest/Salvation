@@ -26,7 +26,8 @@ namespace Salvation.Explorer
         {
             CreateHostBuilder(args).Build().Run();
 
-            Console.ReadLine();
+            Console.WriteLine("Press any key to exit...");
+            Console.ReadKey();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

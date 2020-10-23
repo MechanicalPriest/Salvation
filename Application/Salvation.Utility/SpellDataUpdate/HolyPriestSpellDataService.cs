@@ -143,7 +143,7 @@ namespace Salvation.Utility.SpellDataUpdate
                 ChargeCooldown = spell.ChargeCooldown,
                 Charges = spell.Charges,
                 Duration = spell.Duration,
-                Gcd = spell.Gcd / 1000,
+                Gcd = spell.Gcd / 1000d,
                 ConduitRanks = spell.ConduitRanks
                 //newSpell.IsMasteryTriggered = ; // So this another weird one. Anything that has a healing effect of type 10 (Direct Heal) seems to proc it.
             };

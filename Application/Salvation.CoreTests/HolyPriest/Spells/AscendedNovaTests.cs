@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using NUnit.Framework;
 using Salvation.Core.Constants;
+using Salvation.Core.Constants.Data;
 using Salvation.Core.Interfaces.Constants;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.Modelling.HolyPriest.Spells;
@@ -14,7 +15,7 @@ using System.Text;
 namespace Salvation.CoreTests.HolyPriest.Spells
 {
     [TestFixture]
-    public class SpellServiceBaseTests
+    public class AscendedNovaTests
     {
         private GameState _gameState;
         [OneTimeSetUp]
@@ -33,63 +34,70 @@ namespace Salvation.CoreTests.HolyPriest.Spells
         }
 
         [Test]
-        public void GetNumberOfHealingTargets_Throws_NoSpelldata()
+        public void AN_GetMaximumCastsPerMinute_Throws_No_Overrides()
         {
             // Arrange
             IGameStateService gameStateService = new GameStateService();
-            var spellService = new SpellService(gameStateService);
+            var spellService = new AscendedNova(gameStateService);
 
             // Act
             var methodCall = new TestDelegate(
-                () => spellService.GetNumberOfHealingTargets(_gameState, null));
+                () => spellService.GetMaximumCastsPerMinute(_gameState, null));
 
             // Assert
             Assert.Throws<ArgumentOutOfRangeException>(methodCall);
         }
 
         [Test]
-        public void GetDuration_Throws_NoSpelldata()
+        public void AN_GetMaximumCastsPerMinute_Throws_No_CPM_Override()
         {
             // Arrange
             IGameStateService gameStateService = new GameStateService();
-            var spellService = new SpellService(gameStateService);
+            var spellService = new AscendedNova(gameStateService);
 
             // Act
+            var spellData = gameStateService.GetSpellData(_gameState, Spell.AscendedNova);
+            spellData.Overrides.Add(Override.AllowedDuration, 1);
             var methodCall = new TestDelegate(
-                () => spellService.GetDuration(_gameState, null));
+                () => spellService.GetMaximumCastsPerMinute(_gameState, spellData));
 
             // Assert
             Assert.Throws<ArgumentOutOfRangeException>(methodCall);
         }
 
         [Test]
-        public void GetActualManaCost_Throws_NoSpelldata()
+        public void AN_GetMaximumCastsPerMinute_Throws_No_AD_Override()
         {
             // Arrange
             IGameStateService gameStateService = new GameStateService();
-            var spellService = new SpellService(gameStateService);
+            var spellService = new AscendedNova(gameStateService);
 
             // Act
+            var spellData = gameStateService.GetSpellData(_gameState, Spell.AscendedNova);
+            spellData.Overrides.Add(Override.CastsPerMinute, 1);
             var methodCall = new TestDelegate(
-                () => spellService.GetActualManaCost(_gameState, null));
+                () => spellService.GetMaximumCastsPerMinute(_gameState, spellData));
 
             // Assert
             Assert.Throws<ArgumentOutOfRangeException>(methodCall);
         }
 
         [Test]
-        public void GetHastedCastTime_Throws_NoSpelldata()
+        public void AN_GetMaximumCastsPerMinute_Calculates()
         {
             // Arrange
             IGameStateService gameStateService = new GameStateService();
-            var spellService = new SpellService(gameStateService);
+            var spellService = new AscendedNova(gameStateService);
 
             // Act
-            var methodCall = new TestDelegate(
-                () => spellService.GetHastedCastTime(_gameState, null));
+            var spellData = gameStateService.GetSpellData(_gameState, Spell.AscendedNova);
+            spellData.Overrides.Add(Override.CastsPerMinute, 0.4819088140d);
+            spellData.Overrides.Add(Override.AllowedDuration, 7);
+
+            var result = spellService.GetMaximumCastsPerMinute(_gameState, spellData);
 
             // Assert
-            Assert.Throws<ArgumentOutOfRangeException>(methodCall);
+            Assert.AreEqual(3.6350527872993945d, result);
         }
     }
 }

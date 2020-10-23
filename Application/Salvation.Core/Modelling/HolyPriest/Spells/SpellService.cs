@@ -137,9 +137,11 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, (Spell)SpellId);
 
+            var baseCooldown = spellData.BaseCooldown / 1000d;
+
             return spellData.IsCooldownHasted
-                ? spellData.BaseCooldown / _gameStateService.GetHasteMultiplier(gameState)
-                : spellData.BaseCooldown;
+                ? baseCooldown / _gameStateService.GetHasteMultiplier(gameState)
+                : baseCooldown;
         }
 
         public virtual double GetActualManaCost(GameState gameState, BaseSpellData spellData = null)

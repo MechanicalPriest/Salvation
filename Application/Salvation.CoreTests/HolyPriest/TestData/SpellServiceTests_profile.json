@@ -137,7 +137,7 @@
       "SpellId": 327661,
       "Efficiency": 1.0,
       "OverhealPercent": 0.01,
-      "AverageHealingTargets": 0.0,
+      "AverageHealingTargets": 1.0,
       "AverageDamageTargets": 0.0
     },
     {

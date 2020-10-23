@@ -162,6 +162,13 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         /// <returns></returns>
         public virtual double GetNumberOfHealingTargets(GameState gameState, BaseSpellData spellData = null)
         {
+            if (spellData == null)
+                spellData = _gameStateService.GetSpellData(gameState, (Spell)SpellId);
+
+            if (spellData == null)
+                throw new ArgumentOutOfRangeException(nameof(SpellId), 
+                    $"Spelldata for SpellId ({SpellId}) not found");
+
             var profileData = _gameStateService.GetCastProfile(gameState, SpellId);
 
             var numTargets = profileData.AverageHealingTargets;

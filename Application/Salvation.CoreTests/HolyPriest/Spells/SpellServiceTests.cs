@@ -103,40 +103,65 @@ namespace Salvation.CoreTests.HolyPriest.Spells
         [TestCaseSource(typeof(SpellServiceTestsData), nameof(SpellServiceTestsData.GetMaximumHealTargets))]
         public double GetMaximumHealTargets(Type t)
         {
+            // Arrange
             var spellService = Spells.Where(s => s.GetType() == t).FirstOrDefault();
 
+            // Act
             var result = spellService.GetMaximumHealTargets(_gameState, null);
 
+            // Assert
             return result;
         }
 
         [TestCaseSource(typeof(SpellServiceTestsData), nameof(SpellServiceTestsData.GetMinimumHealTargets))]
         public double GetMinimumHealTargets(Type t)
         {
+            // Arrange
             var spellService = Spells.Where(s => s.GetType() == t).FirstOrDefault();
 
+            // Act
             var result = spellService.GetMinimumHealTargets(_gameState, null);
 
+            // Assert
             return result;
         }
 
         [TestCaseSource(typeof(SpellServiceTestsData), nameof(SpellServiceTestsData.GetAverageRawHealing))]
         public double GetAverageRawHealing(Type t)
         {
+            // Arrange
             var spellService = Spells.Where(s => s.GetType() == t).FirstOrDefault();
 
+            // Act
             var result = spellService.GetAverageRawHealing(_gameState, null);
 
+            // Assert
             return result;
         }
 
         [TestCaseSource(typeof(SpellServiceTestsData), nameof(SpellServiceTestsData.GetAverageHealing))]
         public double GetAverageHealing(Type t)
         {
+            // Arrange
             var spellService = Spells.Where(s => s.GetType() == t).FirstOrDefault();
 
+            // Act
             var result = spellService.GetAverageHealing(_gameState, null);
 
+            // Assert
+            return result;
+        }
+
+        [TestCaseSource(typeof(SpellServiceTestsData), nameof(SpellServiceTestsData.GetNumberOfHealingTargets))]
+        public double GetNumberOfHealingTargets(Type t)
+        {
+            // Arrange
+            var spellService = Spells.Where(s => s.GetType() == t).FirstOrDefault();
+
+            // Act
+            var result = spellService.GetNumberOfHealingTargets(_gameState, null);
+
+            // Assert
             return result;
         }
     }
@@ -168,7 +193,6 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(PrayerOfHealing)).Returns(5);
                 yield return new TestCaseData(typeof(PrayerOfMending)).Returns(1);
                 yield return new TestCaseData(typeof(Renew)).Returns(1);
-                yield return new TestCaseData(typeof(SpellService)).Returns(0);
                 yield return new TestCaseData(typeof(UnholyNova)).Returns(6);
                 yield return new TestCaseData(typeof(UnholyTransfusion)).Returns(1);
             }
@@ -198,9 +222,37 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(PrayerOfHealing)).Returns(1);
                 yield return new TestCaseData(typeof(PrayerOfMending)).Returns(1);
                 yield return new TestCaseData(typeof(Renew)).Returns(1);
-                yield return new TestCaseData(typeof(SpellService)).Returns(0);
                 yield return new TestCaseData(typeof(UnholyNova)).Returns(1);
                 yield return new TestCaseData(typeof(UnholyTransfusion)).Returns(0);
+            }
+        }
+        public static IEnumerable GetNumberOfHealingTargets
+        {
+            get
+            {
+                yield return new TestCaseData(typeof(AscendedBlast)).Returns(1);
+                yield return new TestCaseData(typeof(AscendedEruption)).Returns(5);
+                yield return new TestCaseData(typeof(AscendedNova)).Returns(5);
+                yield return new TestCaseData(typeof(BindingHeal)).Returns(3);
+                yield return new TestCaseData(typeof(BoonOfTheAscended)).Returns(0);
+                yield return new TestCaseData(typeof(CircleOfHealing)).Returns(5);
+                yield return new TestCaseData(typeof(DivineHymn)).Returns(20);
+                yield return new TestCaseData(typeof(DivineStar)).Returns(6);
+                yield return new TestCaseData(typeof(FaeGuardians)).Returns(1);
+                yield return new TestCaseData(typeof(FlashHeal)).Returns(1);
+                yield return new TestCaseData(typeof(Halo)).Returns(6);
+                yield return new TestCaseData(typeof(Heal)).Returns(1);
+                yield return new TestCaseData(typeof(HolyNova)).Returns(20);
+                yield return new TestCaseData(typeof(HolyWordSalvation)).Returns(20);
+                yield return new TestCaseData(typeof(HolyWordSanctify)).Returns(6);
+                yield return new TestCaseData(typeof(HolyWordSerenity)).Returns(1);
+                yield return new TestCaseData(typeof(Mindgames)).Returns(1);
+                yield return new TestCaseData(typeof(PowerWordShield)).Returns(1);
+                yield return new TestCaseData(typeof(PrayerOfHealing)).Returns(5);
+                yield return new TestCaseData(typeof(PrayerOfMending)).Returns(1);
+                yield return new TestCaseData(typeof(Renew)).Returns(1);
+                yield return new TestCaseData(typeof(UnholyNova)).Returns(6);
+                yield return new TestCaseData(typeof(UnholyTransfusion)).Returns(1);
             }
         }
 
@@ -229,7 +281,6 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(PrayerOfHealing)).Returns(5133.9674846250009d);
                 yield return new TestCaseData(typeof(PrayerOfMending)).Returns(3579.1087607100003d);
                 yield return new TestCaseData(typeof(Renew)).Returns(2427.862557965499d);
-                yield return new TestCaseData(typeof(SpellService)).Returns(0);
                 yield return new TestCaseData(typeof(UnholyNova)).Returns(8378.6349349079992d);
                 yield return new TestCaseData(typeof(UnholyTransfusion)).Returns(234.69565644000002d);
             }
@@ -259,7 +310,6 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(PrayerOfHealing)).Returns(3740.0953125493129d);
                 yield return new TestCaseData(typeof(PrayerOfMending)).Returns(3500.7262788504513d);
                 yield return new TestCaseData(typeof(Renew)).Returns(1543.3922280986676d);
-                yield return new TestCaseData(typeof(SpellService)).Returns(0);
                 yield return new TestCaseData(typeof(UnholyNova)).Returns(8294.8485855589188d);
                 yield return new TestCaseData(typeof(UnholyTransfusion)).Returns(232.34869987560003d);
             }

@@ -115,6 +115,11 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             return 1;
         }
 
+        public override double GetMinimumDamageTargets(GameState gameState, BaseSpellData spellData)
+        {
+            return 1;
+        }
+
         internal double GetFesteringTransfusionConduitMultiplier(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)

@@ -6,6 +6,7 @@ using Salvation.Core.Interfaces.State;
 using Salvation.Core.Modelling.Common;
 using Salvation.Core.State;
 using System;
+using System.Xml.Serialization;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
@@ -63,6 +64,10 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
         public virtual double GetAverageHealing(GameState gameState, BaseSpellData spellData = null)
         {
+            // If the spell isn't set for some reason this method shouldn't do anything
+            if (SpellId == 0)
+                return 0;
+
             // Average healing done is raw healing * overheal
             var castProfile = _gameStateService.GetCastProfile(gameState, SpellId);
 

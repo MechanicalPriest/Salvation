@@ -365,6 +365,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(PrayerOfHealing)).Returns(3740.0953125493129d);
                 yield return new TestCaseData(typeof(PrayerOfMending)).Returns(3500.7262788504513d);
                 yield return new TestCaseData(typeof(Renew)).Returns(1543.3922280986676d);
+                yield return new TestCaseData(typeof(SpellService)).Returns(0);
                 yield return new TestCaseData(typeof(UnholyNova)).Returns(8294.8485855589188d);
                 yield return new TestCaseData(typeof(UnholyTransfusion)).Returns(232.34869987560003d);
             }

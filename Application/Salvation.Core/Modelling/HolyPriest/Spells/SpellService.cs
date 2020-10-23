@@ -129,6 +129,10 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, (Spell)SpellId);
 
+            if (spellData == null)
+                throw new ArgumentOutOfRangeException(nameof(SpellId),
+                    $"Spelldata for SpellId ({SpellId}) not found");
+
             return spellData.Gcd / _gameStateService.GetHasteMultiplier(gameState);
         }
 
@@ -136,6 +140,10 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         {
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, (Spell)SpellId);
+
+            if (spellData == null)
+                throw new ArgumentOutOfRangeException(nameof(SpellId),
+                    $"Spelldata for SpellId ({SpellId}) not found");
 
             var baseCooldown = spellData.BaseCooldown / 1000d;
 
@@ -198,6 +206,13 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
         public virtual double GetNumberOfDamageTargets(GameState gameState, BaseSpellData spellData = null)
         {
+            if (spellData == null)
+                spellData = _gameStateService.GetSpellData(gameState, (Spell)SpellId);
+
+            if (spellData == null)
+                throw new ArgumentOutOfRangeException(nameof(SpellId),
+                    $"Spelldata for SpellId ({SpellId}) not found");
+
             var profileData = _gameStateService.GetCastProfile(gameState, SpellId);
 
             var numTargets = profileData.AverageDamageTargets;
@@ -240,6 +255,10 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, (Spell)SpellId);
+
+            if (spellData == null)
+                throw new ArgumentOutOfRangeException(nameof(SpellId),
+                    $"Spelldata for SpellId ({SpellId}) not found");
 
             var averageMasteryHeal = GetAverageRawHealing(gameState, spellData)
                 * (_gameStateService.GetMasteryMultiplier(gameState) - 1);

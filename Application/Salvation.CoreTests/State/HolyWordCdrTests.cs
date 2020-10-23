@@ -116,6 +116,18 @@ namespace Salvation.CoreTests.State
             // Assert
             return Math.Round(_gameStateService.GetTotalHolyWordCooldownReduction(_state, spell, true), 10);
         }
+
+        [Test]
+        public void HWCDR_Invalid_Spell()
+        {
+            // Arrange
+
+            // Act
+            var result = _gameStateService.GetTotalHolyWordCooldownReduction(_state, Spell.DivineStar, true);
+
+            // Assert
+            Assert.AreEqual(0, result);
+        }
     }
 
     public class HolyWordTestSpells

@@ -104,12 +104,12 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             double averageDRPC = duration
                 * targetDamageTakenPerSecond
-                * (baseDamageReduction / 100);
+                * (baseDamageReduction / -100d);
 
             // Benevolent
             // See GetAverageSpell()
 
-            return averageDRPC;
+            return averageDRPC * GetNumberOfHealingTargets(gameState, spellData);
         }
 
         public override double GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)

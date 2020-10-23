@@ -45,6 +45,7 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.HolyWordSanctify,
                 (uint)Spell.HolyWordSerenity,
                 (uint)Spell.PrayerOfMending,
+                (uint)Spell.PrayerOfMendingRank2,
                 (uint)Spell.PrayerOfMendingBuff,
                 (uint)Spell.PrayerOfMendingHeal,
                 (uint)Spell.EchoOfLight,
@@ -60,7 +61,7 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.AscendedEruption,
                 (uint)Spell.UnholyNova,
                 (uint)Spell.UnholyTransfusion,
-                (uint)Spell.UnholyTransfusionDebuff,
+                (uint)Spell.UnholyTransfusionDoT,
 
                 // Legendaries
                 (uint)Spell.HarmoniousApparatus,
@@ -142,7 +143,7 @@ namespace Salvation.Utility.SpellDataUpdate
                 ChargeCooldown = spell.ChargeCooldown,
                 Charges = spell.Charges,
                 Duration = spell.Duration,
-                Gcd = spell.Gcd / 1000,
+                Gcd = spell.Gcd / 1000d,
                 ConduitRanks = spell.ConduitRanks
                 //newSpell.IsMasteryTriggered = ; // So this another weird one. Anything that has a healing effect of type 10 (Direct Heal) seems to proc it.
             };

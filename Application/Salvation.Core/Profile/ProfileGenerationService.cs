@@ -123,7 +123,7 @@ namespace Salvation.Core.Profile
                     new CastProfile((int)Spell.EchoOfLight, 0d, 0.4224d, 1, 0), // Echo
                     // Covenants (SpellId, Efficiency, Overheal)
                     new CastProfile((int)Spell.Mindgames, 1.0d, 0.0d, 1, 1), // Mindgames
-                    new CastProfile((int)Spell.FaeGuardians, 1.0d, 0.0d, 0, 0), // Fae Guardians
+                    new CastProfile((int)Spell.FaeGuardians, 1.0d, 0.0d, 1, 0), // Fae Guardians
                     new CastProfile((int)Spell.BoonOfTheAscended, 1.0d, 0.0d, 0, 0), // Boon of the Ascended
                     new CastProfile((int)Spell.AscendedNova, 1.0d, 0.0d, 5, 1), // Ascended Nova
                     new CastProfile((int)Spell.AscendedBlast, 1.0d, 0.0d, 1, 1), // Ascended Blast

@@ -23,7 +23,8 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             var holyPriestAuraHealingBonus = _gameStateService.GetSpellData(gameState, Spell.HolyPriest)
                 .GetEffect(179715).BaseValue / 100 + 1;
 
-            var divineHymnAura = spellData.GetEffect(59162).TriggerSpell.GetEffect(59166).BaseValue;
+            // Effect 59166 holds the aura bonus, 10 = 10%.
+            var divineHymnAura = spellData.GetEffect(59162).TriggerSpell.GetEffect(59166).BaseValue / 100;
 
             // DH's average heal for the first tick is:
             // SP% * Intellect * Vers * Hpriest Aura

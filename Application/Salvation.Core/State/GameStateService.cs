@@ -29,11 +29,43 @@ namespace Salvation.Core.State
             return castProfile;
         }
 
+        public double GetDrRating(double rating, double cost)
+        {
+            double result = 0; 
+            for (int i = 0;  i < rating; i++) { 
+                var percent = result / cost;
+                if (percent <= 30)
+                {
+                    result++;
+                }
+                else if (percent <= 39)
+                {
+                    result += .9;
+                }
+                else if (percent <= 47)
+                {
+                    result += .8;
+                }
+                else if (percent <= 54)
+                {
+                    result += .7;
+                }
+                else if (percent <= 66)
+                {
+                    result += .6;
+                }
+                else
+                {
+                    result += .5;
+                }
+            }
+            return result;
+        }
+
         public double GetCriticalStrikeMultiplier(GameState state)
         {
             // TODO: Add other sources of crit increase here
             var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.SpecId).FirstOrDefault();
-
             return 1 + specData.CritBase + (state.Profile.CritRating / specData.CritCost / 100);
         }
 

@@ -141,9 +141,13 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, (Spell)SpellId);
 
+            if (spellData == null)
+                throw new ArgumentOutOfRangeException(nameof(SpellId),
+                    $"Spelldata for SpellId ({SpellId}) not found");
+
             var baseMana = _gameStateService.GetBaseManaAmount(gameState);
 
-            return baseMana * spellData.ManaCost;
+            return baseMana * (spellData.ManaCost / 100);
         }
 
         public virtual double GetDuration(GameState gameState, BaseSpellData spellData = null)

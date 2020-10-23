@@ -150,8 +150,13 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         {
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, (Spell)SpellId);
+            
+            if (spellData == null)
+                throw new ArgumentOutOfRangeException(nameof(SpellId),
+                    $"Spelldata for SpellId ({SpellId}) not found");
 
-            return spellData.Duration;
+            // Spells are stored with duration in milliseconds. We want seconds.
+            return spellData.Duration / 1000;
         }
 
         /// <summary>

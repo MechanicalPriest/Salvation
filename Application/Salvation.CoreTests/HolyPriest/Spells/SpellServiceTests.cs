@@ -164,6 +164,19 @@ namespace Salvation.CoreTests.HolyPriest.Spells
             // Assert
             return result;
         }
+
+        [TestCaseSource(typeof(SpellServiceTestsData), nameof(SpellServiceTestsData.GetDuration))]
+        public double GetDuration(Type t)
+        {
+            // Arrange
+            var spellService = Spells.Where(s => s.GetType() == t).FirstOrDefault();
+
+            // Act
+            var result = spellService.GetDuration(_gameState, null);
+
+            // Assert
+            return result;
+        }
     }
 
     public class SpellServiceTestsData
@@ -312,6 +325,37 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(Renew)).Returns(1543.3922280986676d);
                 yield return new TestCaseData(typeof(UnholyNova)).Returns(8294.8485855589188d);
                 yield return new TestCaseData(typeof(UnholyTransfusion)).Returns(232.34869987560003d);
+            }
+        }
+        public static IEnumerable GetDuration
+        {
+            get
+            {
+                yield return new TestCaseData(typeof(AscendedBlast)).Returns(0);
+                yield return new TestCaseData(typeof(AscendedEruption)).Returns(0);
+                yield return new TestCaseData(typeof(AscendedNova)).Returns(0);
+                yield return new TestCaseData(typeof(BindingHeal)).Returns(0);
+                yield return new TestCaseData(typeof(BoonOfTheAscended)).Returns(10);
+                yield return new TestCaseData(typeof(CircleOfHealing)).Returns(0);
+                yield return new TestCaseData(typeof(DivineHymn)).Returns(8);
+                // For some reason Divstar has a duration of 15?
+                yield return new TestCaseData(typeof(DivineStar)).Returns(15); 
+                yield return new TestCaseData(typeof(FaeGuardians)).Returns(20);
+                yield return new TestCaseData(typeof(FlashHeal)).Returns(0);
+                // Halo has a 3.2s duration, travel time of the expansion?
+                yield return new TestCaseData(typeof(Halo)).Returns(3.2);
+                yield return new TestCaseData(typeof(Heal)).Returns(0);
+                yield return new TestCaseData(typeof(HolyNova)).Returns(0);
+                yield return new TestCaseData(typeof(HolyWordSalvation)).Returns(0);
+                yield return new TestCaseData(typeof(HolyWordSanctify)).Returns(0);
+                yield return new TestCaseData(typeof(HolyWordSerenity)).Returns(0);
+                yield return new TestCaseData(typeof(Mindgames)).Returns(5);
+                yield return new TestCaseData(typeof(PowerWordShield)).Returns(15);
+                yield return new TestCaseData(typeof(PrayerOfHealing)).Returns(0);
+                yield return new TestCaseData(typeof(PrayerOfMending)).Returns(0);
+                yield return new TestCaseData(typeof(Renew)).Returns(15);
+                yield return new TestCaseData(typeof(UnholyNova)).Returns(0);
+                yield return new TestCaseData(typeof(UnholyTransfusion)).Returns(15);
             }
         }
     }

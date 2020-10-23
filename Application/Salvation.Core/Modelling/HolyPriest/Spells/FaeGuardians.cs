@@ -93,7 +93,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             // TODO: Move this to configuration
             double targetDamageTakenPerSecond = _gameStateService.GetPlaystyle(gameState, "FaeGuardianFaerieDTPS").Value;
 
-            var duration = GetDuration(gameState, spellData) / 1000;
+            var duration = GetDuration(gameState, spellData);
 
             var guardianFaerieData = _gameStateService.GetSpellData(gameState, Spell.GuardianFaerie);
 

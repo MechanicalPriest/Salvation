@@ -47,5 +47,20 @@ namespace Salvation.CoreTests.HolyPriest.Spells
             // Assert
             Assert.Throws<ArgumentOutOfRangeException>(methodCall);
         }
+
+        [Test]
+        public void GetDuration_Throws_NoSpelldata()
+        {
+            // Arrange
+            IGameStateService gameStateService = new GameStateService();
+            var spellService = new SpellService(gameStateService);
+
+            // Act
+            var methodCall = new TestDelegate(
+                () => spellService.GetDuration(_gameState, null));
+
+            // Assert
+            Assert.Throws<ArgumentOutOfRangeException>(methodCall);
+        }
     }
 }

@@ -81,7 +81,7 @@ namespace Salvation.Core.Interfaces.Modelling.HolyPriest.Spells
         /// </summary>
         public double GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null);
         /// <summary>
-        /// Get the duration of the cast. Typically for buffs/debuffs and DoTs/HoTs.
+        /// Get the duration of the cast in seconds. Typically for buffs/debuffs and DoTs/HoTs.
         /// </summary>
         public double GetDuration(GameState gameState, BaseSpellData spellData = null);
         public double GetMinimumHealTargets(GameState gameState, BaseSpellData spellData);

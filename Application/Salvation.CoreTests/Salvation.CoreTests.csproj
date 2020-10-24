@@ -9,6 +9,8 @@
   <ItemGroup>
     <None Remove="HolyPriest\TestData\SpellServiceTests_constants.json" />
     <None Remove="HolyPriest\TestData\SpellServiceTests_profile.json" />
+    <None Remove="State\TestData\StateTests_constants.json" />
+    <None Remove="State\TestData\StateTests_profile.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -16,6 +18,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="HolyPriest\TestData\SpellServiceTests_profile.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="State\TestData\StateTests_constants.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="State\TestData\StateTests_profile.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

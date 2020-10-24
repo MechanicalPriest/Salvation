@@ -204,6 +204,16 @@
       "Name": "FaeGuardianFaerieDTPS",
       "Value": 4000.0,
       "SpellId": 327694
+    },
+    {
+      "Name": "FaeFermataNumberDRSwaps",
+      "Value": 1.0,
+      "SpellId": 338305
+    },
+    {
+      "Name": "FaeFermataNumberCDRSwaps",
+      "Value": 3.0,
+      "SpellId": 338305
     }
   ]
 }

@@ -112,7 +112,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         /// <summary>
         /// Get the bonus damage per stack of boon. It's stored as an int, 3 = 3% bonus damage per stack
         /// </summary>
-        public double GetBoonBonusPerStack(GameState gameState)
+        internal double GetBoonBonusPerStack(GameState gameState)
         {
             // The bonus is stored as an int. 3 = 3%
             var boonSpellData = _gameStateService.GetSpellData(gameState, Spell.BoonOfTheAscended);

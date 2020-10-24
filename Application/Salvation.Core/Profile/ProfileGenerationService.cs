@@ -140,6 +140,10 @@ namespace Salvation.Core.Profile
                 {
                     new PlaystyleEntry("FaeBenevolentFaerieSelfUptime", 1, (uint)Spell.BenevolentFaerie),
                     new PlaystyleEntry("FaeGuardianFaerieDTPS", 4000, (uint)Spell.GuardianFaerie),
+                    // The number of times you move the Guardian Faerie around
+                    new PlaystyleEntry("FaeFermataNumberDRSwaps", 1, (uint)Spell.FaeFermata),
+                    // The number of times you move the Benevolent Faerie around
+                    new PlaystyleEntry("FaeFermataNumberCDRSwaps", 3, (uint)Spell.FaeFermata),
                 }
             };
 

@@ -61,7 +61,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
                 * _gameStateService.GetIntellect(gameState)
                 * holyPriestAuraDamagePeriodicBonus
                 * _gameStateService.GetVersatilityMultiplier(gameState)
-                * 5; // Number of ticks
+                * (GetDuration(gameState, spellData) / 3d); // Number of ticks
 
             _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip (Dmg): {averageDamage:0.##} (tick)");
 

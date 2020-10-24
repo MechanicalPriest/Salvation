@@ -5,7 +5,6 @@ using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.Modelling.Common;
 using Salvation.Core.State;
-using System.Collections.Generic;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
@@ -14,21 +13,19 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         private readonly IUnholyTransfusionSpellService _unholyTransfuionSpellService;
 
         public UnholyNova(IGameStateService gameStateService,
-            IModellingJournal journal,
             IUnholyTransfusionSpellService unholyTransfuionSpellService)
-            : base(gameStateService, journal)
+            : base(gameStateService)
         {
             SpellId = (int)Spell.UnholyNova;
             _unholyTransfuionSpellService = unholyTransfuionSpellService;
         }
 
-        public override AveragedSpellCastResult GetCastResults(GameState gameState, BaseSpellData spellData = null,
-            Dictionary<string, decimal> moreData = null)
+        public override AveragedSpellCastResult GetCastResults(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, Spell.UnholyNova);
 
-            AveragedSpellCastResult result = base.GetCastResults(gameState, spellData, moreData);
+            AveragedSpellCastResult result = base.GetCastResults(gameState, spellData);
 
             // Apply the transufion DoT/HoT
             var unholyTransfusionSpellData = _gameStateService.GetSpellData(gameState, Spell.UnholyTransfusion);
@@ -40,40 +37,62 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             return result;
         }
 
-        public override decimal GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null,
-            Dictionary<string, decimal> moreData = null)
+        public override double GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, Spell.UnholyNova);
 
-            var holyPriestAuraHealingBonus = _gameStateService.GetModifier(gameState, "HolyPriestAuraHealingMultiplier").Value;
+            var holyPriestAuraHealingBonus = _gameStateService.GetSpellData(gameState, Spell.HolyPriest)
+                .GetEffect(179715).BaseValue / 100 + 1;
 
-            decimal averageHeal = spellData.Coeff1
+            var healingSp = spellData.GetEffect(814521).SpCoefficient;
+
+            double averageHeal = healingSp
                 * _gameStateService.GetIntellect(gameState)
                 * _gameStateService.GetVersatilityMultiplier(gameState)
                 * holyPriestAuraHealingBonus;
 
-            _journal.Entry($"[{spellData.Name}] Tooltip: {averageHeal:0.##}");
+            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {averageHeal:0.##}");
 
             averageHeal *= _gameStateService.GetCriticalStrikeMultiplier(gameState);
 
-            return averageHeal * GetNumberOfHealingTargets(gameState, spellData, moreData);
+            return averageHeal * GetNumberOfHealingTargets(gameState, spellData);
         }
 
-        public override decimal GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null,
-            Dictionary<string, decimal> moreData = null)
+        public override double GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, Spell.UnholyNova);
 
-            var hastedCastTime = GetHastedCastTime(gameState, spellData, moreData);
-            var hastedCd = GetHastedCooldown(gameState, spellData, moreData);
+            var hastedCastTime = GetHastedCastTime(gameState, spellData);
+            var hastedCd = GetHastedCooldown(gameState, spellData);
             var fightLength = gameState.Profile.FightLengthSeconds;
 
-            decimal maximumPotentialCasts = 60m / (hastedCastTime + hastedCd)
-                + 1m / (fightLength / 60m);
+            double maximumPotentialCasts = 60d / (hastedCastTime + hastedCd)
+                + 1d / (fightLength / 60d);
 
             return maximumPotentialCasts;
+        }
+
+        public override double GetMaximumHealTargets(GameState gameState, BaseSpellData spellData)
+        {
+            if (spellData == null)
+                spellData = _gameStateService.GetSpellData(gameState, Spell.UnholyNova);
+
+            // UN stores its max healing targets in effect 844015 #2
+            var numTargets = spellData.GetEffect(844015).BaseValue;
+
+            return numTargets;
+        }
+
+        public override double GetMinimumHealTargets(GameState gameState, BaseSpellData spellData)
+        {
+            return 1;
+        }
+
+        public override double GetMaximumDamageTargets(GameState gameState, BaseSpellData spellData)
+        {
+            return double.MaxValue;
         }
     }
 }

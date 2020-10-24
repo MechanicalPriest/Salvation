@@ -16,7 +16,7 @@ namespace Salvation.Core.Modelling.Common
     public class StatWeightResultEntry
     {
         public string Stat { get; set; }
-        public decimal Weight { get; set; }
-        public decimal Value { get; set; }
+        public double Weight { get; set; }
+        public double Value { get; set; }
     }
 }

@@ -13,6 +13,7 @@ using Salvation.Core.Modelling.HolyPriest;
 using Salvation.Core.Modelling.HolyPriest.Spells;
 using Salvation.Core.Profile;
 using Salvation.Core.State;
+using SimcProfileParser;
 
 [assembly: FunctionsStartup(typeof(Salvation.Api.Startup))]
 namespace Salvation.Api
@@ -24,7 +25,6 @@ namespace Salvation.Api
             // Common services
             builder.Services.AddSingleton<IConstantsService, ConstantsService>();
             builder.Services.AddSingleton<IGameStateService, GameStateService>();
-            builder.Services.AddSingleton<IModellingJournal, ModellingJournal>();
             builder.Services.AddSingleton<IProfileGenerationService, ProfileGenerationService>();
             builder.Services.AddSingleton<IStatWeightGenerationService, StatWeightGenerator>();
 
@@ -57,6 +57,9 @@ namespace Salvation.Api
             builder.Services.AddSingleton<IAscendedBlastSpellService, AscendedBlast>();
             builder.Services.AddSingleton<IAscendedNovaSpellService, AscendedNova>();
             builder.Services.AddSingleton<IAscendedEruptionSpellService, AscendedEruption>();
+
+            // SimcProfileParser
+            builder.Services.AddSimcProfileParser();
         }
     }
 }

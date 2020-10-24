@@ -32,7 +32,7 @@ namespace Salvation.Utility.SpellDataDump
 
             while (nextIndex != -1)
             {
-                spells.Add(spellData.Substring(startIndex, nextIndex - startIndex));
+                spells.Add(spellData[startIndex..nextIndex]);
 
                 startIndex = nextIndex;
                 nextIndex = spellData.IndexOf("Name             :", startIndex + 18);

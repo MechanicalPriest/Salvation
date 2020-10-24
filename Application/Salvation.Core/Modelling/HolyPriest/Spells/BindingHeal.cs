@@ -4,55 +4,65 @@ using Salvation.Core.Interfaces;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.State;
-using System.Collections.Generic;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
     public class BindingHeal : SpellService, IBindingHealSpellService
     {
-        public BindingHeal(IGameStateService gameStateService,
-            IModellingJournal journal)
-            : base(gameStateService, journal)
+        public BindingHeal(IGameStateService gameStateService)
+            : base(gameStateService)
         {
             SpellId = (int)Spell.BindingHeal;
         }
 
-        public override decimal GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null,
-            Dictionary<string, decimal> moreData = null)
+        public override double GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, Spell.BindingHeal);
 
-            var holyPriestAuraHealingBonus = _gameStateService.GetModifier(gameState, "HolyPriestAuraHealingMultiplier").Value;
+            var holyPriestAuraHealingBonus = _gameStateService.GetSpellData(gameState, Spell.HolyPriest)
+                .GetEffect(179715).BaseValue / 100 + 1;
 
-            decimal averageHeal = spellData.Coeff1
+            var healingSp = spellData.GetEffect(22314).SpCoefficient;
+
+            double averageHeal = healingSp
                 * _gameStateService.GetIntellect(gameState)
                 * _gameStateService.GetVersatilityMultiplier(gameState)
                 * holyPriestAuraHealingBonus;
 
-            _journal.Entry($"[{spellData.Name}] Tooltip: {averageHeal:0.##}");
+            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {averageHeal:0.##}");
 
             averageHeal *= _gameStateService.GetCriticalStrikeMultiplier(gameState);
 
-            return averageHeal * GetNumberOfHealingTargets(gameState, spellData, moreData);
+            return averageHeal * GetNumberOfHealingTargets(gameState, spellData);
         }
 
-        public override decimal GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null,
-            Dictionary<string, decimal> moreData = null)
+        public override double GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, Spell.BindingHeal);
 
-            var hastedCastTime = GetHastedCastTime(gameState, spellData, moreData);
-            var hastedGcd = GetHastedGcd(gameState, spellData, moreData);
+            var hastedCastTime = GetHastedCastTime(gameState, spellData);
+            var hastedGcd = GetHastedGcd(gameState, spellData);
 
-            decimal fillerCastTime = hastedCastTime == 0
+            double fillerCastTime = hastedCastTime == 0
                 ? hastedGcd
                 : hastedCastTime;
 
-            decimal maximumPotentialCasts = 60m / fillerCastTime;
+            double maximumPotentialCasts = 60d / fillerCastTime;
 
             return maximumPotentialCasts;
+        }
+
+        public override double GetMinimumHealTargets(GameState gameState, BaseSpellData spellData)
+        {
+            // Requires a target to cast, doesn't always need a 3rd person
+            return 2;
+        }
+
+        public override double GetMaximumHealTargets(GameState gameState, BaseSpellData spellData)
+        {
+            return 3;
         }
     }
 }

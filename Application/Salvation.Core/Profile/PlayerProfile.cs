@@ -2,13 +2,12 @@
 using Salvation.Core.Constants.Data;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 
 namespace Salvation.Core.Profile
 {
-    
-    
+
+
 
 
 
@@ -34,7 +33,7 @@ namespace Salvation.Core.Profile
         /// <summary>
         /// Active conduits. Conduit:rank
         /// </summary>
-        public Dictionary<Conduit, int> Conduits { get; set; }
+        public Dictionary<Conduit, uint> Conduits { get; set; }
         public List<Soulbind> Soulbinds { get; set; }
 
         public Covenant Covenant { get; set; }
@@ -42,15 +41,17 @@ namespace Salvation.Core.Profile
 
         // Misc info
         public int FightLengthSeconds { get; set; }
+        public List<PlaystyleEntry> PlaystyleEntries { get; set; }
 
         public PlayerProfile()
         {
             Casts = new List<CastProfile>();
             Talents = new List<Talent>();
             Covenant = Covenant.None;
-            Conduits = new Dictionary<Conduit, int>();
+            Conduits = new Dictionary<Conduit, uint>();
             Soulbinds = new List<Soulbind>();
             Legendaries = new List<Spell>();
+            PlaystyleEntries = new List<PlaystyleEntry>();
         }
 
         public bool IsTalentActive(Talent talent)

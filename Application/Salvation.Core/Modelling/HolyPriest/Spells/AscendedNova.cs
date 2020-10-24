@@ -5,89 +5,112 @@ using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.State;
 using System;
-using System.Collections.Generic;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
     public class AscendedNova : SpellService, IAscendedNovaSpellService
     {
-        public AscendedNova(IGameStateService gameStateService,
-            IModellingJournal journal)
-            : base(gameStateService, journal)
+        public AscendedNova(IGameStateService gameStateService)
+            : base(gameStateService)
         {
             SpellId = (int)Spell.AscendedNova;
         }
 
-        public override decimal GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null, Dictionary<string, decimal> moreData = null)
+        public override double GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, Spell.AscendedNova);
 
-            var holyPriestAuraHealingBonus = _gameStateService.GetModifier(gameState, "HolyPriestAuraHealingMultiplier").Value;
+            var holyPriestAuraHealingBonus = _gameStateService.GetSpellData(gameState, Spell.HolyPriest)
+                .GetEffect(179715).BaseValue / 100 + 1;
+            // AN has a trigger spell in one of its effects which containst the SP coefficient
+            var healingSp = spellData.GetEffect(815031).TriggerSpell.GetEffect(815030).SpCoefficient;
 
-            decimal averageHeal = spellData.Coeff2
+            double averageHeal = healingSp
                 * _gameStateService.GetIntellect(gameState)
                 * _gameStateService.GetVersatilityMultiplier(gameState)
                 * holyPriestAuraHealingBonus;
 
-            _journal.Entry($"[{spellData.Name}] Tooltip: {averageHeal:0.##}");
+            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {averageHeal:0.##}");
 
             averageHeal *= _gameStateService.GetCriticalStrikeMultiplier(gameState);
 
             // Apply the 1/sqrt() scaling based on no. targets
-            averageHeal *= 1 / (decimal)Math.Sqrt((double)GetNumberOfHealingTargets(gameState, spellData, moreData));
+            averageHeal *= 1 / Math.Sqrt(GetNumberOfHealingTargets(gameState, spellData));
 
-            return averageHeal * GetNumberOfHealingTargets(gameState, spellData, moreData);
+            return averageHeal * GetNumberOfHealingTargets(gameState, spellData);
         }
 
-        public override decimal GetAverageDamage(GameState gameState, BaseSpellData spellData = null, Dictionary<string, decimal> moreData = null)
+        public override double GetAverageDamage(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, Spell.AscendedNova);
 
-            var holyPriestAuraDamageBonus = _gameStateService.GetModifier(gameState, "HolyPriestAuraDamageMultiplier").Value;
+            var holyPriestAuraDamageBonus = _gameStateService.GetSpellData(gameState, Spell.HolyPriest)
+                .GetEffect(191077).BaseValue / 100 + 1;
 
-            decimal averageDamage = spellData.Coeff1
+            var damageSp = spellData.GetEffect(814997).SpCoefficient;
+
+            double averageDamage = damageSp
                 * _gameStateService.GetIntellect(gameState)
                 * _gameStateService.GetVersatilityMultiplier(gameState)
                 * holyPriestAuraDamageBonus;
 
-            _journal.Entry($"[{spellData.Name}] Tooltip (Dmg): {averageDamage:0.##}");
+            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip (Dmg): {averageDamage:0.##}");
 
             averageDamage *= _gameStateService.GetCriticalStrikeMultiplier(gameState);
 
-            averageDamage *= 1 / (decimal)Math.Sqrt((double)GetNumberOfDamageTargets(gameState, spellData, moreData));
+            averageDamage *= 1 / Math.Sqrt(GetNumberOfDamageTargets(gameState, spellData));
 
-            return averageDamage * GetNumberOfDamageTargets(gameState, spellData, moreData);
+            return averageDamage * GetNumberOfDamageTargets(gameState, spellData);
         }
 
-        public override decimal GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null, Dictionary<string, decimal> moreData = null)
+        public override double GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, Spell.AscendedNova);
 
-            if (moreData == null)
-                throw new ArgumentNullException("moreData");
+            if (!spellData.Overrides.ContainsKey(Override.CastsPerMinute))
+                throw new ArgumentOutOfRangeException("Overrides", "Does not contain CastsPerMinute");
 
-            if (!moreData.ContainsKey("BoonOfTheAscended.CPM"))
-                throw new ArgumentOutOfRangeException("moreData", "Does not contain BoonOfTheAscended.CPM");
+            var boonCPM = spellData.Overrides[Override.CastsPerMinute];
 
-            var boonCPM = moreData["BoonOfTheAscended.CPM"];
+            if (!spellData.Overrides.ContainsKey(Override.AllowedDuration))
+                throw new ArgumentOutOfRangeException("moreData", "Does not contain AllowedDuration");
 
-            if (!moreData.ContainsKey("BoonOfTheAscended.LeftoverDuration"))
-                throw new ArgumentOutOfRangeException("moreData", "Does not contain BoonOfTheAscended.Duration");
+            var allowedDuration = spellData.Overrides[Override.AllowedDuration];
 
-            var allowedDuration = moreData["BoonOfTheAscended.LeftoverDuration"];
-
-            var hastedGcd = GetHastedGcd(gameState, spellData, moreData);
+            var hastedGcd = GetHastedGcd(gameState, spellData);
 
             // Max casts is whatever time we have available multiplied by efficiency
-            decimal maximumPotentialCasts = allowedDuration / hastedGcd;
+            double maximumPotentialCasts = allowedDuration / hastedGcd;
 
             // This is the maximum potential casts per Boon CD
-            maximumPotentialCasts = maximumPotentialCasts * boonCPM;
+            maximumPotentialCasts *= boonCPM;
 
             return maximumPotentialCasts;
+        }
+
+        public override double GetMaximumHealTargets(GameState gameState, BaseSpellData spellData)
+        {
+            if (spellData == null)
+                spellData = _gameStateService.GetSpellData(gameState, Spell.AscendedNova);
+
+            // AN stores its max heal targets in the trigger spells effect
+            var numTargets = spellData.GetEffect(815031)
+                    .TriggerSpell.GetEffect(844031).BaseValue;
+
+            return numTargets;
+        }
+
+        public override double GetMinimumHealTargets(GameState gameState, BaseSpellData spellData)
+        {
+            return 1;
+        }
+
+        public override double GetMaximumDamageTargets(GameState gameState, BaseSpellData spellData)
+        {
+            return double.MaxValue;
         }
     }
 }

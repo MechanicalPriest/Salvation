@@ -4,58 +4,96 @@ using Salvation.Core.Interfaces;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.State;
-using System.Collections.Generic;
+using System;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
     public class PrayerOfMending : SpellService, IPrayerOfMendingSpellService
     {
-        public PrayerOfMending(IGameStateService gameStateService,
-            IModellingJournal journal)
-            : base(gameStateService, journal)
+        public PrayerOfMending(IGameStateService gameStateService)
+            : base(gameStateService)
         {
             SpellId = (int)Spell.PrayerOfMending;
         }
 
-        public override decimal GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null,
-            Dictionary<string, decimal> moreData = null)
+        public override double GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, Spell.PrayerOfMending);
 
-            var holyPriestAuraHealingBonus = _gameStateService.GetModifier(gameState, "HolyPriestAuraHealingMultiplier").Value;
+            var holyPriestAuraHealingBonus = _gameStateService.GetSpellData(gameState, Spell.HolyPriest)
+                .GetEffect(179715).BaseValue / 100 + 1;
 
-            decimal averageHeal = spellData.Coeff1
+            var pomHealData = _gameStateService.GetSpellData(gameState, Spell.PrayerOfMendingHeal);
+
+            var healingSp = pomHealData.GetEffect(22918).SpCoefficient;
+
+            double averageHeal = healingSp
                 * _gameStateService.GetIntellect(gameState)
                 * _gameStateService.GetVersatilityMultiplier(gameState)
                 * holyPriestAuraHealingBonus;
 
-            _journal.Entry($"[{spellData.Name}] Tooltip: {averageHeal:0.##}");
+            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {averageHeal:0.##}");
+
+            // Number of initial PoM stacks
+            var numPoMStacks = spellData.GetEffect(22870).BaseValue;
+
+            // Override used by Salvation to apply 2-stack PoMs
+            if (spellData.Overrides.ContainsKey(Override.ResultMultiplier))
+                numPoMStacks = spellData.Overrides[Override.ResultMultiplier];
 
             averageHeal *= _gameStateService.GetCriticalStrikeMultiplier(gameState)
-                * spellData.Coeff2; // Coeff2 is number of initial stacks
+                * numPoMStacks;
 
-            return averageHeal * GetNumberOfHealingTargets(gameState, spellData, moreData);
+            return averageHeal * GetNumberOfHealingTargets(gameState, spellData);
         }
 
-        public override decimal GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null,
-            Dictionary<string, decimal> moreData = null)
+        public override double GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, Spell.PrayerOfMending);
 
-            var hastedCastTime = GetHastedCastTime(gameState, spellData, moreData);
-            var hastedGcd = GetHastedGcd(gameState, spellData, moreData);
-            var hastedCd = GetHastedCooldown(gameState, spellData, moreData);
+            var hastedCastTime = GetHastedCastTime(gameState, spellData);
+            var hastedGcd = GetHastedGcd(gameState, spellData);
+            var hastedCd = GetHastedCooldown(gameState, spellData);
 
             // A fix to the spell being modified to have no cast time and no gcd and no CD
             // This can happen if it's a component in another spell
             if (hastedCastTime == 0 && hastedGcd == 0 && hastedCd == 0)
                 return 0;
 
-            decimal maximumPotentialCasts = 60m / (hastedCastTime + hastedCd);
+            double maximumPotentialCasts = 60d / (hastedCastTime + hastedCd);
 
             return maximumPotentialCasts;
+        }
+
+        public override double GetMinimumHealTargets(GameState gameState, BaseSpellData spellData)
+        {
+            return 1;
+        }
+
+        public override double GetMaximumHealTargets(GameState gameState, BaseSpellData spellData)
+        {
+            return 1;
+        }
+
+        public override double GetHastedCastTime(GameState gameState, BaseSpellData spellData = null)
+        {
+            if (spellData == null)
+                spellData = _gameStateService.GetSpellData(gameState, (Spell)SpellId);
+
+            if (spellData == null)
+                throw new ArgumentOutOfRangeException(nameof(SpellId),
+                    $"Spelldata for SpellId ({SpellId}) not found");
+
+            // Apply PoM rank 2 to reduce the cast time by 100%.
+            var pomRank2 = _gameStateService.GetSpellData(gameState, Spell.PrayerOfMendingRank2);
+
+            var castTimeMulti = pomRank2.GetEffect(806684).BaseValue;
+
+            spellData.BaseCastTime *= (1d + castTimeMulti / 100d);
+
+            return base.GetHastedCastTime(gameState, spellData);
         }
     }
 }

@@ -6,22 +6,27 @@
         /// <summary>
         /// A percentage of the maximum potential spellcasts
         /// </summary>
-        public decimal Efficiency { get; set; }
+        public double Efficiency { get; set; }
         /// <summary>
         /// How much this spell overheals for on average
         /// </summary>
-        public decimal OverhealPercent { get; set; }
+        public double OverhealPercent { get; set; }
+        public double AverageHealingTargets { get; set; }
+        public double AverageDamageTargets { get; set; }
 
         public CastProfile()
         {
 
         }
 
-        public CastProfile(int spellId, decimal efficiency, decimal overhealPercent)
+        public CastProfile(int spellId, double efficiency, double overhealPercent,
+            double avgHealingTargets, double avgDamageTargets)
         {
             SpellId = spellId;
             Efficiency = efficiency;
             OverhealPercent = overhealPercent;
+            AverageHealingTargets = avgHealingTargets;
+            AverageDamageTargets = avgDamageTargets;
         }
     }
 }

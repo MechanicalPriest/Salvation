@@ -36,10 +36,8 @@ namespace Salvation.Core.Constants.Data
                 FieldInfo field = type.GetField(name);
                 if (field != null)
                 {
-                    DescriptionAttribute attr =
-                           Attribute.GetCustomAttribute(field,
-                             typeof(DescriptionAttribute)) as DescriptionAttribute;
-                    if (attr != null)
+                    if (Attribute.GetCustomAttribute(field,
+                             typeof(DescriptionAttribute)) is DescriptionAttribute attr)
                     {
                         return attr.Description;
                     }

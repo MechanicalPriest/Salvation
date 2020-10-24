@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Hosting;
 using Salvation.Explorer.Modelling;
+using Salvation.Utility.SpellDataUpdate;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -7,26 +8,51 @@ namespace Salvation.Explorer
 {
     class Explorer : IHostedService
     {
+        private readonly string[] _args;
         private readonly IHolyPriestExplorer _holyPriestExplorer;
+        private readonly ISpellDataUpdateService _spellDataUpdateService;
 
-        public Explorer(IHolyPriestExplorer holyPriestExplorer)
+        public Explorer(string[] args,
+            IHolyPriestExplorer holyPriestExplorer,
+            ISpellDataUpdateService spellDataUpdateService)
         {
+            _args = args;
             _holyPriestExplorer = holyPriestExplorer;
+            _spellDataUpdateService = spellDataUpdateService;
         }
 
-        public Task StartAsync(CancellationToken cancellationToken)
+        public async Task StartAsync(CancellationToken cancellationToken)
         {
-            _holyPriestExplorer.GenerateStatWeights();
-            _holyPriestExplorer.CompareCovenants();
-            _holyPriestExplorer.TestHolyPriestModel(); // Test stat weights
+            foreach (var arg in _args)
+            {
+                if (string.IsNullOrEmpty(arg) || arg.Length < 2 || arg[0] != '-')
+                    continue;
 
-            return Task.Delay(1);
+                switch (arg.Substring(1).ToLower())
+                {
+                    case "updatespelldata":
+                        await _spellDataUpdateService.UpdateSpellData();
+                        break;
+                    case "generatestatweights":
+                        _holyPriestExplorer.GenerateStatWeights();
+                        break;
+                    case "comparecovenants":
+                        _holyPriestExplorer.CompareCovenants();
+                        break;
+                    case "testholypriest":
+                        _holyPriestExplorer.TestHolyPriestModel(); // Test stat weights
+                        break;
+                    default:
+                        break;
+                }
+            }
+            System.Console.WriteLine("Done running all tasks. Ctrl + C to exit");
         }
 
-        public Task StopAsync(CancellationToken cancellationToken)
+        public async Task StopAsync(CancellationToken cancellationToken)
         {
-            //throw new NotImplementedException();
-            return Task.Delay(1);
+            await Task.Delay(1);
+            return;
         }
     }
 }

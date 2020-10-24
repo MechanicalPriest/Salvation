@@ -2,6 +2,7 @@
 using Salvation.Core.Constants.Data;
 using Salvation.Core.Profile;
 using Salvation.Core.State;
+using System.Collections.Generic;
 
 namespace Salvation.Core.Interfaces.State
 {
@@ -13,30 +14,31 @@ namespace Salvation.Core.Interfaces.State
     {
         // Global constants
         BaseSpellData GetSpellData(GameState state, Spell spellId);
-        BaseModifier GetModifier(GameState state, string modifierName);
         CastProfile GetCastProfile(GameState state, int spellId);
-        ConduitData GetConduitData(GameState state, Conduit conduitId);
+        PlaystyleEntry GetPlaystyle(GameState state, string name);
         Covenant GetActiveCovenant(GameState state);
         void OverrideSpellData(GameState state, BaseSpellData newData);
-        void OverrideModifier(GameState state, BaseModifier newModifier);
+        void OverridePlaystyle(GameState state, PlaystyleEntry newPlaystyle);
 
         // Player Stats
-        decimal GetIntellect(GameState state);
-        decimal GetVersatilityMultiplier(GameState state);
-        decimal GetCriticalStrikeMultiplier(GameState state);
-        decimal GetMasteryMultiplier(GameState state);
-        decimal GetHasteMultiplier(GameState state);
-        decimal GetBaseManaAmount(GameState state);
+        double GetIntellect(GameState state);
+        double GetVersatilityMultiplier(GameState state);
+        double GetCriticalStrikeMultiplier(GameState state);
+        double GetMasteryMultiplier(GameState state);
+        double GetHasteMultiplier(GameState state);
+        double GetBaseManaAmount(GameState state);
 
         // Player Configuration
         bool IsConduitActive(GameState state, Conduit conduit);
-        int GetConduitRank(GameState state, Conduit conduit);
+        uint GetConduitRank(GameState state, Conduit conduit);
         bool IsLegendaryActive(GameState state, Spell legendary);
 
         // Utility
         GameState CloneGameState(GameState state);
+        public List<string> GetJournal(GameState state, bool removeDuplicates = false);
+        public void JournalEntry(GameState state, string message);
 
         // Holy Priest specific
-        decimal GetTotalHolyWordCooldownReduction(GameState state, Spell spell, bool IsApotheosisActive = false);
+        double GetTotalHolyWordCooldownReduction(GameState state, Spell spell, bool IsApotheosisActive = false);
     }
 }

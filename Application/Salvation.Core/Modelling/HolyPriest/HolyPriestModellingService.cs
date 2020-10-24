@@ -4,7 +4,6 @@ using Salvation.Core.Interfaces.Modelling;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.Modelling.Common;
-using Salvation.Core.Profile;
 using Salvation.Core.State;
 using System;
 using System.Collections.Generic;
@@ -15,12 +14,10 @@ namespace Salvation.Core.Modelling.HolyPriest
     public class HolyPriestModellingService : IModellingService
     {
         private readonly IGameStateService _gameStateService;
-        private readonly IModellingJournal _journal;
 
         public List<ISpellService> Spells { get; private set; }
 
         public HolyPriestModellingService(IGameStateService gameStateService,
-            IModellingJournal journal,
             IFlashHealSpellService flashHealService,
             IHolyWordSerenitySpellService holyWordSerenitySpellService,
             IHolyWordSalvationSpellService holyWordSalvationSpellService,
@@ -42,7 +39,6 @@ namespace Salvation.Core.Modelling.HolyPriest
             IBoonOfTheAscendedSpellService boonOfTheAscendedSpellService)
         {
             _gameStateService = gameStateService;
-            _journal = journal;
 
             Spells = new List<ISpellService>
             {
@@ -75,7 +71,7 @@ namespace Salvation.Core.Modelling.HolyPriest
                 Profile = state.Profile
             };
 
-            _journal.Entry($"Results run started at {DateTime.Now:yyyy.MM.dd HH:mm:ss:ffff}.");
+            _gameStateService.JournalEntry(state, $"Results run started at {DateTime.Now:yyyy.MM.dd HH:mm:ss:ffff}.");
             var sw = new Stopwatch();
             sw.Start();
 
@@ -88,7 +84,7 @@ namespace Salvation.Core.Modelling.HolyPriest
                 }
                 else
                 {
-                    _journal.Entry($"[{spell.SpellId}] Skipped casting due to profile.");
+                    _gameStateService.JournalEntry(state, $"[{spell.SpellId}] Skipped casting due to profile.");
                 }
             }
 
@@ -105,18 +101,18 @@ namespace Salvation.Core.Modelling.HolyPriest
 
             // TODO: Add a get total mana pool amount for cases where mana pool isn't base
             var rawMana = _gameStateService.GetBaseManaAmount(state);
-            decimal totalRegenPerSecond = rawMana * 0.04m * 1 / 5m;
+            double totalRegenPerSecond = rawMana * 0.04d * 1 / 5d;
 
             var totalNegativeManaPerSecond = results.TotalMPS - totalRegenPerSecond;
             results.TimeToOom = rawMana / totalNegativeManaPerSecond;
 
             sw.Stop();
-            _journal.Entry($"Results: RawHPS ({results.TotalRawHPS:0.##}) HPS ({results.TotalActualHPS:0.##}) " +
+            _gameStateService.JournalEntry(state, $"Results: RawHPS ({results.TotalRawHPS:0.##}) HPS ({results.TotalActualHPS:0.##}) " +
                 $"MPS ({results.TotalMPS:0.##})");
-            _journal.Entry($"Results: RawHPM ({results.TotalRawHPM:0.##}) HPM ({results.TotalActualHPM:0.##})");
-            _journal.Entry($"Results: TtOoM {results.TimeToOom}s.");
+            _gameStateService.JournalEntry(state, $"Results: RawHPM ({results.TotalRawHPM:0.##}) HPM ({results.TotalActualHPM:0.##})");
+            _gameStateService.JournalEntry(state, $"Results: TtOoM {results.TimeToOom}s.");
 
-            _journal.Entry($"Results run done in {sw.ElapsedMilliseconds}ms.");
+            _gameStateService.JournalEntry(state, $"Results run done in {sw.ElapsedMilliseconds}ms.");
 
             return results;
         }
@@ -126,23 +122,14 @@ namespace Salvation.Core.Modelling.HolyPriest
         /// </summary>
         public bool IsSpellBeingCast(GameState state, Spell spellId)
         {
-            switch (spellId)
+            return spellId switch
             {
-                case Spell.BoonOfTheAscended:
-                    return _gameStateService.GetActiveCovenant(state) == Covenant.Kyrian;
-
-                case Spell.Mindgames:
-                    return _gameStateService.GetActiveCovenant(state) == Covenant.Venthyr;
-
-                case Spell.FaeGuardians:
-                    return _gameStateService.GetActiveCovenant(state) == Covenant.NightFae;
-
-                case Spell.UnholyNova:
-                    return _gameStateService.GetActiveCovenant(state) == Covenant.Necrolord;
-
-                default:
-                    return true;
-            }
+                Spell.BoonOfTheAscended => _gameStateService.GetActiveCovenant(state) == Covenant.Kyrian,
+                Spell.Mindgames => _gameStateService.GetActiveCovenant(state) == Covenant.Venthyr,
+                Spell.FaeGuardians => _gameStateService.GetActiveCovenant(state) == Covenant.NightFae,
+                Spell.UnholyNova => _gameStateService.GetActiveCovenant(state) == Covenant.Necrolord,
+                _ => true,
+            };
         }
 
         private void RollUpResults(BaseModelResults results, List<AveragedSpellCastResult> spells)
@@ -217,7 +204,7 @@ namespace Salvation.Core.Modelling.HolyPriest
         /// <summary>
         /// Roll up recursive subchildren into the main result summary for the spell
         /// </summary>
-        private void RollUpSpellParts(AveragedSpellCastResult resultSummary, List<AveragedSpellCastResult> spellParts, decimal parentCPM = 0)
+        private void RollUpSpellParts(AveragedSpellCastResult resultSummary, List<AveragedSpellCastResult> spellParts, double parentCPM = 0)
         {
             // Loop over each child and figure out how much it provides to the ResultSUmmary for this spell
             foreach (var part in spellParts)

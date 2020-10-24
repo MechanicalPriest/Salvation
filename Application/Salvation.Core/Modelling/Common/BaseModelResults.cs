@@ -10,12 +10,12 @@ namespace Salvation.Core.Modelling.Common
 
         public PlayerProfile Profile { get; set; }
 
-        public decimal TotalActualHPS { get; set; }
-        public decimal TotalRawHPS { get; set; }
-        public decimal TotalMPS { get; set; }
-        public decimal TotalRawHPM { get; set; }
-        public decimal TotalActualHPM { get; set; }
-        public decimal TimeToOom { get; set; }
+        public double TotalActualHPS { get; set; }
+        public double TotalRawHPS { get; set; }
+        public double TotalMPS { get; set; }
+        public double TotalRawHPM { get; set; }
+        public double TotalActualHPM { get; set; }
+        public double TimeToOom { get; set; }
         public AveragedSpellCastResult OverallResults { get; set; }
 
         public BaseModelResults()

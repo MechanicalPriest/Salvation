@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Salvation.Core\Salvation.Core.csproj" />
+    <ProjectReference Include="..\Salvation.Utility\Salvation.Utility.csproj" />
   </ItemGroup>
 
 </Project>

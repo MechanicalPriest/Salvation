@@ -4,55 +4,80 @@ using Salvation.Core.Interfaces;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.State;
-using System.Collections.Generic;
+using System;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
     public class HolyNova : SpellService, IHolyNovaSpellService
     {
-        public HolyNova(IGameStateService gameStateService,
-            IModellingJournal journal)
-            : base(gameStateService, journal)
+        public HolyNova(IGameStateService gameStateService)
+            : base(gameStateService)
         {
             SpellId = (int)Spell.HolyNova;
         }
 
-        public override decimal GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null,
-            Dictionary<string, decimal> moreData = null)
+        public override double GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, Spell.HolyNova);
 
-            var holyPriestAuraHealingBonus = _gameStateService.GetModifier(gameState, "HolyPriestAuraHealingMultiplier").Value;
+            var holyPriestAuraHealingBonus = _gameStateService.GetSpellData(gameState, Spell.HolyPriest)
+                .GetEffect(179715).BaseValue / 100 + 1;
 
-            decimal averageHeal = spellData.Coeff1
+            var healingSp = spellData.GetEffect(709210).TriggerSpell.GetEffect(739572).SpCoefficient;
+
+            double averageHeal = healingSp
                 * _gameStateService.GetIntellect(gameState)
                 * _gameStateService.GetVersatilityMultiplier(gameState)
                 * holyPriestAuraHealingBonus;
 
-            _journal.Entry($"[{spellData.Name}] Tooltip: {averageHeal:0.##}");
+            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {averageHeal:0.##}");
 
             averageHeal *= _gameStateService.GetCriticalStrikeMultiplier(gameState);
-            // TODO: Implement the SQRT scaling for holy nova after testing how it works more
-            return averageHeal * GetNumberOfHealingTargets(gameState, spellData, moreData);
+
+            // Apply the relative square root scaling
+            var numTargets = GetNumberOfHealingTargets(gameState, spellData);
+            averageHeal *= GetTargetScaling(numTargets);
+            
+            return averageHeal * numTargets;
         }
 
-        public override decimal GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null,
-            Dictionary<string, decimal> moreData = null)
+        internal double GetTargetScaling(double numTargets)
+        {
+            return (1 / Math.Sqrt(Math.Max(5, numTargets))) / ( 1 / Math.Sqrt(5));
+        }
+
+        public override double GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, Spell.HolyNova);
 
-            var hastedCastTime = GetHastedCastTime(gameState, spellData, moreData);
-            var hastedGcd = GetHastedGcd(gameState, spellData, moreData);
+            var hastedCastTime = GetHastedCastTime(gameState, spellData);
+            var hastedGcd = GetHastedGcd(gameState, spellData);
 
-            decimal fillerCastTime = hastedCastTime == 0
+            double fillerCastTime = hastedCastTime == 0
                 ? hastedGcd
                 : hastedCastTime;
 
-            decimal maximumPotentialCasts = 60m / fillerCastTime;
+            double maximumPotentialCasts = 60d / fillerCastTime;
 
             return maximumPotentialCasts;
+        }
+
+        public override double GetMinimumHealTargets(GameState gameState, BaseSpellData spellData)
+        {
+            return 1;
+        }
+
+        public override double GetMaximumHealTargets(GameState gameState, BaseSpellData spellData)
+        {
+            // TODO: Clamp to raid size?
+            return double.MaxValue;
+        }
+
+        public override double GetMaximumDamageTargets(GameState gameState, BaseSpellData spellData)
+        {
+            return double.MaxValue;
         }
     }
 }

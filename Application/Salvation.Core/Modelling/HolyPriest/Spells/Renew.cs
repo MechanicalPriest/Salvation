@@ -4,76 +4,88 @@ using Salvation.Core.Interfaces;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.State;
-using System.Collections.Generic;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
     public class Renew : SpellService, IRenewSpellService
     {
-        public Renew(IGameStateService gameStateService,
-            IModellingJournal journal)
-            : base(gameStateService, journal)
+        public Renew(IGameStateService gameStateService)
+            : base(gameStateService)
         {
             SpellId = (int)Spell.Renew;
         }
 
-        public override decimal GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null,
-            Dictionary<string, decimal> moreData = null)
+        public override double GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, Spell.Renew);
 
-            var holyPriestAuraHealingBonus = _gameStateService.GetModifier(gameState, "HolyPriestAuraHealingMultiplier").Value;
+            var holyPriestAuraHealingBonus = _gameStateService.GetSpellData(gameState, Spell.HolyPriest)
+                .GetEffect(179715).BaseValue / 100 + 1;
+
+            var holyPriestAuraHealingPeriodicBonus = _gameStateService.GetSpellData(gameState, Spell.HolyPriest)
+                .GetEffect(191076).BaseValue / 100 + 1;
+
+            var healingSp = spellData.GetEffect(95).SpCoefficient;
 
             // Renews's average heal is initial + HoT portion:
-            decimal averageHealFirstTick = spellData.Coeff1
+            double averageHealFirstTick = healingSp
                 * _gameStateService.GetIntellect(gameState)
                 * _gameStateService.GetVersatilityMultiplier(gameState)
                 * holyPriestAuraHealingBonus;
 
-            _journal.Entry($"[{spellData.Name}] Tooltip: {averageHealFirstTick:0.##} (first)");
+            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {averageHealFirstTick:0.##} (first)");
 
             averageHealFirstTick *= _gameStateService.GetCriticalStrikeMultiplier(gameState)
                 * _gameStateService.GetHasteMultiplier(gameState);
 
 
             // HoT is affected by haste
-            decimal averageHealTicks = spellData.Coeff1
+            double averageHealTicks = healingSp
                 * _gameStateService.GetIntellect(gameState)
                 * _gameStateService.GetVersatilityMultiplier(gameState)
                 * _gameStateService.GetHasteMultiplier(gameState)
-                * holyPriestAuraHealingBonus
+                * holyPriestAuraHealingPeriodicBonus
                 * 5;
 
-            _journal.Entry($"[{spellData.Name}] Tooltip: {averageHealTicks:0.##} (ticks)");
+            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {averageHealTicks:0.##} (ticks)");
 
             averageHealTicks *= _gameStateService.GetCriticalStrikeMultiplier(gameState);
 
-            return (averageHealFirstTick + averageHealTicks) * GetNumberOfHealingTargets(gameState, spellData, moreData);
+            return (averageHealFirstTick + averageHealTicks) * GetNumberOfHealingTargets(gameState, spellData);
         }
 
-        public override decimal GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null,
-            Dictionary<string, decimal> moreData = null)
+        public override double GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, Spell.Renew);
 
-            var hastedCastTime = GetHastedCastTime(gameState, spellData, moreData);
-            var hastedGcd = GetHastedGcd(gameState, spellData, moreData);
-            var hastedCd = GetHastedCooldown(gameState, spellData, moreData);
+            var hastedCastTime = GetHastedCastTime(gameState, spellData);
+            var hastedGcd = GetHastedGcd(gameState, spellData);
+            var hastedCd = GetHastedCooldown(gameState, spellData);
 
             // A fix to the spell being modified to have no cast time and no gcd and no CD
             // This can happen if it's a component in another spell
             if (hastedCastTime == 0 && hastedGcd == 0 && hastedCd == 0)
                 return 0;
 
-            decimal fillerCastTime = hastedCastTime == 0
+            double fillerCastTime = hastedCastTime == 0d
                 ? hastedGcd
                 : hastedCastTime;
 
-            decimal maximumPotentialCasts = 60m / fillerCastTime;
+            double maximumPotentialCasts = 60d / fillerCastTime;
 
             return maximumPotentialCasts;
+        }
+
+        public override double GetMinimumHealTargets(GameState gameState, BaseSpellData spellData)
+        {
+            return 1;
+        }
+
+        public override double GetMaximumHealTargets(GameState gameState, BaseSpellData spellData)
+        {
+            return 1;
         }
     }
 }

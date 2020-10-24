@@ -3,6 +3,6 @@
     public class BaseModifier
     {
         public string Name;
-        public decimal Value;
+        public double Value;
     }
 }

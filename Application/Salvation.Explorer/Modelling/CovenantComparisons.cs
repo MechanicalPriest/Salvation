@@ -1,4 +1,5 @@
-﻿using Salvation.Core.Constants.Data;
+﻿using Salvation.Core.Constants;
+using Salvation.Core.Constants.Data;
 using Salvation.Core.Interfaces.Constants;
 using Salvation.Core.Interfaces.Modelling;
 using Salvation.Core.Interfaces.Profile;
@@ -110,8 +111,8 @@ namespace Salvation.Explorer.Modelling
             _profileGenerationService.SetSpellCastProfile(profile, new CastProfile()
             {
                 SpellId = (int)Spell.Mindgames,
-                Efficiency = 1m,
-                OverhealPercent = 0m
+                Efficiency = 1d,
+                OverhealPercent = 0d
             });
 
             var state = new GameState(profile, constants);
@@ -128,8 +129,8 @@ namespace Salvation.Explorer.Modelling
             // E: 1, 2, 3, 4, 5, 10
 
             var casts = new int[3, 2] { { 1, 1 }, { 1, 0 }, { 0, 1 } };
-            var enemies = new List<decimal>() { 1, 5, 10 };
-            var friendlies = new List<decimal>() { 1, 5, 10, 20 };
+            var enemies = new List<double>() { 1, 5, 10 };
+            var friendlies = new List<double>() { 1, 5, 10, 20 };
 
             for (var i = 0; i < casts.GetLength(0); i++)
             {
@@ -153,8 +154,8 @@ namespace Salvation.Explorer.Modelling
             return results;
         }
 
-        public GameState GetBoonState(string profileName, decimal abEfficiency, decimal anEfficiency,
-            decimal enemyTargets, decimal friendlyTargets)
+        public GameState GetBoonState(string profileName, double abEfficiency, double anEfficiency,
+            double enemyTargets, double friendlyTargets)
         {
             var profile = GetBaseProfile();
             var constants = _constantsService.LoadConstantsFromFile();
@@ -165,32 +166,32 @@ namespace Salvation.Explorer.Modelling
             {
                 SpellId = (int)Spell.AscendedBlast,
                 Efficiency = abEfficiency,
-                OverhealPercent = 0m
+                OverhealPercent = 0d
             });
             _profileGenerationService.SetSpellCastProfile(profile, new CastProfile()
             {
                 SpellId = (int)Spell.AscendedNova,
                 Efficiency = anEfficiency,
-                OverhealPercent = 0m
+                OverhealPercent = 0d
             });
             _profileGenerationService.SetSpellCastProfile(profile, new CastProfile()
             {
                 SpellId = (int)Spell.AscendedEruption,
-                Efficiency = 1m,
-                OverhealPercent = 0m
+                Efficiency = 1d,
+                OverhealPercent = 0d
             });
 
             var state = new GameState(profile, constants);
 
             var anData = _gameStateService.GetSpellData(state, Spell.AscendedNova);
 
-            anData.NumberOfHealingTargets = friendlyTargets;
-            anData.NumberOfDamageTargets = enemyTargets;
+            anData.Overrides[Override.NumberOfHealingTargets] = friendlyTargets;
+            anData.Overrides[Override.NumberOfDamageTargets] = enemyTargets;
 
             var aeData = _gameStateService.GetSpellData(state, Spell.AscendedEruption);
 
-            aeData.NumberOfHealingTargets = friendlyTargets;
-            aeData.NumberOfDamageTargets = enemyTargets;
+            aeData.Overrides[Override.NumberOfHealingTargets] = friendlyTargets;
+            aeData.Overrides[Override.NumberOfDamageTargets] = enemyTargets;
 
             _gameStateService.OverrideSpellData(state, anData);
             _gameStateService.OverrideSpellData(state, aeData);
@@ -198,8 +199,8 @@ namespace Salvation.Explorer.Modelling
             return state;
         }
 
-        public GameState GetFaeGuardianState(string profileName, decimal guardianDTPS,
-            decimal selfCDRUsage)
+        public GameState GetFaeGuardianState(string profileName, double guardianDTPS,
+            double selfCDRUsage)
         {
             var profile = GetBaseProfile();
             var constants = _constantsService.LoadConstantsFromFile();
@@ -209,20 +210,20 @@ namespace Salvation.Explorer.Modelling
             _profileGenerationService.SetSpellCastProfile(profile, new CastProfile()
             {
                 SpellId = (int)Spell.FaeGuardians,
-                Efficiency = 1m,
-                OverhealPercent = 0m
+                Efficiency = 1d,
+                OverhealPercent = 0d
             });
 
             var state = new GameState(profile, constants);
 
-            var dtpsModifier = _gameStateService.GetModifier(state, "FaeGuardianFaerieDTPS");
+            var dtpsModifier = _gameStateService.GetPlaystyle(state, "FaeGuardianFaerieDTPS");
             dtpsModifier.Value = guardianDTPS;
 
-            _gameStateService.OverrideModifier(state, dtpsModifier);
-            var selfCDRUsageModifier = _gameStateService.GetModifier(state, "FaeBenevolentFaerieSelfUptime");
+            _gameStateService.OverridePlaystyle(state, dtpsModifier);
+            var selfCDRUsageModifier = _gameStateService.GetPlaystyle(state, "FaeBenevolentFaerieSelfUptime");
             selfCDRUsageModifier.Value = selfCDRUsage;
 
-            _gameStateService.OverrideModifier(state, selfCDRUsageModifier);
+            _gameStateService.OverridePlaystyle(state, selfCDRUsageModifier);
 
             return state;
         }
@@ -232,7 +233,7 @@ namespace Salvation.Explorer.Modelling
             // Combinations:
             // F: 1, 5, 10, 20, 30
 
-            var friendlies = new List<decimal>() { 1, 5, 10, 20, 30 };
+            var friendlies = new List<double>() { 1, 5, 10, 20, 30 };
 
             foreach (var numFriendly in friendlies)
             {
@@ -245,7 +246,7 @@ namespace Salvation.Explorer.Modelling
             return results;
         }
 
-        public GameState GetUnholyNovaState(string profileName, decimal friendlyTargets)
+        public GameState GetUnholyNovaState(string profileName, double friendlyTargets)
         {
             var profile = GetBaseProfile();
             var constants = _constantsService.LoadConstantsFromFile();
@@ -256,18 +257,18 @@ namespace Salvation.Explorer.Modelling
             {
                 SpellId = (int)Spell.UnholyNova,
                 Efficiency = 1,
-                OverhealPercent = 0m
+                OverhealPercent = 0d
             });
 
             var state = new GameState(profile, constants);
 
             var unData = _gameStateService.GetSpellData(state, Spell.UnholyNova);
 
-            unData.NumberOfHealingTargets = friendlyTargets;
+            unData.Overrides[Override.NumberOfHealingTargets] = friendlyTargets;
 
             var utData = _gameStateService.GetSpellData(state, Spell.UnholyTransfusion);
 
-            utData.NumberOfHealingTargets = friendlyTargets;
+            utData.Overrides[Override.NumberOfHealingTargets] = friendlyTargets;
 
             _gameStateService.OverrideSpellData(state, unData);
             _gameStateService.OverrideSpellData(state, utData);

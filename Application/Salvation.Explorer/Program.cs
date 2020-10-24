@@ -14,6 +14,8 @@ using Salvation.Core.Modelling.HolyPriest.Spells;
 using Salvation.Core.Profile;
 using Salvation.Core.State;
 using Salvation.Explorer.Modelling;
+using Salvation.Utility.SpellDataUpdate;
+using SimcProfileParser;
 using System;
 
 namespace Salvation.Explorer
@@ -24,7 +26,8 @@ namespace Salvation.Explorer
         {
             CreateHostBuilder(args).Build().Run();
 
-            Console.ReadLine();
+            Console.WriteLine("Press any key to exit...");
+            Console.ReadKey();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -34,7 +37,6 @@ namespace Salvation.Explorer
                     // Common services
                     services.AddSingleton<IConstantsService, ConstantsService>();
                     services.AddSingleton<IGameStateService, GameStateService>();
-                    services.AddSingleton<IModellingJournal, ModellingJournal>();
                     services.AddSingleton<IProfileGenerationService, ProfileGenerationService>();
                     services.AddSingleton<IComparisonModeller<CovenantComparisonsResult>, CovenantComparisons>();
                     services.AddSingleton<IStatWeightGenerationService, StatWeightGenerator>();
@@ -69,8 +71,18 @@ namespace Salvation.Explorer
                     services.AddSingleton<IAscendedNovaSpellService, AscendedNova>();
                     services.AddSingleton<IAscendedEruptionSpellService, AscendedEruption>();
 
+                    // Utility services
+                    services.AddSingleton<ISpellDataUpdateService, SpellDataUpdateService>();
+                    services.AddSingleton<ISpellDataService<HolyPriestSpellDataService>, HolyPriestSpellDataService>();
+
+                    services.AddSimcProfileParser();
+
                     // Application service
-                    services.AddHostedService<Explorer>();
+                    services.AddHostedService<Explorer>(serviceProvider =>
+                        new Explorer(
+                            args,
+                            serviceProvider.GetService<IHolyPriestExplorer>(),
+                            serviceProvider.GetService<ISpellDataUpdateService>()));
                 });
     }
 }

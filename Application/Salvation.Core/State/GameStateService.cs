@@ -2,16 +2,16 @@
 using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
 using Salvation.Core.Interfaces.State;
-using Salvation.Core.Modelling.HolyPriest.Spells;
 using Salvation.Core.Profile;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Salvation.Core.State
 {
     public class GameStateService : IGameStateService
     {
-        public decimal GetBaseManaAmount(GameState state)
+        public double GetBaseManaAmount(GameState state)
         {
             var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.SpecId).FirstOrDefault();
 
@@ -29,7 +29,7 @@ namespace Salvation.Core.State
             return castProfile;
         }
 
-        public decimal GetCriticalStrikeMultiplier(GameState state)
+        public double GetCriticalStrikeMultiplier(GameState state)
         {
             // TODO: Add other sources of crit increase here
             var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.SpecId).FirstOrDefault();
@@ -37,7 +37,7 @@ namespace Salvation.Core.State
             return 1 + specData.CritBase + (state.Profile.CritRating / specData.CritCost / 100);
         }
 
-        public decimal GetHasteMultiplier(GameState state)
+        public double GetHasteMultiplier(GameState state)
         {
             // TODO: Add other sources of haste increase here
             var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.SpecId).FirstOrDefault();
@@ -45,7 +45,7 @@ namespace Salvation.Core.State
             return 1 + specData.HasteBase + (state.Profile.HasteRating / specData.HasteCost / 100);
         }
 
-        public decimal GetVersatilityMultiplier(GameState state)
+        public double GetVersatilityMultiplier(GameState state)
         {
             // TODO: Add other sources of vers increase here
             var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.SpecId).FirstOrDefault();
@@ -53,7 +53,7 @@ namespace Salvation.Core.State
             return 1 + specData.VersBase + (state.Profile.VersatilityRating / specData.VersCost / 100);
         }
 
-        public decimal GetMasteryMultiplier(GameState state)
+        public double GetMasteryMultiplier(GameState state)
         {
             // TODO: Add other sources of mastery increase here
             var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.SpecId).FirstOrDefault();
@@ -61,45 +61,21 @@ namespace Salvation.Core.State
             return 1 + specData.MasteryBase + (state.Profile.MasteryRating / specData.MasteryCost / 100);
         }
 
-        public decimal GetIntellect(GameState state)
+        public double GetIntellect(GameState state)
         {
             // TODO: Add other sources of int increase here
             return state.Profile.Intellect;
-        }
-
-        public BaseModifier GetModifier(GameState state, string modifierName)
-        {
-            var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.SpecId).FirstOrDefault();
-
-            var modifier = specData.Modifiers.Where(s => s.Name == modifierName).FirstOrDefault();
-
-            modifier = JsonConvert.DeserializeObject<BaseModifier>(JsonConvert.SerializeObject(modifier));
-
-            return modifier;
         }
 
         public BaseSpellData GetSpellData(GameState state, Spell spellId)
         {
             var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.SpecId).FirstOrDefault();
 
-            BaseSpellData spell = specData.Spells.Where(s => s.Id == (int)spellId).FirstOrDefault();
+            BaseSpellData spell = specData.Spells.Where(s => s.Id == (uint)spellId).FirstOrDefault();
 
             spell = JsonConvert.DeserializeObject<BaseSpellData>(JsonConvert.SerializeObject(spell));
 
             return spell;
-        }
-
-        public ConduitData GetConduitData(GameState state, Conduit conduitId)
-        {
-            var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.SpecId).FirstOrDefault();
-
-            ConduitData conduit = specData.Conduits
-                .Where(c => c.Id == (int)conduitId).FirstOrDefault();
-
-            conduit = JsonConvert.DeserializeObject<ConduitData>(
-                JsonConvert.SerializeObject(conduit));
-
-            return conduit;
         }
 
         public bool IsConduitActive(GameState state, Conduit conduit)
@@ -109,9 +85,9 @@ namespace Salvation.Core.State
             return exists;
         }
 
-        public int GetConduitRank(GameState state, Conduit conduit)
+        public uint GetConduitRank(GameState state, Conduit conduit)
         {
-            var rank = 0;
+            var rank = 0u;
             if (state.Profile.Conduits.ContainsKey(conduit))
                 rank = state.Profile.Conduits[conduit];
 
@@ -150,17 +126,39 @@ namespace Salvation.Core.State
             specData.Spells.Add(newData);
         }
 
-        public void OverrideModifier(GameState state, BaseModifier newModifier)
+        /// <summary>
+        /// Get a playstyle entry based on the supplied unique name
+        /// </summary>
+        /// <param name="state"></param>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public PlaystyleEntry GetPlaystyle(GameState state, string name)
         {
-            var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.SpecId).FirstOrDefault();
+            var playstyleEntry = state.Profile.PlaystyleEntries?
+                .Where(p => p.Name.ToLower() == name.ToLower())
+                .FirstOrDefault();
 
-            var requestedModifier = specData.Modifiers.Where(s => s.Name == newModifier.Name).FirstOrDefault();
+            playstyleEntry = JsonConvert.DeserializeObject<PlaystyleEntry>(JsonConvert.SerializeObject(playstyleEntry));
 
-            if (requestedModifier == null)
+            return playstyleEntry;
+        }
+
+        /// <summary>
+        /// Delete an existing playstyle entry if present, and replace it with the supplied one
+        /// </summary>
+        /// <param name="state"></param>
+        /// <param name="newPlaystyle"></param>
+        public void OverridePlaystyle(GameState state, PlaystyleEntry newPlaystyle)
+        {
+            var playstyleEntry = state.Profile.PlaystyleEntries?
+                .Where(p => p.Name.ToLower() == newPlaystyle.Name.ToLower())
+                .FirstOrDefault();
+
+            if (playstyleEntry == null)
                 return;
 
-            specData.Modifiers.Remove(requestedModifier);
-            specData.Modifiers.Add(newModifier);
+            state.Profile.PlaystyleEntries.Remove(playstyleEntry);
+            state.Profile.PlaystyleEntries.Add(newPlaystyle);
         }
 
         public GameState CloneGameState(GameState state)
@@ -171,33 +169,51 @@ namespace Salvation.Core.State
 
             return newState;
         }
+        public void JournalEntry(GameState state, string message)
+        {
+            state.JournalEntries.Add(message);
+        }
+
+        public List<string> GetJournal(GameState state, bool removeDuplicates = false)
+        {
+            if (removeDuplicates)
+            {
+                return state.JournalEntries.Distinct().ToList();
+            }
+
+            return state.JournalEntries;
+        }
 
         #region Holy Priest Specific
         // TODO: Move this out to a holy priest specific file at some point.
 
-        public decimal GetTotalHolyWordCooldownReduction(GameState state, Spell spell, bool isApotheosisActive = false)
+        public double GetTotalHolyWordCooldownReduction(GameState state, Spell spell, bool isApotheosisActive = false)
         {
             // Only let Apoth actually benefit if apoth is talented
             if (!IsTalentActive(state, Talent.Apotheosis))
                 isApotheosisActive = false;
 
-            var hwCDRBase = GetModifier(state, "HolyWordsBaseCDR").Value;
-            var salvCDRBase = GetModifier(state, "SalvationHolyWordCDR").Value;
-            var haCDRBase = GetSpellData(state, Spell.HarmoniousApparatus).Coeff1;
+            var serenityCDRBase = GetSpellData(state, Spell.HolyWordSerenity).GetEffect(709474).BaseValue;
+            var sancCDRPoH = GetSpellData(state, Spell.HolyWordSanctify).GetEffect(709475).BaseValue;
+            var sancCDRRenew = GetSpellData(state, Spell.HolyWordSanctify).GetEffect(709476).BaseValue;
+            var bhCDR = GetSpellData(state, Spell.BindingHeal).GetEffect(325998).BaseValue;
+            var salvCDRBase = GetSpellData(state, Spell.HolyWordSalvation).GetEffect(709211).BaseValue;
+            var haCDRBase = GetSpellData(state, Spell.HarmoniousApparatus).GetEffect(833714).BaseValue;
+
             var isLotnActive = IsTalentActive(state, Talent.LightOfTheNaaru);
 
             // Holy Oration
             var isHolyOrationActive = IsConduitActive(state, Conduit.HolyOration);
-            var holyOrationModifier = 0m;
+            var holyOrationModifier = 0d;
             if (isHolyOrationActive)
             {
                 var holyOrationRank = GetConduitRank(state, Conduit.HolyOration);
-                var holyOrationSpellData = GetConduitData(state, Conduit.HolyOration);
+                var holyOrationSpellData = GetSpellData(state, Spell.HolyOration);
 
-                holyOrationModifier = holyOrationSpellData.Ranks[holyOrationRank] / 100;
+                holyOrationModifier = holyOrationSpellData.ConduitRanks[holyOrationRank] / 100;
             }
 
-            var returnCDR = 0m;
+            var returnCDR = 0d;
 
             // This is a bit more verbose than it needs to be for the sake of clarity
             // See #58 for some of the testing/math behind these values
@@ -205,37 +221,43 @@ namespace Salvation.Core.State
             {
                 case Spell.FlashHeal:
                 case Spell.Heal:
-                case Spell.PrayerOfHealing:
-                    returnCDR = hwCDRBase;
-                    returnCDR *= isLotnActive ? 1m + 1m / 3m : 1m; // LotN adds 33% more CDR.
-                    returnCDR *= isApotheosisActive ? 4m : 1m; // Aptheosis adds 200% more CDR
+                    returnCDR = serenityCDRBase;
+                    returnCDR *= isLotnActive ? 1d + 1d / 3d : 1d; // LotN adds 33% more CDR.
+                    returnCDR *= isApotheosisActive ? 4d : 1d; // Aptheosis adds 200% more CDR
                     // Apply this last as it's additive overall and not multiplicative with others
-                    returnCDR += isHolyOrationActive ? hwCDRBase * holyOrationModifier : 0m;
+                    returnCDR += isHolyOrationActive ? serenityCDRBase * holyOrationModifier : 0d;
+                    break;
+                case Spell.PrayerOfHealing:
+                    returnCDR = sancCDRPoH;
+                    returnCDR *= isLotnActive ? 1d + 1d / 3d : 1d; // LotN adds 33% more CDR.
+                    returnCDR *= isApotheosisActive ? 4d : 1d; // Aptheosis adds 200% more CDR
+                    // Apply this last as it's additive overall and not multiplicative with others
+                    returnCDR += isHolyOrationActive ? sancCDRPoH * holyOrationModifier : 0d;
                     break;
 
                 case Spell.BindingHeal:
-                    returnCDR = hwCDRBase / 2m; // Binding heal gets half the CDR benefit
-                    returnCDR *= isLotnActive ? 1m + 1m / 3m : 1m; // LotN adds 33% more CDR.
-                    returnCDR *= isApotheosisActive ? 4m : 1m; // Aptheosis adds 200% more CDR
+                    returnCDR = bhCDR; // Binding heal gets half the CDR benefit
+                    returnCDR *= isLotnActive ? 1d + 1d / 3d : 1d; // LotN adds 33% more CDR.
+                    returnCDR *= isApotheosisActive ? 4d : 1d; // Aptheosis adds 200% more CDR
                     // Apply this last as it's additive overall and not multiplicative with others
-                    returnCDR += isHolyOrationActive ? (hwCDRBase / 2m) * holyOrationModifier : 0m;
+                    returnCDR += isHolyOrationActive ? bhCDR * holyOrationModifier : 0d;
                     break;
 
                 case Spell.Renew:
-                    returnCDR = hwCDRBase / 3m; // Renew gets a third of the CDR benefit
-                    returnCDR *= isLotnActive ? 1m + 1m / 3m : 1m; // LotN adds 33% more CDR.
-                    returnCDR *= isApotheosisActive ? 4m : 1m; // Aptheosis adds 200% more CDR
+                    returnCDR = sancCDRRenew; // Renew gets a third of the CDR benefit
+                    returnCDR *= isLotnActive ? 1d + 1d / 3d : 1d; // LotN adds 33% more CDR.
+                    returnCDR *= isApotheosisActive ? 4d : 1d; // Aptheosis adds 200% more CDR
                     // Apply this last as it's additive overall and not multiplicative with others
-                    returnCDR += isHolyOrationActive ? (hwCDRBase / 3m) * holyOrationModifier : 0m;
+                    returnCDR += isHolyOrationActive ? sancCDRRenew * holyOrationModifier : 0d;
                     break;
 
                 case Spell.CircleOfHealing:
                 case Spell.PrayerOfMending:
                     returnCDR = haCDRBase;
-                    returnCDR *= isLotnActive ? 1m + 1m / 3m : 1m; // LotN adds 33% more CDR.
-                    returnCDR *= isApotheosisActive ? 4m : 1m; // Aptheosis adds 200% more CDR
+                    returnCDR *= isLotnActive ? 1d + 1d / 3d : 1d; // LotN adds 33% more CDR.
+                    returnCDR *= isApotheosisActive ? 4d : 1d; // Aptheosis adds 200% more CDR
                     // Apply this last as it's additive overall and not multiplicative with others
-                    returnCDR += isHolyOrationActive ? haCDRBase * holyOrationModifier : 0m;
+                    returnCDR += isHolyOrationActive ? haCDRBase * holyOrationModifier : 0d;
                     break;
 
                 case Spell.HolyWordSerenity:

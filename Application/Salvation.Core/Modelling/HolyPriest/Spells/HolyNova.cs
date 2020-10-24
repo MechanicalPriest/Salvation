@@ -42,6 +42,32 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             return averageHeal * numTargets;
         }
 
+        public override double GetAverageDamage(GameState gameState, BaseSpellData spellData = null)
+        {
+            if (spellData == null)
+            {
+                spellData = _gameStateService.GetSpellData(gameState, (Spell)SpellId);
+            }
+
+            var holyPriestAuraDamageBonus = _gameStateService.GetSpellData(gameState, Spell.HolyPriest).GetEffect(191077).BaseValue / 100 + 1;
+
+            var holyNovaDamageData = _gameStateService.GetSpellData(gameState, Spell.HolyNova);
+
+            // 122128 = Holy Nova effect (following binding heal so far)
+            var damageSp = holyNovaDamageData.GetEffect(170810).SpCoefficient;
+
+            double averageDamage = damageSp
+                * _gameStateService.GetIntellect(gameState)
+                * _gameStateService.GetVersatilityMultiplier(gameState)
+                * holyPriestAuraDamageBonus;
+
+            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip (Damage): {averageDamage:0.##}");
+
+            averageDamage *= _gameStateService.GetCriticalStrikeMultiplier(gameState);
+
+            return averageDamage * GetTargetScaling(GetNumberOfDamageTargets(gameState, spellData));
+        }
+
         internal double GetTargetScaling(double numTargets)
         {
             return (1 / Math.Sqrt(Math.Max(5, numTargets))) / ( 1 / Math.Sqrt(5));

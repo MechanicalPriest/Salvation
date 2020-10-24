@@ -1756,6 +1756,54 @@
             "13": 18.4,
             "14": 19.200001
           }
+        },
+        {
+          "Id": 585,
+          "Name": "Smite",
+          "ManaCost": 0.4,
+          "MaxRange": 40.0,
+          "BaseCastTime": 1500.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 1.5,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "IsMasteryTriggered": false,
+          "Effects": [
+            {
+              "Id": 236,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.47,
+              "TriggerSpellid": 0,
+              "TriggerSpell": null
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 262861,
+          "Name": "Smite",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "IsMasteryTriggered": false,
+          "Effects": [
+            {
+              "Id": 624379,
+              "BaseValue": 50.0,
+              "SpCoefficient": 0.0,
+              "TriggerSpellid": 0,
+              "TriggerSpell": null
+            }
+          ],
+          "ConduitRanks": {}
         }
       ],
       "Conduits": []

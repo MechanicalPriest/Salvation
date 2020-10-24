@@ -96,7 +96,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
             Spells.Add(new UnholyNova(gameStateService,
                 new UnholyTransfusion(gameStateService)));
             Spells.Add(new UnholyTransfusion(gameStateService));
-
+            Spells.Add(new Smite(gameStateService));
             _gameState = new GameState(profile, constants);
         }
 
@@ -134,6 +134,19 @@ namespace Salvation.CoreTests.HolyPriest.Spells
 
             // Act
             var result = spellService.GetAverageRawHealing(_gameState, null);
+
+            // Assert
+            return result;
+        }
+
+        [TestCaseSource(typeof(SpellServiceTestsData), nameof(SpellServiceTestsData.GetAverageDamage))]
+        public double GetAverageDamage(Type t)
+        {
+            // Arrange
+            var spellService = Spells.Where(s => s.GetType() == t).FirstOrDefault();
+
+            // Act
+            var result = spellService.GetAverageDamage(_gameState, null);
 
             // Assert
             return result;
@@ -428,6 +441,17 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(UnholyTransfusion)).Returns(232.34869987560003d);
             }
         }
+
+        public static IEnumerable GetAverageDamage
+        {
+            get
+            {
+                yield return new TestCaseData(typeof(Halo)).Returns(1438.9078936500005d);
+                yield return new TestCaseData(typeof(DivineStar)).Returns(558.79918200000009d);
+                yield return new TestCaseData(typeof(HolyNova)).Returns(251.45963190000001d);
+                yield return new TestCaseData(typeof(Smite)).Returns(984.88355827499993d);
+            }
+        }
         public static IEnumerable GetDuration
         {
             get
@@ -544,6 +568,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(PrayerOfHealing)).Returns(32.327272727299999d);
                 yield return new TestCaseData(typeof(PrayerOfMending)).Returns(5.3878787879000001d);
                 yield return new TestCaseData(typeof(Renew)).Returns(43.103030302999997d);
+                yield return new TestCaseData(typeof(Smite)).Returns(43.103030302999997d);
                 yield return new TestCaseData(typeof(UnholyNova)).Returns(1.1511335012999999d);
                 yield return new TestCaseData(typeof(UnholyTransfusion)).Returns(0);
             }

@@ -82,5 +82,9 @@
         FaeFermata = 338305,
         ShatteredPerceptions = 338315,
         HolyOration = 338345,
+
+        // DPS
+        Smite = 585,
+        SmiteRank2 = 262861,
     }
 }

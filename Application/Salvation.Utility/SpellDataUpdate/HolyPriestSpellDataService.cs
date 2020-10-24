@@ -73,6 +73,10 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.FaeFermata,
                 (uint)Spell.ShatteredPerceptions,
                 (uint)Spell.HolyOration,
+                
+                // DPS
+                (uint)Spell.Smite,
+                (uint)Spell.SmiteRank2,
             };
         }
 

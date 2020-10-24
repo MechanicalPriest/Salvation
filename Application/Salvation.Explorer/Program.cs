@@ -71,6 +71,9 @@ namespace Salvation.Explorer
                     services.AddSingleton<IAscendedNovaSpellService, AscendedNova>();
                     services.AddSingleton<IAscendedEruptionSpellService, AscendedEruption>();
 
+                    // DPS
+                    services.AddSingleton<ISmiteSpellService, Smite>();
+
                     // Utility services
                     services.AddSingleton<ISpellDataUpdateService, SpellDataUpdateService>();
                     services.AddSingleton<ISpellDataService<HolyPriestSpellDataService>, HolyPriestSpellDataService>();

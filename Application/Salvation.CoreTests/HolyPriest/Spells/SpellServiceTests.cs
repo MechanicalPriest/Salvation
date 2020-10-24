@@ -97,6 +97,8 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 new UnholyTransfusion(gameStateService)));
             Spells.Add(new UnholyTransfusion(gameStateService));
             Spells.Add(new Smite(gameStateService));
+            Spells.Add(new Chastise(gameStateService));
+
             _gameState = new GameState(profile, constants);
         }
 
@@ -450,6 +452,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(DivineStar)).Returns(558.79918200000009d);
                 yield return new TestCaseData(typeof(HolyNova)).Returns(251.45963190000001d);
                 yield return new TestCaseData(typeof(Smite)).Returns(984.88355827499993d);
+                yield return new TestCaseData(typeof(Chastise)).Returns(1571.6226993750001d);
             }
         }
         public static IEnumerable GetDuration
@@ -569,6 +572,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(PrayerOfMending)).Returns(5.3878787879000001d);
                 yield return new TestCaseData(typeof(Renew)).Returns(43.103030302999997d);
                 yield return new TestCaseData(typeof(Smite)).Returns(43.103030302999997d);
+                yield return new TestCaseData(typeof(Chastise)).Returns(1);
                 yield return new TestCaseData(typeof(UnholyNova)).Returns(1.1511335012999999d);
                 yield return new TestCaseData(typeof(UnholyTransfusion)).Returns(0);
             }

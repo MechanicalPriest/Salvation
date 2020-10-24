@@ -8,6 +8,13 @@
   "CritRating": 217,
   "Casts": [
     {
+      "SpellId": 88625,
+      "Efficiency": 1,
+      "OverhealPercent": 0,
+      "AverageHealingTargets": 0.0,
+      "AverageDamageTargets": 1.0
+    },
+    {
       "SpellId": 585,
       "Efficiency": 1,
       "OverhealPercent": 0,

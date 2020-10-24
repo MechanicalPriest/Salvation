@@ -37,7 +37,8 @@ namespace Salvation.Core.Modelling.HolyPriest
             IMindgamesSpellService mindgamesSpellService,
             IUnholyNovaSpellService unholyNovaSpellService,
             IBoonOfTheAscendedSpellService boonOfTheAscendedSpellService,
-            ISmiteSpellService smiteSpellService)
+            ISmiteSpellService smiteSpellService,
+            IChastiseSpellService chastiseSpellService)
         {
             _gameStateService = gameStateService;
 
@@ -62,7 +63,8 @@ namespace Salvation.Core.Modelling.HolyPriest
                 mindgamesSpellService,
                 unholyNovaSpellService,
                 boonOfTheAscendedSpellService,
-                smiteSpellService
+                smiteSpellService,
+                chastiseSpellService
             };
         }
 

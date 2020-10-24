@@ -1804,6 +1804,37 @@
             }
           ],
           "ConduitRanks": {}
+        },
+        {
+          "Id": 88625,
+          "Name": "Holy Word: Chastise",
+          "ManaCost": 2.0,
+          "MaxRange": 30.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 60000.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 1.5,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "IsMasteryTriggered": false,
+          "Effects": [
+            {
+              "Id": 91044,
+              "BaseValue": 0.0,
+              "SpCoefficient": 1.125,
+              "TriggerSpellid": 0,
+              "TriggerSpell": null
+            },
+            {
+              "Id": 709477,
+              "BaseValue": 4.0,
+              "SpCoefficient": 0.0,
+              "TriggerSpellid": 0,
+              "TriggerSpell": null
+            }
+          ],
+          "ConduitRanks": {}
         }
       ],
       "Conduits": []
@@ -1811,4 +1842,4 @@
   ],
   "GlobalModifiers": [],
   "SharedSpells": null
-} 
+}

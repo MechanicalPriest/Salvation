@@ -63,6 +63,8 @@ namespace Salvation.Api
 
             // DPS
             builder.Services.AddSingleton<ISmiteSpellService, Smite>();
+            builder.Services.AddSingleton<IChastiseSpellService, Chastise>();
+
 
         }
     }

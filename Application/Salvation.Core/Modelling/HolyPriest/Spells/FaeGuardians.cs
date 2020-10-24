@@ -35,18 +35,26 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             var divineHymnResults = _divineHymnSpellService.GetCastResults(gameState, divineHymnSpellData);
 
             // Coeff2 is the "100" of 100% CDR.
-            var duration = GetDuration(gameState, spellData);
+            var buffDuration = GetDuration(gameState, spellData);
+
+            // Apply some extra CDR time based on FaeFermata being active
+            // Essentially its number_of_swaps * (buff_duration * effectiveness_percent)
+            if (_gameStateService.IsConduitActive(gameState, Conduit.FaeFermata))
+            {
+                var numTargetSwaps = _gameStateService.GetPlaystyle(gameState, "FaeFermataNumberCDRSwaps").Value;
+                buffDuration += GetFaeFermataBonus(gameState) * numTargetSwaps;
+            }
 
             // Adjust the self duration based on config
             double selfUptime = _gameStateService.GetPlaystyle(gameState, "FaeBenevolentFaerieSelfUptime").Value;
-            duration *= selfUptime;
+            buffDuration *= selfUptime;
 
             var beneFaerieData = _gameStateService.GetSpellData(gameState, Spell.BenevolentFaerie);
 
             // This value is the CDR increase, 100 = 100%
             var cdrModifier = beneFaerieData.GetEffect(819312).BaseValue;
 
-            var reducedCooldownSeconds = (cdrModifier / 100) * duration;
+            var reducedCooldownSeconds = (cdrModifier / 100) * buffDuration;
 
             // Figure out how much extra hymn we get, best case
             var percentageOfCast = reducedCooldownSeconds / divineHymnResults.Cooldown;
@@ -93,16 +101,24 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             // TODO: Move this to configuration
             double targetDamageTakenPerSecond = _gameStateService.GetPlaystyle(gameState, "FaeGuardianFaerieDTPS").Value;
 
-            var duration = GetDuration(gameState, spellData);
+            var buffDuration = GetDuration(gameState, spellData);
+
+            // Apply some extra DR time based on FaeFermata being active
+            // Essentially its number_of_swaps * (buff_duration * effectiveness_percent)
+            if (_gameStateService.IsConduitActive(gameState, Conduit.FaeFermata))
+            {
+                var numTargetSwaps = _gameStateService.GetPlaystyle(gameState, "FaeFermataNumberDRSwaps").Value;
+                buffDuration += GetFaeFermataBonus(gameState) * numTargetSwaps;
+            }
 
             var guardianFaerieData = _gameStateService.GetSpellData(gameState, Spell.GuardianFaerie);
 
             // This value is a negative integer. -10 = -10%
             var baseDamageReduction = guardianFaerieData.GetEffect(819281).BaseValue;
 
-            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] DR: {baseDamageReduction}% DTPS: {targetDamageTakenPerSecond} Duration: {duration}s");
+            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] DR: {baseDamageReduction}% DTPS: {targetDamageTakenPerSecond} Duration: {buffDuration}s");
 
-            double averageDRPC = duration
+            double averageDRPC = buffDuration
                 * targetDamageTakenPerSecond
                 * (baseDamageReduction / -100d);
 
@@ -126,28 +142,6 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             return maximumPotentialCasts;
         }
 
-        public override double GetDuration(GameState gameState, BaseSpellData spellData = null)
-        {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, Spell.FaeGuardians);
-
-            var baseDuration = base.GetDuration(gameState, spellData);
-
-            // Apply the Fae Fermata conduit if applicable
-            // TODO: Shift this out to another method maybe, for testing?
-            // TODO: Fae Fermata needs updating to the new version
-            if (_gameStateService.IsConduitActive(gameState, Conduit.FaeFermata))
-            {
-
-                var rank = _gameStateService.GetConduitRank(gameState, Conduit.FaeFermata);
-                var conduitData = _gameStateService.GetSpellData(gameState, Spell.FaeFermata);
-
-                var addedDuration = conduitData.ConduitRanks[rank] / 1000;
-                baseDuration += addedDuration;
-            }
-            return baseDuration;
-        }
-
         public override double GetMinimumHealTargets(GameState gameState, BaseSpellData spellData)
         {
             return 1;
@@ -161,6 +155,34 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         public override double GetMaximumDamageTargets(GameState gameState, BaseSpellData spellData)
         {
             return 1;
+        }
+
+        /// <summary>
+        /// This value should be multiplied by the number of refresh events.
+        /// This is is the extra duration multiplied by the effectiveness of the conduit
+        /// </summary>
+        /// <param name="gameState"></param>
+        /// <returns></returns>
+        internal double GetFaeFermataBonus(GameState gameState)
+        {
+            var duration = 0d;
+
+            // Apply the Fae Fermata conduit if applicable
+            // For this we essentially just calculate the additional duration and 
+            // multiply that by the effectiveness to get average added "duration"
+            if (_gameStateService.IsConduitActive(gameState, Conduit.FaeFermata))
+            {
+                var rank = _gameStateService.GetConduitRank(gameState, Conduit.FaeFermata);
+                var conduitData = _gameStateService.GetSpellData(gameState, Spell.FaeFermata);
+
+                var effectiveness = conduitData.GetEffect(871353).BaseValue / 100;
+
+                var addedDuration = conduitData.ConduitRanks[rank] / 1000;
+
+                duration = addedDuration * effectiveness;
+            }
+
+            return duration;
         }
     }
 }

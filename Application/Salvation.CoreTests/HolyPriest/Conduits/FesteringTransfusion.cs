@@ -13,7 +13,7 @@ using System.Linq;
 namespace Salvation.CoreTests.HolyPriest.Conduits
 {
     [TestFixture]
-    class ShatteredPerceptionTests
+    class FesteringTransfusion
     {
         private GameState _gameState;
 
@@ -33,43 +33,63 @@ namespace Salvation.CoreTests.HolyPriest.Conduits
         }
 
         [Test]
-        public void SP_Increases_GetAverageDamage()
+        public void FT_Increases_Duration()
         {
             // Arrange
             IGameStateService gameStateService = new GameStateService();
-            var spellService = new Mindgames(gameStateService);
+            var spellService = new UnholyTransfusion(gameStateService);
             var gamestate1 = gameStateService.CloneGameState(_gameState);
             var gamestate2 = gameStateService.CloneGameState(_gameState);
 
-            gamestate1.Profile.Conduits.Add(Conduit.ShatteredPerceptions, 0);
-
-            // Act
-            var resultWith = spellService.GetAverageDamage(gamestate1, null);
-            var resultWithout = spellService.GetAverageDamage(gamestate2, null);
-
-            // Assert
-            Assert.AreEqual(3768.879375d, resultWithout);
-            Assert.AreEqual(4258.8336937499998d, resultWith);
-        }
-
-        [Test]
-        public void SP_Increases_GetDuration()
-        {
-            // Arrange
-            IGameStateService gameStateService = new GameStateService();
-            var spellService = new Mindgames(gameStateService);
-            var gamestate1 = gameStateService.CloneGameState(_gameState);
-            var gamestate2 = gameStateService.CloneGameState(_gameState);
-
-            gamestate1.Profile.Conduits.Add(Conduit.ShatteredPerceptions, 0);
+            gamestate1.Profile.Conduits.Add(Conduit.FesteringTransfusion, 0);
 
             // Act
             var resultWith = spellService.GetDuration(gamestate1, null);
             var resultWithout = spellService.GetDuration(gamestate2, null);
 
             // Assert
-            Assert.AreEqual(5.0d, resultWithout);
-            Assert.AreEqual(7.0d, resultWith);
+            Assert.AreEqual(15.0d, resultWithout);
+            Assert.AreEqual(17.0d, resultWith);
+        }
+
+        [Test]
+        public void FT_Increases_Damage()
+        {
+            // Arrange
+            IGameStateService gameStateService = new GameStateService();
+            var spellService = new UnholyTransfusion(gameStateService);
+            var gamestate1 = gameStateService.CloneGameState(_gameState);
+            var gamestate2 = gameStateService.CloneGameState(_gameState);
+
+            gamestate1.Profile.Conduits.Add(Conduit.FesteringTransfusion, 0);
+
+            // Act
+            var resultWith = spellService.GetAverageDamage(gamestate1, null);
+            var resultWithout = spellService.GetAverageDamage(gamestate2, null);
+
+            // Assert
+            Assert.AreEqual(3763.427824227273d, resultWithout);
+            Assert.AreEqual(4521.1312928383641d, resultWith);
+        }
+
+        [Test]
+        public void FT_Increases_Healing()
+        {
+            // Arrange
+            IGameStateService gameStateService = new GameStateService();
+            var spellService = new UnholyTransfusion(gameStateService);
+            var gamestate1 = gameStateService.CloneGameState(_gameState);
+            var gamestate2 = gameStateService.CloneGameState(_gameState);
+
+            gamestate1.Profile.Conduits.Add(Conduit.FesteringTransfusion, 0);
+
+            // Act
+            var resultWith = spellService.GetAverageRawHealing(gamestate1, null);
+            var resultWithout = spellService.GetAverageRawHealing(gamestate2, null);
+
+            // Assert
+            Assert.AreEqual(234.69565644000002d, resultWithout);
+            Assert.AreEqual(281.94771526992008d, resultWith);
         }
     }
 }

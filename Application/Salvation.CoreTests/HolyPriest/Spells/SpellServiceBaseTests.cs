@@ -185,6 +185,21 @@ namespace Salvation.CoreTests.HolyPriest.Spells
             // Assert
             Assert.AreEqual(1234, result);
         }
+
+        [Test]
+        public void GetAverageOverhealing_Throws_NoSpelldata()
+        {
+            // Arrange
+            IGameStateService gameStateService = new GameStateService();
+            var spellService = new SpellService(gameStateService);
+
+            // Act
+            var methodCall = new TestDelegate(
+                () => spellService.GetAverageOverhealing(_gameState, null));
+
+            // Assert
+            Assert.Throws<ArgumentOutOfRangeException>(methodCall);
+        }
     }
 
     public class SpellServiceWithSpell : SpellService

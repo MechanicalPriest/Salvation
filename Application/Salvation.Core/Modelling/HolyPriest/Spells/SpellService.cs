@@ -79,6 +79,13 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
         public virtual double GetAverageOverhealing(GameState gameState, BaseSpellData spellData = null)
         {
+            if (spellData == null)
+                spellData = _gameStateService.GetSpellData(gameState, (Spell)SpellId);
+
+            if (spellData == null)
+                throw new ArgumentOutOfRangeException(nameof(SpellId),
+                    $"Spelldata for SpellId ({SpellId}) not found");
+
             // Average healing done is raw healing * overheal
             var castProfile = _gameStateService.GetCastProfile(gameState, SpellId);
 

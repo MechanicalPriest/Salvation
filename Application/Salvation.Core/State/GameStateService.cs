@@ -29,6 +29,15 @@ namespace Salvation.Core.State
             return castProfile;
         }
 
+
+        /// <summary>
+        /// Returns diminished rating based on percentage of stat, as changed in 9.0.1
+        /// Calcs each individual point one at a time for its value based on the percent bracket of the point
+        /// this val * scaling = percent, important note is mastery operates from the point scaling
+        /// </summary>
+        /// <param name="rating"> Total value of stat on a character prior to DR</param>
+        /// <param name="cost"> Cost of individual stat </param>
+        /// <returns> diminished returned value based on percent </returns>
         public double GetDrRating(double rating, double cost)
         {
             double result = 0; 

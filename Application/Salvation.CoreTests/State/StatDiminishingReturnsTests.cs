@@ -18,10 +18,12 @@ namespace Salvation.CoreTests.State
 
             // Act
             var result = _gameStateService.GetDrRating(rating, cost);
+
             // Assert
             return result;
         }
     }
+
     public class DiminshingReturnTestsData
     {
         public static IEnumerable TestData
@@ -33,7 +35,6 @@ namespace Salvation.CoreTests.State
                 yield return new TestCaseData(319d, 10.67083793).Returns(319);
                 // val is the required stat for the percent shown, while the input is the indicated stat
                 yield return new TestCaseData(383d, 10.67083793d).Returns(376.79999999999859d);
-                // val is the required stat for the percent shown, while the input is the indicated stat
                 yield return new TestCaseData(399d, 10.06107577).Returns(389.29999999999779d);
                 // make sure zero stat is zero
                 yield return new TestCaseData(0, 10.06107577).Returns(0);

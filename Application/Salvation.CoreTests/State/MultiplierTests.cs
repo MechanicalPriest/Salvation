@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using Newtonsoft.Json;
+using NUnit.Framework;
 using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
 using Salvation.Core.Interfaces.Constants;
@@ -7,33 +8,28 @@ using Salvation.Core.Profile;
 using Salvation.Core.State;
 using System;
 using System.Collections;
+using System.IO;
 
 namespace Salvation.CoreTests.State
 {
     [TestFixture]
     class MultiplierTests
     {
-        IConstantsService _constantsService;
         IGameStateService _gameStateService;
-        GameState _state;
-
+        private GameState _state;
         [OneTimeSetUp]
         public void InitOnce()
         {
-            _constantsService = new ConstantsService();
+            IConstantsService constantsService = new ConstantsService();
 
-        }
-
-        [SetUp]
-        public void Init()
-        {
-            var constants = _constantsService.LoadConstantsFromFile();
-
-            PlayerProfile profile = new ProfileGenerationService()
-                .GetDefaultProfile(Spec.HolyPriest);
+            // Load this from somewhere that doesn't change
+            var basePath = @"State" + Path.DirectorySeparatorChar + "TestData";
+            var constants = constantsService.ParseConstants(
+                File.ReadAllText(Path.Combine(basePath, "StateTests_constants.json")));
+            var profile = JsonConvert.DeserializeObject<PlayerProfile>(
+                File.ReadAllText(Path.Combine(basePath, "StateTests_profile.json")));
 
             _state = new GameState(profile, constants);
-
             _gameStateService = new GameStateService();
         }
         [TestCaseSource(typeof(MultiplierTestData), nameof(MultiplierTestData.CritTestData))]
@@ -43,11 +39,12 @@ namespace Salvation.CoreTests.State
 
 
             // Act
-
             _state.Profile.CritRating = crit_val;
+
             // Assert
             return _gameStateService.GetCriticalStrikeMultiplier(_state);
         }
+
         [TestCaseSource(typeof(MultiplierTestData), nameof(MultiplierTestData.HasteTestData))]
         public double HasteMultiplierTest(int haste_val)
         {
@@ -55,7 +52,6 @@ namespace Salvation.CoreTests.State
 
 
             // Act
-
             _state.Profile.HasteRating = haste_val;
 
             // Assert
@@ -68,7 +64,6 @@ namespace Salvation.CoreTests.State
 
 
             // Act
-
             _state.Profile.MasteryRating = mastery_val;
 
             // Assert
@@ -81,7 +76,6 @@ namespace Salvation.CoreTests.State
 
 
             // Act
-
             _state.Profile.VersatilityRating = vers_val;
 
             // Assert

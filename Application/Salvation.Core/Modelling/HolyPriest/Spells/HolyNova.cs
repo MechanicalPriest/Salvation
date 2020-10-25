@@ -45,9 +45,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         public override double GetAverageDamage(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)
-            {
                 spellData = _gameStateService.GetSpellData(gameState, (Spell)SpellId);
-            }
 
             var holyPriestAuraDamageBonus = _gameStateService.GetSpellData(gameState, Spell.HolyPriest).GetEffect(191077).BaseValue / 100 + 1;
 

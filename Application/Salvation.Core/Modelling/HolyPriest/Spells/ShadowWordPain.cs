@@ -35,7 +35,6 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             var painPeriodicBonus = _gameStateService.GetSpellData(gameState, Spell.HolyPriest)
                 .GetEffect(871791).BaseValue / 100 + 1;
 
-
             // Pains's average dmg is initial + DoT portion:
             double averageDamageFirstTick = damageSpInstant
                 * _gameStateService.GetIntellect(gameState)
@@ -49,8 +48,8 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             double painDuration = spellData.Duration / 1000;
             double rank2Addition = spellDataRank2.GetEffect(819469).BaseValue / 1000;
             double tickrate = spellData.GetEffect(254257).Amplitude / 1000;
+
             // DoT is affected by haste
-            // bandaid fix to add 4 to duration for rank 2 pain
             double averageDmgTicks = damageSpPeriodic
                 * _gameStateService.GetIntellect(gameState)
                 * _gameStateService.GetVersatilityMultiplier(gameState)

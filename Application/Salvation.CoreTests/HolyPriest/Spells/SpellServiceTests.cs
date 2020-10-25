@@ -98,7 +98,8 @@ namespace Salvation.CoreTests.HolyPriest.Spells
             Spells.Add(new UnholyTransfusion(gameStateService));
             Spells.Add(new Smite(gameStateService));
             Spells.Add(new Chastise(gameStateService));
-            Spells.Add(new ShadowWordPain(gameStateService));
+            Spells.Add(new ShadowWordPain(gameStateService)); 
+            Spells.Add(new ShadowWordDeath(gameStateService));
 
             _gameState = new GameState(profile, constants);
         }
@@ -455,7 +456,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(Smite)).Returns(984.88355827499993d);
                 yield return new TestCaseData(typeof(Chastise)).Returns(1571.6226993750001d);
                 yield return new TestCaseData(typeof(ShadowWordPain)).Returns(1983.2855172730456d);
-
+                yield return new TestCaseData(typeof(ShadowWordDeath)).Returns(1056.7102081313251d);
             }
         }
         public static IEnumerable GetDuration
@@ -579,7 +580,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(UnholyNova)).Returns(1.1511335012999999d);
                 yield return new TestCaseData(typeof(UnholyTransfusion)).Returns(0);
                 yield return new TestCaseData(typeof(ShadowWordPain)).Returns(43.103030302999997d);
-
+                yield return new TestCaseData(typeof(ShadowWordDeath)).Returns(3.2327272727d);
             }
         }
         public static IEnumerable GetMaximumDamageTargets

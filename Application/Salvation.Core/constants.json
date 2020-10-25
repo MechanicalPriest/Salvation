@@ -2014,6 +2014,72 @@
             }
           ],
           "ConduitRanks": {}
+        },
+        {
+          "Id": 32379,
+          "Name": "Shadow Word: Death",
+          "ManaCost": 1.6,
+          "MaxRange": 40.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": true,
+          "Duration": 0.0,
+          "Gcd": 1.5,
+          "ChargeCooldown": 30000,
+          "Charges": 1,
+          "IsMasteryTriggered": false,
+          "Effects": [
+            {
+              "Id": 22171,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.85,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null
+            },
+            {
+              "Id": 165318,
+              "BaseValue": 20.0,
+              "SpCoefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null
+            },
+            {
+              "Id": 340366,
+              "BaseValue": 150.0,
+              "SpCoefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 322107,
+          "Name": "Shadow Word: Death",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "IsMasteryTriggered": false,
+          "Effects": [
+            {
+              "Id": 810248,
+              "BaseValue": -10000.0,
+              "SpCoefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null
+            }
+          ],
+          "ConduitRanks": {}
         }
       ],
       "Conduits": []

@@ -8,6 +8,13 @@
   "CritRating": 217,
   "Casts": [
     {
+      "SpellId": 32379,
+      "Efficiency": 1,
+      "OverhealPercent": 0,
+      "AverageHealingTargets": 0.0,
+      "AverageDamageTargets": 1.0
+    },
+    {
       "SpellId": 589,
       "Efficiency": 1,
       "OverhealPercent": 0,
@@ -225,6 +232,12 @@
       "Name": "FaeGuardianFaerieDTPS",
       "Value": 4000.0,
       "SpellId": 327694
+    },
+    {
+      "Name": "ShadowWordDeathPercentExecute",
+      "Value": 0.2,
+      "SpellId":  32379
     }
+
   ]
 }

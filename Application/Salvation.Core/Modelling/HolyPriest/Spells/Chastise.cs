@@ -25,7 +25,6 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             var holyPriestAuraDamageBonus = _gameStateService.GetSpellData(gameState, Spell.HolyPriest)
                 .GetEffect(191077).BaseValue / 100 + 1;
 
-
             var damageSp = spellData.GetEffect(91044).SpCoefficient;
 
             double averageDmg = damageSp

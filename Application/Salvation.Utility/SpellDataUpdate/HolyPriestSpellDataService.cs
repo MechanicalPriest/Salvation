@@ -80,6 +80,8 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.Chastise,
                 (uint)Spell.ShadowWordPain,
                 (uint)Spell.ShadowWordPainRank2,
+                (uint)Spell.ShadowWordDeath,
+                (uint)Spell.ShadowWordDeathRank2,
             };
         }
 
@@ -197,6 +199,7 @@ namespace Salvation.Utility.SpellDataUpdate
             {
                 case (uint)Spell.CircleOfHealing:
                 case (uint)Spell.PrayerOfMending:
+                case (uint)Spell.ShadowWordDeath:
                     // This comes from the Priest aura 137030 effect #1 179714
                     baseSpellData.IsCooldownHasted = true;
                     break;

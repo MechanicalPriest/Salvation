@@ -87,5 +87,6 @@
         Smite = 585,
         SmiteRank2 = 262861,
         Chastise = 88625,
+        Pain = 589,
     }
 }

@@ -78,6 +78,7 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.Smite,
                 (uint)Spell.SmiteRank2,
                 (uint)Spell.Chastise,
+                (uint)Spell.Pain,
             };
         }
 

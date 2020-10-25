@@ -27,8 +27,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
 
             var damageSp = spellData.GetEffect(91044).SpCoefficient;
-            var vers_multi = _gameStateService.GetVersatilityMultiplier(gameState);
-            var intellect = _gameStateService.GetIntellect(gameState);
+
             double averageDmg = damageSp
                 * _gameStateService.GetIntellect(gameState)
                 * _gameStateService.GetVersatilityMultiplier(gameState)

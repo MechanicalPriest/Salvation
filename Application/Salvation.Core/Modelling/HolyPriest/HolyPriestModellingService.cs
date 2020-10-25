@@ -38,7 +38,8 @@ namespace Salvation.Core.Modelling.HolyPriest
             IUnholyNovaSpellService unholyNovaSpellService,
             IBoonOfTheAscendedSpellService boonOfTheAscendedSpellService,
             ISmiteSpellService smiteSpellService,
-            IChastiseSpellService chastiseSpellService)
+            IChastiseSpellService chastiseSpellService,
+            IShadowWordPainSpellService shadowWordPainSpellService)
         {
             _gameStateService = gameStateService;
 

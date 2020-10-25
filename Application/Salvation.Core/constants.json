@@ -1835,6 +1835,44 @@
             }
           ],
           "ConduitRanks": {}
+        },
+        {
+          "Id": 589,
+          "Name": "Shadow Word: Pain",
+          "ManaCost": 1.8,
+          "MaxRange": 40.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 12000.0,
+          "Gcd": 1.5,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "IsMasteryTriggered": false,
+          "Effects": [
+            {
+              "Id": 242,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.1292,
+              "TriggerSpellid": 0,
+              "TriggerSpell": null
+            },
+            {
+              "Id": 254257,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.09588,
+              "TriggerSpellid": 0,
+              "TriggerSpell": null
+            },
+            {
+              "Id": 323674,
+              "BaseValue": 400.0,
+              "SpCoefficient": 0.0,
+              "TriggerSpellid": 0,
+              "TriggerSpell": null
+            }
+          ],
+          "ConduitRanks": {}
         }
       ],
       "Conduits": []

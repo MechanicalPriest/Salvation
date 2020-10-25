@@ -65,8 +65,6 @@ namespace Salvation.Api
             builder.Services.AddSingleton<ISmiteSpellService, Smite>();
             builder.Services.AddSingleton<IChastiseSpellService, Chastise>();
             builder.Services.AddSingleton<IShadowWordPainSpellService, ShadowWordPain>();
-
-
         }
     }
 }

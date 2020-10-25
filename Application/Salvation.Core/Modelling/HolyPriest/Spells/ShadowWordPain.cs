@@ -12,15 +12,15 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         public ShadowWordPain(IGameStateService gameStateService)
             : base(gameStateService)
         {
-            SpellId = (int)Spell.Pain;
+            SpellId = (int)Spell.ShadowWordPain;
         }
 
         public override double GetAverageDamage(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, Spell.Pain);
+                spellData = _gameStateService.GetSpellData(gameState, Spell.ShadowWordPain);
 
-            BaseSpellData spellDataRank2 = _gameStateService.GetSpellData(gameState, Spell.PainRank2);
+            BaseSpellData spellDataRank2 = _gameStateService.GetSpellData(gameState, Spell.ShadowWordPainRank2);
             var holyPriestAuraDamagesBonus = _gameStateService.GetSpellData(gameState, Spell.HolyPriest)
                 .GetEffect(191077).BaseValue / 100 + 1;
 
@@ -69,7 +69,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         public override double GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, Spell.Pain);
+                spellData = _gameStateService.GetSpellData(gameState, Spell.ShadowWordPain);
 
             var hastedCastTime = GetHastedCastTime(gameState, spellData);
             var hastedGcd = GetHastedGcd(gameState, spellData);

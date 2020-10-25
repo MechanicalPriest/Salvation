@@ -79,6 +79,7 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.SmiteRank2,
                 (uint)Spell.Chastise,
                 (uint)Spell.Pain,
+                (uint)Spell.PainRank2,
             };
         }
 
@@ -178,6 +179,7 @@ namespace Salvation.Utility.SpellDataUpdate
                 BaseValue = effect.BaseValue,
                 SpCoefficient = effect.SpCoefficient,
                 TriggerSpellid = effect.TriggerSpellId,
+                Amplitude = effect.Amplitude,
                 TriggerSpell = GetBaseSpellData(effect.TriggerSpell)
             };
 

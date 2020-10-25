@@ -40,6 +40,7 @@
               "BaseValue": 5.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             },
             {
@@ -47,6 +48,7 @@
               "BaseValue": 5.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             },
             {
@@ -54,6 +56,7 @@
               "BaseValue": 25.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             },
             {
@@ -61,6 +64,7 @@
               "BaseValue": 25.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             },
             {
@@ -68,6 +72,7 @@
               "BaseValue": -19.1,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             },
             {
@@ -75,6 +80,7 @@
               "BaseValue": 25.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             },
             {
@@ -82,6 +88,7 @@
               "BaseValue": 47.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             },
             {
@@ -89,6 +96,7 @@
               "BaseValue": 47.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             }
           ],
@@ -113,6 +121,7 @@
               "BaseValue": 10.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             }
           ],
@@ -137,6 +146,7 @@
               "BaseValue": 5.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             }
           ],
@@ -161,6 +171,7 @@
               "BaseValue": 0.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             },
             {
@@ -168,6 +179,7 @@
               "BaseValue": 0.0,
               "SpCoefficient": 0.94,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             },
             {
@@ -175,6 +187,7 @@
               "BaseValue": 0.0,
               "SpCoefficient": 0.94,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             },
             {
@@ -182,6 +195,7 @@
               "BaseValue": 3.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             }
           ],
@@ -206,6 +220,7 @@
               "BaseValue": 0.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             }
           ],
@@ -230,6 +245,7 @@
               "BaseValue": 0.0,
               "SpCoefficient": 1.44,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             }
           ],
@@ -254,6 +270,7 @@
               "BaseValue": 0.0,
               "SpCoefficient": 1.03,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             }
           ],
@@ -278,6 +295,7 @@
               "BaseValue": 0.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             }
           ],
@@ -302,6 +320,7 @@
               "BaseValue": 0.0,
               "SpCoefficient": 0.7,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             }
           ],
@@ -326,6 +345,7 @@
               "BaseValue": 0.0,
               "SpCoefficient": 0.4,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             }
           ],
@@ -350,6 +370,7 @@
               "BaseValue": 25.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             }
           ],
@@ -374,6 +395,7 @@
               "BaseValue": 0.0,
               "SpCoefficient": 1.1,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             },
             {
@@ -381,6 +403,7 @@
               "BaseValue": 2.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             },
             {
@@ -388,6 +411,7 @@
               "BaseValue": 30.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             }
           ],
@@ -412,6 +436,7 @@
               "BaseValue": 0.0,
               "SpCoefficient": 2.95,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             }
           ],
@@ -436,6 +461,7 @@
               "BaseValue": 0.0,
               "SpCoefficient": 2.03,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             }
           ],
@@ -460,6 +486,7 @@
               "BaseValue": 0.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 98367,
+              "Amplitude": 0.0,
               "TriggerSpell": {
                 "Id": 98367,
                 "Name": "Prayer of Healing",
@@ -479,6 +506,7 @@
                     "BaseValue": 1.0,
                     "SpCoefficient": 0.0,
                     "TriggerSpellid": 0,
+                    "Amplitude": 0.0,
                     "TriggerSpell": null
                   }
                 ],
@@ -490,6 +518,7 @@
               "BaseValue": 0.0,
               "SpCoefficient": 0.875,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             },
             {
@@ -497,6 +526,7 @@
               "BaseValue": 5.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             }
           ],
@@ -521,6 +551,7 @@
               "BaseValue": 0.0,
               "SpCoefficient": 0.18,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             },
             {
@@ -528,6 +559,7 @@
               "BaseValue": 0.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 281265,
+              "Amplitude": 0.0,
               "TriggerSpell": {
                 "Id": 281265,
                 "Name": "Holy Nova",
@@ -547,6 +579,7 @@
                     "BaseValue": 0.0,
                     "SpCoefficient": 0.18,
                     "TriggerSpellid": 0,
+                    "Amplitude": 0.0,
                     "TriggerSpell": null
                   }
                 ],
@@ -558,6 +591,7 @@
               "BaseValue": 5.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             }
           ],
@@ -582,6 +616,7 @@
               "BaseValue": 0.0,
               "SpCoefficient": 1.05,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             },
             {
@@ -589,6 +624,7 @@
               "BaseValue": 5.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             }
           ],
@@ -613,6 +649,7 @@
               "BaseValue": 0.0,
               "SpCoefficient": 0.32,
               "TriggerSpellid": 0,
+              "Amplitude": 3000.0,
               "TriggerSpell": null
             },
             {
@@ -620,6 +657,7 @@
               "BaseValue": 0.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             }
           ],
@@ -644,6 +682,7 @@
               "BaseValue": 0.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             }
           ],
@@ -668,6 +707,7 @@
               "BaseValue": 0.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 64844,
+              "Amplitude": 2000.0,
               "TriggerSpell": {
                 "Id": 64844,
                 "Name": "Divine Hymn",
@@ -687,6 +727,7 @@
                     "BaseValue": 0.0,
                     "SpCoefficient": 0.6,
                     "TriggerSpellid": 0,
+                    "Amplitude": 0.0,
                     "TriggerSpell": null
                   },
                   {
@@ -694,6 +735,7 @@
                     "BaseValue": 10.0,
                     "SpCoefficient": 0.0,
                     "TriggerSpellid": 0,
+                    "Amplitude": 0.0,
                     "TriggerSpell": null
                   }
                 ],
@@ -705,6 +747,7 @@
               "BaseValue": 100.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             },
             {
@@ -712,6 +755,7 @@
               "BaseValue": 0.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             },
             {
@@ -719,6 +763,7 @@
               "BaseValue": 12.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             }
           ],
@@ -743,6 +788,7 @@
               "BaseValue": 0.0,
               "SpCoefficient": 2.45,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             },
             {
@@ -750,6 +796,7 @@
               "BaseValue": 6.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             },
             {
@@ -757,6 +804,7 @@
               "BaseValue": 6.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             },
             {
@@ -764,6 +812,7 @@
               "BaseValue": 2.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             }
           ],
@@ -788,6 +837,7 @@
               "BaseValue": 0.0,
               "SpCoefficient": 7.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             },
             {
@@ -795,6 +845,7 @@
               "BaseValue": 6.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             }
           ],
@@ -819,6 +870,7 @@
               "BaseValue": 5.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             }
           ],
@@ -843,6 +895,7 @@
               "BaseValue": -100.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             }
           ],
@@ -867,6 +920,7 @@
               "BaseValue": 0.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             }
           ],
@@ -891,6 +945,7 @@
               "BaseValue": 0.0,
               "SpCoefficient": 0.61,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             }
           ],
@@ -915,6 +970,7 @@
               "BaseValue": 0.0,
               "SpCoefficient": 1.25,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             },
             {
@@ -922,6 +978,7 @@
               "BaseValue": 125.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             }
           ],
@@ -946,6 +1003,7 @@
               "BaseValue": 0.0,
               "SpCoefficient": 3.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             },
             {
@@ -953,6 +1011,7 @@
               "BaseValue": 450.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             },
             {
@@ -960,6 +1019,7 @@
               "BaseValue": 100.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             },
             {
@@ -967,6 +1027,7 @@
               "BaseValue": 0.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 323701,
+              "Amplitude": 0.0,
               "TriggerSpell": {
                 "Id": 323701,
                 "Name": "Mindgames",
@@ -986,6 +1047,7 @@
                     "BaseValue": 0.0,
                     "SpCoefficient": 0.0,
                     "TriggerSpellid": 0,
+                    "Amplitude": 0.0,
                     "TriggerSpell": null
                   }
                 ],
@@ -997,6 +1059,7 @@
               "BaseValue": 0.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 323705,
+              "Amplitude": 0.0,
               "TriggerSpell": {
                 "Id": 323705,
                 "Name": "Mindgames",
@@ -1016,6 +1079,7 @@
                     "BaseValue": 0.0,
                     "SpCoefficient": 0.0,
                     "TriggerSpellid": 0,
+                    "Amplitude": 0.0,
                     "TriggerSpell": null
                   }
                 ],
@@ -1027,6 +1091,7 @@
               "BaseValue": 450.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             },
             {
@@ -1034,6 +1099,7 @@
               "BaseValue": 450.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             }
           ],
@@ -1058,6 +1124,7 @@
               "BaseValue": 10.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             }
           ],
@@ -1082,6 +1149,7 @@
               "BaseValue": 100.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             },
             {
@@ -1089,6 +1157,7 @@
               "BaseValue": 100.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             },
             {
@@ -1096,6 +1165,7 @@
               "BaseValue": 100.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             },
             {
@@ -1103,6 +1173,7 @@
               "BaseValue": 100.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             },
             {
@@ -1110,6 +1181,7 @@
               "BaseValue": 100.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             }
           ],
@@ -1134,6 +1206,7 @@
               "BaseValue": -10.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             }
           ],
@@ -1158,6 +1231,7 @@
               "BaseValue": 0.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             },
             {
@@ -1165,6 +1239,7 @@
               "BaseValue": 325020.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             },
             {
@@ -1172,6 +1247,7 @@
               "BaseValue": 50.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             },
             {
@@ -1179,6 +1255,7 @@
               "BaseValue": 325283.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             },
             {
@@ -1186,6 +1263,7 @@
               "BaseValue": 3.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             },
             {
@@ -1193,6 +1271,7 @@
               "BaseValue": 0.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             },
             {
@@ -1200,6 +1279,7 @@
               "BaseValue": 325283.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             },
             {
@@ -1207,6 +1287,7 @@
               "BaseValue": 0.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             }
           ],
@@ -1231,6 +1312,7 @@
               "BaseValue": 0.0,
               "SpCoefficient": 0.74,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             },
             {
@@ -1238,6 +1320,7 @@
               "BaseValue": 0.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 325041,
+              "Amplitude": 0.0,
               "TriggerSpell": {
                 "Id": 325041,
                 "Name": "Ascended Nova",
@@ -1257,6 +1340,7 @@
                     "BaseValue": 0.0,
                     "SpCoefficient": 0.24,
                     "TriggerSpellid": 0,
+                    "Amplitude": 0.0,
                     "TriggerSpell": null
                   },
                   {
@@ -1264,6 +1348,7 @@
                     "BaseValue": 6.0,
                     "SpCoefficient": 0.0,
                     "TriggerSpellid": 0,
+                    "Amplitude": 0.0,
                     "TriggerSpell": null
                   }
                 ],
@@ -1275,6 +1360,7 @@
               "BaseValue": 1.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             }
           ],
@@ -1299,6 +1385,7 @@
               "BaseValue": 0.0,
               "SpCoefficient": 1.79,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             },
             {
@@ -1306,6 +1393,7 @@
               "BaseValue": 120.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             },
             {
@@ -1313,6 +1401,7 @@
               "BaseValue": 5.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             }
           ],
@@ -1337,6 +1426,7 @@
               "BaseValue": 0.0,
               "SpCoefficient": 2.1,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             },
             {
@@ -1344,6 +1434,7 @@
               "BaseValue": 0.0,
               "SpCoefficient": 1.59,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             }
           ],
@@ -1368,6 +1459,7 @@
               "BaseValue": 0.0,
               "SpCoefficient": 1.19,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             },
             {
@@ -1375,6 +1467,7 @@
               "BaseValue": 6.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             }
           ],
@@ -1399,6 +1492,7 @@
               "BaseValue": 0.0,
               "SpCoefficient": 0.04,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             }
           ],
@@ -1423,6 +1517,7 @@
               "BaseValue": 0.0,
               "SpCoefficient": 0.5,
               "TriggerSpellid": 0,
+              "Amplitude": 3000.0,
               "TriggerSpell": null
             },
             {
@@ -1430,6 +1525,7 @@
               "BaseValue": 1.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 325118,
+              "Amplitude": 0.0,
               "TriggerSpell": {
                 "Id": 325118,
                 "Name": "Unholy Transfusion",
@@ -1449,6 +1545,7 @@
                     "BaseValue": 0.0,
                     "SpCoefficient": 0.04,
                     "TriggerSpellid": 0,
+                    "Amplitude": 0.0,
                     "TriggerSpell": null
                   }
                 ],
@@ -1477,6 +1574,7 @@
               "BaseValue": 4.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             }
           ],
@@ -1501,6 +1599,7 @@
               "BaseValue": 10.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             }
           ],
@@ -1541,6 +1640,7 @@
               "BaseValue": 20.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             },
             {
@@ -1548,6 +1648,7 @@
               "BaseValue": 1.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             }
           ],
@@ -1588,6 +1689,7 @@
               "BaseValue": 10.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             },
             {
@@ -1595,6 +1697,7 @@
               "BaseValue": 2000.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             }
           ],
@@ -1635,6 +1738,7 @@
               "BaseValue": 3000.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             },
             {
@@ -1642,6 +1746,7 @@
               "BaseValue": 60.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             }
           ],
@@ -1682,6 +1787,7 @@
               "BaseValue": 15.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             },
             {
@@ -1689,6 +1795,7 @@
               "BaseValue": 15.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             },
             {
@@ -1696,6 +1803,7 @@
               "BaseValue": 2000.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             }
           ],
@@ -1736,6 +1844,7 @@
               "BaseValue": 5.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             }
           ],
@@ -1776,6 +1885,7 @@
               "BaseValue": 0.0,
               "SpCoefficient": 0.47,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             }
           ],
@@ -1800,6 +1910,7 @@
               "BaseValue": 50.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             }
           ],
@@ -1824,6 +1935,7 @@
               "BaseValue": 0.0,
               "SpCoefficient": 1.125,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             },
             {
@@ -1831,6 +1943,7 @@
               "BaseValue": 4.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             }
           ],
@@ -1855,6 +1968,7 @@
               "BaseValue": 0.0,
               "SpCoefficient": 0.1292,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             },
             {
@@ -1862,6 +1976,7 @@
               "BaseValue": 0.0,
               "SpCoefficient": 0.09588,
               "TriggerSpellid": 0,
+              "Amplitude": 2000.0,
               "TriggerSpell": null
             },
             {
@@ -1869,6 +1984,32 @@
               "BaseValue": 400.0,
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 327820,
+          "Name": "Shadow Word: Pain",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "IsMasteryTriggered": false,
+          "Effects": [
+            {
+              "Id": 819469,
+              "BaseValue": 4000.0,
+              "SpCoefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null
             }
           ],

@@ -20,6 +20,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, Spell.Pain);
 
+            BaseSpellData spellDataRank2 = _gameStateService.GetSpellData(gameState, Spell.PainRank2);
             var holyPriestAuraDamagesBonus = _gameStateService.GetSpellData(gameState, Spell.HolyPriest)
                 .GetEffect(191077).BaseValue / 100 + 1;
 
@@ -43,10 +44,11 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
                 * painDirectBonus;
 
             _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {averageDamageFirstTick:0.##} (first)");
-            // not sure if pain needs haste  multiplier for intial
             averageDamageFirstTick *= _gameStateService.GetCriticalStrikeMultiplier(gameState) * _gameStateService.GetHasteMultiplier(gameState);
 
-
+            double painDuration = spellData.Duration / 1000;
+            double rank2Addition = spellDataRank2.GetEffect(819469).BaseValue / 1000;
+            double tickrate = spellData.GetEffect(254257).Amplitude / 1000;
             // DoT is affected by haste
             // bandaid fix to add 4 to duration for rank 2 pain
             double averageDmgTicks = damageSpPeriodic
@@ -55,7 +57,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
                 * _gameStateService.GetHasteMultiplier(gameState)
                 * holyPriestAuraDamagePeriodicBonus
                 * painPeriodicBonus
-                * ((spellData.Duration/1000  + 4)/ 2);
+                * (painDuration + rank2Addition) / tickrate;
 
             _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {averageDmgTicks:0.##} (ticks)");
 

@@ -63,6 +63,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             return maximumPotentialCasts;
         }
+
         public override double GetHastedCooldown(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)

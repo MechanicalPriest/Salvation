@@ -331,7 +331,6 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(ShadowWordPain)).Returns(0);
                 yield return new TestCaseData(typeof(ShadowWordDeath)).Returns(0);
                 yield return new TestCaseData(typeof(HolyFire)).Returns(0);
-
             }
         }
         public static IEnumerable GetMinimumHealTargets
@@ -538,7 +537,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(UnholyNova)).Returns(0);
                 yield return new TestCaseData(typeof(UnholyTransfusion)).Returns(15);
                 yield return new TestCaseData(typeof(Smite)).Returns(0);
-                yield return new TestCaseData( typeof(Chastise)).Returns(0);
+                yield return new TestCaseData(typeof(Chastise)).Returns(0);
                 yield return new TestCaseData(typeof(ShadowWordPain)).Returns(16.0d);
                 yield return new TestCaseData(typeof(ShadowWordDeath)).Returns(0);
                 yield return new TestCaseData(typeof(HolyFire)).Returns(7); 

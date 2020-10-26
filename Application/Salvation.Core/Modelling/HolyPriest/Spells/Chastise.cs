@@ -63,6 +63,5 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         {
             return 1;
         }
-
     }
 }

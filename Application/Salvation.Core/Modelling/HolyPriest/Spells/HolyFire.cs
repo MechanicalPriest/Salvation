@@ -40,7 +40,6 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             
             averageDamageFirstTick *= _gameStateService.GetCriticalStrikeMultiplier(gameState) * _gameStateService.GetHasteMultiplier(gameState);
 
-            double HFDuration = spellData.Duration / 1000;
             double tickrate = spellData.GetEffect(6991).Amplitude / 1000;
 
             // DoT is affected by haste
@@ -49,7 +48,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
                 * _gameStateService.GetVersatilityMultiplier(gameState)
                 * _gameStateService.GetHasteMultiplier(gameState)
                 * holyPriestAuraDamagePeriodicBonus
-                * HFDuration / tickrate;
+                * GetDuration(gameState,spellData) / tickrate;
 
             _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {averageDmgTicks:0.##} (ticks)");
 

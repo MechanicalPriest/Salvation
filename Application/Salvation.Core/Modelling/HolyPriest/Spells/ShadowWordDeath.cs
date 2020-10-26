@@ -44,6 +44,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             return (averageDamage * GetNumberOfDamageTargets(gameState, spellData));
         }
+
         public override double GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)

@@ -82,6 +82,7 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.ShadowWordPainRank2,
                 (uint)Spell.ShadowWordDeath,
                 (uint)Spell.ShadowWordDeathRank2,
+                (uint)Spell.HolyFire,
             };
         }
 

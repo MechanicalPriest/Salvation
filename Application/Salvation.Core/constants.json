@@ -2080,6 +2080,47 @@
             }
           ],
           "ConduitRanks": {}
+        },
+        {
+          "Id": 14914,
+          "Name": "Holy Fire",
+          "ManaCost": 1.0,
+          "MaxRange": 40.0,
+          "BaseCastTime": 1500.0,
+          "BaseCooldown": 10000.0,
+          "IsCooldownHasted": false,
+          "Duration": 7000.0,
+          "Gcd": 1.5,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "IsMasteryTriggered": false,
+          "Effects": [
+            {
+              "Id": 6990,
+              "BaseValue": 0.0,
+              "SpCoefficient": 1.5,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null
+            },
+            {
+              "Id": 6991,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0825,
+              "TriggerSpellid": 0,
+              "Amplitude": 1000.0,
+              "TriggerSpell": null
+            },
+            {
+              "Id": 808675,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null
+            }
+          ],
+          "ConduitRanks": {}
         }
       ],
       "Conduits": []

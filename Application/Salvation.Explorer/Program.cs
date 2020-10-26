@@ -76,6 +76,7 @@ namespace Salvation.Explorer
                     services.AddSingleton<IChastiseSpellService, Chastise>(); 
                     services.AddSingleton<IShadowWordPainSpellService, ShadowWordPain>();
                     services.AddSingleton<IShadowWordDeathSpellService, ShadowWordDeath>();
+                    services.AddSingleton<IHolyFireSpellService, HolyFire>();
 
                     services.AddSingleton<ISpellDataUpdateService, SpellDataUpdateService>();
                     services.AddSingleton<ISpellDataService<HolyPriestSpellDataService>, HolyPriestSpellDataService>();

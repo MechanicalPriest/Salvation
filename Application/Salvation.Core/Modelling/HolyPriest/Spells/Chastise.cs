@@ -93,7 +93,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, (Spell)SpellId);
 
-            // Cooldown for Serenity is stored in the chargecooldown instead as it has charges
+            // Cooldown for Chastise is stored in the chargecooldown instead as it has charges
             var cooldown = spellData.ChargeCooldown / 1000;
 
             return spellData.IsCooldownHasted

@@ -121,6 +121,12 @@ namespace Salvation.Core.Profile
                     new CastProfile((int)Spell.CosmicRipple, 0d, 0.2332d, 5, 0), // CosmicRipple
                     new CastProfile((int)Spell.PowerWordShield, 0d, 0.0d, 1, 0), // PowerWordShield
                     new CastProfile((int)Spell.EchoOfLight, 0d, 0.4224d, 1, 0), // Echo
+                    new CastProfile((int)Spell.Smite, 1d, 0, 0, 1), // Smite
+                    new CastProfile((int)Spell.ShadowWordPain, 1d, 0, 0, 1), // Shadow Word: Pain
+                    new CastProfile((int)Spell.ShadowWordDeath, 1d, 0, 0, 1),
+                    new CastProfile((int)Spell.Chastise, 1d, 0, 0, 1),
+                    new CastProfile((int)Spell.HolyFire, 1d, 0, 0, 1),
+
                     // Covenants (SpellId, Efficiency, Overheal)
                     new CastProfile((int)Spell.Mindgames, 1.0d, 0.0d, 1, 1), // Mindgames
                     new CastProfile((int)Spell.FaeGuardians, 1.0d, 0.0d, 1, 0), // Fae Guardians
@@ -140,6 +146,9 @@ namespace Salvation.Core.Profile
                 {
                     new PlaystyleEntry("FaeBenevolentFaerieSelfUptime", 1, (uint)Spell.BenevolentFaerie),
                     new PlaystyleEntry("FaeGuardianFaerieDTPS", 4000, (uint)Spell.GuardianFaerie),
+                    new PlaystyleEntry("ShadowWordDeathPercentExecute", 0.2, (uint)Spell.ShadowWordDeath),
+                    new PlaystyleEntry("HolyNovaPercentOfCastsOnThreeOrMore", 0.1, (uint)Spell.HolyNovaRank2),
+
                     // The number of times you move the Guardian Faerie around
                     new PlaystyleEntry("FaeFermataNumberDRSwaps", 1, (uint)Spell.FaeFermata),
                     // The number of times you move the Benevolent Faerie around

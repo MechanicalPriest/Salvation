@@ -38,6 +38,7 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.FlashHeal,
                 (uint)Spell.PrayerOfHealing,
                 (uint)Spell.HolyNova,
+                (uint)Spell.HolyNovaRank2,
                 (uint)Spell.CircleOfHealing,
                 (uint)Spell.Renew,
                 (uint)Spell.PowerWordShield,
@@ -73,6 +74,16 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.FaeFermata,
                 (uint)Spell.ShatteredPerceptions,
                 (uint)Spell.HolyOration,
+                
+                // DPS
+                (uint)Spell.Smite,
+                (uint)Spell.SmiteRank2,
+                (uint)Spell.Chastise,
+                (uint)Spell.ShadowWordPain,
+                (uint)Spell.ShadowWordPainRank2,
+                (uint)Spell.ShadowWordDeath,
+                (uint)Spell.ShadowWordDeathRank2,
+                (uint)Spell.HolyFire,
             };
         }
 
@@ -172,6 +183,7 @@ namespace Salvation.Utility.SpellDataUpdate
                 BaseValue = effect.BaseValue,
                 SpCoefficient = effect.SpCoefficient,
                 TriggerSpellid = effect.TriggerSpellId,
+                Amplitude = effect.Amplitude,
                 TriggerSpell = GetBaseSpellData(effect.TriggerSpell)
             };
 
@@ -189,8 +201,19 @@ namespace Salvation.Utility.SpellDataUpdate
             {
                 case (uint)Spell.CircleOfHealing:
                 case (uint)Spell.PrayerOfMending:
+                case (uint)Spell.ShadowWordDeath:
                     // This comes from the Priest aura 137030 effect #1 179714
                     baseSpellData.IsCooldownHasted = true;
+                    break;
+                case (uint)Spell.ShadowWordPain:
+                    // This is from the fact its on holy and disc and has dif mana costs
+                    // https://github.com/MechanicalPriest/SimcProfileParser/issues/56
+                    baseSpellData.ManaCost = 1.2;
+                    break;
+                case (uint)Spell.Smite:
+                    // This is from the fact its on holy and disc and has dif mana costs
+                    // https://github.com/MechanicalPriest/SimcProfileParser/issues/56
+                    baseSpellData.ManaCost = 0.2;
                     break;
                 default:
                     break;

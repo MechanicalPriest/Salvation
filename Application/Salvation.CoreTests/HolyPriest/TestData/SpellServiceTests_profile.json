@@ -249,6 +249,15 @@
       "Name": "HolyNovaPercentOfCastsOnThreeOrMore",
       "Value": 0.1,
       "SpellId": 322112
+
+      "Name": "FaeFermataNumberDRSwaps",
+      "Value": 1.0,
+      "SpellId": 338305
+    },
+    {
+      "Name": "FaeFermataNumberCDRSwaps",
+      "Value": 3.0,
+      "SpellId": 338305
     }
 
   ]

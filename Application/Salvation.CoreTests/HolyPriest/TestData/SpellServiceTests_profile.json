@@ -243,7 +243,12 @@
     {
       "Name": "ShadowWordDeathPercentExecute",
       "Value": 0.2,
-      "SpellId":  32379
+      "SpellId": 32379
+    },
+    {
+      "Name": "HolyNovaPercentOfCastsOnThreeOrMore",
+      "Value": 0.1,
+      "SpellId": 32379
     }
 
   ]

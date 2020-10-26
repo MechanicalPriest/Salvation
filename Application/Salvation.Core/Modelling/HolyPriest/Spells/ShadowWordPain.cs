@@ -21,7 +21,6 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, Spell.ShadowWordPain);
 
-            BaseSpellData spellDataRank2 = _gameStateService.GetSpellData(gameState, Spell.ShadowWordPainRank2);
             var holyPriestAuraDamagesBonus = _gameStateService.GetSpellData(gameState, Spell.HolyPriest)
                 .GetEffect(191077).BaseValue / 100 + 1;
 
@@ -46,8 +45,8 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {averageDamageFirstTick:0.##} (first)");
             averageDamageFirstTick *= _gameStateService.GetCriticalStrikeMultiplier(gameState) * _gameStateService.GetHasteMultiplier(gameState);
 
-            double rank2Addition = spellDataRank2.GetEffect(819469).BaseValue / 1000;
             double tickrate = spellData.GetEffect(254257).Amplitude / 1000;
+            double timeovertickrate = (GetDuration(gameState, spellData) / tickrate);
 
             // DoT is affected by haste
             double averageDmgTicks = damageSpPeriodic
@@ -56,7 +55,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
                 * _gameStateService.GetHasteMultiplier(gameState)
                 * holyPriestAuraDamagePeriodicBonus
                 * painPeriodicBonus
-                * (GetDuration(gameState, spellData) + rank2Addition) / tickrate;
+                * timeovertickrate;
 
             _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {averageDmgTicks:0.##} (ticks)");
 

@@ -19,6 +19,7 @@
         FlashHeal = 2061,
         PrayerOfHealing = 596,
         HolyNova = 132157,
+        HolyNovaRank2 = 322112,
         CircleOfHealing = 204883,
         Renew = 139,
         PowerWordShield = 17,

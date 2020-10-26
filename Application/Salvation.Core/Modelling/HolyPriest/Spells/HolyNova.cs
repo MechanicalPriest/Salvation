@@ -21,6 +21,8 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, Spell.HolyNova);
 
+            BaseSpellData spellDataRank2 = _gameStateService.GetSpellData(gameState, Spell.HolyNovaRank2);
+
             var holyPriestAuraHealingBonus = _gameStateService.GetSpellData(gameState, Spell.HolyPriest)
                 .GetEffect(179715).BaseValue / 100 + 1;
 
@@ -35,6 +37,11 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             averageHeal *= _gameStateService.GetCriticalStrikeMultiplier(gameState);
 
+            // Rank 2 stuff
+            double threeTargetPercent = _gameStateService.GetPlaystyle(gameState, "HolyNovaPercentOfCastsOnThreeOrMore").Value;
+
+            averageHeal *= 1 + threeTargetPercent * spellDataRank2.GetEffect(844508).BaseValue / 100;
+
             // Apply the relative square root scaling
             var numTargets = GetNumberOfHealingTargets(gameState, spellData);
             averageHeal *= GetTargetScaling(numTargets);
@@ -46,6 +53,8 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         {
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, (Spell)SpellId);
+
+            BaseSpellData spellDataRank2 = _gameStateService.GetSpellData(gameState, Spell.HolyNovaRank2);
 
             var holyPriestAuraDamageBonus = _gameStateService.GetSpellData(gameState, Spell.HolyPriest).GetEffect(191077).BaseValue / 100 + 1;
 
@@ -60,6 +69,11 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
                 * holyPriestAuraDamageBonus;
 
             _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip (Damage): {averageDamage:0.##}");
+
+            // Rank 2 stuff
+            double threeTargetPercent = _gameStateService.GetPlaystyle(gameState, "HolyNovaPercentOfCastsOnThreeOrMore").Value;
+
+            averageDamage *= 1 + threeTargetPercent * spellDataRank2.GetEffect(844508).BaseValue / 100;
 
             averageDamage *= _gameStateService.GetCriticalStrikeMultiplier(gameState);
 

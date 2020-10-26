@@ -38,6 +38,7 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.FlashHeal,
                 (uint)Spell.PrayerOfHealing,
                 (uint)Spell.HolyNova,
+                (uint)Spell.HolyNovaRank2,
                 (uint)Spell.CircleOfHealing,
                 (uint)Spell.Renew,
                 (uint)Spell.PowerWordShield,

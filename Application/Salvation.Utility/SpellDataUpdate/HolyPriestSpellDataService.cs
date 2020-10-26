@@ -204,6 +204,16 @@ namespace Salvation.Utility.SpellDataUpdate
                     // This comes from the Priest aura 137030 effect #1 179714
                     baseSpellData.IsCooldownHasted = true;
                     break;
+                case (uint)Spell.ShadowWordPain:
+                    // This is from the fact its on holy and disc and has dif mana costs
+                    // https://github.com/MechanicalPriest/SimcProfileParser/issues/56
+                    baseSpellData.ManaCost = 1.2;
+                    break;
+                case (uint)Spell.Smite:
+                    // This is from the fact its on holy and disc and has dif mana costs
+                    // https://github.com/MechanicalPriest/SimcProfileParser/issues/56
+                    baseSpellData.ManaCost = 0.2;
+                    break;
                 default:
                     break;
             }

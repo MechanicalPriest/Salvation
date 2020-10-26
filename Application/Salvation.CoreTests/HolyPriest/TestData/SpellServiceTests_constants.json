@@ -1869,7 +1869,7 @@
         {
           "Id": 585,
           "Name": "Smite",
-          "ManaCost": 0.4,
+          "ManaCost": 0.2,
           "MaxRange": 40.0,
           "BaseCastTime": 1500.0,
           "BaseCooldown": 0.0,
@@ -1952,7 +1952,7 @@
         {
           "Id": 589,
           "Name": "Shadow Word: Pain",
-          "ManaCost": 1.8,
+          "ManaCost": 1.2,
           "MaxRange": 40.0,
           "BaseCastTime": 0.0,
           "BaseCooldown": 0.0,

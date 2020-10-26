@@ -13,7 +13,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         public HolyFire(IGameStateService gameStateService)
             : base(gameStateService)
         {
-            SpellId = (int)Spell.ShadowWordDeath;
+            SpellId = (int)Spell.HolyFire;
         }
 
         public override double GetAverageDamage(GameState gameState, BaseSpellData spellData = null)
@@ -57,6 +57,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             return (averageDamageFirstTick + averageDmgTicks) * GetNumberOfDamageTargets(gameState, spellData);
         }
+
         public override double GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)
@@ -78,6 +79,33 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             double maximumPotentialCasts = 60d / (hastedCastTime + hastedCd);
 
             return maximumPotentialCasts;
+        }
+
+        public override double GetHastedCastTime(GameState gameState, BaseSpellData spellData = null)
+        {
+            if (spellData == null)
+                spellData = _gameStateService.GetSpellData(gameState, Spell.HolyFire);
+
+            if (spellData == null)
+                throw new ArgumentOutOfRangeException(nameof(SpellId),
+                    $"Spelldata for SpellId ({SpellId}) not found");
+
+            // Get the hasted cast time in seconds
+            var hastedCastTime = spellData.BaseCastTime / 1000 / _gameStateService.GetHasteMultiplier(gameState);
+            return hastedCastTime;
+        }
+
+        public override double GetDuration(GameState gameState, BaseSpellData spellData = null)
+        {
+            if (spellData == null)
+                spellData = _gameStateService.GetSpellData(gameState, Spell.HolyFire);
+
+            if (spellData == null)
+                throw new ArgumentOutOfRangeException(nameof(SpellId),
+                    $"Spelldata for SpellId ({SpellId}) not found");
+
+            // Spells are stored with duration in milliseconds. We want seconds.
+            return spellData.Duration / 1000;
         }
 
         public override double GetMinimumDamageTargets(GameState gameState, BaseSpellData spellData)

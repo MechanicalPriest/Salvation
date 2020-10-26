@@ -4,6 +4,7 @@ using Salvation.Core.Interfaces;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.State;
+using System;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
@@ -86,6 +87,20 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             double maximumPotentialCasts = 60d / fillerCastTime;
 
             return maximumPotentialCasts;
+        }
+
+        public override double GetDuration(GameState gameState, BaseSpellData spellData = null)
+        {
+            if (spellData == null)
+                spellData = _gameStateService.GetSpellData(gameState, Spell.ShadowWordPain);
+
+            if (spellData == null)
+                throw new ArgumentOutOfRangeException(nameof(SpellId),
+                    $"Spelldata for SpellId ({SpellId}) not found");
+
+            BaseSpellData spellDataRank2 = _gameStateService.GetSpellData(gameState, Spell.ShadowWordPainRank2);
+            // Spells are stored with duration in milliseconds. We want seconds.
+            return spellData.Duration / 1000 + spellDataRank2.GetEffect(819469).BaseValue / 1000;
         }
 
         public override double GetMinimumDamageTargets(GameState gameState, BaseSpellData spellData)

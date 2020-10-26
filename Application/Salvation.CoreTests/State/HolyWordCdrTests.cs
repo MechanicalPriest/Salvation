@@ -145,6 +145,8 @@ namespace Salvation.CoreTests.State
                 yield return new TestCaseData(Spell.PrayerOfMending).Returns(4d);
                 yield return new TestCaseData(Spell.HolyWordSerenity).Returns(30d);
                 yield return new TestCaseData(Spell.HolyWordSanctify).Returns(30d);
+                yield return new TestCaseData(Spell.Smite).Returns(4d);
+                yield return new TestCaseData(Spell.HolyFire).Returns(4d);
             }
         }
         public static IEnumerable LotnValueTests
@@ -160,6 +162,8 @@ namespace Salvation.CoreTests.State
                 yield return new TestCaseData(Spell.PrayerOfMending).Returns(5.3333333333d);
                 yield return new TestCaseData(Spell.HolyWordSerenity).Returns(30d);
                 yield return new TestCaseData(Spell.HolyWordSanctify).Returns(30d);
+                yield return new TestCaseData(Spell.Smite).Returns(5.3333333333d);
+                yield return new TestCaseData(Spell.HolyFire).Returns(5.3333333333d);
             }
         }
         public static IEnumerable LotnHoValueTests
@@ -175,6 +179,8 @@ namespace Salvation.CoreTests.State
                 yield return new TestCaseData(Spell.PrayerOfMending).Returns(5.5733333333d);
                 yield return new TestCaseData(Spell.HolyWordSerenity).Returns(31.8d);
                 yield return new TestCaseData(Spell.HolyWordSanctify).Returns(31.8d);
+                yield return new TestCaseData(Spell.Smite).Returns(5.5733333333d);
+                yield return new TestCaseData(Spell.HolyFire).Returns(5.5733333333d);
             }
         }
         public static IEnumerable HoValueTests
@@ -190,6 +196,8 @@ namespace Salvation.CoreTests.State
                 yield return new TestCaseData(Spell.PrayerOfMending).Returns(4.24d);
                 yield return new TestCaseData(Spell.HolyWordSerenity).Returns(31.8d);
                 yield return new TestCaseData(Spell.HolyWordSanctify).Returns(31.8d);
+                yield return new TestCaseData(Spell.Smite).Returns(4.24d);
+                yield return new TestCaseData(Spell.HolyFire).Returns(4.24d);
             }
         }
         public static IEnumerable ApothValueTests
@@ -205,6 +213,8 @@ namespace Salvation.CoreTests.State
                 yield return new TestCaseData(Spell.PrayerOfMending).Returns(16d);
                 yield return new TestCaseData(Spell.HolyWordSerenity).Returns(30d);
                 yield return new TestCaseData(Spell.HolyWordSanctify).Returns(30d);
+                yield return new TestCaseData(Spell.Smite).Returns(16d);
+                yield return new TestCaseData(Spell.HolyFire).Returns(16d);
             }
         }
         public static IEnumerable ApothHoValueTests
@@ -220,6 +230,8 @@ namespace Salvation.CoreTests.State
                 yield return new TestCaseData(Spell.PrayerOfMending).Returns(16.24d);
                 yield return new TestCaseData(Spell.HolyWordSerenity).Returns(31.8d);
                 yield return new TestCaseData(Spell.HolyWordSanctify).Returns(31.8d);
+                yield return new TestCaseData(Spell.Smite).Returns(16.24d);
+                yield return new TestCaseData(Spell.HolyFire).Returns(16.24d);
             }
         }
     }

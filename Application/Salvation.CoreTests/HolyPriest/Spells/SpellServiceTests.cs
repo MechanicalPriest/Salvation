@@ -97,7 +97,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 new UnholyTransfusion(gameStateService)));
             Spells.Add(new UnholyTransfusion(gameStateService));
             Spells.Add(new Smite(gameStateService));
-            Spells.Add(new Chastise(gameStateService));
+            Spells.Add(new Chastise(gameStateService, new Smite(gameStateService), new HolyFire(gameStateService)));
             Spells.Add(new ShadowWordPain(gameStateService)); 
             Spells.Add(new ShadowWordDeath(gameStateService));
             Spells.Add(new HolyFire(gameStateService));
@@ -641,7 +641,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(PrayerOfMending)).Returns(5.3878787879000001d);
                 yield return new TestCaseData(typeof(Renew)).Returns(43.103030302999997d);
                 yield return new TestCaseData(typeof(Smite)).Returns(43.103030302999997d);
-                yield return new TestCaseData(typeof(Chastise)).Returns(1);
+                yield return new TestCaseData(typeof(Chastise)).Returns(4.0246688547999998d);
                 yield return new TestCaseData(typeof(UnholyNova)).Returns(1.1511335012999999d);
                 yield return new TestCaseData(typeof(ShadowWordPain)).Returns(43.103030302999997d);
                 yield return new TestCaseData(typeof(ShadowWordDeath)).Returns(3.2327272727d);

@@ -6,6 +6,7 @@ using Salvation.Core.Interfaces.State;
 using Salvation.Core.Profile;
 using Salvation.Core.State;
 using SimcProfileParser;
+using System;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -20,9 +21,9 @@ namespace Salvation.CoreTests.State
         [OneTimeSetUp]
         public async Task InitOnce()
         {
-            var basePath = @"State" + Path.DirectorySeparatorChar + "TestData";
+            var basePath = @"Profile" + Path.DirectorySeparatorChar + "TestData";
             var profileStringBeitaky = await File.ReadAllTextAsync(
-                Path.Combine("Profile" + Path.DirectorySeparatorChar + "TestData", "Beitaky.simc"));
+                Path.Combine(basePath, "Beitaky.simc"));
 
             var simcProfileService = new SimcProfileService(
                 new SimcGenerationService(),
@@ -31,9 +32,9 @@ namespace Salvation.CoreTests.State
 
             IConstantsService constantsService = new ConstantsService();
             var constants = constantsService.ParseConstants(
-                File.ReadAllText(Path.Combine(basePath, "StateTests_constants.json")));
+                File.ReadAllText(Path.Combine(basePath, "ProfileTests_constants.json")));
             var profile = JsonConvert.DeserializeObject<PlayerProfile>(
-                File.ReadAllText(Path.Combine(basePath, "StateTests_profile.json")));
+                File.ReadAllText(Path.Combine(basePath, "ProfileTests_profile.json")));
 
             await simcProfileService.ApplySimcProfileAsync(profileStringBeitaky, profile);
 
@@ -88,6 +89,19 @@ namespace Salvation.CoreTests.State
 
             // Assert
             Assert.AreEqual(812, vers);
+        }
+
+        [Test]
+        public void GSG_Calculates_Intellect()
+        {
+            // Arrange
+
+            // Act
+            var intellect = _gameStateService.GetIntellect(_state);
+            File.WriteAllText("temp.json", JsonConvert.SerializeObject(_state.Profile, Formatting.Indented));
+
+            // Assert
+            Assert.AreEqual(1261, intellect);
         }
     }
 }

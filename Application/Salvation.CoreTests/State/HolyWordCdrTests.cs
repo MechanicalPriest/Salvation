@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using Newtonsoft.Json;
+using NUnit.Framework;
 using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
 using Salvation.Core.Interfaces.Constants;
@@ -7,30 +8,26 @@ using Salvation.Core.Profile;
 using Salvation.Core.State;
 using System;
 using System.Collections;
+using System.IO;
 
 namespace Salvation.CoreTests.State
 {
     [TestFixture]
     public class HolyWordCdrTests
     {
-        IConstantsService _constantsService;
         IGameStateService _gameStateService;
         GameState _state;
-
-        [OneTimeSetUp]
-        public void InitOnce()
-        {
-            _constantsService = new ConstantsService();
-
-        }
 
         [SetUp]
         public void Init()
         {
-            var constants = _constantsService.LoadConstantsFromFile();
+            var basePath = @"Profile" + Path.DirectorySeparatorChar + "TestData";
 
-            PlayerProfile profile = new ProfileGenerationService()
-                .GetDefaultProfile(Spec.HolyPriest);
+            IConstantsService constantsService = new ConstantsService();
+            var constants = constantsService.ParseConstants(
+                File.ReadAllText(Path.Combine(basePath, "ProfileTests_constants.json")));
+            var profile = JsonConvert.DeserializeObject<PlayerProfile>(
+                File.ReadAllText(Path.Combine(basePath, "ProfileTests_profile.json")));
 
             _state = new GameState(profile, constants);
 

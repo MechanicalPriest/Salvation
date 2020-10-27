@@ -96,11 +96,13 @@ namespace Salvation.Core.Profile
             {
                 Name = "Holy Priest Default Profile",
                 SpecId = Spec.HolyPriest,
-                Intellect = 1001,
-                MasteryRating = 242,
-                VersatilityRating = 139,
-                HasteRating = 242,
-                CritRating = 268,
+                Intellect = 0,
+                MasteryRating = 0,
+                VersatilityRating = 0,
+                HasteRating = 0,
+                CritRating = 0,
+                Race = Race.NoRace,
+                Class = Class.Priest,
                 Casts = new List<CastProfile>()
                 {
                     // Base Spells (SpellId, Efficiency, Overheal)
@@ -144,6 +146,10 @@ namespace Salvation.Core.Profile
                     new PlaystyleEntry("FaeFermataNumberDRSwaps", 1, (uint)Spell.FaeFermata),
                     // The number of times you move the Benevolent Faerie around
                     new PlaystyleEntry("FaeFermataNumberCDRSwaps", 3, (uint)Spell.FaeFermata),
+                },
+                Items = new List<Item>()
+                {
+                    
                 }
             };
 

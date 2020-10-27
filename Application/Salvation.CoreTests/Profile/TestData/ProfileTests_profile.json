@@ -1,11 +1,11 @@
 {
   "SpecId": 257,
   "Name": "Holy Priest Default Profile",
-  "Intellect": 981,
-  "MasteryRating": 263,
-  "VersatilityRating": 98,
-  "HasteRating": 256,
-  "CritRating": 217,
+  "Intellect": 0,
+  "MasteryRating": 0,
+  "VersatilityRating": 0,
+  "HasteRating": 0,
+  "CritRating": 0,
   "Race": 3,
   "Class": 5,
   "Casts": [
@@ -206,16 +206,6 @@
       "Name": "FaeGuardianFaerieDTPS",
       "Value": 4000.0,
       "SpellId": 327694
-    },
-    {
-      "Name": "FaeFermataNumberDRSwaps",
-      "Value": 1.0,
-      "SpellId": 338305
-    },
-    {
-      "Name": "FaeFermataNumberCDRSwaps",
-      "Value": 3.0,
-      "SpellId": 338305
     }
   ]
 }

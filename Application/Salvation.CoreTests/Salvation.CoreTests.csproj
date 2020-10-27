@@ -10,6 +10,8 @@
     <None Remove="HolyPriest\TestData\SpellServiceTests_constants.json" />
     <None Remove="HolyPriest\TestData\SpellServiceTests_profile.json" />
     <None Remove="Profile\TestData\Beitaky.simc" />
+    <None Remove="Profile\TestData\ProfileTests_constants.json" />
+    <None Remove="Profile\TestData\ProfileTests_profile.json" />
     <None Remove="State\TestData\StateTests_constants.json" />
     <None Remove="State\TestData\StateTests_profile.json" />
   </ItemGroup>
@@ -22,6 +24,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Profile\TestData\Beitaky.simc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Profile\TestData\ProfileTests_constants.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Profile\TestData\ProfileTests_profile.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="State\TestData\StateTests_constants.json">

@@ -97,6 +97,8 @@ namespace Salvation.Core.Profile
 
         internal void ApplyItems(PlayerProfile profile, IList<SimcItem> items)
         {
+            profile.Items = new List<Item>();
+
             foreach (var item in items)
             {
                 var newItem = new Item

@@ -177,8 +177,94 @@ namespace Salvation.Core.State
 
         public double GetIntellect(GameState state)
         {
-            // TODO: Add other sources of int increase here
-            return state.Profile.Intellect;
+            double intellect = 0;
+
+            // Get base intellect based on class
+            switch (state.Profile.Class)
+            {
+                case Class.Priest:
+                    intellect += 450;
+                    break;
+                default:
+                    throw new NotImplementedException("This class is not yet implemented.");
+            }
+
+            // Apply race modifiers
+            switch (state.Profile.Race)
+            {
+                case Race.Vulpera:
+                    intellect += 1;
+                    break;
+
+                case Race.BloodElf:
+                case Race.Mechagnome:
+                case Race.Nightborne:
+                case Race.VoidElf:
+                    intellect += 2;
+                    break;
+
+                case Race.Gnome:
+                case Race.Goblin:
+                    intellect += 3;
+                    break;
+
+                case Race.Orc:
+                case Race.Dwarf:
+                case Race.DarkIronDwarf:
+                case Race.MagharOrc:
+                case Race.HighmountainTauren:
+                case Race.KulTiran:
+                    intellect -= 1;
+                    break;
+
+                case Race.Undead:
+                case Race.Tauren:
+                    intellect -= 2;
+                    break;
+
+                case Race.Troll:
+                case Race.Worgen:
+                case Race.ZandalariTroll:
+                    intellect -= 3;
+                    break;
+
+                case Race.NoRace:
+                case Race.Human:
+                case Race.NightElf:
+                case Race.Draenei:
+                case Race.LightforgedDraenei:
+                case Race.Pandaren:
+                case Race.PandarenAlliance:
+                case Race.PandarenHorde:
+                default:
+                    break;
+            }
+
+            // Add intellect from all items
+            var clothCount = 0;
+            foreach (var item in state.Profile.Items.Take(15))
+            {
+                if (item.Slot != InventorySlot.INVTYPE_CLOAK && 
+                    item.ItemType == ItemType.ITEM_CLASS_ARMOR && 
+                    item.ItemSubType == 1)
+                    clothCount++;
+
+                foreach (var mod in item.Mods)
+                {
+                    if (mod.Type == ItemModType.ITEM_MOD_INTELLECT ||
+                        mod.Type == ItemModType.ITEM_MOD_AGILITY_INTELLECT || 
+                        mod.Type == ItemModType.ITEM_MOD_STRENGTH_INTELLECT ||
+                        mod.Type == ItemModType.ITEM_MOD_STRENGTH_AGILITY_INTELLECT)
+                    {
+                        intellect += mod.StatRating;
+                    }
+                }
+            }
+
+            if (clothCount == 8)
+                intellect *= 1.05d;
+
+            return Math.Round(intellect);
         }
 
         public BaseSpellData GetSpellData(GameState state, Spell spellId)

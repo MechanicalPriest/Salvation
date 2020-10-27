@@ -17,8 +17,10 @@ namespace Salvation.Core.Profile
     {
         public Spec SpecId { get; set; }
         public string Name { get; set; }
-        public string Server { get; internal set; }
-        public string Region { get; internal set; }
+        public string Server { get; set; }
+        public string Region { get; set; }
+        public Race Race { get; set; }
+        public Class Class { get; set; }
 
         public int Intellect { get; set; }
         public int MasteryRating { get; set; }

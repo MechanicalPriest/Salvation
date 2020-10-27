@@ -7,5 +7,6 @@
         public double SpCoefficient { get; set; }
         public uint TriggerSpellid { get; set; }
         public BaseSpellData TriggerSpell { get; set; }
+        public uint Type { get; set; }
     }
 }

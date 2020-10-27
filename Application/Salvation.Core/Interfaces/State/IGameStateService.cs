@@ -40,5 +40,6 @@ namespace Salvation.Core.Interfaces.State
 
         // Holy Priest specific
         double GetTotalHolyWordCooldownReduction(GameState state, Spell spell, bool IsApotheosisActive = false);
+        double GetCriticalStrikeRating(GameState state);
     }
 }

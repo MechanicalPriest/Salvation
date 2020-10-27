@@ -1,4 +1,4 @@
-﻿# Beitaky - Holy - 2020-10-26 13:09 - us/Torghast
+﻿# Beitaky - Holy - 2020-10-27 15:20 - us/Torghast
 # SimC Addon 9.0.1-02
 # Requires SimulationCraft 901-01 or newer
 
@@ -9,16 +9,16 @@ region=us
 server=torghast
 role=attack
 
-talents=0300220
+talents=0300122
 spec=holy
 
 covenant=kyrian
 soulbind=pelagos:7,328266/87:1
 # soulbind=forgelite_prime_mikanikos:18,
-# conduits_available=75:1/76:1/81:1/84:1/113:1/114:1/116:1/77:1/78:1/82:1/115:1/87:1/107:1/69:1/85:1/67:1/73:1/66:1/71:1/72:1
+# conduits_available=84:1/81:1/77:1/78:1/82:1/115:1/75:1/76:1/113:1/87:1/107:1/114:1/116:1/85:1/67:1/69:1/73:1/71:1/66:1/72:1
 # renown=40
 
-head=,id=173245,bonus_id=6973/6716/7194/6647/6648/1487
+head=,id=175864,bonus_id=6795/1504/6646
 neck=,id=178299,bonus_id=6788/1504/6646
 shoulder=,id=175873,bonus_id=6781/1504/6646
 back=,id=178265,bonus_id=6788/1504/6646
@@ -30,14 +30,13 @@ legs=,id=175868,bonus_id=6795/1504/6646
 feet=,id=175857,bonus_id=6781/1504/6646
 finger1=,id=178293,bonus_id=6788/1504/6646
 finger2=,id=175879,bonus_id=6788/1504/6646
-trinket1=,id=177813,bonus_id=6907/6652/603/7215,drop_level=50
 trinket2=,id=175884,bonus_id=6781/1504/6646
 main_hand=,id=178473,bonus_id=6774/1504/6646
 
 ### Gear from Bags
 #
-# Sinful Aspirant's Silk Hood (190)
-# head=,id=175864,bonus_id=6795/1504/6646
+# Divine Image (190)
+# head=,id=173245,bonus_id=6973/6716/7194/6647/6648/1487
 #
 # Twins of the Sun Priestess (190)
 # head=,id=173245,bonus_id=7002/6716/7193/6647/6648/1487
@@ -200,6 +199,9 @@ main_hand=,id=178473,bonus_id=6774/1504/6646
 #
 # Cabalist's Hymnal (226)
 # trinket1=,id=184028,bonus_id=6652/7215/1498/6646,drop_level=50
+#
+# Hopebreaker's Badge (226)
+# trinket1=,id=177813,bonus_id=6907/6652/603/7215,drop_level=50
 #
 # Sinful Aspirant's Insignia of Alacrity (190)
 # trinket1=,id=178298,bonus_id=6781/1504/6646

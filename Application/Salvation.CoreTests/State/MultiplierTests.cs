@@ -1,12 +1,10 @@
 ﻿using Newtonsoft.Json;
 using NUnit.Framework;
 using Salvation.Core.Constants;
-using Salvation.Core.Constants.Data;
 using Salvation.Core.Interfaces.Constants;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.Profile;
 using Salvation.Core.State;
-using System;
 using System.Collections;
 using System.IO;
 
@@ -32,9 +30,10 @@ namespace Salvation.CoreTests.State
             _state = new GameState(profile, constants);
             _gameStateService = new GameStateService();
         }
+
         [TestCaseSource(typeof(MultiplierTestData), nameof(MultiplierTestData.CritTestData))]
         public double CritMultiplierTest(int crit_val)
-        {            
+        {
             // Arrange
 
 
@@ -57,6 +56,7 @@ namespace Salvation.CoreTests.State
             // Assert
             return _gameStateService.GetHasteMultiplier(_state);
         }
+
         [TestCaseSource(typeof(MultiplierTestData), nameof(MultiplierTestData.MasteryTestData))]
         public double MasteryMultiplierTest(int mastery_val)
         {
@@ -69,6 +69,7 @@ namespace Salvation.CoreTests.State
             // Assert
             return _gameStateService.GetMasteryMultiplier(_state);
         }
+
         [TestCaseSource(typeof(MultiplierTestData), nameof(MultiplierTestData.VersTestData))]
         public double VersMultiplierTest(int vers_val)
         {
@@ -91,7 +92,7 @@ namespace Salvation.CoreTests.State
             get
             {
                 yield return new TestCaseData(100).Returns(1.0785714285714285d);
-                yield return new TestCaseData(1500).Returns(1.4628857142857221d); 
+                yield return new TestCaseData(1500).Returns(1.4628857142857221d);
                 yield return new TestCaseData(300).Returns(1.1357142857142857d);
             }
         }

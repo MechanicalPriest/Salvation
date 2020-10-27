@@ -62,7 +62,7 @@ namespace Salvation.CoreTests.Profile
             Assert.AreEqual(40, baseProfile.Covenant.Renown);
             // Conduits
             Assert.LessOrEqual(20, baseProfile.Covenant.AvailableConduits.Count);
-            Assert.AreEqual(Conduit.ShiningRadiance, baseProfile.Covenant.AvailableConduits.First().Key);
+            Assert.AreEqual(Conduit.ResonantWords, baseProfile.Covenant.AvailableConduits.First().Key);
             Assert.AreEqual(1, baseProfile.Covenant.AvailableConduits.First().Value);
             // Soulbinds
             Assert.LessOrEqual(2, baseProfile.Covenant.Soulbinds.Count);

@@ -71,6 +71,25 @@ namespace Salvation.Core.State
             return result;
         }
 
+        public double GetCriticalStrikeRating(GameState state)
+        {
+            var critRating = 0;
+            
+            foreach(var item in state.Profile.Items.Take(14))
+            {
+                foreach(var mod in item.Mods)
+                {
+                    if(mod.Type == ItemModType.ITEM_MOD_CRIT_RATING || 
+                        mod.Type == ItemModType.ITEM_MOD_CRIT_SPELL_RATING)
+                    {
+                        critRating += mod.StatRating;
+                    }
+                }
+            }
+
+            return critRating;
+        }
+
         public double GetCriticalStrikeMultiplier(GameState state)
         {
             // TODO: Add other sources of crit increase here

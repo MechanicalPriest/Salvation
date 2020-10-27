@@ -39,14 +39,15 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             averageHealFirstTick *= _gameStateService.GetCriticalStrikeMultiplier(gameState)
                 * _gameStateService.GetHasteMultiplier(gameState);
 
-
+            double duration = spellData.Duration / 1000;
+            double tickrate = spellData.GetEffect(95).Amplitude / 1000;
             // HoT is affected by haste
             double averageHealTicks = healingSp
                 * _gameStateService.GetIntellect(gameState)
                 * _gameStateService.GetVersatilityMultiplier(gameState)
                 * _gameStateService.GetHasteMultiplier(gameState)
                 * holyPriestAuraHealingPeriodicBonus
-                * 5;
+                * duration / tickrate;
 
             _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {averageHealTicks:0.##} (ticks)");
 

@@ -19,6 +19,7 @@
         FlashHeal = 2061,
         PrayerOfHealing = 596,
         HolyNova = 132157,
+        HolyNovaRank2 = 322112,
         CircleOfHealing = 204883,
         Renew = 139,
         PowerWordShield = 17,
@@ -82,5 +83,15 @@
         FaeFermata = 338305,
         ShatteredPerceptions = 338315,
         HolyOration = 338345,
+
+        // DPS
+        Smite = 585,
+        SmiteRank2 = 262861,
+        Chastise = 88625,
+        ShadowWordPain = 589,
+        ShadowWordPainRank2 = 327820,
+        ShadowWordDeath = 32379,
+        ShadowWordDeathRank2 = 322107,
+        HolyFire = 14914,
     }
 }

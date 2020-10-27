@@ -77,5 +77,17 @@ namespace Salvation.CoreTests.State
             // Assert
             Assert.AreEqual(100, mastery);
         }
+
+        [Test]
+        public void GSG_Calculates_VersRating()
+        {
+            // Arrange
+
+            // Act
+            var vers = _gameStateService.GetVersatilityRating(_state);
+
+            // Assert
+            Assert.AreEqual(812, vers);
+        }
     }
 }

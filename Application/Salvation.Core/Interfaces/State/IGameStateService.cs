@@ -43,5 +43,6 @@ namespace Salvation.Core.Interfaces.State
         double GetCriticalStrikeRating(GameState state);
         double GetHasteRating(GameState state);
         double GetMasteryRating(GameState state);
+        double GetVersatilityRating(GameState state);
     }
 }

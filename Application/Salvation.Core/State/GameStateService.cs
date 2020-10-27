@@ -123,6 +123,24 @@ namespace Salvation.Core.State
             return 1 + specData.HasteBase + (GetDrRating(state.Profile.HasteRating, specData.HasteCost) / specData.HasteCost / 100);
         }
 
+        public double GetVersatilityRating(GameState state)
+        {
+            var versatilityRating = 0;
+
+            foreach (var item in state.Profile.Items.Take(15))
+            {
+                foreach (var mod in item.Mods)
+                {
+                    if (mod.Type == ItemModType.ITEM_MOD_VERSATILITY_RATING)
+                    {
+                        versatilityRating += mod.StatRating;
+                    }
+                }
+            }
+
+            return versatilityRating;
+        }
+
         public double GetVersatilityMultiplier(GameState state)
         {
             // TODO: Add other sources of vers increase here

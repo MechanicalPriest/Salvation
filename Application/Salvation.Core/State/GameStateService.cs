@@ -264,6 +264,7 @@ namespace Salvation.Core.State
             if (clothCount == 8)
                 intellect *= 1.05d;
 
+            // TODO: Test if this is actually Floor'd. It's probably not touched at all.
             return Math.Floor(intellect);
         }
 

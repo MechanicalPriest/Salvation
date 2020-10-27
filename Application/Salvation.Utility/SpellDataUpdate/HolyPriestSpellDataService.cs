@@ -147,7 +147,6 @@ namespace Salvation.Utility.SpellDataUpdate
             {
                 Id = spell.SpellId,
                 Name = spell.Name,
-                //ManaCost = spell.PowerCost,
                 MaxRange = spell.MaxRange,
                 BaseCastTime = spell.CastTime,
                 BaseCooldown = spell.Cooldown,

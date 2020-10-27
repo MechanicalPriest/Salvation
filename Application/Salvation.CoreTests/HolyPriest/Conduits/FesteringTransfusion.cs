@@ -13,23 +13,14 @@ using System.Linq;
 namespace Salvation.CoreTests.HolyPriest.Conduits
 {
     [TestFixture]
-    class FesteringTransfusion
+    class FesteringTransfusion : BaseTest
     {
         private GameState _gameState;
 
         [OneTimeSetUp]
         public void InitOnce()
         {
-            IConstantsService constantsService = new ConstantsService();
-
-            // Load this from somewhere that doesn't change
-            var basePath = @"HolyPriest" + Path.DirectorySeparatorChar + "TestData";
-            var constants = constantsService.ParseConstants(
-                File.ReadAllText(Path.Combine(basePath, "SpellServiceTests_constants.json")));
-            var profile = JsonConvert.DeserializeObject<PlayerProfile>(
-                File.ReadAllText(Path.Combine(basePath, "SpellServiceTests_profile.json")));
-
-            _gameState = new GameState(profile, constants);
+            _gameState = GetGameState();
         }
 
         [Test]
@@ -68,8 +59,8 @@ namespace Salvation.CoreTests.HolyPriest.Conduits
             var resultWithout = spellService.GetAverageDamage(gamestate2, null);
 
             // Assert
-            Assert.AreEqual(3763.427824227273d, resultWithout);
-            Assert.AreEqual(4521.1312928383641d, resultWith);
+            Assert.AreEqual(5985.7419759829563d, resultWithout);
+            Assert.AreEqual(7190.8713604808581d, resultWith);
         }
 
         [Test]
@@ -88,8 +79,8 @@ namespace Salvation.CoreTests.HolyPriest.Conduits
             var resultWithout = spellService.GetAverageRawHealing(gamestate2, null);
 
             // Assert
-            Assert.AreEqual(234.69565644000002d, resultWithout);
-            Assert.AreEqual(281.94771526992008d, resultWith);
+            Assert.AreEqual(356.15726874000006d, resultWithout);
+            Assert.AreEqual(427.86359884632003d, resultWith);
         }
     }
 }

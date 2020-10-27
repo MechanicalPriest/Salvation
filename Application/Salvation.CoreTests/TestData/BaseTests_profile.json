@@ -2448,6 +2448,26 @@
       "Name": "FaeGuardianFaerieDTPS",
       "Value": 4000.0,
       "SpellId": 327694
+    },
+    {
+      "Name": "ShadowWordDeathPercentExecute",
+      "Value": 0.2,
+      "SpellId": 32379
+    },
+    {
+      "Name": "HolyNovaPercentOfCastsOnThreeOrMore",
+      "Value": 0.1,
+      "SpellId": 322112
+    },
+    {
+      "Name": "FaeFermataNumberDRSwaps",
+      "Value": 1.0,
+      "SpellId": 338305
+    },
+    {
+      "Name": "FaeFermataNumberCDRSwaps",
+      "Value": 3.0,
+      "SpellId": 338305
     }
   ]
 }

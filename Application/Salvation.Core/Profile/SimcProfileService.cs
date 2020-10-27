@@ -3,9 +3,7 @@ using Salvation.Core.Interfaces.Profile;
 using SimcProfileParser.Interfaces;
 using SimcProfileParser.Model.Generated;
 using SimcProfileParser.Model.Profile;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Salvation.Core.Profile
@@ -55,18 +53,18 @@ namespace Salvation.Core.Profile
             }
 
             // Set Soulbinds
-            foreach(var soulbind in simcProfile.Soulbinds)
+            foreach (var soulbind in simcProfile.Soulbinds)
             {
                 var newSoulbind = new SoulbindProfile();
 
                 // Add the active soulbind spells
-                foreach(var soulbindSpell in soulbind.SoulbindSpells)
+                foreach (var soulbindSpell in soulbind.SoulbindSpells)
                 {
                     newSoulbind.ActiveSoulbinds.Add((Soulbind)soulbindSpell);
                 }
 
                 // Add the active conduits
-                foreach(var conduit in simcProfile.Conduits)
+                foreach (var conduit in soulbind.SocketedConduits)
                 {
                     newSoulbind.ActiveConduits.Add((Conduit)conduit.SpellId, conduit.Rank);
                 }
@@ -98,9 +96,55 @@ namespace Salvation.Core.Profile
 
         internal void ApplyItems(PlayerProfile profile, IList<SimcItem> items)
         {
-            foreach(var item in items)
+            foreach (var item in items)
             {
+                var newItem = new Item();
 
+                newItem.ItemId = item.ItemId;
+                newItem.Name = item.Name;
+                newItem.ItemLevel = item.ItemLevel;
+
+                // Add the items mods
+                foreach (var mod in item.Mods)
+                {
+                    var newMod = new ItemMod()
+                    {
+                        StatRating = mod.StatRating,
+                        Type = mod.Type
+                    };
+
+                    newItem.Mods.Add(newMod);
+                }
+
+                // Add the items gems
+                foreach (var gem in item.Gems)
+                {
+                    var newGem = new ItemGem()
+                    {
+                        StatRating = gem.StatRating,
+                        Type = gem.Type
+                    };
+
+                    newItem.Gems.Add(newGem);
+                }
+
+                // Add the items effects
+                foreach (var effect in item.Effects)
+                {
+                    var newEffect = new ItemEffect()
+                    {
+                        EffectId = effect.EffectId,
+                        Type = effect.Type,
+                        CooldownDuration = effect.CooldownDuration,
+                        CooldownGroup = effect.CooldownGroup,
+                        CooldownGroupDuration = effect.CooldownGroupDuration,
+                        //Spell = effect.Spell // Populate this based on what we actually need later
+                    };
+
+                    newItem.Effects.Add(newEffect);
+                }
+
+                profile.Items.Add(newItem);
             }
         }
     }

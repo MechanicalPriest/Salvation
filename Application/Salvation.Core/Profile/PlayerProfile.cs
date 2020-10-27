@@ -31,6 +31,10 @@ namespace Salvation.Core.Profile
         /// </summary>
         public List<CastProfile> Casts { get; set; }
         /// <summary>
+        /// Complete list of all items the character has available to it
+        /// </summary>
+        public List<Item> Items { get; set; }
+        /// <summary>
         /// Active talents
         /// </summary>
         public List<Talent> Talents { get; set; }
@@ -55,6 +59,7 @@ namespace Salvation.Core.Profile
             Soulbinds = new List<Soulbind>();
             Legendaries = new List<Spell>();
             PlaystyleEntries = new List<PlaystyleEntry>();
+            Items = new List<Item>();
         }
 
         public bool IsTalentActive(Talent talent)

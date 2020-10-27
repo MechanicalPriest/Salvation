@@ -136,7 +136,7 @@ namespace Salvation.Core.State
 
         public Covenant GetActiveCovenant(GameState state)
         {
-            return state.Profile.Covenant;
+            return state.Profile.Covenant.Covenant;
         }
 
         public bool IsTalentActive(GameState state, Talent talent)

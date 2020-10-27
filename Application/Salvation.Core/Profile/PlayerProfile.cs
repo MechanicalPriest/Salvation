@@ -17,11 +17,15 @@ namespace Salvation.Core.Profile
     {
         public Spec SpecId { get; set; }
         public string Name { get; set; }
+        public string Server { get; internal set; }
+        public string Region { get; internal set; }
+
         public int Intellect { get; set; }
         public int MasteryRating { get; set; }
         public int VersatilityRating { get; set; }
         public int HasteRating { get; set; }
         public int CritRating { get; set; }
+
         /// <summary>
         /// Data containing cast effiency and overheal
         /// </summary>
@@ -36,7 +40,7 @@ namespace Salvation.Core.Profile
         public Dictionary<Conduit, uint> Conduits { get; set; }
         public List<Soulbind> Soulbinds { get; set; }
 
-        public Covenant Covenant { get; set; }
+        public CovenantProfile Covenant { get; set; }
         public List<Spell> Legendaries { get; set; }
 
         // Misc info
@@ -47,7 +51,6 @@ namespace Salvation.Core.Profile
         {
             Casts = new List<CastProfile>();
             Talents = new List<Talent>();
-            Covenant = Covenant.None;
             Conduits = new Dictionary<Conduit, uint>();
             Soulbinds = new List<Soulbind>();
             Legendaries = new List<Spell>();

@@ -64,12 +64,12 @@ namespace Salvation.Core.Profile
             if (cleanupCovenantData)
                 RemoveCovenantData(profile);
 
-            profile.Covenant = covenant;
+            profile.Covenant = new CovenantProfile() { Covenant = covenant };
         }
 
         public void RemoveCovenantData(PlayerProfile profile)
         {
-            profile.Covenant = Covenant.None;
+            profile.Covenant = new CovenantProfile();
 
             // Wipe soulbinds
             profile.Soulbinds = new List<Soulbind>();

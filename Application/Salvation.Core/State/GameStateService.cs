@@ -29,20 +29,60 @@ namespace Salvation.Core.State
             return castProfile;
         }
 
+
+        /// <summary>
+        /// Returns diminished rating based on percentage of stat, as changed in 9.0.1
+        /// Calcs each individual point one at a time for its value based on the percent bracket of the point
+        /// this val * scaling = percent, important note is mastery operates from the point scaling
+        /// </summary>
+        /// <param name="rating"> Total value of stat on a character prior to DR</param>
+        /// <param name="cost"> Cost of individual stat </param>
+        /// <returns> diminished returned value based on percent </returns>
+        public double GetDrRating(double rating, double cost)
+        {
+            double result = 0; 
+            for (int i = 0;  i < rating; i++) { 
+                var percent = result / cost;
+                if (percent <= 30)
+                {
+                    result++;
+                }
+                else if (percent <= 39)
+                {
+                    result += .9;
+                }
+                else if (percent <= 47)
+                {
+                    result += .8;
+                }
+                else if (percent <= 54)
+                {
+                    result += .7;
+                }
+                else if (percent <= 66)
+                {
+                    result += .6;
+                }
+                else
+                {
+                    result += .5;
+                }
+            }
+            return result;
+        }
+
         public double GetCriticalStrikeMultiplier(GameState state)
         {
             // TODO: Add other sources of crit increase here
             var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.SpecId).FirstOrDefault();
-
-            return 1 + specData.CritBase + (state.Profile.CritRating / specData.CritCost / 100);
+            return 1 + specData.CritBase + (GetDrRating(state.Profile.CritRating, specData.CritCost) / specData.CritCost / 100);
         }
 
         public double GetHasteMultiplier(GameState state)
         {
             // TODO: Add other sources of haste increase here
             var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.SpecId).FirstOrDefault();
-
-            return 1 + specData.HasteBase + (state.Profile.HasteRating / specData.HasteCost / 100);
+            return 1 + specData.HasteBase + (GetDrRating(state.Profile.HasteRating, specData.HasteCost) / specData.HasteCost / 100);
         }
 
         public double GetVersatilityMultiplier(GameState state)
@@ -50,7 +90,7 @@ namespace Salvation.Core.State
             // TODO: Add other sources of vers increase here
             var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.SpecId).FirstOrDefault();
 
-            return 1 + specData.VersBase + (state.Profile.VersatilityRating / specData.VersCost / 100);
+            return 1 + specData.VersBase + (GetDrRating(state.Profile.VersatilityRating, specData.VersCost) / specData.VersCost / 100);
         }
 
         public double GetMasteryMultiplier(GameState state)
@@ -58,7 +98,7 @@ namespace Salvation.Core.State
             // TODO: Add other sources of mastery increase here
             var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.SpecId).FirstOrDefault();
 
-            return 1 + specData.MasteryBase + (state.Profile.MasteryRating / specData.MasteryCost / 100);
+            return 1 + specData.MasteryBase + (GetDrRating(state.Profile.MasteryRating, specData.MasteryCost) / specData.MasteryCost / 100);
         }
 
         public double GetIntellect(GameState state)
@@ -199,6 +239,7 @@ namespace Salvation.Core.State
             var bhCDR = GetSpellData(state, Spell.BindingHeal).GetEffect(325998).BaseValue;
             var salvCDRBase = GetSpellData(state, Spell.HolyWordSalvation).GetEffect(709211).BaseValue;
             var haCDRBase = GetSpellData(state, Spell.HarmoniousApparatus).GetEffect(833714).BaseValue;
+            var chastiseCDRBase = GetSpellData(state, Spell.Chastise).GetEffect(709477).BaseValue;
 
             var isLotnActive = IsTalentActive(state, Talent.LightOfTheNaaru);
 
@@ -223,14 +264,14 @@ namespace Salvation.Core.State
                 case Spell.Heal:
                     returnCDR = serenityCDRBase;
                     returnCDR *= isLotnActive ? 1d + 1d / 3d : 1d; // LotN adds 33% more CDR.
-                    returnCDR *= isApotheosisActive ? 4d : 1d; // Aptheosis adds 200% more CDR
+                    returnCDR *= isApotheosisActive ? 4d : 1d; // Apotheosis adds 200% more CDR
                     // Apply this last as it's additive overall and not multiplicative with others
                     returnCDR += isHolyOrationActive ? serenityCDRBase * holyOrationModifier : 0d;
                     break;
                 case Spell.PrayerOfHealing:
                     returnCDR = sancCDRPoH;
                     returnCDR *= isLotnActive ? 1d + 1d / 3d : 1d; // LotN adds 33% more CDR.
-                    returnCDR *= isApotheosisActive ? 4d : 1d; // Aptheosis adds 200% more CDR
+                    returnCDR *= isApotheosisActive ? 4d : 1d; // Apotheosis adds 200% more CDR
                     // Apply this last as it's additive overall and not multiplicative with others
                     returnCDR += isHolyOrationActive ? sancCDRPoH * holyOrationModifier : 0d;
                     break;
@@ -238,7 +279,7 @@ namespace Salvation.Core.State
                 case Spell.BindingHeal:
                     returnCDR = bhCDR; // Binding heal gets half the CDR benefit
                     returnCDR *= isLotnActive ? 1d + 1d / 3d : 1d; // LotN adds 33% more CDR.
-                    returnCDR *= isApotheosisActive ? 4d : 1d; // Aptheosis adds 200% more CDR
+                    returnCDR *= isApotheosisActive ? 4d : 1d; // Apotheosis adds 200% more CDR
                     // Apply this last as it's additive overall and not multiplicative with others
                     returnCDR += isHolyOrationActive ? bhCDR * holyOrationModifier : 0d;
                     break;
@@ -246,7 +287,7 @@ namespace Salvation.Core.State
                 case Spell.Renew:
                     returnCDR = sancCDRRenew; // Renew gets a third of the CDR benefit
                     returnCDR *= isLotnActive ? 1d + 1d / 3d : 1d; // LotN adds 33% more CDR.
-                    returnCDR *= isApotheosisActive ? 4d : 1d; // Aptheosis adds 200% more CDR
+                    returnCDR *= isApotheosisActive ? 4d : 1d; // Apotheosis adds 200% more CDR
                     // Apply this last as it's additive overall and not multiplicative with others
                     returnCDR += isHolyOrationActive ? sancCDRRenew * holyOrationModifier : 0d;
                     break;
@@ -255,7 +296,7 @@ namespace Salvation.Core.State
                 case Spell.PrayerOfMending:
                     returnCDR = haCDRBase;
                     returnCDR *= isLotnActive ? 1d + 1d / 3d : 1d; // LotN adds 33% more CDR.
-                    returnCDR *= isApotheosisActive ? 4d : 1d; // Aptheosis adds 200% more CDR
+                    returnCDR *= isApotheosisActive ? 4d : 1d; // Apotheosis adds 200% more CDR
                     // Apply this last as it's additive overall and not multiplicative with others
                     returnCDR += isHolyOrationActive ? haCDRBase * holyOrationModifier : 0d;
                     break;
@@ -265,6 +306,22 @@ namespace Salvation.Core.State
                     returnCDR = salvCDRBase;
                     // Apply this last as it's additive overall and not multiplicative with others
                     returnCDR += isHolyOrationActive ? salvCDRBase * holyOrationModifier : 0;
+                    break;
+
+                case Spell.Smite:
+                    returnCDR = chastiseCDRBase;
+                    returnCDR *= isLotnActive ? 1d + 1d / 3d : 1d; // LotN adds 33% more CDR.
+                    returnCDR *= isApotheosisActive ? 4d : 1d; // Apotheosis adds 200% more CDR
+                    // Apply this last as it's additive overall and not multiplicative with others
+                    returnCDR += isHolyOrationActive ? haCDRBase * holyOrationModifier : 0d;
+                    break;
+
+                case Spell.HolyFire:
+                    returnCDR = chastiseCDRBase;
+                    returnCDR *= isLotnActive ? 1d + 1d / 3d : 1d; // LotN adds 33% more CDR.
+                    returnCDR *= isApotheosisActive ? 4d : 1d; // Apotheosis adds 200% more CDR
+                    // Apply this last as it's additive overall and not multiplicative with others
+                    returnCDR += isHolyOrationActive ? haCDRBase * holyOrationModifier : 0d;
                     break;
 
                 default:

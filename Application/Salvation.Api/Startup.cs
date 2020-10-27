@@ -60,6 +60,13 @@ namespace Salvation.Api
 
             // SimcProfileParser
             builder.Services.AddSimcProfileParser();
+
+            // DPS
+            builder.Services.AddSingleton<ISmiteSpellService, Smite>();
+            builder.Services.AddSingleton<IChastiseSpellService, Chastise>();
+            builder.Services.AddSingleton<IShadowWordPainSpellService, ShadowWordPain>();
+            builder.Services.AddSingleton<IShadowWordDeathSpellService, ShadowWordDeath>();
+            builder.Services.AddSingleton<IHolyFireSpellService, HolyFire>();
         }
     }
 }

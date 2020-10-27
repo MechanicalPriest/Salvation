@@ -44,7 +44,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
                 NumberOfDamageTargets = GetNumberOfDamageTargets(gameState, spellData),
                 NumberOfHealingTargets = GetNumberOfHealingTargets(gameState, spellData),
                 Overhealing = GetAverageOverhealing(gameState, spellData),
-                RawHealing = GetAverageRawHealing(gameState, spellData)
+                RawHealing = GetAverageRawHealing(gameState, spellData),
             };
 
             if (spellData.IsMasteryTriggered)

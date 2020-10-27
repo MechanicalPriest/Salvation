@@ -38,6 +38,7 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.FlashHeal,
                 (uint)Spell.PrayerOfHealing,
                 (uint)Spell.HolyNova,
+                (uint)Spell.HolyNovaRank2,
                 (uint)Spell.CircleOfHealing,
                 (uint)Spell.Renew,
                 (uint)Spell.PowerWordShield,
@@ -73,6 +74,16 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.FaeFermata,
                 (uint)Spell.ShatteredPerceptions,
                 (uint)Spell.HolyOration,
+                
+                // DPS
+                (uint)Spell.Smite,
+                (uint)Spell.SmiteRank2,
+                (uint)Spell.Chastise,
+                (uint)Spell.ShadowWordPain,
+                (uint)Spell.ShadowWordPainRank2,
+                (uint)Spell.ShadowWordDeath,
+                (uint)Spell.ShadowWordDeathRank2,
+                (uint)Spell.HolyFire,
             };
         }
 
@@ -136,7 +147,6 @@ namespace Salvation.Utility.SpellDataUpdate
             {
                 Id = spell.SpellId,
                 Name = spell.Name,
-                ManaCost = spell.PowerCost,
                 MaxRange = spell.MaxRange,
                 BaseCastTime = spell.CastTime,
                 BaseCooldown = spell.Cooldown,
@@ -147,6 +157,27 @@ namespace Salvation.Utility.SpellDataUpdate
                 ConduitRanks = spell.ConduitRanks
                 //newSpell.IsMasteryTriggered = ; // So this another weird one. Anything that has a healing effect of type 10 (Direct Heal) seems to proc it.
             };
+
+            double manacost = 0;
+
+            if (spell.PowerCosts != null && spell.PowerCosts.Count > 0)
+            {
+                if (spell.PowerCosts.ContainsKey(0))
+                {
+                    manacost = spell.PowerCosts[0];
+                }
+
+                foreach (var PowerCost in spell.PowerCosts)
+                {
+                    if (PowerCost.Key.Equals((uint)Spell.HolyPriest))
+                    {
+                        manacost = PowerCost.Value;
+                        break;
+                    }
+                }
+            }
+
+            newSpell.ManaCost = manacost;
 
             foreach (var effect in spell.Effects)
             {
@@ -172,6 +203,7 @@ namespace Salvation.Utility.SpellDataUpdate
                 BaseValue = effect.BaseValue,
                 SpCoefficient = effect.SpCoefficient,
                 TriggerSpellid = effect.TriggerSpellId,
+                Amplitude = effect.Amplitude,
                 TriggerSpell = GetBaseSpellData(effect.TriggerSpell)
             };
 
@@ -189,6 +221,7 @@ namespace Salvation.Utility.SpellDataUpdate
             {
                 case (uint)Spell.CircleOfHealing:
                 case (uint)Spell.PrayerOfMending:
+                case (uint)Spell.ShadowWordDeath:
                     // This comes from the Priest aura 137030 effect #1 179714
                     baseSpellData.IsCooldownHasted = true;
                     break;

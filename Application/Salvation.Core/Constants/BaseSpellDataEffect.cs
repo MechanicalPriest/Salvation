@@ -8,5 +8,6 @@
         public uint TriggerSpellid { get; set; }
         public double Amplitude { get; set; }
         public BaseSpellData TriggerSpell { get; set; }
+        public uint Type { get; set; }
     }
 }

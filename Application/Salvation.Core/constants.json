@@ -41,7 +41,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             },
             {
               "Id": 191076,
@@ -49,7 +50,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             },
             {
               "Id": 191077,
@@ -57,7 +59,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             },
             {
               "Id": 191078,
@@ -65,7 +68,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             },
             {
               "Id": 191079,
@@ -73,7 +77,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             },
             {
               "Id": 869198,
@@ -81,7 +86,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             },
             {
               "Id": 871790,
@@ -89,7 +95,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             },
             {
               "Id": 871791,
@@ -97,7 +104,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             }
           ],
           "ConduitRanks": {}
@@ -122,7 +130,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             }
           ],
           "ConduitRanks": {}
@@ -147,7 +156,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             }
           ],
           "ConduitRanks": {}
@@ -172,7 +182,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 3
             },
             {
               "Id": 22314,
@@ -180,7 +191,8 @@
               "SpCoefficient": 0.94,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 10
             },
             {
               "Id": 191249,
@@ -188,7 +200,8 @@
               "SpCoefficient": 0.94,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 10
             },
             {
               "Id": 325998,
@@ -196,7 +209,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 3
             }
           ],
           "ConduitRanks": {}
@@ -221,7 +235,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 179
             }
           ],
           "ConduitRanks": {}
@@ -246,7 +261,8 @@
               "SpCoefficient": 1.44,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 10
             }
           ],
           "ConduitRanks": {}
@@ -271,7 +287,8 @@
               "SpCoefficient": 1.03,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 2
             }
           ],
           "ConduitRanks": {}
@@ -296,7 +313,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 179
             }
           ],
           "ConduitRanks": {}
@@ -321,7 +339,8 @@
               "SpCoefficient": 0.7,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 10
             }
           ],
           "ConduitRanks": {}
@@ -346,7 +365,8 @@
               "SpCoefficient": 0.4,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 2
             }
           ],
           "ConduitRanks": {}
@@ -371,7 +391,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             }
           ],
           "ConduitRanks": {}
@@ -396,7 +417,8 @@
               "SpCoefficient": 1.1,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 10
             },
             {
               "Id": 709209,
@@ -404,7 +426,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 3
             },
             {
               "Id": 709211,
@@ -412,7 +435,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 3
             }
           ],
           "ConduitRanks": {}
@@ -437,7 +461,8 @@
               "SpCoefficient": 2.95,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 10
             }
           ],
           "ConduitRanks": {}
@@ -462,7 +487,8 @@
               "SpCoefficient": 2.03,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 10
             }
           ],
           "ConduitRanks": {}
@@ -507,11 +533,13 @@
                     "SpCoefficient": 0.0,
                     "TriggerSpellid": 0,
                     "Amplitude": 0.0,
-                    "TriggerSpell": null
+                    "TriggerSpell": null,
+                    "Type": 3
                   }
                 ],
                 "ConduitRanks": {}
-              }
+              },
+              "Type": 64
             },
             {
               "Id": 105332,
@@ -519,7 +547,8 @@
               "SpCoefficient": 0.875,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 10
             },
             {
               "Id": 288930,
@@ -527,7 +556,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 3
             }
           ],
           "ConduitRanks": {}
@@ -552,7 +582,8 @@
               "SpCoefficient": 0.18,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 2
             },
             {
               "Id": 709210,
@@ -580,11 +611,13 @@
                     "SpCoefficient": 0.18,
                     "TriggerSpellid": 0,
                     "Amplitude": 0.0,
-                    "TriggerSpell": null
+                    "TriggerSpell": null,
+                    "Type": 10
                   }
                 ],
                 "ConduitRanks": {}
-              }
+              },
+              "Type": 64
             },
             {
               "Id": 845266,
@@ -592,7 +625,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 3
             }
           ],
           "ConduitRanks": {}
@@ -617,7 +651,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             },
             {
               "Id": 844508,
@@ -625,7 +660,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 0
             }
           ],
           "ConduitRanks": {}
@@ -650,7 +686,8 @@
               "SpCoefficient": 1.05,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 10
             },
             {
               "Id": 302437,
@@ -658,7 +695,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 3
             }
           ],
           "ConduitRanks": {}
@@ -683,7 +721,8 @@
               "SpCoefficient": 0.32,
               "TriggerSpellid": 0,
               "Amplitude": 3000.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             },
             {
               "Id": 256131,
@@ -691,7 +730,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             }
           ],
           "ConduitRanks": {}
@@ -716,7 +756,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             }
           ],
           "ConduitRanks": {}
@@ -761,7 +802,8 @@
                     "SpCoefficient": 0.6,
                     "TriggerSpellid": 0,
                     "Amplitude": 0.0,
-                    "TriggerSpell": null
+                    "TriggerSpell": null,
+                    "Type": 10
                   },
                   {
                     "Id": 59166,
@@ -769,11 +811,13 @@
                     "SpCoefficient": 0.0,
                     "TriggerSpellid": 0,
                     "Amplitude": 0.0,
-                    "TriggerSpell": null
+                    "TriggerSpell": null,
+                    "Type": 6
                   }
                 ],
                 "ConduitRanks": {}
-              }
+              },
+              "Type": 6
             },
             {
               "Id": 59163,
@@ -781,7 +825,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             },
             {
               "Id": 59164,
@@ -789,7 +834,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             },
             {
               "Id": 192423,
@@ -797,7 +843,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 3
             }
           ],
           "ConduitRanks": {}
@@ -822,7 +869,8 @@
               "SpCoefficient": 2.45,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 10
             },
             {
               "Id": 288932,
@@ -830,7 +878,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 3
             },
             {
               "Id": 709475,
@@ -838,7 +887,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 3
             },
             {
               "Id": 709476,
@@ -846,7 +896,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 3
             }
           ],
           "ConduitRanks": {}
@@ -871,7 +922,8 @@
               "SpCoefficient": 7.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 10
             },
             {
               "Id": 709474,
@@ -879,7 +931,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 3
             }
           ],
           "ConduitRanks": {}
@@ -904,7 +957,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 3
             }
           ],
           "ConduitRanks": {}
@@ -929,7 +983,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             }
           ],
           "ConduitRanks": {}
@@ -954,7 +1009,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             }
           ],
           "ConduitRanks": {}
@@ -979,7 +1035,8 @@
               "SpCoefficient": 0.61,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 10
             }
           ],
           "ConduitRanks": {}
@@ -1004,7 +1061,8 @@
               "SpCoefficient": 1.25,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             },
             {
               "Id": 90770,
@@ -1012,7 +1070,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             }
           ],
           "ConduitRanks": {}
@@ -1037,7 +1096,8 @@
               "SpCoefficient": 3.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 2
             },
             {
               "Id": 812776,
@@ -1045,7 +1105,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             },
             {
               "Id": 812810,
@@ -1053,7 +1114,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             },
             {
               "Id": 812816,
@@ -1081,11 +1143,13 @@
                     "SpCoefficient": 0.0,
                     "TriggerSpellid": 0,
                     "Amplitude": 0.0,
-                    "TriggerSpell": null
+                    "TriggerSpell": null,
+                    "Type": 6
                   }
                 ],
                 "ConduitRanks": {}
-              }
+              },
+              "Type": 64
             },
             {
               "Id": 812823,
@@ -1113,11 +1177,13 @@
                     "SpCoefficient": 0.0,
                     "TriggerSpellid": 0,
                     "Amplitude": 0.0,
-                    "TriggerSpell": null
+                    "TriggerSpell": null,
+                    "Type": 6
                   }
                 ],
                 "ConduitRanks": {}
-              }
+              },
+              "Type": 64
             },
             {
               "Id": 819553,
@@ -1125,7 +1191,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             },
             {
               "Id": 872982,
@@ -1133,7 +1200,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             }
           ],
           "ConduitRanks": {}
@@ -1158,7 +1226,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             }
           ],
           "ConduitRanks": {}
@@ -1183,7 +1252,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             },
             {
               "Id": 868651,
@@ -1191,7 +1261,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             },
             {
               "Id": 868652,
@@ -1199,7 +1270,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             },
             {
               "Id": 868655,
@@ -1207,7 +1279,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             },
             {
               "Id": 868656,
@@ -1215,7 +1288,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             }
           ],
           "ConduitRanks": {}
@@ -1240,7 +1314,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             }
           ],
           "ConduitRanks": {}
@@ -1265,7 +1340,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             },
             {
               "Id": 815010,
@@ -1273,7 +1349,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             },
             {
               "Id": 815013,
@@ -1281,7 +1358,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             },
             {
               "Id": 815072,
@@ -1289,7 +1367,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             },
             {
               "Id": 815475,
@@ -1297,7 +1376,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             },
             {
               "Id": 819021,
@@ -1305,7 +1385,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             },
             {
               "Id": 819722,
@@ -1313,7 +1394,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             },
             {
               "Id": 821227,
@@ -1321,7 +1403,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             }
           ],
           "ConduitRanks": {}
@@ -1346,7 +1429,8 @@
               "SpCoefficient": 0.74,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 2
             },
             {
               "Id": 815031,
@@ -1374,7 +1458,8 @@
                     "SpCoefficient": 0.24,
                     "TriggerSpellid": 0,
                     "Amplitude": 0.0,
-                    "TriggerSpell": null
+                    "TriggerSpell": null,
+                    "Type": 10
                   },
                   {
                     "Id": 844031,
@@ -1382,11 +1467,13 @@
                     "SpCoefficient": 0.0,
                     "TriggerSpellid": 0,
                     "Amplitude": 0.0,
-                    "TriggerSpell": null
+                    "TriggerSpell": null,
+                    "Type": 3
                   }
                 ],
                 "ConduitRanks": {}
-              }
+              },
+              "Type": 64
             },
             {
               "Id": 815723,
@@ -1394,7 +1481,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 3
             }
           ],
           "ConduitRanks": {}
@@ -1419,7 +1507,8 @@
               "SpCoefficient": 1.79,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 2
             },
             {
               "Id": 815550,
@@ -1427,7 +1516,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 3
             },
             {
               "Id": 815724,
@@ -1435,7 +1525,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 3
             }
           ],
           "ConduitRanks": {}
@@ -1460,7 +1551,8 @@
               "SpCoefficient": 2.1,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 2
             },
             {
               "Id": 815532,
@@ -1468,7 +1560,8 @@
               "SpCoefficient": 1.59,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 10
             }
           ],
           "ConduitRanks": {}
@@ -1493,7 +1586,8 @@
               "SpCoefficient": 1.19,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 10
             },
             {
               "Id": 844015,
@@ -1501,7 +1595,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 3
             }
           ],
           "ConduitRanks": {}
@@ -1526,7 +1621,8 @@
               "SpCoefficient": 0.04,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 10
             }
           ],
           "ConduitRanks": {}
@@ -1551,7 +1647,8 @@
               "SpCoefficient": 0.5,
               "TriggerSpellid": 0,
               "Amplitude": 3000.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             },
             {
               "Id": 815347,
@@ -1579,11 +1676,13 @@
                     "SpCoefficient": 0.04,
                     "TriggerSpellid": 0,
                     "Amplitude": 0.0,
-                    "TriggerSpell": null
+                    "TriggerSpell": null,
+                    "Type": 10
                   }
                 ],
                 "ConduitRanks": {}
-              }
+              },
+              "Type": 6
             }
           ],
           "ConduitRanks": {}
@@ -1608,7 +1707,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             }
           ],
           "ConduitRanks": {}
@@ -1633,7 +1733,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             }
           ],
           "ConduitRanks": {
@@ -1674,7 +1775,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             },
             {
               "Id": 842371,
@@ -1682,7 +1784,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             }
           ],
           "ConduitRanks": {
@@ -1723,7 +1826,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             },
             {
               "Id": 836285,
@@ -1731,7 +1835,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             }
           ],
           "ConduitRanks": {
@@ -1772,7 +1877,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             },
             {
               "Id": 871353,
@@ -1780,7 +1886,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             }
           ],
           "ConduitRanks": {
@@ -1821,7 +1928,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             },
             {
               "Id": 836825,
@@ -1829,7 +1937,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             },
             {
               "Id": 836828,
@@ -1837,7 +1946,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             }
           ],
           "ConduitRanks": {
@@ -1878,7 +1988,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             }
           ],
           "ConduitRanks": {
@@ -1919,7 +2030,8 @@
               "SpCoefficient": 0.47,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 2
             }
           ],
           "ConduitRanks": {}
@@ -1944,7 +2056,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             }
           ],
           "ConduitRanks": {}
@@ -1969,7 +2082,8 @@
               "SpCoefficient": 1.125,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 2
             },
             {
               "Id": 709477,
@@ -1977,7 +2091,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 3
             }
           ],
           "ConduitRanks": {}
@@ -2002,7 +2117,8 @@
               "SpCoefficient": 0.1292,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 2
             },
             {
               "Id": 254257,
@@ -2010,7 +2126,8 @@
               "SpCoefficient": 0.09588,
               "TriggerSpellid": 0,
               "Amplitude": 2000.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             },
             {
               "Id": 323674,
@@ -2018,7 +2135,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 30
             }
           ],
           "ConduitRanks": {}
@@ -2043,7 +2161,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             }
           ],
           "ConduitRanks": {}
@@ -2068,7 +2187,8 @@
               "SpCoefficient": 0.85,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 2
             },
             {
               "Id": 165318,
@@ -2076,7 +2196,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 3
             },
             {
               "Id": 340366,
@@ -2084,7 +2205,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 0
             }
           ],
           "ConduitRanks": {}
@@ -2109,7 +2231,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             }
           ],
           "ConduitRanks": {}
@@ -2134,7 +2257,8 @@
               "SpCoefficient": 1.5,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 2
             },
             {
               "Id": 6991,
@@ -2142,7 +2266,8 @@
               "SpCoefficient": 0.0825,
               "TriggerSpellid": 0,
               "Amplitude": 1000.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             },
             {
               "Id": 808675,
@@ -2150,7 +2275,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             }
           ],
           "ConduitRanks": {}

@@ -204,7 +204,8 @@ namespace Salvation.Utility.SpellDataUpdate
                 SpCoefficient = effect.SpCoefficient,
                 TriggerSpellid = effect.TriggerSpellId,
                 Amplitude = effect.Amplitude,
-                TriggerSpell = GetBaseSpellData(effect.TriggerSpell)
+                TriggerSpell = GetBaseSpellData(effect.TriggerSpell),
+                Type = effect.EffectType
             };
 
             return newEffect;

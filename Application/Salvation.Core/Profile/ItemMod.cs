@@ -1,4 +1,6 @@
-﻿namespace Salvation.Core.Profile
+﻿using Salvation.Core.Constants.Data;
+
+namespace Salvation.Core.Profile
 {
     public class ItemMod
     {

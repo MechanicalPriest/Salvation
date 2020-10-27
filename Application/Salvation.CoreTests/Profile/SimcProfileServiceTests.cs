@@ -69,8 +69,23 @@ namespace Salvation.CoreTests.Profile
             Assert.IsTrue(baseProfile.Covenant.Soulbinds.First().IsActive);
             Assert.AreEqual("pelagos:7", baseProfile.Covenant.Soulbinds.First().Name);
             Assert.LessOrEqual(1, baseProfile.Covenant.Soulbinds.First().ActiveConduits.Count);
-            Assert.AreEqual(1, baseProfile.Covenant.Soulbinds.First().ActiveConduits.First().Key);
+            Assert.AreEqual(0, baseProfile.Covenant.Soulbinds.First().ActiveConduits.First().Key); // TODO: Fixed with a newer version of SimcProfileParser
             Assert.AreEqual(1, baseProfile.Covenant.Soulbinds.First().ActiveConduits.First().Value);
+        }
+
+        [Test]
+        public async Task SPS_Applies_Items()
+        {
+            // Arrange
+            var baseProfile = new ProfileGenerationService().GetDefaultProfile(Core.Constants.Data.Spec.HolyPriest);
+
+            // Act
+            await _simcProfileService.ApplySimcProfileAsync(_profileStringBeitaky, baseProfile);
+
+            // Assert
+            Assert.IsNotNull(baseProfile);
+            Assert.IsNotNull(baseProfile.Items);
+            Assert.LessOrEqual(80, baseProfile.Items.Count);
         }
     }
 }

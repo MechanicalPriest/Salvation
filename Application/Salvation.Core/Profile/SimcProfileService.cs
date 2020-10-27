@@ -5,6 +5,7 @@ using SimcProfileParser.Model.Generated;
 using SimcProfileParser.Model.Profile;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using ItemModType = Salvation.Core.Constants.Data.ItemModType;
 
 namespace Salvation.Core.Profile
 {
@@ -98,11 +99,15 @@ namespace Salvation.Core.Profile
         {
             foreach (var item in items)
             {
-                var newItem = new Item();
-
-                newItem.ItemId = item.ItemId;
-                newItem.Name = item.Name;
-                newItem.ItemLevel = item.ItemLevel;
+                var newItem = new Item
+                {
+                    ItemId = item.ItemId,
+                    Name = item.Name,
+                    ItemLevel = item.ItemLevel,
+                    Slot = (InventorySlot)item.InventoryType,
+                    ItemType = (ItemType)item.ItemClass,
+                    ItemSubType = item.ItemSubClass
+                };
 
                 // Add the items mods
                 foreach (var mod in item.Mods)
@@ -110,7 +115,7 @@ namespace Salvation.Core.Profile
                     var newMod = new ItemMod()
                     {
                         StatRating = mod.StatRating,
-                        Type = mod.Type
+                        Type = (ItemModType)mod.Type
                     };
 
                     newItem.Mods.Add(newMod);
@@ -122,7 +127,7 @@ namespace Salvation.Core.Profile
                     var newGem = new ItemGem()
                     {
                         StatRating = gem.StatRating,
-                        Type = gem.Type
+                        Type = (ItemModType)gem.Type
                     };
 
                     newItem.Gems.Add(newGem);

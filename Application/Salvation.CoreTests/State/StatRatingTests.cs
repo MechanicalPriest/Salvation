@@ -65,5 +65,17 @@ namespace Salvation.CoreTests.State
             // Assert
             Assert.AreEqual(427, haste);
         }
+
+        [Test]
+        public void GSG_Calculates_MasteryRating()
+        {
+            // Arrange
+
+            // Act
+            var mastery = _gameStateService.GetMasteryRating(_state);
+
+            // Assert
+            Assert.AreEqual(100, mastery);
+        }
     }
 }

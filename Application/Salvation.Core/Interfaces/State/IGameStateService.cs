@@ -42,5 +42,6 @@ namespace Salvation.Core.Interfaces.State
         double GetTotalHolyWordCooldownReduction(GameState state, Spell spell, bool IsApotheosisActive = false);
         double GetCriticalStrikeRating(GameState state);
         double GetHasteRating(GameState state);
+        double GetMasteryRating(GameState state);
     }
 }

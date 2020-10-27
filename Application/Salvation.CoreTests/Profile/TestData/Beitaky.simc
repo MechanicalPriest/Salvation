@@ -30,6 +30,7 @@ legs=,id=175868,bonus_id=6795/1504/6646
 feet=,id=175857,bonus_id=6781/1504/6646
 finger1=,id=178293,bonus_id=6788/1504/6646
 finger2=,id=175879,bonus_id=6788/1504/6646
+trinket1=,id=175718,bonus_id=6707/7215,drop_level=50
 trinket2=,id=175884,bonus_id=6781/1504/6646
 main_hand=,id=178473,bonus_id=6774/1504/6646
 

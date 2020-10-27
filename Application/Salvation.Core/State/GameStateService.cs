@@ -75,7 +75,7 @@ namespace Salvation.Core.State
         {
             var critRating = 0;
             
-            foreach(var item in state.Profile.Items.Take(14))
+            foreach(var item in state.Profile.Items.Take(15))
             {
                 foreach(var mod in item.Mods)
                 {
@@ -101,7 +101,7 @@ namespace Salvation.Core.State
         {
             var hasteRating = 0;
 
-            foreach (var item in state.Profile.Items.Take(14))
+            foreach (var item in state.Profile.Items.Take(15))
             {
                 foreach (var mod in item.Mods)
                 {
@@ -129,6 +129,24 @@ namespace Salvation.Core.State
             var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.SpecId).FirstOrDefault();
 
             return 1 + specData.VersBase + (GetDrRating(state.Profile.VersatilityRating, specData.VersCost) / specData.VersCost / 100);
+        }
+
+        public double GetMasteryRating(GameState state)
+        {
+            var masteryRating = 0;
+
+            foreach (var item in state.Profile.Items.Take(15))
+            {
+                foreach (var mod in item.Mods)
+                {
+                    if (mod.Type == ItemModType.ITEM_MOD_MASTERY_RATING)
+                    {
+                        masteryRating += mod.StatRating;
+                    }
+                }
+            }
+
+            return masteryRating;
         }
 
         public double GetMasteryMultiplier(GameState state)

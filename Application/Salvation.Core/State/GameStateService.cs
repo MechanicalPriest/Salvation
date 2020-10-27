@@ -97,6 +97,25 @@ namespace Salvation.Core.State
             return 1 + specData.CritBase + (GetDrRating(state.Profile.CritRating, specData.CritCost) / specData.CritCost / 100);
         }
 
+        public double GetHasteRating(GameState state)
+        {
+            var hasteRating = 0;
+
+            foreach (var item in state.Profile.Items.Take(14))
+            {
+                foreach (var mod in item.Mods)
+                {
+                    if (mod.Type == ItemModType.ITEM_MOD_HASTE_RATING ||
+                        mod.Type == ItemModType.ITEM_MOD_HASTE_SPELL_RATING)
+                    {
+                        hasteRating += mod.StatRating;
+                    }
+                }
+            }
+
+            return hasteRating;
+        }
+
         public double GetHasteMultiplier(GameState state)
         {
             // TODO: Add other sources of haste increase here

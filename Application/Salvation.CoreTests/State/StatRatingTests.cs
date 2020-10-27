@@ -51,7 +51,19 @@ namespace Salvation.CoreTests.State
             var crit = _gameStateService.GetCriticalStrikeRating(_state);
 
             // Assert
-            Assert.AreEqual(238, crit); // 238 on character sheet.
+            Assert.AreEqual(238, crit);
+        }
+
+        [Test]
+        public void GSG_Calculates_HasteRating()
+        {
+            // Arrange
+
+            // Act
+            var haste = _gameStateService.GetHasteRating(_state);
+
+            // Assert
+            Assert.AreEqual(427, haste);
         }
     }
 }

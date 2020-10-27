@@ -1,9 +1,6 @@
 ﻿using NUnit.Framework;
 using Salvation.Core.State;
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Salvation.CoreTests.State
 {

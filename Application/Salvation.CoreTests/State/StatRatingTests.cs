@@ -1,19 +1,16 @@
 ﻿using Newtonsoft.Json;
 using NUnit.Framework;
-using Salvation.Core.Constants;
-using Salvation.Core.Interfaces.Constants;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.Profile;
 using Salvation.Core.State;
 using SimcProfileParser;
-using System;
 using System.IO;
 using System.Threading.Tasks;
 
 namespace Salvation.CoreTests.State
 {
     [TestFixture]
-    public class StatRatingTests
+    public class StatRatingTests : BaseTest
     {
         IGameStateService _gameStateService;
         private GameState _state;
@@ -21,6 +18,10 @@ namespace Salvation.CoreTests.State
         [OneTimeSetUp]
         public async Task InitOnce()
         {
+            _state = GetGameState();
+            _gameStateService = new GameStateService();
+
+            // Load the simc profile
             var basePath = @"Profile" + Path.DirectorySeparatorChar + "TestData";
             var profileStringBeitaky = await File.ReadAllTextAsync(
                 Path.Combine(basePath, "Beitaky.simc"));
@@ -30,17 +31,9 @@ namespace Salvation.CoreTests.State
                 new ProfileGenerationService()
                 );
 
-            IConstantsService constantsService = new ConstantsService();
-            var constants = constantsService.ParseConstants(
-                File.ReadAllText(Path.Combine(basePath, "ProfileTests_constants.json")));
-            var profile = JsonConvert.DeserializeObject<PlayerProfile>(
-                File.ReadAllText(Path.Combine(basePath, "ProfileTests_profile.json")));
-
-            await simcProfileService.ApplySimcProfileAsync(profileStringBeitaky, profile);
-
-            _gameStateService = new GameStateService();
-
-            _state = new GameState(profile, constants);
+            // Update the profile with the simc data
+            await simcProfileService.ApplySimcProfileAsync(
+                profileStringBeitaky, _state.Profile);
         }
 
         [Test]

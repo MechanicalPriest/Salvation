@@ -1,33 +1,20 @@
-﻿using Newtonsoft.Json;
-using NUnit.Framework;
-using Salvation.Core.Constants;
-using Salvation.Core.Interfaces.Constants;
+﻿using NUnit.Framework;
 using Salvation.Core.Interfaces.State;
-using Salvation.Core.Profile;
 using Salvation.Core.State;
 using System.Collections;
-using System.IO;
 
 namespace Salvation.CoreTests.State
 {
     [TestFixture]
-    class MultiplierTests
+    class MultiplierTests : BaseTest
     {
         IGameStateService _gameStateService;
         private GameState _state;
+
         [OneTimeSetUp]
         public void InitOnce()
         {
-            IConstantsService constantsService = new ConstantsService();
-
-            // Load this from somewhere that doesn't change
-            var basePath = @"State" + Path.DirectorySeparatorChar + "TestData";
-            var constants = constantsService.ParseConstants(
-                File.ReadAllText(Path.Combine(basePath, "StateTests_constants.json")));
-            var profile = JsonConvert.DeserializeObject<PlayerProfile>(
-                File.ReadAllText(Path.Combine(basePath, "StateTests_profile.json")));
-
-            _state = new GameState(profile, constants);
+            _state = GetGameState();
             _gameStateService = new GameStateService();
         }
 

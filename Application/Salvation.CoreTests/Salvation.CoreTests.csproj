@@ -12,8 +12,8 @@
     <None Remove="Profile\TestData\Beitaky.simc" />
     <None Remove="Profile\TestData\ProfileTests_constants.json" />
     <None Remove="Profile\TestData\ProfileTests_profile.json" />
-    <None Remove="State\TestData\StateTests_constants.json" />
-    <None Remove="State\TestData\StateTests_profile.json" />
+    <None Remove="TestData\BaseTests_constants.json" />
+    <None Remove="TestData\BaseTests_profile.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -32,10 +32,10 @@
     <Content Include="Profile\TestData\ProfileTests_profile.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="State\TestData\StateTests_constants.json">
+    <Content Include="TestData\BaseTests_constants.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="State\TestData\StateTests_profile.json">
+    <Content Include="TestData\BaseTests_profile.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using Newtonsoft.Json;
+using NUnit.Framework;
 using Salvation.Core.Constants.Data;
 using Salvation.Core.Profile;
 using SimcProfileParser;
@@ -21,9 +22,8 @@ namespace Salvation.CoreTests.Profile
         public async Task InitOnce()
         {
             // Load this from somewhere that doesn't change
-            var basePath = @"Profile" + Path.DirectorySeparatorChar + "TestData";
             _profileStringBeitaky = await File.ReadAllTextAsync(
-                Path.Combine(basePath, "Beitaky.simc"));
+                Path.Combine("TestData", "Beitaky.simc"));
 
             _simcProfileService = new SimcProfileService(
                 new SimcGenerationService(),

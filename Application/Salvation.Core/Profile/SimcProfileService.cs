@@ -80,14 +80,17 @@ namespace Salvation.Core.Profile
             }
 
             // Set the covenant
-            cp.Covenant = simcProfile.Covenant.ToLower() switch
+            if (simcProfile.Covenant != null)
             {
-                "kyrian" => Covenant.Kyrian,
-                "night fae" => Covenant.NightFae,
-                "necrolord" => Covenant.Necrolord,
-                "venthyr" => Covenant.Venthyr,
-                _ => Covenant.None,
-            };
+                cp.Covenant = simcProfile.Covenant.ToLower() switch
+                {
+                    "kyrian" => Covenant.Kyrian,
+                    "night fae" => Covenant.NightFae,
+                    "necrolord" => Covenant.Necrolord,
+                    "venthyr" => Covenant.Venthyr,
+                    _ => Covenant.None,
+                };
+            }
 
             // Set renown
             cp.Renown = simcProfile.Renown;

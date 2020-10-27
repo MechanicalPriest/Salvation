@@ -15,22 +15,13 @@ using System.Text;
 namespace Salvation.CoreTests.HolyPriest.Spells
 {
     [TestFixture]
-    public class PrayerOfMendingTests
+    public class PrayerOfMendingTests : BaseTest
     {
         private GameState _gameState;
         [OneTimeSetUp]
         public void InitOnce()
         {
-            IConstantsService constantsService = new ConstantsService();
-
-            // Load this from somewhere that doesn't change
-            var basePath = @"HolyPriest" + Path.DirectorySeparatorChar + "TestData";
-            var constants = constantsService.ParseConstants(
-                File.ReadAllText(Path.Combine(basePath, "SpellServiceTests_constants.json")));
-            var profile = JsonConvert.DeserializeObject<PlayerProfile>(
-                File.ReadAllText(Path.Combine(basePath, "SpellServiceTests_profile.json")));
-
-            _gameState = new GameState(profile, constants);
+            _gameState = GetGameState();
         }
 
         [Test]
@@ -52,7 +43,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
             var resultOverride = spellService.GetAverageRawHealing(_gameState, spellData);
 
             // Assert
-            Assert.AreEqual(3579.1087607100003d, resultDefault);
+            Assert.AreEqual(4240.270125, resultDefault);
             Assert.AreEqual(resultDefault / 2, resultOverride);
         }
 

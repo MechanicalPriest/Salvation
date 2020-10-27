@@ -20,10 +20,10 @@
     <Content Include="HolyPriest\TestData\SpellServiceTests_constants.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="HolyPriest\TestData\SpellServiceTests_profile.json">
+    <Content Include="TestData\SpellServiceTests_profile.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Profile\TestData\Beitaky.simc">
+    <Content Include="TestData\Beitaky.simc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Profile\TestData\ProfileTests_constants.json">

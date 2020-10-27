@@ -69,7 +69,8 @@ namespace Salvation.Core.Modelling.HolyPriest
                 smiteSpellService,
                 chastiseSpellService,
                 shadowWordPainSpellService,
-                shadowWordDeathSpellService
+                shadowWordDeathSpellService,
+                holyFireSpellService
             };
         }
 

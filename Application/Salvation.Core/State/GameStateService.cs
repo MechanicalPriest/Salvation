@@ -94,7 +94,7 @@ namespace Salvation.Core.State
         {
             // TODO: Add other sources of crit increase here
             var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.SpecId).FirstOrDefault();
-            return 1 + specData.CritBase + (GetDrRating(state.Profile.CritRating, specData.CritCost) / specData.CritCost / 100);
+            return 1 + specData.CritBase + (GetDrRating(GetCriticalStrikeRating(state), specData.CritCost) / specData.CritCost / 100);
         }
 
         public double GetHasteRating(GameState state)
@@ -120,7 +120,7 @@ namespace Salvation.Core.State
         {
             // TODO: Add other sources of haste increase here
             var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.SpecId).FirstOrDefault();
-            return 1 + specData.HasteBase + (GetDrRating(state.Profile.HasteRating, specData.HasteCost) / specData.HasteCost / 100);
+            return 1 + specData.HasteBase + (GetDrRating(GetHasteRating(state), specData.HasteCost) / specData.HasteCost / 100);
         }
 
         public double GetVersatilityRating(GameState state)
@@ -146,7 +146,7 @@ namespace Salvation.Core.State
             // TODO: Add other sources of vers increase here
             var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.SpecId).FirstOrDefault();
 
-            return 1 + specData.VersBase + (GetDrRating(state.Profile.VersatilityRating, specData.VersCost) / specData.VersCost / 100);
+            return 1 + specData.VersBase + (GetDrRating(GetVersatilityRating(state), specData.VersCost) / specData.VersCost / 100);
         }
 
         public double GetMasteryRating(GameState state)
@@ -172,7 +172,7 @@ namespace Salvation.Core.State
             // TODO: Add other sources of mastery increase here
             var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.SpecId).FirstOrDefault();
 
-            return 1 + specData.MasteryBase + (GetDrRating(state.Profile.MasteryRating, specData.MasteryCost) / specData.MasteryCost / 100);
+            return 1 + specData.MasteryBase + (GetDrRating(GetMasteryRating(state), specData.MasteryCost) / specData.MasteryCost / 100);
         }
 
         public double GetIntellect(GameState state)
@@ -264,7 +264,7 @@ namespace Salvation.Core.State
             if (clothCount == 8)
                 intellect *= 1.05d;
 
-            return Math.Round(intellect);
+            return Math.Floor(intellect);
         }
 
         public BaseSpellData GetSpellData(GameState state, Spell spellId)

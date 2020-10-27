@@ -40,9 +40,9 @@ namespace Salvation.CoreTests.HolyPriest.Spells
             // Load this from somewhere that doesn't change
             var basePath = @"HolyPriest" + Path.DirectorySeparatorChar + "TestData";
             var constants = constantsService.ParseConstants(
-                File.ReadAllText(Path.Combine(basePath, "SpellServiceTests_constants.json")));
+                File.ReadAllText(Path.Combine("TestData", "BaseTests_constants.json")));
             var profile = JsonConvert.DeserializeObject<PlayerProfile>(
-                File.ReadAllText(Path.Combine(basePath, "SpellServiceTests_profile.json")));
+                File.ReadAllText(Path.Combine("TestData", "SpellServiceTests_profile.json")));
 
             Spells.Add(new AscendedBlast(gameStateService));
             Spells.Add(new AscendedEruption(gameStateService));

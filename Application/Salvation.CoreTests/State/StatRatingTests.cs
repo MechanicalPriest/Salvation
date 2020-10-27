@@ -22,9 +22,8 @@ namespace Salvation.CoreTests.State
             _gameStateService = new GameStateService();
 
             // Load the simc profile
-            var basePath = @"Profile" + Path.DirectorySeparatorChar + "TestData";
             var profileStringBeitaky = await File.ReadAllTextAsync(
-                Path.Combine(basePath, "Beitaky.simc"));
+                Path.Combine("TestData", "Beitaky.simc"));
 
             var simcProfileService = new SimcProfileService(
                 new SimcGenerationService(),

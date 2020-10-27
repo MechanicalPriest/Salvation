@@ -1,12 +1,10 @@
 ﻿using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
-using Salvation.Core.Interfaces;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.Modelling.Common;
 using Salvation.Core.State;
 using System;
-using System.Xml.Serialization;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
@@ -177,7 +175,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         {
             if (spellData == null)
                 spellData = _gameStateService.GetSpellData(gameState, (Spell)SpellId);
-            
+
             if (spellData == null)
                 throw new ArgumentOutOfRangeException(nameof(SpellId),
                     $"Spelldata for SpellId ({SpellId}) not found");
@@ -198,7 +196,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
                 spellData = _gameStateService.GetSpellData(gameState, (Spell)SpellId);
 
             if (spellData == null)
-                throw new ArgumentOutOfRangeException(nameof(SpellId), 
+                throw new ArgumentOutOfRangeException(nameof(SpellId),
                     $"Spelldata for SpellId ({SpellId}) not found");
 
             var profileData = _gameStateService.GetCastProfile(gameState, SpellId);

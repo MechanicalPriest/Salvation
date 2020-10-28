@@ -1,7 +1,11 @@
 ﻿using Newtonsoft.Json;
 using NUnit.Framework;
+using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
+using Salvation.Core.Interfaces.Constants;
+using Salvation.Core.Interfaces.State;
 using Salvation.Core.Profile;
+using Salvation.Core.State;
 using SimcProfileParser;
 using System;
 using System.Collections.Generic;
@@ -43,6 +47,7 @@ namespace Salvation.CoreTests.Profile
             // Assert
             Assert.IsNotNull(baseProfile);
             Assert.AreEqual("Beitaky", baseProfile.Name);
+            Assert.AreEqual(Race.Dwarf, baseProfile.Race);
         }
 
         [Test]
@@ -86,6 +91,30 @@ namespace Salvation.CoreTests.Profile
             Assert.IsNotNull(baseProfile);
             Assert.IsNotNull(baseProfile.Items);
             Assert.LessOrEqual(80, baseProfile.Items.Count);
+        }
+
+        [Test]
+        public async Task SPS_Applies_Stats()
+        {
+            // Arrange
+            var baseProfile = new ProfileGenerationService().GetDefaultProfile(Core.Constants.Data.Spec.HolyPriest);
+            IGameStateService gameStateService = new GameStateService();
+
+            IConstantsService constantsService = new ConstantsService();
+            var constants = constantsService.ParseConstants(
+                File.ReadAllText(Path.Combine("TestData", "BaseTests_constants.json")));
+
+            // Act
+            await _simcProfileService.ApplySimcProfileAsync(_profileStringBeitaky, baseProfile);
+            var gameState = new GameState(baseProfile, constants);
+
+            // Assert
+            Assert.IsNotNull(baseProfile);
+            Assert.AreEqual(1261.0d, gameStateService.GetIntellect(gameState));
+            Assert.AreEqual(812.0d, gameStateService.GetVersatilityRating(gameState));
+            Assert.AreEqual(238.0d, gameStateService.GetCriticalStrikeRating(gameState));
+            Assert.AreEqual(427.0d, gameStateService.GetHasteRating(gameState));
+            Assert.AreEqual(100.0d, gameStateService.GetMasteryRating(gameState));
         }
     }
 }

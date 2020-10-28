@@ -1,35 +1,21 @@
-﻿using Newtonsoft.Json;
-using NUnit.Framework;
-using Salvation.Core.Constants;
+﻿using NUnit.Framework;
 using Salvation.Core.Constants.Data;
-using Salvation.Core.Interfaces.Constants;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.Modelling.HolyPriest.Spells;
-using Salvation.Core.Profile;
 using Salvation.Core.State;
-using System.IO;
 using System.Linq;
 
 namespace Salvation.CoreTests.HolyPriest.Conduits
 {
     [TestFixture]
-    class FaeFermataTests
+    class FaeFermataTests : BaseTest
     {
         private GameState _gameState;
 
         [OneTimeSetUp]
         public void InitOnce()
         {
-            IConstantsService constantsService = new ConstantsService();
-
-            // Load this from somewhere that doesn't change
-            var basePath = @"HolyPriest" + Path.DirectorySeparatorChar + "TestData";
-            var constants = constantsService.ParseConstants(
-                File.ReadAllText(Path.Combine(basePath, "SpellServiceTests_constants.json")));
-            var profile = JsonConvert.DeserializeObject<PlayerProfile>(
-                File.ReadAllText(Path.Combine(basePath, "SpellServiceTests_profile.json")));
-
-            _gameState = new GameState(profile, constants);
+            _gameState = GetGameState();
         }
 
         [Test]
@@ -111,8 +97,8 @@ namespace Salvation.CoreTests.HolyPriest.Conduits
             Assert.IsNotNull(resultWith);
             Assert.IsNotNull(dhResultWithout);
             Assert.IsNotNull(dhResultWith);
-            Assert.AreEqual(8449.0436318400025d, dhResultWithout.RawHealing);
-            Assert.AreEqual(11338.616553929283d, dhResultWith.RawHealing);
+            Assert.AreEqual(12821.661674640003d, dhResultWithout.RawHealing);
+            Assert.AreEqual(17206.669967366885d, dhResultWith.RawHealing);
         }
     }
 }

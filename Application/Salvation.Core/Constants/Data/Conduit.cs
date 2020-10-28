@@ -21,5 +21,7 @@
         HolyOration = 338345,
         LastingSpirit = 337811,
         ResonantWords = 337947,
+        // Potency - Spec Disc Priest
+        ShiningRadiance = 337778,
     }
 }

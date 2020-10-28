@@ -2,6 +2,7 @@
 {
     public enum Spell
     {
+        None = 0,
         /// <summary>
         /// 179715 - Direct heal bonus
         /// 191076 - Periodic heal bonus
@@ -89,7 +90,7 @@
         // DPS
         Smite = 585,
         SmiteRank2 = 262861,
-        Chastise = 88625,
+        HolyWordChastise = 88625,
         ShadowWordPain = 589,
         ShadowWordPainRank2 = 327820,
         ShadowWordDeath = 32379,

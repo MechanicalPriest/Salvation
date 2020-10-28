@@ -1,6 +1,5 @@
 ﻿using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
-using Salvation.Core.Interfaces;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.State;
@@ -21,7 +20,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             IPrayerOfMendingSpellService prayerOfMendingSpellService)
             : base(gameStateService)
         {
-            SpellId = (int)Spell.HolyWordSerenity;
+            Spell = Spell.HolyWordSerenity;
             _flashHealSpellService = flashHealSpellService;
             _healSpellService = healSpellService;
             _bindingHealSpellService = bindingHealSpellService;
@@ -30,8 +29,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
         public override double GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, Spell.HolyWordSerenity);
+            spellData = ValidateSpellData(gameState, spellData);
 
             var holyPriestAuraHealingBonus = _gameStateService.GetSpellData(gameState, Spell.HolyPriest)
                 .GetEffect(179715).BaseValue / 100 + 1;
@@ -52,8 +50,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
         public override double GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, Spell.HolyWordSerenity);
+            spellData = ValidateSpellData(gameState, spellData);
 
             // Max casts per minute is (60 + (FH + Heal + BH * 0.5) * HwCDR) / CD + 1 / (FightLength / 60)
             // HWCDR is 6 base, more with LOTN/other effects
@@ -100,8 +97,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
         public override double GetHastedCooldown(GameState gameState, BaseSpellData spellData = null)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, (Spell)SpellId);
+            spellData = ValidateSpellData(gameState, spellData);
 
             // Cooldown for Serenity is stored in the chargecooldown instead as it has charges
             var cooldown = spellData.ChargeCooldown / 1000;

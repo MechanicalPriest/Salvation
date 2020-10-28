@@ -1,10 +1,8 @@
 ﻿using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
-using Salvation.Core.Interfaces;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.State;
-using System;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
@@ -13,13 +11,12 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         public ShadowWordDeath(IGameStateService gameStateService)
             : base(gameStateService)
         {
-            SpellId = (int)Spell.ShadowWordDeath;
+            Spell = Spell.ShadowWordDeath;
         }
 
         public override double GetAverageDamage(GameState gameState, BaseSpellData spellData = null)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, Spell.ShadowWordDeath);
+            spellData = ValidateSpellData(gameState, spellData);
 
             var holyPriestAuraDamagesBonus = _gameStateService.GetSpellData(gameState, Spell.HolyPriest)
                 .GetEffect(191077).BaseValue / 100 + 1;
@@ -47,8 +44,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
         public override double GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, Spell.ShadowWordDeath);
+            spellData = ValidateSpellData(gameState, spellData);
 
             var hastedCastTime = GetHastedCastTime(gameState, spellData);
             var hastedGcd = GetHastedGcd(gameState, spellData);
@@ -66,14 +62,13 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
         public override double GetHastedCooldown(GameState gameState, BaseSpellData spellData = null)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, Spell.ShadowWordDeath);
+            spellData = ValidateSpellData(gameState, spellData);
 
             var spellDataRank2 = _gameStateService.GetSpellData(gameState, Spell.ShadowWordDeathRank2);
-            
+
             // Base Val is neg
             // for some reason cd of death is a charge cd
-            var baseCooldown = spellData.ChargeCooldown / 1000d + spellDataRank2.GetEffect(810248).BaseValue/1000d;
+            var baseCooldown = spellData.ChargeCooldown / 1000d + spellDataRank2.GetEffect(810248).BaseValue / 1000d;
 
             return spellData.IsCooldownHasted
                 ? baseCooldown / _gameStateService.GetHasteMultiplier(gameState)

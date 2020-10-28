@@ -1,6 +1,5 @@
 ﻿using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
-using Salvation.Core.Interfaces;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.Modelling.Common;
@@ -16,14 +15,13 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             IUnholyTransfusionSpellService unholyTransfuionSpellService)
             : base(gameStateService)
         {
-            SpellId = (int)Spell.UnholyNova;
+            Spell = Spell.UnholyNova;
             _unholyTransfuionSpellService = unholyTransfuionSpellService;
         }
 
         public override AveragedSpellCastResult GetCastResults(GameState gameState, BaseSpellData spellData = null)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, Spell.UnholyNova);
+            spellData = ValidateSpellData(gameState, spellData);
 
             AveragedSpellCastResult result = base.GetCastResults(gameState, spellData);
 
@@ -39,8 +37,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
         public override double GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, Spell.UnholyNova);
+            spellData = ValidateSpellData(gameState, spellData);
 
             var holyPriestAuraHealingBonus = _gameStateService.GetSpellData(gameState, Spell.HolyPriest)
                 .GetEffect(179715).BaseValue / 100 + 1;
@@ -61,8 +58,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
         public override double GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, Spell.UnholyNova);
+            spellData = ValidateSpellData(gameState, spellData);
 
             var hastedCastTime = GetHastedCastTime(gameState, spellData);
             var hastedCd = GetHastedCooldown(gameState, spellData);
@@ -76,8 +72,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
         public override double GetMaximumHealTargets(GameState gameState, BaseSpellData spellData)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, Spell.UnholyNova);
+            spellData = ValidateSpellData(gameState, spellData);
 
             // UN stores its max healing targets in effect 844015 #2
             var numTargets = spellData.GetEffect(844015).BaseValue;

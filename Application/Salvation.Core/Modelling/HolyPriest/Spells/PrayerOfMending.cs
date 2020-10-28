@@ -1,10 +1,8 @@
 ﻿using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
-using Salvation.Core.Interfaces;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.State;
-using System;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
@@ -13,13 +11,12 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         public PrayerOfMending(IGameStateService gameStateService)
             : base(gameStateService)
         {
-            SpellId = (int)Spell.PrayerOfMending;
+            Spell = Spell.PrayerOfMending;
         }
 
         public override double GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, Spell.PrayerOfMending);
+            spellData = ValidateSpellData(gameState, spellData);
 
             var holyPriestAuraHealingBonus = _gameStateService.GetSpellData(gameState, Spell.HolyPriest)
                 .GetEffect(179715).BaseValue / 100 + 1;
@@ -50,8 +47,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
         public override double GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, Spell.PrayerOfMending);
+            spellData = ValidateSpellData(gameState, spellData);
 
             var hastedCastTime = GetHastedCastTime(gameState, spellData);
             var hastedGcd = GetHastedGcd(gameState, spellData);
@@ -79,12 +75,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
         public override double GetHastedCastTime(GameState gameState, BaseSpellData spellData = null)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, (Spell)SpellId);
-
-            if (spellData == null)
-                throw new ArgumentOutOfRangeException(nameof(SpellId),
-                    $"Spelldata for SpellId ({SpellId}) not found");
+            spellData = ValidateSpellData(gameState, spellData);
 
             // Apply PoM rank 2 to reduce the cast time by 100%.
             var pomRank2 = _gameStateService.GetSpellData(gameState, Spell.PrayerOfMendingRank2);

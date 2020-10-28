@@ -126,7 +126,7 @@ namespace Salvation.Core.Profile
                     new CastProfile((int)Spell.Smite, 1d, 0, 0, 1), // Smite
                     new CastProfile((int)Spell.ShadowWordPain, 1d, 0, 0, 1), // Shadow Word: Pain
                     new CastProfile((int)Spell.ShadowWordDeath, 1d, 0, 0, 1),
-                    new CastProfile((int)Spell.Chastise, 1d, 0, 0, 1),
+                    new CastProfile((int)Spell.HolyWordChastise, 1d, 0, 0, 1),
                     new CastProfile((int)Spell.HolyFire, 1d, 0, 0, 1),
 
                     // Covenants (SpellId, Efficiency, Overheal)

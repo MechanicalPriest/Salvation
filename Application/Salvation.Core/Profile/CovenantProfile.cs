@@ -21,6 +21,7 @@ namespace Salvation.Core.Profile
             AvailableConduits = new Dictionary<Conduit, int>();
             Soulbinds = new List<SoulbindProfile>();
             Covenant = Covenant.None;
+            Renown = 0;
         }
     }
 }

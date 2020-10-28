@@ -63,7 +63,7 @@ namespace Salvation.Api
 
             // DPS
             builder.Services.AddSingleton<ISmiteSpellService, Smite>();
-            builder.Services.AddSingleton<IChastiseSpellService, Chastise>();
+            builder.Services.AddSingleton<IHolyWordChastiseSpellService, HolyWordChastise>();
             builder.Services.AddSingleton<IShadowWordPainSpellService, ShadowWordPain>();
             builder.Services.AddSingleton<IShadowWordDeathSpellService, ShadowWordDeath>();
             builder.Services.AddSingleton<IHolyFireSpellService, HolyFire>();

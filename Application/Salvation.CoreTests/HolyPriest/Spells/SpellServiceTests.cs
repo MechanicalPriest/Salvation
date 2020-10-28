@@ -97,7 +97,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 new UnholyTransfusion(gameStateService)));
             Spells.Add(new UnholyTransfusion(gameStateService));
             Spells.Add(new Smite(gameStateService));
-            Spells.Add(new Chastise(gameStateService, new Smite(gameStateService), new HolyFire(gameStateService)));
+            Spells.Add(new HolyWordChastise(gameStateService, new Smite(gameStateService), new HolyFire(gameStateService)));
             Spells.Add(new ShadowWordPain(gameStateService)); 
             Spells.Add(new ShadowWordDeath(gameStateService));
             Spells.Add(new HolyFire(gameStateService));
@@ -327,7 +327,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(UnholyNova)).Returns(6);
                 yield return new TestCaseData(typeof(UnholyTransfusion)).Returns(1);
                 yield return new TestCaseData(typeof(Smite)).Returns(0);
-                yield return new TestCaseData(typeof(Chastise)).Returns(0);
+                yield return new TestCaseData(typeof(HolyWordChastise)).Returns(0);
                 yield return new TestCaseData(typeof(ShadowWordPain)).Returns(0);
                 yield return new TestCaseData(typeof(ShadowWordDeath)).Returns(0);
                 yield return new TestCaseData(typeof(HolyFire)).Returns(0);
@@ -362,7 +362,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(UnholyNova)).Returns(1);
                 yield return new TestCaseData(typeof(UnholyTransfusion)).Returns(0);
                 yield return new TestCaseData(typeof(Smite)).Returns(0);
-                yield return new TestCaseData(typeof(Chastise)).Returns(0);
+                yield return new TestCaseData(typeof(HolyWordChastise)).Returns(0);
                 yield return new TestCaseData(typeof(ShadowWordPain)).Returns(0);
                 yield return new TestCaseData(typeof(ShadowWordDeath)).Returns(0);
                 yield return new TestCaseData(typeof(HolyFire)).Returns(0);
@@ -396,7 +396,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(UnholyNova)).Returns(6);
                 yield return new TestCaseData(typeof(UnholyTransfusion)).Returns(1);
                 yield return new TestCaseData(typeof(Smite)).Returns(0);
-                yield return new TestCaseData(typeof(Chastise)).Returns(0);
+                yield return new TestCaseData(typeof(HolyWordChastise)).Returns(0);
                 yield return new TestCaseData(typeof(ShadowWordPain)).Returns(0);
                 yield return new TestCaseData(typeof(ShadowWordDeath)).Returns(0);
                 yield return new TestCaseData(typeof(HolyFire)).Returns(0);
@@ -430,7 +430,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(UnholyNova)).Returns(8378.6349349079992d);
                 yield return new TestCaseData(typeof(UnholyTransfusion)).Returns(234.69565644000002d);
                 yield return new TestCaseData(typeof(Smite)).Returns(0);
-                yield return new TestCaseData(typeof(Chastise)).Returns(0);
+                yield return new TestCaseData(typeof(HolyWordChastise)).Returns(0);
                 yield return new TestCaseData(typeof(ShadowWordPain)).Returns(0);
                 yield return new TestCaseData(typeof(ShadowWordDeath)).Returns(0);
                 yield return new TestCaseData(typeof(HolyFire)).Returns(0);
@@ -465,7 +465,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(UnholyNova)).Returns(8294.8485855589188d);
                 yield return new TestCaseData(typeof(UnholyTransfusion)).Returns(232.34869987560003d);
                 yield return new TestCaseData(typeof(Smite)).Returns(0);
-                yield return new TestCaseData(typeof(Chastise)).Returns(0);
+                yield return new TestCaseData(typeof(HolyWordChastise)).Returns(0);
                 yield return new TestCaseData(typeof(ShadowWordPain)).Returns(0);
                 yield return new TestCaseData(typeof(ShadowWordDeath)).Returns(0);
                 yield return new TestCaseData(typeof(HolyFire)).Returns(0);
@@ -501,7 +501,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(Halo)).Returns(1438.9078936500005d);
                 yield return new TestCaseData(typeof(HolyNova)).Returns(264.03261349500002d);
                 yield return new TestCaseData(typeof(Smite)).Returns(984.88355827499993d);
-                yield return new TestCaseData(typeof(Chastise)).Returns(1571.6226993750001d);
+                yield return new TestCaseData(typeof(HolyWordChastise)).Returns(1571.6226993750001d);
                 yield return new TestCaseData(typeof(ShadowWordPain)).Returns(1983.2855172730456d);
                 yield return new TestCaseData(typeof(ShadowWordDeath)).Returns(1056.7102081313251d);
                 yield return new TestCaseData(typeof(HolyFire)).Returns(3127.408521932864d);
@@ -537,7 +537,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(UnholyNova)).Returns(0);
                 yield return new TestCaseData(typeof(UnholyTransfusion)).Returns(15);
                 yield return new TestCaseData(typeof(Smite)).Returns(0);
-                yield return new TestCaseData(typeof(Chastise)).Returns(0);
+                yield return new TestCaseData(typeof(HolyWordChastise)).Returns(0);
                 yield return new TestCaseData(typeof(ShadowWordPain)).Returns(16.0d);
                 yield return new TestCaseData(typeof(ShadowWordDeath)).Returns(0);
                 yield return new TestCaseData(typeof(HolyFire)).Returns(7); 
@@ -572,7 +572,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(UnholyTransfusion)).Returns(0d);
                 // Ask niphyr about vals cause not same as game
                 yield return new TestCaseData(typeof(Smite)).Returns(100.0d);
-                yield return new TestCaseData(typeof(Chastise)).Returns(1000.0d);
+                yield return new TestCaseData(typeof(HolyWordChastise)).Returns(1000.0d);
                 yield return new TestCaseData(typeof(ShadowWordPain)).Returns(600.0d);
                 yield return new TestCaseData(typeof(ShadowWordDeath)).Returns(800.0d);
                 yield return new TestCaseData(typeof(HolyFire)).Returns(500.0d);
@@ -606,7 +606,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(UnholyNova)).Returns(0);
                 yield return new TestCaseData(typeof(UnholyTransfusion)).Returns(0);
                 yield return new TestCaseData(typeof(Smite)).Returns(1.3920134983000001d);
-                yield return new TestCaseData(typeof(Chastise)).Returns(0);
+                yield return new TestCaseData(typeof(HolyWordChastise)).Returns(0);
                 yield return new TestCaseData(typeof(ShadowWordPain)).Returns(0);
                 yield return new TestCaseData(typeof(ShadowWordDeath)).Returns(0);
                 yield return new TestCaseData(typeof(HolyFire)).Returns(1.3920134983000001d);
@@ -640,7 +640,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(PrayerOfMending)).Returns(5.3878787879000001d);
                 yield return new TestCaseData(typeof(Renew)).Returns(43.103030302999997d);
                 yield return new TestCaseData(typeof(Smite)).Returns(43.103030302999997d);
-                yield return new TestCaseData(typeof(Chastise)).Returns(4.0246688547999998d);
+                yield return new TestCaseData(typeof(HolyWordChastise)).Returns(4.0246688547999998d);
                 yield return new TestCaseData(typeof(UnholyNova)).Returns(1.1511335012999999d);
                 yield return new TestCaseData(typeof(ShadowWordPain)).Returns(43.103030302999997d);
                 yield return new TestCaseData(typeof(ShadowWordDeath)).Returns(3.2327272727d);
@@ -677,7 +677,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(UnholyNova)).Returns(double.MaxValue);
                 yield return new TestCaseData(typeof(UnholyTransfusion)).Returns(1);
                 yield return new TestCaseData(typeof(Smite)).Returns(1);
-                yield return new TestCaseData(typeof(Chastise)).Returns(1);
+                yield return new TestCaseData(typeof(HolyWordChastise)).Returns(1);
                 yield return new TestCaseData(typeof(ShadowWordPain)).Returns(1);
                 yield return new TestCaseData(typeof(ShadowWordDeath)).Returns(1);
                 yield return new TestCaseData(typeof(HolyFire)).Returns(1);
@@ -712,7 +712,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(UnholyNova)).Returns(0);
                 yield return new TestCaseData(typeof(UnholyTransfusion)).Returns(1);
                 yield return new TestCaseData(typeof(Smite)).Returns(1);
-                yield return new TestCaseData(typeof(Chastise)).Returns(1);
+                yield return new TestCaseData(typeof(HolyWordChastise)).Returns(1);
                 yield return new TestCaseData(typeof(ShadowWordPain)).Returns(1);
                 yield return new TestCaseData(typeof(ShadowWordDeath)).Returns(1);
                 yield return new TestCaseData(typeof(HolyFire)).Returns(1);
@@ -746,7 +746,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(UnholyNova)).Returns(1);
                 yield return new TestCaseData(typeof(UnholyTransfusion)).Returns(1);
                 yield return new TestCaseData(typeof(Smite)).Returns(1);
-                yield return new TestCaseData(typeof(Chastise)).Returns(1);
+                yield return new TestCaseData(typeof(HolyWordChastise)).Returns(1);
                 yield return new TestCaseData(typeof(ShadowWordPain)).Returns(1);
                 yield return new TestCaseData(typeof(ShadowWordDeath)).Returns(1);
                 yield return new TestCaseData(typeof(HolyFire)).Returns(1);
@@ -780,7 +780,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(UnholyNova)).Returns(83.786349349100007d);
                 yield return new TestCaseData(typeof(UnholyTransfusion)).Returns(2.3469565644000001d);
                 yield return new TestCaseData(typeof(Smite)).Returns(0);
-                yield return new TestCaseData(typeof(Chastise)).Returns(0);
+                yield return new TestCaseData(typeof(HolyWordChastise)).Returns(0);
                 yield return new TestCaseData(typeof(ShadowWordPain)).Returns(0);
                 yield return new TestCaseData(typeof(ShadowWordDeath)).Returns(0);
                 yield return new TestCaseData(typeof(HolyFire)).Returns(0);

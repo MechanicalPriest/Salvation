@@ -62,6 +62,7 @@ namespace Salvation.Core.Profile
             Legendaries = new List<Spell>();
             PlaystyleEntries = new List<PlaystyleEntry>();
             Items = new List<Item>();
+            Covenant = new CovenantProfile();
         }
 
         public bool IsTalentActive(Talent talent)

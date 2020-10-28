@@ -38,7 +38,7 @@ namespace Salvation.Core.Modelling.HolyPriest
             IUnholyNovaSpellService unholyNovaSpellService,
             IBoonOfTheAscendedSpellService boonOfTheAscendedSpellService,
             ISmiteSpellService smiteSpellService,
-            IChastiseSpellService chastiseSpellService,
+            IHolyWordChastiseSpellService chastiseSpellService,
             IShadowWordPainSpellService shadowWordPainSpellService,
             IShadowWordDeathSpellService shadowWordDeathSpellService,
             IHolyFireSpellService holyFireSpellService)

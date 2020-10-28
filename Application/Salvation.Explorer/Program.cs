@@ -73,7 +73,7 @@ namespace Salvation.Explorer
 
                     // DPS
                     services.AddSingleton<ISmiteSpellService, Smite>();
-                    services.AddSingleton<IChastiseSpellService, Chastise>(); 
+                    services.AddSingleton<IHolyWordChastiseSpellService, HolyWordChastise>(); 
                     services.AddSingleton<IShadowWordPainSpellService, ShadowWordPain>();
                     services.AddSingleton<IShadowWordDeathSpellService, ShadowWordDeath>();
                     services.AddSingleton<IHolyFireSpellService, HolyFire>();

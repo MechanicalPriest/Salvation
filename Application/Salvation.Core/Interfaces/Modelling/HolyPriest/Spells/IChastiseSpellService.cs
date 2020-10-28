@@ -1,6 +1,6 @@
 ﻿namespace Salvation.Core.Interfaces.Modelling.HolyPriest.Spells
 {
-    public interface IChastiseSpellService : ISpellService
+    public interface IHolyWordChastiseSpellService : ISpellService
     {
 
     }

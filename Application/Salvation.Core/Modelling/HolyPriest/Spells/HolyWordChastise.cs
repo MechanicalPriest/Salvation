@@ -9,17 +9,17 @@ using System;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
-    public class Chastise : SpellService, IChastiseSpellService
+    public class HolyWordChastise : SpellService, IHolyWordChastiseSpellService
     {
         private readonly ISmiteSpellService _smiteSpellService;
         private readonly IHolyFireSpellService _holyFireSpellService;
 
-        public Chastise(IGameStateService gameStateService,
+        public HolyWordChastise(IGameStateService gameStateService,
             ISmiteSpellService smiteSpellService,
             IHolyFireSpellService holyFireSpellService)
             : base(gameStateService)
         {
-            SpellId = (int)Spell.Chastise;
+            SpellId = (int)Spell.HolyWordChastise;
             _smiteSpellService = smiteSpellService;
             _holyFireSpellService = holyFireSpellService;
         }
@@ -27,7 +27,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         public override double GetAverageDamage(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, Spell.Chastise);
+                spellData = _gameStateService.GetSpellData(gameState, (Spell)SpellId);
 
             var holyPriestAuraDamageBonus = _gameStateService.GetSpellData(gameState, Spell.HolyPriest)
                 .GetEffect(191077).BaseValue / 100 + 1;
@@ -49,7 +49,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         public override double GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
         {
             if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, Spell.HolyWordSerenity);
+                spellData = _gameStateService.GetSpellData(gameState, (Spell)SpellId);
 
             // Max casts per minute is (60 + Smite * HwCDR) / CD + 1 / (FightLength / 60)
             // HWCDR is 6 base, more with LOTN/other effects
@@ -86,19 +86,6 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         public override double GetMaximumDamageTargets(GameState gameState, BaseSpellData spellData)
         {
             return 1;
-        }
-
-        public override double GetHastedCooldown(GameState gameState, BaseSpellData spellData = null)
-        {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, (Spell)SpellId);
-
-            // Cooldown for Chastise is stored in the chargecooldown instead as it has charges
-            var cooldown = spellData.ChargeCooldown / 1000;
-
-            return spellData.IsCooldownHasted
-                ? cooldown / _gameStateService.GetHasteMultiplier(gameState)
-                : cooldown;
         }
     }
 }

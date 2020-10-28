@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
+using Salvation.Core.Interfaces.Profile;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.Profile;
 using System;
@@ -11,6 +12,19 @@ namespace Salvation.Core.State
 {
     public class GameStateService : IGameStateService
     {
+        private readonly IProfileService _profileGenerationService;
+
+        public GameStateService(IProfileService profileGenerationService)
+        {
+            _profileGenerationService = profileGenerationService;
+        }
+
+        public GameStateService()
+            : this(new ProfileService())
+        {
+
+        }
+
         public double GetBaseManaAmount(GameState state)
         {
             var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.Spec).FirstOrDefault();
@@ -76,7 +90,7 @@ namespace Salvation.Core.State
         {
             var critRating = 0;
 
-            foreach (var item in state.Profile.Items.Take(15))
+            foreach (var item in _profileGenerationService.GetEquippedItems(state.Profile))
             {
                 foreach (var mod in item.Mods)
                 {
@@ -102,7 +116,7 @@ namespace Salvation.Core.State
         {
             var hasteRating = 0;
 
-            foreach (var item in state.Profile.Items.Take(15))
+            foreach (var item in _profileGenerationService.GetEquippedItems(state.Profile))
             {
                 foreach (var mod in item.Mods)
                 {
@@ -128,7 +142,7 @@ namespace Salvation.Core.State
         {
             var versatilityRating = 0;
 
-            foreach (var item in state.Profile.Items.Take(15))
+            foreach (var item in _profileGenerationService.GetEquippedItems(state.Profile))
             {
                 foreach (var mod in item.Mods)
                 {
@@ -154,7 +168,7 @@ namespace Salvation.Core.State
         {
             var masteryRating = 0;
 
-            foreach (var item in state.Profile.Items.Take(15))
+            foreach (var item in _profileGenerationService.GetEquippedItems(state.Profile))
             {
                 foreach (var mod in item.Mods)
                 {
@@ -240,9 +254,9 @@ namespace Salvation.Core.State
 
             // Add intellect from all items
             var clothCount = 0;
-            foreach (var item in state.Profile.Items.Take(15))
+            foreach (var item in _profileGenerationService.GetEquippedItems(state.Profile))
             {
-                if (item.Slot != InventorySlot.INVTYPE_CLOAK &&
+                if (item.Slot != InventorySlot.Cloak &&
                     item.ItemType == ItemType.ITEM_CLASS_ARMOR &&
                     item.ItemSubType == 1)
                     clothCount++;

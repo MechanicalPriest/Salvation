@@ -13,10 +13,10 @@ namespace Salvation.Core.Profile
     public class SimcProfileService : ISimcProfileService
     {
         private readonly ISimcGenerationService _simcGenerationService;
-        private readonly IProfileGenerationService _profileGenerationService;
+        private readonly IProfileService _profileGenerationService;
 
         public SimcProfileService(ISimcGenerationService simcGenerationService,
-            IProfileGenerationService profileGenerationService)
+            IProfileService profileGenerationService)
         {
             _simcGenerationService = simcGenerationService;
             _profileGenerationService = profileGenerationService;
@@ -161,6 +161,9 @@ namespace Salvation.Core.Profile
                 }
 
                 profile.Items.Add(newItem);
+
+                if (item.Equipped)
+                    _profileGenerationService.EquipItem(profile, newItem);
             }
         }
     }

@@ -27,7 +27,7 @@ namespace Salvation.CoreTests.State
 
             var simcProfileService = new SimcProfileService(
                 new SimcGenerationService(),
-                new ProfileGenerationService()
+                new ProfileService()
                 );
 
             // Update the profile with the simc data

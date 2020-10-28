@@ -25,7 +25,7 @@ namespace Salvation.Api
             // Common services
             builder.Services.AddSingleton<IConstantsService, ConstantsService>();
             builder.Services.AddSingleton<IGameStateService, GameStateService>();
-            builder.Services.AddSingleton<IProfileGenerationService, ProfileGenerationService>();
+            builder.Services.AddSingleton<IProfileService, ProfileService>();
             builder.Services.AddSingleton<IStatWeightGenerationService, StatWeightGenerator>();
 
             // Holy Priest specific services

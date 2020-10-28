@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using Newtonsoft.Json;
+using NUnit.Framework;
 using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
 using Salvation.Core.Interfaces.Constants;
@@ -27,7 +28,7 @@ namespace Salvation.CoreTests.Profile
 
             _simcProfileService = new SimcProfileService(
                 new SimcGenerationService(),
-                new ProfileGenerationService()
+                new ProfileService()
                 );
         }
 
@@ -35,10 +36,12 @@ namespace Salvation.CoreTests.Profile
         public async Task SPS_Applies_Basic_Properties()
         {
             // Arrange
-            var baseProfile = new ProfileGenerationService().GetDefaultProfile(Core.Constants.Data.Spec.HolyPriest);
+            var baseProfile = new ProfileService().GetDefaultProfile(Core.Constants.Data.Spec.HolyPriest);
 
             // Act
             await _simcProfileService.ApplySimcProfileAsync(_profileStringBeitaky, baseProfile);
+
+            File.WriteAllText("temp.json", JsonConvert.SerializeObject(baseProfile, Formatting.Indented));
 
             // Assert
             Assert.IsNotNull(baseProfile);
@@ -53,7 +56,7 @@ namespace Salvation.CoreTests.Profile
         public async Task SPS_Applies_Covenant_Properties()
         {
             // Arrange
-            var baseProfile = new ProfileGenerationService().GetDefaultProfile(Core.Constants.Data.Spec.HolyPriest);
+            var baseProfile = new ProfileService().GetDefaultProfile(Core.Constants.Data.Spec.HolyPriest);
 
             // Act
             await _simcProfileService.ApplySimcProfileAsync(_profileStringBeitaky, baseProfile);
@@ -81,7 +84,7 @@ namespace Salvation.CoreTests.Profile
         public async Task SPS_Applies_Items()
         {
             // Arrange
-            var baseProfile = new ProfileGenerationService().GetDefaultProfile(Core.Constants.Data.Spec.HolyPriest);
+            var baseProfile = new ProfileService().GetDefaultProfile(Core.Constants.Data.Spec.HolyPriest);
 
             // Act
             await _simcProfileService.ApplySimcProfileAsync(_profileStringBeitaky, baseProfile);
@@ -96,7 +99,7 @@ namespace Salvation.CoreTests.Profile
         public async Task SPS_Applies_Stats()
         {
             // Arrange
-            var baseProfile = new ProfileGenerationService().GetDefaultProfile(Core.Constants.Data.Spec.HolyPriest);
+            var baseProfile = new ProfileService().GetDefaultProfile(Core.Constants.Data.Spec.HolyPriest);
             IGameStateService gameStateService = new GameStateService();
 
             IConstantsService constantsService = new ConstantsService();

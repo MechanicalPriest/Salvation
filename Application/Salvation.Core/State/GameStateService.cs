@@ -74,9 +74,10 @@ namespace Salvation.Core.State
 
         public double GetCriticalStrikeRating(GameState state)
         {
-            if (GetPlaystyle(state, "OverrideStats").Value != 0)
+            var playStyleValue = GetPlaystyle(state, "OverrideStatCriticalStrike").Value;
+            if (playStyleValue != 0)
             {
-                return state.Profile.CritRating;
+                return playStyleValue;
             }
 
             var critRating = 0;
@@ -105,9 +106,10 @@ namespace Salvation.Core.State
 
         public double GetHasteRating(GameState state)
         {
-            if (GetPlaystyle(state, "OverrideStats").Value != 0)
+            var playStyleValue = GetPlaystyle(state, "OverrideStatHaste").Value;
+            if (playStyleValue != 0)
             {
-                return state.Profile.HasteRating;
+                return playStyleValue;
             }
 
             var hasteRating = 0;
@@ -136,9 +138,10 @@ namespace Salvation.Core.State
 
         public double GetVersatilityRating(GameState state)
         {
-            if (GetPlaystyle(state, "OverrideStats").Value != 0)
+            var playStyleValue = GetPlaystyle(state, "OverrideStatVersatility").Value;
+            if (playStyleValue != 0)
             {
-                return state.Profile.VersatilityRating;
+                return playStyleValue;
             }
 
             var versatilityRating = 0;
@@ -167,10 +170,12 @@ namespace Salvation.Core.State
 
         public double GetMasteryRating(GameState state)
         {
-            if (GetPlaystyle(state, "OverrideStats").Value != 0)
+            var playStyleValue = GetPlaystyle(state, "OverrideStatMastery").Value;
+            if (playStyleValue != 0)
             {
-                return state.Profile.MasteryRating;
+                return playStyleValue;
             }
+
             var masteryRating = 0;
 
             foreach (var item in state.Profile.Items.Take(15))
@@ -197,13 +202,13 @@ namespace Salvation.Core.State
 
         public double GetIntellect(GameState state)
         {
-            if (GetPlaystyle(state, "OverrideStats").Value != 0)
+            var playStyleValue = GetPlaystyle(state, "OverrideStatIntellect").Value;
+            if (playStyleValue != 0)
             {
-                return state.Profile.Intellect;
+                return playStyleValue;
             }
 
             double intellect = 0;
-
 
             // Get base intellect based on class
             intellect += state.Profile.Class switch

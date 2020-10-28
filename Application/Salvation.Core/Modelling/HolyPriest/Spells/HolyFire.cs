@@ -13,13 +13,12 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         public HolyFire(IGameStateService gameStateService)
             : base(gameStateService)
         {
-            SpellId = (int)Spell.HolyFire;
+            Spell = Spell.HolyFire;
         }
 
         public override double GetAverageDamage(GameState gameState, BaseSpellData spellData = null)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, Spell.HolyFire);
+            spellData = ValidateSpellData(gameState, spellData);
 
             var holyPriestAuraDamagesBonus = _gameStateService.GetSpellData(gameState, Spell.HolyPriest)
                 .GetEffect(191077).BaseValue / 100 + 1;
@@ -59,8 +58,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
         public override double GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, Spell.HolyFire);
+            spellData = ValidateSpellData(gameState, spellData);
 
             var hastedCastTime = GetHastedCastTime(gameState, spellData);
             var hastedGcd = GetHastedGcd(gameState, spellData);
@@ -71,10 +69,6 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             if (hastedCastTime == 0 && hastedGcd == 0 && hastedCd == 0)
                 return 0;
 
-            double fillerCastTime = hastedCastTime == 0d
-                ? hastedGcd
-                : hastedCastTime;
-
             double maximumPotentialCasts = 60d / (hastedCastTime + hastedCd);
 
             return maximumPotentialCasts;
@@ -82,12 +76,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
         public override double GetHastedCastTime(GameState gameState, BaseSpellData spellData = null)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, Spell.HolyFire);
-
-            if (spellData == null)
-                throw new ArgumentOutOfRangeException(nameof(SpellId),
-                    $"Spelldata for SpellId ({SpellId}) not found");
+            spellData = ValidateSpellData(gameState, spellData);
 
             // Get the hasted cast time in seconds
             var hastedCastTime = spellData.BaseCastTime / 1000 / _gameStateService.GetHasteMultiplier(gameState);
@@ -96,12 +85,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
         public override double GetDuration(GameState gameState, BaseSpellData spellData = null)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, Spell.HolyFire);
-
-            if (spellData == null)
-                throw new ArgumentOutOfRangeException(nameof(SpellId),
-                    $"Spelldata for SpellId ({SpellId}) not found");
+            spellData = ValidateSpellData(gameState, spellData);
 
             // Spells are stored with duration in milliseconds. We want seconds.
             return spellData.Duration / 1000;

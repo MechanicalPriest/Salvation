@@ -180,14 +180,11 @@ namespace Salvation.Core.State
             double intellect = 0;
 
             // Get base intellect based on class
-            switch (state.Profile.Class)
+            intellect += state.Profile.Class switch
             {
-                case Class.Priest:
-                    intellect += 450;
-                    break;
-                default:
-                    throw new NotImplementedException("This class is not yet implemented.");
-            }
+                Class.Priest => 450,
+                _ => throw new NotImplementedException("This class is not yet implemented."),
+            };
 
             // Apply race modifiers
             switch (state.Profile.Race)

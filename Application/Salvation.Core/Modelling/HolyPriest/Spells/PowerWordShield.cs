@@ -13,11 +13,13 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         public PowerWordShield(IGameStateService gameStateService)
             : base(gameStateService)
         {
-            SpellId = (int)Spell.PowerWordShield;
+            Spell = Spell.PowerWordShield;
         }
 
         public override AveragedSpellCastResult GetCastResults(GameState gameState, BaseSpellData spellData = null)
         {
+            spellData = ValidateSpellData(gameState, spellData);
+
             AveragedSpellCastResult result = base.GetCastResults(gameState, spellData);
 
             if (_gameStateService.IsConduitActive(gameState, Conduit.CharitableSoul))
@@ -50,8 +52,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
         public override double GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, Spell.PowerWordShield);
+            spellData = ValidateSpellData(gameState, spellData);
 
             // SP% * Intellect * Vers * Hpriest Aura
             // TODO: For some reason PW:S is done kinda weird. No basevalue of spcoeff.
@@ -72,8 +73,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
         public override double GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, Spell.PowerWordShield);
+            spellData = ValidateSpellData(gameState, spellData);
 
             var hastedCastTime = GetHastedCastTime(gameState, spellData);
             var hastedGcd = GetHastedGcd(gameState, spellData);

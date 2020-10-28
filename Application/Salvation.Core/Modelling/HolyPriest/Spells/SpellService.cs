@@ -12,18 +12,18 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
     {
         protected readonly IGameStateService _gameStateService;
 
-        public virtual int SpellId { get; protected set; }
+        public virtual int SpellId { get { return (int)Spell; } }
+        public virtual Spell Spell { get; protected set; }
 
         public SpellService(IGameStateService gameStateService)
         {
             _gameStateService = gameStateService;
-            SpellId = 0;
+            Spell = Spell.None;
         }
 
         public virtual AveragedSpellCastResult GetCastResults(GameState gameState, BaseSpellData spellData = null)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, (Spell)SpellId);
+            spellData = ValidateSpellData(gameState, spellData);
 
             AveragedSpellCastResult result = new AveragedSpellCastResult
             {
@@ -62,9 +62,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
         public virtual double GetAverageHealing(GameState gameState, BaseSpellData spellData = null)
         {
-            // If the spell isn't set for some reason this method shouldn't do anything
-            if (SpellId == 0)
-                return 0;
+            spellData = ValidateSpellData(gameState, spellData);
 
             // Average healing done is raw healing * overheal
             var castProfile = _gameStateService.GetCastProfile(gameState, SpellId);
@@ -77,12 +75,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
         public virtual double GetAverageOverhealing(GameState gameState, BaseSpellData spellData = null)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, (Spell)SpellId);
-
-            if (spellData == null)
-                throw new ArgumentOutOfRangeException(nameof(SpellId),
-                    $"Spelldata for SpellId ({SpellId}) not found");
+            spellData = ValidateSpellData(gameState, spellData);
 
             // Average healing done is raw healing * overheal
             var castProfile = _gameStateService.GetCastProfile(gameState, SpellId);
@@ -95,8 +88,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
         public virtual double GetActualCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, (Spell)SpellId);
+            spellData = ValidateSpellData(gameState, spellData);
 
             var castProfile = _gameStateService.GetCastProfile(gameState, SpellId);
 
@@ -117,12 +109,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
         public virtual double GetHastedCastTime(GameState gameState, BaseSpellData spellData = null)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, (Spell)SpellId);
-
-            if (spellData == null)
-                throw new ArgumentOutOfRangeException(nameof(SpellId),
-                    $"Spelldata for SpellId ({SpellId}) not found");
+            spellData = ValidateSpellData(gameState, spellData);
 
             // Get the hasted cast time in seconds
             var hastedCastTime = spellData.BaseCastTime / 1000 / _gameStateService.GetHasteMultiplier(gameState);
@@ -131,24 +118,14 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
         public virtual double GetHastedGcd(GameState gameState, BaseSpellData spellData = null)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, (Spell)SpellId);
-
-            if (spellData == null)
-                throw new ArgumentOutOfRangeException(nameof(SpellId),
-                    $"Spelldata for SpellId ({SpellId}) not found");
+            spellData = ValidateSpellData(gameState, spellData);
 
             return spellData.Gcd / _gameStateService.GetHasteMultiplier(gameState);
         }
 
         public virtual double GetHastedCooldown(GameState gameState, BaseSpellData spellData = null)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, (Spell)SpellId);
-
-            if (spellData == null)
-                throw new ArgumentOutOfRangeException(nameof(SpellId),
-                    $"Spelldata for SpellId ({SpellId}) not found");
+            spellData = ValidateSpellData(gameState, spellData);
 
             var baseCooldown = spellData.BaseCooldown / 1000d;
 
@@ -159,12 +136,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
         public virtual double GetActualManaCost(GameState gameState, BaseSpellData spellData = null)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, (Spell)SpellId);
-
-            if (spellData == null)
-                throw new ArgumentOutOfRangeException(nameof(SpellId),
-                    $"Spelldata for SpellId ({SpellId}) not found");
+            spellData = ValidateSpellData(gameState, spellData);
 
             var baseMana = _gameStateService.GetBaseManaAmount(gameState);
 
@@ -173,12 +145,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
         public virtual double GetDuration(GameState gameState, BaseSpellData spellData = null)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, (Spell)SpellId);
-
-            if (spellData == null)
-                throw new ArgumentOutOfRangeException(nameof(SpellId),
-                    $"Spelldata for SpellId ({SpellId}) not found");
+            spellData = ValidateSpellData(gameState, spellData);
 
             // Spells are stored with duration in milliseconds. We want seconds.
             return spellData.Duration / 1000;
@@ -192,12 +159,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         /// <returns></returns>
         public virtual double GetNumberOfHealingTargets(GameState gameState, BaseSpellData spellData = null)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, (Spell)SpellId);
-
-            if (spellData == null)
-                throw new ArgumentOutOfRangeException(nameof(SpellId),
-                    $"Spelldata for SpellId ({SpellId}) not found");
+            spellData = ValidateSpellData(gameState, spellData);
 
             var profileData = _gameStateService.GetCastProfile(gameState, SpellId);
 
@@ -211,12 +173,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
         public virtual double GetNumberOfDamageTargets(GameState gameState, BaseSpellData spellData = null)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, (Spell)SpellId);
-
-            if (spellData == null)
-                throw new ArgumentOutOfRangeException(nameof(SpellId),
-                    $"Spelldata for SpellId ({SpellId}) not found");
+            spellData = ValidateSpellData(gameState, spellData);
 
             var profileData = _gameStateService.GetCastProfile(gameState, SpellId);
 
@@ -248,6 +205,18 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             return 0;
         }
 
+        internal virtual BaseSpellData ValidateSpellData(GameState gameState, BaseSpellData spellData)
+        {
+            if (spellData == null)
+                spellData = _gameStateService.GetSpellData(gameState, Spell);
+
+            if (spellData == null)
+                throw new ArgumentOutOfRangeException(nameof(SpellId),
+                    $"Spelldata for SpellId ({SpellId}) not found: {Spell}");
+
+            return spellData;
+        }
+
         // This should probably be moved to another class/helper
         #region Holy Priest Specific
 
@@ -256,14 +225,9 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         /// </summary>
         public virtual AveragedSpellCastResult GetHolyPriestMasteryResult(GameState gameState, BaseSpellData spellData)
         {
+            spellData = ValidateSpellData(gameState, spellData);
+
             AveragedSpellCastResult result = new AveragedSpellCastResult();
-
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, (Spell)SpellId);
-
-            if (spellData == null)
-                throw new ArgumentOutOfRangeException(nameof(SpellId),
-                    $"Spelldata for SpellId ({SpellId}) not found");
 
             var averageMasteryHeal = GetAverageRawHealing(gameState, spellData)
                 * (_gameStateService.GetMasteryMultiplier(gameState) - 1);

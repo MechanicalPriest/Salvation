@@ -22,7 +22,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             IPrayerOfMendingSpellService prayerOfMendingSpellService)
             : base(gameStateService)
         {
-            SpellId = (int)Spell.HolyWordSalvation;
+            Spell = Spell.HolyWordSalvation;
             _serenitySpellService = serenitySpellService;
             _holyWordSanctifySpellService = holyWordSanctifySpellService;
             _renewSpellService = renewSpellService;
@@ -31,8 +31,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
         public override double GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, Spell.HolyWordSalvation);
+            spellData = ValidateSpellData(gameState, spellData);
 
             var holyPriestAuraHealingBonus = _gameStateService.GetSpellData(gameState, Spell.HolyPriest)
                 .GetEffect(179715).BaseValue / 100 + 1;
@@ -53,8 +52,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
         public override double GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, Spell.HolyWordSalvation);
+            spellData = ValidateSpellData(gameState, spellData);
 
             // Salv is (60 + (SerenityCPM + SancCPM) * SalvCDR) / (CastTime + Cooldown) + 1 / (FightLength / 60)
             // Essentially the CDR per minute is 60 + the CDR from holy words.
@@ -80,8 +78,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
         public override AveragedSpellCastResult GetCastResults(GameState gameState, BaseSpellData spellData = null)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, Spell.HolyWordSalvation);
+            spellData = ValidateSpellData(gameState, spellData);
 
             AveragedSpellCastResult result = base.GetCastResults(gameState, spellData);
 

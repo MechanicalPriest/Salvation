@@ -38,7 +38,6 @@ namespace Salvation.CoreTests.HolyPriest.Spells
             IConstantsService constantsService = new ConstantsService();
 
             // Load this from somewhere that doesn't change
-            var basePath = @"HolyPriest" + Path.DirectorySeparatorChar + "TestData";
             var constants = constantsService.ParseConstants(
                 File.ReadAllText(Path.Combine("TestData", "BaseTests_constants.json")));
             var profile = JsonConvert.DeserializeObject<PlayerProfile>(
@@ -461,7 +460,6 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(PrayerOfHealing)).Returns(3740.0953125493129d);
                 yield return new TestCaseData(typeof(PrayerOfMending)).Returns(3500.7262788504513d);
                 yield return new TestCaseData(typeof(Renew)).Returns(1543.3922280986676d);
-                yield return new TestCaseData(typeof(SpellService)).Returns(0);
                 yield return new TestCaseData(typeof(UnholyNova)).Returns(8294.8485855589188d);
                 yield return new TestCaseData(typeof(UnholyTransfusion)).Returns(232.34869987560003d);
                 yield return new TestCaseData(typeof(Smite)).Returns(0);

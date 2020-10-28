@@ -2,6 +2,7 @@
 {
     public enum Spell
     {
+        None = 0,
         /// <summary>
         /// 179715 - Direct heal bonus
         /// 191076 - Periodic heal bonus

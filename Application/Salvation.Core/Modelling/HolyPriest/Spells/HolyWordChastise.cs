@@ -19,15 +19,14 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             IHolyFireSpellService holyFireSpellService)
             : base(gameStateService)
         {
-            SpellId = (int)Spell.HolyWordChastise;
+            Spell = Spell.HolyWordChastise;
             _smiteSpellService = smiteSpellService;
             _holyFireSpellService = holyFireSpellService;
         }
 
         public override double GetAverageDamage(GameState gameState, BaseSpellData spellData = null)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, (Spell)SpellId);
+            spellData = ValidateSpellData(gameState, spellData);
 
             var holyPriestAuraDamageBonus = _gameStateService.GetSpellData(gameState, Spell.HolyPriest)
                 .GetEffect(191077).BaseValue / 100 + 1;
@@ -48,8 +47,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
         public override double GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, (Spell)SpellId);
+            spellData = ValidateSpellData(gameState, spellData);
 
             // Max casts per minute is (60 + Smite * HwCDR) / CD + 1 / (FightLength / 60)
             // HWCDR is 6 base, more with LOTN/other effects

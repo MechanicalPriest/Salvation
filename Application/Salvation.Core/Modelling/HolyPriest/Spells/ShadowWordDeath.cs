@@ -13,13 +13,12 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         public ShadowWordDeath(IGameStateService gameStateService)
             : base(gameStateService)
         {
-            SpellId = (int)Spell.ShadowWordDeath;
+            Spell = Spell.ShadowWordDeath;
         }
 
         public override double GetAverageDamage(GameState gameState, BaseSpellData spellData = null)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, Spell.ShadowWordDeath);
+            spellData = ValidateSpellData(gameState, spellData);
 
             var holyPriestAuraDamagesBonus = _gameStateService.GetSpellData(gameState, Spell.HolyPriest)
                 .GetEffect(191077).BaseValue / 100 + 1;
@@ -47,8 +46,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
         public override double GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, Spell.ShadowWordDeath);
+            spellData = ValidateSpellData(gameState, spellData);
 
             var hastedCastTime = GetHastedCastTime(gameState, spellData);
             var hastedGcd = GetHastedGcd(gameState, spellData);
@@ -66,8 +64,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
         public override double GetHastedCooldown(GameState gameState, BaseSpellData spellData = null)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, Spell.ShadowWordDeath);
+            spellData = ValidateSpellData(gameState, spellData);
 
             var spellDataRank2 = _gameStateService.GetSpellData(gameState, Spell.ShadowWordDeathRank2);
             

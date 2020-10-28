@@ -192,6 +192,21 @@ namespace Salvation.CoreTests.HolyPriest.Spells
             // Assert
             Assert.Throws<ArgumentOutOfRangeException>(methodCall);
         }
+
+        [Test]
+        public void GetAverageHealing_Throws_NoSpelldata()
+        {
+            // Arrange
+            IGameStateService gameStateService = new GameStateService();
+            var spellService = new SpellService(gameStateService);
+
+            // Act
+            var methodCall = new TestDelegate(
+                () => spellService.GetAverageHealing(_gameState, null));
+
+            // Assert
+            Assert.Throws<ArgumentOutOfRangeException>(methodCall);
+        }
     }
 
     public class SpellServiceWithSpell : SpellService
@@ -199,7 +214,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
         public SpellServiceWithSpell(IGameStateService gameStateService) 
             : base(gameStateService)
         {
-            SpellId = (int)Spell.FlashHeal;
+            Spell = Spell.FlashHeal;
         }
     }
 }

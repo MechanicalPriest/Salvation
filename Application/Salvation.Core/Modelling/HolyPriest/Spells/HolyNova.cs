@@ -13,13 +13,12 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         public HolyNova(IGameStateService gameStateService)
             : base(gameStateService)
         {
-            SpellId = (int)Spell.HolyNova;
+            Spell = Spell.HolyNova;
         }
 
         public override double GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, Spell.HolyNova);
+            spellData = ValidateSpellData(gameState, spellData);
 
             BaseSpellData spellDataRank2 = _gameStateService.GetSpellData(gameState, Spell.HolyNovaRank2);
 
@@ -51,8 +50,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
         public override double GetAverageDamage(GameState gameState, BaseSpellData spellData = null)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, (Spell)SpellId);
+            spellData = ValidateSpellData(gameState, spellData);
 
             BaseSpellData spellDataRank2 = _gameStateService.GetSpellData(gameState, Spell.HolyNovaRank2);
 
@@ -87,8 +85,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
         public override double GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, Spell.HolyNova);
+            spellData = ValidateSpellData(gameState, spellData);
 
             var hastedCastTime = GetHastedCastTime(gameState, spellData);
             var hastedGcd = GetHastedGcd(gameState, spellData);

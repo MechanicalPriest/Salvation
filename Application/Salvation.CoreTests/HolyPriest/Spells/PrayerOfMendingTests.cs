@@ -73,7 +73,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
 
         public override double GetHastedCastTime(GameState gameState, BaseSpellData spellData = null)
         {
-            SpellId = 0;
+            Spell = Spell.None;
             return base.GetHastedCastTime(gameState, spellData);
         }
     }

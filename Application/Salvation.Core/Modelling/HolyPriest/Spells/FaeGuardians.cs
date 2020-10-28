@@ -16,14 +16,13 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             IDivineHymnSpellService divineHymnSpellService)
             : base(gameStateService)
         {
-            SpellId = (int)Spell.FaeGuardians;
+            Spell = Spell.FaeGuardians;
             _divineHymnSpellService = divineHymnSpellService;
         }
 
         public override AveragedSpellCastResult GetCastResults(GameState gameState, BaseSpellData spellData = null)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, Spell.FaeGuardians);
+            spellData = ValidateSpellData(gameState, spellData);
 
             AveragedSpellCastResult result = base.GetCastResults(gameState, spellData);
 
@@ -80,8 +79,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
         public override double GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, Spell.FaeGuardians);
+            spellData = ValidateSpellData(gameState, spellData);
 
             // Night Fae has 3 components:
             // Wrathful - returns some mana so healing from that returned mana?
@@ -130,8 +128,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
         public override double GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, Spell.FaeGuardians);
+            spellData = ValidateSpellData(gameState, spellData);
 
             var hastedCd = GetHastedCooldown(gameState, spellData);
             var fightLength = gameState.Profile.FightLengthSeconds;

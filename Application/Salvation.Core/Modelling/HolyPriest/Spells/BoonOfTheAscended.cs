@@ -20,7 +20,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             IAscendedEruptionSpellService ascendedEruptionSpellService)
             : base(gameStateService)
         {
-            SpellId = (int)Spell.BoonOfTheAscended;
+            Spell = Spell.BoonOfTheAscended;
             _ascendedBlastSpellService = ascendedBlastSpellService;
             _ascendedNovaSpellService = ascendedNovaSpellService;
             _ascendedEruptionSpellService = ascendedEruptionSpellService;
@@ -28,8 +28,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
         public override AveragedSpellCastResult GetCastResults(GameState gameState, BaseSpellData spellData = null)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, Spell.BoonOfTheAscended);
+            spellData = ValidateSpellData(gameState, spellData);
 
             AveragedSpellCastResult result = base.GetCastResults(gameState, spellData);
 
@@ -78,8 +77,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
         public override double GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, Spell.BoonOfTheAscended);
+            spellData = ValidateSpellData(gameState, spellData);
 
             var hastedCastTime = GetHastedCastTime(gameState, spellData);
             var hastedCd = GetHastedCooldown(gameState, spellData);

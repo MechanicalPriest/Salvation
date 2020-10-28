@@ -67,9 +67,9 @@ namespace Salvation.CoreTests.Profile
             // Soulbinds
             Assert.LessOrEqual(2, baseProfile.Covenant.Soulbinds.Count);
             Assert.IsTrue(baseProfile.Covenant.Soulbinds.First().IsActive);
-            Assert.AreEqual("pelagos:7", baseProfile.Covenant.Soulbinds.First().Name);
+            Assert.AreEqual("pelagos", baseProfile.Covenant.Soulbinds.First().Name);
             Assert.LessOrEqual(1, baseProfile.Covenant.Soulbinds.First().ActiveConduits.Count);
-            Assert.AreEqual(0, baseProfile.Covenant.Soulbinds.First().ActiveConduits.First().Key); // TODO: Fixed with a newer version of SimcProfileParser
+            Assert.AreEqual(Conduit.CourageousAscension, baseProfile.Covenant.Soulbinds.First().ActiveConduits.First().Key); // TODO: Fixed with a newer version of SimcProfileParser
             Assert.AreEqual(1, baseProfile.Covenant.Soulbinds.First().ActiveConduits.First().Value);
         }
 

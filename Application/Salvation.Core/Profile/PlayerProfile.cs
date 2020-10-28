@@ -52,6 +52,7 @@ namespace Salvation.Core.Profile
         // Misc info
         public int FightLengthSeconds { get; set; }
         public List<PlaystyleEntry> PlaystyleEntries { get; set; }
+        public int Level { get; set; }
 
         public PlayerProfile()
         {
@@ -63,6 +64,7 @@ namespace Salvation.Core.Profile
             PlaystyleEntries = new List<PlaystyleEntry>();
             Items = new List<Item>();
             Covenant = new CovenantProfile();
+            Level = 60;
         }
 
         public bool IsTalentActive(Talent talent)

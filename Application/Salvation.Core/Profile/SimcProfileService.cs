@@ -3,6 +3,7 @@ using Salvation.Core.Interfaces.Profile;
 using SimcProfileParser.Interfaces;
 using SimcProfileParser.Model.Generated;
 using SimcProfileParser.Model.Profile;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using ItemModType = Salvation.Core.Constants.Data.ItemModType;
@@ -36,11 +37,11 @@ namespace Salvation.Core.Profile
             profile.Server = parsedProfile.Server;
             profile.Region = parsedProfile.Region;
             profile.Race = RaceHelpers.ParseRace(parsedProfile.Race);
-            // TODO: Spec
+            profile.SpecId = (Spec)Convert.ToInt32(parsedProfile.Spec);
+
             // TODO: Class
-            // TODO: Level
-            // TODO: Role?
-            // TODO: Simc addon version?
+            profile.Level = parsedProfile.Level;
+            // Other fields not included: Role, Simc addon version
         }
 
         internal void ApplyCovenant(PlayerProfile profile, SimcParsedProfile simcProfile)

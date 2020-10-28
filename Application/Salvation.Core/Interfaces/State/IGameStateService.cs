@@ -21,6 +21,10 @@ namespace Salvation.Core.Interfaces.State
         void OverridePlaystyle(GameState state, PlaystyleEntry newPlaystyle);
 
         // Player Stats
+        double GetCriticalStrikeRating(GameState state);
+        double GetHasteRating(GameState state);
+        double GetMasteryRating(GameState state);
+        double GetVersatilityRating(GameState state);
         double GetIntellect(GameState state);
         double GetVersatilityMultiplier(GameState state);
         double GetCriticalStrikeMultiplier(GameState state);
@@ -40,9 +44,5 @@ namespace Salvation.Core.Interfaces.State
 
         // Holy Priest specific
         double GetTotalHolyWordCooldownReduction(GameState state, Spell spell, bool IsApotheosisActive = false);
-        double GetCriticalStrikeRating(GameState state);
-        double GetHasteRating(GameState state);
-        double GetMasteryRating(GameState state);
-        double GetVersatilityRating(GameState state);
     }
 }

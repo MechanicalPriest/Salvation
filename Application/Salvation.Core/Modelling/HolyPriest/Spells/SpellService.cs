@@ -244,9 +244,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
         public virtual bool TriggersMastery(GameState gameState, BaseSpellData spellData)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, (Spell)SpellId);
-
+            spellData = ValidateSpellData(gameState, spellData);
 
             foreach (var effect in spellData.Effects)
             {

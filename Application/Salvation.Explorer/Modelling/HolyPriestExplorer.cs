@@ -79,6 +79,8 @@ namespace Salvation.Explorer.Modelling
             };
 
             var results = _modellingService.GetResults(state);
+            File.WriteAllText("hpriest_model_results.json", 
+                JsonConvert.SerializeObject(results, Formatting.Indented));
         }
     }
 }

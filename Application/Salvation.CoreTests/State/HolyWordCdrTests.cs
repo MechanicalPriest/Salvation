@@ -1,9 +1,6 @@
 ﻿using NUnit.Framework;
-using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
-using Salvation.Core.Interfaces.Constants;
 using Salvation.Core.Interfaces.State;
-using Salvation.Core.Profile;
 using Salvation.Core.State;
 using System;
 using System.Collections;
@@ -11,29 +8,15 @@ using System.Collections;
 namespace Salvation.CoreTests.State
 {
     [TestFixture]
-    public class HolyWordCdrTests
+    public class HolyWordCdrTests : BaseTest
     {
-        IConstantsService _constantsService;
         IGameStateService _gameStateService;
         GameState _state;
-
-        [OneTimeSetUp]
-        public void InitOnce()
-        {
-            _constantsService = new ConstantsService();
-
-        }
 
         [SetUp]
         public void Init()
         {
-            var constants = _constantsService.LoadConstantsFromFile();
-
-            PlayerProfile profile = new ProfileGenerationService()
-                .GetDefaultProfile(Spec.HolyPriest);
-
-            _state = new GameState(profile, constants);
-
+            _state = GetGameState();
             _gameStateService = new GameStateService();
         }
 

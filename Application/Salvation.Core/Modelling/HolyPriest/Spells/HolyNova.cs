@@ -1,6 +1,5 @@
 ﻿using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
-using Salvation.Core.Interfaces;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.State;
@@ -13,13 +12,12 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         public HolyNova(IGameStateService gameStateService)
             : base(gameStateService)
         {
-            SpellId = (int)Spell.HolyNova;
+            Spell = Spell.HolyNova;
         }
 
         public override double GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, Spell.HolyNova);
+            spellData = ValidateSpellData(gameState, spellData);
 
             BaseSpellData spellDataRank2 = _gameStateService.GetSpellData(gameState, Spell.HolyNovaRank2);
 
@@ -45,14 +43,13 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             // Apply the relative square root scaling
             var numTargets = GetNumberOfHealingTargets(gameState, spellData);
             averageHeal *= GetTargetScaling(numTargets);
-            
+
             return averageHeal * numTargets;
         }
 
         public override double GetAverageDamage(GameState gameState, BaseSpellData spellData = null)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, (Spell)SpellId);
+            spellData = ValidateSpellData(gameState, spellData);
 
             BaseSpellData spellDataRank2 = _gameStateService.GetSpellData(gameState, Spell.HolyNovaRank2);
 
@@ -82,13 +79,12 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
         internal double GetTargetScaling(double numTargets)
         {
-            return (1 / Math.Sqrt(Math.Max(5, numTargets))) / ( 1 / Math.Sqrt(5));
+            return (1 / Math.Sqrt(Math.Max(5, numTargets))) / (1 / Math.Sqrt(5));
         }
 
         public override double GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, Spell.HolyNova);
+            spellData = ValidateSpellData(gameState, spellData);
 
             var hastedCastTime = GetHastedCastTime(gameState, spellData);
             var hastedGcd = GetHastedGcd(gameState, spellData);

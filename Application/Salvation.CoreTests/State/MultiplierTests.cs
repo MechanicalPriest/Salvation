@@ -1,126 +1,72 @@
-﻿using Newtonsoft.Json;
-using NUnit.Framework;
-using Salvation.Core.Constants;
-using Salvation.Core.Constants.Data;
-using Salvation.Core.Interfaces.Constants;
+﻿using NUnit.Framework;
 using Salvation.Core.Interfaces.State;
-using Salvation.Core.Profile;
 using Salvation.Core.State;
-using System;
-using System.Collections;
-using System.IO;
 
 namespace Salvation.CoreTests.State
 {
     [TestFixture]
-    class MultiplierTests
+    class MultiplierTests : BaseTest
     {
         IGameStateService _gameStateService;
         private GameState _state;
+
         [OneTimeSetUp]
         public void InitOnce()
         {
-            IConstantsService constantsService = new ConstantsService();
-
-            // Load this from somewhere that doesn't change
-            var basePath = @"State" + Path.DirectorySeparatorChar + "TestData";
-            var constants = constantsService.ParseConstants(
-                File.ReadAllText(Path.Combine(basePath, "StateTests_constants.json")));
-            var profile = JsonConvert.DeserializeObject<PlayerProfile>(
-                File.ReadAllText(Path.Combine(basePath, "StateTests_profile.json")));
-
-            _state = new GameState(profile, constants);
+            _state = GetGameState();
             _gameStateService = new GameStateService();
         }
-        [TestCaseSource(typeof(MultiplierTestData), nameof(MultiplierTestData.CritTestData))]
-        public double CritMultiplierTest(int crit_val)
-        {            
-            // Arrange
 
-
-            // Act
-            _state.Profile.CritRating = crit_val;
-
-            // Assert
-            return _gameStateService.GetCriticalStrikeMultiplier(_state);
-        }
-
-        [TestCaseSource(typeof(MultiplierTestData), nameof(MultiplierTestData.HasteTestData))]
-        public double HasteMultiplierTest(int haste_val)
+        [Test]
+        public void CritMultiplierTest()
         {
             // Arrange
 
 
             // Act
-            _state.Profile.HasteRating = haste_val;
+            var crit = _gameStateService.GetCriticalStrikeMultiplier(_state);
 
             // Assert
-            return _gameStateService.GetHasteMultiplier(_state);
+            Assert.AreEqual(1.1180000000000001d, crit);
         }
-        [TestCaseSource(typeof(MultiplierTestData), nameof(MultiplierTestData.MasteryTestData))]
-        public double MasteryMultiplierTest(int mastery_val)
+
+        [Test]
+        public void HasteMultiplierTest()
         {
             // Arrange
 
 
             // Act
-            _state.Profile.MasteryRating = mastery_val;
+            var haste = _gameStateService.GetHasteMultiplier(_state);
 
             // Assert
-            return _gameStateService.GetMasteryMultiplier(_state);
+            Assert.AreEqual(1.1293939393939394d, haste);
         }
-        [TestCaseSource(typeof(MultiplierTestData), nameof(MultiplierTestData.VersTestData))]
-        public double VersMultiplierTest(int vers_val)
+
+        [Test]
+        public void MasteryMultiplierTest()
         {
             // Arrange
 
 
             // Act
-            _state.Profile.VersatilityRating = vers_val;
+            var mastery = _gameStateService.GetMasteryMultiplier(_state);
 
             // Assert
-            return _gameStateService.GetVersatilityMultiplier(_state);
+            Assert.AreEqual(1.1357142857142859d, mastery);
         }
-    }
-    public class MultiplierTestData
-    {
-        // TODO: Get Proper Test Data that isn't generated from the methods that we are testing lol 
-        // (it was correct to previous when not getting DR'ed
-        public static IEnumerable CritTestData
+
+        [Test]
+        public void VersMultiplierTest()
         {
-            get
-            {
-                yield return new TestCaseData(100).Returns(1.0785714285714285d);
-                yield return new TestCaseData(1500).Returns(1.4628857142857221d); 
-                yield return new TestCaseData(300).Returns(1.1357142857142857d);
-            }
-        }
-        public static IEnumerable HasteTestData
-        {
-            get
-            {
-                yield return new TestCaseData(100).Returns(1.0303030303030303d);
-                yield return new TestCaseData(1500).Returns(1.433666666666672d);
-                yield return new TestCaseData(300).Returns(1.0909090909090908d);
-            }
-        }
-        public static IEnumerable MasteryTestData
-        {
-            get
-            {
-                yield return new TestCaseData(100).Returns(1.1357142857142859d);
-                yield return new TestCaseData(1500).Returns(1.5950357142857121d);
-                yield return new TestCaseData(300).Returns(1.2071428571428573d);
-            }
-        }
-        public static IEnumerable VersTestData
-        {
-            get
-            {
-                yield return new TestCaseData(100).Returns(1.0249999999999999d);
-                yield return new TestCaseData(1500).Returns(1.3675250000000068d);
-                yield return new TestCaseData(300).Returns(1.075d);
-            }
+            // Arrange
+
+
+            // Act
+            var vers = _gameStateService.GetVersatilityMultiplier(_state);
+
+            // Assert
+            Assert.AreEqual(1.2030000000000001d, vers);
         }
     }
 }

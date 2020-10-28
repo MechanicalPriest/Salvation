@@ -1,0 +1,2473 @@
+{
+  "Spec": 257,
+  "Name": "Beitaky",
+  "Server": "torghast",
+  "Region": "us",
+  "Race": 3,
+  "Class": 5,
+  "Intellect": 0,
+  "MasteryRating": 0,
+  "VersatilityRating": 0,
+  "HasteRating": 0,
+  "CritRating": 0,
+  "Casts": [
+    {
+      "SpellId": 2061,
+      "Efficiency": 0.0603,
+      "OverhealPercent": 0.1084,
+      "AverageHealingTargets": 1.0,
+      "AverageDamageTargets": 0.0
+    },
+    {
+      "SpellId": 2060,
+      "Efficiency": 0.0664,
+      "OverhealPercent": 0.3054,
+      "AverageHealingTargets": 1.0,
+      "AverageDamageTargets": 0.0
+    },
+    {
+      "SpellId": 139,
+      "Efficiency": 0.0364,
+      "OverhealPercent": 0.3643,
+      "AverageHealingTargets": 1.0,
+      "AverageDamageTargets": 0.0
+    },
+    {
+      "SpellId": 33076,
+      "Efficiency": 0.9056,
+      "OverhealPercent": 0.0219,
+      "AverageHealingTargets": 1.0,
+      "AverageDamageTargets": 0.0
+    },
+    {
+      "SpellId": 596,
+      "Efficiency": 0.2931,
+      "OverhealPercent": 0.2715,
+      "AverageHealingTargets": 5.0,
+      "AverageDamageTargets": 0.0
+    },
+    {
+      "SpellId": 132157,
+      "Efficiency": 0.0034,
+      "OverhealPercent": 0.15,
+      "AverageHealingTargets": 20.0,
+      "AverageDamageTargets": 1.0
+    },
+    {
+      "SpellId": 2050,
+      "Efficiency": 0.677,
+      "OverhealPercent": 0.1515,
+      "AverageHealingTargets": 1.0,
+      "AverageDamageTargets": 0.0
+    },
+    {
+      "SpellId": 34861,
+      "Efficiency": 0.7822,
+      "OverhealPercent": 0.3234,
+      "AverageHealingTargets": 6.0,
+      "AverageDamageTargets": 0.0
+    },
+    {
+      "SpellId": 64843,
+      "Efficiency": 0.8805,
+      "OverhealPercent": 0.314,
+      "AverageHealingTargets": 20.0,
+      "AverageDamageTargets": 0.0
+    },
+    {
+      "SpellId": 32546,
+      "Efficiency": 0.12,
+      "OverhealPercent": 0.34,
+      "AverageHealingTargets": 3.0,
+      "AverageDamageTargets": 0.0
+    },
+    {
+      "SpellId": 204883,
+      "Efficiency": 0.8653,
+      "OverhealPercent": 0.1417,
+      "AverageHealingTargets": 5.0,
+      "AverageDamageTargets": 0.0
+    },
+    {
+      "SpellId": 110744,
+      "Efficiency": 0.81,
+      "OverhealPercent": 0.44,
+      "AverageHealingTargets": 6.0,
+      "AverageDamageTargets": 1.0
+    },
+    {
+      "SpellId": 120517,
+      "Efficiency": 0.7596,
+      "OverhealPercent": 0.3658,
+      "AverageHealingTargets": 6.0,
+      "AverageDamageTargets": 1.0
+    },
+    {
+      "SpellId": 265202,
+      "Efficiency": 0.874,
+      "OverhealPercent": 0.3142,
+      "AverageHealingTargets": 20.0,
+      "AverageDamageTargets": 0.0
+    },
+    {
+      "SpellId": 238136,
+      "Efficiency": 0.0,
+      "OverhealPercent": 0.2332,
+      "AverageHealingTargets": 5.0,
+      "AverageDamageTargets": 0.0
+    },
+    {
+      "SpellId": 17,
+      "Efficiency": 0.01,
+      "OverhealPercent": 0.38,
+      "AverageHealingTargets": 1.0,
+      "AverageDamageTargets": 0.0
+    },
+    {
+      "SpellId": 77485,
+      "Efficiency": 0.0,
+      "OverhealPercent": 0.4224,
+      "AverageHealingTargets": 1.0,
+      "AverageDamageTargets": 0.0
+    },
+    {
+      "SpellId": 323673,
+      "Efficiency": 1.0,
+      "OverhealPercent": 0.01,
+      "AverageHealingTargets": 1.0,
+      "AverageDamageTargets": 1.0
+    },
+    {
+      "SpellId": 327661,
+      "Efficiency": 1.0,
+      "OverhealPercent": 0.01,
+      "AverageHealingTargets": 1.0,
+      "AverageDamageTargets": 0.0
+    },
+    {
+      "SpellId": 325013,
+      "Efficiency": 1.0,
+      "OverhealPercent": 0.01,
+      "AverageHealingTargets": 0.0,
+      "AverageDamageTargets": 0.0
+    },
+    {
+      "SpellId": 325020,
+      "Efficiency": 1.0,
+      "OverhealPercent": 0.01,
+      "AverageHealingTargets": 5.0,
+      "AverageDamageTargets": 1.0
+    },
+    {
+      "SpellId": 325283,
+      "Efficiency": 1.0,
+      "OverhealPercent": 0.01,
+      "AverageHealingTargets": 1.0,
+      "AverageDamageTargets": 1.0
+    },
+    {
+      "SpellId": 325326,
+      "Efficiency": 1.0,
+      "OverhealPercent": 0.01,
+      "AverageHealingTargets": 5.0,
+      "AverageDamageTargets": 1.0
+    },
+    {
+      "SpellId": 324724,
+      "Efficiency": 1.0,
+      "OverhealPercent": 0.01,
+      "AverageHealingTargets": 6.0,
+      "AverageDamageTargets": 1.0
+    },
+    {
+      "SpellId": 325118,
+      "Efficiency": 1.0,
+      "OverhealPercent": 0.01,
+      "AverageHealingTargets": 1.0,
+      "AverageDamageTargets": 1.0
+    }
+  ],
+  "Items": [
+    {
+      "ItemId": 175864,
+      "Name": "Sinful Aspirant's Silk Hood",
+      "ItemLevel": 190,
+      "Slot": 1,
+      "ItemType": 4,
+      "ItemSubType": 1,
+      "Mods": [
+        {
+          "Type": 5,
+          "StatRating": 58
+        },
+        {
+          "Type": 7,
+          "StatRating": 95
+        },
+        {
+          "Type": 32,
+          "StatRating": 46
+        },
+        {
+          "Type": 40,
+          "StatRating": 70
+        }
+      ],
+      "Gems": [],
+      "Effects": []
+    },
+    {
+      "ItemId": 178299,
+      "Name": "Sinful Aspirant's Choker",
+      "ItemLevel": 190,
+      "Slot": 2,
+      "ItemType": 4,
+      "ItemSubType": 0,
+      "Mods": [
+        {
+          "Type": 7,
+          "StatRating": 53
+        },
+        {
+          "Type": 32,
+          "StatRating": 64
+        },
+        {
+          "Type": 40,
+          "StatRating": 92
+        }
+      ],
+      "Gems": [],
+      "Effects": []
+    },
+    {
+      "ItemId": 175873,
+      "Name": "Sinful Aspirant's Silk Mantle",
+      "ItemLevel": 190,
+      "Slot": 3,
+      "ItemType": 4,
+      "ItemSubType": 1,
+      "Mods": [
+        {
+          "Type": 5,
+          "StatRating": 44
+        },
+        {
+          "Type": 7,
+          "StatRating": 70
+        },
+        {
+          "Type": 36,
+          "StatRating": 38
+        },
+        {
+          "Type": 40,
+          "StatRating": 47
+        }
+      ],
+      "Gems": [],
+      "Effects": []
+    },
+    {
+      "ItemId": 178265,
+      "Name": "Sinful Aspirant's Drape",
+      "ItemLevel": 190,
+      "Slot": 16,
+      "ItemType": 4,
+      "ItemSubType": 1,
+      "Mods": [
+        {
+          "Type": 7,
+          "StatRating": 53
+        },
+        {
+          "Type": 36,
+          "StatRating": 28
+        },
+        {
+          "Type": 40,
+          "StatRating": 35
+        },
+        {
+          "Type": 71,
+          "StatRating": 33
+        }
+      ],
+      "Gems": [],
+      "Effects": []
+    },
+    {
+      "ItemId": 175852,
+      "Name": "Sinful Aspirant's Silk Robe",
+      "ItemLevel": 190,
+      "Slot": 20,
+      "ItemType": 4,
+      "ItemSubType": 1,
+      "Mods": [
+        {
+          "Type": 5,
+          "StatRating": 58
+        },
+        {
+          "Type": 7,
+          "StatRating": 95
+        },
+        {
+          "Type": 36,
+          "StatRating": 46
+        },
+        {
+          "Type": 40,
+          "StatRating": 70
+        }
+      ],
+      "Gems": [],
+      "Effects": []
+    },
+    {
+      "ItemId": 175880,
+      "Name": "Sinful Aspirant's Silk Wristwraps",
+      "ItemLevel": 190,
+      "Slot": 9,
+      "ItemType": 4,
+      "ItemSubType": 1,
+      "Mods": [
+        {
+          "Type": 5,
+          "StatRating": 33
+        },
+        {
+          "Type": 7,
+          "StatRating": 53
+        },
+        {
+          "Type": 32,
+          "StatRating": 29
+        },
+        {
+          "Type": 40,
+          "StatRating": 34
+        }
+      ],
+      "Gems": [],
+      "Effects": []
+    },
+    {
+      "ItemId": 175862,
+      "Name": "Sinful Aspirant's Silk Gloves",
+      "ItemLevel": 190,
+      "Slot": 10,
+      "ItemType": 4,
+      "ItemSubType": 1,
+      "Mods": [
+        {
+          "Type": 5,
+          "StatRating": 44
+        },
+        {
+          "Type": 7,
+          "StatRating": 70
+        },
+        {
+          "Type": 36,
+          "StatRating": 35
+        },
+        {
+          "Type": 40,
+          "StatRating": 50
+        }
+      ],
+      "Gems": [],
+      "Effects": []
+    },
+    {
+      "ItemId": 175876,
+      "Name": "Sinful Aspirant's Silk Cord",
+      "ItemLevel": 190,
+      "Slot": 6,
+      "ItemType": 4,
+      "ItemSubType": 1,
+      "Mods": [
+        {
+          "Type": 5,
+          "StatRating": 44
+        },
+        {
+          "Type": 7,
+          "StatRating": 70
+        },
+        {
+          "Type": 36,
+          "StatRating": 38
+        },
+        {
+          "Type": 40,
+          "StatRating": 47
+        }
+      ],
+      "Gems": [],
+      "Effects": []
+    },
+    {
+      "ItemId": 175868,
+      "Name": "Sinful Aspirant's Silk Leggings",
+      "ItemLevel": 190,
+      "Slot": 7,
+      "ItemType": 4,
+      "ItemSubType": 1,
+      "Mods": [
+        {
+          "Type": 5,
+          "StatRating": 58
+        },
+        {
+          "Type": 7,
+          "StatRating": 95
+        },
+        {
+          "Type": 36,
+          "StatRating": 50
+        },
+        {
+          "Type": 40,
+          "StatRating": 65
+        }
+      ],
+      "Gems": [],
+      "Effects": []
+    },
+    {
+      "ItemId": 175857,
+      "Name": "Sinful Aspirant's Silk Treads",
+      "ItemLevel": 190,
+      "Slot": 8,
+      "ItemType": 4,
+      "ItemSubType": 1,
+      "Mods": [
+        {
+          "Type": 5,
+          "StatRating": 44
+        },
+        {
+          "Type": 7,
+          "StatRating": 70
+        },
+        {
+          "Type": 32,
+          "StatRating": 37
+        },
+        {
+          "Type": 40,
+          "StatRating": 49
+        }
+      ],
+      "Gems": [],
+      "Effects": []
+    },
+    {
+      "ItemId": 178293,
+      "Name": "Sinful Aspirant's Band",
+      "ItemLevel": 190,
+      "Slot": 11,
+      "ItemType": 4,
+      "ItemSubType": 0,
+      "Mods": [
+        {
+          "Type": 7,
+          "StatRating": 53
+        },
+        {
+          "Type": 32,
+          "StatRating": 62
+        },
+        {
+          "Type": 40,
+          "StatRating": 93
+        }
+      ],
+      "Gems": [],
+      "Effects": []
+    },
+    {
+      "ItemId": 175879,
+      "Name": "Sinful Aspirant's Ring",
+      "ItemLevel": 190,
+      "Slot": 11,
+      "ItemType": 4,
+      "ItemSubType": 0,
+      "Mods": [
+        {
+          "Type": 7,
+          "StatRating": 53
+        },
+        {
+          "Type": 36,
+          "StatRating": 57
+        },
+        {
+          "Type": 40,
+          "StatRating": 98
+        }
+      ],
+      "Gems": [],
+      "Effects": []
+    },
+    {
+      "ItemId": 175718,
+      "Name": "Ascended Defender's Crest",
+      "ItemLevel": 226,
+      "Slot": 12,
+      "ItemType": 4,
+      "ItemSubType": 0,
+      "Mods": [
+        {
+          "Type": 49,
+          "StatRating": 100
+        },
+        {
+          "Type": 71,
+          "StatRating": 77
+        }
+      ],
+      "Gems": [],
+      "Effects": []
+    },
+    {
+      "ItemId": 175884,
+      "Name": "Sinful Aspirant's Badge of Ferocity",
+      "ItemLevel": 190,
+      "Slot": 12,
+      "ItemType": 4,
+      "ItemSubType": 0,
+      "Mods": [
+        {
+          "Type": 36,
+          "StatRating": 82
+        }
+      ],
+      "Gems": [],
+      "Effects": [
+        {
+          "EffectId": 136018,
+          "Type": 0,
+          "CooldownGroup": 1141,
+          "CooldownDuration": 120000,
+          "CooldownGroupDuration": 20000,
+          "Spell": null
+        }
+      ]
+    },
+    {
+      "ItemId": 178473,
+      "Name": "Sinful Aspirant's Staff",
+      "ItemLevel": 190,
+      "Slot": 17,
+      "ItemType": 2,
+      "ItemSubType": 10,
+      "Mods": [
+        {
+          "Type": 5,
+          "StatRating": 58
+        },
+        {
+          "Type": 5,
+          "StatRating": 201
+        },
+        {
+          "Type": 7,
+          "StatRating": 95
+        },
+        {
+          "Type": 36,
+          "StatRating": 53
+        },
+        {
+          "Type": 40,
+          "StatRating": 62
+        }
+      ],
+      "Gems": [],
+      "Effects": []
+    },
+    {
+      "ItemId": 173245,
+      "Name": "Grim-Veiled Hood",
+      "ItemLevel": 190,
+      "Slot": 1,
+      "ItemType": 4,
+      "ItemSubType": 1,
+      "Mods": [
+        {
+          "Type": 5,
+          "StatRating": 58
+        },
+        {
+          "Type": 7,
+          "StatRating": 95
+        },
+        {
+          "Type": 24,
+          "StatRating": 39
+        },
+        {
+          "Type": 25,
+          "StatRating": 39
+        }
+      ],
+      "Gems": [],
+      "Effects": []
+    },
+    {
+      "ItemId": 173245,
+      "Name": "Grim-Veiled Hood",
+      "ItemLevel": 190,
+      "Slot": 1,
+      "ItemType": 4,
+      "ItemSubType": 1,
+      "Mods": [
+        {
+          "Type": 5,
+          "StatRating": 58
+        },
+        {
+          "Type": 7,
+          "StatRating": 95
+        },
+        {
+          "Type": 24,
+          "StatRating": 39
+        },
+        {
+          "Type": 25,
+          "StatRating": 39
+        }
+      ],
+      "Gems": [],
+      "Effects": []
+    },
+    {
+      "ItemId": 178927,
+      "Name": "Shadowghast Necklace",
+      "ItemLevel": 190,
+      "Slot": 2,
+      "ItemType": 4,
+      "ItemSubType": 0,
+      "Mods": [
+        {
+          "Type": 7,
+          "StatRating": 53
+        },
+        {
+          "Type": 24,
+          "StatRating": 54
+        },
+        {
+          "Type": 25,
+          "StatRating": 54
+        }
+      ],
+      "Gems": [],
+      "Effects": []
+    },
+    {
+      "ItemId": 178927,
+      "Name": "Shadowghast Necklace",
+      "ItemLevel": 190,
+      "Slot": 2,
+      "ItemType": 4,
+      "ItemSubType": 0,
+      "Mods": [
+        {
+          "Type": 7,
+          "StatRating": 53
+        },
+        {
+          "Type": 24,
+          "StatRating": 54
+        },
+        {
+          "Type": 25,
+          "StatRating": 54
+        }
+      ],
+      "Gems": [],
+      "Effects": []
+    },
+    {
+      "ItemId": 173247,
+      "Name": "Grim-Veiled Spaulders",
+      "ItemLevel": 190,
+      "Slot": 3,
+      "ItemType": 4,
+      "ItemSubType": 1,
+      "Mods": [
+        {
+          "Type": 5,
+          "StatRating": 44
+        },
+        {
+          "Type": 7,
+          "StatRating": 70
+        },
+        {
+          "Type": 24,
+          "StatRating": 29
+        },
+        {
+          "Type": 25,
+          "StatRating": 29
+        }
+      ],
+      "Gems": [],
+      "Effects": []
+    },
+    {
+      "ItemId": 173242,
+      "Name": "Grim-Veiled Cape",
+      "ItemLevel": 190,
+      "Slot": 16,
+      "ItemType": 4,
+      "ItemSubType": 1,
+      "Mods": [
+        {
+          "Type": 7,
+          "StatRating": 53
+        },
+        {
+          "Type": 24,
+          "StatRating": 22
+        },
+        {
+          "Type": 25,
+          "StatRating": 22
+        },
+        {
+          "Type": 71,
+          "StatRating": 33
+        }
+      ],
+      "Gems": [],
+      "Effects": []
+    },
+    {
+      "ItemId": 173241,
+      "Name": "Grim-Veiled Robe",
+      "ItemLevel": 190,
+      "Slot": 20,
+      "ItemType": 4,
+      "ItemSubType": 1,
+      "Mods": [
+        {
+          "Type": 5,
+          "StatRating": 58
+        },
+        {
+          "Type": 7,
+          "StatRating": 95
+        },
+        {
+          "Type": 24,
+          "StatRating": 39
+        },
+        {
+          "Type": 25,
+          "StatRating": 39
+        }
+      ],
+      "Gems": [],
+      "Effects": []
+    },
+    {
+      "ItemId": 173241,
+      "Name": "Grim-Veiled Robe",
+      "ItemLevel": 190,
+      "Slot": 20,
+      "ItemType": 4,
+      "ItemSubType": 1,
+      "Mods": [
+        {
+          "Type": 5,
+          "StatRating": 58
+        },
+        {
+          "Type": 7,
+          "StatRating": 95
+        },
+        {
+          "Type": 24,
+          "StatRating": 39
+        },
+        {
+          "Type": 25,
+          "StatRating": 39
+        }
+      ],
+      "Gems": [],
+      "Effects": []
+    },
+    {
+      "ItemId": 173249,
+      "Name": "Grim-Veiled Bracers",
+      "ItemLevel": 190,
+      "Slot": 9,
+      "ItemType": 4,
+      "ItemSubType": 1,
+      "Mods": [
+        {
+          "Type": 5,
+          "StatRating": 33
+        },
+        {
+          "Type": 7,
+          "StatRating": 53
+        },
+        {
+          "Type": 24,
+          "StatRating": 22
+        },
+        {
+          "Type": 25,
+          "StatRating": 22
+        }
+      ],
+      "Gems": [],
+      "Effects": []
+    },
+    {
+      "ItemId": 173249,
+      "Name": "Grim-Veiled Bracers",
+      "ItemLevel": 190,
+      "Slot": 9,
+      "ItemType": 4,
+      "ItemSubType": 1,
+      "Mods": [
+        {
+          "Type": 5,
+          "StatRating": 33
+        },
+        {
+          "Type": 7,
+          "StatRating": 53
+        },
+        {
+          "Type": 24,
+          "StatRating": 22
+        },
+        {
+          "Type": 25,
+          "StatRating": 22
+        }
+      ],
+      "Gems": [],
+      "Effects": []
+    },
+    {
+      "ItemId": 173244,
+      "Name": "Grim-Veiled Mittens",
+      "ItemLevel": 190,
+      "Slot": 10,
+      "ItemType": 4,
+      "ItemSubType": 1,
+      "Mods": [
+        {
+          "Type": 5,
+          "StatRating": 44
+        },
+        {
+          "Type": 7,
+          "StatRating": 70
+        },
+        {
+          "Type": 24,
+          "StatRating": 29
+        },
+        {
+          "Type": 25,
+          "StatRating": 29
+        }
+      ],
+      "Gems": [],
+      "Effects": []
+    },
+    {
+      "ItemId": 173244,
+      "Name": "Grim-Veiled Mittens",
+      "ItemLevel": 190,
+      "Slot": 10,
+      "ItemType": 4,
+      "ItemSubType": 1,
+      "Mods": [
+        {
+          "Type": 5,
+          "StatRating": 44
+        },
+        {
+          "Type": 7,
+          "StatRating": 70
+        },
+        {
+          "Type": 24,
+          "StatRating": 29
+        },
+        {
+          "Type": 25,
+          "StatRating": 29
+        }
+      ],
+      "Gems": [],
+      "Effects": []
+    },
+    {
+      "ItemId": 173248,
+      "Name": "Grim-Veiled Belt",
+      "ItemLevel": 190,
+      "Slot": 6,
+      "ItemType": 4,
+      "ItemSubType": 1,
+      "Mods": [
+        {
+          "Type": 5,
+          "StatRating": 44
+        },
+        {
+          "Type": 7,
+          "StatRating": 70
+        },
+        {
+          "Type": 24,
+          "StatRating": 29
+        },
+        {
+          "Type": 25,
+          "StatRating": 29
+        }
+      ],
+      "Gems": [],
+      "Effects": []
+    },
+    {
+      "ItemId": 173243,
+      "Name": "Grim-Veiled Sandals",
+      "ItemLevel": 190,
+      "Slot": 8,
+      "ItemType": 4,
+      "ItemSubType": 1,
+      "Mods": [
+        {
+          "Type": 5,
+          "StatRating": 44
+        },
+        {
+          "Type": 7,
+          "StatRating": 70
+        },
+        {
+          "Type": 24,
+          "StatRating": 29
+        },
+        {
+          "Type": 25,
+          "StatRating": 29
+        }
+      ],
+      "Gems": [],
+      "Effects": []
+    },
+    {
+      "ItemId": 173243,
+      "Name": "Grim-Veiled Sandals",
+      "ItemLevel": 190,
+      "Slot": 8,
+      "ItemType": 4,
+      "ItemSubType": 1,
+      "Mods": [
+        {
+          "Type": 5,
+          "StatRating": 44
+        },
+        {
+          "Type": 7,
+          "StatRating": 70
+        },
+        {
+          "Type": 24,
+          "StatRating": 29
+        },
+        {
+          "Type": 25,
+          "StatRating": 29
+        }
+      ],
+      "Gems": [],
+      "Effects": []
+    },
+    {
+      "ItemId": 178926,
+      "Name": "Shadowghast Ring",
+      "ItemLevel": 190,
+      "Slot": 11,
+      "ItemType": 4,
+      "ItemSubType": 0,
+      "Mods": [
+        {
+          "Type": 7,
+          "StatRating": 53
+        },
+        {
+          "Type": 24,
+          "StatRating": 54
+        },
+        {
+          "Type": 25,
+          "StatRating": 54
+        }
+      ],
+      "Gems": [],
+      "Effects": []
+    },
+    {
+      "ItemId": 178926,
+      "Name": "Shadowghast Ring",
+      "ItemLevel": 190,
+      "Slot": 11,
+      "ItemType": 4,
+      "ItemSubType": 0,
+      "Mods": [
+        {
+          "Type": 7,
+          "StatRating": 53
+        },
+        {
+          "Type": 24,
+          "StatRating": 54
+        },
+        {
+          "Type": 25,
+          "StatRating": 54
+        }
+      ],
+      "Gems": [],
+      "Effects": []
+    },
+    {
+      "ItemId": 178783,
+      "Name": "Siphoning Phylactery Shard",
+      "ItemLevel": 301,
+      "Slot": 12,
+      "ItemType": 4,
+      "ItemSubType": 0,
+      "Mods": [
+        {
+          "Type": 5,
+          "StatRating": 155
+        }
+      ],
+      "Gems": [],
+      "Effects": [
+        {
+          "EffectId": 136074,
+          "Type": 0,
+          "CooldownGroup": 0,
+          "CooldownDuration": -1,
+          "CooldownGroupDuration": -1,
+          "Spell": null
+        },
+        {
+          "EffectId": 136075,
+          "Type": 0,
+          "CooldownGroup": 0,
+          "CooldownDuration": -1,
+          "CooldownGroupDuration": -1,
+          "Spell": null
+        }
+      ]
+    },
+    {
+      "ItemId": 182452,
+      "Name": "Everchill Brambles",
+      "ItemLevel": 226,
+      "Slot": 12,
+      "ItemType": 4,
+      "ItemSubType": 0,
+      "Mods": [
+        {
+          "Type": 71,
+          "StatRating": 77
+        }
+      ],
+      "Gems": [],
+      "Effects": [
+        {
+          "EffectId": 126455,
+          "Type": 0,
+          "CooldownGroup": 0,
+          "CooldownDuration": -1,
+          "CooldownGroupDuration": -1,
+          "Spell": null
+        }
+      ]
+    },
+    {
+      "ItemId": 178826,
+      "Name": "Sunblood Amethyst",
+      "ItemLevel": 301,
+      "Slot": 12,
+      "ItemType": 4,
+      "ItemSubType": 0,
+      "Mods": [
+        {
+          "Type": 36,
+          "StatRating": 139
+        }
+      ],
+      "Gems": [],
+      "Effects": [
+        {
+          "EffectId": 135853,
+          "Type": 0,
+          "CooldownGroup": 0,
+          "CooldownDuration": -1,
+          "CooldownGroupDuration": -1,
+          "Spell": null
+        },
+        {
+          "EffectId": 135854,
+          "Type": 0,
+          "CooldownGroup": 0,
+          "CooldownDuration": -1,
+          "CooldownGroupDuration": -1,
+          "Spell": null
+        }
+      ]
+    },
+    {
+      "ItemId": 181502,
+      "Name": "Rejuvenating Serum",
+      "ItemLevel": 226,
+      "Slot": 12,
+      "ItemType": 4,
+      "ItemSubType": 0,
+      "Mods": [
+        {
+          "Type": 5,
+          "StatRating": 77
+        }
+      ],
+      "Gems": [],
+      "Effects": [
+        {
+          "EffectId": 126202,
+          "Type": 0,
+          "CooldownGroup": 0,
+          "CooldownDuration": -1,
+          "CooldownGroupDuration": -1,
+          "Spell": null
+        }
+      ]
+    },
+    {
+      "ItemId": 178850,
+      "Name": "Lingering Sunmote",
+      "ItemLevel": 301,
+      "Slot": 12,
+      "ItemType": 4,
+      "ItemSubType": 0,
+      "Mods": [
+        {
+          "Type": 5,
+          "StatRating": 155
+        }
+      ],
+      "Gems": [],
+      "Effects": [
+        {
+          "EffectId": 127479,
+          "Type": 0,
+          "CooldownGroup": 0,
+          "CooldownDuration": -1,
+          "CooldownGroupDuration": -1,
+          "Spell": null
+        },
+        {
+          "EffectId": 127480,
+          "Type": 0,
+          "CooldownGroup": 0,
+          "CooldownDuration": -1,
+          "CooldownGroupDuration": -1,
+          "Spell": null
+        }
+      ]
+    },
+    {
+      "ItemId": 181457,
+      "Name": "Wakener's Frond",
+      "ItemLevel": 226,
+      "Slot": 12,
+      "ItemType": 4,
+      "ItemSubType": 0,
+      "Mods": [
+        {
+          "Type": 71,
+          "StatRating": 77
+        }
+      ],
+      "Gems": [],
+      "Effects": [
+        {
+          "EffectId": 126156,
+          "Type": 0,
+          "CooldownGroup": 0,
+          "CooldownDuration": -1,
+          "CooldownGroupDuration": -1,
+          "Spell": null
+        }
+      ]
+    },
+    {
+      "ItemId": 181359,
+      "Name": "Overflowing Ember Mirror",
+      "ItemLevel": 226,
+      "Slot": 12,
+      "ItemType": 4,
+      "ItemSubType": 0,
+      "Mods": [
+        {
+          "Type": 71,
+          "StatRating": 77
+        }
+      ],
+      "Gems": [],
+      "Effects": [
+        {
+          "EffectId": 126205,
+          "Type": 0,
+          "CooldownGroup": 0,
+          "CooldownDuration": -1,
+          "CooldownGroupDuration": -1,
+          "Spell": null
+        }
+      ]
+    },
+    {
+      "ItemId": 180119,
+      "Name": "Boon of the Archon",
+      "ItemLevel": 301,
+      "Slot": 12,
+      "ItemType": 4,
+      "ItemSubType": 0,
+      "Mods": [
+        {
+          "Type": 5,
+          "StatRating": 155
+        }
+      ],
+      "Gems": [],
+      "Effects": [
+        {
+          "EffectId": 136052,
+          "Type": 0,
+          "CooldownGroup": 0,
+          "CooldownDuration": -1,
+          "CooldownGroupDuration": -1,
+          "Spell": null
+        },
+        {
+          "EffectId": 136053,
+          "Type": 0,
+          "CooldownGroup": 0,
+          "CooldownDuration": -1,
+          "CooldownGroupDuration": -1,
+          "Spell": null
+        }
+      ]
+    },
+    {
+      "ItemId": 181334,
+      "Name": "Essence Extractor",
+      "ItemLevel": 226,
+      "Slot": 12,
+      "ItemType": 4,
+      "ItemSubType": 0,
+      "Mods": [
+        {
+          "Type": 32,
+          "StatRating": 100
+        }
+      ],
+      "Gems": [],
+      "Effects": [
+        {
+          "EffectId": 136174,
+          "Type": 0,
+          "CooldownGroup": 0,
+          "CooldownDuration": -1,
+          "CooldownGroupDuration": -1,
+          "Spell": null
+        }
+      ]
+    },
+    {
+      "ItemId": 175733,
+      "Name": "Brimming Ember Shard",
+      "ItemLevel": 226,
+      "Slot": 12,
+      "ItemType": 4,
+      "ItemSubType": 0,
+      "Mods": [
+        {
+          "Type": 40,
+          "StatRating": 100
+        }
+      ],
+      "Gems": [],
+      "Effects": [
+        {
+          "EffectId": 126207,
+          "Type": 0,
+          "CooldownGroup": 0,
+          "CooldownDuration": -1,
+          "CooldownGroupDuration": -1,
+          "Spell": null
+        },
+        {
+          "EffectId": 135863,
+          "Type": 0,
+          "CooldownGroup": 0,
+          "CooldownDuration": -1,
+          "CooldownGroupDuration": -1,
+          "Spell": null
+        }
+      ]
+    },
+    {
+      "ItemId": 177657,
+      "Name": "Overflowing Ember Mirror",
+      "ItemLevel": 226,
+      "Slot": 12,
+      "ItemType": 4,
+      "ItemSubType": 0,
+      "Mods": [
+        {
+          "Type": 71,
+          "StatRating": 77
+        }
+      ],
+      "Gems": [],
+      "Effects": [
+        {
+          "EffectId": 126133,
+          "Type": 0,
+          "CooldownGroup": 0,
+          "CooldownDuration": -1,
+          "CooldownGroupDuration": -1,
+          "Spell": null
+        }
+      ]
+    },
+    {
+      "ItemId": 175732,
+      "Name": "Tablet of Despair",
+      "ItemLevel": 226,
+      "Slot": 12,
+      "ItemType": 4,
+      "ItemSubType": 0,
+      "Mods": [
+        {
+          "Type": 5,
+          "StatRating": 77
+        }
+      ],
+      "Gems": [],
+      "Effects": [
+        {
+          "EffectId": 126116,
+          "Type": 0,
+          "CooldownGroup": 0,
+          "CooldownDuration": -1,
+          "CooldownGroupDuration": -1,
+          "Spell": null
+        }
+      ]
+    },
+    {
+      "ItemId": 175729,
+      "Name": "Rotbriar Sprout",
+      "ItemLevel": 226,
+      "Slot": 12,
+      "ItemType": 4,
+      "ItemSubType": 0,
+      "Mods": [
+        {
+          "Type": 71,
+          "StatRating": 77
+        }
+      ],
+      "Gems": [],
+      "Effects": [
+        {
+          "EffectId": 117961,
+          "Type": 0,
+          "CooldownGroup": 0,
+          "CooldownDuration": -1,
+          "CooldownGroupDuration": -1,
+          "Spell": null
+        }
+      ]
+    },
+    {
+      "ItemId": 175727,
+      "Name": "Elder's Stormseed",
+      "ItemLevel": 226,
+      "Slot": 12,
+      "ItemType": 4,
+      "ItemSubType": 0,
+      "Mods": [
+        {
+          "Type": 71,
+          "StatRating": 77
+        }
+      ],
+      "Gems": [],
+      "Effects": [
+        {
+          "EffectId": 117469,
+          "Type": 0,
+          "CooldownGroup": 0,
+          "CooldownDuration": -1,
+          "CooldownGroupDuration": -1,
+          "Spell": null
+        }
+      ]
+    },
+    {
+      "ItemId": 175718,
+      "Name": "Ascended Defender's Crest",
+      "ItemLevel": 226,
+      "Slot": 12,
+      "ItemType": 4,
+      "ItemSubType": 0,
+      "Mods": [
+        {
+          "Type": 49,
+          "StatRating": 100
+        },
+        {
+          "Type": 71,
+          "StatRating": 77
+        }
+      ],
+      "Gems": [],
+      "Effects": []
+    },
+    {
+      "ItemId": 184024,
+      "Name": "Macabre Sheet Music",
+      "ItemLevel": 252,
+      "Slot": 12,
+      "ItemType": 4,
+      "ItemSubType": 0,
+      "Mods": [
+        {
+          "Type": 71,
+          "StatRating": 99
+        }
+      ],
+      "Gems": [],
+      "Effects": [
+        {
+          "EffectId": 136042,
+          "Type": 0,
+          "CooldownGroup": 0,
+          "CooldownDuration": -1,
+          "CooldownGroupDuration": -1,
+          "Spell": null
+        },
+        {
+          "EffectId": 136043,
+          "Type": 0,
+          "CooldownGroup": 0,
+          "CooldownDuration": -1,
+          "CooldownGroupDuration": -1,
+          "Spell": null
+        }
+      ]
+    },
+    {
+      "ItemId": 184020,
+      "Name": "Tuft of Smoldering Plumage",
+      "ItemLevel": 252,
+      "Slot": 12,
+      "ItemType": 4,
+      "ItemSubType": 0,
+      "Mods": [
+        {
+          "Type": 5,
+          "StatRating": 99
+        }
+      ],
+      "Gems": [],
+      "Effects": [
+        {
+          "EffectId": 135994,
+          "Type": 0,
+          "CooldownGroup": 0,
+          "CooldownDuration": -1,
+          "CooldownGroupDuration": -1,
+          "Spell": null
+        },
+        {
+          "EffectId": 135995,
+          "Type": 0,
+          "CooldownGroup": 0,
+          "CooldownDuration": -1,
+          "CooldownGroupDuration": -1,
+          "Spell": null
+        }
+      ]
+    },
+    {
+      "ItemId": 183849,
+      "Name": "Soulsifter Root",
+      "ItemLevel": 226,
+      "Slot": 12,
+      "ItemType": 4,
+      "ItemSubType": 0,
+      "Mods": [
+        {
+          "Type": 5,
+          "StatRating": 77
+        }
+      ],
+      "Gems": [],
+      "Effects": [
+        {
+          "EffectId": 127511,
+          "Type": 0,
+          "CooldownGroup": 0,
+          "CooldownDuration": -1,
+          "CooldownGroupDuration": -1,
+          "Spell": null
+        }
+      ]
+    },
+    {
+      "ItemId": 182455,
+      "Name": "Dreamer's Mending",
+      "ItemLevel": 226,
+      "Slot": 12,
+      "ItemType": 4,
+      "ItemSubType": 0,
+      "Mods": [
+        {
+          "Type": 71,
+          "StatRating": 77
+        }
+      ],
+      "Gems": [],
+      "Effects": [
+        {
+          "EffectId": 126500,
+          "Type": 0,
+          "CooldownGroup": 0,
+          "CooldownDuration": -1,
+          "CooldownGroupDuration": -1,
+          "Spell": null
+        }
+      ]
+    },
+    {
+      "ItemId": 182453,
+      "Name": "Twilight Bloom",
+      "ItemLevel": 226,
+      "Slot": 12,
+      "ItemType": 4,
+      "ItemSubType": 0,
+      "Mods": [
+        {
+          "Type": 5,
+          "StatRating": 77
+        }
+      ],
+      "Gems": [],
+      "Effects": [
+        {
+          "EffectId": 126482,
+          "Type": 0,
+          "CooldownGroup": 0,
+          "CooldownDuration": -1,
+          "CooldownGroupDuration": -1,
+          "Spell": null
+        }
+      ]
+    },
+    {
+      "ItemId": 182451,
+      "Name": "Glimmerdust's Grand Design",
+      "ItemLevel": 226,
+      "Slot": 12,
+      "ItemType": 4,
+      "ItemSubType": 0,
+      "Mods": [
+        {
+          "Type": 5,
+          "StatRating": 77
+        }
+      ],
+      "Gems": [],
+      "Effects": [
+        {
+          "EffectId": 126477,
+          "Type": 0,
+          "CooldownGroup": 0,
+          "CooldownDuration": -1,
+          "CooldownGroupDuration": -1,
+          "Spell": null
+        },
+        {
+          "EffectId": 136207,
+          "Type": 0,
+          "CooldownGroup": 0,
+          "CooldownDuration": -1,
+          "CooldownGroupDuration": -1,
+          "Spell": null
+        }
+      ]
+    },
+    {
+      "ItemId": 181501,
+      "Name": "Flame of Battle",
+      "ItemLevel": 226,
+      "Slot": 12,
+      "ItemType": 4,
+      "ItemSubType": 0,
+      "Mods": [
+        {
+          "Type": 71,
+          "StatRating": 77
+        }
+      ],
+      "Gems": [],
+      "Effects": [
+        {
+          "EffectId": 126201,
+          "Type": 0,
+          "CooldownGroup": 0,
+          "CooldownDuration": -1,
+          "CooldownGroupDuration": -1,
+          "Spell": null
+        },
+        {
+          "EffectId": 136212,
+          "Type": 0,
+          "CooldownGroup": 0,
+          "CooldownDuration": -1,
+          "CooldownGroupDuration": -1,
+          "Spell": null
+        }
+      ]
+    },
+    {
+      "ItemId": 181360,
+      "Name": "Brimming Ember Shard",
+      "ItemLevel": 226,
+      "Slot": 12,
+      "ItemType": 4,
+      "ItemSubType": 0,
+      "Mods": [
+        {
+          "Type": 40,
+          "StatRating": 100
+        }
+      ],
+      "Gems": [],
+      "Effects": [
+        {
+          "EffectId": 126206,
+          "Type": 0,
+          "CooldownGroup": 0,
+          "CooldownDuration": -1,
+          "CooldownGroupDuration": -1,
+          "Spell": null
+        },
+        {
+          "EffectId": 135864,
+          "Type": 0,
+          "CooldownGroup": 0,
+          "CooldownDuration": -1,
+          "CooldownGroupDuration": -1,
+          "Spell": null
+        }
+      ]
+    },
+    {
+      "ItemId": 181357,
+      "Name": "Tablet of Despair",
+      "ItemLevel": 226,
+      "Slot": 12,
+      "ItemType": 4,
+      "ItemSubType": 0,
+      "Mods": [
+        {
+          "Type": 5,
+          "StatRating": 77
+        }
+      ],
+      "Gems": [],
+      "Effects": [
+        {
+          "EffectId": 126121,
+          "Type": 0,
+          "CooldownGroup": 0,
+          "CooldownDuration": -1,
+          "CooldownGroupDuration": -1,
+          "Spell": null
+        }
+      ]
+    },
+    {
+      "ItemId": 180827,
+      "Name": "Maldraxxian Warhorn",
+      "ItemLevel": 226,
+      "Slot": 12,
+      "ItemType": 4,
+      "ItemSubType": 0,
+      "Mods": [
+        {
+          "Type": 7,
+          "StatRating": 141
+        }
+      ],
+      "Gems": [],
+      "Effects": [
+        {
+          "EffectId": 125934,
+          "Type": 0,
+          "CooldownGroup": 0,
+          "CooldownDuration": 120000,
+          "CooldownGroupDuration": -1,
+          "Spell": null
+        }
+      ]
+    },
+    {
+      "ItemId": 180117,
+      "Name": "Empyreal Ordnance",
+      "ItemLevel": 301,
+      "Slot": 12,
+      "ItemType": 4,
+      "ItemSubType": 0,
+      "Mods": [
+        {
+          "Type": 49,
+          "StatRating": 139
+        }
+      ],
+      "Gems": [],
+      "Effects": [
+        {
+          "EffectId": 136067,
+          "Type": 0,
+          "CooldownGroup": 0,
+          "CooldownDuration": -1,
+          "CooldownGroupDuration": -1,
+          "Spell": null
+        },
+        {
+          "EffectId": 136068,
+          "Type": 0,
+          "CooldownGroup": 0,
+          "CooldownDuration": -1,
+          "CooldownGroupDuration": -1,
+          "Spell": null
+        },
+        {
+          "EffectId": 136070,
+          "Type": 0,
+          "CooldownGroup": 0,
+          "CooldownDuration": -1,
+          "CooldownGroupDuration": -1,
+          "Spell": null
+        }
+      ]
+    },
+    {
+      "ItemId": 179350,
+      "Name": "Inscrutable Quantum Device",
+      "ItemLevel": 301,
+      "Slot": 12,
+      "ItemType": 4,
+      "ItemSubType": 0,
+      "Mods": [
+        {
+          "Type": 71,
+          "StatRating": 155
+        }
+      ],
+      "Gems": [],
+      "Effects": [
+        {
+          "EffectId": 118008,
+          "Type": 0,
+          "CooldownGroup": 0,
+          "CooldownDuration": -1,
+          "CooldownGroupDuration": -1,
+          "Spell": null
+        }
+      ]
+    },
+    {
+      "ItemId": 178849,
+      "Name": "Overflowing Anima Prison",
+      "ItemLevel": 301,
+      "Slot": 12,
+      "ItemType": 4,
+      "ItemSubType": 0,
+      "Mods": [
+        {
+          "Type": 5,
+          "StatRating": 155
+        }
+      ],
+      "Gems": [],
+      "Effects": [
+        {
+          "EffectId": 135851,
+          "Type": 0,
+          "CooldownGroup": 0,
+          "CooldownDuration": -1,
+          "CooldownGroupDuration": -1,
+          "Spell": null
+        },
+        {
+          "EffectId": 135852,
+          "Type": 0,
+          "CooldownGroup": 0,
+          "CooldownDuration": -1,
+          "CooldownGroupDuration": -1,
+          "Spell": null
+        }
+      ]
+    },
+    {
+      "ItemId": 178810,
+      "Name": "Vial of Spectral Essence",
+      "ItemLevel": 301,
+      "Slot": 12,
+      "ItemType": 4,
+      "ItemSubType": 0,
+      "Mods": [
+        {
+          "Type": 5,
+          "StatRating": 155
+        }
+      ],
+      "Gems": [],
+      "Effects": [
+        {
+          "EffectId": 136099,
+          "Type": 0,
+          "CooldownGroup": 0,
+          "CooldownDuration": -1,
+          "CooldownGroupDuration": -1,
+          "Spell": null
+        }
+      ]
+    },
+    {
+      "ItemId": 175723,
+      "Name": "Rejuvenating Serum",
+      "ItemLevel": 226,
+      "Slot": 12,
+      "ItemType": 4,
+      "ItemSubType": 0,
+      "Mods": [
+        {
+          "Type": 5,
+          "StatRating": 77
+        }
+      ],
+      "Gems": [],
+      "Effects": [
+        {
+          "EffectId": 117498,
+          "Type": 0,
+          "CooldownGroup": 0,
+          "CooldownDuration": -1,
+          "CooldownGroupDuration": -1,
+          "Spell": null
+        }
+      ]
+    },
+    {
+      "ItemId": 182454,
+      "Name": "Murmurs in the Dark",
+      "ItemLevel": 226,
+      "Slot": 12,
+      "ItemType": 4,
+      "ItemSubType": 0,
+      "Mods": [
+        {
+          "Type": 71,
+          "StatRating": 77
+        }
+      ],
+      "Gems": [],
+      "Effects": [
+        {
+          "EffectId": 126456,
+          "Type": 0,
+          "CooldownGroup": 0,
+          "CooldownDuration": -1,
+          "CooldownGroupDuration": -1,
+          "Spell": null
+        }
+      ]
+    },
+    {
+      "ItemId": 175726,
+      "Name": "Primalist's Kelpling",
+      "ItemLevel": 226,
+      "Slot": 12,
+      "ItemType": 4,
+      "ItemSubType": 0,
+      "Mods": [
+        {
+          "Type": 71,
+          "StatRating": 77
+        }
+      ],
+      "Gems": [],
+      "Effects": [
+        {
+          "EffectId": 117468,
+          "Type": 0,
+          "CooldownGroup": 0,
+          "CooldownDuration": -1,
+          "CooldownGroupDuration": -1,
+          "Spell": null
+        }
+      ]
+    },
+    {
+      "ItemId": 182682,
+      "Name": "Book-Borrower Identification",
+      "ItemLevel": 226,
+      "Slot": 12,
+      "ItemType": 4,
+      "ItemSubType": 0,
+      "Mods": [
+        {
+          "Type": 5,
+          "StatRating": 77
+        }
+      ],
+      "Gems": [],
+      "Effects": [
+        {
+          "EffectId": 126545,
+          "Type": 0,
+          "CooldownGroup": 0,
+          "CooldownDuration": -1,
+          "CooldownGroupDuration": -1,
+          "Spell": null
+        }
+      ]
+    },
+    {
+      "ItemId": 173078,
+      "Name": "Darkmoon Deck: Repose",
+      "ItemLevel": 226,
+      "Slot": 12,
+      "ItemType": 4,
+      "ItemSubType": 0,
+      "Mods": [
+        {
+          "Type": 5,
+          "StatRating": 77
+        }
+      ],
+      "Gems": [],
+      "Effects": [
+        {
+          "EffectId": 116991,
+          "Type": 0,
+          "CooldownGroup": 0,
+          "CooldownDuration": -1,
+          "CooldownGroupDuration": -1,
+          "Spell": null
+        },
+        {
+          "EffectId": 125720,
+          "Type": 0,
+          "CooldownGroup": 0,
+          "CooldownDuration": -1,
+          "CooldownGroupDuration": -1,
+          "Spell": null
+        }
+      ]
+    },
+    {
+      "ItemId": 183850,
+      "Name": "Wakener's Frond",
+      "ItemLevel": 226,
+      "Slot": 12,
+      "ItemType": 4,
+      "ItemSubType": 0,
+      "Mods": [
+        {
+          "Type": 71,
+          "StatRating": 77
+        }
+      ],
+      "Gems": [],
+      "Effects": [
+        {
+          "EffectId": 127512,
+          "Type": 0,
+          "CooldownGroup": 0,
+          "CooldownDuration": -1,
+          "CooldownGroupDuration": -1,
+          "Spell": null
+        }
+      ]
+    },
+    {
+      "ItemId": 184279,
+      "Name": "Siphoning Blood-Drinker",
+      "ItemLevel": 226,
+      "Slot": 12,
+      "ItemType": 4,
+      "ItemSubType": 0,
+      "Mods": [
+        {
+          "Type": 62,
+          "StatRating": 100
+        },
+        {
+          "Type": 71,
+          "StatRating": 77
+        }
+      ],
+      "Gems": [],
+      "Effects": []
+    },
+    {
+      "ItemId": 184022,
+      "Name": "Consumptive Infusion",
+      "ItemLevel": 252,
+      "Slot": 12,
+      "ItemType": 4,
+      "ItemSubType": 0,
+      "Mods": [
+        {
+          "Type": 5,
+          "StatRating": 99
+        }
+      ],
+      "Gems": [],
+      "Effects": [
+        {
+          "EffectId": 135906,
+          "Type": 0,
+          "CooldownGroup": 0,
+          "CooldownDuration": -1,
+          "CooldownGroupDuration": -1,
+          "Spell": null
+        }
+      ]
+    },
+    {
+      "ItemId": 184028,
+      "Name": "Cabalist's Hymnal",
+      "ItemLevel": 252,
+      "Slot": 12,
+      "ItemType": 4,
+      "ItemSubType": 0,
+      "Mods": [
+        {
+          "Type": 5,
+          "StatRating": 99
+        }
+      ],
+      "Gems": [],
+      "Effects": [
+        {
+          "EffectId": 135980,
+          "Type": 0,
+          "CooldownGroup": 0,
+          "CooldownDuration": -1,
+          "CooldownGroupDuration": -1,
+          "Spell": null
+        }
+      ]
+    },
+    {
+      "ItemId": 177813,
+      "Name": "Hopebreaker's Badge",
+      "ItemLevel": 226,
+      "Slot": 12,
+      "ItemType": 4,
+      "ItemSubType": 0,
+      "Mods": [
+        {
+          "Type": 71,
+          "StatRating": 77
+        },
+        {
+          "Type": 32,
+          "StatRating": 100
+        }
+      ],
+      "Gems": [],
+      "Effects": []
+    },
+    {
+      "ItemId": 178298,
+      "Name": "Sinful Aspirant's Insignia of Alacrity",
+      "ItemLevel": 190,
+      "Slot": 12,
+      "ItemType": 4,
+      "ItemSubType": 0,
+      "Mods": [
+        {
+          "Type": 36,
+          "StatRating": 82
+        }
+      ],
+      "Gems": [],
+      "Effects": [
+        {
+          "EffectId": 136019,
+          "Type": 0,
+          "CooldownGroup": 0,
+          "CooldownDuration": -1,
+          "CooldownGroupDuration": -1,
+          "Spell": null
+        }
+      ]
+    },
+    {
+      "ItemId": 175731,
+      "Name": "Stolen Maw Badge",
+      "ItemLevel": 226,
+      "Slot": 12,
+      "ItemType": 4,
+      "ItemSubType": 0,
+      "Mods": [
+        {
+          "Type": 71,
+          "StatRating": 77
+        }
+      ],
+      "Gems": [],
+      "Effects": [
+        {
+          "EffectId": 126129,
+          "Type": 0,
+          "CooldownGroup": 0,
+          "CooldownDuration": -1,
+          "CooldownGroupDuration": -1,
+          "Spell": null
+        }
+      ]
+    },
+    {
+      "ItemId": 175728,
+      "Name": "Soulsifter Root",
+      "ItemLevel": 226,
+      "Slot": 12,
+      "ItemType": 4,
+      "ItemSubType": 0,
+      "Mods": [
+        {
+          "Type": 5,
+          "StatRating": 77
+        }
+      ],
+      "Gems": [],
+      "Effects": [
+        {
+          "EffectId": 126158,
+          "Type": 0,
+          "CooldownGroup": 0,
+          "CooldownDuration": -1,
+          "CooldownGroupDuration": -1,
+          "Spell": null
+        }
+      ]
+    },
+    {
+      "ItemId": 175725,
+      "Name": "Newcomer's Gladiatorial Badge",
+      "ItemLevel": 226,
+      "Slot": 12,
+      "ItemType": 4,
+      "ItemSubType": 0,
+      "Mods": [
+        {
+          "Type": 32,
+          "StatRating": 100
+        },
+        {
+          "Type": 71,
+          "StatRating": 77
+        }
+      ],
+      "Gems": [],
+      "Effects": []
+    },
+    {
+      "ItemId": 175719,
+      "Name": "Agitha's Void-Tinged Speartip",
+      "ItemLevel": 226,
+      "Slot": 12,
+      "ItemType": 4,
+      "ItemSubType": 0,
+      "Mods": [
+        {
+          "Type": 32,
+          "StatRating": 100
+        },
+        {
+          "Type": 71,
+          "StatRating": 77
+        }
+      ],
+      "Gems": [],
+      "Effects": []
+    },
+    {
+      "ItemId": 173349,
+      "Name": "Misfiring Centurion Controller",
+      "ItemLevel": 226,
+      "Slot": 12,
+      "ItemType": 4,
+      "ItemSubType": 0,
+      "Mods": [
+        {
+          "Type": 32,
+          "StatRating": 100
+        }
+      ],
+      "Gems": [],
+      "Effects": [
+        {
+          "EffectId": 135894,
+          "Type": 0,
+          "CooldownGroup": 0,
+          "CooldownDuration": -1,
+          "CooldownGroupDuration": -1,
+          "Spell": null
+        }
+      ]
+    },
+    {
+      "ItemId": 173069,
+      "Name": "Darkmoon Deck: Putrescence",
+      "ItemLevel": 226,
+      "Slot": 12,
+      "ItemType": 4,
+      "ItemSubType": 0,
+      "Mods": [
+        {
+          "Type": 5,
+          "StatRating": 77
+        }
+      ],
+      "Gems": [],
+      "Effects": [
+        {
+          "EffectId": 116990,
+          "Type": 0,
+          "CooldownGroup": 0,
+          "CooldownDuration": -1,
+          "CooldownGroupDuration": -1,
+          "Spell": null
+        },
+        {
+          "EffectId": 125754,
+          "Type": 0,
+          "CooldownGroup": 0,
+          "CooldownDuration": -1,
+          "CooldownGroupDuration": -1,
+          "Spell": null
+        }
+      ]
+    },
+    {
+      "ItemId": 184029,
+      "Name": "Manabound Mirror",
+      "ItemLevel": 252,
+      "Slot": 12,
+      "ItemType": 4,
+      "ItemSubType": 0,
+      "Mods": [
+        {
+          "Type": 5,
+          "StatRating": 99
+        }
+      ],
+      "Gems": [],
+      "Effects": [
+        {
+          "EffectId": 135910,
+          "Type": 0,
+          "CooldownGroup": 0,
+          "CooldownDuration": -1,
+          "CooldownGroupDuration": -1,
+          "Spell": null
+        },
+        {
+          "EffectId": 135911,
+          "Type": 0,
+          "CooldownGroup": 0,
+          "CooldownDuration": -1,
+          "CooldownGroupDuration": -1,
+          "Spell": null
+        }
+      ]
+    },
+    {
+      "ItemId": 178708,
+      "Name": "Unbound Changeling",
+      "ItemLevel": 301,
+      "Slot": 12,
+      "ItemType": 4,
+      "ItemSubType": 0,
+      "Mods": [
+        {
+          "Type": 5,
+          "StatRating": 155
+        }
+      ],
+      "Gems": [],
+      "Effects": [
+        {
+          "EffectId": 125670,
+          "Type": 0,
+          "CooldownGroup": 0,
+          "CooldownDuration": -1,
+          "CooldownGroupDuration": -1,
+          "Spell": null
+        }
+      ]
+    },
+    {
+      "ItemId": 177141,
+      "Name": "7th Legionnaire's Spellhammer",
+      "ItemLevel": 138,
+      "Slot": 13,
+      "ItemType": 2,
+      "ItemSubType": 4,
+      "Mods": [
+        {
+          "Type": 5,
+          "StatRating": 18
+        },
+        {
+          "Type": 5,
+          "StatRating": 86
+        },
+        {
+          "Type": 7,
+          "StatRating": 32
+        },
+        {
+          "Type": 32,
+          "StatRating": 10
+        },
+        {
+          "Type": 49,
+          "StatRating": 20
+        }
+      ],
+      "Gems": [],
+      "Effects": []
+    }
+  ],
+  "Talents": [
+    193155
+  ],
+  "Conduits": {},
+  "Soulbinds": [],
+  "Covenant": {
+    "Covenant": 1,
+    "Renown": 40,
+    "AvailableConduits": {
+      "ResonantWords": 1,
+      "337891": 1,
+      "337790": 1,
+      "LastingSpirit": 1,
+      "FocusedMending": 1,
+      "338342": 1,
+      "ShiningRadiance": 1,
+      "337786": 1,
+      "338332": 1,
+      "CourageousAscension": 1,
+      "338319": 1,
+      "338338": 1,
+      "HolyOration": 1,
+      "MentalRecovery": 1,
+      "MoveWithGrace": 1,
+      "ClearMind": 1,
+      "PowerUntoOthers": 1,
+      "CharitableSoul": 1,
+      "TranslucentImage": 1,
+      "LightsInspiration": 1
+    },
+    "Soulbinds": [
+      {
+        "Name": "pelagos:7",
+        "SoulbindId": 0,
+        "IsActive": true,
+        "ActiveSoulbinds": [
+          328266
+        ],
+        "ActiveConduits": {
+          "0": 1
+        }
+      },
+      {
+        "Name": "forgelite_prime_mikanikos:18",
+        "SoulbindId": 0,
+        "IsActive": false,
+        "ActiveSoulbinds": [],
+        "ActiveConduits": {}
+      }
+    ]
+  },
+  "Legendaries": [],
+  "FightLengthSeconds": 397,
+  "PlaystyleEntries": [
+    {
+      "Name": "FaeBenevolentFaerieSelfUptime",
+      "Value": 1.0,
+      "SpellId": 327710
+    },
+    {
+      "Name": "FaeGuardianFaerieDTPS",
+      "Value": 4000.0,
+      "SpellId": 327694
+    },
+    {
+      "Name": "ShadowWordDeathPercentExecute",
+      "Value": 0.2,
+      "SpellId": 32379
+    },
+    {
+      "Name": "HolyNovaPercentOfCastsOnThreeOrMore",
+      "Value": 0.1,
+      "SpellId": 322112
+    },
+    {
+      "Name": "FaeFermataNumberDRSwaps",
+      "Value": 1.0,
+      "SpellId": 338305
+    },
+    {
+      "Name": "FaeFermataNumberCDRSwaps",
+      "Value": 3.0,
+      "SpellId": 338305
+    }
+  ]
+}

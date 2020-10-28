@@ -1,36 +1,21 @@
-﻿using Newtonsoft.Json;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
-using Salvation.Core.Interfaces.Constants;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.Modelling.HolyPriest.Spells;
-using Salvation.Core.Profile;
 using Salvation.Core.State;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
 
 namespace Salvation.CoreTests.HolyPriest.Spells
 {
     [TestFixture]
-    public class PrayerOfMendingTests
+    public class PrayerOfMendingTests : BaseTest
     {
         private GameState _gameState;
         [OneTimeSetUp]
         public void InitOnce()
         {
-            IConstantsService constantsService = new ConstantsService();
-
-            // Load this from somewhere that doesn't change
-            var basePath = @"HolyPriest" + Path.DirectorySeparatorChar + "TestData";
-            var constants = constantsService.ParseConstants(
-                File.ReadAllText(Path.Combine(basePath, "SpellServiceTests_constants.json")));
-            var profile = JsonConvert.DeserializeObject<PlayerProfile>(
-                File.ReadAllText(Path.Combine(basePath, "SpellServiceTests_profile.json")));
-
-            _gameState = new GameState(profile, constants);
+            _gameState = GetGameState();
         }
 
         [Test]
@@ -48,11 +33,11 @@ namespace Salvation.CoreTests.HolyPriest.Spells
             var defaultNumStacks = spellData.GetEffect(22870).BaseValue;
             spellData.Overrides.Add(Override.ResultMultiplier, defaultNumStacks / 2);
 
-            
+
             var resultOverride = spellService.GetAverageRawHealing(_gameState, spellData);
 
             // Assert
-            Assert.AreEqual(3579.1087607100003d, resultDefault);
+            Assert.AreEqual(5431.3983482850017d, resultDefault);
             Assert.AreEqual(resultDefault / 2, resultOverride);
         }
 
@@ -74,7 +59,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
 
     public class PoMTestGetHastedCastTime : PrayerOfMending
     {
-        public PoMTestGetHastedCastTime(IGameStateService gameStateService) 
+        public PoMTestGetHastedCastTime(IGameStateService gameStateService)
             : base(gameStateService)
         {
 
@@ -82,7 +67,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
 
         public override double GetHastedCastTime(GameState gameState, BaseSpellData spellData = null)
         {
-            SpellId = 0;
+            Spell = Spell.None;
             return base.GetHastedCastTime(gameState, spellData);
         }
     }

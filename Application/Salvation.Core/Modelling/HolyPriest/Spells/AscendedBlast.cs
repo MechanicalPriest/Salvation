@@ -1,6 +1,5 @@
 ﻿using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
-using Salvation.Core.Interfaces;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.State;
@@ -13,13 +12,12 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         public AscendedBlast(IGameStateService gameStateService)
             : base(gameStateService)
         {
-            SpellId = (int)Spell.AscendedBlast;
+            Spell = Spell.AscendedBlast;
         }
 
         public override double GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, Spell.AscendedBlast);
+            spellData = ValidateSpellData(gameState, spellData);
 
             // AB does ST damage and heals a random friendly (5 stack)
             // Coeff2 being 100 = 100%.
@@ -37,8 +35,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
         public override double GetAverageDamage(GameState gameState, BaseSpellData spellData = null)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, Spell.AscendedBlast);
+            spellData = ValidateSpellData(gameState, spellData);
 
             var holyPriestAuraDamageBonus = _gameStateService.GetSpellData(gameState, Spell.HolyPriest)
                 .GetEffect(191077).BaseValue / 100 + 1;
@@ -70,8 +67,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
         public override double GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, Spell.AscendedBlast);
+            spellData = ValidateSpellData(gameState, spellData);
 
             if (!spellData.Overrides.ContainsKey(Override.CastsPerMinute))
                 throw new ArgumentOutOfRangeException("Overrides", "Does not contain CastsPerMinute");

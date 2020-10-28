@@ -64,12 +64,12 @@ namespace Salvation.Core.Profile
             if (cleanupCovenantData)
                 RemoveCovenantData(profile);
 
-            profile.Covenant = covenant;
+            profile.Covenant = new CovenantProfile() { Covenant = covenant };
         }
 
         public void RemoveCovenantData(PlayerProfile profile)
         {
-            profile.Covenant = Covenant.None;
+            profile.Covenant = new CovenantProfile();
 
             // Wipe soulbinds
             profile.Soulbinds = new List<Soulbind>();
@@ -95,12 +95,14 @@ namespace Salvation.Core.Profile
             var basicProfile = new PlayerProfile()
             {
                 Name = "Holy Priest Default Profile",
-                SpecId = Spec.HolyPriest,
-                Intellect = 1001,
-                MasteryRating = 242,
-                VersatilityRating = 139,
-                HasteRating = 242,
-                CritRating = 268,
+                Spec = Spec.HolyPriest,
+                Intellect = 0,
+                MasteryRating = 0,
+                VersatilityRating = 0,
+                HasteRating = 0,
+                CritRating = 0,
+                Race = Race.NoRace,
+                Class = Class.Priest,
                 Casts = new List<CastProfile>()
                 {
                     // Base Spells (SpellId, Efficiency, Overheal)
@@ -124,7 +126,7 @@ namespace Salvation.Core.Profile
                     new CastProfile((int)Spell.Smite, 1d, 0, 0, 1), // Smite
                     new CastProfile((int)Spell.ShadowWordPain, 1d, 0, 0, 1), // Shadow Word: Pain
                     new CastProfile((int)Spell.ShadowWordDeath, 1d, 0, 0, 1),
-                    new CastProfile((int)Spell.Chastise, 1d, 0, 0, 1),
+                    new CastProfile((int)Spell.HolyWordChastise, 1d, 0, 0, 1),
                     new CastProfile((int)Spell.HolyFire, 1d, 0, 0, 1),
 
                     // Covenants (SpellId, Efficiency, Overheal)
@@ -153,6 +155,10 @@ namespace Salvation.Core.Profile
                     new PlaystyleEntry("FaeFermataNumberDRSwaps", 1, (uint)Spell.FaeFermata),
                     // The number of times you move the Benevolent Faerie around
                     new PlaystyleEntry("FaeFermataNumberCDRSwaps", 3, (uint)Spell.FaeFermata),
+                },
+                Items = new List<Item>()
+                {
+
                 }
             };
 

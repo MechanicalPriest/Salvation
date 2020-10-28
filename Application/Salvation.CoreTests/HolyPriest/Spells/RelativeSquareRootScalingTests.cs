@@ -1,11 +1,7 @@
 ﻿using NUnit.Framework;
-using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.Modelling.HolyPriest.Spells;
 using Salvation.Core.State;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Salvation.CoreTests.HolyPriest.Spells
 {

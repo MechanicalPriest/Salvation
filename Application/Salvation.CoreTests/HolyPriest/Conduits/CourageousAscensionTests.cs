@@ -1,35 +1,20 @@
-﻿using Newtonsoft.Json;
-using NUnit.Framework;
-using Salvation.Core.Constants;
+﻿using NUnit.Framework;
 using Salvation.Core.Constants.Data;
-using Salvation.Core.Interfaces.Constants;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.Modelling.HolyPriest.Spells;
-using Salvation.Core.Profile;
 using Salvation.Core.State;
-using System.IO;
-using System.Linq;
 
 namespace Salvation.CoreTests.HolyPriest.Conduits
 {
     [TestFixture]
-    class CourageousAscensionTests
+    class CourageousAscensionTests : BaseTest
     {
         private GameState _gameState;
 
         [OneTimeSetUp]
         public void InitOnce()
         {
-            IConstantsService constantsService = new ConstantsService();
-
-            // Load this from somewhere that doesn't change
-            var basePath = @"HolyPriest" + Path.DirectorySeparatorChar + "TestData";
-            var constants = constantsService.ParseConstants(
-                File.ReadAllText(Path.Combine(basePath, "SpellServiceTests_constants.json")));
-            var profile = JsonConvert.DeserializeObject<PlayerProfile>(
-                File.ReadAllText(Path.Combine(basePath, "SpellServiceTests_profile.json")));
-
-            _gameState = new GameState(profile, constants);
+            _gameState = GetGameState();
         }
 
         [Test]
@@ -48,8 +33,8 @@ namespace Salvation.CoreTests.HolyPriest.Conduits
             var resultWithout = spellService.GetAverageDamage(gamestate2, null);
 
             // Assert
-            Assert.AreEqual(2500.6263394500002d, resultWithout);
-            Assert.AreEqual(3125.7829243125002d, resultWith);
+            Assert.AreEqual(3794.7708990750002d, resultWithout);
+            Assert.AreEqual(4743.4636238437506d, resultWith);
         }
 
         [Test]
@@ -68,8 +53,8 @@ namespace Salvation.CoreTests.HolyPriest.Conduits
             var resultWithout = spellService.GetAverageDamage(gamestate2, null);
 
             // Assert
-            Assert.AreEqual(6168.0327210344913d, resultWithout);
-            Assert.AreEqual(6227.9165338600687d, resultWith);
+            Assert.AreEqual(9360.1633738978235d, resultWithout);
+            Assert.AreEqual(9451.0387464599389d, resultWith);
         }
 
         [Test]
@@ -88,8 +73,8 @@ namespace Salvation.CoreTests.HolyPriest.Conduits
             var resultWithout = spellService.GetAverageRawHealing(gamestate2, null);
 
             // Assert
-            Assert.AreEqual(4903.5860132224225d, resultWithout);
-            Assert.AreEqual(4951.1936444187559d, resultWith);
+            Assert.AreEqual(7441.3298822487704d, resultWithout);
+            Assert.AreEqual(7513.5758034356513d, resultWith);
         }
 
         [Test]

@@ -1,6 +1,5 @@
 ﻿using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
-using Salvation.Core.Interfaces;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.State;
@@ -13,13 +12,12 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         public AscendedEruption(IGameStateService gameStateService)
             : base(gameStateService)
         {
-            SpellId = (int)Spell.AscendedEruption;
+            Spell = Spell.AscendedEruption;
         }
 
         public override double GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, Spell.AscendedEruption);
+            spellData = ValidateSpellData(gameState, spellData);
 
             // Default to the 1 stack we automatically get if not provided.
             var numberOfBoonStacks = 1d;
@@ -61,8 +59,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
         public override double GetAverageDamage(GameState gameState, BaseSpellData spellData = null)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, Spell.AscendedEruption);
+            spellData = ValidateSpellData(gameState, spellData);
 
             // Default to the 1 stack we automatically get if not provided.
             var numberOfBoonStacks = 1d;

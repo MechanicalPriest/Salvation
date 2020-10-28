@@ -6,16 +6,9 @@ using System.Linq;
 
 namespace Salvation.Core.Profile
 {
-
-
-
-
-
-
-
     public class PlayerProfile
     {
-        public Spec SpecId { get; set; }
+        public Spec Spec { get; set; }
         public string Name { get; set; }
         public string Server { get; set; }
         public string Region { get; set; }

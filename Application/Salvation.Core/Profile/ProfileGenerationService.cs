@@ -95,7 +95,7 @@ namespace Salvation.Core.Profile
             var basicProfile = new PlayerProfile()
             {
                 Name = "Holy Priest Default Profile",
-                SpecId = Spec.HolyPriest,
+                Spec = Spec.HolyPriest,
                 Intellect = 0,
                 MasteryRating = 0,
                 VersatilityRating = 0,

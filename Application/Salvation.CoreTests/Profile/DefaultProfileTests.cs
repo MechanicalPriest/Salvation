@@ -25,7 +25,7 @@ namespace Salvation.CoreTests.Profile
 
             // Assert
             Assert.NotNull(profile);
-            Assert.AreEqual(257, profile.SpecId);
+            Assert.AreEqual(257, profile.Spec);
         }
 
         [Test]

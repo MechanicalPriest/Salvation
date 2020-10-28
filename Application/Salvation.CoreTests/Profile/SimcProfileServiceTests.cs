@@ -44,6 +44,9 @@ namespace Salvation.CoreTests.Profile
             Assert.IsNotNull(baseProfile);
             Assert.AreEqual("Beitaky", baseProfile.Name);
             Assert.AreEqual(Race.Dwarf, baseProfile.Race);
+            Assert.AreEqual("torghast", baseProfile.Server);
+            Assert.AreEqual("us", baseProfile.Region);
+            Assert.AreEqual(Spec.HolyPriest, baseProfile.Spec);
         }
 
         [Test]

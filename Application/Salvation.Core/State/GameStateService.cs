@@ -13,7 +13,7 @@ namespace Salvation.Core.State
     {
         public double GetBaseManaAmount(GameState state)
         {
-            var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.SpecId).FirstOrDefault();
+            var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.Spec).FirstOrDefault();
 
             return specData.ManaBase;
         }
@@ -94,7 +94,7 @@ namespace Salvation.Core.State
         public double GetCriticalStrikeMultiplier(GameState state)
         {
             // TODO: Add other sources of crit increase here
-            var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.SpecId).FirstOrDefault();
+            var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.Spec).FirstOrDefault();
             return 1 + specData.CritBase + (GetDrRating(GetCriticalStrikeRating(state), specData.CritCost) / specData.CritCost / 100);
         }
 
@@ -120,7 +120,7 @@ namespace Salvation.Core.State
         public double GetHasteMultiplier(GameState state)
         {
             // TODO: Add other sources of haste increase here
-            var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.SpecId).FirstOrDefault();
+            var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.Spec).FirstOrDefault();
             return 1 + specData.HasteBase + (GetDrRating(GetHasteRating(state), specData.HasteCost) / specData.HasteCost / 100);
         }
 
@@ -145,7 +145,7 @@ namespace Salvation.Core.State
         public double GetVersatilityMultiplier(GameState state)
         {
             // TODO: Add other sources of vers increase here
-            var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.SpecId).FirstOrDefault();
+            var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.Spec).FirstOrDefault();
 
             return 1 + specData.VersBase + (GetDrRating(GetVersatilityRating(state), specData.VersCost) / specData.VersCost / 100);
         }
@@ -171,7 +171,7 @@ namespace Salvation.Core.State
         public double GetMasteryMultiplier(GameState state)
         {
             // TODO: Add other sources of mastery increase here
-            var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.SpecId).FirstOrDefault();
+            var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.Spec).FirstOrDefault();
 
             return 1 + specData.MasteryBase + (GetDrRating(GetMasteryRating(state), specData.MasteryCost) / specData.MasteryCost / 100);
         }
@@ -268,7 +268,7 @@ namespace Salvation.Core.State
 
         public BaseSpellData GetSpellData(GameState state, Spell spellId)
         {
-            var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.SpecId).FirstOrDefault();
+            var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.Spec).FirstOrDefault();
 
             BaseSpellData spell = specData.Spells.Where(s => s.Id == (uint)spellId).FirstOrDefault();
 
@@ -314,7 +314,7 @@ namespace Salvation.Core.State
 
         public void OverrideSpellData(GameState state, BaseSpellData newData)
         {
-            var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.SpecId).FirstOrDefault();
+            var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.Spec).FirstOrDefault();
 
             var requestedData = specData.Spells.Where(s => s.Id == newData.Id).FirstOrDefault();
 

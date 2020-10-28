@@ -37,7 +37,12 @@ namespace Salvation.Core.Profile
             profile.Server = parsedProfile.Server;
             profile.Region = parsedProfile.Region;
             profile.Race = RaceHelpers.ParseRace(parsedProfile.Race);
-            profile.SpecId = (Spec)Convert.ToInt32(parsedProfile.Spec);
+
+            profile.Spec = parsedProfile.Spec.ToLower() switch 
+            {
+                "holy" => Spec.HolyPriest,
+                _ => 0
+            };
 
             // TODO: Class
             profile.Level = parsedProfile.Level;

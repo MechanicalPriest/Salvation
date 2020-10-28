@@ -823,7 +823,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(UnholyNova)).Returns(true);
                 yield return new TestCaseData(typeof(UnholyTransfusion)).Returns(true);
                 yield return new TestCaseData(typeof(Smite)).Returns(false);
-                yield return new TestCaseData(typeof(Chastise)).Returns(false);
+                yield return new TestCaseData(typeof(HolyWordChastise)).Returns(false);
                 yield return new TestCaseData(typeof(ShadowWordPain)).Returns(false);
                 yield return new TestCaseData(typeof(ShadowWordDeath)).Returns(false);
                 yield return new TestCaseData(typeof(HolyFire)).Returns(false);

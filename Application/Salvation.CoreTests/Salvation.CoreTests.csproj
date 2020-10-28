@@ -7,29 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="HolyPriest\TestData\SpellServiceTests_constants.json" />
-    <None Remove="HolyPriest\TestData\SpellServiceTests_profile.json" />
-    <None Remove="Profile\TestData\Beitaky.simc" />
-    <None Remove="Profile\TestData\ProfileTests_constants.json" />
-    <None Remove="Profile\TestData\ProfileTests_profile.json" />
     <None Remove="TestData\BaseTests_constants.json" />
     <None Remove="TestData\BaseTests_profile.json" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="HolyPriest\TestData\SpellServiceTests_constants.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="TestData\SpellServiceTests_profile.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="TestData\Beitaky.simc">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Profile\TestData\ProfileTests_constants.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Profile\TestData\ProfileTests_profile.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="TestData\BaseTests_constants.json">

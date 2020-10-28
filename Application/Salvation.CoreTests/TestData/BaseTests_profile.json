@@ -2468,6 +2468,11 @@
       "Name": "FaeFermataNumberCDRSwaps",
       "Value": 3.0,
       "SpellId": 338305
+    },
+    {
+      "Name": "OverrideStats",
+      "Value": 0, // 0 == dont overide, != 0 means override
+      "SpellId": 0
     }
   ]
 }

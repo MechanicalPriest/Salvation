@@ -74,6 +74,11 @@ namespace Salvation.Core.State
 
         public double GetCriticalStrikeRating(GameState state)
         {
+            if (GetPlaystyle(state, "OverrideStats").Value != 0)
+            {
+                return state.Profile.CritRating;
+            }
+
             var critRating = 0;
 
             foreach (var item in state.Profile.Items.Take(15))
@@ -100,6 +105,11 @@ namespace Salvation.Core.State
 
         public double GetHasteRating(GameState state)
         {
+            if (GetPlaystyle(state, "OverrideStats").Value != 0)
+            {
+                return state.Profile.HasteRating;
+            }
+
             var hasteRating = 0;
 
             foreach (var item in state.Profile.Items.Take(15))
@@ -126,6 +136,11 @@ namespace Salvation.Core.State
 
         public double GetVersatilityRating(GameState state)
         {
+            if (GetPlaystyle(state, "OverrideStats").Value != 0)
+            {
+                return state.Profile.VersatilityRating;
+            }
+
             var versatilityRating = 0;
 
             foreach (var item in state.Profile.Items.Take(15))
@@ -152,6 +167,10 @@ namespace Salvation.Core.State
 
         public double GetMasteryRating(GameState state)
         {
+            if (GetPlaystyle(state, "OverrideStats").Value != 0)
+            {
+                return state.Profile.MasteryRating;
+            }
             var masteryRating = 0;
 
             foreach (var item in state.Profile.Items.Take(15))
@@ -178,7 +197,13 @@ namespace Salvation.Core.State
 
         public double GetIntellect(GameState state)
         {
+            if (GetPlaystyle(state, "OverrideStats").Value != 0)
+            {
+                return state.Profile.Intellect;
+            }
+
             double intellect = 0;
+
 
             // Get base intellect based on class
             intellect += state.Profile.Class switch

@@ -155,6 +155,7 @@ namespace Salvation.Core.Profile
                     new PlaystyleEntry("FaeFermataNumberDRSwaps", 1, (uint)Spell.FaeFermata),
                     // The number of times you move the Benevolent Faerie around
                     new PlaystyleEntry("FaeFermataNumberCDRSwaps", 3, (uint)Spell.FaeFermata),
+                    new PlaystyleEntry("OverrideStats", 0, 0),
                 },
                 Items = new List<Item>()
                 {

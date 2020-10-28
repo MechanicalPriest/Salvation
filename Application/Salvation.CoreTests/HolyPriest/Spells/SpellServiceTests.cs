@@ -1,10 +1,7 @@
 ﻿using Newtonsoft.Json;
 using NUnit.Framework;
 using Salvation.Core.Constants;
-using Salvation.Core.Constants.Data;
 using Salvation.Core.Interfaces.Constants;
-using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
-using Salvation.Core.Interfaces.Profile;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.Modelling.HolyPriest.Spells;
 using Salvation.Core.Profile;
@@ -14,7 +11,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 
 namespace Salvation.CoreTests.HolyPriest.Spells
 {
@@ -97,7 +93,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
             Spells.Add(new UnholyTransfusion(gameStateService));
             Spells.Add(new Smite(gameStateService));
             Spells.Add(new HolyWordChastise(gameStateService, new Smite(gameStateService), new HolyFire(gameStateService)));
-            Spells.Add(new ShadowWordPain(gameStateService)); 
+            Spells.Add(new ShadowWordPain(gameStateService));
             Spells.Add(new ShadowWordDeath(gameStateService));
             Spells.Add(new HolyFire(gameStateService));
 
@@ -517,7 +513,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(CircleOfHealing)).Returns(0);
                 yield return new TestCaseData(typeof(DivineHymn)).Returns(8);
                 // For some reason Divstar has a duration of 15?
-                yield return new TestCaseData(typeof(DivineStar)).Returns(15); 
+                yield return new TestCaseData(typeof(DivineStar)).Returns(15);
                 yield return new TestCaseData(typeof(FaeGuardians)).Returns(20);
                 yield return new TestCaseData(typeof(FlashHeal)).Returns(0);
                 // Halo has a 3.2s duration, travel time of the expansion?
@@ -538,7 +534,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(HolyWordChastise)).Returns(0);
                 yield return new TestCaseData(typeof(ShadowWordPain)).Returns(16.0d);
                 yield return new TestCaseData(typeof(ShadowWordDeath)).Returns(0);
-                yield return new TestCaseData(typeof(HolyFire)).Returns(7); 
+                yield return new TestCaseData(typeof(HolyFire)).Returns(7);
             }
         }
         public static IEnumerable GetActualManaCost

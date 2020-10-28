@@ -1,8 +1,6 @@
 ﻿using NUnit.Framework;
 using Salvation.Core.Profile;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Salvation.CoreTests.Profile
 {

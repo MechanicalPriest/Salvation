@@ -158,7 +158,7 @@ namespace Salvation.Core.Profile
                 },
                 Items = new List<Item>()
                 {
-                    
+
                 }
             };
 

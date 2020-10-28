@@ -40,8 +40,9 @@ namespace Salvation.Core.State
         /// <returns> diminished returned value based on percent </returns>
         public double GetDrRating(double rating, double cost)
         {
-            double result = 0; 
-            for (int i = 0;  i < rating; i++) { 
+            double result = 0;
+            for (int i = 0; i < rating; i++)
+            {
                 var percent = result / cost;
                 if (percent <= 30)
                 {
@@ -74,12 +75,12 @@ namespace Salvation.Core.State
         public double GetCriticalStrikeRating(GameState state)
         {
             var critRating = 0;
-            
-            foreach(var item in state.Profile.Items.Take(15))
+
+            foreach (var item in state.Profile.Items.Take(15))
             {
-                foreach(var mod in item.Mods)
+                foreach (var mod in item.Mods)
                 {
-                    if(mod.Type == ItemModType.ITEM_MOD_CRIT_RATING || 
+                    if (mod.Type == ItemModType.ITEM_MOD_CRIT_RATING ||
                         mod.Type == ItemModType.ITEM_MOD_CRIT_SPELL_RATING)
                     {
                         critRating += mod.StatRating;
@@ -241,15 +242,15 @@ namespace Salvation.Core.State
             var clothCount = 0;
             foreach (var item in state.Profile.Items.Take(15))
             {
-                if (item.Slot != InventorySlot.INVTYPE_CLOAK && 
-                    item.ItemType == ItemType.ITEM_CLASS_ARMOR && 
+                if (item.Slot != InventorySlot.INVTYPE_CLOAK &&
+                    item.ItemType == ItemType.ITEM_CLASS_ARMOR &&
                     item.ItemSubType == 1)
                     clothCount++;
 
                 foreach (var mod in item.Mods)
                 {
                     if (mod.Type == ItemModType.ITEM_MOD_INTELLECT ||
-                        mod.Type == ItemModType.ITEM_MOD_AGILITY_INTELLECT || 
+                        mod.Type == ItemModType.ITEM_MOD_AGILITY_INTELLECT ||
                         mod.Type == ItemModType.ITEM_MOD_STRENGTH_INTELLECT ||
                         mod.Type == ItemModType.ITEM_MOD_STRENGTH_AGILITY_INTELLECT)
                     {

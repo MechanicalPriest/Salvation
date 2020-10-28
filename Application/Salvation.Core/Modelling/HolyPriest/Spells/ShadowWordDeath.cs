@@ -1,10 +1,8 @@
 ﻿using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
-using Salvation.Core.Interfaces;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.State;
-using System;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
@@ -67,10 +65,10 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             spellData = ValidateSpellData(gameState, spellData);
 
             var spellDataRank2 = _gameStateService.GetSpellData(gameState, Spell.ShadowWordDeathRank2);
-            
+
             // Base Val is neg
             // for some reason cd of death is a charge cd
-            var baseCooldown = spellData.ChargeCooldown / 1000d + spellDataRank2.GetEffect(810248).BaseValue/1000d;
+            var baseCooldown = spellData.ChargeCooldown / 1000d + spellDataRank2.GetEffect(810248).BaseValue / 1000d;
 
             return spellData.IsCooldownHasted
                 ? baseCooldown / _gameStateService.GetHasteMultiplier(gameState)

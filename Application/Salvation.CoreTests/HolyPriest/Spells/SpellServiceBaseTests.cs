@@ -1,16 +1,10 @@
-﻿using Newtonsoft.Json;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
-using Salvation.Core.Interfaces.Constants;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.Modelling.HolyPriest.Spells;
-using Salvation.Core.Profile;
 using Salvation.Core.State;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
 
 namespace Salvation.CoreTests.HolyPriest.Spells
 {
@@ -211,7 +205,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
 
     public class SpellServiceWithSpell : SpellService
     {
-        public SpellServiceWithSpell(IGameStateService gameStateService) 
+        public SpellServiceWithSpell(IGameStateService gameStateService)
             : base(gameStateService)
         {
             Spell = Spell.FlashHeal;

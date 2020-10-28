@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Salvation.Core.Constants.Data
+﻿namespace Salvation.Core.Constants.Data
 {
     // From SimcProfileParser.Model.RawData & simc/data_enums.hh
     public enum InventorySlot

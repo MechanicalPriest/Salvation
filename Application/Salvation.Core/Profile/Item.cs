@@ -8,7 +8,7 @@ namespace Salvation.Core.Profile
         public uint ItemId { get; set; }
         public string Name { get; set; }
         public int ItemLevel { get; set; }
-        
+
         public InventorySlot Slot { get; set; }
         /// <summary>
         /// This contains the type of item it is. Common types: 2 = weapon, 4 = armor

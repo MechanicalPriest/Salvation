@@ -1,8 +1,5 @@
 ﻿using Salvation.Core.Constants.Data;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Salvation.Core.Profile
 {

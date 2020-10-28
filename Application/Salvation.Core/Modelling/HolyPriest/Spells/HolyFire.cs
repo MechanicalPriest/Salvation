@@ -1,10 +1,8 @@
 ﻿using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
-using Salvation.Core.Interfaces;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.State;
-using System;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
@@ -36,7 +34,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
                 * holyPriestAuraDamagesBonus;
 
             _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {averageDamageFirstTick:0.##} (first)");
-            
+
             averageDamageFirstTick *= _gameStateService.GetCriticalStrikeMultiplier(gameState) * _gameStateService.GetHasteMultiplier(gameState);
 
             double tickrate = spellData.GetEffect(6991).Amplitude / 1000;
@@ -47,7 +45,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
                 * _gameStateService.GetVersatilityMultiplier(gameState)
                 * _gameStateService.GetHasteMultiplier(gameState)
                 * holyPriestAuraDamagePeriodicBonus
-                * GetDuration(gameState,spellData) / tickrate;
+                * GetDuration(gameState, spellData) / tickrate;
 
             _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {averageDmgTicks:0.##} (ticks)");
 

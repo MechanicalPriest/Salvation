@@ -3,7 +3,6 @@ using Salvation.Core.Interfaces.Profile;
 using SimcProfileParser.Interfaces;
 using SimcProfileParser.Model.Generated;
 using SimcProfileParser.Model.Profile;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using ItemModType = Salvation.Core.Constants.Data.ItemModType;

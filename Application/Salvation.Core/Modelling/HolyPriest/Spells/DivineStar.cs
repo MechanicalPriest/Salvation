@@ -94,5 +94,13 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         {
             return double.MaxValue;
         }
+
+        public override bool TriggersMastery(GameState gameState, BaseSpellData spellData)
+        {
+            // Divine Star Spellid doesnt have the "right" type, heal component does
+            var healData = _gameStateService.GetSpellData(gameState, Spell.DivineStarHeal);
+
+            return base.TriggersMastery(gameState, healData);
+        }
     }
 }

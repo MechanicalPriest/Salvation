@@ -280,6 +280,33 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             return result;
         }
 
+        public virtual bool TriggersMastery(GameState gameState, BaseSpellData spellData)
+        {
+            if (spellData == null)
+                spellData = _gameStateService.GetSpellData(gameState, (Spell)SpellId);
+
+
+            foreach (var effect in spellData.Effects)
+            {
+                if(effect.Type == 10)
+                {
+                    return true;
+                }
+
+                if (effect.TriggerSpell != null)
+                {
+                    foreach (var triggerSpellEffect in effect.TriggerSpell.Effects)
+                    {
+                        if (triggerSpellEffect.Type == 10)
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+                return false;
+        }
+
         #endregion
     }
 }

@@ -1207,6 +1207,50 @@
           "ConduitRanks": {}
         },
         {
+          "Id": 323706,
+          "Name": "Mindgames",
+          "ManaCost": 0.0,
+          "MaxRange": 100.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "IsMasteryTriggered": false,
+          "Effects": [
+            {
+              "Id": 812824,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 10
+            },
+            {
+              "Id": 819551,
+              "BaseValue": 10.0,
+              "SpCoefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 30
+            },
+            {
+              "Id": 819578,
+              "BaseValue": 2.0,
+              "SpCoefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 137
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
           "Id": 327661,
           "Name": "Fae Guardians",
           "ManaCost": 2.0,

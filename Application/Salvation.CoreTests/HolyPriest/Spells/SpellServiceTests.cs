@@ -294,6 +294,20 @@ namespace Salvation.CoreTests.HolyPriest.Spells
             // Assert
             return result;
         }
+
+        [TestCaseSource(typeof(SpellServiceTestsData), nameof(SpellServiceTestsData.TriggersMastery))]
+        public bool TriggersMastery(Type t)
+        {
+            // Arrange
+            var spellService = Spells.Where(s => s.GetType() == t).FirstOrDefault();
+
+            // Act
+            var result = spellService.TriggersMastery(_gameState, null);
+
+            // Assert
+            return result;
+        }
+
     }
 
     public class SpellServiceTestsData
@@ -784,6 +798,41 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(ShadowWordPain)).Returns(0);
                 yield return new TestCaseData(typeof(ShadowWordDeath)).Returns(0);
                 yield return new TestCaseData(typeof(HolyFire)).Returns(0);
+            }
+        }
+
+        public static IEnumerable TriggersMastery
+        {
+            get
+            {
+                yield return new TestCaseData(typeof(AscendedBlast)).Returns(true); // broken waiting for simcraft spellid 325315
+                yield return new TestCaseData(typeof(AscendedEruption)).Returns(true);
+                yield return new TestCaseData(typeof(AscendedNova)).Returns(true);
+                yield return new TestCaseData(typeof(BindingHeal)).Returns(true);
+                yield return new TestCaseData(typeof(BoonOfTheAscended)).Returns(false);
+                yield return new TestCaseData(typeof(CircleOfHealing)).Returns(true);
+                yield return new TestCaseData(typeof(DivineHymn)).Returns(true);
+                yield return new TestCaseData(typeof(DivineStar)).Returns(true);
+                yield return new TestCaseData(typeof(FaeGuardians)).Returns(false);
+                yield return new TestCaseData(typeof(FlashHeal)).Returns(true);
+                yield return new TestCaseData(typeof(Halo)).Returns(true);
+                yield return new TestCaseData(typeof(Heal)).Returns(true);
+                yield return new TestCaseData(typeof(HolyNova)).Returns(true);
+                yield return new TestCaseData(typeof(HolyWordSalvation)).Returns(true);
+                yield return new TestCaseData(typeof(HolyWordSanctify)).Returns(true);
+                yield return new TestCaseData(typeof(HolyWordSerenity)).Returns(true);
+                yield return new TestCaseData(typeof(Mindgames)).Returns(true);
+                yield return new TestCaseData(typeof(PowerWordShield)).Returns(false);
+                yield return new TestCaseData(typeof(PrayerOfHealing)).Returns(true);
+                yield return new TestCaseData(typeof(PrayerOfMending)).Returns(true);
+                yield return new TestCaseData(typeof(Renew)).Returns(false);
+                yield return new TestCaseData(typeof(UnholyNova)).Returns(true);
+                yield return new TestCaseData(typeof(UnholyTransfusion)).Returns(true);
+                yield return new TestCaseData(typeof(Smite)).Returns(false);
+                yield return new TestCaseData(typeof(Chastise)).Returns(false);
+                yield return new TestCaseData(typeof(ShadowWordPain)).Returns(false);
+                yield return new TestCaseData(typeof(ShadowWordDeath)).Returns(false);
+                yield return new TestCaseData(typeof(HolyFire)).Returns(false);
             }
         }
     }

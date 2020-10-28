@@ -96,5 +96,13 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         {
             return double.MaxValue;
         }
+
+        public override bool TriggersMastery(GameState gameState, BaseSpellData spellData)
+        {
+            // Halo Spellid doesnt have the "right" type, heal component does
+            var healData = _gameStateService.GetSpellData(gameState, Spell.HaloHeal);
+
+            return base.TriggersMastery(gameState, healData);
+        }
     }
 }

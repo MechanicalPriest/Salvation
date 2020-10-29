@@ -88,6 +88,12 @@ namespace Salvation.Core.State
 
         public double GetCriticalStrikeRating(GameState state)
         {
+            var playStyleValue = GetPlaystyle(state, "OverrideStatCriticalStrike").Value;
+            if (playStyleValue != 0)
+            {
+                return playStyleValue;
+            }
+
             var critRating = 0;
 
             foreach (var item in _profileGenerationService.GetEquippedItems(state.Profile))
@@ -114,6 +120,12 @@ namespace Salvation.Core.State
 
         public double GetHasteRating(GameState state)
         {
+            var playStyleValue = GetPlaystyle(state, "OverrideStatHaste").Value;
+            if (playStyleValue != 0)
+            {
+                return playStyleValue;
+            }
+
             var hasteRating = 0;
 
             foreach (var item in _profileGenerationService.GetEquippedItems(state.Profile))
@@ -140,6 +152,12 @@ namespace Salvation.Core.State
 
         public double GetVersatilityRating(GameState state)
         {
+            var playStyleValue = GetPlaystyle(state, "OverrideStatVersatility").Value;
+            if (playStyleValue != 0)
+            {
+                return playStyleValue;
+            }
+
             var versatilityRating = 0;
 
             foreach (var item in _profileGenerationService.GetEquippedItems(state.Profile))
@@ -166,6 +184,12 @@ namespace Salvation.Core.State
 
         public double GetMasteryRating(GameState state)
         {
+            var playStyleValue = GetPlaystyle(state, "OverrideStatMastery").Value;
+            if (playStyleValue != 0)
+            {
+                return playStyleValue;
+            }
+
             var masteryRating = 0;
 
             foreach (var item in _profileGenerationService.GetEquippedItems(state.Profile))
@@ -192,6 +216,12 @@ namespace Salvation.Core.State
 
         public double GetIntellect(GameState state)
         {
+            var playStyleValue = GetPlaystyle(state, "OverrideStatIntellect").Value;
+            if (playStyleValue != 0)
+            {
+                return playStyleValue;
+            }
+
             double intellect = 0;
 
             // Get base intellect based on class

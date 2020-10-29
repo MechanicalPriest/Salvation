@@ -773,6 +773,31 @@
       "Name": "FaeFermataNumberCDRSwaps",
       "Value": 3.0,
       "SpellId": 338305
+    },
+    {
+      "Name": "OverrideStatIntellect",
+      "Value": 0,
+      "SpellId": 0
+    },
+    {
+      "Name": "OverrideStatCriticalStrike",
+      "Value": 0,
+      "SpellId": 0
+    },
+    {
+      "Name": "OverrideStatHaste",
+      "Value": 0,
+      "SpellId": 0
+    },
+    {
+      "Name": "OverrideStatMastery",
+      "Value": 0,
+      "SpellId": 0
+    },
+    {
+      "Name": "OverrideStatVersatility",
+      "Value": 0,
+      "SpellId": 0
     }
   ],
   "Level": 60

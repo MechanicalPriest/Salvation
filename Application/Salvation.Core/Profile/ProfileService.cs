@@ -3,15 +3,49 @@ using Salvation.Core.Constants.Data;
 using Salvation.Core.Interfaces.Profile;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Salvation.Core.Profile
 {
-    public class ProfileGenerationService : IProfileGenerationService
+    public class ProfileService : IProfileService
     {
-        public ProfileGenerationService()
+        public ProfileService()
         {
 
         }
+
+        #region Equipment Management
+
+        public void EquipItem(PlayerProfile profile, Item item)
+        {
+            var existingItems = profile.Items
+                .Where(i => i.Slot == item.Slot && i.Equipped == true).ToList();
+
+            // If it's not ring/trinket and one already exists, remove
+            if (existingItems.Count == 1 && item.Slot != InventorySlot.Finger
+                && item.Slot != InventorySlot.Trinket)
+            {
+                var removeItem = existingItems.First();
+                removeItem.Equipped = false;
+            }
+
+            // If it is ring or trinket and we already have 2, remove the oldest one
+            if(existingItems.Count == 2 && 
+                (item.Slot == InventorySlot.Finger || item.Slot == InventorySlot.Trinket))
+            {
+                var removeItem = existingItems.First();
+                removeItem.Equipped = false;
+            }
+
+            item.Equipped = true;
+        }
+
+        public List<Item> GetEquippedItems(PlayerProfile profile)
+        {
+            return profile.Items.Where(i => i.Equipped).ToList();
+        }
+
+        #endregion
 
         public PlayerProfile GetDefaultProfile(Spec spec)
         {
@@ -115,13 +149,13 @@ namespace Salvation.Core.Profile
                     new CastProfile((int)Spell.HolyWordSerenity, 0.677d, 0.1515d, 1, 0), // HolyWordSerenity
                     new CastProfile((int)Spell.HolyWordSanctify, 0.7822d, 0.3234d, 6, 0), // HolyWordSanctify
                     new CastProfile((int)Spell.DivineHymn, 0.8805d, 0.314d, 20, 0), // DivineHymn
-                    new CastProfile((int)Spell.BindingHeal, 0d, 0d, 3, 0), // BindingHeal
+                    new CastProfile((int)Spell.BindingHeal, 0.12d, 0.34d, 3, 0), // BindingHeal
                     new CastProfile((int)Spell.CircleOfHealing, 0.8653d, 0.1417d, 5, 0), // CircleOfHealing
-                    new CastProfile((int)Spell.DivineStar, 0d, 0d, 6, 1), // DivineStar
+                    new CastProfile((int)Spell.DivineStar, 0.81d, 0.44d, 6, 1), // DivineStar
                     new CastProfile((int)Spell.Halo, 0.7596d, 0.3658d, 6, 1), // Halo
                     new CastProfile((int)Spell.HolyWordSalvation, 0.874d, 0.3142d, 20, 0), // HolyWordSalvation
                     new CastProfile((int)Spell.CosmicRipple, 0d, 0.2332d, 5, 0), // CosmicRipple
-                    new CastProfile((int)Spell.PowerWordShield, 0d, 0.0d, 1, 0), // PowerWordShield
+                    new CastProfile((int)Spell.PowerWordShield, 0.01d, 0.38d, 1, 0), // PowerWordShield
                     new CastProfile((int)Spell.EchoOfLight, 0d, 0.4224d, 1, 0), // Echo
                     new CastProfile((int)Spell.Smite, 1d, 0, 0, 1), // Smite
                     new CastProfile((int)Spell.ShadowWordPain, 1d, 0, 0, 1), // Shadow Word: Pain
@@ -130,14 +164,14 @@ namespace Salvation.Core.Profile
                     new CastProfile((int)Spell.HolyFire, 1d, 0, 0, 1),
 
                     // Covenants (SpellId, Efficiency, Overheal)
-                    new CastProfile((int)Spell.Mindgames, 1.0d, 0.0d, 1, 1), // Mindgames
-                    new CastProfile((int)Spell.FaeGuardians, 1.0d, 0.0d, 1, 0), // Fae Guardians
-                    new CastProfile((int)Spell.BoonOfTheAscended, 1.0d, 0.0d, 0, 0), // Boon of the Ascended
-                    new CastProfile((int)Spell.AscendedNova, 1.0d, 0.0d, 5, 1), // Ascended Nova
-                    new CastProfile((int)Spell.AscendedBlast, 1.0d, 0.0d, 1, 1), // Ascended Blast
-                    new CastProfile((int)Spell.AscendedEruption, 1.0d, 0.0d, 5, 1), // Ascended Eruption
-                    new CastProfile((int)Spell.UnholyNova, 1.0d, 0.0d, 6, 1), // Unholy Nova
-                    new CastProfile((int)Spell.UnholyTransfusion, 1.0d, 0.0d, 1, 1), // Unholy Transfusion
+                    new CastProfile((int)Spell.Mindgames, 1.0d, 0.01d, 1, 1), // Mindgames
+                    new CastProfile((int)Spell.FaeGuardians, 1.0d, 0.01d, 1, 0), // Fae Guardians
+                    new CastProfile((int)Spell.BoonOfTheAscended, 1.0d, 0.01d, 0, 0), // Boon of the Ascended
+                    new CastProfile((int)Spell.AscendedNova, 1.0d, 0.01d, 5, 1), // Ascended Nova
+                    new CastProfile((int)Spell.AscendedBlast, 1.0d, 0.01d, 1, 1), // Ascended Blast
+                    new CastProfile((int)Spell.AscendedEruption, 1.0d, 0.01d, 5, 1), // Ascended Eruption
+                    new CastProfile((int)Spell.UnholyNova, 1.0d, 0.01d, 6, 1), // Unholy Nova
+                    new CastProfile((int)Spell.UnholyTransfusion, 1.0d, 0.01d, 1, 1), // Unholy Transfusion
                 },
                 Talents = new List<Talent>()
                 {

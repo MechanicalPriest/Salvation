@@ -23,17 +23,17 @@ namespace Salvation.Explorer.Modelling
     {
         private readonly IConstantsService _constantsService;
         private readonly IModellingService _modellingService;
-        private readonly IProfileGenerationService _holyPriestProfileGeneratior;
+        private readonly IProfileService _holyPriestProfileGeneratior;
         private readonly IComparisonModeller<CovenantComparisonsResult> _comparisonModellerCovenant;
         private readonly IStatWeightGenerationService _statWeightGenerationService;
-        private readonly IProfileGenerationService _profileGenerationService;
+        private readonly IProfileService _profileGenerationService;
 
         public HolyPriestExplorer(IConstantsService constantsService,
             IModellingService modellingService,
-            IProfileGenerationService holyPriestProfileGeneratior,
+            IProfileService holyPriestProfileGeneratior,
             IComparisonModeller<CovenantComparisonsResult> comparisonModellerCovenant,
             IStatWeightGenerationService statWeightGenerationService,
-            IProfileGenerationService profileGenerationService)
+            IProfileService profileGenerationService)
         {
             _constantsService = constantsService;
             _modellingService = modellingService;

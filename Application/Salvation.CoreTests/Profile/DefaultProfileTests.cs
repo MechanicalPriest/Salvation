@@ -7,12 +7,12 @@ namespace Salvation.CoreTests.Profile
     [TestFixture]
     public class DefaultProfileTests
     {
-        private ProfileGenerationService _profileGenerationService;
+        private ProfileService _profileGenerationService;
 
         [OneTimeSetUp]
         public void InitOnce()
         {
-            _profileGenerationService = new ProfileGenerationService();
+            _profileGenerationService = new ProfileService();
         }
 
         public void PGS_Creates_Profile()

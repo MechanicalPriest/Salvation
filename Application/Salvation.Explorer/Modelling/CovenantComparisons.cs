@@ -28,7 +28,7 @@ namespace Salvation.Explorer.Modelling
     /// </summary>
     class CovenantComparisons : IComparisonModeller<CovenantComparisonsResult>
     {
-        private readonly IProfileGenerationService _profileGenerationService;
+        private readonly IProfileService _profileGenerationService;
         private readonly IModellingService _modellingService;
         private readonly IConstantsService _constantsService;
         private readonly IGameStateService _gameStateService;
@@ -39,7 +39,7 @@ namespace Salvation.Explorer.Modelling
         // 1. Add covenant
         // 2. Update the efficiency usage
 
-        public CovenantComparisons(IProfileGenerationService profileGenerationService,
+        public CovenantComparisons(IProfileService profileGenerationService,
             IModellingService modellingService,
             IConstantsService constantsService,
             IGameStateService gameStateService)

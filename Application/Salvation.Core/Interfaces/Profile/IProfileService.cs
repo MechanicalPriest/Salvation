@@ -1,9 +1,10 @@
 ﻿using Salvation.Core.Constants.Data;
 using Salvation.Core.Profile;
+using System.Collections.Generic;
 
 namespace Salvation.Core.Interfaces.Profile
 {
-    public interface IProfileGenerationService
+    public interface IProfileService
     {
         PlayerProfile GetDefaultProfile(Spec spec);
         PlayerProfile CloneProfile(PlayerProfile profile);
@@ -17,5 +18,7 @@ namespace Salvation.Core.Interfaces.Profile
         void RemoveCovenantData(PlayerProfile profile);
         void SetSpellCastProfile(PlayerProfile profile, CastProfile castProfile);
         void SetProfileName(PlayerProfile profile, string profileName);
+        void EquipItem(PlayerProfile profile, Item item);
+        List<Item> GetEquippedItems(PlayerProfile profile);
     }
 }

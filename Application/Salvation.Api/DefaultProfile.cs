@@ -14,9 +14,9 @@ namespace Salvation.Api
 {
     public class DefaultProfile
     {
-        private readonly IProfileGenerationService _profileGenerationService;
+        private readonly IProfileService _profileGenerationService;
 
-        public DefaultProfile(IProfileGenerationService profileGenerationService)
+        public DefaultProfile(IProfileService profileGenerationService)
         {
             _profileGenerationService = profileGenerationService;
         }

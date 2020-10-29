@@ -37,7 +37,7 @@ namespace Salvation.Explorer
                     // Common services
                     services.AddSingleton<IConstantsService, ConstantsService>();
                     services.AddSingleton<IGameStateService, GameStateService>();
-                    services.AddSingleton<IProfileGenerationService, ProfileGenerationService>();
+                    services.AddSingleton<IProfileService, ProfileService>();
                     services.AddSingleton<IComparisonModeller<CovenantComparisonsResult>, CovenantComparisons>();
                     services.AddSingleton<IStatWeightGenerationService, StatWeightGenerator>();
 

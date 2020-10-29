@@ -8,6 +8,7 @@ namespace Salvation.Core.Profile
         public uint ItemId { get; set; }
         public string Name { get; set; }
         public int ItemLevel { get; set; }
+        public bool Equipped { get; set; }
 
         public InventorySlot Slot { get; set; }
         /// <summary>

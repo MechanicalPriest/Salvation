@@ -1,5 +1,5 @@
 {
-  "GameVersion": "9.0.2.36294",
+  "GameVersion": "9.0.2.36401",
   "Specs": [
     {
       "Class": "Priest",
@@ -2289,7 +2289,8 @@
           "ConduitRanks": {}
         }
       ],
-      "Conduits": []
+      "Conduits": [],
+      "GCDFloor": 0.75
     }
   ],
   "GlobalModifiers": [],

@@ -120,7 +120,8 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         {
             spellData = ValidateSpellData(gameState, spellData);
 
-            return spellData.Gcd / _gameStateService.GetHasteMultiplier(gameState);
+            // Can't be lower than GCDFloor (0.75)
+            return Math.Max(spellData.Gcd / _gameStateService.GetHasteMultiplier(gameState), _gameStateService.GetGCDFloor(gameState));
         }
 
         public virtual double GetHastedCooldown(GameState gameState, BaseSpellData spellData = null)

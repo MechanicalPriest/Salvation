@@ -43,7 +43,12 @@ namespace Salvation.Core.State
             return castProfile;
         }
 
+        public double GetGCDFloor(GameState state)
+        {
+            var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.Spec).FirstOrDefault();
 
+            return specData.GCDFloor;
+        }
         /// <summary>
         /// Returns diminished rating based on percentage of stat, as changed in 9.0.1
         /// Calcs each individual point one at a time for its value based on the percent bracket of the point

@@ -96,6 +96,7 @@ namespace Salvation.Utility.SpellDataUpdate
                 Class = "Priest",
                 Spec = "Holy",
                 SpecId = 257,
+                GCDFloor = 0.75,
 
                 CritBase = 0.05,
                 HasteBase = 0.0,

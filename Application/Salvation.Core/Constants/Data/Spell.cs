@@ -60,12 +60,14 @@
 
         // Cov abilities
         Mindgames = 323673,
+        MindgamesHeal = 323706,
         FaeGuardians = 327661,
         BenevolentFaerie = 327710,
         GuardianFaerie = 327694,
         BoonOfTheAscended = 325013,
         AscendedNova = 325020,
         AscendedBlast = 325283,
+        AscendedBlastHeal = 325315,
         AscendedEruption = 325326,
         UnholyNova = 324724,
         UnholyTransfusion = 325118,

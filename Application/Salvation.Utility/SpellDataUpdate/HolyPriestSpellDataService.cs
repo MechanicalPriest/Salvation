@@ -53,12 +53,14 @@ namespace Salvation.Utility.SpellDataUpdate
 
                 // Covenant
                 (uint)Spell.Mindgames,
+                (uint)Spell.MindgamesHeal,
                 (uint)Spell.FaeGuardians,
                 (uint)Spell.BenevolentFaerie,
                 (uint)Spell.GuardianFaerie,
                 (uint)Spell.BoonOfTheAscended,
                 (uint)Spell.AscendedNova,
                 (uint)Spell.AscendedBlast,
+                (uint)Spell.AscendedBlastHeal,
                 (uint)Spell.AscendedEruption,
                 (uint)Spell.UnholyNova,
                 (uint)Spell.UnholyTransfusion,
@@ -204,7 +206,8 @@ namespace Salvation.Utility.SpellDataUpdate
                 SpCoefficient = effect.SpCoefficient,
                 TriggerSpellid = effect.TriggerSpellId,
                 Amplitude = effect.Amplitude,
-                TriggerSpell = GetBaseSpellData(effect.TriggerSpell)
+                TriggerSpell = GetBaseSpellData(effect.TriggerSpell),
+                Type = effect.EffectType
             };
 
             return newEffect;

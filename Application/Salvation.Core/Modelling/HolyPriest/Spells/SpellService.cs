@@ -45,7 +45,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
                 RawHealing = GetAverageRawHealing(gameState, spellData),
             };
 
-            if (spellData.IsMasteryTriggered)
+            if (TriggersMastery(gameState, spellData))
             {
                 var echoResult = GetHolyPriestMasteryResult(gameState, spellData);
                 if (echoResult != null)
@@ -240,6 +240,31 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             result.Healing = averageMasteryHeal * (1 - castProfile.OverhealPercent);
 
             return result;
+        }
+
+        public virtual bool TriggersMastery(GameState gameState, BaseSpellData spellData)
+        {
+            spellData = ValidateSpellData(gameState, spellData);
+
+            foreach (var effect in spellData.Effects)
+            {
+                if(effect.Type == 10)
+                {
+                    return true;
+                }
+
+                if (effect.TriggerSpell != null)
+                {
+                    foreach (var triggerSpellEffect in effect.TriggerSpell.Effects)
+                    {
+                        if (triggerSpellEffect.Type == 10)
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+                return false;
         }
 
         #endregion

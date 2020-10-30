@@ -108,5 +108,13 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         {
             return 1;
         }
+
+        public override bool TriggersMastery(GameState gameState, BaseSpellData spellData)
+        {
+            // MindGames Spellid doesnt have the "right" type, heal component does
+            var healData = _gameStateService.GetSpellData(gameState, Spell.MindgamesHeal);
+
+            return base.TriggersMastery(gameState, healData);
+        }
     }
 }

@@ -86,5 +86,13 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             return base.GetHastedCastTime(gameState, spellData);
         }
+
+        public override bool TriggersMastery(GameState gameState, BaseSpellData spellData)
+        {
+            // Prayer Of Healing Spellid doesnt have the "right" type, heal component does
+            var healData = _gameStateService.GetSpellData(gameState, Spell.PrayerOfMendingHeal);
+
+            return base.TriggersMastery(gameState, healData);
+        }
     }
 }

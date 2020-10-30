@@ -24,7 +24,7 @@ namespace Salvation.Utility.SpellDataUpdate
             globalConstants.Specs.Add(hpriestSpellData);
 
             // TODO: Update the game version string
-            globalConstants.GameVersion = "9.0.2.36294";
+            globalConstants.GameVersion = "9.0.2.36401";
 
             // Save the constants to file
             File.WriteAllText(@"..\..\..\..\Salvation.Core\constants.json",

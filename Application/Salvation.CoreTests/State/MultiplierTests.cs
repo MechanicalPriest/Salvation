@@ -27,7 +27,7 @@ namespace Salvation.CoreTests.State
             var crit = _gameStateService.GetCriticalStrikeMultiplier(_state);
 
             // Assert
-            Assert.AreEqual(1.1180000000000001d, crit);
+            Assert.AreEqual(1.14036d, crit);
         }
 
         [Test]

@@ -2290,7 +2290,8 @@
         }
       ],
       "Conduits": [],
-      "GCDFloor": 0.75
+      "GCDFloor": 0.75,
+      "CritMultiplier": 2.0
     }
   ],
   "GlobalModifiers": [],

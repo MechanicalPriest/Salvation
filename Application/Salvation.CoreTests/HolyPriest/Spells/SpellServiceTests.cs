@@ -578,11 +578,10 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(Renew)).Returns(900d);
                 yield return new TestCaseData(typeof(UnholyNova)).Returns(2500d);
                 yield return new TestCaseData(typeof(UnholyTransfusion)).Returns(0d);
-                // Ask niphyr about vals cause not same as game
                 yield return new TestCaseData(typeof(Smite)).Returns(100.0d);
                 yield return new TestCaseData(typeof(HolyWordChastise)).Returns(1000.0d);
-                yield return new TestCaseData(typeof(ShadowWordPain)).Returns(600.0d);
-                yield return new TestCaseData(typeof(ShadowWordDeath)).Returns(800.0d);
+                yield return new TestCaseData(typeof(ShadowWordPain)).Returns(150.0d);
+                yield return new TestCaseData(typeof(ShadowWordDeath)).Returns(250.0d);
                 yield return new TestCaseData(typeof(HolyFire)).Returns(500.0d);
             }
         }

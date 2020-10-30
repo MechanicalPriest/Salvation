@@ -43,9 +43,6 @@ namespace Salvation.Core.Constants
         public double Gcd { get; set; }
         public uint ChargeCooldown { get; set; }
         public uint Charges { get; set; }
-        // If mastery is triggered for the direct heal portion
-        // TODO: Move this out to a HolyPriestSpellData inherited class
-        public bool IsMasteryTriggered { get; set; }
 
         public IList<BaseSpellDataEffect> Effects { get; set; }
         public IDictionary<uint, double> ConduitRanks { get; set; }

@@ -33,7 +33,6 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 179715,
@@ -122,7 +121,6 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 283373,
@@ -148,7 +146,6 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 360821,
@@ -174,7 +171,6 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 22313,
@@ -227,7 +223,6 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 140102,
@@ -253,7 +248,6 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 140516,
@@ -279,7 +273,6 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 140527,
@@ -305,7 +298,6 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 122871,
@@ -331,7 +323,6 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 122873,
@@ -357,7 +348,6 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 153526,
@@ -383,7 +373,6 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 283376,
@@ -409,7 +398,6 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 709207,
@@ -453,7 +441,6 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 612,
@@ -479,7 +466,6 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 613,
@@ -505,7 +491,6 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 243,
@@ -525,7 +510,6 @@
                 "Gcd": 0.0,
                 "ChargeCooldown": 0,
                 "Charges": 0,
-                "IsMasteryTriggered": false,
                 "Effects": [
                   {
                     "Id": 105331,
@@ -574,7 +558,6 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 170810,
@@ -603,7 +586,6 @@
                 "Gcd": 0.0,
                 "ChargeCooldown": 0,
                 "Charges": 0,
-                "IsMasteryTriggered": false,
                 "Effects": [
                   {
                     "Id": 739572,
@@ -643,7 +625,6 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 810253,
@@ -678,7 +659,6 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 302436,
@@ -713,7 +693,6 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 95,
@@ -748,7 +727,6 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 13,
@@ -774,7 +752,6 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 59162,
@@ -794,7 +771,6 @@
                 "Gcd": 0.0,
                 "ChargeCooldown": 0,
                 "Charges": 0,
-                "IsMasteryTriggered": false,
                 "Effects": [
                   {
                     "Id": 59165,
@@ -861,7 +837,6 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 24949,
@@ -914,7 +889,6 @@
           "Gcd": 1.5,
           "ChargeCooldown": 60000,
           "Charges": 1,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 611,
@@ -949,7 +923,6 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 22870,
@@ -975,7 +948,6 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 806684,
@@ -1001,7 +973,6 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 33141,
@@ -1027,7 +998,6 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 22918,
@@ -1053,7 +1023,6 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 68102,
@@ -1088,7 +1057,6 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 812771,
@@ -1135,7 +1103,6 @@
                 "Gcd": 0.0,
                 "ChargeCooldown": 0,
                 "Charges": 0,
-                "IsMasteryTriggered": false,
                 "Effects": [
                   {
                     "Id": 812814,
@@ -1169,7 +1136,6 @@
                 "Gcd": 0.0,
                 "ChargeCooldown": 0,
                 "Charges": 0,
-                "IsMasteryTriggered": false,
                 "Effects": [
                   {
                     "Id": 812821,
@@ -1218,7 +1184,6 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 812824,
@@ -1262,7 +1227,6 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 819246,
@@ -1288,7 +1252,6 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 819312,
@@ -1350,7 +1313,6 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 819281,
@@ -1376,7 +1338,6 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 814983,
@@ -1465,7 +1426,6 @@
           "Gcd": 1.0,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 814997,
@@ -1494,7 +1454,6 @@
                 "Gcd": 0.0,
                 "ChargeCooldown": 0,
                 "Charges": 0,
-                "IsMasteryTriggered": false,
                 "Effects": [
                   {
                     "Id": 815030,
@@ -1543,7 +1502,6 @@
           "Gcd": 1.0,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 815465,
@@ -1576,6 +1534,31 @@
           "ConduitRanks": {}
         },
         {
+          "Id": 325315,
+          "Name": "Ascended Blast",
+          "ManaCost": 0.0,
+          "MaxRange": 100.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "Effects": [
+            {
+              "Id": 815508,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 10
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
           "Id": 325326,
           "Name": "Ascended Eruption",
           "ManaCost": 0.0,
@@ -1587,7 +1570,6 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 815531,
@@ -1622,7 +1604,6 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 814521,
@@ -1657,7 +1638,6 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 815191,
@@ -1683,7 +1663,6 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 815346,
@@ -1712,7 +1691,6 @@
                 "Gcd": 0.0,
                 "ChargeCooldown": 0,
                 "Charges": 0,
-                "IsMasteryTriggered": false,
                 "Effects": [
                   {
                     "Id": 815191,
@@ -1743,7 +1721,6 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 833714,
@@ -1769,7 +1746,6 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 835898,
@@ -1811,7 +1787,6 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 836264,
@@ -1862,7 +1837,6 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 836282,
@@ -1913,7 +1887,6 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 836807,
@@ -1964,7 +1937,6 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 836824,
@@ -2024,7 +1996,6 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 836877,
@@ -2066,7 +2037,6 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 236,
@@ -2092,7 +2062,6 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 624379,
@@ -2118,7 +2087,6 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 91044,
@@ -2144,7 +2112,7 @@
         {
           "Id": 589,
           "Name": "Shadow Word: Pain",
-          "ManaCost": 1.2,
+          "ManaCost": 0.3,
           "MaxRange": 40.0,
           "BaseCastTime": 0.0,
           "BaseCooldown": 0.0,
@@ -2153,7 +2121,6 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 242,
@@ -2197,7 +2164,6 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 819469,
@@ -2214,7 +2180,7 @@
         {
           "Id": 32379,
           "Name": "Shadow Word: Death",
-          "ManaCost": 1.6,
+          "ManaCost": 0.5,
           "MaxRange": 40.0,
           "BaseCastTime": 0.0,
           "BaseCooldown": 0.0,
@@ -2223,7 +2189,6 @@
           "Gcd": 1.5,
           "ChargeCooldown": 30000,
           "Charges": 1,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 22171,
@@ -2267,7 +2232,6 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 810248,
@@ -2293,7 +2257,6 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 6990,

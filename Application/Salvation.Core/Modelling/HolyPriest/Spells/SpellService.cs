@@ -45,7 +45,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
                 RawHealing = GetAverageRawHealing(gameState, spellData),
             };
 
-            if (spellData.IsMasteryTriggered)
+            if (TriggersMastery(gameState, spellData))
             {
                 var echoResult = GetHolyPriestMasteryResult(gameState, spellData);
                 if (echoResult != null)

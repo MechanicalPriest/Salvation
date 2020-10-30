@@ -120,7 +120,7 @@ namespace Salvation.Core.State
         {
             // TODO: Add other sources of crit increase here
             var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.Spec).FirstOrDefault();
-            double dmg = specData.CritMultiplier - 1;
+            double dmg = specData.CritMultiplier - 1; // 2 by default higher based on items but lowered to 1 for calc below
             
             // apply race bonus on crits
             switch (state.Profile.Race)
@@ -132,7 +132,9 @@ namespace Salvation.Core.State
                 default:
                     break;
             }
-            return 1 + specData.CritBase + (GetDrRating(GetCriticalStrikeRating(state), specData.CritCost) / specData.CritCost / 100) * dmg;
+
+            // min of calc'd multipler and 2 (cant have more than 100% crit i.e. more than 200% dmg from crit) + crit dmg
+            return Math.Min(1 + specData.CritBase + (GetDrRating(GetCriticalStrikeRating(state), specData.CritCost) / specData.CritCost / 100), 2) * dmg;
         }
 
         public double GetHasteRating(GameState state)

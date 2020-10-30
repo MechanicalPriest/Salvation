@@ -120,7 +120,19 @@ namespace Salvation.Core.State
         {
             // TODO: Add other sources of crit increase here
             var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.Spec).FirstOrDefault();
-            return 1 + specData.CritBase + (GetDrRating(GetCriticalStrikeRating(state), specData.CritCost) / specData.CritCost / 100);
+            double dmg = specData.CritMultiplier - 1;
+            
+            // apply race bonus on crits
+            switch (state.Profile.Race)
+            {
+                case Race.Dwarf:
+                case Race.Tauren:
+                    dmg += 0.02;
+                    break;
+                default:
+                    break;
+            }
+            return 1 + specData.CritBase + (GetDrRating(GetCriticalStrikeRating(state), specData.CritCost) / specData.CritCost / 100) * dmg;
         }
 
         public double GetHasteRating(GameState state)

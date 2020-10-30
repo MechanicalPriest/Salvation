@@ -219,6 +219,20 @@ namespace Salvation.CoreTests.HolyPriest.Spells
             return result;
         }
 
+        [TestCaseSource(typeof(SpellServiceTestsData), nameof(SpellServiceTestsData.GetHastedCooldown))]
+        public double GetHastedCooldown(Type t)
+        {
+            // Arrange
+            var spellService = Spells.Where(s => s.GetType() == t).FirstOrDefault();
+
+            // Act
+            var result = spellService.GetHastedCooldown(_gameState, null);
+            result = Math.Round(result, 10);
+
+            // Assert
+            return result;
+        }
+
         [TestCaseSource(typeof(SpellServiceTestsData), nameof(SpellServiceTestsData.GetMaximumCastsPerMinute))]
         public double GetMaximumCastsPerMinute(Type t)
         {
@@ -617,6 +631,40 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(ShadowWordPain)).Returns(0);
                 yield return new TestCaseData(typeof(ShadowWordDeath)).Returns(0);
                 yield return new TestCaseData(typeof(HolyFire)).Returns(1.3920134983000001d);
+            }
+        }
+        public static IEnumerable GetHastedCooldown
+        {
+            get
+            {
+                yield return new TestCaseData(typeof(AscendedBlast)).Returns(3.0d);
+                yield return new TestCaseData(typeof(AscendedEruption)).Returns(0);
+                yield return new TestCaseData(typeof(AscendedNova)).Returns(0);
+                yield return new TestCaseData(typeof(BindingHeal)).Returns(0.0d);
+                yield return new TestCaseData(typeof(BoonOfTheAscended)).Returns(180.0d);
+                yield return new TestCaseData(typeof(CircleOfHealing)).Returns(13.920134983100001d);
+                yield return new TestCaseData(typeof(DivineHymn)).Returns(180.0d);
+                yield return new TestCaseData(typeof(DivineStar)).Returns(15.0d);
+                yield return new TestCaseData(typeof(FaeGuardians)).Returns(90.0d);
+                yield return new TestCaseData(typeof(FlashHeal)).Returns(0d);
+                yield return new TestCaseData(typeof(Halo)).Returns(40.0d);
+                yield return new TestCaseData(typeof(Heal)).Returns(0.0d);
+                yield return new TestCaseData(typeof(HolyNova)).Returns(0);
+                yield return new TestCaseData(typeof(HolyWordSalvation)).Returns(720.0d);
+                yield return new TestCaseData(typeof(HolyWordSanctify)).Returns(60.0d);
+                yield return new TestCaseData(typeof(HolyWordSerenity)).Returns(60.0d);
+                yield return new TestCaseData(typeof(Mindgames)).Returns(45.0d);
+                yield return new TestCaseData(typeof(PowerWordShield)).Returns(0);
+                yield return new TestCaseData(typeof(PrayerOfHealing)).Returns(0.0d);
+                yield return new TestCaseData(typeof(PrayerOfMending)).Returns(11.136107986500001d);
+                yield return new TestCaseData(typeof(Renew)).Returns(0);
+                yield return new TestCaseData(typeof(UnholyNova)).Returns(60.0d);
+                yield return new TestCaseData(typeof(UnholyTransfusion)).Returns(0);
+                yield return new TestCaseData(typeof(Smite)).Returns(0.0d);
+                yield return new TestCaseData(typeof(HolyWordChastise)).Returns(60.0d);
+                yield return new TestCaseData(typeof(ShadowWordPain)).Returns(0);
+                yield return new TestCaseData(typeof(ShadowWordDeath)).Returns(18.560179977499999d);
+                yield return new TestCaseData(typeof(HolyFire)).Returns(10.0d);
             }
         }
         public static IEnumerable GetMaximumCastsPerMinute

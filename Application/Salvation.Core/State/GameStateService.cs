@@ -43,7 +43,12 @@ namespace Salvation.Core.State
             return castProfile;
         }
 
+        public double GetGCDFloor(GameState state)
+        {
+            var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.Spec).FirstOrDefault();
 
+            return specData.GCDFloor;
+        }
         /// <summary>
         /// Returns diminished rating based on percentage of stat, as changed in 9.0.1
         /// Calcs each individual point one at a time for its value based on the percent bracket of the point
@@ -115,7 +120,21 @@ namespace Salvation.Core.State
         {
             // TODO: Add other sources of crit increase here
             var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.Spec).FirstOrDefault();
-            return 1 + specData.CritBase + (GetDrRating(GetCriticalStrikeRating(state), specData.CritCost) / specData.CritCost / 100);
+            double criticalEffectMultiplier = specData.CritMultiplier - 1; // 2 by default higher based on items but lowered to 1 for calc below
+            
+            // apply race bonus on crits
+            switch (state.Profile.Race)
+            {
+                case Race.Dwarf:
+                case Race.Tauren:
+                    criticalEffectMultiplier += 0.02;
+                    break;
+                default:
+                    break;
+            }
+
+            // min of calc'd multipler and 2 (cant have more than 100% crit i.e. more than 200% dmg from crit) + crit dmg
+            return Math.Min(1 + specData.CritBase + (GetDrRating(GetCriticalStrikeRating(state), specData.CritCost) / specData.CritCost / 100), 2) * criticalEffectMultiplier;
         }
 
         public double GetHasteRating(GameState state)

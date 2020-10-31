@@ -97,8 +97,8 @@ namespace Salvation.CoreTests.HolyPriest.Conduits
             Assert.IsNotNull(resultWith);
             Assert.IsNotNull(dhResultWithout);
             Assert.IsNotNull(dhResultWith);
-            Assert.AreEqual(12821.661674640003d, dhResultWithout.RawHealing);
-            Assert.AreEqual(17206.669967366885d, dhResultWith.RawHealing);
+            Assert.AreEqual(13078.094908132802d, dhResultWithout.RawHealing);
+            Assert.AreEqual(17550.803366714223d, dhResultWith.RawHealing);
         }
     }
 }

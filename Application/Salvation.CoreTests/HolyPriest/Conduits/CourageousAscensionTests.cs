@@ -33,8 +33,8 @@ namespace Salvation.CoreTests.HolyPriest.Conduits
             var resultWithout = spellService.GetAverageDamage(gamestate2, null);
 
             // Assert
-            Assert.AreEqual(3794.7708990750002d, resultWithout);
-            Assert.AreEqual(4743.4636238437506d, resultWith);
+            Assert.AreEqual(3870.6663170565002d, resultWithout);
+            Assert.AreEqual(4838.332896320625d, resultWith);
         }
 
         [Test]
@@ -53,8 +53,8 @@ namespace Salvation.CoreTests.HolyPriest.Conduits
             var resultWithout = spellService.GetAverageDamage(gamestate2, null);
 
             // Assert
-            Assert.AreEqual(9360.1633738978235d, resultWithout);
-            Assert.AreEqual(9451.0387464599389d, resultWith);
+            Assert.AreEqual(9547.3666413757801d, resultWithout);
+            Assert.AreEqual(9640.0595213891374d, resultWith);
         }
 
         [Test]
@@ -73,8 +73,8 @@ namespace Salvation.CoreTests.HolyPriest.Conduits
             var resultWithout = spellService.GetAverageRawHealing(gamestate2, null);
 
             // Assert
-            Assert.AreEqual(7441.3298822487704d, resultWithout);
-            Assert.AreEqual(7513.5758034356513d, resultWith);
+            Assert.AreEqual(7590.1564798937452d, resultWithout);
+            Assert.AreEqual(7663.8473195043643d, resultWith);
         }
 
         [Test]

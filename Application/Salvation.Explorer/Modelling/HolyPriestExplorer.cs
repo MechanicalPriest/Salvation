@@ -23,21 +23,21 @@ namespace Salvation.Explorer.Modelling
     {
         private readonly IConstantsService _constantsService;
         private readonly IModellingService _modellingService;
-        private readonly IProfileService _holyPriestProfileGeneratior;
+        private readonly IProfileService _profileService;
         private readonly IComparisonModeller<CovenantComparisonsResult> _comparisonModellerCovenant;
         private readonly IStatWeightGenerationService _statWeightGenerationService;
         private readonly IProfileService _profileGenerationService;
 
         public HolyPriestExplorer(IConstantsService constantsService,
             IModellingService modellingService,
-            IProfileService holyPriestProfileGeneratior,
+            IProfileService profileService,
             IComparisonModeller<CovenantComparisonsResult> comparisonModellerCovenant,
             IStatWeightGenerationService statWeightGenerationService,
             IProfileService profileGenerationService)
         {
             _constantsService = constantsService;
             _modellingService = modellingService;
-            _holyPriestProfileGeneratior = holyPriestProfileGeneratior;
+            _profileService = profileService;
             _comparisonModellerCovenant = comparisonModellerCovenant;
             _statWeightGenerationService = statWeightGenerationService;
             _profileGenerationService = profileGenerationService;
@@ -75,7 +75,7 @@ namespace Salvation.Explorer.Modelling
             GameState state = new GameState
             {
                 Constants = _constantsService.LoadConstantsFromFile(),
-                Profile = _holyPriestProfileGeneratior.GetDefaultProfile(Spec.HolyPriest)
+                Profile = _profileService.GetDefaultProfile(Spec.HolyPriest)
             };
 
             var results = _modellingService.GetResults(state);

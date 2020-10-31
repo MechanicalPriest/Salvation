@@ -4,6 +4,7 @@ using Salvation.Core.Interfaces.Profile;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 
 namespace Salvation.Core.Profile
 {
@@ -16,7 +17,28 @@ namespace Salvation.Core.Profile
 
         #region Equipment Management
 
-        public void EquipItem(PlayerProfile profile, Item item)
+        /// <summary>
+        /// Add an item to the profile and optionally equip it (calls EquipItem()).
+        /// EquipItem() is automatically called if the item's Equippd property is true.
+        /// </summary>
+        /// <param name="profile"></param>
+        /// <param name="item">The item to add</param>
+        /// <param name="equip">Set to true to equip it immediately</param>
+        public void AddItem(PlayerProfile profile, Item item, bool equip = false)
+        {
+            // Item can be validated here if needed (effects/spells).
+            profile.Items.Add(item);
+
+            if (equip || item.Equipped)
+                EquipItem(profile, item);
+        }
+
+        /// <summary>
+        /// Sets an items state to eqipped
+        /// </summary>
+        /// <param name="profile"></param>
+        /// <param name="item"></param>
+        private void EquipItem(PlayerProfile profile, Item item)
         {
             var existingItems = profile.Items
                 .Where(i => i.Slot == item.Slot && i.Equipped == true).ToList();
@@ -47,16 +69,7 @@ namespace Salvation.Core.Profile
 
         #endregion
 
-        public PlayerProfile GetDefaultProfile(Spec spec)
-        {
-            PlayerProfile profile = spec switch
-            {
-                Spec.HolyPriest => GenerateHolyPriestProfile(),
-                _ => throw new ArgumentOutOfRangeException("Spec", "Spec must be a valid supported spec."),
-            };
-
-            return profile;
-        }
+        
 
         public void AddConduit(PlayerProfile profile, Conduit conduit, uint rank)
         {
@@ -88,10 +101,13 @@ namespace Salvation.Core.Profile
                 profile.Talents.Remove(talent);
         }
 
+        #region Covenant
+
         /// <summary>
         /// Swap the profiles covenant. This includes logic to 
         /// </summary>
         /// <param name="cleanupCovenantData">Override to false to not touch soulbinds, conduits etc</param>
+        // TODO: Delete this
         public void SetCovenant(PlayerProfile profile, Covenant covenant, bool cleanupCovenantData = true)
         {
             // Wipe the existing covenant data if we're setting a new covenant
@@ -99,6 +115,12 @@ namespace Salvation.Core.Profile
                 RemoveCovenantData(profile);
 
             profile.Covenant = new CovenantProfile() { Covenant = covenant };
+        }
+
+        public void SetCovenant(PlayerProfile profile, CovenantProfile covenant)
+        {
+            // Can add logic here to validate soulbinds / active conduits here.
+            profile.Covenant = covenant;
         }
 
         public void RemoveCovenantData(PlayerProfile profile)
@@ -112,6 +134,26 @@ namespace Salvation.Core.Profile
             profile.Conduits = new Dictionary<Conduit, uint>();
         }
 
+        public void AddSoulbind(PlayerProfile profile, SoulbindProfile soulbind)
+        {
+            // If we already have this soulbind, replace it.
+            var existingSoulbind = profile.Covenant.Soulbinds.Where(s => s.SoulbindId == soulbind.SoulbindId).FirstOrDefault();
+            if (existingSoulbind != null)
+            {
+                profile.Covenant.Soulbinds.Remove(existingSoulbind);
+            }
+
+            //profile.Covenant.
+        }
+
+        #endregion
+
+        /// <summary>
+        /// Sets the cast profile for the spellid set inside the provided CastProfile.
+        /// Will overwrite an existing CastProfile entry if exists.
+        /// </summary>
+        /// <param name="profile"></param>
+        /// <param name="castProfile"></param>
         public void SetSpellCastProfile(PlayerProfile profile, CastProfile castProfile)
         {
             profile.Casts.RemoveAll(c => c.SpellId == castProfile.SpellId);
@@ -119,9 +161,95 @@ namespace Salvation.Core.Profile
             profile.Casts.Add(castProfile);
         }
 
+        /// <summary>
+        /// Sets the playstyle for the name set inside the provided playstyle.
+        /// Will overwrite an existing playstyle entry if exists.
+        /// </summary>
+        /// <param name="profile"></param>
+        /// <param name="playstyle"></param>
+        public void SetPlaystyleEntry(PlayerProfile profile, PlaystyleEntry playstyle)
+        {
+            profile.PlaystyleEntries.RemoveAll(p => p.Name == playstyle.Name);
+
+            profile.PlaystyleEntries.Add(playstyle);
+        }
+
         public void SetProfileName(PlayerProfile profile, string profileName)
         {
             profile.Name = profileName;
+        }
+
+        #region Profile Management
+
+        public PlayerProfile GetDefaultProfile(Spec spec)
+        {
+            PlayerProfile profile = spec switch
+            {
+                Spec.HolyPriest => GenerateHolyPriestProfile(),
+                _ => throw new ArgumentOutOfRangeException("Spec", "Spec must be a valid supported spec."),
+            };
+
+            return profile;
+        }
+
+        /// <summary>
+        /// Attempts to re-create the profile following standard rules. 
+        /// Should be used after a profile is obtain from an unknown source
+        /// such as API endpoints or desserialisation. Errors are ignored
+        /// and invalid data is silently dropped. TODO: Capture dropped data
+        /// </summary>
+        /// <param name="profile">The profile from an unknown source</param>
+        /// <returns>A parsed and validated profile</returns>
+        public PlayerProfile ValidateProfile(PlayerProfile profile)
+        {
+            PlayerProfile newProfile = new PlayerProfile()
+            {
+                // First, apply basic stats and settings
+                Spec = profile.Spec,
+                Name = profile.Name,
+                Server = profile.Server,
+                Region = profile.Region,
+                Race = profile.Race,
+                Class = profile.Class,
+                Level = profile.Level,
+                FightLengthSeconds = profile.FightLengthSeconds,
+                // Stats
+                // TODO: Remove these, instead use the Get X methods.
+                Intellect = profile.Intellect,
+                MasteryRating = profile.MasteryRating,
+                VersatilityRating = profile.VersatilityRating,
+                HasteRating = profile.HasteRating,
+                CritRating = profile.CritRating
+            };
+
+            // Casts (spell usage).
+            foreach (var cast in profile.Casts)
+            {
+                SetSpellCastProfile(newProfile, cast);
+            }
+
+            // Items
+            foreach (var item in profile.Items)
+            {
+                AddItem(newProfile, item);
+            }
+
+            // Talents
+            foreach(var talent in profile.Talents)
+            {
+                AddTalent(newProfile, talent);
+            }
+
+            // Covenant
+            SetCovenant(newProfile, profile.Covenant);
+
+            // Playstyle entries
+            foreach (var playstyle in profile.PlaystyleEntries)
+            {
+                SetPlaystyleEntry(newProfile, playstyle);
+            }
+
+            return newProfile;
         }
 
         private PlayerProfile GenerateHolyPriestProfile()
@@ -219,5 +347,7 @@ namespace Salvation.Core.Profile
 
             return newProfile;
         }
+
+        #endregion
     }
 }

@@ -12,11 +12,11 @@ namespace Salvation.Core.State
 {
     public class GameStateService : IGameStateService
     {
-        private readonly IProfileService _profileGenerationService;
+        private readonly IProfileService _profileService;
 
-        public GameStateService(IProfileService profileGenerationService)
+        public GameStateService(IProfileService profileService)
         {
-            _profileGenerationService = profileGenerationService;
+            _profileService = profileService;
         }
 
         public GameStateService()
@@ -101,7 +101,7 @@ namespace Salvation.Core.State
 
             var critRating = 0;
 
-            foreach (var item in _profileGenerationService.GetEquippedItems(state.Profile))
+            foreach (var item in _profileService.GetEquippedItems(state.Profile))
             {
                 foreach (var mod in item.Mods)
                 {
@@ -147,7 +147,7 @@ namespace Salvation.Core.State
 
             var hasteRating = 0;
 
-            foreach (var item in _profileGenerationService.GetEquippedItems(state.Profile))
+            foreach (var item in _profileService.GetEquippedItems(state.Profile))
             {
                 foreach (var mod in item.Mods)
                 {
@@ -179,7 +179,7 @@ namespace Salvation.Core.State
 
             var versatilityRating = 0;
 
-            foreach (var item in _profileGenerationService.GetEquippedItems(state.Profile))
+            foreach (var item in _profileService.GetEquippedItems(state.Profile))
             {
                 foreach (var mod in item.Mods)
                 {
@@ -211,7 +211,7 @@ namespace Salvation.Core.State
 
             var masteryRating = 0;
 
-            foreach (var item in _profileGenerationService.GetEquippedItems(state.Profile))
+            foreach (var item in _profileService.GetEquippedItems(state.Profile))
             {
                 foreach (var mod in item.Mods)
                 {
@@ -303,7 +303,7 @@ namespace Salvation.Core.State
 
             // Add intellect from all items
             var clothCount = 0;
-            foreach (var item in _profileGenerationService.GetEquippedItems(state.Profile))
+            foreach (var item in _profileService.GetEquippedItems(state.Profile))
             {
                 if (item.Slot != InventorySlot.Cloak &&
                     item.ItemType == ItemType.ITEM_CLASS_ARMOR &&

@@ -12,6 +12,7 @@ namespace Salvation.Core.Profile
         public string Name { get; set; }
         public string Server { get; set; }
         public string Region { get; set; }
+        public int Level { get; set; }
         public Race Race { get; set; }
         public Class Class { get; set; }
 
@@ -24,6 +25,7 @@ namespace Salvation.Core.Profile
         /// <summary>
         /// Data containing cast effiency and overheal
         /// </summary>
+        // TODO: Rename this to something like SpellProfile as it's used for items/passives too
         public List<CastProfile> Casts { get; set; }
         /// <summary>
         /// Complete list of all items the character has available to it
@@ -36,16 +38,19 @@ namespace Salvation.Core.Profile
         /// <summary>
         /// Active conduits. Conduit:rank
         /// </summary>
+        // TODO: Delete this
         public Dictionary<Conduit, uint> Conduits { get; set; }
+        // TODO: Delete this
         public List<Soulbind> Soulbinds { get; set; }
 
         public CovenantProfile Covenant { get; set; }
+        // TODO: Delete this
         public List<Spell> Legendaries { get; set; }
 
         // Misc info
         public int FightLengthSeconds { get; set; }
+        // TODO: Merge these into Casts associated with SpellIds
         public List<PlaystyleEntry> PlaystyleEntries { get; set; }
-        public int Level { get; set; }
 
         public PlayerProfile()
         {

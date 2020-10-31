@@ -13,13 +13,13 @@ namespace Salvation.Core.Profile
     public class SimcProfileService : ISimcProfileService
     {
         private readonly ISimcGenerationService _simcGenerationService;
-        private readonly IProfileService _profileGenerationService;
+        private readonly IProfileService _profileService;
 
         public SimcProfileService(ISimcGenerationService simcGenerationService,
-            IProfileService profileGenerationService)
+            IProfileService profileService)
         {
             _simcGenerationService = simcGenerationService;
-            _profileGenerationService = profileGenerationService;
+            _profileService = profileService;
         }
 
         public async Task ApplySimcProfileAsync(string simcAddonString, PlayerProfile profile)
@@ -117,7 +117,8 @@ namespace Salvation.Core.Profile
                     ItemLevel = item.ItemLevel,
                     Slot = (InventorySlot)item.InventoryType,
                     ItemType = (ItemType)item.ItemClass,
-                    ItemSubType = item.ItemSubClass
+                    ItemSubType = item.ItemSubClass,
+                    Equipped = item.Equipped
                 };
 
                 // Add the items mods
@@ -161,9 +162,6 @@ namespace Salvation.Core.Profile
                 }
 
                 profile.Items.Add(newItem);
-
-                if (item.Equipped)
-                    _profileGenerationService.EquipItem(profile, newItem);
             }
         }
     }

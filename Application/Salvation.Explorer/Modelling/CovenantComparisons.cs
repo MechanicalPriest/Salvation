@@ -28,7 +28,7 @@ namespace Salvation.Explorer.Modelling
     /// </summary>
     class CovenantComparisons : IComparisonModeller<CovenantComparisonsResult>
     {
-        private readonly IProfileService _profileGenerationService;
+        private readonly IProfileService _profileService;
         private readonly IModellingService _modellingService;
         private readonly IConstantsService _constantsService;
         private readonly IGameStateService _gameStateService;
@@ -39,12 +39,12 @@ namespace Salvation.Explorer.Modelling
         // 1. Add covenant
         // 2. Update the efficiency usage
 
-        public CovenantComparisons(IProfileService profileGenerationService,
+        public CovenantComparisons(IProfileService profileService,
             IModellingService modellingService,
             IConstantsService constantsService,
             IGameStateService gameStateService)
         {
-            _profileGenerationService = profileGenerationService;
+            _profileService = profileService;
             _modellingService = modellingService;
             _constantsService = constantsService;
             _gameStateService = gameStateService;
@@ -84,7 +84,7 @@ namespace Salvation.Explorer.Modelling
 
         public PlayerProfile GetBaseProfile()
         {
-            var baseProfile = _profileGenerationService.GetDefaultProfile(Spec.HolyPriest);
+            var baseProfile = _profileService.GetDefaultProfile(Spec.HolyPriest);
 
             return baseProfile;
         }
@@ -94,7 +94,7 @@ namespace Salvation.Explorer.Modelling
             var profile = GetBaseProfile();
             var constants = _constantsService.LoadConstantsFromFile();
 
-            _profileGenerationService.SetProfileName(profile, "Baseline");
+            _profileService.SetProfileName(profile, "Baseline");
 
             var state = new GameState(profile, constants);
 
@@ -106,9 +106,9 @@ namespace Salvation.Explorer.Modelling
             var profile = GetBaseProfile();
             var constants = _constantsService.LoadConstantsFromFile();
 
-            _profileGenerationService.SetCovenant(profile, Covenant.Venthyr);
-            _profileGenerationService.SetProfileName(profile, "Mindgames on CD");
-            _profileGenerationService.SetSpellCastProfile(profile, new CastProfile()
+            _profileService.SetCovenant(profile, Covenant.Venthyr);
+            _profileService.SetProfileName(profile, "Mindgames on CD");
+            _profileService.SetSpellCastProfile(profile, new CastProfile()
             {
                 SpellId = (int)Spell.Mindgames,
                 Efficiency = 1d,
@@ -160,21 +160,21 @@ namespace Salvation.Explorer.Modelling
             var profile = GetBaseProfile();
             var constants = _constantsService.LoadConstantsFromFile();
 
-            _profileGenerationService.SetCovenant(profile, Covenant.Kyrian);
-            _profileGenerationService.SetProfileName(profile, profileName);
-            _profileGenerationService.SetSpellCastProfile(profile, new CastProfile()
+            _profileService.SetCovenant(profile, Covenant.Kyrian);
+            _profileService.SetProfileName(profile, profileName);
+            _profileService.SetSpellCastProfile(profile, new CastProfile()
             {
                 SpellId = (int)Spell.AscendedBlast,
                 Efficiency = abEfficiency,
                 OverhealPercent = 0d
             });
-            _profileGenerationService.SetSpellCastProfile(profile, new CastProfile()
+            _profileService.SetSpellCastProfile(profile, new CastProfile()
             {
                 SpellId = (int)Spell.AscendedNova,
                 Efficiency = anEfficiency,
                 OverhealPercent = 0d
             });
-            _profileGenerationService.SetSpellCastProfile(profile, new CastProfile()
+            _profileService.SetSpellCastProfile(profile, new CastProfile()
             {
                 SpellId = (int)Spell.AscendedEruption,
                 Efficiency = 1d,
@@ -205,9 +205,9 @@ namespace Salvation.Explorer.Modelling
             var profile = GetBaseProfile();
             var constants = _constantsService.LoadConstantsFromFile();
 
-            _profileGenerationService.SetCovenant(profile, Covenant.NightFae);
-            _profileGenerationService.SetProfileName(profile, profileName);
-            _profileGenerationService.SetSpellCastProfile(profile, new CastProfile()
+            _profileService.SetCovenant(profile, Covenant.NightFae);
+            _profileService.SetProfileName(profile, profileName);
+            _profileService.SetSpellCastProfile(profile, new CastProfile()
             {
                 SpellId = (int)Spell.FaeGuardians,
                 Efficiency = 1d,
@@ -251,9 +251,9 @@ namespace Salvation.Explorer.Modelling
             var profile = GetBaseProfile();
             var constants = _constantsService.LoadConstantsFromFile();
 
-            _profileGenerationService.SetCovenant(profile, Covenant.Necrolord);
-            _profileGenerationService.SetProfileName(profile, profileName);
-            _profileGenerationService.SetSpellCastProfile(profile, new CastProfile()
+            _profileService.SetCovenant(profile, Covenant.Necrolord);
+            _profileService.SetProfileName(profile, profileName);
+            _profileService.SetSpellCastProfile(profile, new CastProfile()
             {
                 SpellId = (int)Spell.UnholyNova,
                 Efficiency = 1,

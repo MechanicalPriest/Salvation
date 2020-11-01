@@ -107,7 +107,7 @@ namespace Salvation.CoreTests.Profile
 
             // Act
             var profile = await _simcProfileService.ApplySimcProfileAsync(_profileStringBeitaky, baseProfile);
-            var gameState = new GameState(profile, constants);
+            var gameState = gameStateService.CreateValidatedGameState(profile, constants);
 
             // Assert
             Assert.IsNotNull(profile);

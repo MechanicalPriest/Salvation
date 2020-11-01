@@ -97,7 +97,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
             Spells.Add(new ShadowWordDeath(gameStateService));
             Spells.Add(new HolyFire(gameStateService));
 
-            _gameState = new GameState(profile, constants);
+            _gameState = gameStateService.CreateValidatedGameState(profile, constants);
         }
 
         [TestCaseSource(typeof(SpellServiceTestsData), nameof(SpellServiceTestsData.GetMaximumHealTargets))]

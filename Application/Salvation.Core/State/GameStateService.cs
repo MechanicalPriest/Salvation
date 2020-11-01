@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
+using Salvation.Core.Interfaces.Constants;
 using Salvation.Core.Interfaces.Profile;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.Profile;
@@ -13,14 +14,17 @@ namespace Salvation.Core.State
     public class GameStateService : IGameStateService
     {
         private readonly IProfileService _profileService;
+        private readonly IConstantsService _constantsService;
 
-        public GameStateService(IProfileService profileService)
+        public GameStateService(IProfileService profileService,
+            IConstantsService constantsService)
         {
             _profileService = profileService;
+            _constantsService = constantsService;
         }
 
         public GameStateService()
-            : this(new ProfileService())
+            : this(new ProfileService(), new ConstantsService())
         {
 
         }
@@ -439,14 +443,6 @@ namespace Salvation.Core.State
             state.Profile.PlaystyleEntries.Add(newPlaystyle);
         }
 
-        public GameState CloneGameState(GameState state)
-        {
-            var stateString = JsonConvert.SerializeObject(state);
-
-            var newState = JsonConvert.DeserializeObject<GameState>(stateString);
-
-            return newState;
-        }
         public void JournalEntry(GameState state, string message)
         {
             state.JournalEntries.Add(message);
@@ -461,6 +457,29 @@ namespace Salvation.Core.State
 
             return state.JournalEntries;
         }
+
+        #region Gamestate Creation
+
+        public GameState CreateValidatedGameState(PlayerProfile profile, GlobalConstants constants = null)
+        {
+            var validatedProfile = _profileService.ValidateProfile(profile);
+
+            if (constants == null)
+                constants = _constantsService.LoadConstantsFromFile();
+
+            return new GameState(validatedProfile, constants);
+        }
+
+        public GameState CloneGameState(GameState state)
+        {
+            var stateString = JsonConvert.SerializeObject(state);
+
+            var newState = JsonConvert.DeserializeObject<GameState>(stateString);
+
+            return newState;
+        }
+
+        #endregion
 
         #region Holy Priest Specific
         // TODO: Move this out to a holy priest specific file at some point.

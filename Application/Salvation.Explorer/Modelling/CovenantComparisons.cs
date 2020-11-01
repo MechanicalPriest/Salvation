@@ -106,7 +106,8 @@ namespace Salvation.Explorer.Modelling
             var profile = GetBaseProfile();
             var constants = _constantsService.LoadConstantsFromFile();
 
-            _profileService.SetCovenant(profile, Covenant.Venthyr);
+            _profileService.SetCovenant(profile, 
+                new CovenantProfile() { Covenant = Covenant.Venthyr });
             _profileService.SetProfileName(profile, "Mindgames on CD");
             _profileService.SetSpellCastProfile(profile, new CastProfile()
             {
@@ -160,7 +161,8 @@ namespace Salvation.Explorer.Modelling
             var profile = GetBaseProfile();
             var constants = _constantsService.LoadConstantsFromFile();
 
-            _profileService.SetCovenant(profile, Covenant.Kyrian);
+            _profileService.SetCovenant(profile,
+                new CovenantProfile() { Covenant = Covenant.Kyrian });
             _profileService.SetProfileName(profile, profileName);
             _profileService.SetSpellCastProfile(profile, new CastProfile()
             {
@@ -205,7 +207,8 @@ namespace Salvation.Explorer.Modelling
             var profile = GetBaseProfile();
             var constants = _constantsService.LoadConstantsFromFile();
 
-            _profileService.SetCovenant(profile, Covenant.NightFae);
+            _profileService.SetCovenant(profile,
+                new CovenantProfile() { Covenant = Covenant.NightFae });
             _profileService.SetProfileName(profile, profileName);
             _profileService.SetSpellCastProfile(profile, new CastProfile()
             {
@@ -251,7 +254,8 @@ namespace Salvation.Explorer.Modelling
             var profile = GetBaseProfile();
             var constants = _constantsService.LoadConstantsFromFile();
 
-            _profileService.SetCovenant(profile, Covenant.Necrolord);
+            _profileService.SetCovenant(profile,
+                new CovenantProfile() { Covenant = Covenant.Necrolord });
             _profileService.SetProfileName(profile, profileName);
             _profileService.SetSpellCastProfile(profile, new CastProfile()
             {

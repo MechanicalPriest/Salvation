@@ -342,16 +342,23 @@ namespace Salvation.Core.State
 
         public bool IsConduitActive(GameState state, Conduit conduit)
         {
-            var exists = state.Profile.Conduits.Keys.Contains(conduit);
+            var soulbind = state.Profile.Covenant.Soulbinds.Where(s => s.IsActive).FirstOrDefault();
+            if (soulbind == null)
+                return false;
 
-            return exists;
+            return soulbind.ActiveConduits.ContainsKey(conduit);
         }
 
         public uint GetConduitRank(GameState state, Conduit conduit)
         {
             var rank = 0u;
-            if (state.Profile.Conduits.ContainsKey(conduit))
-                rank = state.Profile.Conduits[conduit];
+            
+            if(IsConduitActive(state, conduit))
+            {
+                var soulbind = state.Profile.Covenant.Soulbinds.Where(s => s.IsActive).FirstOrDefault();
+                if (soulbind.ActiveConduits.ContainsKey(conduit))
+                    return soulbind.ActiveConduits[conduit];
+            }
 
             return rank;
         }

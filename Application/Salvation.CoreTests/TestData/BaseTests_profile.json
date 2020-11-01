@@ -2536,11 +2536,8 @@
         "Name": "pelagos",
         "SoulbindId": 0,
         "IsActive": true,
-        "ActiveSoulbinds": [
-          328266
-        ],
+        "ActiveSoulbinds": [],
         "ActiveConduits": {
-          "CourageousAscension": 1
         }
       },
       {
@@ -2548,7 +2545,9 @@
         "SoulbindId": 0,
         "IsActive": false,
         "ActiveSoulbinds": [],
-        "ActiveConduits": {}
+        "ActiveConduits": {
+          "CourageousAscension": 1
+        }
       }
     ]
   },

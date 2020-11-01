@@ -22,13 +22,15 @@ namespace Salvation.Core.Profile
             _profileService = profileService;
         }
 
-        public async Task ApplySimcProfileAsync(string simcAddonString, PlayerProfile profile)
+        public async Task<PlayerProfile> ApplySimcProfileAsync(string simcAddonString, PlayerProfile profile)
         {
             var simcProfile = await _simcGenerationService.GenerateProfileAsync(simcAddonString);
 
             ApplyCharacterDetails(profile, simcProfile.ParsedProfile);
             ApplyCovenant(profile, simcProfile.ParsedProfile);
             ApplyItems(profile, simcProfile.GeneratedItems);
+
+            return _profileService.ValidateProfile(profile);
         }
 
         internal void ApplyCharacterDetails(PlayerProfile profile, SimcParsedProfile parsedProfile)
@@ -67,18 +69,17 @@ namespace Salvation.Core.Profile
                 // Add the active soulbind spells
                 foreach (var soulbindSpell in soulbind.SoulbindSpells)
                 {
-                    newSoulbind.ActiveSoulbinds.Add((Soulbind)soulbindSpell);
+                    newSoulbind.ActiveAbilities.Add((SoulbindAbility)soulbindSpell);
                 }
 
                 // Add the active conduits
                 foreach (var conduit in soulbind.SocketedConduits)
                 {
-                    newSoulbind.ActiveConduits.Add((Conduit)conduit.SpellId, conduit.Rank);
+                    newSoulbind.ActiveConduits.Add((Conduit)conduit.SpellId, (uint)conduit.Rank);
                 }
 
                 newSoulbind.Name = soulbind.Name;
-                // TODO: Update this once the new version of the library is added
-                //newSoulbind.SoulbindId = soulbind.SoulbindId;
+                newSoulbind.SoulbindId = soulbind.SoulbindId;
 
                 newSoulbind.IsActive = soulbind.IsActive;
 

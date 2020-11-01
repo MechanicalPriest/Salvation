@@ -11,9 +11,9 @@ namespace Salvation.Core.Interfaces.Profile
         PlayerProfile ValidateProfile(PlayerProfile profile);
 
 
-        void SetCovenant(PlayerProfile profile, Covenant covenant, bool cleanupCovenantData = true);
         void SetSpellCastProfile(PlayerProfile profile, CastProfile castProfile);
         void SetProfileName(PlayerProfile profile, string profileName);
         List<Item> GetEquippedItems(PlayerProfile profile);
+        void SetCovenant(PlayerProfile profile, CovenantProfile covenant);
     }
 }

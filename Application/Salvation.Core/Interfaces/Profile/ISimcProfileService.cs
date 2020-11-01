@@ -5,6 +5,6 @@ namespace Salvation.Core.Interfaces.Profile
 {
     interface ISimcProfileService
     {
-        Task ApplySimcProfileAsync(string simcAddonString, PlayerProfile profile);
+        Task<PlayerProfile> ApplySimcProfileAsync(string simcAddonString, PlayerProfile profile);
     }
 }

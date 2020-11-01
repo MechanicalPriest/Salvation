@@ -27,10 +27,10 @@ namespace Salvation.Core.Profile
         public void AddItem(PlayerProfile profile, Item item, bool equip = false)
         {
             // Item can be validated here if needed (effects/spells).
-            profile.Items.Add(item);
-
             if (equip || item.Equipped)
                 EquipItem(profile, item);
+
+            profile.Items.Add(item);
         }
 
         /// <summary>
@@ -67,28 +67,9 @@ namespace Salvation.Core.Profile
             return profile.Items.Where(i => i.Equipped).ToList();
         }
 
-        #endregion
+        #endregion Equipment Management
 
-        
-
-        public void AddConduit(PlayerProfile profile, Conduit conduit, uint rank)
-        {
-            if (profile.Conduits.ContainsKey(conduit))
-            {
-                profile.Conduits[conduit] = rank;
-            }
-
-            profile.Conduits.Add(conduit, rank);
-        }
-
-        public void RemoveConduit(PlayerProfile profile, Conduit conduit)
-        {
-            if (profile.Conduits.ContainsKey(conduit))
-            {
-                profile.Conduits.Remove(conduit);
-            }
-        }
-
+        #region Talent Management
         public void AddTalent(PlayerProfile profile, Talent talent)
         {
             if (!profile.Talents.Contains(talent))
@@ -101,49 +82,74 @@ namespace Salvation.Core.Profile
                 profile.Talents.Remove(talent);
         }
 
+        #endregion Talent Management
+
         #region Covenant
-
-        /// <summary>
-        /// Swap the profiles covenant. This includes logic to 
-        /// </summary>
-        /// <param name="cleanupCovenantData">Override to false to not touch soulbinds, conduits etc</param>
-        // TODO: Delete this
-        public void SetCovenant(PlayerProfile profile, Covenant covenant, bool cleanupCovenantData = true)
-        {
-            // Wipe the existing covenant data if we're setting a new covenant
-            if (cleanupCovenantData)
-                RemoveCovenantData(profile);
-
-            profile.Covenant = new CovenantProfile() { Covenant = covenant };
-        }
 
         public void SetCovenant(PlayerProfile profile, CovenantProfile covenant)
         {
             // Can add logic here to validate soulbinds / active conduits here.
-            profile.Covenant = covenant;
-        }
+            var newCovenant = new CovenantProfile()
+            {
+                Covenant = covenant.Covenant,
+                Renown = covenant.Renown
+            };
+            // TODO: Create all 3 soulbinds for this class/covenant first to prepopulate
 
-        public void RemoveCovenantData(PlayerProfile profile)
-        {
-            profile.Covenant = new CovenantProfile();
+            profile.Covenant = newCovenant;
 
-            // Wipe soulbinds
-            profile.Soulbinds = new List<Soulbind>();
+            // Apply soulbinds
+            foreach (var soulbind in covenant.Soulbinds)
+            {
+                AddSoulbind(profile, soulbind);
+            }
 
-            // Wipe conduits
-            profile.Conduits = new Dictionary<Conduit, uint>();
+            // Apply available conduits
+            foreach (var conduit in covenant.AvailableConduits)
+            {
+                AddAvailableConduit(profile, conduit.Key, conduit.Value);
+            }
         }
 
         public void AddSoulbind(PlayerProfile profile, SoulbindProfile soulbind)
         {
             // If we already have this soulbind, replace it.
-            var existingSoulbind = profile.Covenant.Soulbinds.Where(s => s.SoulbindId == soulbind.SoulbindId).FirstOrDefault();
-            if (existingSoulbind != null)
+            profile.Covenant.Soulbinds.RemoveAll(s => s.SoulbindId == soulbind.SoulbindId);
+
+            // TODO: More validation logic on soulbind before adding it?
+            profile.Covenant.Soulbinds.Add(soulbind);
+        }
+
+        public void AddAvailableConduit(PlayerProfile profile, Conduit conduit, int conduitRank)
+        {
+            if (profile.Covenant.AvailableConduits.ContainsKey(conduit))
+                profile.Covenant.AvailableConduits[conduit] = conduitRank;
+            else
+                profile.Covenant.AvailableConduits.Add(conduit, conduitRank);
+        }
+
+        public void AddActiveConduit(PlayerProfile profile, Conduit conduit, 
+            uint conduitRank, int soulbindId = 0)
+        {
+            SoulbindProfile soulbind;
+
+            if (soulbindId > 0)
             {
-                profile.Covenant.Soulbinds.Remove(existingSoulbind);
+                // If soulbind is set, search for it
+                soulbind = profile.Covenant.Soulbinds
+                    .Where(s => s.SoulbindId == soulbindId).FirstOrDefault();
+            }
+            else
+            {
+                // Otherwise, use the current active soulbind
+                soulbind = profile.Covenant.Soulbinds
+                    .Where(s => s.IsActive).FirstOrDefault();
             }
 
-            //profile.Covenant.
+            if (soulbind == null)
+                return;
+
+            soulbind.ActiveConduits.Add(conduit, conduitRank);
         }
 
         #endregion

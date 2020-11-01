@@ -1,5 +1,5 @@
 ﻿using Salvation.Core.Constants.Data;
-using Salvation.Core.Profile;
+using Salvation.Core.Profile.Model;
 using System.Collections.Generic;
 
 namespace Salvation.Core.Interfaces.Profile

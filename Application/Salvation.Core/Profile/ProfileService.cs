@@ -1,10 +1,10 @@
 ﻿using Newtonsoft.Json;
 using Salvation.Core.Constants.Data;
 using Salvation.Core.Interfaces.Profile;
+using Salvation.Core.Profile.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Sockets;
 
 namespace Salvation.Core.Profile
 {
@@ -57,7 +57,7 @@ namespace Salvation.Core.Profile
             }
 
             // If it is ring or trinket and we already have 2, remove the oldest one
-            if(existingItems.Count == 2 && 
+            if (existingItems.Count == 2 &&
                 (item.Slot == InventorySlot.Finger || item.Slot == InventorySlot.Trinket))
             {
                 var removeItem = existingItems.First();
@@ -128,7 +128,7 @@ namespace Salvation.Core.Profile
                 profile.Covenant.AvailableConduits.Add(conduit, conduitRank);
         }
 
-        public void AddActiveConduit(PlayerProfile profile, Conduit conduit, 
+        public void AddActiveConduit(PlayerProfile profile, Conduit conduit,
             uint conduitRank, int soulbindId = 0)
         {
             SoulbindProfile soulbind;
@@ -241,7 +241,7 @@ namespace Salvation.Core.Profile
             }
 
             // Talents
-            foreach(var talent in profile.Talents)
+            foreach (var talent in profile.Talents)
             {
                 AddTalent(newProfile, talent);
             }

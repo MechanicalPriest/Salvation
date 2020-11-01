@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using Salvation.Core.Constants.Data;
-using Salvation.Core.Interfaces.Constants;
 using Salvation.Core.Interfaces.Modelling;
 using Salvation.Core.Interfaces.Profile;
 using Salvation.Core.Interfaces.State;
@@ -22,21 +21,18 @@ namespace Salvation.Explorer.Modelling
 
     class HolyPriestExplorer : IHolyPriestExplorer
     {
-        private readonly IConstantsService _constantsService;
         private readonly IModellingService _modellingService;
         private readonly IProfileService _profileService;
         private readonly IComparisonModeller<CovenantComparisonsResult> _comparisonModellerCovenant;
         private readonly IStatWeightGenerationService _statWeightGenerationService;
         private readonly IGameStateService _gameStateService;
 
-        public HolyPriestExplorer(IConstantsService constantsService,
-            IModellingService modellingService,
+        public HolyPriestExplorer(IModellingService modellingService,
             IProfileService profileService,
             IComparisonModeller<CovenantComparisonsResult> comparisonModellerCovenant,
             IStatWeightGenerationService statWeightGenerationService,
             IGameStateService gameStateService)
         {
-            _constantsService = constantsService;
             _modellingService = modellingService;
             _profileService = profileService;
             _comparisonModellerCovenant = comparisonModellerCovenant;
@@ -77,7 +73,7 @@ namespace Salvation.Explorer.Modelling
                 _profileService.GetDefaultProfile(Spec.HolyPriest));
 
             var results = _modellingService.GetResults(state);
-            File.WriteAllText("hpriest_model_results.json", 
+            File.WriteAllText("hpriest_model_results.json",
                 JsonConvert.SerializeObject(results, Formatting.Indented));
         }
     }

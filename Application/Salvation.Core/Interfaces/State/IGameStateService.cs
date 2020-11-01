@@ -1,6 +1,6 @@
 ﻿using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
-using Salvation.Core.Profile;
+using Salvation.Core.Profile.Model;
 using Salvation.Core.State;
 using System.Collections.Generic;
 
@@ -44,7 +44,7 @@ namespace Salvation.Core.Interfaces.State
         void SetProfileName(GameState state, string profileName);
         bool IsConduitActive(GameState state, Conduit conduit);
         uint GetConduitRank(GameState state, Conduit conduit);
-        bool IsLegendaryActive(GameState state, Spell legendary); 
+        bool IsLegendaryActive(GameState state, Spell legendary);
         void SetActiveTalent(GameState state, Talent talent);
         bool IsTalentActive(GameState state, Talent talent);
 

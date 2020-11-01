@@ -84,7 +84,7 @@ namespace Salvation.Core.Modelling
             // Int
             var intState = _gameStateService.CloneGameState(baselineState);
             // TODO: Add a buff to the profile to add the additional stats
-            //intState.Profile.Intellect += numAdditionalStats;
+            intState.Profile.Intellect += numAdditionalStats;
             intState.Profile.Name = "Intellect Profile";
             states.Add(intState);
 

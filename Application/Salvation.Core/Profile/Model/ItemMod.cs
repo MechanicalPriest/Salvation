@@ -1,6 +1,6 @@
 ﻿using Salvation.Core.Constants.Data;
 
-namespace Salvation.Core.Profile
+namespace Salvation.Core.Profile.Model
 {
     public class ItemMod
     {

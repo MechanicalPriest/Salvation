@@ -1,10 +1,10 @@
 ﻿using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
 using Salvation.Core.Interfaces.Profile;
+using Salvation.Core.Profile.Model;
 using SimcProfileParser.Interfaces;
 using SimcProfileParser.Model.Generated;
 using SimcProfileParser.Model.Profile;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using ItemModType = Salvation.Core.Constants.Data.ItemModType;
@@ -150,7 +150,7 @@ namespace Salvation.Core.Profile
                         Type = effect.Type,
                         CooldownDuration = effect.CooldownDuration,
                         CooldownGroup = effect.CooldownGroup,
-                        CooldownGroupDuration = effect.CooldownGroupDuration 
+                        CooldownGroupDuration = effect.CooldownGroupDuration
                     };
 
                     // Populate this based on what we actually need

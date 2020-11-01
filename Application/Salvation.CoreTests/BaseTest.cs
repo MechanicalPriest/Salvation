@@ -2,7 +2,7 @@
 using Salvation.Core.Constants;
 using Salvation.Core.Interfaces.Constants;
 using Salvation.Core.Interfaces.State;
-using Salvation.Core.Profile;
+using Salvation.Core.Profile.Model;
 using Salvation.Core.State;
 using System.IO;
 

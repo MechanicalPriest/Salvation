@@ -1,4 +1,4 @@
-﻿using Salvation.Core.Profile;
+﻿using Salvation.Core.Profile.Model;
 using System.Threading.Tasks;
 
 namespace Salvation.Core.Interfaces.Profile

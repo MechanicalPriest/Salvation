@@ -1,11 +1,10 @@
 ﻿using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
-using Salvation.Core.Interfaces.Constants;
 using Salvation.Core.Interfaces.Modelling;
 using Salvation.Core.Interfaces.Profile;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.Modelling.Common;
-using Salvation.Core.Profile;
+using Salvation.Core.Profile.Model;
 using Salvation.Core.State;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +29,6 @@ namespace Salvation.Explorer.Modelling
     {
         private readonly IProfileService _profileService;
         private readonly IModellingService _modellingService;
-        private readonly IConstantsService _constantsService;
         private readonly IGameStateService _gameStateService;
 
         // The goal for this class is to build a bunch of different profiles to 
@@ -41,12 +39,10 @@ namespace Salvation.Explorer.Modelling
 
         public CovenantComparisons(IProfileService profileService,
             IModellingService modellingService,
-            IConstantsService constantsService,
             IGameStateService gameStateService)
         {
             _profileService = profileService;
             _modellingService = modellingService;
-            _constantsService = constantsService;
             _gameStateService = gameStateService;
         }
 
@@ -106,7 +102,7 @@ namespace Salvation.Explorer.Modelling
 
             var state = _gameStateService.CreateValidatedGameState(profile);
 
-            _gameStateService.SetCovenant(state, 
+            _gameStateService.SetCovenant(state,
                 new CovenantProfile() { Covenant = Covenant.Venthyr });
 
             _gameStateService.SetProfileName(state, "Mindgames on CD");

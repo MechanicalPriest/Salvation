@@ -1,7 +1,7 @@
 ﻿using Salvation.Core.Constants.Data;
 using System.Collections.Generic;
 
-namespace Salvation.Core.Profile
+namespace Salvation.Core.Profile.Model
 {
     public class SoulbindProfile
     {

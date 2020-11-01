@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Salvation.Core.Constants;
-using Salvation.Core.Profile;
+using Salvation.Core.Profile.Model;
 using System.Collections.Generic;
 
 namespace Salvation.Core.State

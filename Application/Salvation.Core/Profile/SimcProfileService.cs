@@ -39,15 +39,9 @@ namespace Salvation.Core.Profile
             profile.Name = parsedProfile.Name;
             profile.Server = parsedProfile.Server;
             profile.Region = parsedProfile.Region;
-            profile.Race = RaceHelpers.ParseRace(parsedProfile.Race);
-
-            profile.Spec = parsedProfile.Spec.ToLower() switch 
-            {
-                "holy" => Spec.HolyPriest,
-                _ => 0
-            };
-
-            // TODO: Class
+            profile.Race = (Race)parsedProfile.RaceId;
+            profile.Spec = (Spec)parsedProfile.SpecId;
+            profile.Class = (Class)parsedProfile.ClassId;
             profile.Level = parsedProfile.Level;
             // Other fields not included: Role, Simc addon version
         }

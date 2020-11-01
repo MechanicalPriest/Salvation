@@ -48,6 +48,7 @@ namespace Salvation.CoreTests.Profile
             Assert.AreEqual("torghast", profile.Server);
             Assert.AreEqual("us", profile.Region);
             Assert.AreEqual(Spec.HolyPriest, profile.Spec);
+            Assert.AreEqual(Class.Priest, profile.Class);
         }
 
         [Test]

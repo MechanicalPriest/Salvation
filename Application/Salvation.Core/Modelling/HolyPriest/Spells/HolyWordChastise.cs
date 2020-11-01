@@ -55,7 +55,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             var cpmSmite = _smiteSpellService.GetActualCastsPerMinute(gameState);
 
             var hastedCD = GetHastedCooldown(gameState, spellData);
-            var fightLength = gameState.Profile.FightLengthSeconds;
+            var fightLength = _gameStateService.GetFightLength(gameState);
 
             var hwCDRSmite = _gameStateService.GetTotalHolyWordCooldownReduction(gameState, Spell.Smite);
 

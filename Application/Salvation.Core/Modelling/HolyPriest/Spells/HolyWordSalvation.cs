@@ -62,7 +62,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             var hastedCD = GetHastedCooldown(gameState, spellData);
             var hastedCT = GetHastedCastTime(gameState, spellData);
-            var fightLength = gameState.Profile.FightLengthSeconds;
+            var fightLength = _gameStateService.GetFightLength(gameState);
 
             var hwCDRSerenity = _gameStateService.GetTotalHolyWordCooldownReduction(gameState, Spell.HolyWordSerenity);
             var hwCDRSanctify = _gameStateService.GetTotalHolyWordCooldownReduction(gameState, Spell.HolyWordSanctify);

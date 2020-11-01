@@ -5,7 +5,7 @@ using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Extensions.Logging;
 using Salvation.Core.Constants.Data;
 using Salvation.Core.Interfaces.Profile;
-using Salvation.Core.Profile;
+using Salvation.Core.Profile.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;

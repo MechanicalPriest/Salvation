@@ -1,9 +1,10 @@
-﻿using Salvation.Core.Constants.Data;
+﻿using Salvation.Core.Constants;
+using Salvation.Core.Constants.Data;
 using Salvation.Core.Interfaces.Profile;
+using Salvation.Core.Profile.Model;
 using SimcProfileParser.Interfaces;
 using SimcProfileParser.Model.Generated;
 using SimcProfileParser.Model.Profile;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using ItemModType = Salvation.Core.Constants.Data.ItemModType;
@@ -13,22 +14,24 @@ namespace Salvation.Core.Profile
     public class SimcProfileService : ISimcProfileService
     {
         private readonly ISimcGenerationService _simcGenerationService;
-        private readonly IProfileService _profileGenerationService;
+        private readonly IProfileService _profileService;
 
         public SimcProfileService(ISimcGenerationService simcGenerationService,
-            IProfileService profileGenerationService)
+            IProfileService profileService)
         {
             _simcGenerationService = simcGenerationService;
-            _profileGenerationService = profileGenerationService;
+            _profileService = profileService;
         }
 
-        public async Task ApplySimcProfileAsync(string simcAddonString, PlayerProfile profile)
+        public async Task<PlayerProfile> ApplySimcProfileAsync(string simcAddonString, PlayerProfile profile)
         {
             var simcProfile = await _simcGenerationService.GenerateProfileAsync(simcAddonString);
 
             ApplyCharacterDetails(profile, simcProfile.ParsedProfile);
             ApplyCovenant(profile, simcProfile.ParsedProfile);
             ApplyItems(profile, simcProfile.GeneratedItems);
+
+            return _profileService.ValidateProfile(profile);
         }
 
         internal void ApplyCharacterDetails(PlayerProfile profile, SimcParsedProfile parsedProfile)
@@ -36,15 +39,9 @@ namespace Salvation.Core.Profile
             profile.Name = parsedProfile.Name;
             profile.Server = parsedProfile.Server;
             profile.Region = parsedProfile.Region;
-            profile.Race = RaceHelpers.ParseRace(parsedProfile.Race);
-
-            profile.Spec = parsedProfile.Spec.ToLower() switch 
-            {
-                "holy" => Spec.HolyPriest,
-                _ => 0
-            };
-
-            // TODO: Class
+            profile.Race = (Race)parsedProfile.RaceId;
+            profile.Spec = (Spec)parsedProfile.SpecId;
+            profile.Class = (Class)parsedProfile.ClassId;
             profile.Level = parsedProfile.Level;
             // Other fields not included: Role, Simc addon version
         }
@@ -67,18 +64,17 @@ namespace Salvation.Core.Profile
                 // Add the active soulbind spells
                 foreach (var soulbindSpell in soulbind.SoulbindSpells)
                 {
-                    newSoulbind.ActiveSoulbinds.Add((Soulbind)soulbindSpell);
+                    newSoulbind.ActiveAbilities.Add((SoulbindAbility)soulbindSpell);
                 }
 
                 // Add the active conduits
                 foreach (var conduit in soulbind.SocketedConduits)
                 {
-                    newSoulbind.ActiveConduits.Add((Conduit)conduit.SpellId, conduit.Rank);
+                    newSoulbind.ActiveConduits.Add((Conduit)conduit.SpellId, (uint)conduit.Rank);
                 }
 
                 newSoulbind.Name = soulbind.Name;
-                // TODO: Update this once the new version of the library is added
-                //newSoulbind.SoulbindId = soulbind.SoulbindId;
+                newSoulbind.SoulbindId = soulbind.SoulbindId;
 
                 newSoulbind.IsActive = soulbind.IsActive;
 
@@ -117,7 +113,8 @@ namespace Salvation.Core.Profile
                     ItemLevel = item.ItemLevel,
                     Slot = (InventorySlot)item.InventoryType,
                     ItemType = (ItemType)item.ItemClass,
-                    ItemSubType = item.ItemSubClass
+                    ItemSubType = item.ItemSubClass,
+                    Equipped = item.Equipped
                 };
 
                 // Add the items mods
@@ -153,17 +150,24 @@ namespace Salvation.Core.Profile
                         Type = effect.Type,
                         CooldownDuration = effect.CooldownDuration,
                         CooldownGroup = effect.CooldownGroup,
-                        CooldownGroupDuration = effect.CooldownGroupDuration,
-                        //Spell = effect.Spell // Populate this based on what we actually need later
+                        CooldownGroupDuration = effect.CooldownGroupDuration
                     };
+
+                    // Populate this based on what we actually need
+                    if (effect.Spell != null)
+                    {
+                        var newSpell = new BaseSpellData()
+                        {
+                            Id = effect.Spell.SpellId
+                        };
+
+                        newEffect.Spell = newSpell;
+                    }
 
                     newItem.Effects.Add(newEffect);
                 }
 
                 profile.Items.Add(newItem);
-
-                if (item.Equipped)
-                    _profileGenerationService.EquipItem(profile, newItem);
             }
         }
     }

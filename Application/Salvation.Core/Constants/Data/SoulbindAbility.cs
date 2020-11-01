@@ -4,7 +4,7 @@
     /// TODO: Automatically populate this from covenant_data.inc
     /// You can replace `^.*(\d{6}).+"([^"]{1,})".*$` with `$2 = $1,` to speed the process up for now.
     /// </summary>
-    public enum Soulbind
+    public enum SoulbindAbility
     {
         FieldofBlossoms = 319191,
         SocialButterfly = 319210,

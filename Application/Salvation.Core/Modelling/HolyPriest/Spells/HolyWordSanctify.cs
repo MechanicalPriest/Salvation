@@ -63,7 +63,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             var cpmBindingHeal = _bindingHealSpellService.GetActualCastsPerMinute(gameState);
 
             var hastedCD = GetHastedCooldown(gameState, spellData);
-            var fightLength = gameState.Profile.FightLengthSeconds;
+            var fightLength = _gameStateService.GetFightLength(gameState);
 
             var hwCDRPoH = _gameStateService.GetTotalHolyWordCooldownReduction(gameState, Spell.PrayerOfHealing);
             var hwCDRBindingHeal = _gameStateService.GetTotalHolyWordCooldownReduction(gameState, Spell.BindingHeal);

@@ -1,6 +1,6 @@
 ﻿using Salvation.Core.Constants;
 
-namespace Salvation.Core.Profile
+namespace Salvation.Core.Profile.Model
 {
     public class ItemEffect
     {

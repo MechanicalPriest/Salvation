@@ -1,12 +1,18 @@
 ﻿using Newtonsoft.Json;
 using Salvation.Core.Constants.Data;
 using Salvation.Core.Interfaces.Profile;
+using Salvation.Core.Profile.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Salvation.Core.Profile
 {
+    /// <summary>
+    /// This class has methods to interact with a profile at a high level 
+    /// i.e. Validating, Cloning the profile. Use GameStateService for general
+    /// get/set operations within the profile.
+    /// </summary>
     public class ProfileService : IProfileService
     {
         public ProfileService()
@@ -16,7 +22,28 @@ namespace Salvation.Core.Profile
 
         #region Equipment Management
 
-        public void EquipItem(PlayerProfile profile, Item item)
+        /// <summary>
+        /// Add an item to the profile and optionally equip it (calls EquipItem()).
+        /// EquipItem() is automatically called if the item's Equippd property is true.
+        /// </summary>
+        /// <param name="profile"></param>
+        /// <param name="item">The item to add</param>
+        /// <param name="equip">Set to true to equip it immediately</param>
+        public void AddItem(PlayerProfile profile, Item item, bool equip = false)
+        {
+            // Item can be validated here if needed (effects/spells).
+            if (equip || item.Equipped)
+                EquipItem(profile, item);
+
+            profile.Items.Add(item);
+        }
+
+        /// <summary>
+        /// Sets an items state to eqipped
+        /// </summary>
+        /// <param name="profile"></param>
+        /// <param name="item"></param>
+        private void EquipItem(PlayerProfile profile, Item item)
         {
             var existingItems = profile.Items
                 .Where(i => i.Slot == item.Slot && i.Equipped == true).ToList();
@@ -30,7 +57,7 @@ namespace Salvation.Core.Profile
             }
 
             // If it is ring or trinket and we already have 2, remove the oldest one
-            if(existingItems.Count == 2 && 
+            if (existingItems.Count == 2 &&
                 (item.Slot == InventorySlot.Finger || item.Slot == InventorySlot.Trinket))
             {
                 var removeItem = existingItems.First();
@@ -45,7 +72,120 @@ namespace Salvation.Core.Profile
             return profile.Items.Where(i => i.Equipped).ToList();
         }
 
+        #endregion Equipment Management
+
+        #region Talent Management
+
+        public void AddTalent(PlayerProfile profile, Talent talent)
+        {
+            if (!profile.Talents.Contains(talent))
+                profile.Talents.Add(talent);
+        }
+
+        #endregion Talent Management
+
+        #region Covenant
+
+        public void SetCovenant(PlayerProfile profile, CovenantProfile covenant)
+        {
+            // Can add logic here to validate soulbinds / active conduits here.
+            var newCovenant = new CovenantProfile()
+            {
+                Covenant = covenant.Covenant,
+                Renown = covenant.Renown
+            };
+            // TODO: Create all 3 soulbinds for this class/covenant first to prepopulate
+
+            profile.Covenant = newCovenant;
+
+            // Apply soulbinds
+            foreach (var soulbind in covenant.Soulbinds)
+            {
+                AddSoulbind(profile, soulbind);
+            }
+
+            // Apply available conduits
+            foreach (var conduit in covenant.AvailableConduits)
+            {
+                AddAvailableConduit(profile, conduit.Key, conduit.Value);
+            }
+        }
+
+        public void AddSoulbind(PlayerProfile profile, SoulbindProfile soulbind)
+        {
+            // If we already have this soulbind, replace it.
+            profile.Covenant.Soulbinds.RemoveAll(s => s.SoulbindId == soulbind.SoulbindId);
+
+            // TODO: More validation logic on soulbind before adding it?
+            profile.Covenant.Soulbinds.Add(soulbind);
+        }
+
+        public void AddAvailableConduit(PlayerProfile profile, Conduit conduit, int conduitRank)
+        {
+            if (profile.Covenant.AvailableConduits.ContainsKey(conduit))
+                profile.Covenant.AvailableConduits[conduit] = conduitRank;
+            else
+                profile.Covenant.AvailableConduits.Add(conduit, conduitRank);
+        }
+
+        public void AddActiveConduit(PlayerProfile profile, Conduit conduit,
+            uint conduitRank, int soulbindId = 0)
+        {
+            SoulbindProfile soulbind;
+
+            if (soulbindId > 0)
+            {
+                // If soulbind is set, search for it
+                soulbind = profile.Covenant.Soulbinds
+                    .Where(s => s.SoulbindId == soulbindId).FirstOrDefault();
+            }
+            else
+            {
+                // Otherwise, use the current active soulbind
+                soulbind = profile.Covenant.Soulbinds
+                    .Where(s => s.IsActive).FirstOrDefault();
+            }
+
+            if (soulbind == null)
+                return;
+
+            soulbind.ActiveConduits.Add(conduit, conduitRank);
+        }
+
         #endregion
+
+        /// <summary>
+        /// Sets the cast profile for the spellid set inside the provided CastProfile.
+        /// Will overwrite an existing CastProfile entry if exists.
+        /// </summary>
+        /// <param name="profile"></param>
+        /// <param name="castProfile"></param>
+        public void SetSpellCastProfile(PlayerProfile profile, CastProfile castProfile)
+        {
+            profile.Casts.RemoveAll(c => c.SpellId == castProfile.SpellId);
+
+            profile.Casts.Add(castProfile);
+        }
+
+        /// <summary>
+        /// Sets the playstyle for the name set inside the provided playstyle.
+        /// Will overwrite an existing playstyle entry if exists.
+        /// </summary>
+        /// <param name="profile"></param>
+        /// <param name="playstyle"></param>
+        public void SetPlaystyleEntry(PlayerProfile profile, PlaystyleEntry playstyle)
+        {
+            profile.PlaystyleEntries.RemoveAll(p => p.Name == playstyle.Name);
+
+            profile.PlaystyleEntries.Add(playstyle);
+        }
+
+        public void SetProfileName(PlayerProfile profile, string profileName)
+        {
+            profile.Name = profileName;
+        }
+
+        #region Profile Management
 
         public PlayerProfile GetDefaultProfile(Spec spec)
         {
@@ -58,70 +198,64 @@ namespace Salvation.Core.Profile
             return profile;
         }
 
-        public void AddConduit(PlayerProfile profile, Conduit conduit, uint rank)
-        {
-            if (profile.Conduits.ContainsKey(conduit))
-            {
-                profile.Conduits[conduit] = rank;
-            }
-
-            profile.Conduits.Add(conduit, rank);
-        }
-
-        public void RemoveConduit(PlayerProfile profile, Conduit conduit)
-        {
-            if (profile.Conduits.ContainsKey(conduit))
-            {
-                profile.Conduits.Remove(conduit);
-            }
-        }
-
-        public void AddTalent(PlayerProfile profile, Talent talent)
-        {
-            if (!profile.Talents.Contains(talent))
-                profile.Talents.Add(talent);
-        }
-
-        public void RemoveTalent(PlayerProfile profile, Talent talent)
-        {
-            if (profile.Talents.Contains(talent))
-                profile.Talents.Remove(talent);
-        }
-
         /// <summary>
-        /// Swap the profiles covenant. This includes logic to 
+        /// Attempts to re-create the profile following standard rules. 
+        /// Should be used after a profile is obtain from an unknown source
+        /// such as API endpoints or desserialisation. Errors are ignored
+        /// and invalid data is silently dropped. TODO: Capture dropped data
         /// </summary>
-        /// <param name="cleanupCovenantData">Override to false to not touch soulbinds, conduits etc</param>
-        public void SetCovenant(PlayerProfile profile, Covenant covenant, bool cleanupCovenantData = true)
+        /// <param name="profile">The profile from an unknown source</param>
+        /// <returns>A parsed and validated profile</returns>
+        public PlayerProfile ValidateProfile(PlayerProfile profile)
         {
-            // Wipe the existing covenant data if we're setting a new covenant
-            if (cleanupCovenantData)
-                RemoveCovenantData(profile);
+            PlayerProfile newProfile = new PlayerProfile()
+            {
+                // First, apply basic stats and settings
+                Spec = profile.Spec,
+                Name = profile.Name,
+                Server = profile.Server,
+                Region = profile.Region,
+                Race = profile.Race,
+                Class = profile.Class,
+                Level = profile.Level,
+                FightLengthSeconds = profile.FightLengthSeconds,
+                // Stats
+                // TODO: Remove these, instead use the Get X methods.
+                Intellect = profile.Intellect,
+                MasteryRating = profile.MasteryRating,
+                VersatilityRating = profile.VersatilityRating,
+                HasteRating = profile.HasteRating,
+                CritRating = profile.CritRating
+            };
 
-            profile.Covenant = new CovenantProfile() { Covenant = covenant };
-        }
+            // Casts (spell usage).
+            foreach (var cast in profile.Casts)
+            {
+                SetSpellCastProfile(newProfile, cast);
+            }
 
-        public void RemoveCovenantData(PlayerProfile profile)
-        {
-            profile.Covenant = new CovenantProfile();
+            // Items
+            foreach (var item in profile.Items)
+            {
+                AddItem(newProfile, item);
+            }
 
-            // Wipe soulbinds
-            profile.Soulbinds = new List<Soulbind>();
+            // Talents
+            foreach (var talent in profile.Talents)
+            {
+                AddTalent(newProfile, talent);
+            }
 
-            // Wipe conduits
-            profile.Conduits = new Dictionary<Conduit, uint>();
-        }
+            // Covenant
+            SetCovenant(newProfile, profile.Covenant);
 
-        public void SetSpellCastProfile(PlayerProfile profile, CastProfile castProfile)
-        {
-            profile.Casts.RemoveAll(c => c.SpellId == castProfile.SpellId);
+            // Playstyle entries
+            foreach (var playstyle in profile.PlaystyleEntries)
+            {
+                SetPlaystyleEntry(newProfile, playstyle);
+            }
 
-            profile.Casts.Add(castProfile);
-        }
-
-        public void SetProfileName(PlayerProfile profile, string profileName)
-        {
-            profile.Name = profileName;
+            return newProfile;
         }
 
         private PlayerProfile GenerateHolyPriestProfile()
@@ -219,5 +353,7 @@ namespace Salvation.Core.Profile
 
             return newProfile;
         }
+
+        #endregion
     }
 }

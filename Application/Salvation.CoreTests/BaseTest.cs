@@ -1,7 +1,8 @@
 ﻿using Newtonsoft.Json;
 using Salvation.Core.Constants;
 using Salvation.Core.Interfaces.Constants;
-using Salvation.Core.Profile;
+using Salvation.Core.Interfaces.State;
+using Salvation.Core.Profile.Model;
 using Salvation.Core.State;
 using System.IO;
 
@@ -19,7 +20,9 @@ namespace Salvation.CoreTests
             var profile = JsonConvert.DeserializeObject<PlayerProfile>(
                 File.ReadAllText(Path.Combine(basePath, "BaseTests_profile.json")));
 
-            return new GameState(profile, constants);
+            IGameStateService gameStateService = new GameStateService();
+
+            return gameStateService.CreateValidatedGameState(profile, constants);
         }
     }
 }

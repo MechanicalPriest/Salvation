@@ -4,7 +4,7 @@ using Salvation.Core.Constants;
 using Salvation.Core.Interfaces.Constants;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.Modelling.HolyPriest.Spells;
-using Salvation.Core.Profile;
+using Salvation.Core.Profile.Model;
 using Salvation.Core.State;
 using System;
 using System.Collections;
@@ -97,7 +97,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
             Spells.Add(new ShadowWordDeath(gameStateService));
             Spells.Add(new HolyFire(gameStateService));
 
-            _gameState = new GameState(profile, constants);
+            _gameState = gameStateService.CreateValidatedGameState(profile, constants);
         }
 
         [TestCaseSource(typeof(SpellServiceTestsData), nameof(SpellServiceTestsData.GetMaximumHealTargets))]

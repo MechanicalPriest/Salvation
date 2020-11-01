@@ -1,9 +1,11 @@
 ﻿using Newtonsoft.Json;
 using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
+using Salvation.Core.Interfaces.Constants;
 using Salvation.Core.Interfaces.Profile;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.Profile;
+using Salvation.Core.Profile.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,15 +14,18 @@ namespace Salvation.Core.State
 {
     public class GameStateService : IGameStateService
     {
-        private readonly IProfileService _profileGenerationService;
+        private readonly IProfileService _profileService;
+        private readonly IConstantsService _constantsService;
 
-        public GameStateService(IProfileService profileGenerationService)
+        public GameStateService(IProfileService profileService,
+            IConstantsService constantsService)
         {
-            _profileGenerationService = profileGenerationService;
+            _profileService = profileService;
+            _constantsService = constantsService;
         }
 
         public GameStateService()
-            : this(new ProfileService())
+            : this(new ProfileService(), new ConstantsService())
         {
 
         }
@@ -32,7 +37,12 @@ namespace Salvation.Core.State
             return specData.ManaBase;
         }
 
-        public CastProfile GetCastProfile(GameState state, int spellId)
+        public void SetSpellCastProfile(GameState state, CastProfile castProfile)
+        {
+            _profileService.SetSpellCastProfile(state.Profile, castProfile);
+        }
+
+        public CastProfile GetSpellCastProfile(GameState state, int spellId)
         {
             var castProfile = state.Profile.Casts?
                 .Where(c => c.SpellId == spellId)
@@ -41,6 +51,11 @@ namespace Salvation.Core.State
             castProfile = JsonConvert.DeserializeObject<CastProfile>(JsonConvert.SerializeObject(castProfile));
 
             return castProfile;
+        }
+
+        public void SetProfileName(GameState state, string profileName)
+        {
+            _profileService.SetProfileName(state.Profile, profileName);
         }
 
         public double GetGCDFloor(GameState state)
@@ -101,7 +116,7 @@ namespace Salvation.Core.State
 
             var critRating = 0;
 
-            foreach (var item in _profileGenerationService.GetEquippedItems(state.Profile))
+            foreach (var item in _profileService.GetEquippedItems(state.Profile))
             {
                 foreach (var mod in item.Mods)
                 {
@@ -121,7 +136,7 @@ namespace Salvation.Core.State
             // TODO: Add other sources of crit increase here
             var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.Spec).FirstOrDefault();
             double criticalEffectMultiplier = specData.CritMultiplier - 1; // 2 by default higher based on items but lowered to 1 for calc below
-            
+
             // apply race bonus on crits
             switch (state.Profile.Race)
             {
@@ -147,7 +162,7 @@ namespace Salvation.Core.State
 
             var hasteRating = 0;
 
-            foreach (var item in _profileGenerationService.GetEquippedItems(state.Profile))
+            foreach (var item in _profileService.GetEquippedItems(state.Profile))
             {
                 foreach (var mod in item.Mods)
                 {
@@ -179,7 +194,7 @@ namespace Salvation.Core.State
 
             var versatilityRating = 0;
 
-            foreach (var item in _profileGenerationService.GetEquippedItems(state.Profile))
+            foreach (var item in _profileService.GetEquippedItems(state.Profile))
             {
                 foreach (var mod in item.Mods)
                 {
@@ -211,7 +226,7 @@ namespace Salvation.Core.State
 
             var masteryRating = 0;
 
-            foreach (var item in _profileGenerationService.GetEquippedItems(state.Profile))
+            foreach (var item in _profileService.GetEquippedItems(state.Profile))
             {
                 foreach (var mod in item.Mods)
                 {
@@ -303,7 +318,7 @@ namespace Salvation.Core.State
 
             // Add intellect from all items
             var clothCount = 0;
-            foreach (var item in _profileGenerationService.GetEquippedItems(state.Profile))
+            foreach (var item in _profileService.GetEquippedItems(state.Profile))
             {
                 if (item.Slot != InventorySlot.Cloak &&
                     item.ItemType == ItemType.ITEM_CLASS_ARMOR &&
@@ -342,24 +357,42 @@ namespace Salvation.Core.State
 
         public bool IsConduitActive(GameState state, Conduit conduit)
         {
-            var exists = state.Profile.Conduits.Keys.Contains(conduit);
+            var soulbind = state.Profile.Covenant.Soulbinds.Where(s => s.IsActive).FirstOrDefault();
+            if (soulbind == null)
+                return false;
 
-            return exists;
+            return soulbind.ActiveConduits.ContainsKey(conduit);
         }
 
         public uint GetConduitRank(GameState state, Conduit conduit)
         {
             var rank = 0u;
-            if (state.Profile.Conduits.ContainsKey(conduit))
-                rank = state.Profile.Conduits[conduit];
+
+            if (IsConduitActive(state, conduit))
+            {
+                var soulbind = state.Profile.Covenant.Soulbinds.Where(s => s.IsActive).FirstOrDefault();
+                if (soulbind.ActiveConduits.ContainsKey(conduit))
+                    return soulbind.ActiveConduits[conduit];
+            }
 
             return rank;
+        }
+
+        #region Covenant
+
+        public void SetCovenant(GameState state, CovenantProfile covenant)
+        {
+            _profileService.SetCovenant(state.Profile, covenant);
         }
 
         public Covenant GetActiveCovenant(GameState state)
         {
             return state.Profile.Covenant.Covenant;
         }
+
+        #endregion
+
+        #region Talents
 
         public bool IsTalentActive(GameState state, Talent talent)
         {
@@ -368,11 +401,27 @@ namespace Salvation.Core.State
             return exists;
         }
 
+        public void SetActiveTalent(GameState state, Talent talent)
+        {
+            _profileService.AddTalent(state.Profile, talent);
+        }
+
+        #endregion
+
         public bool IsLegendaryActive(GameState state, Spell legendary)
         {
-            var exists = state.Profile.Legendaries.Contains(legendary);
+            foreach (var item in _profileService.GetEquippedItems(state.Profile))
+            {
+                foreach (var effect in item.Effects)
+                {
+                    if (effect.Spell != null && effect.Spell.Id == (int)legendary)
+                    {
+                        return true;
+                    }
+                }
+            }
 
-            return exists;
+            return false;
         }
 
         public void OverrideSpellData(GameState state, BaseSpellData newData)
@@ -423,14 +472,6 @@ namespace Salvation.Core.State
             state.Profile.PlaystyleEntries.Add(newPlaystyle);
         }
 
-        public GameState CloneGameState(GameState state)
-        {
-            var stateString = JsonConvert.SerializeObject(state);
-
-            var newState = JsonConvert.DeserializeObject<GameState>(stateString);
-
-            return newState;
-        }
         public void JournalEntry(GameState state, string message)
         {
             state.JournalEntries.Add(message);
@@ -445,6 +486,34 @@ namespace Salvation.Core.State
 
             return state.JournalEntries;
         }
+
+        public double GetFightLength(GameState state)
+        {
+            return state.Profile.FightLengthSeconds;
+        }
+
+        #region Gamestate Creation
+
+        public GameState CreateValidatedGameState(PlayerProfile profile, GlobalConstants constants = null)
+        {
+            var validatedProfile = _profileService.ValidateProfile(profile);
+
+            if (constants == null)
+                constants = _constantsService.LoadConstantsFromFile();
+
+            return new GameState(validatedProfile, constants);
+        }
+
+        public GameState CloneGameState(GameState state)
+        {
+            var stateString = JsonConvert.SerializeObject(state);
+
+            var newState = JsonConvert.DeserializeObject<GameState>(stateString);
+
+            return newState;
+        }
+
+        #endregion
 
         #region Holy Priest Specific
         // TODO: Move this out to a holy priest specific file at some point.

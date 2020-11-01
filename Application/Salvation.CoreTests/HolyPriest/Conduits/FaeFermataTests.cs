@@ -2,6 +2,7 @@
 using Salvation.Core.Constants.Data;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.Modelling.HolyPriest.Spells;
+using Salvation.Core.Profile;
 using Salvation.Core.State;
 using System.Linq;
 
@@ -23,11 +24,12 @@ namespace Salvation.CoreTests.HolyPriest.Conduits
         {
             // Arrange
             IGameStateService gameStateService = new GameStateService();
+            var profileService = new ProfileService();
             var spellService = new FaeGuardians(gameStateService, null);
             var gamestate1 = gameStateService.CloneGameState(_gameState);
             var gamestate2 = gameStateService.CloneGameState(_gameState);
 
-            gamestate1.Profile.Conduits.Add(Conduit.FaeFermata, 0);
+            profileService.AddActiveConduit(gamestate1.Profile, Conduit.FaeFermata, 0);
 
             // Act
             var resultWith = spellService.GetAverageRawHealing(gamestate1, null);
@@ -43,12 +45,13 @@ namespace Salvation.CoreTests.HolyPriest.Conduits
         {
             // Arrange
             IGameStateService gameStateService = new GameStateService();
+            var profileService = new ProfileService();
             var spellService = new FaeGuardians(gameStateService, null);
             var gamestateR1 = gameStateService.CloneGameState(_gameState);
             var gamestateR2 = gameStateService.CloneGameState(_gameState);
 
-            gamestateR1.Profile.Conduits.Add(Conduit.FaeFermata, 0);
-            gamestateR2.Profile.Conduits.Add(Conduit.FaeFermata, 1);
+            profileService.AddActiveConduit(gamestateR1.Profile, Conduit.FaeFermata, 0);
+            profileService.AddActiveConduit(gamestateR2.Profile, Conduit.FaeFermata, 1);
 
             // Act
             var resultR1 = spellService.GetFaeFermataBonus(gamestateR1);
@@ -79,11 +82,12 @@ namespace Salvation.CoreTests.HolyPriest.Conduits
         {
             // Arrange
             IGameStateService gameStateService = new GameStateService();
+            var profileService = new ProfileService();
             var spellService = new FaeGuardians(gameStateService, new DivineHymn(gameStateService));
             var gamestateWithout = gameStateService.CloneGameState(_gameState);
             var gamestateWith = gameStateService.CloneGameState(_gameState);
 
-            gamestateWith.Profile.Conduits.Add(Conduit.FaeFermata, 0);
+            profileService.AddActiveConduit(gamestateWith.Profile, Conduit.FaeFermata, 0);
 
             // Act
             var resultWithout = spellService.GetCastResults(gamestateWithout);

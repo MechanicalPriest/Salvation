@@ -1,6 +1,5 @@
 ﻿using NUnit.Framework;
-using Salvation.Core.Interfaces.State;
-using Salvation.Core.Profile;
+using Salvation.Core.Profile.Model;
 using Salvation.Core.State;
 
 namespace Salvation.CoreTests.State

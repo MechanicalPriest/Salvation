@@ -69,7 +69,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             // Number of casts per minute plus one cast at the start of the encounter
             var hastedCastTime = GetHastedCastTime(gameState, spellData);
             var hastedCd = GetHastedCooldown(gameState, spellData);
-            var fightLength = gameState.Profile.FightLengthSeconds;
+            var fightLength = _gameStateService.GetFightLength(gameState);
 
             double maximumPotentialCasts = 60d / (hastedCastTime + hastedCd)
                 + 1d / (fightLength / 60d);

@@ -387,6 +387,7 @@ namespace Salvation.Core.State
         }
 
         #endregion
+
         public bool IsLegendaryActive(GameState state, Spell legendary)
         {
             foreach (var item in _profileService.GetEquippedItems(state.Profile))
@@ -464,6 +465,11 @@ namespace Salvation.Core.State
             }
 
             return state.JournalEntries;
+        }
+
+        public double GetFightLength(GameState state)
+        {
+            return state.Profile.FightLengthSeconds;
         }
 
         #region Gamestate Creation

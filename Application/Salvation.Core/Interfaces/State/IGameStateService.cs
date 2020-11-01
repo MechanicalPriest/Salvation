@@ -19,6 +19,10 @@ namespace Salvation.Core.Interfaces.State
         Covenant GetActiveCovenant(GameState state);
         void OverrideSpellData(GameState state, BaseSpellData newData);
         void OverridePlaystyle(GameState state, PlaystyleEntry newPlaystyle);
+        /// <summary>
+        /// Gets the fight length in seconds
+        /// </summary>
+        double GetFightLength(GameState state);
 
         // Player Stats
         double GetCriticalStrikeRating(GameState state);
@@ -48,6 +52,5 @@ namespace Salvation.Core.Interfaces.State
 
         // Holy Priest specific
         double GetTotalHolyWordCooldownReduction(GameState state, Spell spell, bool IsApotheosisActive = false);
-
     }
 }

@@ -55,7 +55,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             spellData = ValidateSpellData(gameState, spellData);
 
             var hastedCooldown = GetHastedCooldown(gameState, spellData);
-            var fightLength = gameState.Profile.FightLengthSeconds;
+            var fightLength = _gameStateService.GetFightLength(gameState);
 
             // DH is simply 60 / CD + 1 / (FightLength / 60)
             // Number of casts per minute plus one cast at the start of the encounter

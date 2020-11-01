@@ -162,26 +162,27 @@ namespace Salvation.Explorer.Modelling
 
             _profileService.SetCovenant(profile,
                 new CovenantProfile() { Covenant = Covenant.Kyrian });
-            _profileService.SetSpellCastProfile(profile, new CastProfile()
+
+            var state = _gameStateService.CreateValidatedGameState(profile);
+
+            _gameStateService.SetSpellCastProfile(state, new CastProfile()
             {
                 SpellId = (int)Spell.AscendedBlast,
                 Efficiency = abEfficiency,
                 OverhealPercent = 0d
             });
-            _profileService.SetSpellCastProfile(profile, new CastProfile()
+            _gameStateService.SetSpellCastProfile(state, new CastProfile()
             {
                 SpellId = (int)Spell.AscendedNova,
                 Efficiency = anEfficiency,
                 OverhealPercent = 0d
             });
-            _profileService.SetSpellCastProfile(profile, new CastProfile()
+            _gameStateService.SetSpellCastProfile(state, new CastProfile()
             {
                 SpellId = (int)Spell.AscendedEruption,
                 Efficiency = 1d,
                 OverhealPercent = 0d
             });
-
-            var state = _gameStateService.CreateValidatedGameState(profile);
 
             _gameStateService.SetProfileName(state, profileName);
 
@@ -208,14 +209,15 @@ namespace Salvation.Explorer.Modelling
 
             _profileService.SetCovenant(profile,
                 new CovenantProfile() { Covenant = Covenant.NightFae });
-            _profileService.SetSpellCastProfile(profile, new CastProfile()
+
+            var state = _gameStateService.CreateValidatedGameState(profile);
+
+            _gameStateService.SetSpellCastProfile(state, new CastProfile()
             {
                 SpellId = (int)Spell.FaeGuardians,
                 Efficiency = 1d,
                 OverhealPercent = 0d
             });
-
-            var state = _gameStateService.CreateValidatedGameState(profile);
 
             _gameStateService.SetProfileName(state, profileName);
 
@@ -255,14 +257,15 @@ namespace Salvation.Explorer.Modelling
 
             _profileService.SetCovenant(profile,
                 new CovenantProfile() { Covenant = Covenant.Necrolord });
-            _profileService.SetSpellCastProfile(profile, new CastProfile()
+
+            var state = _gameStateService.CreateValidatedGameState(profile);
+
+            _gameStateService.SetSpellCastProfile(state, new CastProfile()
             {
                 SpellId = (int)Spell.UnholyNova,
                 Efficiency = 1,
                 OverhealPercent = 0d
             });
-
-            var state = _gameStateService.CreateValidatedGameState(profile);
 
             _gameStateService.SetProfileName(state, profileName);
 

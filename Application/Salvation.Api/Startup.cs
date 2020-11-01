@@ -25,7 +25,7 @@ namespace Salvation.Api
             // Common services
             builder.Services.AddSingleton<IConstantsService, ConstantsService>();
             builder.Services.AddSingleton<IGameStateService, GameStateService>();
-            builder.Services.AddSingleton<IProfileGenerationService, ProfileGenerationService>();
+            builder.Services.AddSingleton<IProfileService, ProfileService>();
             builder.Services.AddSingleton<IStatWeightGenerationService, StatWeightGenerator>();
 
             // Holy Priest specific services
@@ -63,7 +63,7 @@ namespace Salvation.Api
 
             // DPS
             builder.Services.AddSingleton<ISmiteSpellService, Smite>();
-            builder.Services.AddSingleton<IChastiseSpellService, Chastise>();
+            builder.Services.AddSingleton<IHolyWordChastiseSpellService, HolyWordChastise>();
             builder.Services.AddSingleton<IShadowWordPainSpellService, ShadowWordPain>();
             builder.Services.AddSingleton<IShadowWordDeathSpellService, ShadowWordDeath>();
             builder.Services.AddSingleton<IHolyFireSpellService, HolyFire>();

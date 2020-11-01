@@ -1,35 +1,21 @@
-﻿using Newtonsoft.Json;
-using NUnit.Framework;
-using Salvation.Core.Constants;
+﻿using NUnit.Framework;
 using Salvation.Core.Constants.Data;
-using Salvation.Core.Interfaces.Constants;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.Modelling.HolyPriest.Spells;
 using Salvation.Core.Profile;
 using Salvation.Core.State;
-using System.IO;
-using System.Linq;
 
 namespace Salvation.CoreTests.HolyPriest.Conduits
 {
     [TestFixture]
-    class ShatteredPerceptionTests
+    class ShatteredPerceptionTests : BaseTest
     {
         private GameState _gameState;
 
         [OneTimeSetUp]
         public void InitOnce()
         {
-            IConstantsService constantsService = new ConstantsService();
-
-            // Load this from somewhere that doesn't change
-            var basePath = @"HolyPriest" + Path.DirectorySeparatorChar + "TestData";
-            var constants = constantsService.ParseConstants(
-                File.ReadAllText(Path.Combine(basePath, "SpellServiceTests_constants.json")));
-            var profile = JsonConvert.DeserializeObject<PlayerProfile>(
-                File.ReadAllText(Path.Combine(basePath, "SpellServiceTests_profile.json")));
-
-            _gameState = new GameState(profile, constants);
+            _gameState = GetGameState();
         }
 
         [Test]
@@ -37,19 +23,20 @@ namespace Salvation.CoreTests.HolyPriest.Conduits
         {
             // Arrange
             IGameStateService gameStateService = new GameStateService();
+            var profileService = new ProfileService();
             var spellService = new Mindgames(gameStateService);
             var gamestate1 = gameStateService.CloneGameState(_gameState);
             var gamestate2 = gameStateService.CloneGameState(_gameState);
 
-            gamestate1.Profile.Conduits.Add(Conduit.ShatteredPerceptions, 0);
+            profileService.AddActiveConduit(gamestate1.Profile, Conduit.ShatteredPerceptions, 0);
 
             // Act
             var resultWith = spellService.GetAverageDamage(gamestate1, null);
             var resultWithout = spellService.GetAverageDamage(gamestate2, null);
 
             // Assert
-            Assert.AreEqual(3768.879375d, resultWithout);
-            Assert.AreEqual(4258.8336937499998d, resultWith);
+            Assert.AreEqual(5688.6862500000007d, resultWithout);
+            Assert.AreEqual(6428.2154625000003d, resultWith);
         }
 
         [Test]
@@ -57,11 +44,12 @@ namespace Salvation.CoreTests.HolyPriest.Conduits
         {
             // Arrange
             IGameStateService gameStateService = new GameStateService();
+            var profileService = new ProfileService();
             var spellService = new Mindgames(gameStateService);
             var gamestate1 = gameStateService.CloneGameState(_gameState);
             var gamestate2 = gameStateService.CloneGameState(_gameState);
 
-            gamestate1.Profile.Conduits.Add(Conduit.ShatteredPerceptions, 0);
+            profileService.AddActiveConduit(gamestate1.Profile, Conduit.ShatteredPerceptions, 0);
 
             // Act
             var resultWith = spellService.GetDuration(gamestate1, null);

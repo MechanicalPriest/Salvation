@@ -1,0 +1,804 @@
+{
+  "Spec": 257,
+  "Name": "Niphcovtest",
+  "Server": "torghast",
+  "Region": "us",
+  "Race": 10,
+  "Class": 5,
+  "Intellect": 0,
+  "MasteryRating": 0,
+  "VersatilityRating": 0,
+  "HasteRating": 0,
+  "CritRating": 0,
+  "Casts": [
+    {
+      "SpellId": 2061,
+      "Efficiency": 0.0603,
+      "OverhealPercent": 0.1084,
+      "AverageHealingTargets": 1.0,
+      "AverageDamageTargets": 0.0
+    },
+    {
+      "SpellId": 2060,
+      "Efficiency": 0.0664,
+      "OverhealPercent": 0.3054,
+      "AverageHealingTargets": 1.0,
+      "AverageDamageTargets": 0.0
+    },
+    {
+      "SpellId": 139,
+      "Efficiency": 0.0364,
+      "OverhealPercent": 0.3643,
+      "AverageHealingTargets": 1.0,
+      "AverageDamageTargets": 0.0
+    },
+    {
+      "SpellId": 33076,
+      "Efficiency": 0.9056,
+      "OverhealPercent": 0.0219,
+      "AverageHealingTargets": 1.0,
+      "AverageDamageTargets": 0.0
+    },
+    {
+      "SpellId": 596,
+      "Efficiency": 0.2931,
+      "OverhealPercent": 0.2715,
+      "AverageHealingTargets": 5.0,
+      "AverageDamageTargets": 0.0
+    },
+    {
+      "SpellId": 132157,
+      "Efficiency": 0.0034,
+      "OverhealPercent": 0.15,
+      "AverageHealingTargets": 20.0,
+      "AverageDamageTargets": 1.0
+    },
+    {
+      "SpellId": 2050,
+      "Efficiency": 0.677,
+      "OverhealPercent": 0.1515,
+      "AverageHealingTargets": 1.0,
+      "AverageDamageTargets": 0.0
+    },
+    {
+      "SpellId": 34861,
+      "Efficiency": 0.7822,
+      "OverhealPercent": 0.3234,
+      "AverageHealingTargets": 6.0,
+      "AverageDamageTargets": 0.0
+    },
+    {
+      "SpellId": 64843,
+      "Efficiency": 0.8805,
+      "OverhealPercent": 0.314,
+      "AverageHealingTargets": 20.0,
+      "AverageDamageTargets": 0.0
+    },
+    {
+      "SpellId": 32546,
+      "Efficiency": 0.12,
+      "OverhealPercent": 0.34,
+      "AverageHealingTargets": 3.0,
+      "AverageDamageTargets": 0.0
+    },
+    {
+      "SpellId": 204883,
+      "Efficiency": 0.8653,
+      "OverhealPercent": 0.1417,
+      "AverageHealingTargets": 5.0,
+      "AverageDamageTargets": 0.0
+    },
+    {
+      "SpellId": 110744,
+      "Efficiency": 0.81,
+      "OverhealPercent": 0.44,
+      "AverageHealingTargets": 6.0,
+      "AverageDamageTargets": 1.0
+    },
+    {
+      "SpellId": 120517,
+      "Efficiency": 0.7596,
+      "OverhealPercent": 0.3658,
+      "AverageHealingTargets": 6.0,
+      "AverageDamageTargets": 1.0
+    },
+    {
+      "SpellId": 265202,
+      "Efficiency": 0.874,
+      "OverhealPercent": 0.3142,
+      "AverageHealingTargets": 20.0,
+      "AverageDamageTargets": 0.0
+    },
+    {
+      "SpellId": 238136,
+      "Efficiency": 0.0,
+      "OverhealPercent": 0.2332,
+      "AverageHealingTargets": 5.0,
+      "AverageDamageTargets": 0.0
+    },
+    {
+      "SpellId": 17,
+      "Efficiency": 0.01,
+      "OverhealPercent": 0.38,
+      "AverageHealingTargets": 1.0,
+      "AverageDamageTargets": 0.0
+    },
+    {
+      "SpellId": 77485,
+      "Efficiency": 0.0,
+      "OverhealPercent": 0.4224,
+      "AverageHealingTargets": 1.0,
+      "AverageDamageTargets": 0.0
+    },
+    {
+      "SpellId": 585,
+      "Efficiency": 1.0,
+      "OverhealPercent": 0.0,
+      "AverageHealingTargets": 0.0,
+      "AverageDamageTargets": 1.0
+    },
+    {
+      "SpellId": 589,
+      "Efficiency": 1.0,
+      "OverhealPercent": 0.0,
+      "AverageHealingTargets": 0.0,
+      "AverageDamageTargets": 1.0
+    },
+    {
+      "SpellId": 32379,
+      "Efficiency": 1.0,
+      "OverhealPercent": 0.0,
+      "AverageHealingTargets": 0.0,
+      "AverageDamageTargets": 1.0
+    },
+    {
+      "SpellId": 88625,
+      "Efficiency": 1.0,
+      "OverhealPercent": 0.0,
+      "AverageHealingTargets": 0.0,
+      "AverageDamageTargets": 1.0
+    },
+    {
+      "SpellId": 14914,
+      "Efficiency": 1.0,
+      "OverhealPercent": 0.0,
+      "AverageHealingTargets": 0.0,
+      "AverageDamageTargets": 1.0
+    },
+    {
+      "SpellId": 323673,
+      "Efficiency": 1.0,
+      "OverhealPercent": 0.01,
+      "AverageHealingTargets": 1.0,
+      "AverageDamageTargets": 1.0
+    },
+    {
+      "SpellId": 327661,
+      "Efficiency": 1.0,
+      "OverhealPercent": 0.01,
+      "AverageHealingTargets": 1.0,
+      "AverageDamageTargets": 0.0
+    },
+    {
+      "SpellId": 325013,
+      "Efficiency": 1.0,
+      "OverhealPercent": 0.01,
+      "AverageHealingTargets": 0.0,
+      "AverageDamageTargets": 0.0
+    },
+    {
+      "SpellId": 325020,
+      "Efficiency": 1.0,
+      "OverhealPercent": 0.01,
+      "AverageHealingTargets": 5.0,
+      "AverageDamageTargets": 1.0
+    },
+    {
+      "SpellId": 325283,
+      "Efficiency": 1.0,
+      "OverhealPercent": 0.01,
+      "AverageHealingTargets": 1.0,
+      "AverageDamageTargets": 1.0
+    },
+    {
+      "SpellId": 325326,
+      "Efficiency": 1.0,
+      "OverhealPercent": 0.01,
+      "AverageHealingTargets": 5.0,
+      "AverageDamageTargets": 1.0
+    },
+    {
+      "SpellId": 324724,
+      "Efficiency": 1.0,
+      "OverhealPercent": 0.01,
+      "AverageHealingTargets": 6.0,
+      "AverageDamageTargets": 1.0
+    },
+    {
+      "SpellId": 325118,
+      "Efficiency": 1.0,
+      "OverhealPercent": 0.01,
+      "AverageHealingTargets": 1.0,
+      "AverageDamageTargets": 1.0
+    }
+  ],
+  "Items": [
+    {
+      "ItemId": 163427,
+      "Name": "Honorbound Artificer's Skullcap",
+      "ItemLevel": 138,
+      "Equipped": true,
+      "Slot": 1,
+      "ItemType": 4,
+      "ItemSubType": 1,
+      "Mods": [
+        {
+          "Type": 5,
+          "StatRating": 36
+        },
+        {
+          "Type": 7,
+          "StatRating": 65
+        },
+        {
+          "Type": 32,
+          "StatRating": 18
+        },
+        {
+          "Type": 49,
+          "StatRating": 40
+        }
+      ],
+      "Gems": [],
+      "Effects": []
+    },
+    {
+      "ItemId": 177165,
+      "Name": "Shaleshell Pendant",
+      "ItemLevel": 138,
+      "Equipped": true,
+      "Slot": 2,
+      "ItemType": 4,
+      "ItemSubType": 0,
+      "Mods": [
+        {
+          "Type": 7,
+          "StatRating": 36
+        },
+        {
+          "Type": 32,
+          "StatRating": 60
+        },
+        {
+          "Type": 36,
+          "StatRating": 31
+        }
+      ],
+      "Gems": [],
+      "Effects": []
+    },
+    {
+      "ItemId": 163425,
+      "Name": "Honorbound Artificer's Mantle",
+      "ItemLevel": 138,
+      "Equipped": true,
+      "Slot": 3,
+      "ItemType": 4,
+      "ItemSubType": 1,
+      "Mods": [
+        {
+          "Type": 5,
+          "StatRating": 27
+        },
+        {
+          "Type": 7,
+          "StatRating": 48
+        },
+        {
+          "Type": 32,
+          "StatRating": 30
+        },
+        {
+          "Type": 40,
+          "StatRating": 13
+        }
+      ],
+      "Gems": [],
+      "Effects": []
+    },
+    {
+      "ItemId": 163358,
+      "Name": "Honorbound Artificer's Greatcloak",
+      "ItemLevel": 138,
+      "Equipped": true,
+      "Slot": 16,
+      "ItemType": 4,
+      "ItemSubType": 1,
+      "Mods": [
+        {
+          "Type": 7,
+          "StatRating": 36
+        },
+        {
+          "Type": 36,
+          "StatRating": 22
+        },
+        {
+          "Type": 49,
+          "StatRating": 11
+        },
+        {
+          "Type": 71,
+          "StatRating": 20
+        }
+      ],
+      "Gems": [],
+      "Effects": []
+    },
+    {
+      "ItemId": 163429,
+      "Name": "Honorbound Artificer's Wrap",
+      "ItemLevel": 138,
+      "Equipped": true,
+      "Slot": 20,
+      "ItemType": 4,
+      "ItemSubType": 1,
+      "Mods": [
+        {
+          "Type": 5,
+          "StatRating": 36
+        },
+        {
+          "Type": 7,
+          "StatRating": 65
+        },
+        {
+          "Type": 36,
+          "StatRating": 40
+        },
+        {
+          "Type": 49,
+          "StatRating": 18
+        }
+      ],
+      "Gems": [],
+      "Effects": []
+    },
+    {
+      "ItemId": 177098,
+      "Name": "Honorbound Artificer's Cuffs",
+      "ItemLevel": 138,
+      "Equipped": true,
+      "Slot": 9,
+      "ItemType": 4,
+      "ItemSubType": 1,
+      "Mods": [
+        {
+          "Type": 5,
+          "StatRating": 20
+        },
+        {
+          "Type": 7,
+          "StatRating": 36
+        },
+        {
+          "Type": 32,
+          "StatRating": 22
+        },
+        {
+          "Type": 40,
+          "StatRating": 11
+        }
+      ],
+      "Gems": [],
+      "Effects": []
+    },
+    {
+      "ItemId": 177104,
+      "Name": "Honorbound Artificer's Mitts",
+      "ItemLevel": 138,
+      "Equipped": true,
+      "Slot": 10,
+      "ItemType": 4,
+      "ItemSubType": 1,
+      "Mods": [
+        {
+          "Type": 5,
+          "StatRating": 27
+        },
+        {
+          "Type": 7,
+          "StatRating": 48
+        },
+        {
+          "Type": 32,
+          "StatRating": 27
+        },
+        {
+          "Type": 49,
+          "StatRating": 17
+        }
+      ],
+      "Gems": [],
+      "Effects": []
+    },
+    {
+      "ItemId": 163431,
+      "Name": "Honorbound Artificer's Sash",
+      "ItemLevel": 138,
+      "Equipped": true,
+      "Slot": 6,
+      "ItemType": 4,
+      "ItemSubType": 1,
+      "Mods": [
+        {
+          "Type": 5,
+          "StatRating": 27
+        },
+        {
+          "Type": 7,
+          "StatRating": 48
+        },
+        {
+          "Type": 40,
+          "StatRating": 17
+        },
+        {
+          "Type": 49,
+          "StatRating": 27
+        }
+      ],
+      "Gems": [],
+      "Effects": []
+    },
+    {
+      "ItemId": 177096,
+      "Name": "Honorbound Artificer's Legwraps",
+      "ItemLevel": 138,
+      "Equipped": true,
+      "Slot": 7,
+      "ItemType": 4,
+      "ItemSubType": 1,
+      "Mods": [
+        {
+          "Type": 5,
+          "StatRating": 36
+        },
+        {
+          "Type": 7,
+          "StatRating": 65
+        },
+        {
+          "Type": 32,
+          "StatRating": 18
+        },
+        {
+          "Type": 49,
+          "StatRating": 40
+        }
+      ],
+      "Gems": [],
+      "Effects": []
+    },
+    {
+      "ItemId": 177095,
+      "Name": "Honorbound Artificer's Sandals",
+      "ItemLevel": 138,
+      "Equipped": true,
+      "Slot": 8,
+      "ItemType": 4,
+      "ItemSubType": 1,
+      "Mods": [
+        {
+          "Type": 5,
+          "StatRating": 27
+        },
+        {
+          "Type": 7,
+          "StatRating": 48
+        },
+        {
+          "Type": 36,
+          "StatRating": 30
+        },
+        {
+          "Type": 49,
+          "StatRating": 15
+        }
+      ],
+      "Gems": [],
+      "Effects": []
+    },
+    {
+      "ItemId": 177164,
+      "Name": "Sea Sapphire Band",
+      "ItemLevel": 138,
+      "Equipped": true,
+      "Slot": 11,
+      "ItemType": 4,
+      "ItemSubType": 0,
+      "Mods": [
+        {
+          "Type": 7,
+          "StatRating": 36
+        },
+        {
+          "Type": 40,
+          "StatRating": 34
+        },
+        {
+          "Type": 49,
+          "StatRating": 58
+        }
+      ],
+      "Gems": [],
+      "Effects": []
+    },
+    {
+      "ItemId": 177167,
+      "Name": "Beaten Copper Loop",
+      "ItemLevel": 138,
+      "Equipped": true,
+      "Slot": 11,
+      "ItemType": 4,
+      "ItemSubType": 0,
+      "Mods": [
+        {
+          "Type": 7,
+          "StatRating": 36
+        },
+        {
+          "Type": 36,
+          "StatRating": 55
+        },
+        {
+          "Type": 49,
+          "StatRating": 37
+        }
+      ],
+      "Gems": [],
+      "Effects": []
+    },
+    {
+      "ItemId": 177155,
+      "Name": "Shimmering Rune",
+      "ItemLevel": 138,
+      "Equipped": true,
+      "Slot": 12,
+      "ItemType": 4,
+      "ItemSubType": 0,
+      "Mods": [
+        {
+          "Type": 5,
+          "StatRating": 34
+        },
+        {
+          "Type": 36,
+          "StatRating": 42
+        }
+      ],
+      "Gems": [],
+      "Effects": []
+    },
+    {
+      "ItemId": 177157,
+      "Name": "Bijou of the Golden City",
+      "ItemLevel": 138,
+      "Equipped": true,
+      "Slot": 12,
+      "ItemType": 4,
+      "ItemSubType": 0,
+      "Mods": [
+        {
+          "Type": 5,
+          "StatRating": 34
+        },
+        {
+          "Type": 32,
+          "StatRating": 42
+        }
+      ],
+      "Gems": [],
+      "Effects": []
+    },
+    {
+      "ItemId": 177119,
+      "Name": "Honorbound War Staff",
+      "ItemLevel": 138,
+      "Equipped": true,
+      "Slot": 17,
+      "ItemType": 2,
+      "ItemSubType": 10,
+      "Mods": [
+        {
+          "Type": 5,
+          "StatRating": 36
+        },
+        {
+          "Type": 5,
+          "StatRating": 123
+        },
+        {
+          "Type": 7,
+          "StatRating": 65
+        },
+        {
+          "Type": 36,
+          "StatRating": 36
+        },
+        {
+          "Type": 40,
+          "StatRating": 23
+        }
+      ],
+      "Gems": [],
+      "Effects": []
+    },
+    {
+      "ItemId": 177116,
+      "Name": "Honorbound Skullcrusher",
+      "ItemLevel": 138,
+      "Equipped": false,
+      "Slot": 13,
+      "ItemType": 2,
+      "ItemSubType": 4,
+      "Mods": [
+        {
+          "Type": 5,
+          "StatRating": 18
+        },
+        {
+          "Type": 5,
+          "StatRating": 86
+        },
+        {
+          "Type": 7,
+          "StatRating": 32
+        },
+        {
+          "Type": 32,
+          "StatRating": 10
+        },
+        {
+          "Type": 49,
+          "StatRating": 20
+        }
+      ],
+      "Gems": [],
+      "Effects": []
+    },
+    {
+      "ItemId": 177120,
+      "Name": "Honorbound Wand",
+      "ItemLevel": 138,
+      "Equipped": false,
+      "Slot": 26,
+      "ItemType": 2,
+      "ItemSubType": 19,
+      "Mods": [
+        {
+          "Type": 5,
+          "StatRating": 18
+        },
+        {
+          "Type": 5,
+          "StatRating": 86
+        },
+        {
+          "Type": 7,
+          "StatRating": 32
+        },
+        {
+          "Type": 32,
+          "StatRating": 11
+        },
+        {
+          "Type": 40,
+          "StatRating": 18
+        }
+      ],
+      "Gems": [],
+      "Effects": []
+    },
+    {
+      "ItemId": 177123,
+      "Name": "Honorbound Focus",
+      "ItemLevel": 138,
+      "Equipped": false,
+      "Slot": 23,
+      "ItemType": 4,
+      "ItemSubType": 0,
+      "Mods": [
+        {
+          "Type": 5,
+          "StatRating": 55
+        },
+        {
+          "Type": 7,
+          "StatRating": 32
+        },
+        {
+          "Type": 32,
+          "StatRating": 20
+        },
+        {
+          "Type": 40,
+          "StatRating": 10
+        }
+      ],
+      "Gems": [],
+      "Effects": []
+    }
+  ],
+  "Talents": [
+    193155
+  ],
+  "Conduits": {},
+  "Soulbinds": [],
+  "Covenant": {
+    "Covenant": 0,
+    "Renown": 0,
+    "AvailableConduits": {},
+    "Soulbinds": []
+  },
+  "Legendaries": [],
+  "FightLengthSeconds": 397,
+  "PlaystyleEntries": [
+    {
+      "Name": "FaeBenevolentFaerieSelfUptime",
+      "Value": 1.0,
+      "SpellId": 327710
+    },
+    {
+      "Name": "FaeGuardianFaerieDTPS",
+      "Value": 4000.0,
+      "SpellId": 327694
+    },
+    {
+      "Name": "ShadowWordDeathPercentExecute",
+      "Value": 0.2,
+      "SpellId": 32379
+    },
+    {
+      "Name": "HolyNovaPercentOfCastsOnThreeOrMore",
+      "Value": 0.1,
+      "SpellId": 322112
+    },
+    {
+      "Name": "FaeFermataNumberDRSwaps",
+      "Value": 1.0,
+      "SpellId": 338305
+    },
+    {
+      "Name": "FaeFermataNumberCDRSwaps",
+      "Value": 3.0,
+      "SpellId": 338305
+    },
+    {
+      "Name": "OverrideStatIntellect",
+      "Value": 0,
+      "SpellId": 0
+    },
+    {
+      "Name": "OverrideStatCriticalStrike",
+      "Value": 0,
+      "SpellId": 0
+    },
+    {
+      "Name": "OverrideStatHaste",
+      "Value": 0,
+      "SpellId": 0
+    },
+    {
+      "Name": "OverrideStatMastery",
+      "Value": 0,
+      "SpellId": 0
+    },
+    {
+      "Name": "OverrideStatVersatility",
+      "Value": 0,
+      "SpellId": 0
+    }
+  ],
+  "Level": 60
+}

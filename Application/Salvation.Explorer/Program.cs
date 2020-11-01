@@ -37,7 +37,7 @@ namespace Salvation.Explorer
                     // Common services
                     services.AddSingleton<IConstantsService, ConstantsService>();
                     services.AddSingleton<IGameStateService, GameStateService>();
-                    services.AddSingleton<IProfileGenerationService, ProfileGenerationService>();
+                    services.AddSingleton<IProfileService, ProfileService>();
                     services.AddSingleton<IComparisonModeller<CovenantComparisonsResult>, CovenantComparisons>();
                     services.AddSingleton<IStatWeightGenerationService, StatWeightGenerator>();
 
@@ -73,7 +73,7 @@ namespace Salvation.Explorer
 
                     // DPS
                     services.AddSingleton<ISmiteSpellService, Smite>();
-                    services.AddSingleton<IChastiseSpellService, Chastise>(); 
+                    services.AddSingleton<IHolyWordChastiseSpellService, HolyWordChastise>(); 
                     services.AddSingleton<IShadowWordPainSpellService, ShadowWordPain>();
                     services.AddSingleton<IShadowWordDeathSpellService, ShadowWordDeath>();
                     services.AddSingleton<IHolyFireSpellService, HolyFire>();

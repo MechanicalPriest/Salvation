@@ -1,35 +1,21 @@
-﻿using Newtonsoft.Json;
-using NUnit.Framework;
-using Salvation.Core.Constants;
+﻿using NUnit.Framework;
 using Salvation.Core.Constants.Data;
-using Salvation.Core.Interfaces.Constants;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.Modelling.HolyPriest.Spells;
 using Salvation.Core.Profile;
 using Salvation.Core.State;
-using System.IO;
-using System.Linq;
 
 namespace Salvation.CoreTests.HolyPriest.Conduits
 {
     [TestFixture]
-    class CourageousAscensionTests
+    class CourageousAscensionTests : BaseTest
     {
         private GameState _gameState;
 
         [OneTimeSetUp]
         public void InitOnce()
         {
-            IConstantsService constantsService = new ConstantsService();
-
-            // Load this from somewhere that doesn't change
-            var basePath = @"HolyPriest" + Path.DirectorySeparatorChar + "TestData";
-            var constants = constantsService.ParseConstants(
-                File.ReadAllText(Path.Combine(basePath, "SpellServiceTests_constants.json")));
-            var profile = JsonConvert.DeserializeObject<PlayerProfile>(
-                File.ReadAllText(Path.Combine(basePath, "SpellServiceTests_profile.json")));
-
-            _gameState = new GameState(profile, constants);
+            _gameState = GetGameState();
         }
 
         [Test]
@@ -37,19 +23,20 @@ namespace Salvation.CoreTests.HolyPriest.Conduits
         {
             // Arrange
             IGameStateService gameStateService = new GameStateService();
+            var profileService = new ProfileService();
             var spellService = new AscendedBlast(gameStateService);
             var gamestate1 = gameStateService.CloneGameState(_gameState);
             var gamestate2 = gameStateService.CloneGameState(_gameState);
 
-            gamestate1.Profile.Conduits.Add(Conduit.CourageousAscension, 0);
+            profileService.AddActiveConduit(gamestate1.Profile, Conduit.CourageousAscension, 0);
 
             // Act
             var resultWith = spellService.GetAverageDamage(gamestate1, null);
             var resultWithout = spellService.GetAverageDamage(gamestate2, null);
 
             // Assert
-            Assert.AreEqual(2500.6263394500002d, resultWithout);
-            Assert.AreEqual(3125.7829243125002d, resultWith);
+            Assert.AreEqual(3870.6663170565002d, resultWithout);
+            Assert.AreEqual(4838.332896320625d, resultWith);
         }
 
         [Test]
@@ -57,19 +44,20 @@ namespace Salvation.CoreTests.HolyPriest.Conduits
         {
             // Arrange
             IGameStateService gameStateService = new GameStateService();
+            var profileService = new ProfileService();
             var spellService = new AscendedEruption(gameStateService);
             var gamestate1 = gameStateService.CloneGameState(_gameState);
             var gamestate2 = gameStateService.CloneGameState(_gameState);
 
-            gamestate1.Profile.Conduits.Add(Conduit.CourageousAscension, 0);
+            profileService.AddActiveConduit(gamestate1.Profile, Conduit.CourageousAscension, 0);
 
             // Act
             var resultWith = spellService.GetAverageDamage(gamestate1, null);
             var resultWithout = spellService.GetAverageDamage(gamestate2, null);
 
             // Assert
-            Assert.AreEqual(6168.0327210344913d, resultWithout);
-            Assert.AreEqual(6227.9165338600687d, resultWith);
+            Assert.AreEqual(9547.3666413757801d, resultWithout);
+            Assert.AreEqual(9640.0595213891374d, resultWith);
         }
 
         [Test]
@@ -77,19 +65,20 @@ namespace Salvation.CoreTests.HolyPriest.Conduits
         {
             // Arrange
             IGameStateService gameStateService = new GameStateService();
+            var profileService = new ProfileService();
             var spellService = new AscendedEruption(gameStateService);
             var gamestate1 = gameStateService.CloneGameState(_gameState);
             var gamestate2 = gameStateService.CloneGameState(_gameState);
 
-            gamestate1.Profile.Conduits.Add(Conduit.CourageousAscension, 0);
+            profileService.AddActiveConduit(gamestate1.Profile, Conduit.CourageousAscension, 0);
 
             // Act
             var resultWith = spellService.GetAverageRawHealing(gamestate1, null);
             var resultWithout = spellService.GetAverageRawHealing(gamestate2, null);
 
             // Assert
-            Assert.AreEqual(4903.5860132224225d, resultWithout);
-            Assert.AreEqual(4951.1936444187559d, resultWith);
+            Assert.AreEqual(7590.1564798937452d, resultWithout);
+            Assert.AreEqual(7663.8473195043643d, resultWith);
         }
 
         [Test]
@@ -97,11 +86,12 @@ namespace Salvation.CoreTests.HolyPriest.Conduits
         {
             // Arrange
             IGameStateService gameStateService = new GameStateService();
+            var profileService = new ProfileService();
             var spellService = new AscendedEruption(gameStateService);
             var gamestate1 = gameStateService.CloneGameState(_gameState);
             var gamestate2 = gameStateService.CloneGameState(_gameState);
 
-            gamestate1.Profile.Conduits.Add(Conduit.CourageousAscension, 0);
+            profileService.AddActiveConduit(gamestate1.Profile, Conduit.CourageousAscension, 0);
 
             // Act
             var resultWith = spellService.GetBoonBonusPerStack(gamestate1);

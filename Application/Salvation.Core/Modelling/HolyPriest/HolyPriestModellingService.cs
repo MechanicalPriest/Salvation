@@ -1,5 +1,4 @@
 ﻿using Salvation.Core.Constants.Data;
-using Salvation.Core.Interfaces;
 using Salvation.Core.Interfaces.Modelling;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
@@ -38,7 +37,7 @@ namespace Salvation.Core.Modelling.HolyPriest
             IUnholyNovaSpellService unholyNovaSpellService,
             IBoonOfTheAscendedSpellService boonOfTheAscendedSpellService,
             ISmiteSpellService smiteSpellService,
-            IChastiseSpellService chastiseSpellService,
+            IHolyWordChastiseSpellService chastiseSpellService,
             IShadowWordPainSpellService shadowWordPainSpellService,
             IShadowWordDeathSpellService shadowWordDeathSpellService,
             IHolyFireSpellService holyFireSpellService)
@@ -69,7 +68,8 @@ namespace Salvation.Core.Modelling.HolyPriest
                 smiteSpellService,
                 chastiseSpellService,
                 shadowWordPainSpellService,
-                shadowWordDeathSpellService
+                shadowWordDeathSpellService,
+                holyFireSpellService
             };
         }
 

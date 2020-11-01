@@ -83,31 +83,36 @@ namespace Salvation.Core.Modelling
 
             // Int
             var intState = _gameStateService.CloneGameState(baselineState);
+            // TODO: Add a buff to the profile to add the additional stats
             intState.Profile.Intellect += numAdditionalStats;
             intState.Profile.Name = "Intellect Profile";
             states.Add(intState);
 
             // Haste
             var hasteState = _gameStateService.CloneGameState(baselineState);
-            hasteState.Profile.HasteRating += numAdditionalStats;
+            // TODO: Add a buff to the profile to add the additional stats
+            //hasteState.Profile.HasteRating += numAdditionalStats;
             hasteState.Profile.Name = "Haste Profile";
             states.Add(hasteState);
 
             // Crit
             var critState = _gameStateService.CloneGameState(baselineState);
-            critState.Profile.CritRating += numAdditionalStats;
+            // TODO: Add a buff to the profile to add the additional stats
+            //critState.Profile.CritRating += numAdditionalStats;
             critState.Profile.Name = "Crit Profile";
             states.Add(critState);
 
             // Vers
             var versState = _gameStateService.CloneGameState(baselineState);
-            versState.Profile.VersatilityRating += numAdditionalStats;
+            // TODO: Add a buff to the profile to add the additional stats
+            //versState.Profile.VersatilityRating += numAdditionalStats;
             versState.Profile.Name = "Vers Profile";
             states.Add(versState);
 
             // Mastery
             var masteryState = _gameStateService.CloneGameState(baselineState);
-            masteryState.Profile.MasteryRating += numAdditionalStats;
+            // TODO: Add a buff to the profile to add the additional stats
+            //masteryState.Profile.MasteryRating += numAdditionalStats;
             masteryState.Profile.Name = "Mastery Profile";
             states.Add(masteryState);
 

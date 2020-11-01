@@ -7,23 +7,25 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="HolyPriest\TestData\SpellServiceTests_constants.json" />
-    <None Remove="HolyPriest\TestData\SpellServiceTests_profile.json" />
-    <None Remove="State\TestData\StateTests_constants.json" />
-    <None Remove="State\TestData\StateTests_profile.json" />
+    <None Remove="TestData\BaseTests_constants.json" />
+    <None Remove="TestData\BaseTests_profile.json" />
+    <None Remove="TestData\Niphcovtest.simc" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="HolyPriest\TestData\SpellServiceTests_constants.json">
+    <Content Include="TestData\Niphcovtest.simc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="HolyPriest\TestData\SpellServiceTests_profile.json">
+    <Content Include="TestData\SpellServiceTests_profile.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="State\TestData\StateTests_constants.json">
+    <Content Include="TestData\Beitaky.simc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="State\TestData\StateTests_profile.json">
+    <Content Include="TestData\BaseTests_constants.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\BaseTests_profile.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

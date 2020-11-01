@@ -53,12 +53,14 @@ namespace Salvation.Utility.SpellDataUpdate
 
                 // Covenant
                 (uint)Spell.Mindgames,
+                (uint)Spell.MindgamesHeal,
                 (uint)Spell.FaeGuardians,
                 (uint)Spell.BenevolentFaerie,
                 (uint)Spell.GuardianFaerie,
                 (uint)Spell.BoonOfTheAscended,
                 (uint)Spell.AscendedNova,
                 (uint)Spell.AscendedBlast,
+                (uint)Spell.AscendedBlastHeal,
                 (uint)Spell.AscendedEruption,
                 (uint)Spell.UnholyNova,
                 (uint)Spell.UnholyTransfusion,
@@ -78,7 +80,7 @@ namespace Salvation.Utility.SpellDataUpdate
                 // DPS
                 (uint)Spell.Smite,
                 (uint)Spell.SmiteRank2,
-                (uint)Spell.Chastise,
+                (uint)Spell.HolyWordChastise,
                 (uint)Spell.ShadowWordPain,
                 (uint)Spell.ShadowWordPainRank2,
                 (uint)Spell.ShadowWordDeath,
@@ -94,7 +96,9 @@ namespace Salvation.Utility.SpellDataUpdate
                 Class = "Priest",
                 Spec = "Holy",
                 SpecId = 257,
+                GCDFloor = 0.75,
 
+                CritMultiplier = 2,
                 CritBase = 0.05,
                 HasteBase = 0.0,
                 VersBase = 0.0,
@@ -204,7 +208,8 @@ namespace Salvation.Utility.SpellDataUpdate
                 SpCoefficient = effect.SpCoefficient,
                 TriggerSpellid = effect.TriggerSpellId,
                 Amplitude = effect.Amplitude,
-                TriggerSpell = GetBaseSpellData(effect.TriggerSpell)
+                TriggerSpell = GetBaseSpellData(effect.TriggerSpell),
+                Type = effect.EffectType
             };
 
             return newEffect;

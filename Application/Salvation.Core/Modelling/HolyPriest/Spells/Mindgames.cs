@@ -1,6 +1,5 @@
 ﻿using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
-using Salvation.Core.Interfaces;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.State;
@@ -12,13 +11,12 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         public Mindgames(IGameStateService gameStateService)
             : base(gameStateService)
         {
-            SpellId = (int)Spell.Mindgames;
+            Spell = Spell.Mindgames;
         }
 
         public override double GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, Spell.Mindgames);
+            spellData = ValidateSpellData(gameState, spellData);
 
             var healingSp = spellData.GetEffect(812776).BaseValue;
 
@@ -38,8 +36,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
         public override double GetAverageDamage(GameState gameState, BaseSpellData spellData = null)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, Spell.Mindgames);
+            spellData = ValidateSpellData(gameState, spellData);
 
             var holyPriestAuraDamageBonus = _gameStateService.GetSpellData(gameState, Spell.HolyPriest)
                 .GetEffect(191077).BaseValue / 100 + 1;
@@ -68,11 +65,10 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
         public override double GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, Spell.Mindgames);
+            spellData = ValidateSpellData(gameState, spellData);
 
             var hastedCd = GetHastedCooldown(gameState, spellData);
-            var fightLength = gameState.Profile.FightLengthSeconds;
+            var fightLength = _gameStateService.GetFightLength(gameState);
 
             double maximumPotentialCasts = 60d / hastedCd
                 + 1d / (fightLength / 60d);
@@ -82,8 +78,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
         public override double GetDuration(GameState gameState, BaseSpellData spellData = null)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, Spell.Mindgames);
+            spellData = ValidateSpellData(gameState, spellData);
 
             var baseDuration = base.GetDuration(gameState, spellData);
 
@@ -112,6 +107,14 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         public override double GetMinimumDamageTargets(GameState gameState, BaseSpellData spellData)
         {
             return 1;
+        }
+
+        public override bool TriggersMastery(GameState gameState, BaseSpellData spellData)
+        {
+            // MindGames Spellid doesnt have the "right" type, heal component does
+            var healData = _gameStateService.GetSpellData(gameState, Spell.MindgamesHeal);
+
+            return base.TriggersMastery(gameState, healData);
         }
     }
 }

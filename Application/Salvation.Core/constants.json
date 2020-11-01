@@ -1,5 +1,5 @@
 {
-  "GameVersion": "9.0.2.36294",
+  "GameVersion": "9.0.2.36401",
   "Specs": [
     {
       "Class": "Priest",
@@ -33,7 +33,6 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 179715,
@@ -41,7 +40,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             },
             {
               "Id": 191076,
@@ -49,7 +49,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             },
             {
               "Id": 191077,
@@ -57,7 +58,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             },
             {
               "Id": 191078,
@@ -65,7 +67,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             },
             {
               "Id": 191079,
@@ -73,7 +76,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             },
             {
               "Id": 869198,
@@ -81,7 +85,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             },
             {
               "Id": 871790,
@@ -89,7 +94,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             },
             {
               "Id": 871791,
@@ -97,7 +103,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             }
           ],
           "ConduitRanks": {}
@@ -114,7 +121,6 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 283373,
@@ -122,7 +128,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             }
           ],
           "ConduitRanks": {}
@@ -139,7 +146,6 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 360821,
@@ -147,7 +153,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             }
           ],
           "ConduitRanks": {}
@@ -164,7 +171,6 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 22313,
@@ -172,7 +178,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 3
             },
             {
               "Id": 22314,
@@ -180,7 +187,8 @@
               "SpCoefficient": 0.94,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 10
             },
             {
               "Id": 191249,
@@ -188,7 +196,8 @@
               "SpCoefficient": 0.94,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 10
             },
             {
               "Id": 325998,
@@ -196,7 +205,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 3
             }
           ],
           "ConduitRanks": {}
@@ -213,7 +223,6 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 140102,
@@ -221,7 +230,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 179
             }
           ],
           "ConduitRanks": {}
@@ -238,7 +248,6 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 140516,
@@ -246,7 +255,8 @@
               "SpCoefficient": 1.44,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 10
             }
           ],
           "ConduitRanks": {}
@@ -263,7 +273,6 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 140527,
@@ -271,7 +280,8 @@
               "SpCoefficient": 1.03,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 2
             }
           ],
           "ConduitRanks": {}
@@ -288,7 +298,6 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 122871,
@@ -296,7 +305,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 179
             }
           ],
           "ConduitRanks": {}
@@ -313,7 +323,6 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 122873,
@@ -321,7 +330,8 @@
               "SpCoefficient": 0.7,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 10
             }
           ],
           "ConduitRanks": {}
@@ -338,7 +348,6 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 153526,
@@ -346,7 +355,8 @@
               "SpCoefficient": 0.4,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 2
             }
           ],
           "ConduitRanks": {}
@@ -363,7 +373,6 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 283376,
@@ -371,7 +380,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             }
           ],
           "ConduitRanks": {}
@@ -388,7 +398,6 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 709207,
@@ -396,7 +405,8 @@
               "SpCoefficient": 1.1,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 10
             },
             {
               "Id": 709209,
@@ -404,7 +414,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 3
             },
             {
               "Id": 709211,
@@ -412,7 +423,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 3
             }
           ],
           "ConduitRanks": {}
@@ -429,7 +441,6 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 612,
@@ -437,7 +448,8 @@
               "SpCoefficient": 2.95,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 10
             }
           ],
           "ConduitRanks": {}
@@ -454,7 +466,6 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 613,
@@ -462,7 +473,8 @@
               "SpCoefficient": 2.03,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 10
             }
           ],
           "ConduitRanks": {}
@@ -479,7 +491,6 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 243,
@@ -499,7 +510,6 @@
                 "Gcd": 0.0,
                 "ChargeCooldown": 0,
                 "Charges": 0,
-                "IsMasteryTriggered": false,
                 "Effects": [
                   {
                     "Id": 105331,
@@ -507,11 +517,13 @@
                     "SpCoefficient": 0.0,
                     "TriggerSpellid": 0,
                     "Amplitude": 0.0,
-                    "TriggerSpell": null
+                    "TriggerSpell": null,
+                    "Type": 3
                   }
                 ],
                 "ConduitRanks": {}
-              }
+              },
+              "Type": 64
             },
             {
               "Id": 105332,
@@ -519,7 +531,8 @@
               "SpCoefficient": 0.875,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 10
             },
             {
               "Id": 288930,
@@ -527,7 +540,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 3
             }
           ],
           "ConduitRanks": {}
@@ -544,7 +558,6 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 170810,
@@ -552,7 +565,8 @@
               "SpCoefficient": 0.18,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 2
             },
             {
               "Id": 709210,
@@ -572,7 +586,6 @@
                 "Gcd": 0.0,
                 "ChargeCooldown": 0,
                 "Charges": 0,
-                "IsMasteryTriggered": false,
                 "Effects": [
                   {
                     "Id": 739572,
@@ -580,11 +593,13 @@
                     "SpCoefficient": 0.18,
                     "TriggerSpellid": 0,
                     "Amplitude": 0.0,
-                    "TriggerSpell": null
+                    "TriggerSpell": null,
+                    "Type": 10
                   }
                 ],
                 "ConduitRanks": {}
-              }
+              },
+              "Type": 64
             },
             {
               "Id": 845266,
@@ -592,7 +607,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 3
             }
           ],
           "ConduitRanks": {}
@@ -609,7 +625,6 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 810253,
@@ -617,7 +632,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             },
             {
               "Id": 844508,
@@ -625,7 +641,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 0
             }
           ],
           "ConduitRanks": {}
@@ -642,7 +659,6 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 302436,
@@ -650,7 +666,8 @@
               "SpCoefficient": 1.05,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 10
             },
             {
               "Id": 302437,
@@ -658,7 +675,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 3
             }
           ],
           "ConduitRanks": {}
@@ -675,7 +693,6 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 95,
@@ -683,7 +700,8 @@
               "SpCoefficient": 0.32,
               "TriggerSpellid": 0,
               "Amplitude": 3000.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             },
             {
               "Id": 256131,
@@ -691,7 +709,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             }
           ],
           "ConduitRanks": {}
@@ -708,7 +727,6 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 13,
@@ -716,7 +734,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             }
           ],
           "ConduitRanks": {}
@@ -733,7 +752,6 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 59162,
@@ -753,7 +771,6 @@
                 "Gcd": 0.0,
                 "ChargeCooldown": 0,
                 "Charges": 0,
-                "IsMasteryTriggered": false,
                 "Effects": [
                   {
                     "Id": 59165,
@@ -761,7 +778,8 @@
                     "SpCoefficient": 0.6,
                     "TriggerSpellid": 0,
                     "Amplitude": 0.0,
-                    "TriggerSpell": null
+                    "TriggerSpell": null,
+                    "Type": 10
                   },
                   {
                     "Id": 59166,
@@ -769,11 +787,13 @@
                     "SpCoefficient": 0.0,
                     "TriggerSpellid": 0,
                     "Amplitude": 0.0,
-                    "TriggerSpell": null
+                    "TriggerSpell": null,
+                    "Type": 6
                   }
                 ],
                 "ConduitRanks": {}
-              }
+              },
+              "Type": 6
             },
             {
               "Id": 59163,
@@ -781,7 +801,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             },
             {
               "Id": 59164,
@@ -789,7 +810,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             },
             {
               "Id": 192423,
@@ -797,7 +819,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 3
             }
           ],
           "ConduitRanks": {}
@@ -814,7 +837,6 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 24949,
@@ -822,7 +844,8 @@
               "SpCoefficient": 2.45,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 10
             },
             {
               "Id": 288932,
@@ -830,7 +853,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 3
             },
             {
               "Id": 709475,
@@ -838,7 +862,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 3
             },
             {
               "Id": 709476,
@@ -846,7 +871,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 3
             }
           ],
           "ConduitRanks": {}
@@ -863,7 +889,6 @@
           "Gcd": 1.5,
           "ChargeCooldown": 60000,
           "Charges": 1,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 611,
@@ -871,7 +896,8 @@
               "SpCoefficient": 7.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 10
             },
             {
               "Id": 709474,
@@ -879,7 +905,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 3
             }
           ],
           "ConduitRanks": {}
@@ -896,7 +923,6 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 22870,
@@ -904,7 +930,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 3
             }
           ],
           "ConduitRanks": {}
@@ -921,7 +948,6 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 806684,
@@ -929,7 +955,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             }
           ],
           "ConduitRanks": {}
@@ -946,7 +973,6 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 33141,
@@ -954,7 +980,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             }
           ],
           "ConduitRanks": {}
@@ -971,7 +998,6 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 22918,
@@ -979,7 +1005,8 @@
               "SpCoefficient": 0.61,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 10
             }
           ],
           "ConduitRanks": {}
@@ -996,7 +1023,6 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 68102,
@@ -1004,7 +1030,8 @@
               "SpCoefficient": 1.25,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             },
             {
               "Id": 90770,
@@ -1012,7 +1039,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             }
           ],
           "ConduitRanks": {}
@@ -1029,7 +1057,6 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 812771,
@@ -1037,7 +1064,8 @@
               "SpCoefficient": 3.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 2
             },
             {
               "Id": 812776,
@@ -1045,7 +1073,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             },
             {
               "Id": 812810,
@@ -1053,7 +1082,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             },
             {
               "Id": 812816,
@@ -1073,7 +1103,6 @@
                 "Gcd": 0.0,
                 "ChargeCooldown": 0,
                 "Charges": 0,
-                "IsMasteryTriggered": false,
                 "Effects": [
                   {
                     "Id": 812814,
@@ -1081,11 +1110,13 @@
                     "SpCoefficient": 0.0,
                     "TriggerSpellid": 0,
                     "Amplitude": 0.0,
-                    "TriggerSpell": null
+                    "TriggerSpell": null,
+                    "Type": 6
                   }
                 ],
                 "ConduitRanks": {}
-              }
+              },
+              "Type": 64
             },
             {
               "Id": 812823,
@@ -1105,7 +1136,6 @@
                 "Gcd": 0.0,
                 "ChargeCooldown": 0,
                 "Charges": 0,
-                "IsMasteryTriggered": false,
                 "Effects": [
                   {
                     "Id": 812821,
@@ -1113,11 +1143,13 @@
                     "SpCoefficient": 0.0,
                     "TriggerSpellid": 0,
                     "Amplitude": 0.0,
-                    "TriggerSpell": null
+                    "TriggerSpell": null,
+                    "Type": 6
                   }
                 ],
                 "ConduitRanks": {}
-              }
+              },
+              "Type": 64
             },
             {
               "Id": 819553,
@@ -1125,7 +1157,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             },
             {
               "Id": 872982,
@@ -1133,7 +1166,51 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 323706,
+          "Name": "Mindgames",
+          "ManaCost": 0.0,
+          "MaxRange": 100.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "Effects": [
+            {
+              "Id": 812824,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 10
+            },
+            {
+              "Id": 819551,
+              "BaseValue": 10.0,
+              "SpCoefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 30
+            },
+            {
+              "Id": 819578,
+              "BaseValue": 2.0,
+              "SpCoefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 137
             }
           ],
           "ConduitRanks": {}
@@ -1150,7 +1227,6 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 819246,
@@ -1158,7 +1234,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             }
           ],
           "ConduitRanks": {}
@@ -1175,7 +1252,6 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 819312,
@@ -1183,7 +1259,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             },
             {
               "Id": 868651,
@@ -1191,7 +1268,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             },
             {
               "Id": 868652,
@@ -1199,7 +1277,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             },
             {
               "Id": 868655,
@@ -1207,7 +1286,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             },
             {
               "Id": 868656,
@@ -1215,7 +1295,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             }
           ],
           "ConduitRanks": {}
@@ -1232,7 +1313,6 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 819281,
@@ -1240,7 +1320,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             }
           ],
           "ConduitRanks": {}
@@ -1257,7 +1338,6 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 814983,
@@ -1265,7 +1345,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             },
             {
               "Id": 815010,
@@ -1273,7 +1354,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             },
             {
               "Id": 815013,
@@ -1281,7 +1363,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             },
             {
               "Id": 815072,
@@ -1289,7 +1372,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             },
             {
               "Id": 815475,
@@ -1297,7 +1381,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             },
             {
               "Id": 819021,
@@ -1305,7 +1390,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             },
             {
               "Id": 819722,
@@ -1313,7 +1399,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             },
             {
               "Id": 821227,
@@ -1321,7 +1408,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             }
           ],
           "ConduitRanks": {}
@@ -1338,7 +1426,6 @@
           "Gcd": 1.0,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 814997,
@@ -1346,7 +1433,8 @@
               "SpCoefficient": 0.74,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 2
             },
             {
               "Id": 815031,
@@ -1366,7 +1454,6 @@
                 "Gcd": 0.0,
                 "ChargeCooldown": 0,
                 "Charges": 0,
-                "IsMasteryTriggered": false,
                 "Effects": [
                   {
                     "Id": 815030,
@@ -1374,7 +1461,8 @@
                     "SpCoefficient": 0.24,
                     "TriggerSpellid": 0,
                     "Amplitude": 0.0,
-                    "TriggerSpell": null
+                    "TriggerSpell": null,
+                    "Type": 10
                   },
                   {
                     "Id": 844031,
@@ -1382,11 +1470,13 @@
                     "SpCoefficient": 0.0,
                     "TriggerSpellid": 0,
                     "Amplitude": 0.0,
-                    "TriggerSpell": null
+                    "TriggerSpell": null,
+                    "Type": 3
                   }
                 ],
                 "ConduitRanks": {}
-              }
+              },
+              "Type": 64
             },
             {
               "Id": 815723,
@@ -1394,7 +1484,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 3
             }
           ],
           "ConduitRanks": {}
@@ -1411,7 +1502,6 @@
           "Gcd": 1.0,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 815465,
@@ -1419,7 +1509,8 @@
               "SpCoefficient": 1.79,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 2
             },
             {
               "Id": 815550,
@@ -1427,7 +1518,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 3
             },
             {
               "Id": 815724,
@@ -1435,7 +1527,33 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 3
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 325315,
+          "Name": "Ascended Blast",
+          "ManaCost": 0.0,
+          "MaxRange": 100.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "Effects": [
+            {
+              "Id": 815508,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 10
             }
           ],
           "ConduitRanks": {}
@@ -1452,7 +1570,6 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 815531,
@@ -1460,7 +1577,8 @@
               "SpCoefficient": 2.1,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 2
             },
             {
               "Id": 815532,
@@ -1468,7 +1586,8 @@
               "SpCoefficient": 1.59,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 10
             }
           ],
           "ConduitRanks": {}
@@ -1485,7 +1604,6 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 814521,
@@ -1493,7 +1611,8 @@
               "SpCoefficient": 1.19,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 10
             },
             {
               "Id": 844015,
@@ -1501,7 +1620,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 3
             }
           ],
           "ConduitRanks": {}
@@ -1518,7 +1638,6 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 815191,
@@ -1526,7 +1645,8 @@
               "SpCoefficient": 0.04,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 10
             }
           ],
           "ConduitRanks": {}
@@ -1543,7 +1663,6 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 815346,
@@ -1551,7 +1670,8 @@
               "SpCoefficient": 0.5,
               "TriggerSpellid": 0,
               "Amplitude": 3000.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             },
             {
               "Id": 815347,
@@ -1571,7 +1691,6 @@
                 "Gcd": 0.0,
                 "ChargeCooldown": 0,
                 "Charges": 0,
-                "IsMasteryTriggered": false,
                 "Effects": [
                   {
                     "Id": 815191,
@@ -1579,11 +1698,13 @@
                     "SpCoefficient": 0.04,
                     "TriggerSpellid": 0,
                     "Amplitude": 0.0,
-                    "TriggerSpell": null
+                    "TriggerSpell": null,
+                    "Type": 10
                   }
                 ],
                 "ConduitRanks": {}
-              }
+              },
+              "Type": 6
             }
           ],
           "ConduitRanks": {}
@@ -1600,7 +1721,6 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 833714,
@@ -1608,7 +1728,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             }
           ],
           "ConduitRanks": {}
@@ -1625,7 +1746,6 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 835898,
@@ -1633,7 +1753,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             }
           ],
           "ConduitRanks": {
@@ -1666,7 +1787,6 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 836264,
@@ -1674,7 +1794,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             },
             {
               "Id": 842371,
@@ -1682,7 +1803,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             }
           ],
           "ConduitRanks": {
@@ -1715,7 +1837,6 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 836282,
@@ -1723,7 +1844,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             },
             {
               "Id": 836285,
@@ -1731,7 +1853,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             }
           ],
           "ConduitRanks": {
@@ -1764,7 +1887,6 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 836807,
@@ -1772,7 +1894,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             },
             {
               "Id": 871353,
@@ -1780,7 +1903,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             }
           ],
           "ConduitRanks": {
@@ -1813,7 +1937,6 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 836824,
@@ -1821,7 +1944,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             },
             {
               "Id": 836825,
@@ -1829,7 +1953,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             },
             {
               "Id": 836828,
@@ -1837,7 +1962,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             }
           ],
           "ConduitRanks": {
@@ -1870,7 +1996,6 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 836877,
@@ -1878,7 +2003,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             }
           ],
           "ConduitRanks": {
@@ -1911,7 +2037,6 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 236,
@@ -1919,7 +2044,8 @@
               "SpCoefficient": 0.47,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 2
             }
           ],
           "ConduitRanks": {}
@@ -1936,7 +2062,6 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 624379,
@@ -1944,7 +2069,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             }
           ],
           "ConduitRanks": {}
@@ -1961,7 +2087,6 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 91044,
@@ -1969,7 +2094,8 @@
               "SpCoefficient": 1.125,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 2
             },
             {
               "Id": 709477,
@@ -1977,7 +2103,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 3
             }
           ],
           "ConduitRanks": {}
@@ -1985,7 +2112,7 @@
         {
           "Id": 589,
           "Name": "Shadow Word: Pain",
-          "ManaCost": 1.2,
+          "ManaCost": 0.3,
           "MaxRange": 40.0,
           "BaseCastTime": 0.0,
           "BaseCooldown": 0.0,
@@ -1994,7 +2121,6 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 242,
@@ -2002,7 +2128,8 @@
               "SpCoefficient": 0.1292,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 2
             },
             {
               "Id": 254257,
@@ -2010,7 +2137,8 @@
               "SpCoefficient": 0.09588,
               "TriggerSpellid": 0,
               "Amplitude": 2000.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             },
             {
               "Id": 323674,
@@ -2018,7 +2146,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 30
             }
           ],
           "ConduitRanks": {}
@@ -2035,7 +2164,6 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 819469,
@@ -2043,7 +2171,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             }
           ],
           "ConduitRanks": {}
@@ -2051,7 +2180,7 @@
         {
           "Id": 32379,
           "Name": "Shadow Word: Death",
-          "ManaCost": 1.6,
+          "ManaCost": 0.5,
           "MaxRange": 40.0,
           "BaseCastTime": 0.0,
           "BaseCooldown": 0.0,
@@ -2060,7 +2189,6 @@
           "Gcd": 1.5,
           "ChargeCooldown": 30000,
           "Charges": 1,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 22171,
@@ -2068,7 +2196,8 @@
               "SpCoefficient": 0.85,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 2
             },
             {
               "Id": 165318,
@@ -2076,7 +2205,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 3
             },
             {
               "Id": 340366,
@@ -2084,7 +2214,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 0
             }
           ],
           "ConduitRanks": {}
@@ -2101,7 +2232,6 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 810248,
@@ -2109,7 +2239,8 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             }
           ],
           "ConduitRanks": {}
@@ -2126,7 +2257,6 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "IsMasteryTriggered": false,
           "Effects": [
             {
               "Id": 6990,
@@ -2134,7 +2264,8 @@
               "SpCoefficient": 1.5,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 2
             },
             {
               "Id": 6991,
@@ -2142,7 +2273,8 @@
               "SpCoefficient": 0.0825,
               "TriggerSpellid": 0,
               "Amplitude": 1000.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             },
             {
               "Id": 808675,
@@ -2150,13 +2282,16 @@
               "SpCoefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
-              "TriggerSpell": null
+              "TriggerSpell": null,
+              "Type": 6
             }
           ],
           "ConduitRanks": {}
         }
       ],
-      "Conduits": []
+      "Conduits": [],
+      "GCDFloor": 0.75,
+      "CritMultiplier": 2.0
     }
   ],
   "GlobalModifiers": [],

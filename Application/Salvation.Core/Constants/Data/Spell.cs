@@ -2,6 +2,7 @@
 {
     public enum Spell
     {
+        None = 0,
         /// <summary>
         /// 179715 - Direct heal bonus
         /// 191076 - Periodic heal bonus
@@ -59,12 +60,14 @@
 
         // Cov abilities
         Mindgames = 323673,
+        MindgamesHeal = 323706,
         FaeGuardians = 327661,
         BenevolentFaerie = 327710,
         GuardianFaerie = 327694,
         BoonOfTheAscended = 325013,
         AscendedNova = 325020,
         AscendedBlast = 325283,
+        AscendedBlastHeal = 325315,
         AscendedEruption = 325326,
         UnholyNova = 324724,
         UnholyTransfusion = 325118,
@@ -87,7 +90,7 @@
         // DPS
         Smite = 585,
         SmiteRank2 = 262861,
-        Chastise = 88625,
+        HolyWordChastise = 88625,
         ShadowWordPain = 589,
         ShadowWordPainRank2 = 327820,
         ShadowWordDeath = 32379,

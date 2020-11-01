@@ -1,8 +1,11 @@
 ﻿using Newtonsoft.Json;
 using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
+using Salvation.Core.Interfaces.Constants;
+using Salvation.Core.Interfaces.Profile;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.Profile;
+using Salvation.Core.Profile.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,14 +14,35 @@ namespace Salvation.Core.State
 {
     public class GameStateService : IGameStateService
     {
+        private readonly IProfileService _profileService;
+        private readonly IConstantsService _constantsService;
+
+        public GameStateService(IProfileService profileService,
+            IConstantsService constantsService)
+        {
+            _profileService = profileService;
+            _constantsService = constantsService;
+        }
+
+        public GameStateService()
+            : this(new ProfileService(), new ConstantsService())
+        {
+
+        }
+
         public double GetBaseManaAmount(GameState state)
         {
-            var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.SpecId).FirstOrDefault();
+            var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.Spec).FirstOrDefault();
 
             return specData.ManaBase;
         }
 
-        public CastProfile GetCastProfile(GameState state, int spellId)
+        public void SetSpellCastProfile(GameState state, CastProfile castProfile)
+        {
+            _profileService.SetSpellCastProfile(state.Profile, castProfile);
+        }
+
+        public CastProfile GetSpellCastProfile(GameState state, int spellId)
         {
             var castProfile = state.Profile.Casts?
                 .Where(c => c.SpellId == spellId)
@@ -29,7 +53,17 @@ namespace Salvation.Core.State
             return castProfile;
         }
 
+        public void SetProfileName(GameState state, string profileName)
+        {
+            _profileService.SetProfileName(state.Profile, profileName);
+        }
 
+        public double GetGCDFloor(GameState state)
+        {
+            var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.Spec).FirstOrDefault();
+
+            return specData.GCDFloor;
+        }
         /// <summary>
         /// Returns diminished rating based on percentage of stat, as changed in 9.0.1
         /// Calcs each individual point one at a time for its value based on the percent bracket of the point
@@ -40,8 +74,9 @@ namespace Salvation.Core.State
         /// <returns> diminished returned value based on percent </returns>
         public double GetDrRating(double rating, double cost)
         {
-            double result = 0; 
-            for (int i = 0;  i < rating; i++) { 
+            double result = 0;
+            for (int i = 0; i < rating; i++)
+            {
                 var percent = result / cost;
                 if (percent <= 30)
                 {
@@ -71,45 +106,247 @@ namespace Salvation.Core.State
             return result;
         }
 
+        public double GetCriticalStrikeRating(GameState state)
+        {
+            var playStyleValue = GetPlaystyle(state, "OverrideStatCriticalStrike").Value;
+            if (playStyleValue != 0)
+            {
+                return playStyleValue;
+            }
+
+            var critRating = 0;
+
+            foreach (var item in _profileService.GetEquippedItems(state.Profile))
+            {
+                foreach (var mod in item.Mods)
+                {
+                    if (mod.Type == ItemModType.ITEM_MOD_CRIT_RATING ||
+                        mod.Type == ItemModType.ITEM_MOD_CRIT_SPELL_RATING)
+                    {
+                        critRating += mod.StatRating;
+                    }
+                }
+            }
+
+            return critRating;
+        }
+
         public double GetCriticalStrikeMultiplier(GameState state)
         {
             // TODO: Add other sources of crit increase here
-            var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.SpecId).FirstOrDefault();
-            return 1 + specData.CritBase + (GetDrRating(state.Profile.CritRating, specData.CritCost) / specData.CritCost / 100);
+            var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.Spec).FirstOrDefault();
+            double criticalEffectMultiplier = specData.CritMultiplier - 1; // 2 by default higher based on items but lowered to 1 for calc below
+
+            // apply race bonus on crits
+            switch (state.Profile.Race)
+            {
+                case Race.Dwarf:
+                case Race.Tauren:
+                    criticalEffectMultiplier += 0.02;
+                    break;
+                default:
+                    break;
+            }
+
+            // min of calc'd multipler and 2 (cant have more than 100% crit i.e. more than 200% dmg from crit) + crit dmg
+            return Math.Min(1 + specData.CritBase + (GetDrRating(GetCriticalStrikeRating(state), specData.CritCost) / specData.CritCost / 100), 2) * criticalEffectMultiplier;
+        }
+
+        public double GetHasteRating(GameState state)
+        {
+            var playStyleValue = GetPlaystyle(state, "OverrideStatHaste").Value;
+            if (playStyleValue != 0)
+            {
+                return playStyleValue;
+            }
+
+            var hasteRating = 0;
+
+            foreach (var item in _profileService.GetEquippedItems(state.Profile))
+            {
+                foreach (var mod in item.Mods)
+                {
+                    if (mod.Type == ItemModType.ITEM_MOD_HASTE_RATING ||
+                        mod.Type == ItemModType.ITEM_MOD_HASTE_SPELL_RATING)
+                    {
+                        hasteRating += mod.StatRating;
+                    }
+                }
+            }
+
+            return hasteRating;
         }
 
         public double GetHasteMultiplier(GameState state)
         {
             // TODO: Add other sources of haste increase here
-            var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.SpecId).FirstOrDefault();
-            return 1 + specData.HasteBase + (GetDrRating(state.Profile.HasteRating, specData.HasteCost) / specData.HasteCost / 100);
+            var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.Spec).FirstOrDefault();
+            return 1 + specData.HasteBase + (GetDrRating(GetHasteRating(state), specData.HasteCost) / specData.HasteCost / 100);
+        }
+
+        public double GetVersatilityRating(GameState state)
+        {
+            var playStyleValue = GetPlaystyle(state, "OverrideStatVersatility").Value;
+            if (playStyleValue != 0)
+            {
+                return playStyleValue;
+            }
+
+            var versatilityRating = 0;
+
+            foreach (var item in _profileService.GetEquippedItems(state.Profile))
+            {
+                foreach (var mod in item.Mods)
+                {
+                    if (mod.Type == ItemModType.ITEM_MOD_VERSATILITY_RATING)
+                    {
+                        versatilityRating += mod.StatRating;
+                    }
+                }
+            }
+
+            return versatilityRating;
         }
 
         public double GetVersatilityMultiplier(GameState state)
         {
             // TODO: Add other sources of vers increase here
-            var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.SpecId).FirstOrDefault();
+            var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.Spec).FirstOrDefault();
 
-            return 1 + specData.VersBase + (GetDrRating(state.Profile.VersatilityRating, specData.VersCost) / specData.VersCost / 100);
+            return 1 + specData.VersBase + (GetDrRating(GetVersatilityRating(state), specData.VersCost) / specData.VersCost / 100);
+        }
+
+        public double GetMasteryRating(GameState state)
+        {
+            var playStyleValue = GetPlaystyle(state, "OverrideStatMastery").Value;
+            if (playStyleValue != 0)
+            {
+                return playStyleValue;
+            }
+
+            var masteryRating = 0;
+
+            foreach (var item in _profileService.GetEquippedItems(state.Profile))
+            {
+                foreach (var mod in item.Mods)
+                {
+                    if (mod.Type == ItemModType.ITEM_MOD_MASTERY_RATING)
+                    {
+                        masteryRating += mod.StatRating;
+                    }
+                }
+            }
+
+            return masteryRating;
         }
 
         public double GetMasteryMultiplier(GameState state)
         {
             // TODO: Add other sources of mastery increase here
-            var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.SpecId).FirstOrDefault();
+            var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.Spec).FirstOrDefault();
 
-            return 1 + specData.MasteryBase + (GetDrRating(state.Profile.MasteryRating, specData.MasteryCost) / specData.MasteryCost / 100);
+            return 1 + specData.MasteryBase + (GetDrRating(GetMasteryRating(state), specData.MasteryCost) / specData.MasteryCost / 100);
         }
 
         public double GetIntellect(GameState state)
         {
-            // TODO: Add other sources of int increase here
-            return state.Profile.Intellect;
+            var playStyleValue = GetPlaystyle(state, "OverrideStatIntellect").Value;
+            if (playStyleValue != 0)
+            {
+                return playStyleValue;
+            }
+
+            double intellect = 0;
+
+            // Get base intellect based on class
+            intellect += state.Profile.Class switch
+            {
+                Class.Priest => 450,
+                _ => throw new NotImplementedException("This class is not yet implemented."),
+            };
+
+            // Apply race modifiers
+            switch (state.Profile.Race)
+            {
+                case Race.Vulpera:
+                    intellect += 1;
+                    break;
+
+                case Race.BloodElf:
+                case Race.Mechagnome:
+                case Race.Nightborne:
+                case Race.VoidElf:
+                    intellect += 2;
+                    break;
+
+                case Race.Gnome:
+                case Race.Goblin:
+                    intellect += 3;
+                    break;
+
+                case Race.Orc:
+                case Race.Dwarf:
+                case Race.DarkIronDwarf:
+                case Race.MagharOrc:
+                case Race.HighmountainTauren:
+                case Race.KulTiran:
+                    intellect -= 1;
+                    break;
+
+                case Race.Undead:
+                case Race.Tauren:
+                    intellect -= 2;
+                    break;
+
+                case Race.Troll:
+                case Race.Worgen:
+                case Race.ZandalariTroll:
+                    intellect -= 3;
+                    break;
+
+                case Race.NoRace:
+                case Race.Human:
+                case Race.NightElf:
+                case Race.Draenei:
+                case Race.LightforgedDraenei:
+                case Race.Pandaren:
+                case Race.PandarenAlliance:
+                case Race.PandarenHorde:
+                default:
+                    break;
+            }
+
+            // Add intellect from all items
+            var clothCount = 0;
+            foreach (var item in _profileService.GetEquippedItems(state.Profile))
+            {
+                if (item.Slot != InventorySlot.Cloak &&
+                    item.ItemType == ItemType.ITEM_CLASS_ARMOR &&
+                    item.ItemSubType == 1)
+                    clothCount++;
+
+                foreach (var mod in item.Mods)
+                {
+                    if (mod.Type == ItemModType.ITEM_MOD_INTELLECT ||
+                        mod.Type == ItemModType.ITEM_MOD_AGILITY_INTELLECT ||
+                        mod.Type == ItemModType.ITEM_MOD_STRENGTH_INTELLECT ||
+                        mod.Type == ItemModType.ITEM_MOD_STRENGTH_AGILITY_INTELLECT)
+                    {
+                        intellect += mod.StatRating;
+                    }
+                }
+            }
+
+            if (clothCount == 8)
+                intellect *= 1.05d;
+
+            // TODO: Test if this is actually Floor'd. It's probably not touched at all.
+            return Math.Floor(intellect);
         }
 
         public BaseSpellData GetSpellData(GameState state, Spell spellId)
         {
-            var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.SpecId).FirstOrDefault();
+            var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.Spec).FirstOrDefault();
 
             BaseSpellData spell = specData.Spells.Where(s => s.Id == (uint)spellId).FirstOrDefault();
 
@@ -120,24 +357,42 @@ namespace Salvation.Core.State
 
         public bool IsConduitActive(GameState state, Conduit conduit)
         {
-            var exists = state.Profile.Conduits.Keys.Contains(conduit);
+            var soulbind = state.Profile.Covenant.Soulbinds.Where(s => s.IsActive).FirstOrDefault();
+            if (soulbind == null)
+                return false;
 
-            return exists;
+            return soulbind.ActiveConduits.ContainsKey(conduit);
         }
 
         public uint GetConduitRank(GameState state, Conduit conduit)
         {
             var rank = 0u;
-            if (state.Profile.Conduits.ContainsKey(conduit))
-                rank = state.Profile.Conduits[conduit];
+
+            if (IsConduitActive(state, conduit))
+            {
+                var soulbind = state.Profile.Covenant.Soulbinds.Where(s => s.IsActive).FirstOrDefault();
+                if (soulbind.ActiveConduits.ContainsKey(conduit))
+                    return soulbind.ActiveConduits[conduit];
+            }
 
             return rank;
         }
 
+        #region Covenant
+
+        public void SetCovenant(GameState state, CovenantProfile covenant)
+        {
+            _profileService.SetCovenant(state.Profile, covenant);
+        }
+
         public Covenant GetActiveCovenant(GameState state)
         {
-            return state.Profile.Covenant;
+            return state.Profile.Covenant.Covenant;
         }
+
+        #endregion
+
+        #region Talents
 
         public bool IsTalentActive(GameState state, Talent talent)
         {
@@ -146,16 +401,32 @@ namespace Salvation.Core.State
             return exists;
         }
 
+        public void SetActiveTalent(GameState state, Talent talent)
+        {
+            _profileService.AddTalent(state.Profile, talent);
+        }
+
+        #endregion
+
         public bool IsLegendaryActive(GameState state, Spell legendary)
         {
-            var exists = state.Profile.Legendaries.Contains(legendary);
+            foreach (var item in _profileService.GetEquippedItems(state.Profile))
+            {
+                foreach (var effect in item.Effects)
+                {
+                    if (effect.Spell != null && effect.Spell.Id == (int)legendary)
+                    {
+                        return true;
+                    }
+                }
+            }
 
-            return exists;
+            return false;
         }
 
         public void OverrideSpellData(GameState state, BaseSpellData newData)
         {
-            var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.SpecId).FirstOrDefault();
+            var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.Spec).FirstOrDefault();
 
             var requestedData = specData.Spells.Where(s => s.Id == newData.Id).FirstOrDefault();
 
@@ -201,14 +472,6 @@ namespace Salvation.Core.State
             state.Profile.PlaystyleEntries.Add(newPlaystyle);
         }
 
-        public GameState CloneGameState(GameState state)
-        {
-            var stateString = JsonConvert.SerializeObject(state);
-
-            var newState = JsonConvert.DeserializeObject<GameState>(stateString);
-
-            return newState;
-        }
         public void JournalEntry(GameState state, string message)
         {
             state.JournalEntries.Add(message);
@@ -223,6 +486,34 @@ namespace Salvation.Core.State
 
             return state.JournalEntries;
         }
+
+        public double GetFightLength(GameState state)
+        {
+            return state.Profile.FightLengthSeconds;
+        }
+
+        #region Gamestate Creation
+
+        public GameState CreateValidatedGameState(PlayerProfile profile, GlobalConstants constants = null)
+        {
+            var validatedProfile = _profileService.ValidateProfile(profile);
+
+            if (constants == null)
+                constants = _constantsService.LoadConstantsFromFile();
+
+            return new GameState(validatedProfile, constants);
+        }
+
+        public GameState CloneGameState(GameState state)
+        {
+            var stateString = JsonConvert.SerializeObject(state);
+
+            var newState = JsonConvert.DeserializeObject<GameState>(stateString);
+
+            return newState;
+        }
+
+        #endregion
 
         #region Holy Priest Specific
         // TODO: Move this out to a holy priest specific file at some point.
@@ -239,7 +530,7 @@ namespace Salvation.Core.State
             var bhCDR = GetSpellData(state, Spell.BindingHeal).GetEffect(325998).BaseValue;
             var salvCDRBase = GetSpellData(state, Spell.HolyWordSalvation).GetEffect(709211).BaseValue;
             var haCDRBase = GetSpellData(state, Spell.HarmoniousApparatus).GetEffect(833714).BaseValue;
-            var chastiseCDRBase = GetSpellData(state, Spell.Chastise).GetEffect(709477).BaseValue;
+            var chastiseCDRBase = GetSpellData(state, Spell.HolyWordChastise).GetEffect(709477).BaseValue;
 
             var isLotnActive = IsTalentActive(state, Talent.LightOfTheNaaru);
 

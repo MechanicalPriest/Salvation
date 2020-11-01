@@ -1,6 +1,5 @@
 ﻿using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
-using Salvation.Core.Interfaces;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.State;
@@ -13,13 +12,12 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         public Halo(IGameStateService gameStateService)
             : base(gameStateService)
         {
-            SpellId = (int)Spell.Halo;
+            Spell = Spell.Halo;
         }
 
         public override double GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, Spell.Halo);
+            spellData = ValidateSpellData(gameState, spellData);
 
             var holyPriestAuraHealingBonus = _gameStateService.GetSpellData(gameState, Spell.HolyPriest)
                 .GetEffect(179715).BaseValue / 100 + 1;
@@ -43,8 +41,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
         public override double GetAverageDamage(GameState gameState, BaseSpellData spellData = null)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, (Spell)SpellId);
+            spellData = ValidateSpellData(gameState, spellData);
 
             var holyPriestAuraDamageBonus = _gameStateService.GetSpellData(gameState, Spell.HolyPriest).GetEffect(191077).BaseValue / 100 + 1;
 
@@ -66,14 +63,13 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
         public override double GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, Spell.Halo);
+            spellData = ValidateSpellData(gameState, spellData);
 
             // Halo is simply 60 / (CastTime + CD) + 1 / (FightLength / 60)
             // Number of casts per minute plus one cast at the start of the encounter
             var hastedCastTime = GetHastedCastTime(gameState, spellData);
             var hastedCd = GetHastedCooldown(gameState, spellData);
-            var fightLength = gameState.Profile.FightLengthSeconds;
+            var fightLength = _gameStateService.GetFightLength(gameState);
 
             double maximumPotentialCasts = 60d / (hastedCastTime + hastedCd)
                 + 1d / (fightLength / 60d);
@@ -95,6 +91,14 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         public override double GetMaximumDamageTargets(GameState gameState, BaseSpellData spellData)
         {
             return double.MaxValue;
+        }
+
+        public override bool TriggersMastery(GameState gameState, BaseSpellData spellData)
+        {
+            // Halo Spellid doesnt have the "right" type, heal component does
+            var healData = _gameStateService.GetSpellData(gameState, Spell.HaloHeal);
+
+            return base.TriggersMastery(gameState, healData);
         }
     }
 }

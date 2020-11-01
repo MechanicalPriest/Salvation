@@ -29,6 +29,8 @@ namespace Salvation.Core.Constants
 
         public List<BaseSpellData> Spells { get; set; }
         public List<ConduitData> Conduits { get; set; }
+        public double GCDFloor { get; set; }
+        public double CritMultiplier { get; set; }
 
         public BaseSpec()
         {

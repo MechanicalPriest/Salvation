@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Salvation.Core.Constants;
+using SimcProfileParser.Interfaces;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -8,10 +9,13 @@ namespace Salvation.Utility.SpellDataUpdate
     public class SpellDataUpdateService : ISpellDataUpdateService
     {
         private readonly ISpellDataService<HolyPriestSpellDataService> _hpriestSpellData;
+        private readonly ISimcGenerationService _simcGenerationService;
 
-        public SpellDataUpdateService(ISpellDataService<HolyPriestSpellDataService> hpriestSpellData)
+        public SpellDataUpdateService(ISpellDataService<HolyPriestSpellDataService> hpriestSpellData,
+            ISimcGenerationService simcGenerationService)
         {
             _hpriestSpellData = hpriestSpellData;
+            _simcGenerationService = simcGenerationService;
         }
 
         public async Task UpdateSpellData()
@@ -24,7 +28,7 @@ namespace Salvation.Utility.SpellDataUpdate
             globalConstants.Specs.Add(hpriestSpellData);
 
             // TODO: Update the game version string
-            globalConstants.GameVersion = "9.0.2.36294";
+            globalConstants.GameVersion = await _simcGenerationService.GetGameDataVersionAsync();
 
             // Save the constants to file
             File.WriteAllText(@"..\..\..\..\Salvation.Core\constants.json",

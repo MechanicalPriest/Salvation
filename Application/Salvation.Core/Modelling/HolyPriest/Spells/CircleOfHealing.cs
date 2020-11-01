@@ -1,6 +1,5 @@
 ﻿using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
-using Salvation.Core.Interfaces;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.State;
@@ -12,13 +11,12 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         public CircleOfHealing(IGameStateService gameStateService)
             : base(gameStateService)
         {
-            SpellId = (int)Spell.CircleOfHealing;
+            Spell = Spell.CircleOfHealing;
         }
 
         public override double GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, Spell.CircleOfHealing);
+            spellData = ValidateSpellData(gameState, spellData);
 
             var holyPriestAuraHealingBonus = _gameStateService.GetSpellData(gameState, Spell.HolyPriest)
                 .GetEffect(179715).BaseValue / 100 + 1;
@@ -39,12 +37,11 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
         public override double GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, Spell.CircleOfHealing);
+            spellData = ValidateSpellData(gameState, spellData);
 
             var hastedCastTime = GetHastedCastTime(gameState, spellData);
             var hastedCd = GetHastedCooldown(gameState, spellData);
-            var fightLength = gameState.Profile.FightLengthSeconds;
+            var fightLength = _gameStateService.GetFightLength(gameState);
 
             double maximumPotentialCasts = 60d / (hastedCastTime + hastedCd)
                 + 1d / (fightLength / 60d);
@@ -59,8 +56,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
         public override double GetMaximumHealTargets(GameState gameState, BaseSpellData spellData)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, Spell.CircleOfHealing);
+            spellData = ValidateSpellData(gameState, spellData);
 
             // CoH stores its number of targets in 302437.BaseValue
             var numTargets = spellData.GetEffect(302437).BaseValue;

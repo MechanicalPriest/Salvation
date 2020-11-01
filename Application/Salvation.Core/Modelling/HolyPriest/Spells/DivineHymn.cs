@@ -1,6 +1,5 @@
 ﻿using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
-using Salvation.Core.Interfaces;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.State;
@@ -12,13 +11,12 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         public DivineHymn(IGameStateService gameStateService)
             : base(gameStateService)
         {
-            SpellId = (int)Spell.DivineHymn;
+            Spell = Spell.DivineHymn;
         }
 
         public override double GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, Spell.DivineHymn);
+            spellData = ValidateSpellData(gameState, spellData);
 
             var holyPriestAuraHealingBonus = _gameStateService.GetSpellData(gameState, Spell.HolyPriest)
                 .GetEffect(179715).BaseValue / 100 + 1;
@@ -54,11 +52,10 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
         public override double GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, Spell.DivineHymn);
+            spellData = ValidateSpellData(gameState, spellData);
 
             var hastedCooldown = GetHastedCooldown(gameState, spellData);
-            var fightLength = gameState.Profile.FightLengthSeconds;
+            var fightLength = _gameStateService.GetFightLength(gameState);
 
             // DH is simply 60 / CD + 1 / (FightLength / 60)
             // Number of casts per minute plus one cast at the start of the encounter

@@ -1,6 +1,5 @@
 ﻿using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
-using Salvation.Core.Interfaces;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.State;
@@ -12,13 +11,12 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         public PrayerOfHealing(IGameStateService gameStateService)
             : base(gameStateService)
         {
-            SpellId = (int)Spell.PrayerOfHealing;
+            Spell = Spell.PrayerOfHealing;
         }
 
         public override double GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, Spell.PrayerOfHealing);
+            spellData = ValidateSpellData(gameState, spellData);
 
             var holyPriestAuraHealingBonus = _gameStateService.GetSpellData(gameState, Spell.HolyPriest)
                 .GetEffect(179715).BaseValue / 100 + 1;
@@ -38,8 +36,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
         public override double GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, Spell.PrayerOfHealing);
+            spellData = ValidateSpellData(gameState, spellData);
 
             var hastedCastTime = GetHastedCastTime(gameState, spellData);
             var hastedGcd = GetHastedGcd(gameState, spellData);
@@ -60,8 +57,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
         public override double GetMaximumHealTargets(GameState gameState, BaseSpellData spellData)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, Spell.PrayerOfHealing);
+            spellData = ValidateSpellData(gameState, spellData);
 
             // PoH stores its number of targets in 288930.BaseValue
             var numTargets = spellData.GetEffect(288930).BaseValue;

@@ -104,10 +104,10 @@ namespace Salvation.Explorer.Modelling
         {
             var profile = GetBaseProfile();
 
-            _profileService.SetCovenant(profile, 
-                new CovenantProfile() { Covenant = Covenant.Venthyr });
-
             var state = _gameStateService.CreateValidatedGameState(profile);
+
+            _gameStateService.SetCovenant(state, 
+                new CovenantProfile() { Covenant = Covenant.Venthyr });
 
             _gameStateService.SetProfileName(state, "Mindgames on CD");
 
@@ -160,10 +160,10 @@ namespace Salvation.Explorer.Modelling
         {
             var profile = GetBaseProfile();
 
-            _profileService.SetCovenant(profile,
-                new CovenantProfile() { Covenant = Covenant.Kyrian });
-
             var state = _gameStateService.CreateValidatedGameState(profile);
+
+            _gameStateService.SetCovenant(state,
+                new CovenantProfile() { Covenant = Covenant.Kyrian });
 
             _gameStateService.SetSpellCastProfile(state, new CastProfile()
             {
@@ -207,10 +207,10 @@ namespace Salvation.Explorer.Modelling
         {
             var profile = GetBaseProfile();
 
-            _profileService.SetCovenant(profile,
-                new CovenantProfile() { Covenant = Covenant.NightFae });
-
             var state = _gameStateService.CreateValidatedGameState(profile);
+
+            _gameStateService.SetCovenant(state,
+                new CovenantProfile() { Covenant = Covenant.NightFae });
 
             _gameStateService.SetSpellCastProfile(state, new CastProfile()
             {
@@ -255,10 +255,10 @@ namespace Salvation.Explorer.Modelling
         {
             var profile = GetBaseProfile();
 
-            _profileService.SetCovenant(profile,
-                new CovenantProfile() { Covenant = Covenant.Necrolord });
-
             var state = _gameStateService.CreateValidatedGameState(profile);
+
+            _gameStateService.SetCovenant(state,
+                new CovenantProfile() { Covenant = Covenant.Necrolord });
 
             _gameStateService.SetSpellCastProfile(state, new CastProfile()
             {

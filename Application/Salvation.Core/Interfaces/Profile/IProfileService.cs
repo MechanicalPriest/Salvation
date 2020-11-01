@@ -10,7 +10,7 @@ namespace Salvation.Core.Interfaces.Profile
         PlayerProfile CloneProfile(PlayerProfile profile);
         PlayerProfile ValidateProfile(PlayerProfile profile);
 
-
+        // Below methods should only be used by ProfileService and GameStateService
         void SetSpellCastProfile(PlayerProfile profile, CastProfile castProfile);
         void SetProfileName(PlayerProfile profile, string profileName);
         List<Item> GetEquippedItems(PlayerProfile profile);

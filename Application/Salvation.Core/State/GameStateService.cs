@@ -377,10 +377,19 @@ namespace Salvation.Core.State
             return rank;
         }
 
+        #region Covenant
+
+        public void SetCovenant(GameState state, CovenantProfile covenant)
+        {
+            _profileService.SetCovenant(state.Profile, covenant);
+        }
+
         public Covenant GetActiveCovenant(GameState state)
         {
             return state.Profile.Covenant.Covenant;
         }
+
+        #endregion
 
         #region Talents
 

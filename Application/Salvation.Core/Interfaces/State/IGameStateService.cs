@@ -17,6 +17,7 @@ namespace Salvation.Core.Interfaces.State
         CastProfile GetSpellCastProfile(GameState state, int spellId);
         void SetSpellCastProfile(GameState state, CastProfile castProfile);
         PlaystyleEntry GetPlaystyle(GameState state, string name);
+        void SetCovenant(GameState state, CovenantProfile covenant);
         Covenant GetActiveCovenant(GameState state);
         void OverrideSpellData(GameState state, BaseSpellData newData);
         void OverridePlaystyle(GameState state, PlaystyleEntry newPlaystyle);

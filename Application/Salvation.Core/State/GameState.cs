@@ -14,7 +14,7 @@ namespace Salvation.Core.State
         internal List<string> JournalEntries { get; set; }
 
         /// <summary>
-        /// Initialise this using .CreateValidatedGameState to validate the profile
+        /// Initialise this using GameStateService.CreateValidatedGameState to validate the profile
         /// </summary>
         public GameState()
         {
@@ -22,7 +22,7 @@ namespace Salvation.Core.State
         }
 
         /// <summary>
-        /// Initialise this using .CreateValidatedGameState to validate the profile
+        /// Initialise this using GameStateService.CreateValidatedGameState to validate the profile
         /// </summary>
         /// <param name="profile"></param>
         /// <param name="constants"></param>
@@ -30,16 +30,6 @@ namespace Salvation.Core.State
             : this()
         {
             Profile = profile;
-            Constants = constants;
-        }
-
-        public void SetProfile(PlayerProfile profile)
-        {
-            Profile = profile;
-        }
-
-        public void SetConstants(GlobalConstants constants)
-        {
             Constants = constants;
         }
     }

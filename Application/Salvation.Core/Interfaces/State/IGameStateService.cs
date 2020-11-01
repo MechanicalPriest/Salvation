@@ -32,10 +32,13 @@ namespace Salvation.Core.Interfaces.State
         double GetHasteMultiplier(GameState state);
         double GetBaseManaAmount(GameState state);
         double GetGCDFloor(GameState gameState);
+
         // Player Configuration
         bool IsConduitActive(GameState state, Conduit conduit);
         uint GetConduitRank(GameState state, Conduit conduit);
-        bool IsLegendaryActive(GameState state, Spell legendary);
+        bool IsLegendaryActive(GameState state, Spell legendary); 
+        void SetActiveTalent(GameState state, Talent talent);
+        bool IsTalentActive(GameState state, Talent talent);
 
         // Utility
         GameState CloneGameState(GameState state);
@@ -45,6 +48,6 @@ namespace Salvation.Core.Interfaces.State
 
         // Holy Priest specific
         double GetTotalHolyWordCooldownReduction(GameState state, Spell spell, bool IsApotheosisActive = false);
-        
+
     }
 }

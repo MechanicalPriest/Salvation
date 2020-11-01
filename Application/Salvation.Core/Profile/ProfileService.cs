@@ -8,6 +8,11 @@ using System.Net.Sockets;
 
 namespace Salvation.Core.Profile
 {
+    /// <summary>
+    /// This class has methods to interact with a profile at a high level 
+    /// i.e. Validating, Cloning the profile. Use GameStateService for general
+    /// get/set operations within the profile.
+    /// </summary>
     public class ProfileService : IProfileService
     {
         public ProfileService()
@@ -70,16 +75,11 @@ namespace Salvation.Core.Profile
         #endregion Equipment Management
 
         #region Talent Management
+
         public void AddTalent(PlayerProfile profile, Talent talent)
         {
             if (!profile.Talents.Contains(talent))
                 profile.Talents.Add(talent);
-        }
-
-        public void RemoveTalent(PlayerProfile profile, Talent talent)
-        {
-            if (profile.Talents.Contains(talent))
-                profile.Talents.Remove(talent);
         }
 
         #endregion Talent Management

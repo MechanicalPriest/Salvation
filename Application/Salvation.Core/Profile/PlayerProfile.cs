@@ -1,8 +1,5 @@
-﻿using Newtonsoft.Json;
-using Salvation.Core.Constants.Data;
-using System;
+﻿using Salvation.Core.Constants.Data;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Salvation.Core.Profile
 {
@@ -54,18 +51,6 @@ namespace Salvation.Core.Profile
             Items = new List<Item>();
             Covenant = new CovenantProfile();
             Level = 60;
-        }
-
-        public bool IsTalentActive(Talent talent)
-        {
-            var exists = Talents.Contains(talent);
-
-            return exists;
-        }
-
-        public static PlayerProfile Clone(PlayerProfile existingProfile)
-        {
-            return JsonConvert.DeserializeObject<PlayerProfile>(JsonConvert.SerializeObject(existingProfile));
         }
     }
 }

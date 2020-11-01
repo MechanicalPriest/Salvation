@@ -15,5 +15,6 @@ namespace Salvation.Core.Interfaces.Profile
         void SetProfileName(PlayerProfile profile, string profileName);
         List<Item> GetEquippedItems(PlayerProfile profile);
         void SetCovenant(PlayerProfile profile, CovenantProfile covenant);
+        void AddTalent(PlayerProfile profile, Talent talent);
     }
 }

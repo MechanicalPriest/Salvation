@@ -40,7 +40,7 @@ namespace Salvation.CoreTests.State
         public double HWCDR_LotN_Values(Spell spell)
         {
             // Arrange
-            _state.Profile.Talents.Add(Talent.LightOfTheNaaru);
+            _gameStateService.SetActiveTalent(_state, Talent.LightOfTheNaaru);
 
             // Act
 
@@ -53,7 +53,7 @@ namespace Salvation.CoreTests.State
         public double HWCDR_LotN_HO_Values(Spell spell)
         {
             // Arrange
-            _state.Profile.Talents.Add(Talent.LightOfTheNaaru);
+            _gameStateService.SetActiveTalent(_state, Talent.LightOfTheNaaru);
             _profileService.AddActiveConduit(_state.Profile, Conduit.HolyOration, 0);
 
             // Act
@@ -80,7 +80,7 @@ namespace Salvation.CoreTests.State
         public double HWCDR_Apoth_Values(Spell spell)
         {
             // Arrange
-            _state.Profile.Talents.Add(Talent.Apotheosis);
+            _gameStateService.SetActiveTalent(_state, Talent.Apotheosis);
 
             // Act
 
@@ -93,7 +93,7 @@ namespace Salvation.CoreTests.State
         public double HWCDR_Apoth_HO_Values(Spell spell)
         {
             // Arrange
-            _state.Profile.Talents.Add(Talent.Apotheosis);
+            _gameStateService.SetActiveTalent(_state, Talent.Apotheosis);
             _profileService.AddActiveConduit(_state.Profile, Conduit.HolyOration, 0);
 
             // Act

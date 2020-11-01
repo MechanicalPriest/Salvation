@@ -125,7 +125,7 @@ namespace Salvation.Core.State
             // TODO: Add other sources of crit increase here
             var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.Spec).FirstOrDefault();
             double criticalEffectMultiplier = specData.CritMultiplier - 1; // 2 by default higher based on items but lowered to 1 for calc below
-            
+
             // apply race bonus on crits
             switch (state.Profile.Race)
             {
@@ -356,8 +356,8 @@ namespace Salvation.Core.State
         public uint GetConduitRank(GameState state, Conduit conduit)
         {
             var rank = 0u;
-            
-            if(IsConduitActive(state, conduit))
+
+            if (IsConduitActive(state, conduit))
             {
                 var soulbind = state.Profile.Covenant.Soulbinds.Where(s => s.IsActive).FirstOrDefault();
                 if (soulbind.ActiveConduits.ContainsKey(conduit))
@@ -372,6 +372,8 @@ namespace Salvation.Core.State
             return state.Profile.Covenant.Covenant;
         }
 
+        #region Talents
+
         public bool IsTalentActive(GameState state, Talent talent)
         {
             var exists = state.Profile.Talents.Contains(talent);
@@ -379,14 +381,20 @@ namespace Salvation.Core.State
             return exists;
         }
 
+        public void SetActiveTalent(GameState state, Talent talent)
+        {
+            _profileService.AddTalent(state.Profile, talent);
+        }
+
+        #endregion
         public bool IsLegendaryActive(GameState state, Spell legendary)
         {
-            foreach(var item in _profileService.GetEquippedItems(state.Profile))
+            foreach (var item in _profileService.GetEquippedItems(state.Profile))
             {
-                foreach(var effect in item.Effects)
+                foreach (var effect in item.Effects)
                 {
-                    if(effect.Spell != null && effect.Spell.Id == (int)legendary)
-                    { 
+                    if (effect.Spell != null && effect.Spell.Id == (int)legendary)
+                    {
                         return true;
                     }
                 }

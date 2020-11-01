@@ -34,8 +34,6 @@ namespace Salvation.Core.Profile
         public List<Talent> Talents { get; set; }
 
         public CovenantProfile Covenant { get; set; }
-        // TODO: Delete this
-        public List<Spell> Legendaries { get; set; }
 
         // Misc info
         public int FightLengthSeconds { get; set; }
@@ -46,7 +44,6 @@ namespace Salvation.Core.Profile
         {
             Casts = new List<CastProfile>();
             Talents = new List<Talent>();
-            Legendaries = new List<Spell>();
             PlaystyleEntries = new List<PlaystyleEntry>();
             Items = new List<Item>();
             Covenant = new CovenantProfile();

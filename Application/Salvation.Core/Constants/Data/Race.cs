@@ -3,6 +3,7 @@
     public enum Race
     {
         // From util::race_id in util.cpp & race_e in sc_enums.hpp
+        // _race_map in sc_spell_info.cpp contains the races and their IDs 0-indexed
         NoRace = 0,
         Human,
         Orc,

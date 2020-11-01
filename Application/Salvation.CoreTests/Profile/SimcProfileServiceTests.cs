@@ -41,8 +41,6 @@ namespace Salvation.CoreTests.Profile
             // Act
             var profile = await _simcProfileService.ApplySimcProfileAsync(_profileStringBeitaky, baseProfile);
 
-            File.WriteAllText("temp.json", JsonConvert.SerializeObject(baseProfile, Formatting.Indented));
-
             // Assert
             Assert.IsNotNull(profile);
             Assert.AreEqual("Beitaky", profile.Name);
@@ -75,9 +73,9 @@ namespace Salvation.CoreTests.Profile
             Assert.LessOrEqual(2, profile.Covenant.Soulbinds.Count);
             Assert.IsTrue(profile.Covenant.Soulbinds.First().IsActive);
             Assert.AreEqual("pelagos", profile.Covenant.Soulbinds.First().Name);
-            Assert.LessOrEqual(1, profile.Covenant.Soulbinds.First().ActiveConduits.Count);
-            Assert.AreEqual(Conduit.CourageousAscension, profile.Covenant.Soulbinds.First().ActiveConduits.First().Key); // TODO: Fixed with a newer version of SimcProfileParser
-            Assert.AreEqual(1, profile.Covenant.Soulbinds.First().ActiveConduits.First().Value);
+            Assert.LessOrEqual(1, profile.Covenant.Soulbinds.Skip(1).First().ActiveConduits.Count);
+            Assert.AreEqual(Conduit.CourageousAscension, profile.Covenant.Soulbinds.Skip(1).First().ActiveConduits.First().Key); // TODO: Fixed with a newer version of SimcProfileParser
+            Assert.AreEqual(1, profile.Covenant.Soulbinds.Skip(1).First().ActiveConduits.First().Value);
         }
 
         [Test]

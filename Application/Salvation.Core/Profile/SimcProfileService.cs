@@ -1,4 +1,5 @@
-﻿using Salvation.Core.Constants.Data;
+﻿using Salvation.Core.Constants;
+using Salvation.Core.Constants.Data;
 using Salvation.Core.Interfaces.Profile;
 using SimcProfileParser.Interfaces;
 using SimcProfileParser.Model.Generated;
@@ -155,9 +156,19 @@ namespace Salvation.Core.Profile
                         Type = effect.Type,
                         CooldownDuration = effect.CooldownDuration,
                         CooldownGroup = effect.CooldownGroup,
-                        CooldownGroupDuration = effect.CooldownGroupDuration,
-                        //Spell = effect.Spell // Populate this based on what we actually need later
+                        CooldownGroupDuration = effect.CooldownGroupDuration 
                     };
+
+                    // Populate this based on what we actually need
+                    if (effect.Spell != null)
+                    {
+                        var newSpell = new BaseSpellData()
+                        {
+                            Id = effect.Spell.SpellId
+                        };
+
+                        newEffect.Spell = newSpell;
+                    }
 
                     newItem.Effects.Add(newEffect);
                 }

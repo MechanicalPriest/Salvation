@@ -377,9 +377,18 @@ namespace Salvation.Core.State
 
         public bool IsLegendaryActive(GameState state, Spell legendary)
         {
-            var exists = state.Profile.Legendaries.Contains(legendary);
+            foreach(var item in _profileService.GetEquippedItems(state.Profile))
+            {
+                foreach(var effect in item.Effects)
+                {
+                    if(effect.Spell != null && effect.Spell.Id == (int)legendary)
+                    { 
+                        return true;
+                    }
+                }
+            }
 
-            return exists;
+            return false;
         }
 
         public void OverrideSpellData(GameState state, BaseSpellData newData)

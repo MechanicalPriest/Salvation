@@ -36,7 +36,12 @@ namespace Salvation.Core.State
             return specData.ManaBase;
         }
 
-        public CastProfile GetCastProfile(GameState state, int spellId)
+        public void SetSpellCastProfile(GameState state, CastProfile castProfile)
+        {
+            _profileService.SetSpellCastProfile(state.Profile, castProfile);
+        }
+
+        public CastProfile GetSpellCastProfile(GameState state, int spellId)
         {
             var castProfile = state.Profile.Casts?
                 .Where(c => c.SpellId == spellId)
@@ -45,6 +50,11 @@ namespace Salvation.Core.State
             castProfile = JsonConvert.DeserializeObject<CastProfile>(JsonConvert.SerializeObject(castProfile));
 
             return castProfile;
+        }
+
+        public void SetProfileName(GameState state, string profileName)
+        {
+            _profileService.SetProfileName(state.Profile, profileName);
         }
 
         public double GetGCDFloor(GameState state)

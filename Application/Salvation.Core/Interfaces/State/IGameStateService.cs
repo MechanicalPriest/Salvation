@@ -14,7 +14,8 @@ namespace Salvation.Core.Interfaces.State
     {
         // Global constants
         BaseSpellData GetSpellData(GameState state, Spell spellId);
-        CastProfile GetCastProfile(GameState state, int spellId);
+        CastProfile GetSpellCastProfile(GameState state, int spellId);
+        void SetSpellCastProfile(GameState state, CastProfile castProfile);
         PlaystyleEntry GetPlaystyle(GameState state, string name);
         Covenant GetActiveCovenant(GameState state);
         void OverrideSpellData(GameState state, BaseSpellData newData);
@@ -37,7 +38,9 @@ namespace Salvation.Core.Interfaces.State
         double GetBaseManaAmount(GameState state);
         double GetGCDFloor(GameState gameState);
 
-        // Player Configuration
+        // Player Profile Configuration
+
+        void SetProfileName(GameState state, string profileName);
         bool IsConduitActive(GameState state, Conduit conduit);
         uint GetConduitRank(GameState state, Conduit conduit);
         bool IsLegendaryActive(GameState state, Spell legendary); 

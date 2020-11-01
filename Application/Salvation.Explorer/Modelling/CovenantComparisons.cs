@@ -93,9 +93,9 @@ namespace Salvation.Explorer.Modelling
         {
             var profile = GetBaseProfile();
 
-            _profileService.SetProfileName(profile, "Baseline");
-
             var state = _gameStateService.CreateValidatedGameState(profile);
+
+            _gameStateService.SetProfileName(state, "Baseline");
 
             return state;
         }
@@ -106,15 +106,17 @@ namespace Salvation.Explorer.Modelling
 
             _profileService.SetCovenant(profile, 
                 new CovenantProfile() { Covenant = Covenant.Venthyr });
-            _profileService.SetProfileName(profile, "Mindgames on CD");
-            _profileService.SetSpellCastProfile(profile, new CastProfile()
+
+            var state = _gameStateService.CreateValidatedGameState(profile);
+
+            _gameStateService.SetProfileName(state, "Mindgames on CD");
+
+            _gameStateService.SetSpellCastProfile(state, new CastProfile()
             {
                 SpellId = (int)Spell.Mindgames,
                 Efficiency = 1d,
                 OverhealPercent = 0d
             });
-
-            var state = _gameStateService.CreateValidatedGameState(profile);
 
             return state;
         }
@@ -160,7 +162,6 @@ namespace Salvation.Explorer.Modelling
 
             _profileService.SetCovenant(profile,
                 new CovenantProfile() { Covenant = Covenant.Kyrian });
-            _profileService.SetProfileName(profile, profileName);
             _profileService.SetSpellCastProfile(profile, new CastProfile()
             {
                 SpellId = (int)Spell.AscendedBlast,
@@ -181,6 +182,8 @@ namespace Salvation.Explorer.Modelling
             });
 
             var state = _gameStateService.CreateValidatedGameState(profile);
+
+            _gameStateService.SetProfileName(state, profileName);
 
             var anData = _gameStateService.GetSpellData(state, Spell.AscendedNova);
 
@@ -205,7 +208,6 @@ namespace Salvation.Explorer.Modelling
 
             _profileService.SetCovenant(profile,
                 new CovenantProfile() { Covenant = Covenant.NightFae });
-            _profileService.SetProfileName(profile, profileName);
             _profileService.SetSpellCastProfile(profile, new CastProfile()
             {
                 SpellId = (int)Spell.FaeGuardians,
@@ -214,6 +216,8 @@ namespace Salvation.Explorer.Modelling
             });
 
             var state = _gameStateService.CreateValidatedGameState(profile);
+
+            _gameStateService.SetProfileName(state, profileName);
 
             var dtpsModifier = _gameStateService.GetPlaystyle(state, "FaeGuardianFaerieDTPS");
             dtpsModifier.Value = guardianDTPS;
@@ -251,7 +255,6 @@ namespace Salvation.Explorer.Modelling
 
             _profileService.SetCovenant(profile,
                 new CovenantProfile() { Covenant = Covenant.Necrolord });
-            _profileService.SetProfileName(profile, profileName);
             _profileService.SetSpellCastProfile(profile, new CastProfile()
             {
                 SpellId = (int)Spell.UnholyNova,
@@ -260,6 +263,8 @@ namespace Salvation.Explorer.Modelling
             });
 
             var state = _gameStateService.CreateValidatedGameState(profile);
+
+            _gameStateService.SetProfileName(state, profileName);
 
             var unData = _gameStateService.GetSpellData(state, Spell.UnholyNova);
 

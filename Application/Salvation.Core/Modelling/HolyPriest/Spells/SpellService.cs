@@ -65,7 +65,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             spellData = ValidateSpellData(gameState, spellData);
 
             // Average healing done is raw healing * overheal
-            var castProfile = _gameStateService.GetCastProfile(gameState, SpellId);
+            var castProfile = _gameStateService.GetSpellCastProfile(gameState, SpellId);
 
             var totalDirectHeal = GetAverageRawHealing(gameState, spellData)
                 * (1 - castProfile.OverhealPercent);
@@ -78,7 +78,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             spellData = ValidateSpellData(gameState, spellData);
 
             // Average healing done is raw healing * overheal
-            var castProfile = _gameStateService.GetCastProfile(gameState, SpellId);
+            var castProfile = _gameStateService.GetSpellCastProfile(gameState, SpellId);
 
             var totalOverheal = GetAverageRawHealing(gameState, spellData)
                 * castProfile.OverhealPercent;
@@ -90,7 +90,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         {
             spellData = ValidateSpellData(gameState, spellData);
 
-            var castProfile = _gameStateService.GetCastProfile(gameState, SpellId);
+            var castProfile = _gameStateService.GetSpellCastProfile(gameState, SpellId);
 
             double castsPerMinute = castProfile.Efficiency * GetMaximumCastsPerMinute(gameState, spellData);
 
@@ -162,7 +162,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         {
             spellData = ValidateSpellData(gameState, spellData);
 
-            var profileData = _gameStateService.GetCastProfile(gameState, SpellId);
+            var profileData = _gameStateService.GetSpellCastProfile(gameState, SpellId);
 
             var numTargets = profileData.AverageHealingTargets;
 
@@ -176,7 +176,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         {
             spellData = ValidateSpellData(gameState, spellData);
 
-            var profileData = _gameStateService.GetCastProfile(gameState, SpellId);
+            var profileData = _gameStateService.GetSpellCastProfile(gameState, SpellId);
 
             var numTargets = profileData.AverageDamageTargets;
 
@@ -233,7 +233,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             var averageMasteryHeal = GetAverageRawHealing(gameState, spellData)
                 * (_gameStateService.GetMasteryMultiplier(gameState) - 1);
 
-            var castProfile = _gameStateService.GetCastProfile(gameState, (int)Spell.EchoOfLight);
+            var castProfile = _gameStateService.GetSpellCastProfile(gameState, (int)Spell.EchoOfLight);
 
             result.SpellId = (int)Spell.EchoOfLight;
             result.SpellName = "Echo of Light";

@@ -86,6 +86,9 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.ShadowWordDeath,
                 (uint)Spell.ShadowWordDeathRank2,
                 (uint)Spell.HolyFire,
+
+                // Consumable
+                (uint)Spell.SpectralFlaskOfPower,
             };
         }
 
@@ -206,10 +209,11 @@ namespace Salvation.Utility.SpellDataUpdate
                 Id = effect.Id,
                 BaseValue = effect.BaseValue,
                 SpCoefficient = effect.SpCoefficient,
+                Coefficient = effect.Coefficient,
                 TriggerSpellid = effect.TriggerSpellId,
                 Amplitude = effect.Amplitude,
                 TriggerSpell = GetBaseSpellData(effect.TriggerSpell),
-                Type = effect.EffectType
+                Type = effect.EffectType,
             };
 
             return newEffect;

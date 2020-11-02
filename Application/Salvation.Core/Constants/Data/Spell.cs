@@ -96,5 +96,6 @@
         ShadowWordDeath = 32379,
         ShadowWordDeathRank2 = 322107,
         HolyFire = 14914,
+        SpectralFlaskOfPower = 307185,
     }
 }

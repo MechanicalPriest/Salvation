@@ -19,4 +19,10 @@
     <PackageReference Include="SimcProfileParser" Version="0.3.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Modelling\Common\Consumables\" />
+    <Folder Include="Modelling\Common\Items\" />
+    <Folder Include="Modelling\Common\Traits\" />
+  </ItemGroup>
+
 </Project>

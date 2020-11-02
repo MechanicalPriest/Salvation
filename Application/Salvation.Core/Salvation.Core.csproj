@@ -20,7 +20,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Modelling\Common\Consumables\" />
     <Folder Include="Modelling\Common\Items\" />
     <Folder Include="Modelling\Common\Traits\" />
   </ItemGroup>

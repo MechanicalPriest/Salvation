@@ -56,5 +56,10 @@ namespace Salvation.Core.Modelling.Common
         {
             return 0;
         }
+
+        public virtual double GetAverageMp5(GameState gameState, BaseSpellData spellData)
+        {
+            return 0;
+        }
     }
 }

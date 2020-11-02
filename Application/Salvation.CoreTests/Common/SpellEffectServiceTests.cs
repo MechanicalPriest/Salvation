@@ -117,6 +117,19 @@ namespace Salvation.CoreTests.Common
             // Assert
             return result;
         }
+
+        [TestCaseSource(typeof(SpellEffectServiceTestsData), nameof(SpellEffectServiceTestsData.GetAverageMp5))]
+        public double GetAverageMp5(Type t)
+        {
+            // Arrange
+            var spellService = Spells.Where(s => s.GetType() == t).FirstOrDefault();
+
+            // Act
+            var result = spellService.GetAverageMp5(_gameState, null);
+
+            // Assert
+            return result;
+        }
     }
 
     public class SpellEffectServiceTestsData
@@ -162,6 +175,14 @@ namespace Salvation.CoreTests.Common
             get
             {
                 yield return new TestCaseData(typeof(SpectralFlaskOfPower)).Returns(1);
+            }
+        }
+
+        public static IEnumerable GetAverageMp5
+        {
+            get
+            {
+                yield return new TestCaseData(typeof(SpectralFlaskOfPower)).Returns(0);
             }
         }
     }

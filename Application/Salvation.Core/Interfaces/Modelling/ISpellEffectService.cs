@@ -15,6 +15,7 @@ namespace Salvation.Core.Interfaces.Modelling
         double GetAverageIntellect(GameState gameState, BaseSpellData spellData);
         double GetAverageMastery(GameState gameState, BaseSpellData spellData);
         double GetAverageVersatility(GameState gameState, BaseSpellData spellData);
+        double GetAverageMp5(GameState gameState, BaseSpellData spellData);
     }
 
     public interface ISpellEffectService<T> : ISpellEffectService

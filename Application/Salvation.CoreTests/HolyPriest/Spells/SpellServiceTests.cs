@@ -3,6 +3,7 @@ using NUnit.Framework;
 using Salvation.Core.Constants;
 using Salvation.Core.Interfaces.Constants;
 using Salvation.Core.Interfaces.State;
+using Salvation.Core.Modelling;
 using Salvation.Core.Modelling.HolyPriest.Spells;
 using Salvation.Core.Profile.Model;
 using Salvation.Core.State;

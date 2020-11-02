@@ -6,7 +6,7 @@ using Salvation.Core.Modelling.Common;
 using Salvation.Core.State;
 using System;
 
-namespace Salvation.Core.Modelling.HolyPriest.Spells
+namespace Salvation.Core.Modelling
 {
     public class SpellService : ISpellService
     {

@@ -2,7 +2,7 @@
 using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
 using Salvation.Core.Interfaces.State;
-using Salvation.Core.Modelling.HolyPriest.Spells;
+using Salvation.Core.Modelling;
 using Salvation.Core.State;
 using System;
 

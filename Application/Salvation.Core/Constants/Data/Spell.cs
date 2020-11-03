@@ -96,6 +96,9 @@
         ShadowWordDeath = 32379,
         ShadowWordDeathRank2 = 322107,
         HolyFire = 14914,
+
+        // Consumables
         SpectralFlaskOfPower = 307185,
+        SpiritualManaPotion = 307193,
     }
 }

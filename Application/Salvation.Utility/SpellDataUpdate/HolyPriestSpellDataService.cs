@@ -89,6 +89,7 @@ namespace Salvation.Utility.SpellDataUpdate
 
                 // Consumable
                 (uint)Spell.SpectralFlaskOfPower,
+                (uint)Spell.SpiritualManaPotion,
             };
         }
 

@@ -1,18 +1,11 @@
-﻿using Newtonsoft.Json;
-using NUnit.Framework;
-using Salvation.Core.Constants;
-using Salvation.Core.Interfaces.Constants;
+﻿using NUnit.Framework;
 using Salvation.Core.Interfaces.Modelling;
 using Salvation.Core.Interfaces.State;
-using Salvation.Core.Modelling;
 using Salvation.Core.Modelling.Common.Consumables;
-using Salvation.Core.Modelling.HolyPriest.Spells;
-using Salvation.Core.Profile.Model;
 using Salvation.Core.State;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 
 namespace Salvation.CoreTests.Common
@@ -36,6 +29,7 @@ namespace Salvation.CoreTests.Common
             IGameStateService gameStateService = new GameStateService();
 
             Spells.Add(new SpectralFlaskOfPower(gameStateService));
+            Spells.Add(new SpiritualManaPotion(gameStateService));
 
             _gameState = GetGameState();
         }
@@ -130,6 +124,45 @@ namespace Salvation.CoreTests.Common
             // Assert
             return result;
         }
+
+        [TestCaseSource(typeof(SpellEffectServiceTestsData), nameof(SpellEffectServiceTestsData.GetHastedCooldown))]
+        public double GetHastedCooldown(Type t)
+        {
+            // Arrange
+            var spellService = Spells.Where(s => s.GetType() == t).FirstOrDefault();
+
+            // Act
+            var result = spellService.GetHastedCooldown(_gameState, null);
+
+            // Assert
+            return result;
+        }
+
+        [TestCaseSource(typeof(SpellEffectServiceTestsData), nameof(SpellEffectServiceTestsData.GetMaximumCastsPerMinute))]
+        public double GetMaximumCastsPerMinute(Type t)
+        {
+            // Arrange
+            var spellService = Spells.Where(s => s.GetType() == t).FirstOrDefault();
+
+            // Act
+            var result = spellService.GetMaximumCastsPerMinute(_gameState, null);
+
+            // Assert
+            return result;
+        }
+
+        [TestCaseSource(typeof(SpellEffectServiceTestsData), nameof(SpellEffectServiceTestsData.GetActualCastsPerMinute))]
+        public double GetActualCastsPerMinute(Type t)
+        {
+            // Arrange
+            var spellService = Spells.Where(s => s.GetType() == t).FirstOrDefault();
+
+            // Act
+            var result = spellService.GetActualCastsPerMinute(_gameState, null);
+
+            // Assert
+            return result;
+        }
     }
 
     public class SpellEffectServiceTestsData
@@ -183,6 +216,31 @@ namespace Salvation.CoreTests.Common
             get
             {
                 yield return new TestCaseData(typeof(SpectralFlaskOfPower)).Returns(0);
+                yield return new TestCaseData(typeof(SpiritualManaPotion)).Returns(136.02015113350123d);
+            }
+        }
+
+        public static IEnumerable GetHastedCooldown
+        {
+            get
+            {
+                yield return new TestCaseData(typeof(SpiritualManaPotion)).Returns(300d);
+            }
+        }
+
+        public static IEnumerable GetMaximumCastsPerMinute
+        {
+            get
+            {
+                yield return new TestCaseData(typeof(SpiritualManaPotion)).Returns(0.30226700251889166d);
+            }
+        }
+
+        public static IEnumerable GetActualCastsPerMinute
+        {
+            get
+            {
+                yield return new TestCaseData(typeof(SpiritualManaPotion)).Returns(0.27204030226700249d);
             }
         }
     }

@@ -2,9 +2,6 @@
 using Salvation.Core.Interfaces.Modelling;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.State;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Salvation.Core.Modelling.Common
 {
@@ -14,11 +11,17 @@ namespace Salvation.Core.Modelling.Common
     public class SpellEffectService : SpellService, ISpellEffectService
     {
         /// <summary>
-        /// Multiple this against coefficient to get scaled item spell values (consumables)
+        /// Multiply this against coefficient to get scaled item spell values (flask buff)
         /// Comes from sc_scale_data.inc's __spell_scaling array (item section) for level 60.
         /// </summary>
         protected readonly double ItemCoefficientMultiplier = 95;
-        public SpellEffectService(IGameStateService gameStateService) 
+        /// <summary>
+        /// Multiply this against coefficient to get scaled item spell values (potion buff)
+        /// Comes from sc_scale_data.inc's __spell_scaling array (consumable section) for level 60.
+        /// </summary>
+        protected readonly double ConsumableCoefficientMultiplier = 25000;
+
+        public SpellEffectService(IGameStateService gameStateService)
             : base(gameStateService)
         {
 

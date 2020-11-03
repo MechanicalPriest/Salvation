@@ -2443,6 +2443,32 @@
             }
           ],
           "ConduitRanks": {}
+        },
+        {
+          "Id": 307193,
+          "Name": "Spiritual Mana Potion",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 60000.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "Effects": [
+            {
+              "Id": 785599,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.24,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 30
+            }
+          ],
+          "ConduitRanks": {}
         }
       ],
       "Conduits": [],

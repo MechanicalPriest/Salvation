@@ -16,11 +16,10 @@
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-    <PackageReference Include="SimcProfileParser" Version="0.3.0" />
+    <PackageReference Include="SimcProfileParser" Version="0.3.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Modelling\Common\Items\" />
     <Folder Include="Modelling\Common\Traits\" />
   </ItemGroup>
 

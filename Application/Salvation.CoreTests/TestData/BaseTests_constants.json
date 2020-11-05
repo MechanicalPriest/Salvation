@@ -33,6 +33,8 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
           "Effects": [
             {
               "Id": 179715,
@@ -129,6 +131,8 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
           "Effects": [
             {
               "Id": 283373,
@@ -155,6 +159,8 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
           "Effects": [
             {
               "Id": 360821,
@@ -181,6 +187,8 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
           "Effects": [
             {
               "Id": 22313,
@@ -237,6 +245,8 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
           "Effects": [
             {
               "Id": 140102,
@@ -263,6 +273,8 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
           "Effects": [
             {
               "Id": 140516,
@@ -289,6 +301,8 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
           "Effects": [
             {
               "Id": 140527,
@@ -315,6 +329,8 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
           "Effects": [
             {
               "Id": 122871,
@@ -341,6 +357,8 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
           "Effects": [
             {
               "Id": 122873,
@@ -367,6 +385,8 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
           "Effects": [
             {
               "Id": 153526,
@@ -393,6 +413,8 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
           "Effects": [
             {
               "Id": 283376,
@@ -419,6 +441,8 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
           "Effects": [
             {
               "Id": 709207,
@@ -465,6 +489,8 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
           "Effects": [
             {
               "Id": 612,
@@ -491,6 +517,8 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
           "Effects": [
             {
               "Id": 613,
@@ -517,6 +545,8 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
           "Effects": [
             {
               "Id": 243,
@@ -537,6 +567,8 @@
                 "Gcd": 0.0,
                 "ChargeCooldown": 0,
                 "Charges": 0,
+                "Rppm": 0.0,
+                "RppmIsHasted": false,
                 "Effects": [
                   {
                     "Id": 105331,
@@ -588,6 +620,8 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
           "Effects": [
             {
               "Id": 170810,
@@ -618,6 +652,8 @@
                 "Gcd": 0.0,
                 "ChargeCooldown": 0,
                 "Charges": 0,
+                "Rppm": 0.0,
+                "RppmIsHasted": false,
                 "Effects": [
                   {
                     "Id": 739572,
@@ -659,6 +695,8 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
           "Effects": [
             {
               "Id": 810253,
@@ -695,6 +733,8 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
           "Effects": [
             {
               "Id": 302436,
@@ -731,6 +771,8 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
           "Effects": [
             {
               "Id": 95,
@@ -767,6 +809,8 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
           "Effects": [
             {
               "Id": 13,
@@ -793,6 +837,8 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
           "Effects": [
             {
               "Id": 59162,
@@ -813,6 +859,8 @@
                 "Gcd": 0.0,
                 "ChargeCooldown": 0,
                 "Charges": 0,
+                "Rppm": 0.0,
+                "RppmIsHasted": false,
                 "Effects": [
                   {
                     "Id": 59165,
@@ -884,6 +932,8 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
           "Effects": [
             {
               "Id": 24949,
@@ -940,6 +990,8 @@
           "Gcd": 1.5,
           "ChargeCooldown": 60000,
           "Charges": 1,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
           "Effects": [
             {
               "Id": 611,
@@ -976,6 +1028,8 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
           "Effects": [
             {
               "Id": 22870,
@@ -1002,6 +1056,8 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
           "Effects": [
             {
               "Id": 806684,
@@ -1028,6 +1084,8 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
           "Effects": [
             {
               "Id": 33141,
@@ -1054,6 +1112,8 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
           "Effects": [
             {
               "Id": 22918,
@@ -1080,6 +1140,8 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
           "Effects": [
             {
               "Id": 68102,
@@ -1116,6 +1178,8 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
           "Effects": [
             {
               "Id": 812771,
@@ -1166,6 +1230,8 @@
                 "Gcd": 0.0,
                 "ChargeCooldown": 0,
                 "Charges": 0,
+                "Rppm": 0.0,
+                "RppmIsHasted": false,
                 "Effects": [
                   {
                     "Id": 812814,
@@ -1201,6 +1267,8 @@
                 "Gcd": 0.0,
                 "ChargeCooldown": 0,
                 "Charges": 0,
+                "Rppm": 0.0,
+                "RppmIsHasted": false,
                 "Effects": [
                   {
                     "Id": 812821,
@@ -1252,6 +1320,8 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
           "Effects": [
             {
               "Id": 812824,
@@ -1298,6 +1368,8 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
           "Effects": [
             {
               "Id": 819246,
@@ -1324,6 +1396,8 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
           "Effects": [
             {
               "Id": 819312,
@@ -1390,6 +1464,8 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
           "Effects": [
             {
               "Id": 819281,
@@ -1416,6 +1492,8 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
           "Effects": [
             {
               "Id": 814983,
@@ -1512,6 +1590,8 @@
           "Gcd": 1.0,
           "ChargeCooldown": 0,
           "Charges": 0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
           "Effects": [
             {
               "Id": 814997,
@@ -1542,6 +1622,8 @@
                 "Gcd": 0.0,
                 "ChargeCooldown": 0,
                 "Charges": 0,
+                "Rppm": 0.0,
+                "RppmIsHasted": false,
                 "Effects": [
                   {
                     "Id": 815030,
@@ -1593,6 +1675,8 @@
           "Gcd": 1.0,
           "ChargeCooldown": 0,
           "Charges": 0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
           "Effects": [
             {
               "Id": 815465,
@@ -1639,6 +1723,8 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
           "Effects": [
             {
               "Id": 815508,
@@ -1665,6 +1751,8 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
           "Effects": [
             {
               "Id": 815531,
@@ -1701,6 +1789,8 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
           "Effects": [
             {
               "Id": 814521,
@@ -1737,6 +1827,8 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
           "Effects": [
             {
               "Id": 815191,
@@ -1763,6 +1855,8 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
           "Effects": [
             {
               "Id": 815346,
@@ -1793,6 +1887,8 @@
                 "Gcd": 0.0,
                 "ChargeCooldown": 0,
                 "Charges": 0,
+                "Rppm": 0.0,
+                "RppmIsHasted": false,
                 "Effects": [
                   {
                     "Id": 815191,
@@ -1824,6 +1920,8 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
           "Effects": [
             {
               "Id": 833714,
@@ -1850,6 +1948,8 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
           "Effects": [
             {
               "Id": 835898,
@@ -1892,6 +1992,8 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
           "Effects": [
             {
               "Id": 836264,
@@ -1944,6 +2046,8 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
           "Effects": [
             {
               "Id": 836282,
@@ -1996,6 +2100,8 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
           "Effects": [
             {
               "Id": 836807,
@@ -2048,6 +2154,8 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
           "Effects": [
             {
               "Id": 836824,
@@ -2110,6 +2218,8 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
           "Effects": [
             {
               "Id": 836877,
@@ -2152,6 +2262,8 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
           "Effects": [
             {
               "Id": 236,
@@ -2178,6 +2290,8 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
           "Effects": [
             {
               "Id": 624379,
@@ -2204,6 +2318,8 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
           "Effects": [
             {
               "Id": 91044,
@@ -2240,6 +2356,8 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
           "Effects": [
             {
               "Id": 242,
@@ -2286,6 +2404,8 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
           "Effects": [
             {
               "Id": 819469,
@@ -2312,6 +2432,8 @@
           "Gcd": 1.5,
           "ChargeCooldown": 30000,
           "Charges": 1,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
           "Effects": [
             {
               "Id": 22171,
@@ -2358,6 +2480,8 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
           "Effects": [
             {
               "Id": 810248,
@@ -2384,6 +2508,8 @@
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
           "Effects": [
             {
               "Id": 6990,
@@ -2430,6 +2556,8 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
           "Effects": [
             {
               "Id": 785591,
@@ -2456,6 +2584,8 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
           "Effects": [
             {
               "Id": 785599,
@@ -2466,6 +2596,99 @@
               "Amplitude": 0.0,
               "TriggerSpell": null,
               "Type": 30
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 330733,
+          "Name": "Unbound Changeling",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "Rppm": 1.5,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 824536,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 330131,
+              "Amplitude": 0.0,
+              "TriggerSpell": {
+                "Id": 330131,
+                "Name": "Unbound Changeling",
+                "ManaCost": 0.0,
+                "MaxRange": 0.0,
+                "BaseCastTime": 0.0,
+                "BaseCooldown": 0.0,
+                "IsCooldownHasted": false,
+                "Duration": 12000.0,
+                "Gcd": 0.0,
+                "ChargeCooldown": 0,
+                "Charges": 0,
+                "Rppm": 0.0,
+                "RppmIsHasted": false,
+                "Effects": [
+                  {
+                    "Id": 823705,
+                    "BaseValue": 0.0,
+                    "SpCoefficient": 0.0,
+                    "Coefficient": 1.679526,
+                    "TriggerSpellid": 0,
+                    "Amplitude": 0.0,
+                    "TriggerSpell": null,
+                    "Type": 6
+                  }
+                ],
+                "ConduitRanks": {}
+              },
+              "Type": 6
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 330747,
+          "Name": "Unbound Changeling",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 824555,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 2.2,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6
+            },
+            {
+              "Id": 873512,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 1.1,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6
             }
           ],
           "ConduitRanks": {}

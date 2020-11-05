@@ -17,19 +17,19 @@ namespace Salvation.CoreTests.Common
     [TestFixture]
     public class SpellEffectServiceTests : BaseTest
     {
-        private List<ISpellEffectService> Spells { get; set; }
+        private List<ISpellEffectService> _spells { get; set; }
 
         private GameState _gameState;
 
         [OneTimeSetUp]
         public void InitOnce()
         {
-            Spells = new List<ISpellEffectService>();
+            _spells = new List<ISpellEffectService>();
 
             IGameStateService gameStateService = new GameStateService();
 
-            Spells.Add(new SpectralFlaskOfPower(gameStateService));
-            Spells.Add(new SpiritualManaPotion(gameStateService));
+            _spells.Add(new SpectralFlaskOfPower(gameStateService));
+            _spells.Add(new SpiritualManaPotion(gameStateService));
 
             _gameState = GetGameState();
         }
@@ -38,7 +38,7 @@ namespace Salvation.CoreTests.Common
         public double GetAverageIntellect(Type t)
         {
             // Arrange
-            var spellService = Spells.Where(s => s.GetType() == t).FirstOrDefault();
+            var spellService = _spells.Where(s => s.GetType() == t).FirstOrDefault();
 
             // Act
             var result = spellService.GetAverageIntellect(_gameState, null);
@@ -51,7 +51,7 @@ namespace Salvation.CoreTests.Common
         public double GetAverageCriticalStrike(Type t)
         {
             // Arrange
-            var spellService = Spells.Where(s => s.GetType() == t).FirstOrDefault();
+            var spellService = _spells.Where(s => s.GetType() == t).FirstOrDefault();
 
             // Act
             var result = spellService.GetAverageCriticalStrike(_gameState, null);
@@ -64,7 +64,7 @@ namespace Salvation.CoreTests.Common
         public double GetAverageHaste(Type t)
         {
             // Arrange
-            var spellService = Spells.Where(s => s.GetType() == t).FirstOrDefault();
+            var spellService = _spells.Where(s => s.GetType() == t).FirstOrDefault();
 
             // Act
             var result = spellService.GetAverageHaste(_gameState, null);
@@ -77,7 +77,7 @@ namespace Salvation.CoreTests.Common
         public double GetAverageMastery(Type t)
         {
             // Arrange
-            var spellService = Spells.Where(s => s.GetType() == t).FirstOrDefault();
+            var spellService = _spells.Where(s => s.GetType() == t).FirstOrDefault();
 
             // Act
             var result = spellService.GetAverageMastery(_gameState, null);
@@ -90,7 +90,7 @@ namespace Salvation.CoreTests.Common
         public double GetAverageVersatility(Type t)
         {
             // Arrange
-            var spellService = Spells.Where(s => s.GetType() == t).FirstOrDefault();
+            var spellService = _spells.Where(s => s.GetType() == t).FirstOrDefault();
 
             // Act
             var result = spellService.GetAverageVersatility(_gameState, null);
@@ -103,7 +103,7 @@ namespace Salvation.CoreTests.Common
         public double GetUptime(Type t)
         {
             // Arrange
-            var spellService = Spells.Where(s => s.GetType() == t).FirstOrDefault();
+            var spellService = _spells.Where(s => s.GetType() == t).FirstOrDefault();
 
             // Act
             var result = spellService.GetUptime(_gameState, null);
@@ -116,7 +116,7 @@ namespace Salvation.CoreTests.Common
         public double GetAverageMp5(Type t)
         {
             // Arrange
-            var spellService = Spells.Where(s => s.GetType() == t).FirstOrDefault();
+            var spellService = _spells.Where(s => s.GetType() == t).FirstOrDefault();
 
             // Act
             var result = spellService.GetAverageMp5(_gameState, null);
@@ -129,7 +129,7 @@ namespace Salvation.CoreTests.Common
         public double GetHastedCooldown(Type t)
         {
             // Arrange
-            var spellService = Spells.Where(s => s.GetType() == t).FirstOrDefault();
+            var spellService = _spells.Where(s => s.GetType() == t).FirstOrDefault();
 
             // Act
             var result = spellService.GetHastedCooldown(_gameState, null);
@@ -142,7 +142,7 @@ namespace Salvation.CoreTests.Common
         public double GetMaximumCastsPerMinute(Type t)
         {
             // Arrange
-            var spellService = Spells.Where(s => s.GetType() == t).FirstOrDefault();
+            var spellService = _spells.Where(s => s.GetType() == t).FirstOrDefault();
 
             // Act
             var result = spellService.GetMaximumCastsPerMinute(_gameState, null);
@@ -155,7 +155,7 @@ namespace Salvation.CoreTests.Common
         public double GetActualCastsPerMinute(Type t)
         {
             // Arrange
-            var spellService = Spells.Where(s => s.GetType() == t).FirstOrDefault();
+            var spellService = _spells.Where(s => s.GetType() == t).FirstOrDefault();
 
             // Act
             var result = spellService.GetActualCastsPerMinute(_gameState, null);

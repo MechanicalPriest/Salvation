@@ -10,6 +10,7 @@ namespace Salvation.Core.Modelling.Common
     /// </summary>
     public class SpellEffectService : SpellService, ISpellEffectService
     {
+        // TODO: Move these variables somewhere that makes some more sense.
         /// <summary>
         /// Multiply this against coefficient to get scaled item spell values (flask buff)
         /// Comes from sc_scale_data.inc's __spell_scaling array (item section) for level 60.
@@ -20,6 +21,10 @@ namespace Salvation.Core.Modelling.Common
         /// Comes from sc_scale_data.inc's __spell_scaling array (consumable section) for level 60.
         /// </summary>
         protected readonly double ConsumableCoefficientMultiplier = 25000;
+        /// <summary>
+        /// Badluck protection modifier for RPPM effects that generate buffs that could overlap
+        /// </summary>
+        protected readonly double RppmBadluckProtection = 1.13;
 
         public SpellEffectService(IGameStateService gameStateService)
             : base(gameStateService)

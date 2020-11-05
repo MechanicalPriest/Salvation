@@ -64,7 +64,7 @@ namespace Salvation.Core.Profile
                 // Add the active soulbind spells
                 foreach (var soulbindSpell in soulbind.SoulbindSpells)
                 {
-                    newSoulbind.ActiveAbilities.Add((SoulbindAbility)soulbindSpell);
+                    newSoulbind.ActiveTraits.Add((SoulbindTrait)soulbindSpell);
                 }
 
                 // Add the active conduits

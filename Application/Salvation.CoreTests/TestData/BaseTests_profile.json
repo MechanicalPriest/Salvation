@@ -3726,14 +3726,14 @@
         "Name": "pelagos",
         "SoulbindId": 7,
         "IsActive": true,
-        "ActiveAbilities": [],
+        "ActiveTraits": [],
         "ActiveConduits": {}
       },
       {
         "Name": "forgelite_prime_mikanikos",
         "SoulbindId": 18,
         "IsActive": false,
-        "ActiveAbilities": [
+        "ActiveTraits": [
           331609
         ],
         "ActiveConduits": {

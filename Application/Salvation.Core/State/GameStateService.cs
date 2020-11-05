@@ -378,6 +378,34 @@ namespace Salvation.Core.State
             return rank;
         }
 
+        #region Registered Spells
+
+        /// <summary>
+        /// Populates the profiles RegisteredSpells ready to be processed
+        /// </summary>
+        /// <param name="state"></param>
+        public void RegisterSpells(GameState state)
+        {
+            var registeredSpells = new List<RegisteredSpell>();
+            // TODO: Consumables
+
+            // Soulbinds
+            foreach(var trait in state.Profile.Covenant.Soulbinds
+                .Where(s => s.IsActive).FirstOrDefault().ActiveTraits)
+            {
+                var registeredSpell = new RegisteredSpell()
+                {
+                    Spell = (Spell)trait
+                };
+
+                registeredSpells.Add(registeredSpell);
+            }
+
+            state.RegisteredSpells = registeredSpells;
+        }
+
+        #endregion
+
         #region Covenant
 
         public void SetCovenant(GameState state, CovenantProfile covenant)

@@ -390,7 +390,7 @@ namespace Salvation.Core.State
             // TODO: Consumables
 
             // Soulbinds
-            foreach(var trait in state.Profile.Covenant.Soulbinds
+            foreach (var trait in state.Profile.Covenant.Soulbinds
                 .Where(s => s.IsActive).FirstOrDefault().ActiveTraits)
             {
                 var registeredSpell = new RegisteredSpell()

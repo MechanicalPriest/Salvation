@@ -1,5 +1,4 @@
 ﻿using Salvation.Core.Interfaces.Modelling;
-using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using System;
 
 namespace Salvation.Core.Modelling

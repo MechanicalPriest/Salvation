@@ -1,6 +1,5 @@
 ﻿using Salvation.Core.Constants.Data;
 using System.Collections.Generic;
-using System.Text.Json.Serialization;
 
 namespace Salvation.Core.Profile.Model
 {

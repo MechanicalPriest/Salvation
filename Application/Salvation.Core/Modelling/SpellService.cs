@@ -1,7 +1,6 @@
 ﻿using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
 using Salvation.Core.Interfaces.Modelling;
-using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.Modelling.Common;
 using Salvation.Core.State;
@@ -309,7 +308,7 @@ namespace Salvation.Core.Modelling
 
             foreach (var effect in spellData.Effects)
             {
-                if(effect.Type == 10)
+                if (effect.Type == 10)
                 {
                     return true;
                 }
@@ -325,7 +324,7 @@ namespace Salvation.Core.Modelling
                     }
                 }
             }
-                return false;
+            return false;
         }
 
         #endregion

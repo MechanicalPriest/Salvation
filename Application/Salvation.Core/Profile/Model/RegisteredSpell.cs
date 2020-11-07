@@ -1,5 +1,4 @@
-﻿using Salvation.Core.Constants;
-using Salvation.Core.Constants.Data;
+﻿using Salvation.Core.Constants.Data;
 using Salvation.Core.Modelling;
 
 namespace Salvation.Core.Profile.Model

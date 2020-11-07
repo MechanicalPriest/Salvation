@@ -3,7 +3,6 @@ using Salvation.Core.Constants.Data;
 using Salvation.Core.Interfaces.Modelling;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.State;
-using SimcProfileParser.Model.Generated;
 using System;
 
 namespace Salvation.Core.Modelling.Common.Items

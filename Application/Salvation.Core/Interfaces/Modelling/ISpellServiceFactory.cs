@@ -1,6 +1,4 @@
-﻿using Salvation.Core.Constants.Data;
-using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
-using System;
+﻿using System;
 
 namespace Salvation.Core.Interfaces.Modelling
 {

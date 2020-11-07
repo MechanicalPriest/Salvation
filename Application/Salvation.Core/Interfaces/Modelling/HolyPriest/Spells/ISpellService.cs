@@ -104,6 +104,5 @@ namespace Salvation.Core.Interfaces.Modelling
     public interface ISpellService<T> : ISpellService where T : ISpellService
     {
         // TODO: Create ServiceProvider mock for testing?
-        // TODO: Plumb into using registered spells
     }
 }

@@ -40,7 +40,7 @@ namespace Salvation.Explorer
                         _holyPriestExplorer.CompareCovenants();
                         break;
                     case "testholypriest":
-                        _holyPriestExplorer.TestHolyPriestModel(); // Test stat weights
+                        await _holyPriestExplorer.TestHolyPriestModelAsync(); // Test stat weights
                         break;
                     default:
                         break;

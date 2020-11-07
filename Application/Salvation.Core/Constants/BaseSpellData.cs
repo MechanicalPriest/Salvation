@@ -22,14 +22,14 @@ namespace Salvation.Core.Constants
         /// </summary>
         ResultMultiplier,
         /// <summary>
-        /// Used for item spells to scale them appropriately
-        /// </summary>
-        CombatRatingMultiplier,
-        /// <summary>
         /// Calculated field, generated from the associated item or player level scaling
         /// to get the scale budget for the SP coefficient
         /// </summary>
-        ScaleBudget
+        ScaleBudget,
+        /// <summary>
+        /// The item level of item spells
+        /// </summary>
+        ItemLevel
     }
 
     public class BaseSpellData
@@ -54,6 +54,12 @@ namespace Salvation.Core.Constants
         public uint Charges { get; set; }
         public double Rppm { get; set; }
         public bool RppmIsHasted { get; set; }
+
+        /// <summary>
+        /// Scale multiplier used for scaling item-scaled spells
+        /// </summary>
+        [JsonIgnore]
+        public double ScaleBudget { get; set; }
 
         public IList<BaseSpellDataEffect> Effects { get; set; }
         public IDictionary<uint, double> ConduitRanks { get; set; }

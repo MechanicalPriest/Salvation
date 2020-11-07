@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Salvation.Core.Constants.Data;
+using System;
 
 namespace Salvation.Core.Interfaces.Modelling
 {
     public interface ISpellServiceFactory
     {
-        ISpellService GetSpellService(Type spell);
+        ISpellService GetSpellService(Spell spell);
     }
 }

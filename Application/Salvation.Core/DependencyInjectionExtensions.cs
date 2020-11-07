@@ -30,6 +30,7 @@ namespace Salvation.Core
             services.AddSingleton<IConstantsService, ConstantsService>();
             services.AddSingleton<IGameStateService, GameStateService>();
             services.AddSingleton<IProfileService, ProfileService>();
+            services.AddSingleton<ISimcProfileService, SimcProfileService>();
             services.AddSingleton<IStatWeightGenerationService, StatWeightGenerator>();
 
             // SpellFactoryService

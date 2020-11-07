@@ -2,6 +2,7 @@
 using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
 using Salvation.Core.Interfaces.Constants;
+using Salvation.Core.Interfaces.Modelling;
 using Salvation.Core.Interfaces.Profile;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.Profile;
@@ -16,16 +17,19 @@ namespace Salvation.Core.State
     {
         private readonly IProfileService _profileService;
         private readonly IConstantsService _constantsService;
+        private readonly ISpellServiceFactory _spellServiceFactory;
 
         public GameStateService(IProfileService profileService,
-            IConstantsService constantsService)
+            IConstantsService constantsService,
+            ISpellServiceFactory spellServiceFactory)
         {
             _profileService = profileService;
             _constantsService = constantsService;
+            _spellServiceFactory = spellServiceFactory;
         }
 
         public GameStateService()
-            : this(new ProfileService(), new ConstantsService())
+            : this(new ProfileService(), new ConstantsService(), null)
         {
 
         }
@@ -384,24 +388,76 @@ namespace Salvation.Core.State
         /// Populates the profiles RegisteredSpells ready to be processed
         /// </summary>
         /// <param name="state"></param>
-        public void RegisterSpells(GameState state)
+        /// <param name="additionalSpells">Additional spells that should be added (not included in the profile). 
+        /// Their SpellService parameter will be populated by this method.</param>
+        public void RegisterSpells(GameState state, List<RegisteredSpell> additionalSpells)
         {
-            var registeredSpells = new List<RegisteredSpell>();
+            var registeredSpells = new List<RegisteredSpell>(additionalSpells);
+
+            // TODO: Talents
+
             // TODO: Consumables
 
-            // Soulbinds
+            // ITEMS: For each item loop through its effects and find all the associated SpellIds.
+            // If it's one we have registered, save it so it can be used later if needed.
+            foreach (var item in _profileService.GetEquippedItems(state.Profile))
+            {
+                foreach (var effect in item.Effects.Where(e => e.Spell != null))
+                {
+                    registeredSpells.AddRange(GetTriggerSpellRecursive(effect.Spell, item.ItemLevel));
+                }
+            }
+
+            // TODO: Covenant abilities
+
+            // SOULBINDS: Loop through each trait and add it to the list
             foreach (var trait in state.Profile.Covenant.Soulbinds
                 .Where(s => s.IsActive).FirstOrDefault().ActiveTraits)
             {
-                var registeredSpell = new RegisteredSpell()
+                if (Enum.IsDefined(typeof(Spell), (int)trait))
                 {
-                    Spell = (Spell)trait
-                };
+                    var registeredSpell = new RegisteredSpell()
+                    {
+                        Spell = (Spell)trait,
+                    };
 
-                registeredSpells.Add(registeredSpell);
+                    registeredSpells.Add(registeredSpell);
+                }
+            }
+
+            // TODO: Conduits
+
+            // Populate all the spellservices
+            foreach (var spell in registeredSpells)
+            {
+                spell.SpellService = _spellServiceFactory.GetSpellService(spell.Spell);
             }
 
             state.RegisteredSpells = registeredSpells;
+        }
+
+        internal List<RegisteredSpell> GetTriggerSpellRecursive(BaseSpellData spell, int itemLevel)
+        {
+            var spells = new List<RegisteredSpell>();
+
+            if (spell != null)
+            {
+                var newSpell = new RegisteredSpell()
+                {
+                    Spell = (Spell)spell.Id,
+                    ScaleValue = spell.ScaleBudget,
+                    ItemLevel = itemLevel
+                };
+
+                spells.Add(newSpell);
+
+                foreach (var effect in spell.Effects)
+                {
+                    spells.AddRange(GetTriggerSpellRecursive(effect.TriggerSpell, itemLevel));
+                }
+            }
+
+            return spells;
         }
 
         #endregion

@@ -47,7 +47,7 @@ namespace Salvation.Core.Interfaces.State
         bool IsLegendaryActive(GameState state, Spell legendary);
         void SetActiveTalent(GameState state, Talent talent);
         bool IsTalentActive(GameState state, Talent talent);
-        void RegisterSpells(GameState state);
+        void RegisterSpells(GameState state, List<RegisteredSpell> additionalSpells);
 
         // Utility
         GameState CloneGameState(GameState state);

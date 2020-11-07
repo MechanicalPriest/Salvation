@@ -6,18 +6,20 @@ using Salvation.Core.Interfaces.Profile;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.Modelling;
 using Salvation.Core.Modelling.HolyPriest.Spells;
+using Salvation.Core.Profile;
 using Salvation.Core.State;
 using System;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Salvation.Explorer.Modelling
 {
     public interface IHolyPriestExplorer
     {
         public void GenerateStatWeights();
-        public void TestHolyPriestModel();
+        public Task TestHolyPriestModelAsync();
         public void CompareCovenants();
     }
 
@@ -28,21 +30,21 @@ namespace Salvation.Explorer.Modelling
         private readonly IComparisonModeller<CovenantComparisonsResult> _comparisonModellerCovenant;
         private readonly IStatWeightGenerationService _statWeightGenerationService;
         private readonly IGameStateService _gameStateService;
-        private readonly ISpellServiceFactory _spellServiceFactory;
+        private readonly ISimcProfileService _simcProfileService;
 
         public HolyPriestExplorer(IModellingService modellingService,
             IProfileService profileService,
             IComparisonModeller<CovenantComparisonsResult> comparisonModellerCovenant,
             IStatWeightGenerationService statWeightGenerationService,
             IGameStateService gameStateService,
-            ISpellServiceFactory spellServiceFactory)
+            ISimcProfileService simcProfileService)
         {
             _modellingService = modellingService;
             _profileService = profileService;
             _comparisonModellerCovenant = comparisonModellerCovenant;
             _statWeightGenerationService = statWeightGenerationService;
             _gameStateService = gameStateService;
-            _spellServiceFactory = spellServiceFactory;
+            _simcProfileService = simcProfileService;
         }
 
         public void GenerateStatWeights()
@@ -72,15 +74,23 @@ namespace Salvation.Explorer.Modelling
             File.WriteAllText("covenant_results.csv", sb.ToString());
         }
 
-        public void TestHolyPriestModel()
+        public async Task TestHolyPriestModelAsync()
         {
-            var abType = typeof(IAscendedBlastSpellService);
-            var type = typeof(ISpellService<>).MakeGenericType(abType);
+            // Get default profile
+            var profile = _profileService.GetDefaultProfile(Spec.HolyPriest);
 
-            var spell = _spellServiceFactory.GetSpellService(abType);
+            // Apply a simc profile to it
+            var profileData = File.ReadAllText(Path.Combine("TestData", "Beitaky.simc"));
+            profile = await _simcProfileService.ApplySimcProfileAsync(profileData, profile);
 
-            GameState state = _gameStateService.CreateValidatedGameState(
-                _profileService.GetDefaultProfile(Spec.HolyPriest));
+            // Create the gamestate
+            GameState state = _gameStateService.CreateValidatedGameState(profile);
+
+            // Make some other modifications if needed
+
+            // Kick off modelling against it.
+            _gameStateService.RegisterSpells(state, new System.Collections.Generic.List<Core.Profile.Model.RegisteredSpell>());
+            var modelResults = _modellingService.GetResults(state);
 
             var results = _modellingService.GetResults(state);
             File.WriteAllText("hpriest_model_results.json",

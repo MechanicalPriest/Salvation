@@ -1,4 +1,8 @@
-﻿using Salvation.Core.Interfaces.Modelling;
+﻿using Salvation.Core.Constants.Data;
+using Salvation.Core.Interfaces.Modelling;
+using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
+using Salvation.Core.Modelling.Common.Items;
+using Salvation.Core.Modelling.HolyPriest.Spells;
 using System;
 
 namespace Salvation.Core.Modelling
@@ -12,9 +16,22 @@ namespace Salvation.Core.Modelling
             _spellFactory = spellFactory;
         }
 
-        public ISpellService GetSpellService(Type spell)
+        public ISpellService GetSpellService(Spell spell)
         {
-            return _spellFactory(spell);
+            Type type = spell switch
+            {
+                Spell.AscendedBlast => typeof(IAscendedBlastSpellService),
+
+                Spell.UnboundChangeling => typeof(IUnboundChangeling),
+                _ => null
+            };
+
+            if (type == null)
+                return null;
+
+            var spellType = typeof(ISpellService<>).MakeGenericType(type);
+
+            return _spellFactory(spellType);
         }
     }
 }

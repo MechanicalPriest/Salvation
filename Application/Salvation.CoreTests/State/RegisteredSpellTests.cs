@@ -1,8 +1,11 @@
 ﻿using NUnit.Framework;
+using Salvation.Core.Constants;
 using Salvation.Core.Interfaces.Modelling;
+using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.Modelling;
 using Salvation.Core.Modelling.HolyPriest.Spells;
+using Salvation.Core.Profile;
 using Salvation.Core.State;
 using System;
 
@@ -15,11 +18,14 @@ namespace Salvation.CoreTests.State
         public void Generates_Registered_Spells()
         {
             // Arrange
+            IServiceProvider serviceProvider = new TestProvider();
+            ISpellService spellFactoryFunc(Type type) => (ISpellService)serviceProvider.GetService(type);
+            ISpellServiceFactory spellServiceFactory = new SpellServiceFactory(spellFactoryFunc);
+            IGameStateService gameStateService = new GameStateService(new ProfileService(), new ConstantsService(), spellServiceFactory);
             var state = GetGameState();
-            IGameStateService gameStateService = new GameStateService();
 
             // Act
-            gameStateService.RegisterSpells(state);
+            gameStateService.RegisterSpells(state, new System.Collections.Generic.List<Core.Profile.Model.RegisteredSpell>());
             var spells = state.RegisteredSpells;
 
             // Assert
@@ -27,18 +33,27 @@ namespace Salvation.CoreTests.State
         }
 
         [Test]
-        public void MiscTest()
+        public void Valid_Spell_Returns_Service()
         {
             IServiceProvider serviceProvider = new TestProvider();
             ISpellService spellFactoryFunc(Type type) => (ISpellService)serviceProvider.GetService(type);
             ISpellServiceFactory spellServiceFactory = new SpellServiceFactory(spellFactoryFunc);
 
-            var abType = typeof(AscendedBlast);
-            var type = typeof(ISpellService<>).MakeGenericType(abType);
-
-            var spell = spellServiceFactory.GetSpellService(type);
+            var spell = spellServiceFactory.GetSpellService(Core.Constants.Data.Spell.AscendedBlast);
 
             Assert.IsNotNull(spell);
+        }
+
+        [Test]
+        public void Invalid_Spell_Returns_Null()
+        {
+            IServiceProvider serviceProvider = new TestProvider();
+            ISpellService spellFactoryFunc(Type type) => (ISpellService)serviceProvider.GetService(type);
+            ISpellServiceFactory spellServiceFactory = new SpellServiceFactory(spellFactoryFunc);
+
+            var spell = spellServiceFactory.GetSpellService(Core.Constants.Data.Spell.AscendedBlastHeal);
+
+            Assert.IsNull(spell);
         }
     }
 
@@ -46,7 +61,7 @@ namespace Salvation.CoreTests.State
     {
         public object GetService(Type serviceType)
         {
-            if (serviceType == typeof(ISpellService<AscendedBlast>))
+            if (serviceType == typeof(ISpellService<IAscendedBlastSpellService>))
             {
                 return new AscendedBlast(null);
             }

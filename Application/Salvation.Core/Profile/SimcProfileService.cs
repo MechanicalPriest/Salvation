@@ -154,21 +154,98 @@ namespace Salvation.Core.Profile
                     };
 
                     // Populate this based on what we actually need
-                    if (effect.Spell != null)
-                    {
-                        var newSpell = new BaseSpellData()
-                        {
-                            Id = effect.Spell.SpellId
-                        };
-
-                        newEffect.Spell = newSpell;
-                    }
+                    newEffect.Spell = GetBaseSpellData(effect.Spell);
 
                     newItem.Effects.Add(newEffect);
                 }
 
                 profile.Items.Add(newItem);
             }
+        }
+
+        internal BaseSpellData GetBaseSpellData(SimcSpell spell)
+        {
+            // TODO: This currently comes from HolyPriestSpellDataService.cs (Salvation.Utility) - centralise the logic
+            if (spell == null)
+                return null;
+
+            var newSpell = new BaseSpellData
+            {
+                Id = spell.SpellId,
+                Name = spell.Name,
+                MaxRange = spell.MaxRange,
+                BaseCastTime = spell.CastTime,
+                BaseCooldown = spell.Cooldown,
+                ChargeCooldown = spell.ChargeCooldown,
+                Charges = spell.Charges,
+                Duration = spell.Duration,
+                Gcd = spell.Gcd / 1000d,
+                ConduitRanks = spell.ConduitRanks,
+                Rppm = spell.Rppm,
+                ScaleBudget = spell.ScaleBudget
+            };
+
+            // Check if RPPM is modified by spec or haste
+            foreach (var rppmMod in spell.RppmModifiers)
+            {
+                // TODO: This references holy priest specifically, should be a method param based on specId
+                if (rppmMod.RppmIsSpecModified && rppmMod.RppmSpec == (uint)Spec.HolyPriest)
+                    newSpell.Rppm *= rppmMod.RppmCoefficient;
+
+                if (rppmMod.RppmIsHasted)
+                    newSpell.RppmIsHasted = true;
+            }
+
+            double manacost = 0;
+
+            if (spell.PowerCosts != null && spell.PowerCosts.Count > 0)
+            {
+                if (spell.PowerCosts.ContainsKey(0))
+                {
+                    manacost = spell.PowerCosts[0];
+                }
+
+                foreach (var PowerCost in spell.PowerCosts)
+                {
+                    if (PowerCost.Key.Equals((uint)Spell.HolyPriest))
+                    {
+                        manacost = PowerCost.Value;
+                        break;
+                    }
+                }
+            }
+
+            newSpell.ManaCost = manacost;
+
+            foreach (var effect in spell.Effects)
+            {
+                var newEffect = GetBaseSpellDataEffect(effect);
+
+                if (newEffect != null)
+                    newSpell.Effects.Add(newEffect);
+            }
+
+            return newSpell;
+        }
+
+        internal BaseSpellDataEffect GetBaseSpellDataEffect(SimcSpellEffect effect)
+        {
+            if (effect == null)
+                return null;
+
+            var newEffect = new BaseSpellDataEffect()
+            {
+                Id = effect.Id,
+                BaseValue = effect.BaseValue,
+                SpCoefficient = effect.SpCoefficient,
+                Coefficient = effect.Coefficient,
+                TriggerSpellid = effect.TriggerSpellId,
+                Amplitude = effect.Amplitude,
+                TriggerSpell = GetBaseSpellData(effect.TriggerSpell),
+                Type = effect.EffectType,
+            };
+
+            return newEffect;
         }
     }
 }

@@ -1,14 +1,10 @@
 ﻿using NUnit.Framework;
-using Salvation.Core.Constants.Data;
 using Salvation.Core.Interfaces.Modelling;
-using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.Modelling;
 using Salvation.Core.Modelling.HolyPriest.Spells;
 using Salvation.Core.State;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Salvation.CoreTests.State
 {
@@ -50,7 +46,7 @@ namespace Salvation.CoreTests.State
     {
         public object GetService(Type serviceType)
         {
-            if(serviceType == typeof(ISpellService<AscendedBlast>))
+            if (serviceType == typeof(ISpellService<AscendedBlast>))
             {
                 return new AscendedBlast(null);
             }

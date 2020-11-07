@@ -7,8 +7,8 @@ using System;
 
 namespace Salvation.Core.Modelling.Common.Consumables
 {
-    public interface ISpiritualManaPotion : ISpellEffectService { }
-    public class SpiritualManaPotion : SpellEffectService, ISpellEffectService<ISpiritualManaPotion>
+    public interface ISpiritualManaPotion : ISpellService { }
+    public class SpiritualManaPotion : SpellService, ISpellService<ISpiritualManaPotion>
     {
         public SpiritualManaPotion(IGameStateService gameStateService)
             : base(gameStateService)

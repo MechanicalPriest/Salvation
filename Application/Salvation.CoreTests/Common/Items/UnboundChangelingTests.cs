@@ -3,13 +3,11 @@ using Salvation.Core.Interfaces.State;
 using Salvation.Core.Modelling.Common.Items;
 using Salvation.Core.State;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Salvation.CoreTests.Common.Items
 {
     [TestFixture]
-    class UnboundChangelingTests : BaseTest 
+    class UnboundChangelingTests : BaseTest
     {
         private UnboundChangeling _spell;
         private GameState _gameState;

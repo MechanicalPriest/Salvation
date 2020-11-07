@@ -17,14 +17,14 @@ namespace Salvation.CoreTests.Common
     [TestFixture]
     public class SpellEffectServiceTests : BaseTest
     {
-        private List<ISpellEffectService> _spells { get; set; }
+        private List<ISpellService> _spells { get; set; }
 
         private GameState _gameState;
 
         [OneTimeSetUp]
         public void InitOnce()
         {
-            _spells = new List<ISpellEffectService>();
+            _spells = new List<ISpellService>();
 
             IGameStateService gameStateService = new GameStateService();
 

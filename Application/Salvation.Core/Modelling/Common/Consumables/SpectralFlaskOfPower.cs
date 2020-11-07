@@ -6,8 +6,8 @@ using Salvation.Core.State;
 
 namespace Salvation.Core.Modelling.Common.Consumables
 {
-    public interface ISpectralFlaskOfPower : ISpellEffectService { }
-    public class SpectralFlaskOfPower : SpellEffectService, ISpellEffectService<ISpectralFlaskOfPower>
+    public interface ISpectralFlaskOfPower : ISpellService { }
+    public class SpectralFlaskOfPower : SpellService, ISpellService<ISpectralFlaskOfPower>
     {
         public SpectralFlaskOfPower(IGameStateService gameStateService)
             : base(gameStateService)
@@ -20,7 +20,7 @@ namespace Salvation.Core.Modelling.Common.Consumables
             spellData = ValidateSpellData(gameState, spellData);
 
             double intellect = ItemCoefficientMultiplier * spellData.GetEffect(785591).Coefficient;
-            
+
             return intellect * GetUptime(gameState, spellData);
         }
 

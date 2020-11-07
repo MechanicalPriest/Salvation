@@ -6,7 +6,7 @@ using Salvation.Core.State;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
-    public class CircleOfHealing : SpellService, ICircleOfHealingSpellService
+    public class CircleOfHealing : SpellService, ISpellService<ICircleOfHealingSpellService>
     {
         public CircleOfHealing(IGameStateService gameStateService)
             : base(gameStateService)

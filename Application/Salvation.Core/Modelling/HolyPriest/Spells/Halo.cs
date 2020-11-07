@@ -7,7 +7,7 @@ using System;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
-    public class Halo : SpellService, IHaloSpellService
+    public class Halo : SpellService, ISpellService<IHaloSpellService>
     {
         public Halo(IGameStateService gameStateService)
             : base(gameStateService)

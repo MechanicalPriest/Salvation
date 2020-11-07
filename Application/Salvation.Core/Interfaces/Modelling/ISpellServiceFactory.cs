@@ -4,7 +4,7 @@ using System;
 
 namespace Salvation.Core.Interfaces.Modelling
 {
-    interface ISpellServiceFactory
+    public interface ISpellServiceFactory
     {
         ISpellService GetSpellService(Type spell);
     }

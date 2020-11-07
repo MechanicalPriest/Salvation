@@ -1,9 +1,11 @@
 ﻿using Newtonsoft.Json;
 using Salvation.Core.Constants.Data;
 using Salvation.Core.Interfaces.Modelling;
+using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.Profile;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.Modelling;
+using Salvation.Core.Modelling.HolyPriest.Spells;
 using Salvation.Core.State;
 using System;
 using System.IO;
@@ -26,18 +28,21 @@ namespace Salvation.Explorer.Modelling
         private readonly IComparisonModeller<CovenantComparisonsResult> _comparisonModellerCovenant;
         private readonly IStatWeightGenerationService _statWeightGenerationService;
         private readonly IGameStateService _gameStateService;
+        private readonly ISpellServiceFactory _spellServiceFactory;
 
         public HolyPriestExplorer(IModellingService modellingService,
             IProfileService profileService,
             IComparisonModeller<CovenantComparisonsResult> comparisonModellerCovenant,
             IStatWeightGenerationService statWeightGenerationService,
-            IGameStateService gameStateService)
+            IGameStateService gameStateService,
+            ISpellServiceFactory spellServiceFactory)
         {
             _modellingService = modellingService;
             _profileService = profileService;
             _comparisonModellerCovenant = comparisonModellerCovenant;
             _statWeightGenerationService = statWeightGenerationService;
             _gameStateService = gameStateService;
+            _spellServiceFactory = spellServiceFactory;
         }
 
         public void GenerateStatWeights()
@@ -69,6 +74,11 @@ namespace Salvation.Explorer.Modelling
 
         public void TestHolyPriestModel()
         {
+            var abType = typeof(IAscendedBlastSpellService);
+            var type = typeof(ISpellService<>).MakeGenericType(abType);
+
+            var spell = _spellServiceFactory.GetSpellService(abType);
+
             GameState state = _gameStateService.CreateValidatedGameState(
                 _profileService.GetDefaultProfile(Spec.HolyPriest));
 

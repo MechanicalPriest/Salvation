@@ -41,42 +41,49 @@ namespace Salvation.Explorer
                     services.AddSingleton<IComparisonModeller<CovenantComparisonsResult>, CovenantComparisons>();
                     services.AddSingleton<IStatWeightGenerationService, StatWeightGenerator>();
 
+                    // SpellFactoryService
+                    services.AddSingleton<ISpellServiceFactory>(serviceProvider =>
+                    {
+                        Func<Type, ISpellService> spellFactoryFunc = type => (ISpellService)serviceProvider.GetService(type);
+                        return new SpellServiceFactory(spellFactoryFunc);
+                    });
+
                     // Holy Priest specific services
                     services.AddSingleton<IHolyPriestExplorer, HolyPriestExplorer>();
                     services.AddSingleton<IModellingService, HolyPriestModellingService>();
 
                     // Spells
-                    services.AddSingleton<IFlashHealSpellService, FlashHeal>();
-                    services.AddSingleton<IHolyWordSerenitySpellService, HolyWordSerenity>();
-                    services.AddSingleton<IHolyWordSalvationSpellService, HolyWordSalvation>();
-                    services.AddSingleton<IRenewSpellService, Renew>();
-                    services.AddSingleton<IPrayerOfMendingSpellService, PrayerOfMending>();
-                    services.AddSingleton<IPrayerOfHealingSpellService, PrayerOfHealing>();
-                    services.AddSingleton<IHealSpellService, Heal>();
-                    services.AddSingleton<IBindingHealSpellService, BindingHeal>();
-                    services.AddSingleton<IHolyWordSanctifySpellService, HolyWordSanctify>();
-                    services.AddSingleton<ICircleOfHealingSpellService, CircleOfHealing>();
-                    services.AddSingleton<IDivineHymnSpellService, DivineHymn>();
-                    services.AddSingleton<IDivineStarSpellService, DivineStar>();
-                    services.AddSingleton<IHaloSpellService, Halo>();
-                    services.AddSingleton<IHolyNovaSpellService, HolyNova>();
-                    services.AddSingleton<IPowerWordShieldSpellService, PowerWordShield>();
+                    services.AddSingleton<ISpellService<IFlashHealSpellService>, FlashHeal>();
+                    services.AddSingleton<ISpellService<IHolyWordSerenitySpellService>, HolyWordSerenity>();
+                    services.AddSingleton<ISpellService<IHolyWordSalvationSpellService>, HolyWordSalvation>();
+                    services.AddSingleton<ISpellService<IRenewSpellService>, Renew>();
+                    services.AddSingleton<ISpellService<IPrayerOfMendingSpellService>, PrayerOfMending>();
+                    services.AddSingleton<ISpellService<IPrayerOfHealingSpellService>, PrayerOfHealing>();
+                    services.AddSingleton<ISpellService<IHealSpellService>, Heal>();
+                    services.AddSingleton<ISpellService<IBindingHealSpellService>, BindingHeal>();
+                    services.AddSingleton<ISpellService<IHolyWordSanctifySpellService>, HolyWordSanctify>();
+                    services.AddSingleton<ISpellService<ICircleOfHealingSpellService>, CircleOfHealing>();
+                    services.AddSingleton<ISpellService<IDivineHymnSpellService>, DivineHymn>();
+                    services.AddSingleton<ISpellService<IDivineStarSpellService>, DivineStar>();
+                    services.AddSingleton<ISpellService<IHaloSpellService>, Halo>();
+                    services.AddSingleton<ISpellService<IHolyNovaSpellService>, HolyNova>();
+                    services.AddSingleton<ISpellService<IPowerWordShieldSpellService>, PowerWordShield>();
                     // Covenants
-                    services.AddSingleton<IFaeGuardiansSpellService, FaeGuardians>();
-                    services.AddSingleton<IMindgamesSpellService, Mindgames>();
-                    services.AddSingleton<IUnholyNovaSpellService, UnholyNova>();
-                    services.AddSingleton<IUnholyTransfusionSpellService, UnholyTransfusion>();
-                    services.AddSingleton<IBoonOfTheAscendedSpellService, BoonOfTheAscended>();
-                    services.AddSingleton<IAscendedBlastSpellService, AscendedBlast>();
-                    services.AddSingleton<IAscendedNovaSpellService, AscendedNova>();
-                    services.AddSingleton<IAscendedEruptionSpellService, AscendedEruption>();
+                    services.AddSingleton<ISpellService<IFaeGuardiansSpellService>, FaeGuardians>();
+                    services.AddSingleton<ISpellService<IMindgamesSpellService>, Mindgames>();
+                    services.AddSingleton<ISpellService<IUnholyNovaSpellService>, UnholyNova>();
+                    services.AddSingleton<ISpellService<IUnholyTransfusionSpellService>, UnholyTransfusion>();
+                    services.AddSingleton<ISpellService<IBoonOfTheAscendedSpellService>, BoonOfTheAscended>();
+                    services.AddSingleton<ISpellService<IAscendedBlastSpellService>, AscendedBlast>();
+                    services.AddSingleton<ISpellService<IAscendedNovaSpellService>, AscendedNova>();
+                    services.AddSingleton<ISpellService<IAscendedEruptionSpellService>, AscendedEruption>();
 
                     // DPS
-                    services.AddSingleton<ISmiteSpellService, Smite>();
-                    services.AddSingleton<IHolyWordChastiseSpellService, HolyWordChastise>(); 
-                    services.AddSingleton<IShadowWordPainSpellService, ShadowWordPain>();
-                    services.AddSingleton<IShadowWordDeathSpellService, ShadowWordDeath>();
-                    services.AddSingleton<IHolyFireSpellService, HolyFire>();
+                    services.AddSingleton<ISpellService<ISmiteSpellService>, Smite>();
+                    services.AddSingleton<ISpellService<IHolyWordChastiseSpellService>, HolyWordChastise>();
+                    services.AddSingleton<ISpellService<IShadowWordPainSpellService>, ShadowWordPain>();
+                    services.AddSingleton<ISpellService<IShadowWordDeathSpellService>, ShadowWordDeath>();
+                    services.AddSingleton<ISpellService<IHolyFireSpellService>, HolyFire>();
 
                     // Utility services
                     services.AddSingleton<ISpellDataUpdateService, SpellDataUpdateService>();

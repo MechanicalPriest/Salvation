@@ -7,7 +7,7 @@ using System;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
-    public class AscendedEruption : SpellService, IAscendedEruptionSpellService
+    public class AscendedEruption : SpellService, ISpellService<IAscendedEruptionSpellService>
     {
         public AscendedEruption(IGameStateService gameStateService)
             : base(gameStateService)

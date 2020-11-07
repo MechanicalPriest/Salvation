@@ -7,7 +7,7 @@ using Salvation.Core.State;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
-    public class Smite : SpellService, ISmiteSpellService
+    public class Smite : SpellService, ISpellService<ISmiteSpellService>
     {
         public Smite(IGameStateService gameStateService)
             : base(gameStateService)

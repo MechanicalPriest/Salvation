@@ -6,7 +6,7 @@ using Salvation.Core.State;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
-    public class ShadowWordDeath : SpellService, IShadowWordDeathSpellService
+    public class ShadowWordDeath : SpellService, ISpellService<IShadowWordDeathSpellService>
     {
         public ShadowWordDeath(IGameStateService gameStateService)
             : base(gameStateService)

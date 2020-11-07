@@ -7,16 +7,16 @@ using Salvation.Core.State;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
-    public class BoonOfTheAscended : SpellService, IBoonOfTheAscendedSpellService
+    public class BoonOfTheAscended : SpellService, ISpellService<IBoonOfTheAscendedSpellService>
     {
-        private readonly IAscendedBlastSpellService _ascendedBlastSpellService;
-        private readonly IAscendedNovaSpellService _ascendedNovaSpellService;
-        private readonly IAscendedEruptionSpellService _ascendedEruptionSpellService;
+        private readonly ISpellService<IAscendedBlastSpellService> _ascendedBlastSpellService;
+        private readonly ISpellService<IAscendedNovaSpellService> _ascendedNovaSpellService;
+        private readonly ISpellService<IAscendedEruptionSpellService> _ascendedEruptionSpellService;
 
         public BoonOfTheAscended(IGameStateService gameStateService,
-            IAscendedBlastSpellService ascendedBlastSpellService,
-            IAscendedNovaSpellService ascendedNovaSpellService,
-            IAscendedEruptionSpellService ascendedEruptionSpellService)
+            ISpellService<IAscendedBlastSpellService> ascendedBlastSpellService,
+            ISpellService<IAscendedNovaSpellService> ascendedNovaSpellService,
+            ISpellService<IAscendedEruptionSpellService> ascendedEruptionSpellService)
             : base(gameStateService)
         {
             Spell = Spell.BoonOfTheAscended;

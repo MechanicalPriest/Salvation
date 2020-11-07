@@ -90,12 +90,9 @@ namespace Salvation.Core.Interfaces.Modelling.HolyPriest.Spells
         public double GetMaximumDamageTargets(GameState gameState, BaseSpellData spellData);
     }
 
-    /// <summary>
-    /// Could use the following if needed to override a spells model / data. 
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    //public interface ISpellService<T> : ISpellService where T : BaseSpell
-    //{
-    //    //SpellCastResult GetCastResults(HolyPriestModel model, T spellOverride = null);
-    //}
+    public interface ISpellService<T> : ISpellService where T : ISpellService
+    {
+        // TODO: Create ServiceProvider mock for testing?
+        // TODO: Plumb into using registered spells
+    }
 }

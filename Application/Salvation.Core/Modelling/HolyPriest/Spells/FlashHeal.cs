@@ -6,7 +6,7 @@ using Salvation.Core.State;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
-    public class FlashHeal : SpellService, IFlashHealSpellService
+    public class FlashHeal : SpellService, ISpellService<IFlashHealSpellService>
     {
         public FlashHeal(IGameStateService gameStateService)
             : base(gameStateService)

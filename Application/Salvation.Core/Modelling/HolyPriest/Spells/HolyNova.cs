@@ -7,7 +7,7 @@ using System;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
-    public class HolyNova : SpellService, IHolyNovaSpellService
+    public class HolyNova : SpellService, ISpellService<IHolyNovaSpellService>
     {
         public HolyNova(IGameStateService gameStateService)
             : base(gameStateService)

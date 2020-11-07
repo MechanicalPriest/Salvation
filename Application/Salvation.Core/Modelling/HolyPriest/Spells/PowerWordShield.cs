@@ -7,7 +7,7 @@ using Salvation.Core.State;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
-    public class PowerWordShield : SpellService, IPowerWordShieldSpellService
+    public class PowerWordShield : SpellService, ISpellService<IPowerWordShieldSpellService>
     {
         public PowerWordShield(IGameStateService gameStateService)
             : base(gameStateService)

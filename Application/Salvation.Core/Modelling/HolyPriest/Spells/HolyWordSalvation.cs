@@ -7,18 +7,18 @@ using Salvation.Core.State;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
-    public class HolyWordSalvation : SpellService, IHolyWordSalvationSpellService
+    public class HolyWordSalvation : SpellService, ISpellService<IHolyWordSalvationSpellService>
     {
-        private readonly IHolyWordSerenitySpellService _serenitySpellService;
-        private readonly IHolyWordSanctifySpellService _holyWordSanctifySpellService;
-        private readonly IRenewSpellService _renewSpellService;
-        private readonly IPrayerOfMendingSpellService _prayerOfMendingSpellService;
+        private readonly ISpellService<IHolyWordSerenitySpellService> _serenitySpellService;
+        private readonly ISpellService<IHolyWordSanctifySpellService> _holyWordSanctifySpellService;
+        private readonly ISpellService<IRenewSpellService> _renewSpellService;
+        private readonly ISpellService<IPrayerOfMendingSpellService> _prayerOfMendingSpellService;
 
         public HolyWordSalvation(IGameStateService gameStateService,
-            IHolyWordSerenitySpellService serenitySpellService,
-            IHolyWordSanctifySpellService holyWordSanctifySpellService,
-            IRenewSpellService renewSpellService,
-            IPrayerOfMendingSpellService prayerOfMendingSpellService)
+            ISpellService<IHolyWordSerenitySpellService> serenitySpellService,
+            ISpellService<IHolyWordSanctifySpellService> holyWordSanctifySpellService,
+            ISpellService<IRenewSpellService> renewSpellService,
+            ISpellService<IPrayerOfMendingSpellService> prayerOfMendingSpellService)
             : base(gameStateService)
         {
             Spell = Spell.HolyWordSalvation;

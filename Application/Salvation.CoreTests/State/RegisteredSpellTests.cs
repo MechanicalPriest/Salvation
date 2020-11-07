@@ -58,9 +58,4 @@ namespace Salvation.CoreTests.State
             return null;
         }
     }
-
-    public interface ISpellService<T> : ISpellService
-    {
-
-    }
 }

@@ -6,18 +6,18 @@ using Salvation.Core.State;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
-    public class HolyWordSanctify : SpellService, IHolyWordSanctifySpellService
+    public class HolyWordSanctify : SpellService, ISpellService<IHolyWordSanctifySpellService>
     {
-        private readonly IPrayerOfHealingSpellService _prayerOfHealingSpellService;
-        private readonly IRenewSpellService _renewSpellService;
-        private readonly IBindingHealSpellService _bindingHealSpellService;
-        private readonly ICircleOfHealingSpellService _circleOfHealingSpellService;
+        private readonly ISpellService<IPrayerOfHealingSpellService> _prayerOfHealingSpellService;
+        private readonly ISpellService<IRenewSpellService> _renewSpellService;
+        private readonly ISpellService<IBindingHealSpellService> _bindingHealSpellService;
+        private readonly ISpellService<ICircleOfHealingSpellService> _circleOfHealingSpellService;
 
         public HolyWordSanctify(IGameStateService gameStateService,
-            IPrayerOfHealingSpellService prayerOfHealingSpellService,
-            IRenewSpellService renewSpellService,
-            IBindingHealSpellService bindingHealSpellService,
-            ICircleOfHealingSpellService circleOfHealingSpellService)
+            ISpellService<IPrayerOfHealingSpellService> prayerOfHealingSpellService,
+            ISpellService<IRenewSpellService> renewSpellService,
+            ISpellService<IBindingHealSpellService> bindingHealSpellService,
+            ISpellService<ICircleOfHealingSpellService> circleOfHealingSpellService)
             : base(gameStateService)
         {
             Spell = Spell.HolyWordSanctify;

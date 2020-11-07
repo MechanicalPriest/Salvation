@@ -30,7 +30,7 @@ namespace Salvation.CoreTests.State
         public void MiscTest()
         {
             IServiceProvider serviceProvider = new TestProvider();
-            Func<Type, ISpellService> spellFactoryFunc = type => (ISpellService)serviceProvider.GetService(type);
+            ISpellService spellFactoryFunc(Type type) => (ISpellService)serviceProvider.GetService(type);
             ISpellServiceFactory spellServiceFactory = new SpellServiceFactory(spellFactoryFunc);
 
             var abType = typeof(AscendedBlast);

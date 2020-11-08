@@ -170,8 +170,13 @@ namespace Salvation.Core.State
                     break;
             }
 
-            // Min of calc'd multipler and 2 (cant have more than 100% crit i.e. more than 200% dmg/heal from crit) + crit effect
-            return Math.Min(1 + specData.CritBase + (GetDrRating(GetCriticalStrikeRating(state), specData.CritCost) / specData.CritCost / 100), 2) * criticalEffectMultiplier;
+            // 1 is to turn it into a multiplier (making it 1.15 for 15% for example) and is added to the overall result
+            // Math.Min(calc, 1) to prevent you going over 100% crit
+            // Multiply the base crit amount by criteffectmulti to apply that bonus
+            return 1 + (
+                Math.Min(specData.CritBase + (GetDrRating(GetCriticalStrikeRating(state), specData.CritCost) 
+                    / specData.CritCost / 100), 1) 
+                * criticalEffectMultiplier);
         }
 
         public double GetHasteRating(GameState state)
@@ -365,7 +370,8 @@ namespace Salvation.Core.State
 
             // TODO: Test if this is actually Floor'd. It's probably not touched at all.
             // TODO: It does not, need to fix this + tests.
-            return Math.Floor(intellect);
+            //return Math.Floor(intellect);
+            return intellect;
         }
 
         public double GetBaseIntellect(GameState state)

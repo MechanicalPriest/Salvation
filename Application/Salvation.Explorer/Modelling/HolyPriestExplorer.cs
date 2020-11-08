@@ -18,7 +18,7 @@ namespace Salvation.Explorer.Modelling
 {
     public interface IHolyPriestExplorer
     {
-        public void GenerateStatWeights();
+        public Task GenerateStatWeights();
         public Task TestHolyPriestModelAsync();
         public void CompareCovenants();
     }
@@ -47,13 +47,34 @@ namespace Salvation.Explorer.Modelling
             _simcProfileService = simcProfileService;
         }
 
-        public void GenerateStatWeights()
+        public async Task GenerateStatWeights()
         {
-            var state = _gameStateService.CreateValidatedGameState(
-                _profileService.GetDefaultProfile(Spec.HolyPriest));
+            // Get default profile
+            var profile = _profileService.GetDefaultProfile(Spec.HolyPriest);
 
+            // Apply a simc profile to it
+            var profileData = File.ReadAllText(Path.Combine("Profile", "HolyPriest", "mythic_base.simc"));
+            profile = await _simcProfileService.ApplySimcProfileAsync(profileData, profile);
+
+            // Create the gamestate
+            GameState state = _gameStateService.CreateValidatedGameState(profile);
+
+            // Run stat weights
             var results = _statWeightGenerationService.Generate(state, 100,
                 StatWeightGenerator.StatWeightType.EffectiveHealing);
+
+            Console.WriteLine($"[Stats] Int: {_gameStateService.GetIntellect(state)} " +
+                $"Crit: {_gameStateService.GetCriticalStrikeRating(state)} " +
+                $"Haste: {_gameStateService.GetHasteRating(state)} " +
+                $"Vers: {_gameStateService.GetVersatilityRating(state)} " +
+                $"Mastery: {_gameStateService.GetMasteryRating(state)} ");
+
+            Console.WriteLine($"{results.Name} weights:");
+
+            foreach(var result in results.Results)
+            {
+                Console.WriteLine($"[{result.Stat}] {result.Weight:0.##}");
+            }
 
             Console.WriteLine(JsonConvert.SerializeObject(results, Formatting.Indented));
         }

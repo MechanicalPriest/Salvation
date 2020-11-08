@@ -687,10 +687,9 @@ namespace Salvation.Core.State
                 .Where(p => p.Name.ToLower() == newPlaystyle.Name.ToLower())
                 .FirstOrDefault();
 
-            if (playstyleEntry == null)
-                return;
+            if (playstyleEntry != null)
+                state.Profile.PlaystyleEntries.Remove(playstyleEntry);
 
-            state.Profile.PlaystyleEntries.Remove(playstyleEntry);
             state.Profile.PlaystyleEntries.Add(newPlaystyle);
         }
 

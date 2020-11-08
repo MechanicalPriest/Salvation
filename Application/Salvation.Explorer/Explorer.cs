@@ -34,7 +34,7 @@ namespace Salvation.Explorer
                         await _spellDataUpdateService.UpdateSpellData();
                         break;
                     case "generatestatweights":
-                        _holyPriestExplorer.GenerateStatWeights();
+                        await _holyPriestExplorer.GenerateStatWeights();
                         break;
                     case "comparecovenants":
                         _holyPriestExplorer.CompareCovenants();

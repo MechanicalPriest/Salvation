@@ -80,7 +80,7 @@ namespace Salvation.CoreTests.State
             var vers = _gameStateService.GetVersatilityRating(_state);
 
             // Assert
-            Assert.AreEqual(812, vers);
+            Assert.AreEqual(810, vers);
         }
 
         [Test]

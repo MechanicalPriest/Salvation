@@ -545,15 +545,22 @@ namespace Salvation.Core.State
                 // Ideally though the modelling run does RegisterSpells last right before the run begins?
                 spell.SpellData = GetSpellData(state, spell.Spell);
 
-                // Can only add overrides if spelldata exists (the spellId may have none)
+                // Add scalevalues
                 if (spell.SpellData != null)
                 {
+                    foreach(var kvp in spell.ScaleValues)
+                    {
+                        spell.SpellData.ScaleValues.Add(kvp.Key, kvp.Value);
+                    }
+
+                    // Update the spelldata to have the new scalevalues added
+                    OverrideSpellData(state, spell.SpellData);
+
+                    // Add the overrides if relevant
                     if (spell.ItemLevel > 0)
                         spell.SpellData.Overrides.Add(Override.ItemLevel, spell.ItemLevel);
-
-                    if (spell.ScaleValue > 0)
-                        spell.SpellData.Overrides.Add(Override.ScaleBudget, spell.ScaleValue);
                 }
+
             }
 
             state.RegisteredSpells = registeredSpells;
@@ -568,7 +575,7 @@ namespace Salvation.Core.State
                 var newSpell = new RegisteredSpell()
                 {
                     Spell = (Spell)spell.Id,
-                    ScaleValue = spell.ScaleBudget,
+                    ScaleValues= spell.ScaleValues,
                     ItemLevel = itemLevel
                 };
 

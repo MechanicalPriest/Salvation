@@ -154,7 +154,7 @@ namespace Salvation.Core.Profile
                     };
 
                     // Populate this based on what we actually need
-                    newEffect.Spell = GetBaseSpellData(effect.Spell);
+                    newEffect.Spell = GetBaseSpellData(effect.Spell, item.ItemLevel);
 
                     newItem.Effects.Add(newEffect);
                 }
@@ -163,7 +163,7 @@ namespace Salvation.Core.Profile
             }
         }
 
-        internal BaseSpellData GetBaseSpellData(SimcSpell spell)
+        internal BaseSpellData GetBaseSpellData(SimcSpell spell, int itemLevel)
         {
             // TODO: This currently comes from HolyPriestSpellDataService.cs (Salvation.Utility) - centralise the logic
             if (spell == null)
@@ -181,9 +181,10 @@ namespace Salvation.Core.Profile
                 Duration = spell.Duration,
                 Gcd = spell.Gcd / 1000d,
                 ConduitRanks = spell.ConduitRanks,
-                Rppm = spell.Rppm,
-                ScaleBudget = spell.ScaleBudget
+                Rppm = spell.Rppm
             };
+
+            newSpell.ScaleValues.Add(itemLevel, spell.ScaleBudget);
 
             // Check if RPPM is modified by spec or haste
             foreach (var rppmMod in spell.RppmModifiers)
@@ -219,7 +220,7 @@ namespace Salvation.Core.Profile
 
             foreach (var effect in spell.Effects)
             {
-                var newEffect = GetBaseSpellDataEffect(effect);
+                var newEffect = GetBaseSpellDataEffect(effect, itemLevel);
 
                 if (newEffect != null)
                     newSpell.Effects.Add(newEffect);
@@ -228,7 +229,7 @@ namespace Salvation.Core.Profile
             return newSpell;
         }
 
-        internal BaseSpellDataEffect GetBaseSpellDataEffect(SimcSpellEffect effect)
+        internal BaseSpellDataEffect GetBaseSpellDataEffect(SimcSpellEffect effect, int itemLevel)
         {
             if (effect == null)
                 return null;
@@ -241,7 +242,7 @@ namespace Salvation.Core.Profile
                 Coefficient = effect.Coefficient,
                 TriggerSpellid = effect.TriggerSpellId,
                 Amplitude = effect.Amplitude,
-                TriggerSpell = GetBaseSpellData(effect.TriggerSpell),
+                TriggerSpell = GetBaseSpellData(effect.TriggerSpell, itemLevel),
                 Type = effect.EffectType,
             };
 

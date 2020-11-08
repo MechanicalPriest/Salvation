@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using Salvation.Core.Constants.Data;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.Modelling.Common.Items;
 using Salvation.Core.State;
@@ -39,9 +40,12 @@ namespace Salvation.CoreTests.Common.Items
         {
             // Arrange
             IGameStateService gameStateService = new GameStateService();
-            var spellData = gameStateService.GetSpellData(_gameState, Core.Constants.Data.Spell.UnboundChangeling);
+            var spellData = gameStateService.GetSpellData(_gameState, Spell.UnboundChangeling);
+            var hasteBuffSpellData = gameStateService.GetSpellData(_gameState, Spell.UnboundChangelingHasteProc);
             // 155 is scale budget for ilvl 226 (testing)
-            spellData.Overrides.Add(Core.Constants.Override.ScaleBudget, 155);
+            spellData.Overrides.Add(Core.Constants.Override.ItemLevel, 226);
+            hasteBuffSpellData.ScaleValues.Add(226, 155);
+            gameStateService.OverrideSpellData(_gameState, hasteBuffSpellData);
 
             // Act
             var value = _spell.GetAverageHaste(_gameState, spellData);

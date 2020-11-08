@@ -4,6 +4,7 @@ using Salvation.Core.Interfaces.Modelling;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.State;
 using System;
+using System.Linq;
 
 namespace Salvation.Core.Modelling.Common.Items
 {
@@ -20,11 +21,18 @@ namespace Salvation.Core.Modelling.Common.Items
         {
             spellData = ValidateSpellData(gameState, spellData);
 
-            if (!spellData.Overrides.ContainsKey(Override.ScaleBudget))
-                throw new ArgumentOutOfRangeException("Overrides", "Does not contain ScaleBudget");
+            if(!spellData.Overrides.ContainsKey(Override.ItemLevel))
+                throw new ArgumentOutOfRangeException("ItemLevel", "Does not contain ItemLevel");
 
-            var scaleBudget = spellData.Overrides[Override.ScaleBudget];
+            var itemLevel = (int)spellData.Overrides[Override.ItemLevel];
+
             var hasteBuffSpell = _gameStateService.GetSpellData(gameState, Spell.UnboundChangelingHasteProc);
+
+            // Get scale budget
+            if(!hasteBuffSpell.ScaleValues.ContainsKey(itemLevel))
+                throw new ArgumentOutOfRangeException("itemLevel", $"hasteBuffSpell.ScaleValues does not contain itemLevel: {itemLevel}");
+
+            var scaleBudget = hasteBuffSpell.ScaleValues[itemLevel];
 
             // X haste for Y seconds. RPPM not haste modified.
             // Currently there is a bug where this trinket is providing less than the tooltip

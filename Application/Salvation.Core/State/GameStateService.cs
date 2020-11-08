@@ -328,6 +328,11 @@ namespace Salvation.Core.State
         {
             double intellect = GetBaseIntellect(state);
 
+            // Add any forced additional stats if specified (stat weights)
+            var bonusIntellect = GetPlaystyle(state, "GrantAdditionalStatIntellect");
+            if (bonusIntellect != null)
+                intellect += bonusIntellect.Value;
+
             // Get average int from effects
             foreach (var spell in state.RegisteredSpells.Where(s => s.SpellService != null))
             {

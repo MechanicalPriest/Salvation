@@ -6,17 +6,21 @@
 
   <ItemGroup>
     <None Remove="constants.json" />
+    <None Remove="Profile\HolyPriest\mythic_base.simc" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="constants.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Profile\HolyPriest\mythic_base.simc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-    <PackageReference Include="SimcProfileParser" Version="0.3.1" />
+    <PackageReference Include="SimcProfileParser" Version="0.3.2" />
   </ItemGroup>
 
   <ItemGroup>

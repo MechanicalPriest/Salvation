@@ -118,8 +118,9 @@ namespace Salvation.Core.State
                 return playStyleValue;
             }
 
-            var critRating = 0;
+            var critRating = 0d;
 
+            // Get crit from gear
             foreach (var item in _profileService.GetEquippedItems(state.Profile))
             {
                 foreach (var mod in item.Mods)
@@ -130,6 +131,12 @@ namespace Salvation.Core.State
                         critRating += mod.StatRating;
                     }
                 }
+            }
+
+            // Get average crit from effects
+            foreach (var spell in state.RegisteredSpells.Where(s => s.SpellService != null))
+            {
+                critRating += spell.SpellService.GetAverageCriticalStrike(state, spell.SpellData);
             }
 
             return critRating;
@@ -164,8 +171,9 @@ namespace Salvation.Core.State
                 return playStyleValue;
             }
 
-            var hasteRating = 0;
+            var hasteRating = 0d;
 
+            // Get haste from gear
             foreach (var item in _profileService.GetEquippedItems(state.Profile))
             {
                 foreach (var mod in item.Mods)
@@ -176,6 +184,12 @@ namespace Salvation.Core.State
                         hasteRating += mod.StatRating;
                     }
                 }
+            }
+
+            // Get average haste from effects
+            foreach(var spell in state.RegisteredSpells.Where(s => s.SpellService != null))
+            {
+                hasteRating += spell.SpellService.GetAverageHaste(state, spell.SpellData);
             }
 
             return hasteRating;
@@ -196,8 +210,9 @@ namespace Salvation.Core.State
                 return playStyleValue;
             }
 
-            var versatilityRating = 0;
+            var versatilityRating = 0d;
 
+            // Get vers from gear
             foreach (var item in _profileService.GetEquippedItems(state.Profile))
             {
                 foreach (var mod in item.Mods)
@@ -207,6 +222,12 @@ namespace Salvation.Core.State
                         versatilityRating += mod.StatRating;
                     }
                 }
+            }
+
+            // Get average vers from effects
+            foreach (var spell in state.RegisteredSpells.Where(s => s.SpellService != null))
+            {
+                versatilityRating += spell.SpellService.GetAverageVersatility(state, spell.SpellData);
             }
 
             return versatilityRating;
@@ -228,8 +249,9 @@ namespace Salvation.Core.State
                 return playStyleValue;
             }
 
-            var masteryRating = 0;
+            var masteryRating = 0d;
 
+            // Get mastery from gear
             foreach (var item in _profileService.GetEquippedItems(state.Profile))
             {
                 foreach (var mod in item.Mods)
@@ -239,6 +261,12 @@ namespace Salvation.Core.State
                         masteryRating += mod.StatRating;
                     }
                 }
+            }
+
+            // Get average mastery from effects
+            foreach (var spell in state.RegisteredSpells.Where(s => s.SpellService != null))
+            {
+                masteryRating += spell.SpellService.GetAverageMastery(state, spell.SpellData);
             }
 
             return masteryRating;
@@ -341,6 +369,12 @@ namespace Salvation.Core.State
                 }
             }
 
+            // Get average int from effects
+            foreach (var spell in state.RegisteredSpells.Where(s => s.SpellService != null))
+            {
+                intellect += spell.SpellService.GetAverageIntellect(state, spell.SpellData);
+            }
+
             if (clothCount == 8)
                 intellect *= 1.05d;
 
@@ -432,10 +466,27 @@ namespace Salvation.Core.State
 
             // TODO: Conduits
 
-            // Populate all the spellservices
+            
             foreach (var spell in registeredSpells)
             {
+                // Populate all the spellservices
                 spell.SpellService = _spellServiceFactory.GetSpellService(spell.Spell);
+
+                // And the spelldata
+                // TODO: Consider moving these overrides to another location. Could run into race conditions
+                // if the order isn't: Modify Spelldata => RegisterSpells as we're applying spelldata here.
+                // Ideally though the modelling run does RegisterSpells last right before the run begins?
+                spell.SpellData = GetSpellData(state, spell.Spell);
+
+                // Can only add overrides if spelldata exists (the spellId may have none)
+                if (spell.SpellData != null)
+                {
+                    if (spell.ItemLevel > 0)
+                        spell.SpellData.Overrides.Add(Override.ItemLevel, spell.ItemLevel);
+
+                    if (spell.ScaleValue > 0)
+                        spell.SpellData.Overrides.Add(Override.ScaleBudget, spell.ScaleValue);
+                }
             }
 
             state.RegisteredSpells = registeredSpells;

@@ -1,4 +1,5 @@
-﻿using Salvation.Core.Constants.Data;
+﻿using Salvation.Core.Constants;
+using Salvation.Core.Constants.Data;
 using Salvation.Core.Interfaces.Modelling;
 
 namespace Salvation.Core.Profile.Model
@@ -10,6 +11,7 @@ namespace Salvation.Core.Profile.Model
         /// <summary>
         /// Used to store the scale value for item-scaled spell effects
         /// </summary>
+        public BaseSpellData SpellData { get; set; }
         public double ScaleValue { get; set; }
         public int ItemLevel { get; set; }
     }

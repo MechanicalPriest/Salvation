@@ -34,7 +34,7 @@ namespace Salvation.Core.Modelling.HolyPriest
             {
                 if (spell.SpellService != null)
                 {
-                    var castResults = spell.SpellService.GetCastResults(state);
+                    var castResults = spell.SpellService.GetCastResults(state, spell.SpellData);
                     results.SpellCastResults.Add(castResults);
                 }
                 else

@@ -83,8 +83,10 @@ namespace Salvation.Core.Modelling
             // Average healing done is raw healing * overheal
             var castProfile = _gameStateService.GetSpellCastProfile(gameState, SpellId);
 
-            var totalDirectHeal = GetAverageRawHealing(gameState, spellData)
-                * (1 - castProfile.OverhealPercent);
+            var totalDirectHeal = GetAverageRawHealing(gameState, spellData);
+
+            if (castProfile != null)
+                totalDirectHeal *= (1 - castProfile.OverhealPercent);
 
             return totalDirectHeal;
         }
@@ -96,8 +98,10 @@ namespace Salvation.Core.Modelling
             // Average healing done is raw healing * overheal
             var castProfile = _gameStateService.GetSpellCastProfile(gameState, SpellId);
 
-            var totalOverheal = GetAverageRawHealing(gameState, spellData)
-                * castProfile.OverhealPercent;
+            var totalOverheal = 0d;
+
+            if (castProfile != null)
+                totalOverheal = GetAverageRawHealing(gameState, spellData) * castProfile.OverhealPercent;
 
             return totalOverheal;
         }
@@ -108,7 +112,10 @@ namespace Salvation.Core.Modelling
 
             var castProfile = _gameStateService.GetSpellCastProfile(gameState, SpellId);
 
-            double castsPerMinute = castProfile.Efficiency * GetMaximumCastsPerMinute(gameState, spellData);
+            double castsPerMinute = GetMaximumCastsPerMinute(gameState, spellData);
+
+            if (castProfile != null)
+                castsPerMinute *= castProfile.Efficiency;
 
             return castsPerMinute;
         }
@@ -120,7 +127,7 @@ namespace Salvation.Core.Modelling
 
         public virtual double GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
         {
-            throw new NotImplementedException();
+            return 0;
         }
 
         public virtual double GetHastedCastTime(GameState gameState, BaseSpellData spellData = null)
@@ -180,7 +187,7 @@ namespace Salvation.Core.Modelling
 
             var profileData = _gameStateService.GetSpellCastProfile(gameState, SpellId);
 
-            var numTargets = profileData.AverageHealingTargets;
+            var numTargets = profileData == null ? 0 : profileData.AverageHealingTargets;
 
             if (spellData.Overrides.ContainsKey(Override.NumberOfHealingTargets))
                 numTargets = spellData.Overrides[Override.NumberOfHealingTargets];
@@ -194,7 +201,7 @@ namespace Salvation.Core.Modelling
 
             var profileData = _gameStateService.GetSpellCastProfile(gameState, SpellId);
 
-            var numTargets = profileData.AverageDamageTargets;
+            var numTargets = profileData == null ? 0 : profileData.AverageDamageTargets;
 
             if (spellData.Overrides.ContainsKey(Override.NumberOfDamageTargets))
                 numTargets = spellData.Overrides[Override.NumberOfDamageTargets];

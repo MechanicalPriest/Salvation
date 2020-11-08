@@ -96,18 +96,17 @@ namespace Salvation.CoreTests.HolyPriest.Spells
         }
 
         [Test]
-        public void GetMaximumCastsPerMinute_Throws()
+        public void GetMaximumCastsPerMinute_DefaultsZero()
         {
             // Arrange
             IGameStateService gameStateService = new GameStateService();
             var spellService = new SpellService(gameStateService);
 
             // Act
-            var methodCall = new TestDelegate(
-                () => spellService.GetMaximumCastsPerMinute(_gameState, null));
+            var value = spellService.GetMaximumCastsPerMinute(_gameState, null);
 
             // Assert
-            Assert.Throws<NotImplementedException>(methodCall);
+            Assert.AreEqual(0, value);
         }
 
         [Test]

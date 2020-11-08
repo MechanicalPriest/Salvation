@@ -14,63 +14,9 @@ namespace Salvation.Core.Modelling.HolyPriest
     {
         private readonly IGameStateService _gameStateService;
 
-        public List<ISpellService> Spells { get; private set; }
-
-        public HolyPriestModellingService(IGameStateService gameStateService,
-            ISpellService<IFlashHealSpellService> flashHealService,
-            ISpellService<IHolyWordSerenitySpellService> holyWordSerenitySpellService,
-            ISpellService<IHolyWordSalvationSpellService> holyWordSalvationSpellService,
-            ISpellService<IRenewSpellService> renewSpellService,
-            ISpellService<IPrayerOfMendingSpellService> prayerOfMendingSpellService,
-            ISpellService<IPrayerOfHealingSpellService> prayerOfHealingSpellService,
-            ISpellService<IHealSpellService> healSpellService,
-            ISpellService<IBindingHealSpellService> bindingHealSpellService,
-            ISpellService<IHolyWordSanctifySpellService> holyWordSanctifySpellService,
-            ISpellService<ICircleOfHealingSpellService> circleOfHealingSpellService,
-            ISpellService<IDivineHymnSpellService> divineHymnSpellService,
-            ISpellService<IDivineStarSpellService> divineStarSpellService,
-            ISpellService<IHaloSpellService> haloSpellService,
-            ISpellService<IHolyNovaSpellService> holyNovaSpellService,
-            ISpellService<IPowerWordShieldSpellService> powerWordShieldSpellService,
-            ISpellService<IFaeGuardiansSpellService> faeGuardiansSpellService,
-            ISpellService<IMindgamesSpellService> mindgamesSpellService,
-            ISpellService<IUnholyNovaSpellService> unholyNovaSpellService,
-            ISpellService<IBoonOfTheAscendedSpellService> boonOfTheAscendedSpellService,
-            ISpellService<ISmiteSpellService> smiteSpellService,
-            ISpellService<IHolyWordChastiseSpellService> chastiseSpellService,
-            ISpellService<IShadowWordPainSpellService> shadowWordPainSpellService,
-            ISpellService<IShadowWordDeathSpellService> shadowWordDeathSpellService,
-            ISpellService<IHolyFireSpellService> holyFireSpellService)
+        public HolyPriestModellingService(IGameStateService gameStateService)
         {
             _gameStateService = gameStateService;
-
-            Spells = new List<ISpellService>
-            {
-                flashHealService,
-                healSpellService,
-                renewSpellService,
-                prayerOfHealingSpellService,
-                holyNovaSpellService,
-                powerWordShieldSpellService,
-                bindingHealSpellService,
-                prayerOfMendingSpellService,
-                circleOfHealingSpellService,
-                divineStarSpellService,
-                haloSpellService,
-                holyWordSerenitySpellService,
-                holyWordSanctifySpellService,
-                divineHymnSpellService,
-                holyWordSalvationSpellService,
-                faeGuardiansSpellService,
-                mindgamesSpellService,
-                unholyNovaSpellService,
-                boonOfTheAscendedSpellService,
-                smiteSpellService,
-                chastiseSpellService,
-                shadowWordPainSpellService,
-                shadowWordDeathSpellService,
-                holyFireSpellService
-            };
         }
 
         public BaseModelResults GetResults(GameState state)
@@ -84,16 +30,16 @@ namespace Salvation.Core.Modelling.HolyPriest
             var sw = new Stopwatch();
             sw.Start();
 
-            foreach (var spell in Spells)
+            foreach (var spell in _gameStateService.GetRegisteredSpells(state))
             {
-                if (IsSpellBeingCast(state, (Spell)spell.SpellId))
+                if (spell.SpellService != null)
                 {
-                    var castResults = spell.GetCastResults(state);
+                    var castResults = spell.SpellService.GetCastResults(state);
                     results.SpellCastResults.Add(castResults);
                 }
                 else
                 {
-                    _gameStateService.JournalEntry(state, $"[{spell.SpellId}] Skipped casting due to profile.");
+                    _gameStateService.JournalEntry(state, $"[{spell.Spell}] Skipped casting due to no spellservice.");
                 }
             }
 
@@ -124,21 +70,6 @@ namespace Salvation.Core.Modelling.HolyPriest
             _gameStateService.JournalEntry(state, $"Results run done in {sw.ElapsedMilliseconds}ms.");
 
             return results;
-        }
-
-        /// <summary>
-        /// Check to see if this spell should be cast as part of the modelling
-        /// </summary>
-        public bool IsSpellBeingCast(GameState state, Spell spellId)
-        {
-            return spellId switch
-            {
-                Spell.BoonOfTheAscended => _gameStateService.GetActiveCovenant(state) == Covenant.Kyrian,
-                Spell.Mindgames => _gameStateService.GetActiveCovenant(state) == Covenant.Venthyr,
-                Spell.FaeGuardians => _gameStateService.GetActiveCovenant(state) == Covenant.NightFae,
-                Spell.UnholyNova => _gameStateService.GetActiveCovenant(state) == Covenant.Necrolord,
-                _ => true,
-            };
         }
 
         private void RollUpResults(BaseModelResults results, List<AveragedSpellCastResult> spells)

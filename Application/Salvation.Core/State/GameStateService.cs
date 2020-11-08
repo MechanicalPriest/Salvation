@@ -384,6 +384,11 @@ namespace Salvation.Core.State
 
         #region Registered Spells
 
+        public List<RegisteredSpell> GetRegisteredSpells(GameState state)
+        {
+            return state.RegisteredSpells;
+        }
+
         /// <summary>
         /// Populates the profiles RegisteredSpells ready to be processed
         /// </summary>

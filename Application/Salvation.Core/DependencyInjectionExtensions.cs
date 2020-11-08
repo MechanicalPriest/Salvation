@@ -59,11 +59,11 @@ namespace Salvation.Core
         public static IServiceCollection AddCoreSpells(this IServiceCollection services)
         {
             // Consumables
-            services.AddSingleton<ISpellService<ISpectralFlaskOfPower>, SpectralFlaskOfPower>();
-            services.AddSingleton<ISpellService<ISpiritualManaPotion>, SpiritualManaPotion>();
+            services.AddSingleton<ISpellService<ISpectralFlaskOfPowerSpellService>, SpectralFlaskOfPower>();
+            services.AddSingleton<ISpellService<ISpiritualManaPotionSpellService>, SpiritualManaPotion>();
 
             // Items
-            services.AddSingleton<ISpellService<IUnboundChangeling>, UnboundChangeling>();
+            services.AddSingleton<ISpellService<IUnboundChangelingSpellService>, UnboundChangeling>();
 
             return services;
         }

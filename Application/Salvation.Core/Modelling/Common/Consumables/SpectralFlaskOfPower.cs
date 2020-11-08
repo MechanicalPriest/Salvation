@@ -6,8 +6,8 @@ using Salvation.Core.State;
 
 namespace Salvation.Core.Modelling.Common.Consumables
 {
-    public interface ISpectralFlaskOfPower : ISpellService { }
-    public class SpectralFlaskOfPower : SpellService, ISpellService<ISpectralFlaskOfPower>
+    public interface ISpectralFlaskOfPowerSpellService : ISpellService { }
+    public class SpectralFlaskOfPower : SpellService, ISpellService<ISpectralFlaskOfPowerSpellService>
     {
         public SpectralFlaskOfPower(IGameStateService gameStateService)
             : base(gameStateService)

@@ -89,9 +89,6 @@ namespace Salvation.Explorer.Modelling
             // Make some other modifications if needed
 
             // Kick off modelling against it.
-            var haste1 = _gameStateService.GetHasteRating(state);
-            _gameStateService.RegisterSpells(state, new System.Collections.Generic.List<Core.Profile.Model.RegisteredSpell>());
-            var haste2 = _gameStateService.GetHasteRating(state);
             var modelResults = _modellingService.GetResults(state);
 
             var results = _modellingService.GetResults(state);

@@ -517,17 +517,20 @@ namespace Salvation.Core.State
             // TODO: Covenant abilities
 
             // SOULBINDS: Loop through each trait and add it to the list
-            foreach (var trait in state.Profile.Covenant.Soulbinds
-                .Where(s => s.IsActive).FirstOrDefault().ActiveTraits)
+            if (state.Profile.Covenant.Soulbinds.Where(s => s.IsActive).FirstOrDefault() != null)
             {
-                if (Enum.IsDefined(typeof(Spell), (int)trait))
+                foreach (var trait in state.Profile.Covenant.Soulbinds
+                    .Where(s => s.IsActive).FirstOrDefault().ActiveTraits)
                 {
-                    var registeredSpell = new RegisteredSpell()
+                    if (Enum.IsDefined(typeof(Spell), (int)trait))
                     {
-                        Spell = (Spell)trait,
-                    };
+                        var registeredSpell = new RegisteredSpell()
+                        {
+                            Spell = (Spell)trait,
+                        };
 
-                    registeredSpells.Add(registeredSpell);
+                        registeredSpells.Add(registeredSpell);
+                    }
                 }
             }
 

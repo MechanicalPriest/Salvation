@@ -3,6 +3,7 @@ using Salvation.Core.Interfaces.Modelling;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.Modelling.Common;
+using Salvation.Core.Profile.Model;
 using Salvation.Core.State;
 using System;
 using System.Collections.Generic;
@@ -29,6 +30,8 @@ namespace Salvation.Core.Modelling.HolyPriest
             _gameStateService.JournalEntry(state, $"Results run started at {DateTime.Now:yyyy.MM.dd HH:mm:ss:ffff}.");
             var sw = new Stopwatch();
             sw.Start();
+
+            _gameStateService.RegisterSpells(state, GetBaseSpells());
 
             foreach (var spell in _gameStateService.GetRegisteredSpells(state))
             {
@@ -71,6 +74,38 @@ namespace Salvation.Core.Modelling.HolyPriest
 
             return results;
         }
+
+        internal List<RegisteredSpell> GetBaseSpells()
+        {
+            var result = new List<RegisteredSpell>()
+            {
+                // Healing Spells
+                new RegisteredSpell(Spell.CircleOfHealing),
+                new RegisteredSpell(Spell.DivineHymn),
+                new RegisteredSpell(Spell.FlashHeal),
+                new RegisteredSpell(Spell.Heal),
+                new RegisteredSpell(Spell.HolyNova),
+                new RegisteredSpell(Spell.HolyWordSanctify),
+                new RegisteredSpell(Spell.HolyWordSerenity),
+                new RegisteredSpell(Spell.PowerWordShield),
+                new RegisteredSpell(Spell.PrayerOfHealing),
+                new RegisteredSpell(Spell.PrayerOfMending),
+                new RegisteredSpell(Spell.Renew),
+
+                // DPS Spells
+                new RegisteredSpell(Spell.HolyFire),
+                new RegisteredSpell(Spell.HolyWordChastise),
+                new RegisteredSpell(Spell.ShadowWordDeath),
+                new RegisteredSpell(Spell.ShadowWordPain),
+                new RegisteredSpell(Spell.Smite),
+
+                // Utility Spells
+            };
+
+            return result;
+        }
+
+        #region Spell Result Calculatoins
 
         private void RollUpResults(BaseModelResults results, List<AveragedSpellCastResult> spells)
         {
@@ -173,5 +208,7 @@ namespace Salvation.Core.Modelling.HolyPriest
                     RollUpSpellParts(resultSummary, part.AdditionalCasts, partCPM);
             }
         }
+
+        #endregion
     }
 }

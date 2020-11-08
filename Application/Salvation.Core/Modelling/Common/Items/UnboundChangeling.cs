@@ -8,8 +8,8 @@ using System.Linq;
 
 namespace Salvation.Core.Modelling.Common.Items
 {
-    public interface IUnboundChangeling : ISpellService { }
-    public class UnboundChangeling : SpellService, ISpellService<IUnboundChangeling>
+    public interface IUnboundChangelingSpellService : ISpellService { }
+    public class UnboundChangeling : SpellService, ISpellService<IUnboundChangelingSpellService>
     {
         public UnboundChangeling(IGameStateService gameStateService)
             : base(gameStateService)

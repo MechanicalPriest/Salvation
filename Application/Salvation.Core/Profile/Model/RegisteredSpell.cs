@@ -24,5 +24,11 @@ namespace Salvation.Core.Profile.Model
         {
             ScaleValues = new Dictionary<int, double>();
         }
+
+        public RegisteredSpell(Spell spell)
+            : this()
+        {
+            Spell = spell;
+        }
     }
 }

@@ -112,6 +112,24 @@ namespace Salvation.Core.State
 
         public double GetCriticalStrikeRating(GameState state)
         {
+            var critRating = GetBaseCriticalStrikeRating(state);
+
+            // Add any forced additional stats if specified (stat weights)
+            var bonusCriticalStrike = GetPlaystyle(state, "GrantAdditionalStatCriticalStrike");
+            if (bonusCriticalStrike != null)
+                critRating += bonusCriticalStrike.Value;
+
+            // Get average crit from effects
+            foreach (var spell in state.RegisteredSpells.Where(s => s.SpellService != null))
+            {
+                critRating += spell.SpellService.GetAverageCriticalStrike(state, spell.SpellData);
+            }
+
+            return critRating;
+        }
+
+        public double GetBaseCriticalStrikeRating(GameState state)
+        {
             var playStyleValue = GetPlaystyle(state, "OverrideStatCriticalStrike").Value;
             if (playStyleValue != 0)
             {
@@ -133,22 +151,15 @@ namespace Salvation.Core.State
                 }
             }
 
-            // Get average crit from effects
-            foreach (var spell in state.RegisteredSpells.Where(s => s.SpellService != null))
-            {
-                critRating += spell.SpellService.GetAverageCriticalStrike(state, spell.SpellData);
-            }
-
             return critRating;
         }
 
         public double GetCriticalStrikeMultiplier(GameState state)
         {
-            // TODO: Add other sources of crit increase here
             var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.Spec).FirstOrDefault();
             double criticalEffectMultiplier = specData.CritMultiplier - 1; // 2 by default higher based on items but lowered to 1 for calc below
 
-            // apply race bonus on crits
+            // Apply race bonus for crit effect multi
             switch (state.Profile.Race)
             {
                 case Race.Dwarf:
@@ -159,11 +170,29 @@ namespace Salvation.Core.State
                     break;
             }
 
-            // min of calc'd multipler and 2 (cant have more than 100% crit i.e. more than 200% dmg from crit) + crit dmg
+            // Min of calc'd multipler and 2 (cant have more than 100% crit i.e. more than 200% dmg/heal from crit) + crit effect
             return Math.Min(1 + specData.CritBase + (GetDrRating(GetCriticalStrikeRating(state), specData.CritCost) / specData.CritCost / 100), 2) * criticalEffectMultiplier;
         }
 
         public double GetHasteRating(GameState state)
+        {
+            var hasteRating = GetBaseHasteRating(state);
+
+            // Add any forced additional stats if specified (stat weights)
+            var bonusHaste = GetPlaystyle(state, "GrantAdditionalStatHaste");
+            if (bonusHaste != null)
+                hasteRating += bonusHaste.Value;
+
+            // Get average haste from effects
+            foreach (var spell in state.RegisteredSpells.Where(s => s.SpellService != null))
+            {
+                hasteRating += spell.SpellService.GetAverageHaste(state, spell.SpellData);
+            }
+
+            return hasteRating;
+        }
+
+        internal double GetBaseHasteRating(GameState state)
         {
             var playStyleValue = GetPlaystyle(state, "OverrideStatHaste").Value;
             if (playStyleValue != 0)
@@ -186,23 +215,34 @@ namespace Salvation.Core.State
                 }
             }
 
-            // Get average haste from effects
-            foreach(var spell in state.RegisteredSpells.Where(s => s.SpellService != null))
-            {
-                hasteRating += spell.SpellService.GetAverageHaste(state, spell.SpellData);
-            }
-
             return hasteRating;
         }
 
         public double GetHasteMultiplier(GameState state)
         {
-            // TODO: Add other sources of haste increase here
             var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.Spec).FirstOrDefault();
             return 1 + specData.HasteBase + (GetDrRating(GetHasteRating(state), specData.HasteCost) / specData.HasteCost / 100);
         }
 
         public double GetVersatilityRating(GameState state)
+        {
+            var versatilityRating = GetBaseVersatilityMultiplier(state);
+
+            // Add any forced additional stats if specified (stat weights)
+            var bonusVersatilty = GetPlaystyle(state, "GrantAdditionalStatVersatility");
+            if (bonusVersatilty != null)
+                versatilityRating += bonusVersatilty.Value;
+
+            // Get average vers from effects
+            foreach (var spell in state.RegisteredSpells.Where(s => s.SpellService != null))
+            {
+                versatilityRating += spell.SpellService.GetAverageVersatility(state, spell.SpellData);
+            }
+
+            return versatilityRating;
+        }
+
+        internal double GetBaseVersatilityMultiplier(GameState state)
         {
             var playStyleValue = GetPlaystyle(state, "OverrideStatVersatility").Value;
             if (playStyleValue != 0)
@@ -224,24 +264,35 @@ namespace Salvation.Core.State
                 }
             }
 
-            // Get average vers from effects
-            foreach (var spell in state.RegisteredSpells.Where(s => s.SpellService != null))
-            {
-                versatilityRating += spell.SpellService.GetAverageVersatility(state, spell.SpellData);
-            }
-
             return versatilityRating;
         }
 
         public double GetVersatilityMultiplier(GameState state)
         {
-            // TODO: Add other sources of vers increase here
             var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.Spec).FirstOrDefault();
 
             return 1 + specData.VersBase + (GetDrRating(GetVersatilityRating(state), specData.VersCost) / specData.VersCost / 100);
         }
 
         public double GetMasteryRating(GameState state)
+        {
+            var masteryRating = GetBaseMasteryRating(state);
+
+            // Add any forced additional stats if specified (stat weights)
+            var bonusMastery = GetPlaystyle(state, "GrantAdditionalStatMastery");
+            if (bonusMastery != null)
+                masteryRating += bonusMastery.Value;
+
+            // Get average mastery from effects
+            foreach (var spell in state.RegisteredSpells.Where(s => s.SpellService != null))
+            {
+                masteryRating += spell.SpellService.GetAverageMastery(state, spell.SpellData);
+            }
+
+            return masteryRating;
+        }
+
+        internal double GetBaseMasteryRating(GameState state)
         {
             var playStyleValue = GetPlaystyle(state, "OverrideStatMastery").Value;
             if (playStyleValue != 0)
@@ -263,24 +314,56 @@ namespace Salvation.Core.State
                 }
             }
 
-            // Get average mastery from effects
-            foreach (var spell in state.RegisteredSpells.Where(s => s.SpellService != null))
-            {
-                masteryRating += spell.SpellService.GetAverageMastery(state, spell.SpellData);
-            }
-
             return masteryRating;
         }
 
         public double GetMasteryMultiplier(GameState state)
         {
-            // TODO: Add other sources of mastery increase here
             var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.Spec).FirstOrDefault();
 
             return 1 + specData.MasteryBase + (GetDrRating(GetMasteryRating(state), specData.MasteryCost) / specData.MasteryCost / 100);
         }
 
         public double GetIntellect(GameState state)
+        {
+            double intellect = GetBaseIntellect(state);
+
+            // Get average int from effects
+            foreach (var spell in state.RegisteredSpells.Where(s => s.SpellService != null))
+            {
+                intellect += spell.SpellService.GetAverageIntellect(state, spell.SpellData);
+            }
+
+            // Cloth armor check to apply the armor bonus multiplier
+            var clothBonus = GetPlaystyle(state, "ForceClothBonus");
+            var clothCount = 0;
+
+            if (clothBonus != null && clothBonus.Value == 1)
+            {
+                clothCount = 8;
+            }
+            else
+            {
+                foreach (var item in _profileService.GetEquippedItems(state.Profile))
+                {
+                    if (item.Slot != InventorySlot.Cloak &&
+                        item.ItemType == ItemType.ITEM_CLASS_ARMOR &&
+                        item.ItemSubType == 1)
+                    {
+                        clothCount++;
+                    }
+                }
+            }
+
+            if (clothCount == 8)
+                intellect *= 1.05d;
+
+            // TODO: Test if this is actually Floor'd. It's probably not touched at all.
+            // TODO: It does not, need to fix this + tests.
+            return Math.Floor(intellect);
+        }
+
+        public double GetBaseIntellect(GameState state)
         {
             var playStyleValue = GetPlaystyle(state, "OverrideStatIntellect").Value;
             if (playStyleValue != 0)
@@ -349,14 +432,8 @@ namespace Salvation.Core.State
             }
 
             // Add intellect from all items
-            var clothCount = 0;
             foreach (var item in _profileService.GetEquippedItems(state.Profile))
             {
-                if (item.Slot != InventorySlot.Cloak &&
-                    item.ItemType == ItemType.ITEM_CLASS_ARMOR &&
-                    item.ItemSubType == 1)
-                    clothCount++;
-
                 foreach (var mod in item.Mods)
                 {
                     if (mod.Type == ItemModType.ITEM_MOD_INTELLECT ||
@@ -369,17 +446,7 @@ namespace Salvation.Core.State
                 }
             }
 
-            // Get average int from effects
-            foreach (var spell in state.RegisteredSpells.Where(s => s.SpellService != null))
-            {
-                intellect += spell.SpellService.GetAverageIntellect(state, spell.SpellData);
-            }
-
-            if (clothCount == 8)
-                intellect *= 1.05d;
-
-            // TODO: Test if this is actually Floor'd. It's probably not touched at all.
-            return Math.Floor(intellect);
+            return intellect;
         }
 
         public BaseSpellData GetSpellData(GameState state, Spell spellId)

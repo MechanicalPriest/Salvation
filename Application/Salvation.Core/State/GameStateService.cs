@@ -508,7 +508,11 @@ namespace Salvation.Core.State
         {
             var registeredSpells = new List<RegisteredSpell>(additionalSpells);
 
-            // TODO: Talents
+            // TALENTS: Add the profiles talents
+            foreach(var talent in state.Profile.Talents)
+            {
+                registeredSpells.Add(new RegisteredSpell((Spell)talent));
+            }
 
             // TODO: Consumables
 
@@ -522,7 +526,26 @@ namespace Salvation.Core.State
                 }
             }
 
-            // TODO: Covenant abilities
+            // COVENANT: Add covenant ability
+            switch (GetActiveCovenant(state))
+            {
+                case Covenant.Kyrian:
+                    registeredSpells.Add(new RegisteredSpell(Spell.BoonOfTheAscended));
+                    break;
+                case Covenant.Venthyr:
+                    registeredSpells.Add(new RegisteredSpell(Spell.Mindgames));
+                    break;
+                case Covenant.NightFae:
+                    registeredSpells.Add(new RegisteredSpell(Spell.FaeGuardians));
+                    break;
+                case Covenant.Necrolord:
+                    registeredSpells.Add(new RegisteredSpell(Spell.UnholyNova));
+                    break;
+                case Covenant.None:
+                default:
+                    break;
+            }
+
 
             // SOULBINDS: Loop through each trait and add it to the list
             if (state.Profile.Covenant.Soulbinds.Where(s => s.IsActive).FirstOrDefault() != null)

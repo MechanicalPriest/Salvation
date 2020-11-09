@@ -35,7 +35,7 @@ namespace Salvation.CoreTests.Profile
         public async Task SPS_Applies_Basic_Properties()
         {
             // Arrange
-            var baseProfile = new ProfileService().GetDefaultProfile(Core.Constants.Data.Spec.HolyPriest);
+            var baseProfile = new ProfileService().GetDefaultProfile(Spec.HolyPriest);
 
             // Act
             var profile = await _simcProfileService.ApplySimcProfileAsync(_profileStringBeitaky, baseProfile);
@@ -54,7 +54,7 @@ namespace Salvation.CoreTests.Profile
         public async Task SPS_Applies_Covenant_Properties()
         {
             // Arrange
-            var baseProfile = new ProfileService().GetDefaultProfile(Core.Constants.Data.Spec.HolyPriest);
+            var baseProfile = new ProfileService().GetDefaultProfile(Spec.HolyPriest);
 
             // Act
             var profile = await _simcProfileService.ApplySimcProfileAsync(_profileStringBeitaky, baseProfile);
@@ -82,7 +82,7 @@ namespace Salvation.CoreTests.Profile
         public async Task SPS_Applies_Items()
         {
             // Arrange
-            var baseProfile = new ProfileService().GetDefaultProfile(Core.Constants.Data.Spec.HolyPriest);
+            var baseProfile = new ProfileService().GetDefaultProfile(Spec.HolyPriest);
 
             // Act
             var profile = await _simcProfileService.ApplySimcProfileAsync(_profileStringBeitaky, baseProfile);
@@ -97,7 +97,7 @@ namespace Salvation.CoreTests.Profile
         public async Task SPS_Applies_Stats()
         {
             // Arrange
-            var baseProfile = new ProfileService().GetDefaultProfile(Core.Constants.Data.Spec.HolyPriest);
+            var baseProfile = new ProfileService().GetDefaultProfile(Spec.HolyPriest);
             IGameStateService gameStateService = new GameStateService();
 
             IConstantsService constantsService = new ConstantsService();
@@ -115,6 +115,23 @@ namespace Salvation.CoreTests.Profile
             Assert.AreEqual(238.0d, gameStateService.GetCriticalStrikeRating(gameState));
             Assert.AreEqual(427.0d, gameStateService.GetHasteRating(gameState));
             Assert.AreEqual(100.0d, gameStateService.GetMasteryRating(gameState));
+        }
+
+        [Test]
+        public async Task SPS_Applies_Talents()
+        {
+            // Arrange
+            var baseProfile = new ProfileService().GetDefaultProfile(Spec.HolyPriest);
+
+            // Act
+            var profile = await _simcProfileService.ApplySimcProfileAsync(_profileStringBeitaky, baseProfile);
+
+            // Assert
+            Assert.IsNotNull(profile);
+            Assert.IsNotNull(profile.Talents);
+            Assert.AreEqual(4, profile.Talents.Count);
+            Assert.IsTrue(profile.Talents.Contains(Talent.AngelicFeather));
+            Assert.IsFalse(profile.Talents.Contains(Talent.BodyAndSoul));
         }
     }
 }

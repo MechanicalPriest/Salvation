@@ -59,6 +59,7 @@ namespace Salvation.Core.Modelling
                 NumberOfHealingTargets = GetNumberOfHealingTargets(gameState, spellData),
                 Overhealing = GetAverageOverhealing(gameState, spellData),
                 RawHealing = GetAverageRawHealing(gameState, spellData),
+                Mp5 = GetAverageMp5(gameState, spellData),
             };
 
             if (TriggersMastery(gameState, spellData))

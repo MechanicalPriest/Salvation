@@ -147,7 +147,7 @@ namespace Salvation.Core.Modelling.HolyPriest
                 NumberOfDamageTargets = castResult.NumberOfDamageTargets,
                 NumberOfHealingTargets = castResult.NumberOfHealingTargets,
                 SpellId = castResult.SpellId,
-                SpellName = castResult.SpellName
+                SpellName = castResult.SpellName,
             };
 
             // Properties that are sums of all the parts
@@ -198,6 +198,7 @@ namespace Salvation.Core.Modelling.HolyPriest
                 resultSummary.Overhealing += part.Overhealing * partCPM / resultSummary.CastsPerMinute;
                 resultSummary.Damage += part.Damage * partCPM / resultSummary.CastsPerMinute;
                 resultSummary.ManaCost += part.ManaCost * partCPM / resultSummary.CastsPerMinute;
+                resultSummary.Mp5 += part.Mp5;
 
                 //Console.WriteLine($"[{resultSummary.SpellName}] child added doing {part.RawHealing:0.##} " +
                 //        $"raw healing (total now: {resultSummary.RawHealing:0.##}) from {part.SpellName} " +

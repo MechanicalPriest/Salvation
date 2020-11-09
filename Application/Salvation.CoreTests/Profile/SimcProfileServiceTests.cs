@@ -43,7 +43,7 @@ namespace Salvation.CoreTests.Profile
             // Assert
             Assert.IsNotNull(profile);
             Assert.AreEqual("Beitaky", profile.Name);
-            Assert.AreEqual(Race.Dwarf, profile.Race);
+            Assert.AreEqual(Race.NoRace, profile.Race);
             Assert.AreEqual("torghast", profile.Server);
             Assert.AreEqual("us", profile.Region);
             Assert.AreEqual(Spec.HolyPriest, profile.Spec);
@@ -110,7 +110,7 @@ namespace Salvation.CoreTests.Profile
 
             // Assert
             Assert.IsNotNull(profile);
-            Assert.AreEqual(1261.0d, gameStateService.GetIntellect(gameState));
+            Assert.AreEqual(1262.1000000000001d, gameStateService.GetIntellect(gameState));
             Assert.AreEqual(810.0d, gameStateService.GetVersatilityRating(gameState));
             Assert.AreEqual(238.0d, gameStateService.GetCriticalStrikeRating(gameState));
             Assert.AreEqual(427.0d, gameStateService.GetHasteRating(gameState));

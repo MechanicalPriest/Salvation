@@ -73,9 +73,9 @@ namespace Salvation.Core.State
         /// Calcs each individual point one at a time for its value based on the percent bracket of the point
         /// this val * scaling = percent, important note is mastery operates from the point scaling
         /// </summary>
-        /// <param name="rating"> Total value of stat on a character prior to DR</param>
-        /// <param name="cost"> Cost of individual stat </param>
-        /// <returns> diminished returned value based on percent </returns>
+        /// <param name="rating">Total value of stat on a character prior to DR</param>
+        /// <param name="cost">Cost of individual stat</param>
+        /// <returns>Diminished returned value based on percent</returns>
         public double GetDrRating(double rating, double cost)
         {
             double result = 0;
@@ -368,9 +368,6 @@ namespace Salvation.Core.State
             if (clothCount == 8)
                 intellect *= 1.05d;
 
-            // TODO: Test if this is actually Floor'd. It's probably not touched at all.
-            // TODO: It does not, need to fix this + tests.
-            //return Math.Floor(intellect);
             return intellect;
         }
 

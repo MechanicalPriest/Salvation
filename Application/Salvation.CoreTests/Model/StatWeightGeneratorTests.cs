@@ -1,101 +1,85 @@
-﻿//using NUnit.Framework;
-//using Salvation.Core;
-//using Salvation.Core.Constants;
-//using Salvation.Core.Constants.Data;
-//using Salvation.Core.Modelling;
-//using Salvation.Core.Profile;
-//using System;
-//using System.Collections.Generic;
-//using System.IO;
-//using System.Reflection;
-//using System.Text;
+﻿using NUnit.Framework;
+using NUnit.Framework.Interfaces;
+using Salvation.Core;
+using Salvation.Core.Constants;
+using Salvation.Core.Constants.Data;
+using Salvation.Core.Interfaces.Modelling;
+using Salvation.Core.Modelling;
+using Salvation.Core.Modelling.Common;
+using Salvation.Core.Profile;
+using Salvation.Core.State;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
+using System.Text;
 
-//namespace Salvation.CoreTests.Model
-//{
-//    [TestFixture]
-//    class StatWeightGeneratorTests
-//    {
-//        public PlayerProfile GetBaseProfile()
-//        {
-//            var profileGen = new ProfileGenerationService();
-//            var profile = profileGen.GetDefaultProfile(Spec.HolyPriest);
+namespace Salvation.CoreTests.Model
+{
+    [TestFixture]
+    class StatWeightGeneratorTests : BaseTest
+    {
+        public void Init()
+        {
+            
+        }
 
-//            return profile;
-//        }
+        [Test]
+        public void SWG_Generates_Profiles()
+        {
+            // Arrange
+            var swg = new StatWeightGenerator(null, new GameStateService());
+            var state = GetGameState();
 
-//        public StatWeightGenerator GetDefaultGenerator()
-//        {
-//            var sw = new StatWeightGenerator(new ConstantsService());
+            // Act
+            var profiles = swg.GenerateStatProfiles(state, 100);
 
-//            return sw;
-//        }
+            // Assert
+            Assert.IsNotNull(profiles);
+            Assert.AreEqual(6, profiles.Count);
+        }
 
-//        [Test]
-//        public void SWGGenerateNoNull()
-//        {
-//            var baseProfile = GetBaseProfile();
-//            var numAdditionalStats = 100;
-//            var sw = GetDefaultGenerator();
+        [Test]
+        public void SWG_Generates_EH_Results()
+        {
+            // Arrange
+            var swg = new StatWeightGenerator(new ModellingServiceMock(), new GameStateService());
+            var state = GetGameState();
 
-//            var result = sw.Generate(baseProfile, numAdditionalStats);
+            // Act
+            var profiles = swg.Generate(state, 100, StatWeightGenerator.StatWeightType.EffectiveHealing);
 
-//            Assert.IsNotNull(result);
-//        }
+            // Assert
+            Assert.IsNotNull(profiles);
+        }
 
-//        [Test]
-//        public void SWGGenerateCreatesProfiles()
-//        {
-//            var sw = GetDefaultGenerator();
-//            var baseProfile = GetBaseProfile();
-//            var numAdditionalStats = 100;
+        [Test]
+        public void SWG_Generates_RH_Results()
+        {
+            // Arrange
+            var swg = new StatWeightGenerator(new ModellingServiceMock(), new GameStateService());
+            var state = GetGameState();
 
-//            var result = sw.GenerateStatProfiles(baseProfile, numAdditionalStats);
+            // Act
+            var profiles = swg.Generate(state, 100, StatWeightGenerator.StatWeightType.RawHealing);
 
-//            Assert.NotZero(result.Count);
-//            Assert.IsTrue(result.Contains(baseProfile));
-//        }
+            // Assert
+            Assert.IsNotNull(profiles);
+        }
+    }
 
-//        [Test]
-//        public void SWGGenerateModelResultsGivesResults()
-//        {
-//            var sw = GetDefaultGenerator();
-//            var baseProfile = GetBaseProfile();
-//            var numAdditionalStats = 100;
+    class ModellingServiceMock : IModellingService
+    {
+        public BaseModelResults GetResults(GameState state)
+        {
+            var result = new BaseModelResults()
+            {
+                Profile = state.Profile,
+                TotalActualHPS = 10,
+                TotalRawHPS = 10
+            };
 
-//            var result = sw.GenerateStatProfiles(baseProfile, numAdditionalStats);
-//            var results = sw.GenerateModelResults(result);
-
-//            Assert.NotZero(results.Count);
-//        }
-
-//        [Test]
-//        public void SWGGenerateEffectiveGivesResults()
-//        {
-//            var baseProfile = GetBaseProfile();
-//            var numAdditionalStats = 100;
-//            var sw = GetDefaultGenerator();
-
-//            var results = sw.Generate(baseProfile, numAdditionalStats,
-//                StatWeightGenerator.StatWeightType.EffectiveHealing);
-
-//            Assert.NotNull(results);
-//            Assert.NotZero(results.Results.Count);
-//            Assert.AreEqual(results.Name, "Effective Healing");
-//        }
-
-//        [Test]
-//        public void SWGGenerateRawGivesResults()
-//        {
-//            var baseProfile = GetBaseProfile();
-//            var numAdditionalStats = 100;
-//            var sw = GetDefaultGenerator();
-
-//            var results = sw.Generate(baseProfile, numAdditionalStats,
-//                StatWeightGenerator.StatWeightType.RawHealing);
-
-//            Assert.NotNull(results);
-//            Assert.NotZero(results.Results.Count);
-//            Assert.AreEqual(results.Name, "Raw Healing");
-//        }
-//    }
-//}
+            return result;
+        }
+    }
+}

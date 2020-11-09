@@ -276,7 +276,7 @@ namespace Salvation.Core.Profile
                     // Base Spells (SpellId, Efficiency, Overheal, HealTargets, DamageTargets)
                     new CastProfile((int)Spell.FlashHeal, 0.0603d, 0.1084d, 1, 0),
                     new CastProfile((int)Spell.Heal, 0.0664d, 0.3054d, 1, 0),
-                    new CastProfile((int)Spell.Renew, 0.0364d, 0.3643d, 1 , 0),
+                    new CastProfile((int)Spell.Renew, 0.0364d, 0.3643d, 1, 0),
                     new CastProfile((int)Spell.PrayerOfMending, 0.9056d, 0.0219d, 1, 0),
                     new CastProfile((int)Spell.PrayerOfHealing, 0.2931d, 0.2715d, 5, 0),
                     new CastProfile((int)Spell.HolyNova, 0.0034d, 0.15d, 20, 1),
@@ -306,7 +306,7 @@ namespace Salvation.Core.Profile
                     new CastProfile((int)Spell.AscendedEruption, 1.0d, 0.01d, 5, 1),
                     new CastProfile((int)Spell.UnholyNova, 1.0d, 0.01d, 6, 1),
                     new CastProfile((int)Spell.UnholyTransfusion, 1.0d, 0.01d, 1, 1),
-                    
+
                     // Consumables (SpellId, Efficiency, Overheal, HealTargets, DamageTargets)
                     new CastProfile((int)Spell.SpiritualManaPotion, 0.9d, 0.00d, 0, 0),
                 },
@@ -333,6 +333,17 @@ namespace Salvation.Core.Profile
                     new PlaystyleEntry("OverrideStatCriticalStrike", 0, 0),
                     new PlaystyleEntry("OverrideStatVersatility", 0, 0),
                     new PlaystyleEntry("OverrideStatMastery", 0, 0),
+
+                    // Adds additional stats (for use with stat weights)
+                    new PlaystyleEntry("GrantAdditionalStatIntellect", 0, 0),
+                    new PlaystyleEntry("GrantAdditionalStatMastery", 0, 0),
+                    new PlaystyleEntry("GrantAdditionalStatHaste", 0, 0),
+                    new PlaystyleEntry("GrantAdditionalStatVersatility", 0, 0),
+                    new PlaystyleEntry("GrantAdditionalStatCriticalStrike", 0, 0),
+
+                    // Force the cloth armor bonus
+                    new PlaystyleEntry("ForceClothBonus", 0, 0),
+
                 },
                 Items = new List<Item>()
                 {

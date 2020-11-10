@@ -40,8 +40,12 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             if (spellData.Overrides.ContainsKey(Override.ResultMultiplier))
                 numPoMStacks = spellData.Overrides[Override.ResultMultiplier];
 
-            averageHeal *= _gameStateService.GetCriticalStrikeMultiplier(gameState)
-                * numPoMStacks;
+            averageHeal *= _gameStateService.GetCriticalStrikeMultiplier(gameState);
+
+            var pomFirstTargetHeal = averageHeal * GetFocusedMendingMultiplier(gameState, spellData);
+
+            // Apply healing to each PoM stack
+            averageHeal = (averageHeal * (numPoMStacks - 1)) + pomFirstTargetHeal; 
 
             return averageHeal * GetNumberOfHealingTargets(gameState, spellData);
         }
@@ -94,6 +98,26 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             var healData = _gameStateService.GetSpellData(gameState, Spell.PrayerOfMendingHeal);
 
             return base.TriggersMastery(gameState, healData);
+        }
+
+        internal double GetFocusedMendingMultiplier(GameState gameState, BaseSpellData spellData)
+        {
+            spellData = ValidateSpellData(gameState, spellData);
+
+            if (_gameStateService.IsConduitActive(gameState, Conduit.FocusedMending))
+            {
+                var conduitData = _gameStateService.GetSpellData(gameState, Spell.FocusedMending);
+                var rank = _gameStateService.GetConduitRank(gameState, Conduit.FocusedMending);
+
+                var multiplier = 1 + (conduitData.ConduitRanks[rank] / 100);
+
+                _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Applying FocusedMending ({(int)Conduit.FocusedMending}) conduit " +
+                    $"multiplier: {multiplier:0.##}");
+
+                return multiplier;
+            }
+
+            return 1;
         }
     }
 }

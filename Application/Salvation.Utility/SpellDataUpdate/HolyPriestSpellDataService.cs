@@ -76,6 +76,7 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.FaeFermata,
                 (uint)Spell.ShatteredPerceptions,
                 (uint)Spell.HolyOration,
+                (uint)Spell.FocusedMending,
                 
                 // DPS
                 (uint)Spell.Smite,

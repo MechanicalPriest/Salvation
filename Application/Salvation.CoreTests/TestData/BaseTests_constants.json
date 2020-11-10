@@ -2428,6 +2428,51 @@
           }
         },
         {
+          "Id": 337914,
+          "Name": "Focused Mending",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "ScaleValues": {},
+          "Effects": [
+            {
+              "Id": 836184,
+              "BaseValue": 15.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6
+            }
+          ],
+          "ConduitRanks": {
+            "0": 38.0,
+            "1": 41.799999,
+            "2": 45.599998,
+            "3": 49.400002,
+            "4": 53.200001,
+            "5": 57.0,
+            "6": 60.799999,
+            "7": 64.599998,
+            "8": 68.400002,
+            "9": 72.199997,
+            "10": 76.0,
+            "11": 79.800003,
+            "12": 83.599998,
+            "13": 87.400002,
+            "14": 91.199997
+          }
+        },
+        {
           "Id": 585,
           "Name": "Smite",
           "ManaCost": 0.2,

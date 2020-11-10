@@ -485,7 +485,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(PrayerOfHealing)).Returns(3734.948392394429d);
                 yield return new TestCaseData(typeof(PrayerOfMending)).Returns(3495.9087656226748d);
                 yield return new TestCaseData(typeof(Renew)).Returns(1541.2682938398161d);
-                yield return new TestCaseData(typeof(UnholyNova)).Returns(8283.4336563127399d);
+                yield return new TestCaseData(typeof(UnholyNova)).Returns(10441.302928125302d);
                 yield return new TestCaseData(typeof(UnholyTransfusion)).Returns(232.02895395834005d);
                 yield return new TestCaseData(typeof(Smite)).Returns(0);
                 yield return new TestCaseData(typeof(HolyWordChastise)).Returns(0);
@@ -520,7 +520,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(Renew)).Returns(0);
                 yield return new TestCaseData(typeof(SpellService)).Returns(0);
                 yield return new TestCaseData(typeof(UnholyNova)).Returns(0);
-                yield return new TestCaseData(typeof(UnholyTransfusion)).Returns(3758.2487951113644d);
+                yield return new TestCaseData(typeof(UnholyTransfusion)).Returns(5637.3731926670471d);
                 yield return new TestCaseData(typeof(Halo)).Returns(1436.9277451725002d);
                 yield return new TestCaseData(typeof(HolyNova)).Returns(263.66926586175003d);
                 yield return new TestCaseData(typeof(Smite)).Returns(983.52821392875012d);

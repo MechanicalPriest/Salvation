@@ -56,8 +56,8 @@ namespace Salvation.CoreTests.HolyPriest.Conduits
             var resultWithout = spellService.GetAverageDamage(gamestate2, null);
 
             // Assert
-            Assert.AreEqual(5990.9634796892069d, resultWithout);
-            Assert.AreEqual(7197.1441269333018d, resultWith);
+            Assert.AreEqual(8986.445219533809d, resultWithout);
+            Assert.AreEqual(10795.716190399949d, resultWith);
         }
 
         [Test]

@@ -12,7 +12,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         public UnholyTransfusion(IGameStateService gameStateService)
             : base(gameStateService)
         {
-            Spell = Spell.UnholyTransfusion;
+            Spell = Spell.UnholyTransfusionDoT;
         }
 
         public override double GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
@@ -22,7 +22,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             var holyPriestAuraHealingBonus = _gameStateService.GetSpellData(gameState, Spell.HolyPriest)
                 .GetEffect(179715).BaseValue / 100 + 1;
 
-            var healingSp = spellData.GetEffect(815191).SpCoefficient;
+            var healingSp = spellData.GetEffect(815347).TriggerSpell.GetEffect(815191).SpCoefficient;
 
             // SP% * Intellect * Vers * Hpriest Aura
             double averageHeal = healingSp
@@ -51,8 +51,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             var holyPriestAuraDamagePeriodicBonus = _gameStateService.GetSpellData(gameState, Spell.HolyPriest)
                 .GetEffect(191078).BaseValue / 100 + 1;
 
-            var damageSpellData = _gameStateService.GetSpellData(gameState, Spell.UnholyTransfusionDoT);
-            var damageSp = damageSpellData.GetEffect(815346).SpCoefficient;
+            var damageSp = spellData.GetEffect(815346).SpCoefficient;
 
             // coeff2 * int * hpriest dmg mod * vers
             double averageDamage = damageSp
@@ -81,10 +80,8 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         {
             spellData = ValidateSpellData(gameState, spellData);
 
-            var damageSpellData = _gameStateService.GetSpellData(gameState, Spell.UnholyTransfusionDoT);
-
             // Duration is stored in the DoT spell's data.
-            var baseDuration = damageSpellData.Duration / 1000;
+            var baseDuration = spellData.Duration / 1000;
 
             // TODO: Shift this out to another method maybe, for testing?
             if (_gameStateService.IsConduitActive(gameState, Conduit.FesteringTransfusion))
@@ -115,6 +112,11 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         public override double GetMinimumDamageTargets(GameState gameState, BaseSpellData spellData)
         {
             return 1;
+        }
+
+        public override double GetHastedCooldown(GameState gameState, BaseSpellData spellData = null)
+        {
+            return 0; // This comes through as 60,000 in the spelldata for some reason
         }
 
         internal double GetFesteringTransfusionConduitMultiplier(GameState gameState, BaseSpellData spellData = null)

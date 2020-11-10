@@ -1,12 +1,13 @@
 ﻿using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
+using Salvation.Core.Interfaces.Modelling;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.State;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
-    public class PrayerOfMending : SpellService, IPrayerOfMendingSpellService
+    public class PrayerOfMending : SpellService, ISpellService<IPrayerOfMendingSpellService>
     {
         public PrayerOfMending(IGameStateService gameStateService)
             : base(gameStateService)

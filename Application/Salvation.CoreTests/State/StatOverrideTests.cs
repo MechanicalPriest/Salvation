@@ -84,7 +84,7 @@ namespace Salvation.CoreTests.State
             var statValue = _gameStateService.GetIntellect(_state);
 
             // Assert
-            Assert.AreEqual(132513, statValue);
+            Assert.AreEqual(139138.64999999999d, statValue);
         }
     }
 }

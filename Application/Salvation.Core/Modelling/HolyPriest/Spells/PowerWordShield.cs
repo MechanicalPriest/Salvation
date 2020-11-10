@@ -1,5 +1,6 @@
 ﻿using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
+using Salvation.Core.Interfaces.Modelling;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.Modelling.Common;
@@ -7,7 +8,7 @@ using Salvation.Core.State;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
-    public class PowerWordShield : SpellService, IPowerWordShieldSpellService
+    public class PowerWordShield : SpellService, ISpellService<IPowerWordShieldSpellService>
     {
         public PowerWordShield(IGameStateService gameStateService)
             : base(gameStateService)

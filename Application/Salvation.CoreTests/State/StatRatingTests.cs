@@ -80,7 +80,7 @@ namespace Salvation.CoreTests.State
             var vers = _gameStateService.GetVersatilityRating(_state);
 
             // Assert
-            Assert.AreEqual(812, vers);
+            Assert.AreEqual(810, vers);
         }
 
         [Test]
@@ -93,7 +93,7 @@ namespace Salvation.CoreTests.State
             File.WriteAllText("temp.json", JsonConvert.SerializeObject(_state.Profile, Formatting.Indented));
 
             // Assert
-            Assert.AreEqual(1261, intellect);
+            Assert.AreEqual(1262.1000000000001d, intellect);
         }
     }
 }

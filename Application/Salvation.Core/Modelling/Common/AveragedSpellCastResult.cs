@@ -45,6 +45,10 @@ namespace Salvation.Core.Modelling.Common
         /// Actual mana cost value of this spell cast
         /// </summary>
         public double ManaCost { get; set; }
+        /// <summary>
+        /// The positive/negative mp5 averaged over a minute
+        /// </summary>
+        public double Mp5 { get; set; }
 
         /// <summary>
         /// Additional spell cast results
@@ -131,7 +135,7 @@ namespace Salvation.Core.Modelling.Common
 
         private double CalcMPS()
         {
-            return ManaCost * CastsPerMinute / 60;
+            return (ManaCost * CastsPerMinute / 60) + (Mp5 / 5);
         }
 
         private double CalcDPS()

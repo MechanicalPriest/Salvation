@@ -1,8 +1,4 @@
-﻿using Newtonsoft.Json;
-using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using NUnit.Framework;
 
 namespace Salvation.CoreTests.Profile
 {
@@ -12,7 +8,7 @@ namespace Salvation.CoreTests.Profile
         [Test]
         public void Test()
         {
-            
+
         }
     }
 }

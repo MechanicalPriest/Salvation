@@ -4,7 +4,7 @@
   "Server": "torghast",
   "Region": "us",
   "Level": 60,
-  "Race": 3,
+  "Race": 0,
   "Class": 5,
   "Intellect": 0,
   "MasteryRating": 0,
@@ -221,6 +221,13 @@
       "OverhealPercent": 0.01,
       "AverageHealingTargets": 1.0,
       "AverageDamageTargets": 1.0
+    },
+    {
+      "SpellId": 307193,
+      "Efficiency": 0.9,
+      "OverhealPercent": 0.00,
+      "AverageHealingTargets": 0.0,
+      "AverageDamageTargets": 0.0
     }
   ],
   "Items": [
@@ -3719,14 +3726,14 @@
         "Name": "pelagos",
         "SoulbindId": 7,
         "IsActive": true,
-        "ActiveAbilities": [],
+        "ActiveTraits": [],
         "ActiveConduits": {}
       },
       {
         "Name": "forgelite_prime_mikanikos",
         "SoulbindId": 18,
         "IsActive": false,
-        "ActiveAbilities": [
+        "ActiveTraits": [
           331609
         ],
         "ActiveConduits": {

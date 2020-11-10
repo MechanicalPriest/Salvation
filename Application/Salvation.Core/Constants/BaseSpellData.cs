@@ -20,7 +20,16 @@ namespace Salvation.Core.Constants
         /// Stores a multiplier that affects the result, typically from an external 
         /// source like storing Boon of the Ascended stacks to buff AscendedEruption
         /// </summary>
-        ResultMultiplier
+        ResultMultiplier,
+        /// <summary>
+        /// Calculated field, generated from the associated item or player level scaling
+        /// to get the scale budget for the SP coefficient
+        /// </summary>
+        ScaleBudget,
+        /// <summary>
+        /// The item level of item spells
+        /// </summary>
+        ItemLevel
     }
 
     public class BaseSpellData
@@ -43,6 +52,13 @@ namespace Salvation.Core.Constants
         public double Gcd { get; set; }
         public uint ChargeCooldown { get; set; }
         public uint Charges { get; set; }
+        public double Rppm { get; set; }
+        public bool RppmIsHasted { get; set; }
+
+        /// <summary>
+        /// Scale multiplier used for scaling item-scaled spells
+        /// </summary>
+        public Dictionary<int, double> ScaleValues { get; set; }
 
         public IList<BaseSpellDataEffect> Effects { get; set; }
         public IDictionary<uint, double> ConduitRanks { get; set; }
@@ -56,6 +72,7 @@ namespace Salvation.Core.Constants
         {
             Effects = new List<BaseSpellDataEffect>();
             Overrides = new Dictionary<Override, double>();
+            ScaleValues = new Dictionary<int, double>();
         }
 
         /// <summary>

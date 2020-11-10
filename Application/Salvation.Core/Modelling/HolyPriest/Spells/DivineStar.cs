@@ -1,5 +1,6 @@
 ﻿using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
+using Salvation.Core.Interfaces.Modelling;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.State;
@@ -7,7 +8,7 @@ using System;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
-    public class DivineStar : SpellService, IDivineStarSpellService
+    public class DivineStar : SpellService, ISpellService<IDivineStarSpellService>
     {
         public DivineStar(IGameStateService gameStateService)
             : base(gameStateService)

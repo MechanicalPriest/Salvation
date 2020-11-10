@@ -1,23 +1,24 @@
 ﻿using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
+using Salvation.Core.Interfaces.Modelling;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.State;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
-    public class HolyWordSerenity : SpellService, IHolyWordSerenitySpellService
+    public class HolyWordSerenity : SpellService, ISpellService<IHolyWordSerenitySpellService>
     {
-        private readonly IFlashHealSpellService _flashHealSpellService;
-        private readonly IHealSpellService _healSpellService;
-        private readonly IBindingHealSpellService _bindingHealSpellService;
-        private readonly IPrayerOfMendingSpellService _prayerOfMendingSpellService;
+        private readonly ISpellService<IFlashHealSpellService> _flashHealSpellService;
+        private readonly ISpellService<IHealSpellService> _healSpellService;
+        private readonly ISpellService<IBindingHealSpellService> _bindingHealSpellService;
+        private readonly ISpellService<IPrayerOfMendingSpellService> _prayerOfMendingSpellService;
 
         public HolyWordSerenity(IGameStateService gameStateService,
-            IFlashHealSpellService flashHealSpellService,
-            IHealSpellService healSpellService,
-            IBindingHealSpellService bindingHealSpellService,
-            IPrayerOfMendingSpellService prayerOfMendingSpellService)
+            ISpellService<IFlashHealSpellService> flashHealSpellService,
+            ISpellService<IHealSpellService> healSpellService,
+            ISpellService<IBindingHealSpellService> bindingHealSpellService,
+            ISpellService<IPrayerOfMendingSpellService> prayerOfMendingSpellService)
             : base(gameStateService)
         {
             Spell = Spell.HolyWordSerenity;

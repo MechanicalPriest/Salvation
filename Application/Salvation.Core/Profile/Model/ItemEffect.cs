@@ -1,4 +1,5 @@
 ﻿using Salvation.Core.Constants;
+using System.Collections.Generic;
 
 namespace Salvation.Core.Profile.Model
 {

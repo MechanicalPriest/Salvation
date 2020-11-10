@@ -86,6 +86,14 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.ShadowWordDeath,
                 (uint)Spell.ShadowWordDeathRank2,
                 (uint)Spell.HolyFire,
+
+                // Consumable
+                (uint)Spell.SpectralFlaskOfPower,
+                (uint)Spell.SpiritualManaPotion,
+
+                // Trinket
+                (uint)Spell.UnboundChangeling,
+                (uint)Spell.UnboundChangelingHasteProc,
             };
         }
 
@@ -158,9 +166,19 @@ namespace Salvation.Utility.SpellDataUpdate
                 Charges = spell.Charges,
                 Duration = spell.Duration,
                 Gcd = spell.Gcd / 1000d,
-                ConduitRanks = spell.ConduitRanks
-                //newSpell.IsMasteryTriggered = ; // So this another weird one. Anything that has a healing effect of type 10 (Direct Heal) seems to proc it.
+                ConduitRanks = spell.ConduitRanks,
+                Rppm = spell.Rppm
             };
+
+            // Check if RPPM is modified by spec or haste
+            foreach(var rppmMod in spell.RppmModifiers)
+            {
+                if (rppmMod.RppmIsSpecModified && rppmMod.RppmSpec == (uint)Spec.HolyPriest)
+                    newSpell.Rppm *= rppmMod.RppmCoefficient;
+
+                if (rppmMod.RppmIsHasted)
+                    newSpell.RppmIsHasted = true;
+            }
 
             double manacost = 0;
 
@@ -206,10 +224,11 @@ namespace Salvation.Utility.SpellDataUpdate
                 Id = effect.Id,
                 BaseValue = effect.BaseValue,
                 SpCoefficient = effect.SpCoefficient,
+                Coefficient = effect.Coefficient,
                 TriggerSpellid = effect.TriggerSpellId,
                 Amplitude = effect.Amplitude,
                 TriggerSpell = GetBaseSpellData(effect.TriggerSpell),
-                Type = effect.EffectType
+                Type = effect.EffectType,
             };
 
             return newEffect;

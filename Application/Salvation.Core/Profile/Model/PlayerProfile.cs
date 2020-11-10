@@ -39,7 +39,6 @@ namespace Salvation.Core.Profile.Model
         public int FightLengthSeconds { get; set; }
         // TODO: Merge these into Casts associated with SpellIds
         public List<PlaystyleEntry> PlaystyleEntries { get; set; }
-
         public PlayerProfile()
         {
             Casts = new List<CastProfile>();

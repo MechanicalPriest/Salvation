@@ -30,6 +30,7 @@ namespace Salvation.Core.Profile
             ApplyCharacterDetails(profile, simcProfile.ParsedProfile);
             ApplyCovenant(profile, simcProfile.ParsedProfile);
             ApplyItems(profile, simcProfile.GeneratedItems);
+            ApplyTalents(profile, simcProfile.ParsedProfile.Talents);
 
             return _profileService.ValidateProfile(profile);
         }
@@ -64,7 +65,7 @@ namespace Salvation.Core.Profile
                 // Add the active soulbind spells
                 foreach (var soulbindSpell in soulbind.SoulbindSpells)
                 {
-                    newSoulbind.ActiveAbilities.Add((SoulbindAbility)soulbindSpell);
+                    newSoulbind.ActiveTraits.Add((SoulbindTrait)soulbindSpell);
                 }
 
                 // Add the active conduits
@@ -154,15 +155,7 @@ namespace Salvation.Core.Profile
                     };
 
                     // Populate this based on what we actually need
-                    if (effect.Spell != null)
-                    {
-                        var newSpell = new BaseSpellData()
-                        {
-                            Id = effect.Spell.SpellId
-                        };
-
-                        newEffect.Spell = newSpell;
-                    }
+                    newEffect.Spell = GetBaseSpellData(effect.Spell, item.ItemLevel);
 
                     newItem.Effects.Add(newEffect);
                 }
@@ -170,5 +163,113 @@ namespace Salvation.Core.Profile
                 profile.Items.Add(newItem);
             }
         }
+
+        internal BaseSpellData GetBaseSpellData(SimcSpell spell, int itemLevel)
+        {
+            // TODO: This currently comes from HolyPriestSpellDataService.cs (Salvation.Utility) - centralise the logic
+            if (spell == null)
+                return null;
+
+            var newSpell = new BaseSpellData
+            {
+                Id = spell.SpellId,
+                Name = spell.Name,
+                MaxRange = spell.MaxRange,
+                BaseCastTime = spell.CastTime,
+                BaseCooldown = spell.Cooldown,
+                ChargeCooldown = spell.ChargeCooldown,
+                Charges = spell.Charges,
+                Duration = spell.Duration,
+                Gcd = spell.Gcd / 1000d,
+                ConduitRanks = spell.ConduitRanks,
+                Rppm = spell.Rppm
+            };
+
+            newSpell.ScaleValues.Add(itemLevel, spell.ScaleBudget);
+
+            // Check if RPPM is modified by spec or haste
+            foreach (var rppmMod in spell.RppmModifiers)
+            {
+                // TODO: This references holy priest specifically, should be a method param based on specId
+                if (rppmMod.RppmIsSpecModified && rppmMod.RppmSpec == (uint)Spec.HolyPriest)
+                    newSpell.Rppm *= rppmMod.RppmCoefficient;
+
+                if (rppmMod.RppmIsHasted)
+                    newSpell.RppmIsHasted = true;
+            }
+
+            double manacost = 0;
+
+            if (spell.PowerCosts != null && spell.PowerCosts.Count > 0)
+            {
+                if (spell.PowerCosts.ContainsKey(0))
+                {
+                    manacost = spell.PowerCosts[0];
+                }
+
+                foreach (var PowerCost in spell.PowerCosts)
+                {
+                    if (PowerCost.Key.Equals((uint)Spell.HolyPriest))
+                    {
+                        manacost = PowerCost.Value;
+                        break;
+                    }
+                }
+            }
+
+            newSpell.ManaCost = manacost;
+
+            foreach (var effect in spell.Effects)
+            {
+                var newEffect = GetBaseSpellDataEffect(effect, itemLevel);
+
+                if (newEffect != null)
+                    newSpell.Effects.Add(newEffect);
+            }
+
+            return newSpell;
+        }
+
+        internal BaseSpellDataEffect GetBaseSpellDataEffect(SimcSpellEffect effect, int itemLevel)
+        {
+            if (effect == null)
+                return null;
+
+            var newEffect = new BaseSpellDataEffect()
+            {
+                Id = effect.Id,
+                BaseValue = effect.BaseValue,
+                SpCoefficient = effect.SpCoefficient,
+                Coefficient = effect.Coefficient,
+                TriggerSpellid = effect.TriggerSpellId,
+                Amplitude = effect.Amplitude,
+                TriggerSpell = GetBaseSpellData(effect.TriggerSpell, itemLevel),
+                Type = effect.EffectType,
+            };
+
+            return newEffect;
+        }
+
+        private void ApplyTalents(PlayerProfile profile, IReadOnlyList<int> talents)
+        {
+            profile.Talents = new List<Talent>();
+
+            for(var i = 0; i < talents.Count; i++)
+            {
+                if (talents[i] != 0)
+                    profile.Talents.Add(HolyPriestTalents[i][talents[i] - 1]);
+            }
+        }
+
+        internal List<List<Talent>> HolyPriestTalents = new List<List<Talent>>()
+        {
+            new List<Talent>() { Talent.Enlightenment, Talent.TrailOfLight, Talent.RenewedFaith },
+            new List<Talent>() { Talent.AngelsMercy, Talent.BodyAndSoul, Talent.AngelicFeather },
+            new List<Talent>() { Talent.CosmicRipple, Talent.GuardianAngel, Talent.Afterlife },
+            new List<Talent>() { Talent.PsychicVoice, Talent.Censure, Talent.ShiningForce },
+            new List<Talent>() { Talent.SurgeOfLight, Talent.BindingHeal, Talent.PrayerCircle },
+            new List<Talent>() { Talent.Benediction, Talent.DivineStar, Talent.Halo },
+            new List<Talent>() { Talent.LightOfTheNaaru, Talent.Apotheosis, Talent.HolyWordSalvation },
+        };
     }
 }

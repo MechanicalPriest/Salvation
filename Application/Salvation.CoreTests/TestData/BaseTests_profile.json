@@ -3799,6 +3799,16 @@
       "Name": "OverrideStatMastery",
       "Value": 0.0,
       "SpellId": 0
+    },
+    {
+      "Name": "CharitableSoulAllyCasts",
+      "Value": 0.9,
+      "SpellId": 0
+    },
+    {
+      "Name": "DamageTakenPerSecond",
+      "Value": 1500,
+      "SpellId": 0
     }
   ]
 }

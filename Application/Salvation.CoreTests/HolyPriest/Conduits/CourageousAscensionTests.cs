@@ -40,6 +40,27 @@ namespace Salvation.CoreTests.HolyPriest.Conduits
         }
 
         [Test]
+        public void CA_Increases_GetAverageHealing()
+        {
+            // Arrange
+            IGameStateService gameStateService = new GameStateService();
+            var profileService = new ProfileService();
+            var spellService = new AscendedBlast(gameStateService);
+            var gamestate1 = gameStateService.CloneGameState(_gameState);
+            var gamestate2 = gameStateService.CloneGameState(_gameState);
+
+            profileService.AddActiveConduit(gamestate1.Profile, Conduit.CourageousAscension, 0);
+
+            // Act
+            var resultWith = spellService.GetAverageRawHealing(gamestate1, null);
+            var resultWithout = spellService.GetAverageRawHealing(gamestate2, null);
+
+            // Assert
+            Assert.AreEqual(4557.6974005290003d, resultWithout);
+            Assert.AreEqual(5697.1217506612502d, resultWith);
+        }
+
+        [Test]
         public void CA_Increases_AE_Damage()
         {
             // Arrange

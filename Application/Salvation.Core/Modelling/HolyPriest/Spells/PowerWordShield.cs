@@ -5,6 +5,7 @@ using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.Modelling.Common;
 using Salvation.Core.State;
+using System;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
@@ -29,6 +30,13 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
                 // Turn the rank value into a multiplier. "Rank" 10 = 0.10
                 var rank = _gameStateService.GetConduitRank(gameState, Conduit.CharitableSoul);
                 var rankMulti = csSpellData.ConduitRanks[rank] / 100;
+
+                // Apply the modifier to see how often it's cast on an ally. 0.9 = 90% of the time
+                var csPlaystyle = _gameStateService.GetPlaystyle(gameState, "CharitableSoulAllyCasts");
+                if (csPlaystyle == null)
+                    throw new ArgumentNullException("CharitableSoulAllyCasts playstyle is not set");
+
+                rankMulti *= csPlaystyle.Value;
 
                 AveragedSpellCastResult csComponent = new AveragedSpellCastResult
                 {

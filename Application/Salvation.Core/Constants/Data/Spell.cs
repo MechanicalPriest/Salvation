@@ -86,6 +86,7 @@
         FaeFermata = 338305,
         ShatteredPerceptions = 338315,
         HolyOration = 338345,
+        FocusedMending = 337914,
 
         // DPS
         Smite = 585,

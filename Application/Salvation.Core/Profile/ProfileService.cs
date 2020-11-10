@@ -349,6 +349,8 @@ namespace Salvation.Core.Profile
                     // Conduit overrides
                     // How often Charitable Soul is cast on an alt. 0.9 = 90% of the time
                     new PlaystyleEntry("CharitableSoulAllyCasts", 0.9, (uint)Spell.CharitableSoul),
+                    // Amount of average damage taken per second over the course of a fight
+                    new PlaystyleEntry("DamageTakenPerSecond", 1500, (uint)Spell.CharitableSoul),
 
                 },
                 Items = new List<Item>()

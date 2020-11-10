@@ -317,15 +317,17 @@ namespace Salvation.Core.Profile
                 FightLengthSeconds = 397,
                 PlaystyleEntries = new List<PlaystyleEntry>()
                 {
+                    // Covenant overrides
                     new PlaystyleEntry("FaeBenevolentFaerieSelfUptime", 1, (uint)Spell.BenevolentFaerie),
-                    new PlaystyleEntry("FaeGuardianFaerieDTPS", 4000, (uint)Spell.GuardianFaerie),
-                    new PlaystyleEntry("ShadowWordDeathPercentExecute", 0.2, (uint)Spell.ShadowWordDeath),
-                    new PlaystyleEntry("HolyNovaPercentOfCastsOnThreeOrMore", 0.1, (uint)Spell.HolyNovaRank2),
 
                     // The number of times you move the Guardian Faerie around
                     new PlaystyleEntry("FaeFermataNumberDRSwaps", 1, (uint)Spell.FaeFermata),
                     // The number of times you move the Benevolent Faerie around
                     new PlaystyleEntry("FaeFermataNumberCDRSwaps", 3, (uint)Spell.FaeFermata),
+                    new PlaystyleEntry("FaeGuardianFaerieDTPS", 4000, (uint)Spell.GuardianFaerie),
+
+                    new PlaystyleEntry("ShadowWordDeathPercentExecute", 0.2, (uint)Spell.ShadowWordDeath),
+                    new PlaystyleEntry("HolyNovaPercentOfCastsOnThreeOrMore", 0.1, (uint)Spell.HolyNovaRank2),
 
                     // Overrides the stat value to be set directly rather than from items/race/class
                     new PlaystyleEntry("OverrideStatIntellect", 0, 0),
@@ -343,6 +345,10 @@ namespace Salvation.Core.Profile
 
                     // Force the cloth armor bonus
                     new PlaystyleEntry("ForceClothBonus", 0, 0),
+
+                    // Conduit overrides
+                    // How often Charitable Soul is cast on an alt. 0.9 = 90% of the time
+                    new PlaystyleEntry("CharitableSoulAllyCasts", 0.9, (uint)Spell.CharitableSoul),
 
                 },
                 Items = new List<Item>()

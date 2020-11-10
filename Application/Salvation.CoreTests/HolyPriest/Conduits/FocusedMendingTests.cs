@@ -4,12 +4,10 @@ using Salvation.Core.Interfaces.State;
 using Salvation.Core.Modelling.HolyPriest.Spells;
 using Salvation.Core.Profile;
 using Salvation.Core.State;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Salvation.CoreTests.HolyPriest.Conduits
 {
+    [TestFixture]
     public class FocusedMendingTests : BaseTest
     {
         private GameState _gameState;

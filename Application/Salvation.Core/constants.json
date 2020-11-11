@@ -1929,7 +1929,7 @@
                   {
                     "Id": 815346,
                     "BaseValue": 0.0,
-                    "SpCoefficient": 0.75,
+                    "SpCoefficient": 0.56,
                     "Coefficient": 0.0,
                     "TriggerSpellid": 0,
                     "Amplitude": 3000.0,
@@ -2030,7 +2030,7 @@
             {
               "Id": 815346,
               "BaseValue": 0.0,
-              "SpCoefficient": 0.75,
+              "SpCoefficient": 0.56,
               "Coefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 3000.0,

@@ -108,5 +108,10 @@
         /// </summary>
         UnboundChangeling = 330733,
         UnboundChangelingHasteProc = 330747,
+
+        // Traits
+        CombatMeditation = 328266,
+        CombatMeditationBuff = 328908,
+        CombatMeditationExtension = 328913,
     }
 }

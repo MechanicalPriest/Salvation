@@ -2788,7 +2788,9 @@
           "Charges": 0,
           "Rppm": 0.0,
           "RppmIsHasted": false,
-          "ScaleValues": {},
+          "ScaleValues": {
+            "60": 95.0
+          },
           "Effects": [
             {
               "Id": 785591,
@@ -2817,7 +2819,9 @@
           "Charges": 0,
           "Rppm": 0.0,
           "RppmIsHasted": false,
-          "ScaleValues": {},
+          "ScaleValues": {
+            "60": 25000.0
+          },
           "Effects": [
             {
               "Id": 785599,
@@ -2869,7 +2873,9 @@
                 "Charges": 0,
                 "Rppm": 0.0,
                 "RppmIsHasted": false,
-                "ScaleValues": {},
+                "ScaleValues": {
+                  "60": 95.0
+                },
                 "Effects": [
                   {
                     "Id": 823705,
@@ -2903,7 +2909,9 @@
           "Charges": 0,
           "Rppm": 0.0,
           "RppmIsHasted": false,
-          "ScaleValues": {},
+          "ScaleValues": {
+            "60": 95.0
+          },
           "Effects": [
             {
               "Id": 824555,
@@ -2924,6 +2932,153 @@
               "Amplitude": 0.0,
               "TriggerSpell": null,
               "Type": 6
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 328266,
+          "Name": "Combat Meditation",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "ScaleValues": {},
+          "Effects": [
+            {
+              "Id": 820394,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 328908,
+          "Name": "Combat Meditation",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 10000.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "ScaleValues": {
+            "60": 95.0
+          },
+          "Effects": [
+            {
+              "Id": 821722,
+              "BaseValue": 60.5042,
+              "SpCoefficient": 0.0,
+              "Coefficient": 3.68,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6
+            },
+            {
+              "Id": 821730,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 3000.0,
+              "TriggerSpell": null,
+              "Type": 6
+            },
+            {
+              "Id": 872035,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 345861,
+              "Amplitude": 0.0,
+              "TriggerSpell": {
+                "Id": 345861,
+                "Name": "Combat Meditation",
+                "ManaCost": 0.0,
+                "MaxRange": 0.0,
+                "BaseCastTime": 0.0,
+                "BaseCooldown": 0.0,
+                "IsCooldownHasted": false,
+                "Duration": 60000.0,
+                "Gcd": 0.0,
+                "ChargeCooldown": 0,
+                "Charges": 0,
+                "Rppm": 0.0,
+                "RppmIsHasted": false,
+                "ScaleValues": {},
+                "Effects": [
+                  {
+                    "Id": 872034,
+                    "BaseValue": 5.0,
+                    "SpCoefficient": 0.0,
+                    "Coefficient": 0.0,
+                    "TriggerSpellid": 0,
+                    "Amplitude": 0.0,
+                    "TriggerSpell": null,
+                    "Type": 6
+                  }
+                ],
+                "ConduitRanks": {}
+              },
+              "Type": 64
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 328913,
+          "Name": "Combat Meditation",
+          "ManaCost": 0.0,
+          "MaxRange": 100.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 20000.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "ScaleValues": {},
+          "Effects": [
+            {
+              "Id": 821729,
+              "BaseValue": 5.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 179
+            },
+            {
+              "Id": 829213,
+              "BaseValue": 3.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 3
             }
           ],
           "ConduitRanks": {}

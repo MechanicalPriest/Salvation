@@ -25,6 +25,11 @@ namespace Salvation.Core.Modelling
         /// Badluck protection modifier for RPPM effects that generate buffs that could overlap
         /// </summary>
         protected readonly double RppmBadluckProtection = 1.13;
+        /// <summary>
+        /// This isn't ideal but it's better than trying to enforce player logic to be 60 only from inputs. 
+        /// This will enable it to be easily refactored out later.
+        /// </summary>
+        protected readonly int PlayerLevel = 60;
 
         protected readonly IGameStateService _gameStateService;
 

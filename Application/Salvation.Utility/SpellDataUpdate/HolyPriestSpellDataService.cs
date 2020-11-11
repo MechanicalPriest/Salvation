@@ -95,6 +95,11 @@ namespace Salvation.Utility.SpellDataUpdate
                 // Trinket
                 (uint)Spell.UnboundChangeling,
                 (uint)Spell.UnboundChangelingHasteProc,
+
+                // Trait
+                (uint)Spell.CombatMeditation,
+                (uint)Spell.CombatMeditationBuff,
+                (uint)Spell.CombatMeditationExtension,
             };
         }
 
@@ -170,6 +175,10 @@ namespace Salvation.Utility.SpellDataUpdate
                 ConduitRanks = spell.ConduitRanks,
                 Rppm = spell.Rppm
             };
+
+            // Add Scale budget (for player scaled spells)
+            if(spell.ScaleBudget != 0)
+                newSpell.ScaleValues.Add(60, spell.ScaleBudget);
 
             // Check if RPPM is modified by spec or haste
             foreach(var rppmMod in spell.RppmModifiers)

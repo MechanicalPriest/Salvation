@@ -103,6 +103,7 @@ namespace Salvation.Core.Interfaces.Modelling
         double GetAverageVersatility(GameState gameState, BaseSpellData spellData);
         double GetAverageVersatilityPercent(GameState gameState, BaseSpellData spellData);
         double GetAverageMp5(GameState gameState, BaseSpellData spellData);
+        double GetAverageHealingBonus(GameState gameState, BaseSpellData spellData);
     }
 
     public interface ISpellService<T> : ISpellService where T : ISpellService

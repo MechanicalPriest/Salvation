@@ -308,6 +308,11 @@ namespace Salvation.Core.Modelling
             return 0;
         }
 
+        public virtual double GetAverageHealingBonus(GameState gameState, BaseSpellData spellData)
+        {
+            return 0;
+        }
+
         #endregion
 
         // This should probably be moved to another class/helper

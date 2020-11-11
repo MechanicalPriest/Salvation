@@ -32,7 +32,8 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {averageHeal:0.##}");
 
-            averageHeal *= _gameStateService.GetCriticalStrikeMultiplier(gameState);
+            averageHeal *= _gameStateService.GetCriticalStrikeMultiplier(gameState)
+                * _gameStateService.GetGlobalHealingMultiplier(gameState);
 
             // Apply the 1/sqrt() scaling based on no. targets
             averageHeal *= 1 / Math.Sqrt(GetNumberOfHealingTargets(gameState, spellData));

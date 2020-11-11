@@ -78,6 +78,8 @@
 
         // Legendaries
         HarmoniousApparatus = 336314,
+        EchoOfEonar = 338477,
+        EchoOfEonarBuff = 338477,
 
         // Conduits
         CharitableSoul = 337715,

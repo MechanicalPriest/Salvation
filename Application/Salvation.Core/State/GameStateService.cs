@@ -486,6 +486,19 @@ namespace Salvation.Core.State
             return intellect;
         }
 
+        public double GetGlobalHealingMultiplier(GameState state)
+        {
+            var modifier = 1.0d;
+
+            // Get healing mod from other spells and effects
+            foreach (var spell in state.RegisteredSpells.Where(s => s.SpellService != null))
+            {
+                modifier += spell.SpellService.GetAverageHealingBonus(state, spell.SpellData);
+            }
+
+            return modifier;
+        }
+
         public BaseSpellData GetSpellData(GameState state, Spell spellId)
         {
             var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.Spec).FirstOrDefault();

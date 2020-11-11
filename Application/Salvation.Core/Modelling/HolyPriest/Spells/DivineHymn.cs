@@ -43,7 +43,8 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             // Pick whether we're in part or raid
             double firstTick = GetNumberOfHealingTargets(gameState, spellData) <= 5 ? firstTickParty : firstTickRaid;
 
-            firstTick *= _gameStateService.GetCriticalStrikeMultiplier(gameState);
+            firstTick *= _gameStateService.GetCriticalStrikeMultiplier(gameState)
+                * _gameStateService.GetGlobalHealingMultiplier(gameState);
 
             // Now the rest of the 4 ticks including the aura:
             double averageHeal = firstTick + (firstTick * 4 * (1 + divineHymnAura));

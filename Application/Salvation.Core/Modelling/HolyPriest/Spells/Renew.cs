@@ -36,7 +36,8 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {averageHealFirstTick:0.##} (first)");
 
             averageHealFirstTick *= _gameStateService.GetCriticalStrikeMultiplier(gameState)
-                * _gameStateService.GetHasteMultiplier(gameState);
+                * _gameStateService.GetHasteMultiplier(gameState)
+                * _gameStateService.GetGlobalHealingMultiplier(gameState);
 
             double duration = spellData.Duration / 1000;
             double tickrate = spellData.GetEffect(95).Amplitude / 1000;
@@ -50,7 +51,8 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {averageHealTicks:0.##} (ticks)");
 
-            averageHealTicks *= _gameStateService.GetCriticalStrikeMultiplier(gameState);
+            averageHealTicks *= _gameStateService.GetCriticalStrikeMultiplier(gameState)
+                * _gameStateService.GetGlobalHealingMultiplier(gameState);
 
             return (averageHealFirstTick + averageHealTicks) * GetNumberOfHealingTargets(gameState, spellData);
         }

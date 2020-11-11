@@ -40,7 +40,8 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             if (spellData.Overrides.ContainsKey(Override.ResultMultiplier))
                 numPoMStacks = spellData.Overrides[Override.ResultMultiplier];
 
-            averageHeal *= _gameStateService.GetCriticalStrikeMultiplier(gameState);
+            averageHeal *= _gameStateService.GetCriticalStrikeMultiplier(gameState)
+                * _gameStateService.GetGlobalHealingMultiplier(gameState);
 
             var pomFirstTargetHeal = averageHeal * GetFocusedMendingMultiplier(gameState, spellData);
 

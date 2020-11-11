@@ -36,6 +36,7 @@ namespace Salvation.Core.Interfaces.State
         double GetCriticalStrikeMultiplier(GameState state);
         double GetMasteryMultiplier(GameState state);
         double GetHasteMultiplier(GameState state);
+        double GetGlobalHealingMultiplier(GameState state);
         double GetBaseManaAmount(GameState state);
         double GetGCDFloor(GameState gameState);
 

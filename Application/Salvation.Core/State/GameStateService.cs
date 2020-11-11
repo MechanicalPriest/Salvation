@@ -276,7 +276,13 @@ namespace Salvation.Core.State
         {
             var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.Spec).FirstOrDefault();
 
-            return 1 + specData.VersBase + (GetDrRating(GetVersatilityRating(state), specData.VersCost) / specData.VersCost / 100);
+            var addedVersatilityPercent = 0d;
+            foreach (var spell in state.RegisteredSpells.Where(s => s.SpellService != null))
+            {
+                addedVersatilityPercent += spell.SpellService.GetAverageVersatilityPercent(state, spell.SpellData);
+            }
+
+            return 1 + specData.VersBase + (GetDrRating(GetVersatilityRating(state), specData.VersCost) / specData.VersCost / 100) + addedVersatilityPercent;
         }
 
         public double GetMasteryRating(GameState state)

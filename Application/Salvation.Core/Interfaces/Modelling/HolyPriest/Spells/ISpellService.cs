@@ -94,9 +94,12 @@ namespace Salvation.Core.Interfaces.Modelling
 
         // Effect Properties
         double GetAverageCriticalStrike(GameState gameState, BaseSpellData spellData);
+        double GetAverageCriticalStrikePercent(GameState gameState, BaseSpellData spellData);
         double GetAverageHaste(GameState gameState, BaseSpellData spellData);
+        double GetAverageHastePercent(GameState gameState, BaseSpellData spellData);
         double GetAverageIntellect(GameState gameState, BaseSpellData spellData);
         double GetAverageMastery(GameState gameState, BaseSpellData spellData);
+        double GetAverageMasteryPercent(GameState gameState, BaseSpellData spellData);
         double GetAverageVersatility(GameState gameState, BaseSpellData spellData);
         double GetAverageVersatilityPercent(GameState gameState, BaseSpellData spellData);
         double GetAverageMp5(GameState gameState, BaseSpellData spellData);

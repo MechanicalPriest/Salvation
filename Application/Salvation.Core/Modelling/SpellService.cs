@@ -268,12 +268,27 @@ namespace Salvation.Core.Modelling
             return 0;
         }
 
+        public virtual double GetAverageCriticalStrikePercent(GameState gameState, BaseSpellData spellData)
+        {
+            return 0;
+        }
+
         public virtual double GetAverageHaste(GameState gameState, BaseSpellData spellData)
         {
             return 0;
         }
 
+        public virtual double GetAverageHastePercent(GameState gameState, BaseSpellData spellData)
+        {
+            return 0;
+        }
+
         public virtual double GetAverageMastery(GameState gameState, BaseSpellData spellData)
+        {
+            return 0;
+        }
+
+        public virtual double GetAverageMasteryPercent(GameState gameState, BaseSpellData spellData)
         {
             return 0;
         }

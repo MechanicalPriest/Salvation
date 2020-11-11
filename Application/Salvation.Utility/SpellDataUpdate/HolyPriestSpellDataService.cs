@@ -100,6 +100,8 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.CombatMeditation,
                 (uint)Spell.CombatMeditationBuff,
                 (uint)Spell.CombatMeditationExtension,
+                (uint)Spell.LetGoOfThePast,
+                (uint)Spell.LetGoOfThePastBuff,
             };
         }
 
@@ -170,6 +172,7 @@ namespace Salvation.Utility.SpellDataUpdate
                 BaseCooldown = spell.Cooldown,
                 ChargeCooldown = spell.ChargeCooldown,
                 Charges = spell.Charges,
+                MaxStacks = spell.MaxStacks,
                 Duration = spell.Duration,
                 Gcd = spell.Gcd / 1000d,
                 ConduitRanks = spell.ConduitRanks,

@@ -98,6 +98,7 @@ namespace Salvation.Core.Interfaces.Modelling
         double GetAverageIntellect(GameState gameState, BaseSpellData spellData);
         double GetAverageMastery(GameState gameState, BaseSpellData spellData);
         double GetAverageVersatility(GameState gameState, BaseSpellData spellData);
+        double GetAverageVersatilityPercent(GameState gameState, BaseSpellData spellData);
         double GetAverageMp5(GameState gameState, BaseSpellData spellData);
     }
 

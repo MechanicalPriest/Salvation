@@ -4,9 +4,7 @@ using Salvation.Core.Interfaces.Modelling;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.Modelling;
-using Salvation.Core.Modelling.Common.Items;
 using Salvation.Core.Modelling.Common.Traits;
-using Salvation.Core.Modelling.HolyPriest.Spells;
 using Salvation.Core.State;
 using System;
 
@@ -105,7 +103,7 @@ namespace Salvation.CoreTests.Common.Traits
 
     class CombatMeditationBoonMock : SpellService, ISpellService<IBoonOfTheAscendedSpellService>
     {
-        public CombatMeditationBoonMock(IGameStateService gameStateService) 
+        public CombatMeditationBoonMock(IGameStateService gameStateService)
             : base(gameStateService)
         {
         }

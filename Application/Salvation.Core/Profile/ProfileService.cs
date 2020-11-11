@@ -352,6 +352,15 @@ namespace Salvation.Core.Profile
                     // Amount of average damage taken per second over the course of a fight
                     new PlaystyleEntry("DamageTakenPerSecond", 1500, (uint)Spell.CharitableSoul),
 
+                    // Soulbind trait overrides
+                    // -- Kyrian
+                    // Number of orbs picked up per cast
+                    new PlaystyleEntry("CombatMeditationOrbPickups", 1.0, (uint)Spell.LetGoOfThePast),
+                    // Number of average stacks while it's up
+                    new PlaystyleEntry("LetGoOfThePastAverageStacks", 2.5, (uint)Spell.LetGoOfThePast),
+                    // Average uptime as a percentage. 1 = 100%
+                    new PlaystyleEntry("LetGoOfThePastAverageUptime", 0.9, (uint)Spell.LetGoOfThePast),
+
                 },
                 Items = new List<Item>()
                 {

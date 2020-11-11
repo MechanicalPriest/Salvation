@@ -8,9 +8,9 @@ using System;
 
 namespace Salvation.Core.Modelling.Common.Traits
 {
-    public interface ICombatMeditation : ISpellService { }
+    public interface ICombatMeditationSpellSerivce : ISpellService { }
 
-    internal class CombatMeditation : SpellService, ISpellService<ICombatMeditation>
+    internal class CombatMeditation : SpellService, ISpellService<ICombatMeditationSpellSerivce>
     {
         private readonly ISpellService<IBoonOfTheAscendedSpellService> _boonOfTheAscendedSpellService;
 

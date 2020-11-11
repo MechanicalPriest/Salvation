@@ -8,6 +8,7 @@ using Salvation.Core.Interfaces.State;
 using Salvation.Core.Modelling;
 using Salvation.Core.Modelling.Common.Consumables;
 using Salvation.Core.Modelling.Common.Items;
+using Salvation.Core.Modelling.Common.Traits;
 using Salvation.Core.Modelling.HolyPriest;
 using Salvation.Core.Modelling.HolyPriest.Spells;
 using Salvation.Core.Profile;
@@ -64,6 +65,11 @@ namespace Salvation.Core
 
             // Items
             services.AddSingleton<ISpellService<IUnboundChangelingSpellService>, UnboundChangeling>();
+
+            // Covenant
+            // - Kyrian Traits
+            services.AddSingleton<ISpellService<ILetGoOfThePastSpellService>, LetGoOfThePast>();
+            services.AddSingleton<ISpellService<ICombatMeditationSpellSerivce>, CombatMeditation>();
 
             return services;
         }

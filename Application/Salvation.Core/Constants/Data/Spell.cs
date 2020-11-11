@@ -108,5 +108,13 @@
         /// </summary>
         UnboundChangeling = 330733,
         UnboundChangelingHasteProc = 330747,
+
+        // Traits
+        // Kyrian - Pelagos
+        CombatMeditation = 328266,
+        CombatMeditationBuff = 328908,
+        CombatMeditationExtension = 328913,
+        LetGoOfThePast = 328257,
+        LetGoOfThePastBuff = 328900,
     }
 }

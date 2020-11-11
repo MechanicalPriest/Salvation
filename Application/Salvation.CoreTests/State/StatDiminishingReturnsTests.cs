@@ -30,6 +30,7 @@ namespace Salvation.CoreTests.State
                 yield return new TestCaseData(217d, 35).Returns(217);
                 yield return new TestCaseData(267d, 10.67083793).Returns(267);
                 yield return new TestCaseData(319d, 10.67083793).Returns(319);
+                yield return new TestCaseData(810d, 40).Returns(810);
                 // val is the required stat for the percent shown, while the input is the indicated stat
                 yield return new TestCaseData(383d, 10.67083793d).Returns(376.79999999999859d);
                 yield return new TestCaseData(399d, 10.06107577).Returns(389.29999999999779d);

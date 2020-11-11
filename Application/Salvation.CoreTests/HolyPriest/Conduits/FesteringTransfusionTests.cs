@@ -8,7 +8,7 @@ using Salvation.Core.State;
 namespace Salvation.CoreTests.HolyPriest.Conduits
 {
     [TestFixture]
-    class FesteringTransfusion : BaseTest
+    class FesteringTransfusionTests : BaseTest
     {
         private GameState _gameState;
 
@@ -56,8 +56,8 @@ namespace Salvation.CoreTests.HolyPriest.Conduits
             var resultWithout = spellService.GetAverageDamage(gamestate2, null);
 
             // Assert
-            Assert.AreEqual(8986.445219533809d, resultWithout);
-            Assert.AreEqual(10795.716190399949d, resultWith);
+            Assert.AreEqual(6709.8790972519128d, resultWithout);
+            Assert.AreEqual(8060.8014221652993d, resultWith);
         }
 
         [Test]

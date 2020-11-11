@@ -230,6 +230,20 @@ namespace Salvation.CoreTests.HolyPriest.Spells
         }
 
         [Test]
+        public void GetAverageCriticalStrikePercent_Defaults_Zero()
+        {
+            // Arrange
+            IGameStateService gameStateService = new GameStateService();
+            var spellService = new SpellService(gameStateService);
+
+            // Act
+            var result = spellService.GetAverageCriticalStrikePercent(_gameState, null);
+
+            // Assert
+            Assert.AreEqual(0, result);
+        }
+
+        [Test]
         public void GetAverageHaste_Defaults_Zero()
         {
             // Arrange
@@ -238,6 +252,20 @@ namespace Salvation.CoreTests.HolyPriest.Spells
 
             // Act
             var result = spellService.GetAverageHaste(_gameState, null);
+
+            // Assert
+            Assert.AreEqual(0, result);
+        }
+
+        [Test]
+        public void GetAverageHastePercent_Defaults_Zero()
+        {
+            // Arrange
+            IGameStateService gameStateService = new GameStateService();
+            var spellService = new SpellService(gameStateService);
+
+            // Act
+            var result = spellService.GetAverageHastePercent(_gameState, null);
 
             // Assert
             Assert.AreEqual(0, result);
@@ -258,6 +286,20 @@ namespace Salvation.CoreTests.HolyPriest.Spells
         }
 
         [Test]
+        public void GetAverageMasteryPercent_Defaults_Zero()
+        {
+            // Arrange
+            IGameStateService gameStateService = new GameStateService();
+            var spellService = new SpellService(gameStateService);
+
+            // Act
+            var result = spellService.GetAverageMasteryPercent(_gameState, null);
+
+            // Assert
+            Assert.AreEqual(0, result);
+        }
+
+        [Test]
         public void GetAverageVersatility_Defaults_Zero()
         {
             // Arrange
@@ -266,6 +308,20 @@ namespace Salvation.CoreTests.HolyPriest.Spells
 
             // Act
             var result = spellService.GetAverageVersatility(_gameState, null);
+
+            // Assert
+            Assert.AreEqual(0, result);
+        }
+
+        [Test]
+        public void GetAverageVersatilityPercent_Defaults_Zero()
+        {
+            // Arrange
+            IGameStateService gameStateService = new GameStateService();
+            var spellService = new SpellService(gameStateService);
+
+            // Act
+            var result = spellService.GetAverageVersatilityPercent(_gameState, null);
 
             // Assert
             Assert.AreEqual(0, result);

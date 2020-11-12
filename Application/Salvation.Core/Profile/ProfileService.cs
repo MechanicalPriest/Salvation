@@ -301,7 +301,7 @@ namespace Salvation.Core.Profile
                     new CastProfile((int)Spell.Mindgames, 1.0d, 0.01d, 1, 1),
                     new CastProfile((int)Spell.FaeGuardians, 1.0d, 0.01d, 1, 0),
                     new CastProfile((int)Spell.BoonOfTheAscended, 1.0d, 0.01d, 0, 0),
-                    new CastProfile((int)Spell.AscendedNova, 1.0d, 0.01d, 5, 1),
+                    new CastProfile((int)Spell.AscendedNova, 1.0d, 0.01d, 6, 1),
                     new CastProfile((int)Spell.AscendedBlast, 1.0d, 0.01d, 1, 1),
                     new CastProfile((int)Spell.AscendedEruption, 1.0d, 0.01d, 5, 1),
                     new CastProfile((int)Spell.UnholyNova, 1.0d, 0.01d, 6, 1),
@@ -317,18 +317,7 @@ namespace Salvation.Core.Profile
                 FightLengthSeconds = 397,
                 PlaystyleEntries = new List<PlaystyleEntry>()
                 {
-                    // Covenant overrides
-                    new PlaystyleEntry("FaeBenevolentFaerieSelfUptime", 1, (uint)Spell.BenevolentFaerie),
-
-                    // The number of times you move the Guardian Faerie around
-                    new PlaystyleEntry("FaeFermataNumberDRSwaps", 1, (uint)Spell.FaeFermata),
-                    // The number of times you move the Benevolent Faerie around
-                    new PlaystyleEntry("FaeFermataNumberCDRSwaps", 3, (uint)Spell.FaeFermata),
-                    new PlaystyleEntry("FaeGuardianFaerieDTPS", 4000, (uint)Spell.GuardianFaerie),
-
-                    new PlaystyleEntry("ShadowWordDeathPercentExecute", 0.2, (uint)Spell.ShadowWordDeath),
-                    new PlaystyleEntry("HolyNovaPercentOfCastsOnThreeOrMore", 0.1, (uint)Spell.HolyNovaRank2),
-
+                    // #### Base Overrides ####
                     // Overrides the stat value to be set directly rather than from items/race/class
                     new PlaystyleEntry("OverrideStatIntellect", 0, 0),
                     new PlaystyleEntry("OverrideStatHaste", 0, 0),
@@ -345,15 +334,32 @@ namespace Salvation.Core.Profile
 
                     // Force the cloth armor bonus
                     new PlaystyleEntry("ForceClothBonus", 0, 0),
+                    
+                    // #### Holy Priest ####
+                    // ## Covenants overrides
 
-                    // Conduit overrides
+                    new PlaystyleEntry("FaeBenevolentFaerieSelfUptime", 1, (uint)Spell.BenevolentFaerie),
+                    // The number of times you move the Guardian Faerie around
+                    new PlaystyleEntry("FaeFermataNumberDRSwaps", 1, (uint)Spell.FaeFermata),
+                    // The number of times you move the Benevolent Faerie around
+                    new PlaystyleEntry("FaeFermataNumberCDRSwaps", 3, (uint)Spell.FaeFermata),
+                    new PlaystyleEntry("FaeGuardianFaerieDTPS", 4000, (uint)Spell.GuardianFaerie),
+
+                    // ## Damage & Healing overrides
+                    new PlaystyleEntry("ShadowWordDeathPercentExecute", 0.2, (uint)Spell.ShadowWordDeath),
+                    new PlaystyleEntry("HolyNovaPercentOfCastsOnThreeOrMore", 0.1, (uint)Spell.HolyNovaRank2),
+
+                    // ## Legendary overrides
+                    new PlaystyleEntry("EchoOfEonarCountAllyBuffs", 1, (uint)Spell.EchoOfEonar),
+
+                    // ## Conduit overrides
                     // How often Charitable Soul is cast on an alt. 0.9 = 90% of the time
                     new PlaystyleEntry("CharitableSoulAllyCasts", 0.9, (uint)Spell.CharitableSoul),
                     // Amount of average damage taken per second over the course of a fight
                     new PlaystyleEntry("DamageTakenPerSecond", 1500, (uint)Spell.CharitableSoul),
 
-                    // Soulbind trait overrides
-                    // -- Kyrian
+                    // ## Soulbind trait overrides
+                    // #### Kyrian
                     // Number of orbs picked up per cast
                     new PlaystyleEntry("CombatMeditationOrbPickups", 1.0, (uint)Spell.LetGoOfThePast),
                     // Number of average stacks while it's up

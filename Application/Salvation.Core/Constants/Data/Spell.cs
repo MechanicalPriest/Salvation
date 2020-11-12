@@ -79,7 +79,10 @@
         // Legendaries
         HarmoniousApparatus = 336314,
         EchoOfEonar = 338477,
-        EchoOfEonarBuff = 338477,
+        EchoOfEonarHealingBuffSelf = 347660,
+        EchoOfEonarDamageBuffSelf = 338489,
+        EchoOfEonarHealingBuffOther = 347663, // TODO: This needs to be whitelisted in simc.
+        CauterizingShadows = 336370,
 
         // Conduits
         CharitableSoul = 337715,

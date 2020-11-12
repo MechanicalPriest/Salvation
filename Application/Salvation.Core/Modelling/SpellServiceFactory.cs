@@ -56,6 +56,9 @@ namespace Salvation.Core.Modelling
                 Spell.ShadowWordPain => typeof(IShadowWordPainSpellService),
                 Spell.ShadowWordDeath => typeof(IShadowWordDeathSpellService),
                 Spell.HolyFire => typeof(IHolyFireSpellService),
+                // Holy Priest Legendary Power
+                Spell.EchoOfEonar => typeof(IEchoOfEonarSpellSevice),
+                Spell.CauterizingShadows => typeof(ICauterizingShadowsSpellSevice),
                 // Consumables
                 Spell.SpectralFlaskOfPower => typeof(ISpectralFlaskOfPowerSpellService),
                 Spell.SpiritualManaPotion => typeof(ISpiritualManaPotionSpellService),

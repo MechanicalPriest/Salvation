@@ -113,6 +113,10 @@ namespace Salvation.Core
             services.AddSingleton<ISpellService<IShadowWordDeathSpellService>, ShadowWordDeath>();
             services.AddSingleton<ISpellService<IHolyFireSpellService>, HolyFire>();
 
+            // Legendary Powers
+            services.AddSingleton<ISpellService<IEchoOfEonarSpellSevice>, EchoOfEonar>();
+            services.AddSingleton<ISpellService<ICauterizingShadowsSpellSevice>, CauterizingShadows>();
+
             return services;
         }
     }

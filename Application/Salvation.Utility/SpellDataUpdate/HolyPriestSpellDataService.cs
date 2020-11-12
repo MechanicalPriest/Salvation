@@ -69,6 +69,7 @@ namespace Salvation.Utility.SpellDataUpdate
                 // Legendaries
                 (uint)Spell.HarmoniousApparatus,
                 (uint)Spell.EchoOfEonar,
+                (uint)Spell.EchoOfEonarHealingBuffSelf,
 
                 // Conduits
                 (uint)Spell.CharitableSoul,

@@ -22,6 +22,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             var holyPriestAuraHealingBonus = _gameStateService.GetSpellData(gameState, Spell.HolyPriest)
                 .GetEffect(179715).BaseValue / 100 + 1;
+
             // AN has a trigger spell in one of its effects which containst the SP coefficient
             var healingSp = spellData.GetEffect(815031).TriggerSpell.GetEffect(815030).SpCoefficient;
 
@@ -35,10 +36,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             averageHeal *= _gameStateService.GetCriticalStrikeMultiplier(gameState)
                 * _gameStateService.GetGlobalHealingMultiplier(gameState);
 
-            // Apply the 1/sqrt() scaling based on no. targets
-            averageHeal *= 1 / Math.Sqrt(GetNumberOfHealingTargets(gameState, spellData));
-
-            return averageHeal * GetNumberOfHealingTargets(gameState, spellData);
+            return averageHeal * Math.Min(GetMaximumHealTargets(gameState, spellData), GetNumberOfHealingTargets(gameState, spellData));
         }
 
         public override double GetAverageDamage(GameState gameState, BaseSpellData spellData = null)

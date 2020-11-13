@@ -291,11 +291,11 @@ namespace Salvation.Core.Profile
                     new CastProfile((int)Spell.CosmicRipple, 0d, 0.2332d, 5, 0),
                     new CastProfile((int)Spell.PowerWordShield, 0.01d, 0.38d, 1, 0),
                     new CastProfile((int)Spell.EchoOfLight, 0d, 0.4224d, 1, 0),
-                    new CastProfile((int)Spell.Smite, 1d, 0, 0, 1),
-                    new CastProfile((int)Spell.ShadowWordPain, 1d, 0, 0, 1),
-                    new CastProfile((int)Spell.ShadowWordDeath, 1d, 0, 0, 1),
-                    new CastProfile((int)Spell.HolyWordChastise, 1d, 0, 0, 1),
-                    new CastProfile((int)Spell.HolyFire, 1d, 0, 0, 1),
+                    new CastProfile((int)Spell.Smite, 0.12d, 0, 0, 1),
+                    new CastProfile((int)Spell.ShadowWordPain, 0.01d, 0, 0, 1),
+                    new CastProfile((int)Spell.ShadowWordDeath, 0.01d, 0, 0, 1),
+                    new CastProfile((int)Spell.HolyWordChastise, 0.01d, 0, 0, 1),
+                    new CastProfile((int)Spell.HolyFire, 0.01d, 0, 0, 1),
 
                     // Covenants (SpellId, Efficiency, Overheal, HealTargets, DamageTargets)
                     new CastProfile((int)Spell.Mindgames, 1.0d, 0.01d, 1, 1),

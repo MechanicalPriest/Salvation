@@ -37,7 +37,7 @@ namespace Salvation.Core
             // SpellFactoryService
             services.AddSingleton<ISpellServiceFactory>(serviceProvider =>
             {
-                Func<Type, ISpellService> spellFactoryFunc = type => (ISpellService)serviceProvider.GetService(type);
+                ISpellService spellFactoryFunc(Type type) => (ISpellService)serviceProvider.GetService(type);
                 return new SpellServiceFactory(spellFactoryFunc);
             });
 

@@ -33,7 +33,7 @@ namespace Salvation.Core.Modelling.Common.Items
             // TODO: This 3 comes from MaxTargets on 338489 and should be data driven at some stage.
             // If we're counting ally buffs t get an approximate value, add 3 at 50% of the strength (3 allies)
             if (countAllyBuffs.Value == 1)
-                healingBonus *= (spellData.GetEffect(875130).BaseValue * 3.0d / 100);
+                healingBonus += healingBonus * spellData.GetEffect(875130).BaseValue * 3.0d / 100;
 
             return healingBonus * GetUptime(gameState, spellData) / 100;
         }

@@ -432,7 +432,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
             {
                 yield return new TestCaseData(typeof(AscendedBlast)).Returns(2996.6221326510004d);
                 yield return new TestCaseData(typeof(AscendedEruption)).Returns(5364.2172212667338d);
-                yield return new TestCaseData(typeof(AscendedNova)).Returns(628.88789551396019d);
+                yield return new TestCaseData(typeof(AscendedNova)).Returns(1406.2360845960002d);
                 yield return new TestCaseData(typeof(BindingHeal)).Returns(3304.6547988006d);
                 yield return new TestCaseData(typeof(BoonOfTheAscended)).Returns(0);
                 yield return new TestCaseData(typeof(CircleOfHealing)).Returns(6152.2828701075014d);
@@ -466,7 +466,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
             {
                 yield return new TestCaseData(typeof(AscendedBlast)).Returns(2966.6559113244903d);
                 yield return new TestCaseData(typeof(AscendedEruption)).Returns(5310.5750490540668d);
-                yield return new TestCaseData(typeof(AscendedNova)).Returns(622.59901655882061d);
+                yield return new TestCaseData(typeof(AscendedNova)).Returns(1392.1737237500402d);
                 yield return new TestCaseData(typeof(BindingHeal)).Returns(2181.072167208396d);
                 yield return new TestCaseData(typeof(BoonOfTheAscended)).Returns(0);
                 yield return new TestCaseData(typeof(CircleOfHealing)).Returns(5280.5043874132689d);
@@ -814,7 +814,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
             {
                 yield return new TestCaseData(typeof(AscendedBlast)).Returns(29.966221326500001d);
                 yield return new TestCaseData(typeof(AscendedEruption)).Returns(53.642172212699997d);
-                yield return new TestCaseData(typeof(AscendedNova)).Returns(6.2888789551000004d);
+                yield return new TestCaseData(typeof(AscendedNova)).Returns(14.062360846000001d);
                 yield return new TestCaseData(typeof(BindingHeal)).Returns(1123.5826315922d);
                 yield return new TestCaseData(typeof(BoonOfTheAscended)).Returns(0);
                 yield return new TestCaseData(typeof(CircleOfHealing)).Returns(871.77848269419997d);

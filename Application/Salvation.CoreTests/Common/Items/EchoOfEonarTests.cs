@@ -47,7 +47,7 @@ namespace Salvation.CoreTests.Common.Items
             var value = _spell.GetAverageHealingBonus(gamestate, null);
 
             // Assert
-            Assert.AreEqual(0.026021347631040905d, value);
+            Assert.AreEqual(0.043368912718401507d, value);
         }
 
         [Test]

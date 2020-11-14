@@ -80,11 +80,14 @@ namespace Salvation.Api
 
                 return new JsonResult(new
                 {
-                    ModelResults = results,
-                    StatWeightsEffective = effectiveHealingStatWeights,
-                    StatWeightsRaw = rawHealingStatWeights,
-                    State = state,
-                    Journal = _gameStateService.GetJournal(state)
+                    Data = new
+                    {
+                        ModelResults = results,
+                        StatWeightsEffective = effectiveHealingStatWeights,
+                        StatWeightsRaw = rawHealingStatWeights,
+                        State = state,
+                        Journal = _gameStateService.GetJournal(state)
+                    }
                 });
             }
             catch (Exception ex)

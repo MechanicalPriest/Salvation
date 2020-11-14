@@ -38,7 +38,7 @@ namespace Salvation.Api
             var response = BuildProfileResponse(specId);
 
             // Remove the .Profile to return the full response - requires client support
-            return new OkObjectResult(response.Profile);
+            return new OkObjectResult(new { Data = response.Profile });
         }
 
         internal class ProfileResponse

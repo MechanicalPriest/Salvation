@@ -1,39 +1,60 @@
-import React, { useContext, useMemo, useEffect } from 'react';
-import { GlobalContext } from '../GlobalState';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux'
+import { FETCH_PROFILE_LOADING, UPDATE_PLAYSTYLE_VALUE, UPDATE_CAST_EFFICIENCY, UPDATE_CAST_OVERHEAL } from '../../redux/actionTypes';
 
 // This component is responsible handling the top level ProfileConfiguration (profile)
 const Profile = () => {
 
-  const {
-    currentProfile,
-    updateSpellValue,
-  } = useContext(GlobalContext);
 
-  const profile = useMemo(() => currentProfile, [currentProfile]);
+  const dispatch = useDispatch();
 
-  console.log(currentProfile);
-  console.log(profile);
+  const newProfile = useSelector(state => state.profileReducer.profile);
+
+  function updatePlaystyleValue(playstyle, value) {
+    dispatch({ type: UPDATE_PLAYSTYLE_VALUE, payload: { playstyle: playstyle, newValue: value } });
+  }
+
+  function updateEfficiencyValue(cast, value) {
+    dispatch({ type: UPDATE_CAST_EFFICIENCY, payload: { cast: cast, newValue: value } });
+  }
+
+  function updateOverhealValue(cast, value) {
+    dispatch({ type: UPDATE_CAST_OVERHEAL, payload: { cast: cast, newValue: value } });
+  }
+
+  // Request to load the default profile
+  useEffect(() => {
+    dispatch({ type: FETCH_PROFILE_LOADING });
+  }, [dispatch]);
 
   useEffect(() => {
-    console.log('effectProfile:', currentProfile);
-  }, [currentProfile]);
-
-  function printState() {
-    console.log('printState:', profile);
-  }
+    window.$WowheadPower.refreshLinks();
+  }, [newProfile]);
 
   return (
     <div>
-      <p>{currentProfile.Name}</p>
-      {currentProfile.spells.map((spell) => {
+      <p>Cast Profile Entries</p>
+      {newProfile.casts?.map((cast) => {
         return (
-          <div key={spell.id}>
-            <p>{spell.Name} ({spell.id})</p>
-            <input type='text' value={spell.value} onChange={(e) => { updateSpellValue(spell, e.target.value); }} />
+          <div key={cast.spellId}>
+            <label><a target='_blank' rel='noreferrer' href={'//wowhead.com/spell=' + cast.spellId} data-wowhead={'spell=' + cast.spellId}>{cast.spellId}</a> Efficiency</label>
+            <input type='text' value={cast.efficiency} onChange={(e) => { updateEfficiencyValue(cast, e.target.value); }} />
+            <label>Overheal</label>
+            <input type='text' value={cast.overhealPercent} onChange={(e) => { updateOverhealValue(cast, e.target.value); }} />
           </div>
         );
       })}
-      <p onClick={printState}>Show State</p>
+      <p>Playstyle Entries</p>
+      {newProfile.playstyleEntries?.map((playstyle) => {
+        return (
+          <div key={playstyle.name}>
+            <label>{playstyle.name} ({playstyle.spellId})</label>
+            <input type='text' value={playstyle.value} onChange={(e) => { updatePlaystyleValue(playstyle, e.target.value); }} />
+          </div>
+        );
+      })}
+      <p>State</p>
+      <pre>{JSON.stringify(newProfile)}</pre>
     </div>
   );
 };

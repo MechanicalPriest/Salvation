@@ -37,11 +37,16 @@
     <Content Include="src\App.js" />
     <Content Include="src\index.css" />
     <Content Include="src\index.js" />
-    <Content Include="src\Modules\GlobalState.js" />
+    <Content Include="src\Modules\Gear\index.js" />
     <Content Include="src\Modules\Profile\index.js" />
-    <Content Include="src\Modules\Profile\profileReducer.js" />
-    <Content Include="src\Modules\Profile\useProfileDataManager.js" />
     <Content Include="src\Modules\SpellComparison.js" />
+    <Content Include="src\redux\actionTypes.js" />
+    <Content Include="src\redux\api.js" />
+    <Content Include="src\redux\profileSaga.js" />
+    <Content Include="src\redux\reducers\gear.js" />
+    <Content Include="src\redux\reducers\index.js" />
+    <Content Include="src\redux\reducers\profile.js" />
+    <Content Include="src\redux\store.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="public" />
@@ -50,6 +55,8 @@
     <Folder Include="src\Modules\Gear\" />
     <Folder Include="src\Modules\Profile\" />
     <Folder Include="src\Modules\Results\" />
+    <Folder Include="src\redux\" />
+    <Folder Include="src\redux\reducers\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />

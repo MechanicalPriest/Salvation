@@ -7,11 +7,11 @@ const Results = () => {
   return (
     <div>
       <p>Results go here</p>
-      {baseResults.modelResults !== null &&
+      {baseResults.modelResults !== undefined &&
         <p>HPS: {baseResults.modelResults.totalActualHPS}</p>
       }
     </div>
   );
 };
 
-export default Results
+export default Results;

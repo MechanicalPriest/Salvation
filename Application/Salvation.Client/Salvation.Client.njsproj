@@ -19,6 +19,7 @@
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
   <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
   <ItemGroup>
+    <Content Include=".env" />
     <Content Include=".env.development.local" />
     <Content Include=".env.production" />
     <Content Include="package-lock.json" />

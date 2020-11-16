@@ -1,8 +1,7 @@
 import axios from 'axios';
 
-const apiRoot = process.env.REACT_APP_API_ROOT + '/api';
-const getProfileEndpoint = apiRoot + '/DefaultProfile';
-const getProcessModelEndpoint = apiRoot + '/ProcessModel';
+const getProfileEndpoint = process.env.REACT_APP_API_GET_PROFILE;
+const getProcessModelEndpoint = process.env.REACT_APP_API_POST_RESULTS;
 
 export function apiGetProfile() {
   console.log('apiGetProfile', getProfileEndpoint);

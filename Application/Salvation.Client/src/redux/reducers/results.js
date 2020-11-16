@@ -1,7 +1,7 @@
 import { FETCH_RESULTS_SUCCESS } from "../actionTypes";
 
 const initialState = {
-  results: '',
+  results: {},
   loading: false,
   error: '',
 };

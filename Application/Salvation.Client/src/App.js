@@ -1,8 +1,10 @@
 import React from 'react';
 import Profile from './Modules/Profile';
 import GearImport from './Modules/Gear';
+import Results from './Modules/Results';
 
 const App = () => {
+
   return (
     <div>
       <div>Select Configuration</div>
@@ -10,6 +12,7 @@ const App = () => {
       <div>Apply Gear</div>
       <GearImport />
       <div>View Results</div>
+      <Results />
     </div>
   );
 }

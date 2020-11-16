@@ -1,6 +1,13 @@
 import { put, takeEvery, takeLatest, all, select } from 'redux-saga/effects'
-import { FETCH_PROFILE_LOADING, FETCH_PROFILE_SUCCESS, FETCH_PROFILE_ERROR } from "./actionTypes";
-import { apiGetProfile } from './api';
+import {
+  FETCH_PROFILE_LOADING,
+  FETCH_PROFILE_SUCCESS,
+  FETCH_PROFILE_ERROR,
+  FETCH_RESULTS_LOADING,
+  FETCH_RESULTS_SUCCESS,
+  FETCH_RESULTS_ERROR
+} from "./actionTypes";
+import { apiGetProfile, apiGetResults } from './api';
 
 async function fetchAsync(func) {
   console.log('fetchAsync: Fetching');
@@ -8,6 +15,16 @@ async function fetchAsync(func) {
   const response = await func();
 
   console.log('fetchAsync: Response:', response);
+
+  return await response.data;
+}
+
+async function postAsync(func, args) {
+  console.log('postAsync: Posting');
+
+  const response = await func(args);
+
+  console.log('postAsync: Response:', response);
 
   return await response.data;
 }
@@ -30,6 +47,20 @@ export function* profileSaga() {
   yield takeLatest(FETCH_PROFILE_LOADING, fetchProfile);
 }
 
+export function* resultsSaga() {
+  yield takeLatest(FETCH_RESULTS_LOADING, fetchResults);
+}
+
+function* fetchResults(action) {
+  console.log('fetchResults: Fetching results.');
+  try {
+    const resultsResponse = yield postAsync(apiGetResults, action.payload);
+    yield put({ type: FETCH_RESULTS_SUCCESS, payload: resultsResponse.data });
+  } catch (e) {
+    yield put({ type: FETCH_RESULTS_ERROR, error: e.message });
+  }
+} 
+
 // Log all dispatch calls
 function* watchAndLog() {
   yield takeEvery('*', function* logger(action) {
@@ -40,23 +71,12 @@ function* watchAndLog() {
   })
 }
 
-// TODO: NIU
-function* logSuccess() {
-  yield console.log('Success!');
-}
-
-// TODO: NIU
-export function* watchProfileSuccessAsync() {
-  console.log('Configuring watcher for', FETCH_PROFILE_SUCCESS);
-  yield takeEvery(FETCH_PROFILE_SUCCESS, logSuccess)
-}
-
 export default function* rootSaga() {
   console.log('Initialising all sagas');
 
   yield all([
     profileSaga(),
-    watchProfileSuccessAsync(),
+    resultsSaga(),
     watchAndLog(),
   ]);
 }

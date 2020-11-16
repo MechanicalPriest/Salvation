@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import { FETCH_PROFILE_LOADING, UPDATE_PLAYSTYLE_VALUE, UPDATE_CAST_EFFICIENCY, UPDATE_CAST_OVERHEAL } from '../../redux/actionTypes';
+import { FETCH_PROFILE_LOADING, UPDATE_PLAYSTYLE_VALUE, UPDATE_CAST_EFFICIENCY, UPDATE_CAST_OVERHEAL, FETCH_RESULTS_LOADING } from '../../redux/actionTypes';
+import { Link } from '@material-ui/core';
 
 // This component is responsible handling the top level ProfileConfiguration (profile)
 const Profile = () => {
@@ -22,22 +23,30 @@ const Profile = () => {
     dispatch({ type: UPDATE_CAST_OVERHEAL, payload: { cast: cast, newValue: value } });
   }
 
+  function submitProfile() {
+    dispatch({ type: FETCH_RESULTS_LOADING, payload: newProfile });
+  }
+
   // Request to load the default profile
   useEffect(() => {
     dispatch({ type: FETCH_PROFILE_LOADING });
   }, [dispatch]);
 
+  // Update the wowhead tooltips each time the profile changes
   useEffect(() => {
     window.$WowheadPower.refreshLinks();
   }, [newProfile]);
 
   return (
     <div>
+      <button onClick={submitProfile}>Generate Results</button>
       <p>Cast Profile Entries</p>
       {newProfile.casts?.map((cast) => {
         return (
           <div key={cast.spellId}>
-            <label><a target='_blank' rel='noreferrer' href={'//wowhead.com/spell=' + cast.spellId} data-wowhead={'spell=' + cast.spellId}>{cast.spellId}</a> Efficiency</label>
+            <label>
+              <Link target='_blank' rel='noreferrer' href={'//wowhead.com/spell=' + cast.spellId} data-wowhead={'spell=' + cast.spellId}>{cast.spellId}</Link> Efficiency
+            </label>
             <input type='text' value={cast.efficiency} onChange={(e) => { updateEfficiencyValue(cast, e.target.value); }} />
             <label>Overheal</label>
             <input type='text' value={cast.overhealPercent} onChange={(e) => { updateOverhealValue(cast, e.target.value); }} />

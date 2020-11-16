@@ -39,6 +39,7 @@
     <Content Include="src\index.js" />
     <Content Include="src\Modules\Gear\index.js" />
     <Content Include="src\Modules\Profile\index.js" />
+    <Content Include="src\Modules\Results\index.js" />
     <Content Include="src\Modules\SpellComparison.js" />
     <Content Include="src\redux\actionTypes.js" />
     <Content Include="src\redux\api.js" />
@@ -46,6 +47,7 @@
     <Content Include="src\redux\reducers\gear.js" />
     <Content Include="src\redux\reducers\index.js" />
     <Content Include="src\redux\reducers\profile.js" />
+    <Content Include="src\redux\reducers\results.js" />
     <Content Include="src\redux\store.js" />
   </ItemGroup>
   <ItemGroup>

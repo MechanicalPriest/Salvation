@@ -60,7 +60,7 @@ namespace Salvation.CoreTests.Common.Traits
             var value = _spell.GetDuration(_gameState, null);
 
             // Assert
-            Assert.AreEqual(4.0, value);
+            Assert.AreEqual(6.0, value);
         }
 
         [Test]

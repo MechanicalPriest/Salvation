@@ -626,7 +626,8 @@ namespace Salvation.Core.State
                 {
                     foreach(var kvp in spell.ScaleValues)
                     {
-                        spell.SpellData.ScaleValues.Add(kvp.Key, kvp.Value);
+                        if(!spell.SpellData.ScaleValues.ContainsKey(kvp.Key))
+                            spell.SpellData.ScaleValues.Add(kvp.Key, kvp.Value);
                     }
 
                     // Update the spelldata to have the new scalevalues added

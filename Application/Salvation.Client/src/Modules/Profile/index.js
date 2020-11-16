@@ -39,7 +39,6 @@ const Profile = () => {
 
   return (
     <div>
-      <button onClick={submitProfile}>Generate Results</button>
       <p>Cast Profile Entries</p>
       {newProfile.casts?.map((cast) => {
         return (
@@ -62,8 +61,20 @@ const Profile = () => {
           </div>
         );
       })}
+      <p>Items</p>
+      {newProfile.items?.map((item) => {
+        if (item.equipped) {
+          return (
+            <div key={item.itemId + item.itemLevel}>
+              <Link target='_blank' rel='noreferrer' href={'//wowhead.com/item=' + item.itemId + '?ilvl=' + item.itemLevel} data-wowhead={'item=' + item.itemId}>{item.name}</Link>
+            </div>
+          );
+        }
+        return null;
+      })}
       <p>State</p>
       <pre>{JSON.stringify(newProfile)}</pre>
+      <button onClick={submitProfile}>Generate Results</button>
     </div>
   );
 };

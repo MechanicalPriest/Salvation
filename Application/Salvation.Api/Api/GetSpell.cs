@@ -10,7 +10,7 @@ using System;
 using System.Threading.Tasks;
 using System.Web.Http;
 
-namespace Salvation.Api
+namespace Salvation.Api.Api
 {
     public class GetSpell
     {

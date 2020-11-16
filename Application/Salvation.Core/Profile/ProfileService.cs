@@ -219,13 +219,6 @@ namespace Salvation.Core.Profile
                 Class = profile.Class,
                 Level = profile.Level,
                 FightLengthSeconds = profile.FightLengthSeconds,
-                // Stats
-                // TODO: Remove these, instead use the Get X methods.
-                Intellect = profile.Intellect,
-                MasteryRating = profile.MasteryRating,
-                VersatilityRating = profile.VersatilityRating,
-                HasteRating = profile.HasteRating,
-                CritRating = profile.CritRating
             };
 
             // Casts (spell usage).
@@ -264,11 +257,6 @@ namespace Salvation.Core.Profile
             {
                 Name = "Holy Priest Default Profile",
                 Spec = Spec.HolyPriest,
-                Intellect = 0,
-                MasteryRating = 0,
-                VersatilityRating = 0,
-                HasteRating = 0,
-                CritRating = 0,
                 Race = Race.NoRace,
                 Class = Class.Priest,
                 Casts = new List<CastProfile>()

@@ -5,9 +5,12 @@ import {
   FETCH_PROFILE_ERROR,
   FETCH_RESULTS_LOADING,
   FETCH_RESULTS_SUCCESS,
-  FETCH_RESULTS_ERROR
+  FETCH_RESULTS_ERROR,
+  FETCH_APPLY_GEAR_LOADING,
+  FETCH_APPLY_GEAR_SUCCESS,
+  FETCH_APPLY_GEAR_ERROR
 } from "./actionTypes";
-import { apiGetProfile, apiGetResults } from './api';
+import { apiGetProfile, apiGetResults, apiApplySimc } from './api';
 
 async function fetchAsync(func) {
   console.log('fetchAsync: Fetching');
@@ -61,6 +64,21 @@ function* fetchResults(action) {
   }
 } 
 
+export function* applySimcSaga() {
+  yield takeLatest(FETCH_APPLY_GEAR_LOADING, fetchApplySimc);
+}
+
+function* fetchApplySimc(action) {
+  console.log('fetchApplySimc: Fetching results.');
+  try {
+    const resultsResponse = yield postAsync(apiApplySimc, action.payload);
+    yield put({ type: FETCH_PROFILE_SUCCESS, payload: resultsResponse.data });
+    yield put({ type: FETCH_APPLY_GEAR_SUCCESS });
+  } catch (e) {
+    yield put({ type: FETCH_APPLY_GEAR_ERROR, error: e.message });
+  }
+} 
+
 // Log all dispatch calls
 function* watchAndLog() {
   yield takeEvery('*', function* logger(action) {
@@ -78,5 +96,6 @@ export default function* rootSaga() {
     profileSaga(),
     resultsSaga(),
     watchAndLog(),
+    applySimcSaga(),
   ]);
 }

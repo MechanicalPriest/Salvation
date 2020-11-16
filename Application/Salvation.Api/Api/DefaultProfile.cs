@@ -10,7 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Salvation.Api
+namespace Salvation.Api.Api
 {
     public class DefaultProfile
     {

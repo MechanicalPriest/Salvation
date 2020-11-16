@@ -14,7 +14,7 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace Salvation.Api
+namespace Salvation.Api.Api
 {
     public class ProcessModel
     {

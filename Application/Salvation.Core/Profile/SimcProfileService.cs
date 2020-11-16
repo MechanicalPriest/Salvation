@@ -5,7 +5,9 @@ using Salvation.Core.Profile.Model;
 using SimcProfileParser.Interfaces;
 using SimcProfileParser.Model.Generated;
 using SimcProfileParser.Model.Profile;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using ItemModType = Salvation.Core.Constants.Data.ItemModType;
 
@@ -37,21 +39,56 @@ namespace Salvation.Core.Profile
 
         internal void ApplyCharacterDetails(PlayerProfile profile, SimcParsedProfile parsedProfile)
         {
-            profile.Name = parsedProfile.Name;
-            profile.Server = parsedProfile.Server;
-            profile.Region = parsedProfile.Region;
-            profile.Race = (Race)parsedProfile.RaceId;
-            profile.Spec = (Spec)parsedProfile.SpecId;
-            profile.Class = (Class)parsedProfile.ClassId;
-            profile.Level = parsedProfile.Level;
+            if(!string.IsNullOrEmpty(parsedProfile.Name))
+                profile.Name = parsedProfile.Name;
+
+            if (!string.IsNullOrEmpty(parsedProfile.Server))
+                profile.Server = parsedProfile.Server;
+
+            if (!string.IsNullOrEmpty(parsedProfile.Region))
+                profile.Region = parsedProfile.Region;
+
+            if(parsedProfile.RaceId != 0)
+                profile.Race = (Race)parsedProfile.RaceId;
+
+            if (parsedProfile.SpecId != 0)
+                profile.Spec = (Spec)parsedProfile.SpecId;
+
+            if (parsedProfile.ClassId != 0)
+                profile.Class = (Class)parsedProfile.ClassId;
+
+            if (parsedProfile.Level != 0)
+                profile.Level = parsedProfile.Level;
             // Other fields not included: Role, Simc addon version
         }
 
         internal void ApplyCovenant(PlayerProfile profile, SimcParsedProfile simcProfile)
         {
-            CovenantProfile cp = new CovenantProfile();
+            CovenantProfile cp = profile.Covenant;
 
-            // Set Conduits
+            // Create a new covenant profile if the covenant has changed
+            if (simcProfile.Covenant != null)
+            {
+                var newCovenant = simcProfile.Covenant.ToLower() switch
+                {
+                    "kyrian" => Covenant.Kyrian,
+                    "night fae" => Covenant.NightFae,
+                    "necrolord" => Covenant.Necrolord,
+                    "venthyr" => Covenant.Venthyr,
+                    _ => Covenant.None,
+                };
+
+                if (newCovenant != profile.Covenant.Covenant)
+                {
+                    cp = new CovenantProfile();
+                    cp.Covenant = newCovenant;
+                }
+            }
+
+            // Set Conduits - wipe them if we have a new set of available conduits
+            if (simcProfile.Conduits.Count > 0)
+                cp.AvailableConduits = new Dictionary<Conduit, int>();
+
             foreach (var conduit in simcProfile.Conduits)
             {
                 cp.AvailableConduits.Add((Conduit)conduit.SpellId, conduit.Rank);
@@ -62,47 +99,55 @@ namespace Salvation.Core.Profile
             {
                 var newSoulbind = new SoulbindProfile();
 
-                // Add the active soulbind spells
+                // Update the existing soulbind if it already exists
+                if (soulbind.SoulbindId != 0)
+                {
+                    var existingSoulbind = cp.Soulbinds.Where(s => s.SoulbindId == soulbind.SoulbindId).FirstOrDefault();
+                    if (existingSoulbind != null)
+                        newSoulbind = existingSoulbind;
+                    else
+                    {
+                        newSoulbind.SoulbindId = soulbind.SoulbindId;
+                        cp.Soulbinds.Add(newSoulbind);
+                    }
+                }
+
+                if(!String.IsNullOrEmpty(soulbind.Name))
+                    newSoulbind.Name = soulbind.Name;
+
+                newSoulbind.IsActive = soulbind.IsActive;
+
+                // Add the active soulbind spells - wipe them if we have new incoming ones
+                if (soulbind.SoulbindSpells.Count > 0)
+                    newSoulbind.ActiveTraits = new List<SoulbindTrait>();
+
                 foreach (var soulbindSpell in soulbind.SoulbindSpells)
                 {
                     newSoulbind.ActiveTraits.Add((SoulbindTrait)soulbindSpell);
                 }
 
-                // Add the active conduits
+                // Add the active conduits - wipe them if we have new incoming ones
+                if (soulbind.SocketedConduits.Count > 0)
+                    newSoulbind.ActiveConduits = new Dictionary<Conduit, uint>();
+
                 foreach (var conduit in soulbind.SocketedConduits)
                 {
                     newSoulbind.ActiveConduits.Add((Conduit)conduit.SpellId, (uint)conduit.Rank);
                 }
-
-                newSoulbind.Name = soulbind.Name;
-                newSoulbind.SoulbindId = soulbind.SoulbindId;
-
-                newSoulbind.IsActive = soulbind.IsActive;
-
-                cp.Soulbinds.Add(newSoulbind);
-            }
-
-            // Set the covenant
-            if (simcProfile.Covenant != null)
-            {
-                cp.Covenant = simcProfile.Covenant.ToLower() switch
-                {
-                    "kyrian" => Covenant.Kyrian,
-                    "night fae" => Covenant.NightFae,
-                    "necrolord" => Covenant.Necrolord,
-                    "venthyr" => Covenant.Venthyr,
-                    _ => Covenant.None,
-                };
             }
 
             // Set renown
-            cp.Renown = simcProfile.Renown;
+            if(simcProfile.Renown != 0)
+                cp.Renown = simcProfile.Renown;
 
             profile.Covenant = cp;
         }
 
         internal void ApplyItems(PlayerProfile profile, IList<SimcItem> items)
         {
+            if (items.Count == 0)
+                return;
+
             profile.Items = new List<Item>();
 
             foreach (var item in items)
@@ -252,6 +297,9 @@ namespace Salvation.Core.Profile
 
         private void ApplyTalents(PlayerProfile profile, IReadOnlyList<int> talents)
         {
+            if (talents.Count == 0)
+                return;
+
             profile.Talents = new List<Talent>();
 
             for(var i = 0; i < talents.Count; i++)

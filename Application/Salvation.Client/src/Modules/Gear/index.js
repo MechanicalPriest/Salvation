@@ -8,6 +8,7 @@ const GearImport = () => {
 
   const dispatch = useDispatch();
 
+  const newProfile = useSelector(state => state.profileReducer.profile);
   const rawGearString = useSelector(state => state.gearReducer.gearString);
 
   function updateGearString(value) {
@@ -15,7 +16,10 @@ const GearImport = () => {
   }
 
   function applyGearString() {
-    dispatch({ type: FETCH_APPLY_GEAR_LOADING, payload: rawGearString });
+    dispatch({
+      type: FETCH_APPLY_GEAR_LOADING, payload:
+        { simcProfileString: rawGearString, profile: newProfile }
+    });
   }
 
   return (

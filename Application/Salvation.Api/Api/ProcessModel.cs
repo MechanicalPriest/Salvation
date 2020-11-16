@@ -48,7 +48,7 @@ namespace Salvation.Api.Api
             }
             catch (Exception ex)
             {
-                log.LogError("Unable to process request body, wrong format?", ex);
+                log.LogError(ex, "Unable to process request body, wrong format?");
                 return new BadRequestResult();
             }
 

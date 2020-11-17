@@ -339,6 +339,7 @@ namespace Salvation.Core.Profile
 
                     // ## Legendary overrides
                     new PlaystyleEntry("EchoOfEonarCountAllyBuffs", 1, (uint)Spell.EchoOfEonar),
+                    new PlaystyleEntry("CauterizingShadowsSwpExpiryPercent", 0.9, (uint)Spell.EchoOfEonar),
 
                     // ## Conduit overrides
                     // How often Charitable Soul is cast on an alt. 0.9 = 90% of the time

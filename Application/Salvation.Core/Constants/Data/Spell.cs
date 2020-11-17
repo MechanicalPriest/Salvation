@@ -83,6 +83,7 @@
         EchoOfEonarDamageBuffSelf = 338489,
         EchoOfEonarHealingBuffOther = 347663, // TODO: This needs to be whitelisted in simc.
         CauterizingShadows = 336370,
+        CauterizingShadowsHeal = 336373,
 
         // Conduits
         CharitableSoul = 337715,

@@ -122,5 +122,7 @@
         CombatMeditationExtension = 328913,
         LetGoOfThePast = 328257,
         LetGoOfThePastBuff = 328900,
+        PointedCourage = 329778,
+        PointedCourageBuff = 330511,
     }
 }

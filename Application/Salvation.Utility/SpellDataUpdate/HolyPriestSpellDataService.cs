@@ -106,6 +106,8 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.CombatMeditationExtension,
                 (uint)Spell.LetGoOfThePast,
                 (uint)Spell.LetGoOfThePastBuff,
+                (uint)Spell.PointedCourage,
+                (uint)Spell.PointedCourageBuff,
             };
         }
 

@@ -70,6 +70,7 @@ namespace Salvation.Core
             // - Kyrian Traits
             services.AddSingleton<ISpellService<ILetGoOfThePastSpellService>, LetGoOfThePast>();
             services.AddSingleton<ISpellService<ICombatMeditationSpellSerivce>, CombatMeditation>();
+            services.AddSingleton<ISpellService<IPointedCourageSpellService>, PointedCourage>();
 
             return services;
         }

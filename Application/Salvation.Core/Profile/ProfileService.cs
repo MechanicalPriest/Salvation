@@ -355,6 +355,8 @@ namespace Salvation.Core.Profile
                     new PlaystyleEntry("LetGoOfThePastAverageStacks", 2.5, (uint)Spell.LetGoOfThePast),
                     // Average uptime as a percentage. 1 = 100%
                     new PlaystyleEntry("LetGoOfThePastAverageUptime", 0.9, (uint)Spell.LetGoOfThePast),
+                    // Average number of nearby allies
+                    new PlaystyleEntry("PointedCourageAverageNearbyAllies", 4.5, (uint)Spell.PointedCourage),
 
                 },
                 Items = new List<Item>()

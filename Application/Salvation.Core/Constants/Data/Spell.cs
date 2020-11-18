@@ -14,6 +14,10 @@
         /// 871791 - SW:P periodic damage bonus
         /// </summary>
         HolyPriest = 137031,
+        /// <summary>
+        /// Priest aura, misc stuff
+        /// </summary>
+        Priest = 137030,
 
         // Base healing spells
         Heal = 2060,
@@ -122,7 +126,32 @@
         CombatMeditationExtension = 328913,
         LetGoOfThePast = 328257,
         LetGoOfThePastBuff = 328900,
+        // Kyrian - Kleia
         PointedCourage = 329778,
         PointedCourageBuff = 330511,
+        ValiantStrikes = 329791,
+        ValiantStrikesBuff = 330943,
+        // Necro - Marileth
+        VolatileSolvent = 323074,
+        /// <summary>
+        /// Mastery buff
+        /// </summary>
+        VolatileSolventHumanoid = 323491,
+        /// <summary>
+        /// Int buff
+        /// </summary>
+        VolatileSolventBeast = 323498,
+        /// <summary>
+        /// Crit buff
+        /// </summary>
+        VolatileSolventDragonkin = 323502,
+        /// <summary>
+        /// Magic damage
+        /// </summary>
+        VolatileSolventElemental = 323504,
+        /// <summary>
+        /// Magic damage taken reduced
+        /// </summary>
+        VolatileSolventMechanical = 323507,
     }
 }

@@ -411,6 +411,7 @@ namespace Salvation.Core.State
             double intellect = 0;
 
             // Get base intellect based on class
+            // From sc_extra_data.inc
             intellect += state.Profile.Class switch
             {
                 Class.Priest => 450,
@@ -484,6 +485,90 @@ namespace Salvation.Core.State
             }
 
             return intellect;
+        }
+
+        public double GetStamina(GameState state)
+        {
+            var stamina = 0d;
+
+            // Apply class base stam
+            // From sc_extra_data.inc
+            stamina += state.Profile.Class switch
+            {
+                Class.Priest => 414,
+                _ => throw new NotImplementedException("This class is not yet implemented."),
+            };
+
+            // Apply race modifiers
+            switch (state.Profile.Race)
+            {
+                case Race.Orc:
+                case Race.Dwarf:
+                case Race.Undead:
+                case Race.DarkIronDwarf:
+                case Race.MagharOrc:
+                case Race.LightforgedDraenei:
+                    stamina += 1;
+                    break;
+
+                case Race.Draenei:
+                case Race.Pandaren:
+                case Race.PandarenAlliance:
+                case Race.PandarenHorde:
+                case Race.KulTiran:
+                case Race.Tauren:
+                case Race.HighmountainTauren:
+                    stamina += 2;
+                    break;
+
+                case Race.Gnome:
+                case Race.Goblin:
+                case Race.Vulpera:
+                case Race.Mechagnome:
+                    stamina -= 1;
+                    break;
+
+                case Race.NoRace:
+                case Race.NightElf:
+                case Race.Troll:
+                case Race.BloodElf:
+                case Race.Worgen:
+                case Race.Nightborne:
+                case Race.VoidElf:
+                case Race.ZandalariTroll:
+                case Race.Human:
+
+                case Race.Vrykul:
+                case Race.Tuskarr:
+                case Race.ForestTroll:
+                case Race.Tanuka:
+                case Race.Skeleton:
+                case Race.IceTroll:
+                case Race.Gilnean:
+                default:
+                    break;
+            }
+
+            foreach (var item in _profileService.GetEquippedItems(state.Profile))
+            {
+                foreach (var mod in item.Mods)
+                {
+                    if (mod.Type == ItemModType.ITEM_MOD_STAMINA)
+                    {
+                        stamina += mod.StatRating;
+                    }
+                }
+            }
+
+            return stamina;
+        }
+
+        public double GetHitpoints(GameState state)
+        {
+            // Health is stamina * 20 - from sc_scale_data_inc
+            var hitpointsPerStaminaPoint = 20;
+
+            return GetStamina(state) * hitpointsPerStaminaPoint;
         }
 
         public double GetGlobalHealingMultiplier(GameState state)

@@ -19,6 +19,8 @@ namespace Salvation.Core.Modelling.Common.Traits
 
         public override double GetAverageCriticalStrikePercent(GameState gameState, BaseSpellData spellData)
         {
+            spellData = ValidateSpellData(gameState, spellData);
+
             // 1% crit for nearby allies up to 8%
             var critBuffSpell = _gameStateService.GetSpellData(gameState, Spell.PointedCourageBuff);
 

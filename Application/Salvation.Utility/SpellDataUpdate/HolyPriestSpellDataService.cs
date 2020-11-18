@@ -19,6 +19,7 @@ namespace Salvation.Utility.SpellDataUpdate
             _spells = new List<uint>()
             {
                 (uint)Spell.HolyPriest,
+                (uint)Spell.Priest,
 
                 // Talents
                 (uint)Spell.Enlightenment,
@@ -101,6 +102,7 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.UnboundChangelingHasteProc,
 
                 // Trait
+                // Kyrian
                 (uint)Spell.CombatMeditation,
                 (uint)Spell.CombatMeditationBuff,
                 (uint)Spell.CombatMeditationExtension,
@@ -108,6 +110,15 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.LetGoOfThePastBuff,
                 (uint)Spell.PointedCourage,
                 (uint)Spell.PointedCourageBuff,
+                (uint)Spell.ValiantStrikes,
+                (uint)Spell.ValiantStrikesBuff,
+                // Necrolord
+                (uint)Spell.VolatileSolvent,
+                (uint)Spell.VolatileSolventHumanoid,
+                (uint)Spell.VolatileSolventBeast,
+                (uint)Spell.VolatileSolventDragonkin,
+                (uint)Spell.VolatileSolventElemental,
+                //(uint)Spell.VolatileSolventMechanical, // TOOD: Not coming through on spelldata
             };
         }
 

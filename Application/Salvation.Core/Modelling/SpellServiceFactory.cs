@@ -3,6 +3,7 @@ using Salvation.Core.Interfaces.Modelling;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Modelling.Common.Consumables;
 using Salvation.Core.Modelling.Common.Items;
+using Salvation.Core.Modelling.Common.Traits;
 using Salvation.Core.Modelling.HolyPriest.Spells;
 using System;
 
@@ -64,6 +65,12 @@ namespace Salvation.Core.Modelling
                 Spell.SpiritualManaPotion => typeof(ISpiritualManaPotionSpellService),
                 // Items
                 Spell.UnboundChangeling => typeof(IUnboundChangelingSpellService),
+                // Traits
+                Spell.CombatMeditation => typeof(ICombatMeditationSpellSerivce),
+                Spell.LetGoOfThePast => typeof(ILetGoOfThePastSpellService),
+                Spell.PointedCourage => typeof(IPointedCourageSpellService),
+                Spell.VolatileSolvent => typeof(IVolatileSolventSpellService),
+                Spell.ValiantStrikes => typeof(IValiantStrikesSpellService),
                 _ => null
             };
 

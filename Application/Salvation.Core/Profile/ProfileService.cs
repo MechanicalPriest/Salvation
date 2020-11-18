@@ -357,6 +357,8 @@ namespace Salvation.Core.Profile
                     new PlaystyleEntry("LetGoOfThePastAverageUptime", 0.9, (uint)Spell.LetGoOfThePast),
                     // Average number of nearby allies
                     new PlaystyleEntry("PointedCourageAverageNearbyAllies", 4.5, (uint)Spell.PointedCourage),
+                    // For now use roughly 2 spell events every second.
+                    new PlaystyleEntry("ValiantStrikesEventsPerMinute", 2, (uint)Spell.ValiantStrikes),
 
                 },
                 Items = new List<Item>()

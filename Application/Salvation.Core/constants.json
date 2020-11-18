@@ -122,6 +122,76 @@
           "ConduitRanks": {}
         },
         {
+          "Id": 137030,
+          "Name": "Priest",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "ScaleValues": {},
+          "Effects": [
+            {
+              "Id": 179714,
+              "BaseValue": 100.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6
+            },
+            {
+              "Id": 191080,
+              "BaseValue": 100.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6
+            },
+            {
+              "Id": 191081,
+              "BaseValue": -36.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6
+            },
+            {
+              "Id": 777113,
+              "BaseValue": 100.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6
+            },
+            {
+              "Id": 868949,
+              "BaseValue": 100.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
           "Id": 193155,
           "Name": "Enlightenment",
           "ManaCost": 0.0,
@@ -3434,6 +3504,268 @@
               "Coefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 1000.0,
+              "TriggerSpell": null,
+              "Type": 6
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 329791,
+          "Name": "Valiant Strikes",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "ScaleValues": {},
+          "Effects": [
+            {
+              "Id": 823175,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6
+            },
+            {
+              "Id": 875121,
+              "BaseValue": 50.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6
+            },
+            {
+              "Id": 875122,
+              "BaseValue": 1.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 330943,
+          "Name": "Valiant Strikes",
+          "ManaCost": 0.0,
+          "MaxRange": 8.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": -1.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 40.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "ScaleValues": {},
+          "Effects": [
+            {
+              "Id": 824856,
+              "BaseValue": 1.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 323074,
+          "Name": "Volatile Solvent",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "ScaleValues": {},
+          "Effects": [
+            {
+              "Id": 811765,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6
+            },
+            {
+              "Id": 833121,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 323491,
+          "Name": "Volatile Solvent: Humanoid",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 120000.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "ScaleValues": {
+            "60": 95.0
+          },
+          "Effects": [
+            {
+              "Id": 812461,
+              "BaseValue": 2.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 1.263158,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 323498,
+          "Name": "Volatile Solvent: Beast",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 120000.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "ScaleValues": {},
+          "Effects": [
+            {
+              "Id": 812469,
+              "BaseValue": 2.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6
+            },
+            {
+              "Id": 873552,
+              "BaseValue": 2.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6
+            },
+            {
+              "Id": 873553,
+              "BaseValue": 2.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 323502,
+          "Name": "Volatile Solvent: Dragonkin",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 120000.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "ScaleValues": {},
+          "Effects": [
+            {
+              "Id": 812473,
+              "BaseValue": 3.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 323504,
+          "Name": "Volatile Solvent: Elemental",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 120000.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "ScaleValues": {},
+          "Effects": [
+            {
+              "Id": 812475,
+              "BaseValue": 3.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
               "TriggerSpell": null,
               "Type": 6
             }

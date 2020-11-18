@@ -18,8 +18,6 @@ namespace Salvation.Core.Modelling.Common.Traits
 
         public override double GetAverageHealing(GameState gameState, BaseSpellData spellData)
         {
-            spellData = ValidateSpellData(gameState, spellData);
-
             // Max stacks
             var buffSpell = _gameStateService.GetSpellData(gameState, Spell.ValiantStrikesBuff);
 

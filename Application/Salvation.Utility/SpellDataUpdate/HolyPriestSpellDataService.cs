@@ -66,6 +66,7 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.UnholyNova,
                 (uint)Spell.UnholyTransfusion,
                 (uint)Spell.UnholyTransfusionDoT,
+                (uint)Spell.Fleshcraft,
 
                 // Legendaries
                 (uint)Spell.HarmoniousApparatus,
@@ -114,6 +115,7 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.ValiantStrikesBuff,
                 (uint)Spell.ResonantAccolades,
                 (uint)Spell.ResonantAccoladesBuff,
+                (uint)Spell.BronsCallToAction,
                 // Necrolord
                 (uint)Spell.VolatileSolvent,
                 (uint)Spell.VolatileSolventHumanoid,

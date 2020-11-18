@@ -75,6 +75,7 @@
         AscendedEruption = 325326,
         UnholyNova = 324724,
         UnholyTransfusion = 325118,
+        Fleshcraft = 324631,
         /// <summary>
         /// The enemy debuff applied that does damage
         /// </summary>
@@ -133,6 +134,8 @@
         ValiantStrikesBuff = 330943,
         ResonantAccolades = 329781,
         ResonantAccoladesBuff = 330859,
+        // Kyrian - Mikanikos
+        BronsCallToAction = 333950,
         // Necro - Marileth
         VolatileSolvent = 323074,
         /// <summary>

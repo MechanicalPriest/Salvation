@@ -18,7 +18,7 @@ namespace Salvation.Core.Modelling.Common.Traits
 
         public override double GetAverageHealingBonus(GameState gameState, BaseSpellData spellData)
         {
-            // TODO: Check if there is an ICD on the heal
+            // TODO: Convert this to an actual heal rather than a healing bonus - base it off the whole model.
             spellData = ValidateSpellData(gameState, spellData);
 
             var healingTriggers = _gameStateService.GetPlaystyle(gameState, "ResonantAccoladesHealingOver70Percent");

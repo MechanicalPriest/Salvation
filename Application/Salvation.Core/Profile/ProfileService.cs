@@ -294,12 +294,14 @@ namespace Salvation.Core.Profile
                     new CastProfile((int)Spell.AscendedEruption, 1.0d, 0.01d, 5, 1),
                     new CastProfile((int)Spell.UnholyNova, 1.0d, 0.01d, 6, 1),
                     new CastProfile((int)Spell.UnholyTransfusion, 1.0d, 0.01d, 1, 1),
+                    new CastProfile((int)Spell.Fleshcraft, 1.0d, 0.01d, 1, 0),
 
                     // Consumables (SpellId, Efficiency, Overheal, HealTargets, DamageTargets)
                     new CastProfile((int)Spell.SpiritualManaPotion, 0.9d, 0.00d, 0, 0),
                     
                     // Covenant Traits                    
-                    new CastProfile((int)Spell.ResonantAccolades, 0.0d, 0.6d, 0, 0),
+                    new CastProfile((int)Spell.ResonantAccolades, 0.0d, 0.5d, 0, 0),
+                    new CastProfile((int)Spell.BronsCallToAction, 0.0d, 0.1d, 0, 0),
                 },
                 Talents = new List<Talent>()
                 {
@@ -362,7 +364,12 @@ namespace Salvation.Core.Profile
                     new PlaystyleEntry("PointedCourageAverageNearbyAllies", 4.5, (uint)Spell.PointedCourage),
                     // For now use roughly 2 spell events every second.
                     new PlaystyleEntry("ValiantStrikesEventsPerMinute", 2, (uint)Spell.ValiantStrikes),
-
+                    // Bronns spellpower per cast. It's currently 1.15.
+                    new PlaystyleEntry("BronsCallToActionSpellpower", 1.15, (uint)Spell.BronsCallToAction),
+                    // The average amount of times Bronn procs per minute
+                    new PlaystyleEntry("BronsCallToActionSpellpower", 0.4, (uint)Spell.BronsCallToAction),
+                    // Amount of times bron casts healing spells during his duration
+                    new PlaystyleEntry("BronsCallToActionSpellpower", 5.25, (uint)Spell.BronsCallToAction),
                 },
                 Items = new List<Item>()
                 {

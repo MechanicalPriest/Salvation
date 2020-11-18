@@ -51,6 +51,7 @@ namespace Salvation.Core.Modelling
                 Spell.AscendedEruption => typeof(IAscendedEruptionSpellService),
                 Spell.UnholyNova => typeof(IUnholyNovaSpellService),
                 Spell.UnholyTransfusion => typeof(IUnholyTransfusionSpellService),
+                Spell.Fleshcraft => typeof(IFleshCraftSpellService),
                 // Holy Priest Damage
                 Spell.Smite => typeof(ISmiteSpellService),
                 Spell.HolyWordChastise => typeof(IHolyWordChastiseSpellService),
@@ -66,6 +67,7 @@ namespace Salvation.Core.Modelling
                 // Items
                 Spell.UnboundChangeling => typeof(IUnboundChangelingSpellService),
                 // Traits
+                Spell.BronsCallToAction => typeof(IBronsCallToActionSpellService),
                 Spell.CombatMeditation => typeof(ICombatMeditationSpellSerivce),
                 Spell.LetGoOfThePast => typeof(ILetGoOfThePastSpellService),
                 Spell.PointedCourage => typeof(IPointedCourageSpellService),

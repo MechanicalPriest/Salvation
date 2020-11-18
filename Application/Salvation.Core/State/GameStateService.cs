@@ -667,6 +667,7 @@ namespace Salvation.Core.State
                     break;
                 case Covenant.Necrolord:
                     registeredSpells.Add(new RegisteredSpell(Spell.UnholyNova));
+                    registeredSpells.Add(new RegisteredSpell(Spell.Fleshcraft));
                     break;
                 case Covenant.None:
                 default:

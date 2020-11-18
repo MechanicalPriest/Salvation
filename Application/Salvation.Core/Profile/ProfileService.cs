@@ -337,6 +337,8 @@ namespace Salvation.Core.Profile
                     // The number of times you move the Benevolent Faerie around
                     new PlaystyleEntry("FaeFermataNumberCDRSwaps", 3, (uint)Spell.FaeFermata),
                     new PlaystyleEntry("FaeGuardianFaerieDTPS", 4000, (uint)Spell.GuardianFaerie),
+                    // Extra shield you get. It can be anywhere from 2.5x at the moment. default to 1 (no mod)
+                    new PlaystyleEntry("FleshCraftShieldMultiplier", 1, (uint)Spell.Fleshcraft),
 
                     // ## Damage & Healing overrides
                     new PlaystyleEntry("ShadowWordDeathPercentExecute", 0.2, (uint)Spell.ShadowWordDeath),

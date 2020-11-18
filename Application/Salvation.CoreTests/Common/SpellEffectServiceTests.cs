@@ -17,7 +17,7 @@ namespace Salvation.CoreTests.Common
     [TestFixture]
     public class SpellEffectServiceTests : BaseTest
     {
-        private List<ISpellService> _spells { get; set; }
+        private List<ISpellService> _spells;
 
         private GameState _gameState;
 

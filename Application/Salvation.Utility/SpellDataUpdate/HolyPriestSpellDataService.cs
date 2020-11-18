@@ -122,6 +122,8 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.VolatileSolventBeast,
                 (uint)Spell.VolatileSolventDragonkin,
                 (uint)Spell.VolatileSolventElemental,
+                (uint)Spell.UltimateForm,
+                (uint)Spell.UltimateFormHeal,
                 //(uint)Spell.VolatileSolventMechanical, // TOOD: Not coming through on spelldata
             };
         }

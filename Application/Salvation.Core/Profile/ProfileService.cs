@@ -300,8 +300,10 @@ namespace Salvation.Core.Profile
                     new CastProfile((int)Spell.SpiritualManaPotion, 0.9d, 0.00d, 0, 0),
                     
                     // Covenant Traits                    
-                    new CastProfile((int)Spell.ResonantAccolades, 0.0d, 0.5d, 0, 0),
-                    new CastProfile((int)Spell.BronsCallToAction, 0.0d, 0.1d, 0, 0),
+                    new CastProfile((int)Spell.ResonantAccolades, 0.0d, 0.5d, 1, 0),
+                    new CastProfile((int)Spell.BronsCallToAction, 0.0d, 0.1d, 1, 0),
+                    new CastProfile((int)Spell.ValiantStrikes, 0.0d, 0.01d, 1, 0),
+                    new CastProfile((int)Spell.UltimateForm, 0.0d, 0.25d, 1, 0),
                 },
                 Talents = new List<Talent>()
                 {

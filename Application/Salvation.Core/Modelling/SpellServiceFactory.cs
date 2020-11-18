@@ -51,7 +51,7 @@ namespace Salvation.Core.Modelling
                 Spell.AscendedEruption => typeof(IAscendedEruptionSpellService),
                 Spell.UnholyNova => typeof(IUnholyNovaSpellService),
                 Spell.UnholyTransfusion => typeof(IUnholyTransfusionSpellService),
-                Spell.Fleshcraft => typeof(IFleshCraftSpellService),
+                Spell.Fleshcraft => typeof(IFleshcraftSpellService),
                 // Holy Priest Damage
                 Spell.Smite => typeof(ISmiteSpellService),
                 Spell.HolyWordChastise => typeof(IHolyWordChastiseSpellService),
@@ -74,6 +74,7 @@ namespace Salvation.Core.Modelling
                 Spell.ResonantAccolades => typeof(IResonantAccoladesSpellService),
                 Spell.ValiantStrikes => typeof(IValiantStrikesSpellService),
                 Spell.VolatileSolvent => typeof(IVolatileSolventSpellService),
+                Spell.UltimateForm => typeof(IUltimateFormSpellService),
                 _ => null
             };
 

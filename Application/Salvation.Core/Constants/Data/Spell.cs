@@ -138,6 +138,8 @@
         BronsCallToAction = 333950,
         // Necro - Marileth
         VolatileSolvent = 323074,
+        UltimateForm = 323095,
+        UltimateFormHeal = 323524,
         /// <summary>
         /// Mastery buff
         /// </summary>

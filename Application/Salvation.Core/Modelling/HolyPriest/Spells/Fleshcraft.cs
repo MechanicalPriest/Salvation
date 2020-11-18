@@ -7,8 +7,8 @@ using System;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
-    public interface IFleshCraftSpellService : ISpellService { }
-    public class Fleshcraft : SpellService, ISpellService<IFleshCraftSpellService>
+    public interface IFleshcraftSpellService : ISpellService { }
+    public class Fleshcraft : SpellService, ISpellService<IFleshcraftSpellService>
     {
         public Fleshcraft(IGameStateService gameStateService)
             : base(gameStateService)

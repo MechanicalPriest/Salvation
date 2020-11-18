@@ -16,7 +16,7 @@ namespace Salvation.Core.Modelling.Common.Traits
             Spell = Spell.ValiantStrikes;
         }
 
-        public override double GetAverageHealing(GameState gameState, BaseSpellData spellData)
+        public override double GetAverageRawHealing(GameState gameState, BaseSpellData spellData)
         {
             // Max stacks
             var buffSpell = _gameStateService.GetSpellData(gameState, Spell.ValiantStrikesBuff);

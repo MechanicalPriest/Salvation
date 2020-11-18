@@ -36,6 +36,21 @@ namespace Salvation.CoreTests.Common.Traits
         }
 
         [Test]
+        public void GetAverageRawHealing_Returns_Healing()
+        {
+            // Arrange
+            IGameStateService gameStateService = new GameStateService();
+            var gamestate = gameStateService.CloneGameState(_gameState);
+            gameStateService.OverridePlaystyle(gamestate, new Core.Profile.Model.PlaystyleEntry("ValiantStrikesEventsPerMinute", 120));
+
+            // Act
+            var value = _spell.GetAverageRawHealing(gamestate, null);
+
+            // Assert
+            Assert.AreEqual(189.60240000000019d, value);
+        }
+
+        [Test]
         public void GetAverageHealing_Returns_Healing()
         {
             // Arrange
@@ -47,7 +62,22 @@ namespace Salvation.CoreTests.Common.Traits
             var value = _spell.GetAverageHealing(gamestate, null);
 
             // Assert
-            Assert.AreEqual(189.60240000000019d, value);
+            Assert.AreEqual(187.70637600000018d, value);
+        }
+
+        [Test]
+        public void GetNumberOfHealingTargets()
+        {
+            // Arrange
+            IGameStateService gameStateService = new GameStateService();
+            var gamestate = gameStateService.CloneGameState(_gameState);
+            gameStateService.OverridePlaystyle(gamestate, new Core.Profile.Model.PlaystyleEntry("ValiantStrikesEventsPerMinute", 120));
+
+            // Act
+            var value = _spell.GetNumberOfHealingTargets(gamestate, null);
+
+            // Assert
+            Assert.AreEqual(1d, value);
         }
     }
 }

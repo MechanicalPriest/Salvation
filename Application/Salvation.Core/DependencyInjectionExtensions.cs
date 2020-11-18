@@ -76,6 +76,7 @@ namespace Salvation.Core
             services.AddSingleton<ISpellService<IBronsCallToActionSpellService>, BronsCallToAction>();
             // - Necrolord Traits
             services.AddSingleton<ISpellService<IVolatileSolventSpellService>, VolatileSolvent>();
+            services.AddSingleton<ISpellService<IUltimateFormSpellService>, UltimateForm>();
 
             return services;
         }
@@ -111,7 +112,7 @@ namespace Salvation.Core
             services.AddSingleton<ISpellService<IAscendedBlastSpellService>, AscendedBlast>();
             services.AddSingleton<ISpellService<IAscendedNovaSpellService>, AscendedNova>();
             services.AddSingleton<ISpellService<IAscendedEruptionSpellService>, AscendedEruption>();
-            services.AddSingleton<ISpellService<IFleshCraftSpellService>, Fleshcraft>();
+            services.AddSingleton<ISpellService<IFleshcraftSpellService>, Fleshcraft>();
 
             // DPS
             services.AddSingleton<ISpellService<ISmiteSpellService>, Smite>();

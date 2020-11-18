@@ -72,6 +72,7 @@ namespace Salvation.Core
             services.AddSingleton<ISpellService<ICombatMeditationSpellSerivce>, CombatMeditation>();
             services.AddSingleton<ISpellService<IPointedCourageSpellService>, PointedCourage>();
             services.AddSingleton<ISpellService<IValiantStrikesSpellService>, ValiantStrikes>();
+            services.AddSingleton<ISpellService<IResonantAccoladesSpellService>, ResonantAccolades>();
             // - Necrolord Traits
             services.AddSingleton<ISpellService<IVolatileSolventSpellService>, VolatileSolvent>();
 

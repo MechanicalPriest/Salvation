@@ -112,6 +112,8 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.PointedCourageBuff,
                 (uint)Spell.ValiantStrikes,
                 (uint)Spell.ValiantStrikesBuff,
+                (uint)Spell.ResonantAccolades,
+                (uint)Spell.ResonantAccoladesBuff,
                 // Necrolord
                 (uint)Spell.VolatileSolvent,
                 (uint)Spell.VolatileSolventHumanoid,

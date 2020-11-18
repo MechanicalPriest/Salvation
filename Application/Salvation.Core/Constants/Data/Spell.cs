@@ -131,6 +131,8 @@
         PointedCourageBuff = 330511,
         ValiantStrikes = 329791,
         ValiantStrikesBuff = 330943,
+        ResonantAccolades = 329781,
+        ResonantAccoladesBuff = 330859,
         // Necro - Marileth
         VolatileSolvent = 323074,
         /// <summary>

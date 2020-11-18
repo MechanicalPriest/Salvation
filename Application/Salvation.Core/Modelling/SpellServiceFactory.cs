@@ -69,8 +69,9 @@ namespace Salvation.Core.Modelling
                 Spell.CombatMeditation => typeof(ICombatMeditationSpellSerivce),
                 Spell.LetGoOfThePast => typeof(ILetGoOfThePastSpellService),
                 Spell.PointedCourage => typeof(IPointedCourageSpellService),
-                Spell.VolatileSolvent => typeof(IVolatileSolventSpellService),
+                Spell.ResonantAccolades => typeof(IResonantAccoladesSpellService),
                 Spell.ValiantStrikes => typeof(IValiantStrikesSpellService),
+                Spell.VolatileSolvent => typeof(IVolatileSolventSpellService),
                 _ => null
             };
 

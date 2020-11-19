@@ -355,6 +355,8 @@ namespace Salvation.Core.Profile
                     new PlaystyleEntry("CharitableSoulAllyCasts", 0.9, (uint)Spell.CharitableSoul),
                     // Amount of average damage taken per second over the course of a fight
                     new PlaystyleEntry("DamageTakenPerSecond", 1500, (uint)Spell.CharitableSoul),
+                    new PlaystyleEntry("ResonantWordsPercentageBuffsUsed", 95, (uint)Spell.ResonantWords),
+                    new PlaystyleEntry("ResonantWordsPercentageBuffsHeal", 75, (uint)Spell.ResonantWords),
 
                     // ## Soulbind trait overrides
                     // #### Kyrian

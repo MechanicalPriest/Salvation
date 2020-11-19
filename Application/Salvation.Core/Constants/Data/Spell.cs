@@ -98,6 +98,7 @@
         ShatteredPerceptions = 338315,
         HolyOration = 338345,
         FocusedMending = 337914,
+        ResonantWords = 337947,
 
         // DPS
         Smite = 585,

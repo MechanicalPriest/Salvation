@@ -83,6 +83,7 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.ShatteredPerceptions,
                 (uint)Spell.HolyOration,
                 (uint)Spell.FocusedMending,
+                (uint)Spell.ResonantWords,
                 
                 // DPS
                 (uint)Spell.Smite,

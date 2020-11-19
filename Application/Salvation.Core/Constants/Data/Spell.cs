@@ -100,6 +100,7 @@
         HolyOration = 338345,
         FocusedMending = 337914,
         ResonantWords = 337947,
+        LastingSpirit = 337811,
 
         // DPS
         Smite = 585,

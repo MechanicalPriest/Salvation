@@ -27,6 +27,8 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             // Get the healing bonus
             var healingBonus = (spellData.GetEffect(40042).BaseValue / 100);
 
+            healingBonus += GetLastingSpiritAdditionalHealing(gameState, spellData);
+
             return healingBonus * GetUptime(gameState, spellData);
         }
 
@@ -64,6 +66,37 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         public override double GetMaximumHealTargets(GameState gameState, BaseSpellData spellData)
         {
             return 1;
+        }
+
+        public override double GetDuration(GameState gameState, BaseSpellData spellData = null)
+        {
+            spellData = ValidateSpellData(gameState, spellData);
+
+            var duration = base.GetDuration(gameState, spellData);
+
+            if (_gameStateService.IsConduitActive(gameState, Conduit.LastingSpirit))
+            {
+                var conduitData = _gameStateService.GetSpellData(gameState, Spell.LastingSpirit);
+
+                duration += (conduitData.GetEffect(836029).BaseValue / 1000);
+            }
+
+            return duration;
+        }
+
+        internal double GetLastingSpiritAdditionalHealing(GameState gameState, BaseSpellData spellData)
+        {
+            var additionalHealing = 0d;
+
+            if (_gameStateService.IsConduitActive(gameState, Conduit.LastingSpirit))
+            {
+                var conduitData = _gameStateService.GetSpellData(gameState, Spell.LastingSpirit);
+                var rank = _gameStateService.GetConduitRank(gameState, Conduit.FocusedMending);
+
+                additionalHealing += (conduitData.ConduitRanks[rank] / 100);
+            }
+
+            return additionalHealing;
         }
     }
 }

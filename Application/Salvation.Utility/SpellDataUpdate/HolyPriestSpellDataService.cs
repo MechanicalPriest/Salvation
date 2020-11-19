@@ -75,6 +75,7 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.EchoOfEonarHealingBuffSelf,
                 (uint)Spell.CauterizingShadows,
                 (uint)Spell.CauterizingShadowsHeal,
+                (uint)Spell.FlashConcentration,
 
                 // Conduits
                 (uint)Spell.CharitableSoul,

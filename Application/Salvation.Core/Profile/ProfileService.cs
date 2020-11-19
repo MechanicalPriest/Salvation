@@ -317,21 +317,23 @@ namespace Salvation.Core.Profile
                 {
                     // #### Base Overrides ####
                     // Overrides the stat value to be set directly rather than from items/race/class
-                    new PlaystyleEntry("OverrideStatIntellect", 0, 0),
-                    new PlaystyleEntry("OverrideStatHaste", 0, 0),
-                    new PlaystyleEntry("OverrideStatCriticalStrike", 0, 0),
-                    new PlaystyleEntry("OverrideStatVersatility", 0, 0),
-                    new PlaystyleEntry("OverrideStatMastery", 0, 0),
+                    new PlaystyleEntry("OverrideStatIntellect", 0, (uint)Spell.HolyPriest),
+                    new PlaystyleEntry("OverrideStatHaste", 0, (uint)Spell.HolyPriest),
+                    new PlaystyleEntry("OverrideStatCriticalStrike", 0, (uint)Spell.HolyPriest),
+                    new PlaystyleEntry("OverrideStatVersatility", 0, (uint)Spell.HolyPriest),
+                    new PlaystyleEntry("OverrideStatMastery", 0, (uint)Spell.HolyPriest),
 
                     // Adds additional stats (for use with stat weights)
-                    new PlaystyleEntry("GrantAdditionalStatIntellect", 0, 0),
-                    new PlaystyleEntry("GrantAdditionalStatMastery", 0, 0),
-                    new PlaystyleEntry("GrantAdditionalStatHaste", 0, 0),
-                    new PlaystyleEntry("GrantAdditionalStatVersatility", 0, 0),
-                    new PlaystyleEntry("GrantAdditionalStatCriticalStrike", 0, 0),
+                    new PlaystyleEntry("GrantAdditionalStatIntellect", 0, (uint)Spell.HolyPriest),
+                    new PlaystyleEntry("GrantAdditionalStatMastery", 0, (uint)Spell.HolyPriest),
+                    new PlaystyleEntry("GrantAdditionalStatHaste", 0, (uint)Spell.HolyPriest),
+                    new PlaystyleEntry("GrantAdditionalStatVersatility", 0, (uint)Spell.HolyPriest),
+                    new PlaystyleEntry("GrantAdditionalStatCriticalStrike", 0, (uint)Spell.HolyPriest),
 
                     // Force the cloth armor bonus
-                    new PlaystyleEntry("ForceClothBonus", 0, 0),
+                    new PlaystyleEntry("ForceClothBonus", 0, (uint)Spell.HolyPriest),
+                    // Amount of average damage taken per second over the course of a fight
+                    new PlaystyleEntry("DamageTakenPerSecond", 1500, (uint)Spell.HolyPriest),
                     
                     // #### Holy Priest ####
                     // ## Covenants overrides
@@ -351,13 +353,12 @@ namespace Salvation.Core.Profile
 
                     // ## Legendary overrides
                     new PlaystyleEntry("EchoOfEonarCountAllyBuffs", 1, (uint)Spell.EchoOfEonar),
-                    new PlaystyleEntry("CauterizingShadowsSwpExpiryPercent", 0.9, (uint)Spell.EchoOfEonar),
+                    new PlaystyleEntry("CauterizingShadowsSwpExpiryPercent", 0.9, (uint)Spell.CauterizingShadows),
+                    new PlaystyleEntry("FlashConcentrationAverageStacks", 5, (uint)Spell.FlashConcentration),
 
                     // ## Conduit overrides
                     // How often Charitable Soul is cast on an alt. 0.9 = 90% of the time
                     new PlaystyleEntry("CharitableSoulAllyCasts", 0.9, (uint)Spell.CharitableSoul),
-                    // Amount of average damage taken per second over the course of a fight
-                    new PlaystyleEntry("DamageTakenPerSecond", 1500, (uint)Spell.CharitableSoul),
                     new PlaystyleEntry("ResonantWordsPercentageBuffsUsed", 95, (uint)Spell.ResonantWords),
                     new PlaystyleEntry("ResonantWordsPercentageBuffsHeal", 75, (uint)Spell.ResonantWords),
 

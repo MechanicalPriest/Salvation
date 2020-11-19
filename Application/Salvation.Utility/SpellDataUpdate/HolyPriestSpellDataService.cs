@@ -51,6 +51,7 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.PrayerOfMendingBuff,
                 (uint)Spell.PrayerOfMendingHeal,
                 (uint)Spell.EchoOfLight,
+                (uint)Spell.GuardianSpirit,
 
                 // Covenant
                 (uint)Spell.Mindgames,

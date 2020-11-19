@@ -56,6 +56,7 @@
         DivineStarDamage = 122128,
         HolyWordSalvation = 265202,
         EchoOfLight = 77485,
+        GuardianSpirit = 47788,
 
         // Talents
         Enlightenment = 193155,

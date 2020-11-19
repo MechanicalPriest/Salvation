@@ -1299,6 +1299,56 @@
           "ConduitRanks": {}
         },
         {
+          "Id": 47788,
+          "Name": "Guardian Spirit",
+          "ManaCost": 0.9,
+          "MaxRange": 40.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 180000.0,
+          "IsCooldownHasted": false,
+          "Duration": 10000.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "ScaleValues": {},
+          "Effects": [
+            {
+              "Id": 40042,
+              "BaseValue": 60.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6
+            },
+            {
+              "Id": 40043,
+              "BaseValue": 40.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 3
+            },
+            {
+              "Id": 188025,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
           "Id": 323673,
           "Name": "Mindgames",
           "ManaCost": 2.0,

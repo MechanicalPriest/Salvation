@@ -102,6 +102,7 @@ namespace Salvation.Core
             services.AddSingleton<ISpellService<IHaloSpellService>, Halo>();
             services.AddSingleton<ISpellService<IHolyNovaSpellService>, HolyNova>();
             services.AddSingleton<ISpellService<IPowerWordShieldSpellService>, PowerWordShield>();
+            services.AddSingleton<ISpellService<IGuardianSpiritSpellService>, GuardianSpirit>();
 
             // Covenants
             services.AddSingleton<ISpellService<IFaeGuardiansSpellService>, FaeGuardians>();

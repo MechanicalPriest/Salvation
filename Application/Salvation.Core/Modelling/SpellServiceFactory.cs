@@ -38,6 +38,7 @@ namespace Salvation.Core.Modelling
                 Spell.Halo => typeof(IHaloSpellService),
                 Spell.DivineStar => typeof(IDivineStarSpellService),
                 Spell.HolyWordSalvation => typeof(IHolyWordSalvationSpellService),
+                Spell.GuardianSpirit => typeof(IGuardianSpiritSpellService),
                 // Holy Priest Talent
                 //Spell.Enlightenment => typeof(IEnlightenmentSpellService),
                 //Spell.CosmicRipple => typeof(ICosmicRippleSpellService),

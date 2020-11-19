@@ -279,6 +279,9 @@ namespace Salvation.Core.Profile
                     new CastProfile((int)Spell.CosmicRipple, 0d, 0.2332d, 5, 0),
                     new CastProfile((int)Spell.PowerWordShield, 0.01d, 0.38d, 1, 0),
                     new CastProfile((int)Spell.EchoOfLight, 0d, 0.4224d, 1, 0),
+                    new CastProfile((int)Spell.GuardianSpirit, 0.4d, 0d, 1, 0),
+
+                    // DPS Spells
                     new CastProfile((int)Spell.Smite, 0.12d, 0, 0, 1),
                     new CastProfile((int)Spell.ShadowWordPain, 0.01d, 0, 0, 1),
                     new CastProfile((int)Spell.ShadowWordDeath, 0.01d, 0, 0, 1),

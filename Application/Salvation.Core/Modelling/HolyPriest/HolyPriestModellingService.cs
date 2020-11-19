@@ -100,6 +100,7 @@ namespace Salvation.Core.Modelling.HolyPriest
                 new RegisteredSpell(Spell.Smite),
 
                 // Utility Spells
+                new RegisteredSpell(Spell.GuardianSpirit),
             };
 
             return result;

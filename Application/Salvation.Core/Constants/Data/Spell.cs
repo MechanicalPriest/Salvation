@@ -149,6 +149,8 @@
         LeadByExample = 342156,
         LeadByExampleBuff = 342181,
         // Necro - Bonesmith Heirmir
+        ForgeborneReveries = 326514,
+        ForgeborneReveriesBuff = 348272,
         MarrowedGemstone = 326572,
         MarrowedGemstoneStacks = 327066,
         MarrowedGemstoneBuff = 327069,

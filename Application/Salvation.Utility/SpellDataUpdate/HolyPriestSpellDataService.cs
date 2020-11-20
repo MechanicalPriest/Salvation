@@ -134,6 +134,8 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.MarrowedGemstoneStacks,
                 (uint)Spell.MarrowedGemstoneBuff,
                 (uint)Spell.MarrowedGemstoneCooldown,
+                (uint)Spell.ForgeborneReveries,
+                (uint)Spell.ForgeborneReveriesBuff,
                 //(uint)Spell.VolatileSolventMechanical, // TOOD: Not coming through on spelldata
             };
         }

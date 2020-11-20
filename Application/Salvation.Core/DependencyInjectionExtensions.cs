@@ -79,6 +79,7 @@ namespace Salvation.Core
             services.AddSingleton<ISpellService<IUltimateFormSpellService>, UltimateForm>();
             services.AddSingleton<ISpellService<ILeadByExampleSpellService>, LeadByExample>();
             services.AddSingleton<ISpellService<IMarrowedGemstoneSpellService>, MarrowedGemstone>();
+            services.AddSingleton<ISpellService<IForgeborneReveriesSpellService>, ForgeborneReveries>();
 
             return services;
         }

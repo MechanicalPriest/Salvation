@@ -148,6 +148,11 @@
         // Necro - Emeni
         LeadByExample = 342156,
         LeadByExampleBuff = 342181,
+        // Necro - Bonesmith Heirmir
+        MarrowedGemstone = 326572,
+        MarrowedGemstoneStacks = 327066,
+        MarrowedGemstoneBuff = 327069,
+        MarrowedGemstoneCooldown = 327073,
         /// <summary>
         /// Mastery buff
         /// </summary>

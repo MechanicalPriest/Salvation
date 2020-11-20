@@ -154,7 +154,7 @@ namespace Salvation.Core.State
             return critRating;
         }
 
-        public double GetCriticalStrikeMultiplier(GameState state)
+        public double GetCriticalStrikeMultiplier(GameState state, Spell requestingSpell = Spell.None)
         {
             var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.Spec).FirstOrDefault();
             double criticalEffectMultiplier = specData.CritMultiplier - 1; // 2 by default higher based on items but lowered to 1 for calc below
@@ -174,7 +174,8 @@ namespace Salvation.Core.State
             var addedCriticalStrikePercent = 0d;
             foreach (var spell in state.RegisteredSpells.Where(s => s.SpellService != null))
             {
-                addedCriticalStrikePercent += spell.SpellService.GetAverageCriticalStrikePercent(state, spell.SpellData);
+                if(spell.Spell != requestingSpell)
+                    addedCriticalStrikePercent += spell.SpellService.GetAverageCriticalStrikePercent(state, spell.SpellData);
             }
 
             // 1 is to turn it into a multiplier (making it 1.15 for 15% for example) and is added to the overall result
@@ -230,14 +231,15 @@ namespace Salvation.Core.State
             return hasteRating;
         }
 
-        public double GetHasteMultiplier(GameState state)
+        public double GetHasteMultiplier(GameState state, Spell requestingSpell = Spell.None)
         {
             var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.Spec).FirstOrDefault();
 
             var addedHastePercent = 0d;
             foreach (var spell in state.RegisteredSpells.Where(s => s.SpellService != null))
             {
-                addedHastePercent += spell.SpellService.GetAverageHastePercent(state, spell.SpellData);
+                if (spell.Spell != requestingSpell)
+                    addedHastePercent += spell.SpellService.GetAverageHastePercent(state, spell.SpellData);
             }
 
             return 1 + specData.HasteBase + (GetDrRating(GetHasteRating(state), specData.HasteCost) / specData.HasteCost / 100) 
@@ -262,7 +264,7 @@ namespace Salvation.Core.State
             return versatilityRating;
         }
 
-        internal double GetBaseVersatilityMultiplier(GameState state)
+        internal double GetBaseVersatilityMultiplier(GameState state, Spell requestingSpell = Spell.None)
         {
             var playStyleValue = GetPlaystyle(state, "OverrideStatVersatility").Value;
             if (playStyleValue != 0)
@@ -294,7 +296,8 @@ namespace Salvation.Core.State
             var addedVersatilityPercent = 0d;
             foreach (var spell in state.RegisteredSpells.Where(s => s.SpellService != null))
             {
-                addedVersatilityPercent += spell.SpellService.GetAverageVersatilityPercent(state, spell.SpellData);
+                if (spell.Spell != requestingSpell)
+                    addedVersatilityPercent += spell.SpellService.GetAverageVersatilityPercent(state, spell.SpellData);
             }
 
             return 1 + specData.VersBase + (GetDrRating(GetVersatilityRating(state), specData.VersCost) / specData.VersCost / 100) 
@@ -344,14 +347,15 @@ namespace Salvation.Core.State
             return masteryRating;
         }
 
-        public double GetMasteryMultiplier(GameState state)
+        public double GetMasteryMultiplier(GameState state, Spell requestingSpell = Spell.None)
         {
             var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.Spec).FirstOrDefault();
 
             var addedMasteryPercent = 0d;
             foreach (var spell in state.RegisteredSpells.Where(s => s.SpellService != null))
             {
-                addedMasteryPercent += spell.SpellService.GetAverageMasteryPercent(state, spell.SpellData);
+                if (spell.Spell != requestingSpell)
+                    addedMasteryPercent += spell.SpellService.GetAverageMasteryPercent(state, spell.SpellData);
             }
 
             return 1 + specData.MasteryBase + (GetDrRating(GetMasteryRating(state), specData.MasteryCost) / specData.MasteryCost / 100)

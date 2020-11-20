@@ -390,6 +390,8 @@ namespace Salvation.Core.Profile
                     new PlaystyleEntry("LeadByExampleIncludeAllyBuffs", 1, (uint)Spell.LeadByExample),
                     // Number of nearby allies when proccing it
                     new PlaystyleEntry("LeadByExampleNearbyAllies", 4, (uint)Spell.LeadByExample),
+                    // The rough number of crit-able events per minute
+                    new PlaystyleEntry("MarrowedGemstoneEventsPerMinute", 200, (uint)Spell.MarrowedGemstone),
                 },
                 Items = new List<Item>()
                 {

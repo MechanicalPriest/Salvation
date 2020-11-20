@@ -78,6 +78,7 @@ namespace Salvation.Core
             services.AddSingleton<ISpellService<IVolatileSolventSpellService>, VolatileSolvent>();
             services.AddSingleton<ISpellService<IUltimateFormSpellService>, UltimateForm>();
             services.AddSingleton<ISpellService<ILeadByExampleSpellService>, LeadByExample>();
+            services.AddSingleton<ISpellService<IMarrowedGemstoneSpellService>, MarrowedGemstone>();
 
             return services;
         }

@@ -130,6 +130,10 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.UltimateFormHeal,
                 (uint)Spell.LeadByExample,
                 (uint)Spell.LeadByExampleBuff,
+                (uint)Spell.MarrowedGemstone,
+                (uint)Spell.MarrowedGemstoneStacks,
+                (uint)Spell.MarrowedGemstoneBuff,
+                (uint)Spell.MarrowedGemstoneCooldown,
                 //(uint)Spell.VolatileSolventMechanical, // TOOD: Not coming through on spelldata
             };
         }

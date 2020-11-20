@@ -178,5 +178,9 @@
         // NF - Niya
         GroveInvigoration = 322721,
         GroveInvigorationAnimaBuff = 342814,
+        // NF - Dreamweaver
+        FieldOfBlossoms = 319191,
+        FieldOfBlossomsEffect = 342761,
+        FieldOfBlossomsBuff = 342774,
     }
 }

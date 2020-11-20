@@ -140,6 +140,9 @@ namespace Salvation.Utility.SpellDataUpdate
                 // Night Fae
                 (uint)Spell.GroveInvigoration,
                 (uint)Spell.GroveInvigorationAnimaBuff,
+                (uint)Spell.FieldOfBlossoms,
+                (uint)Spell.FieldOfBlossomsEffect,
+                (uint)Spell.FieldOfBlossomsBuff,
             };
         }
 

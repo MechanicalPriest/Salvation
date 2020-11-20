@@ -77,6 +77,7 @@ namespace Salvation.Core
             // - Necrolord Traits
             services.AddSingleton<ISpellService<IVolatileSolventSpellService>, VolatileSolvent>();
             services.AddSingleton<ISpellService<IUltimateFormSpellService>, UltimateForm>();
+            services.AddSingleton<ISpellService<ILeadByExampleSpellService>, LeadByExample>();
 
             return services;
         }

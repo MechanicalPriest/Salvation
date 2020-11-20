@@ -32,23 +32,7 @@ namespace Salvation.CoreTests.Common.Traits
                 () => _spell.GetAverageVersatilityPercent(_gameState, null));
 
             // Assert
-            Assert.Throws<ArgumentOutOfRangeException>(methodCall);
-        }
-
-        [Test]
-        public void GetAverageVersatilityPercent_Adds_Average_VersPercent()
-        {
-            // Arrange
-            IGameStateService gameStateService = new GameStateService();
-            var gamestate = gameStateService.CloneGameState(_gameState);
-            gameStateService.OverridePlaystyle(gamestate, new Core.Profile.Model.PlaystyleEntry("LetGoOfThePastAverageStacks", 2.5));
-            gameStateService.OverridePlaystyle(gamestate, new Core.Profile.Model.PlaystyleEntry("LetGoOfThePastAverageUptime", 0.9));
-
-            // Act
-            var value = _spell.GetAverageVersatilityPercent(gamestate, null);
-
-            // Assert
-            Assert.AreEqual(0.0225d, value);
+            Assert.DoesNotThrow(methodCall);
         }
 
         [Test]

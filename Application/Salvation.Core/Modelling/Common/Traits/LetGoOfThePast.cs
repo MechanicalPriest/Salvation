@@ -21,21 +21,10 @@ namespace Salvation.Core.Modelling.Common.Traits
         {
             spellData = ValidateSpellData(gameState, spellData);
 
-            // 1% vers for each new spell cast during the buff up to 4 stacks
-            var versBuffSpell = _gameStateService.GetSpellData(gameState, Spell.LetGoOfThePastBuff);
-
-            // Mastery amount: 328908 effect 1
-            var versAmount = versBuffSpell.GetEffect(821709).BaseValue;
-
-            // Average stacks while the buff is up
-            var averageStacks = _gameStateService.GetPlaystyle(gameState, "LetGoOfThePastAverageStacks");
-
-            if (averageStacks == null)
-                throw new ArgumentOutOfRangeException("LetGoOfThePastAverageStacks", $"LetGoOfThePastAverageStacks needs to be set.");
-
-            // Amount * Stacks * Uptime / Convert_To_Seconds / Convert_To_Percent
-            return versAmount * Math.Min(averageStacks.Value, versBuffSpell.MaxStacks)
-                * GetUptime(gameState, spellData) / 60 / 100;
+            // This was changed:
+            // Using a spell or ability reduces your magic damage taken by 1% for 6 sec. Using another spell or ability 
+            // increases this amount by 1% when it is not a repeat of the previous spell or ability, stacking to 3%.
+            return 0;
         }
 
         public override double GetDuration(GameState gameState, BaseSpellData spellData = null)

@@ -70,6 +70,7 @@ namespace Salvation.Core.Modelling
                 // Traits
                 Spell.BronsCallToAction => typeof(IBronsCallToActionSpellService),
                 Spell.CombatMeditation => typeof(ICombatMeditationSpellSerivce),
+                Spell.LeadByExample => typeof(ILeadByExampleSpellService),
                 Spell.LetGoOfThePast => typeof(ILetGoOfThePastSpellService),
                 Spell.PointedCourage => typeof(IPointedCourageSpellService),
                 Spell.ResonantAccolades => typeof(IResonantAccoladesSpellService),

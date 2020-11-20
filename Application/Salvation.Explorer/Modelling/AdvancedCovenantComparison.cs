@@ -82,6 +82,7 @@ namespace Salvation.Explorer.Modelling
             _gameStateService.SetProfileName(baseKyrianState, "kyrian_base");
 
             states.Add(baseKyrianState);
+            states.Add(SetSingleConduit(baseKyrianState, "kyrian_courageous_ascension", Conduit.CourageousAscension, 7));
             states.AddRange(GetKyrianPelagosStates(baseKyrianState));
 
             return states;
@@ -91,6 +92,8 @@ namespace Salvation.Explorer.Modelling
         {
             var states = new List<GameState>();
 
+
+
             return states;
         }
 
@@ -99,19 +102,27 @@ namespace Salvation.Explorer.Modelling
             var states = new List<GameState>();
 
             // --------------------- Soulbinds ---------------------
-            states.Add(AddSoulbind(baseState, "base_brons_call_to_action", SoulbindTrait.BronsCalltoAction));
-            states.Add(AddSoulbind(baseState, "base_combat_meditation", SoulbindTrait.CombatMeditation));
-            states.Add(AddSoulbind(baseState, "base_let_go_of_the_past", SoulbindTrait.LetGoofthePast));
-            states.Add(AddSoulbind(baseState, "base_pointed_courage", SoulbindTrait.PointedCourage));
-            states.Add(AddSoulbind(baseState, "base_resonant_accolades", SoulbindTrait.ResonantAccolades));
-            states.Add(AddSoulbind(baseState, "base_ultimate_form", SoulbindTrait.UltimateForm));
-            states.Add(AddSoulbind(baseState, "base_valiant_strikes", SoulbindTrait.ValiantStrikes));
-            states.Add(AddSoulbind(baseState, "base_volatile_solvent", SoulbindTrait.VolatileSolvent));
+            states.Add(SetSingleSoulbindTrait(baseState, "base_sb_brons_call_to_action", SoulbindTrait.BronsCalltoAction));
+            states.Add(SetSingleSoulbindTrait(baseState, "base_sb_combat_meditation", SoulbindTrait.CombatMeditation));
+            states.Add(SetSingleSoulbindTrait(baseState, "base_sb_let_go_of_the_past", SoulbindTrait.LetGoofthePast));
+            states.Add(SetSingleSoulbindTrait(baseState, "base_sb_pointed_courage", SoulbindTrait.PointedCourage));
+            states.Add(SetSingleSoulbindTrait(baseState, "base_sb_resonant_accolades", SoulbindTrait.ResonantAccolades));
+            states.Add(SetSingleSoulbindTrait(baseState, "base_sb_ultimate_form", SoulbindTrait.UltimateForm));
+            states.Add(SetSingleSoulbindTrait(baseState, "base_sb_valiant_strikes", SoulbindTrait.ValiantStrikes));
+            states.Add(SetSingleSoulbindTrait(baseState, "base_sb_volatile_solvent", SoulbindTrait.VolatileSolvent));
+            states.Add(SetSingleSoulbindTrait(baseState, "base_sb_lead_by_example", SoulbindTrait.LeadByExample));
+
+            // --------------------- Conduits ---------------------
+            states.Add(SetSingleConduit(baseState, "base_cn_charitable_soul", Conduit.CharitableSoul, 7));
+            states.Add(SetSingleConduit(baseState, "base_cn_focused_mending", Conduit.FocusedMending, 7));
+            states.Add(SetSingleConduit(baseState, "base_cn_holy_oration", Conduit.HolyOration, 7));
+            states.Add(SetSingleConduit(baseState, "base_cn_resonant_words", Conduit.ResonantWords, 7));
+            states.Add(SetSingleConduit(baseState, "base_cn_lasting_spirit", Conduit.LastingSpirit, 7));
 
             return states;
         }
 
-        private GameState AddSoulbind(GameState baseState, string profileName, SoulbindTrait trait)
+        private GameState SetSingleSoulbindTrait(GameState baseState, string profileName, SoulbindTrait trait)
         {
             var newState = _gameStateService.CloneGameState(baseState);
 
@@ -127,6 +138,30 @@ namespace Salvation.Explorer.Modelling
                     ActiveTraits = new List<SoulbindTrait>()
                     {
                         trait
+                    }
+                });
+
+            _gameStateService.SetProfileName(newState, profileName);
+
+            return newState;
+        }
+
+        private GameState SetSingleConduit(GameState baseState, string profileName, Conduit conduit, uint rank)
+        {
+            var newState = _gameStateService.CloneGameState(baseState);
+
+            var covenant = newState.Profile.Covenant;
+
+            if (covenant == null)
+                covenant = new CovenantProfile();
+
+            covenant.Soulbinds.Add(
+                new SoulbindProfile()
+                {
+                    IsActive = true,
+                    ActiveConduits = new Dictionary<Conduit, uint>()
+                    {
+                        { conduit, rank }
                     }
                 });
 

@@ -359,8 +359,8 @@ namespace Salvation.Core.Profile
                     // ## Conduit overrides
                     // How often Charitable Soul is cast on an alt. 0.9 = 90% of the time
                     new PlaystyleEntry("CharitableSoulAllyCasts", 0.9, (uint)Spell.CharitableSoul),
-                    new PlaystyleEntry("ResonantWordsPercentageBuffsUsed", 95, (uint)Spell.ResonantWords),
-                    new PlaystyleEntry("ResonantWordsPercentageBuffsHeal", 75, (uint)Spell.ResonantWords),
+                    new PlaystyleEntry("ResonantWordsPercentageBuffsUsed", 0.85, (uint)Spell.ResonantWords),
+                    new PlaystyleEntry("ResonantWordsPercentageBuffsHeal", 0.75, (uint)Spell.ResonantWords),
 
                     // ## Soulbind trait overrides
                     // #### Kyrian
@@ -384,6 +384,12 @@ namespace Salvation.Core.Profile
                     new PlaystyleEntry("BronsCallToActionProcsPerMinute", 0.4, (uint)Spell.BronsCallToAction),
                     // Amount of times bron casts healing spells during his duration
                     new PlaystyleEntry("BronsCallToActionCastsPerProc", 5.25, (uint)Spell.BronsCallToAction),
+
+                    // #### Necro
+                    // Whether to include allies or not. 1 = yes.
+                    new PlaystyleEntry("LeadByExampleIncludeAllyBuffs", 1, (uint)Spell.LeadByExample),
+                    // Number of nearby allies when proccing it
+                    new PlaystyleEntry("LeadByExampleNearbyAllies", 4, (uint)Spell.LeadByExample),
                 },
                 Items = new List<Item>()
                 {

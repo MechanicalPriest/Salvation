@@ -145,6 +145,9 @@
         VolatileSolvent = 323074,
         UltimateForm = 323095,
         UltimateFormHeal = 323524,
+        // Necro - Emeni
+        LeadByExample = 342156,
+        LeadByExampleBuff = 342181,
         /// <summary>
         /// Mastery buff
         /// </summary>

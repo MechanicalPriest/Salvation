@@ -128,6 +128,8 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.VolatileSolventElemental,
                 (uint)Spell.UltimateForm,
                 (uint)Spell.UltimateFormHeal,
+                (uint)Spell.LeadByExample,
+                (uint)Spell.LeadByExampleBuff,
                 //(uint)Spell.VolatileSolventMechanical, // TOOD: Not coming through on spelldata
             };
         }

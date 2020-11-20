@@ -263,6 +263,11 @@ namespace Salvation.Core.Modelling
             return 0;
         }
 
+        public virtual double GetAverageIntellectBonus(GameState gameState, BaseSpellData spellData)
+        {
+            return 0;
+        }
+
         public virtual double GetAverageCriticalStrike(GameState gameState, BaseSpellData spellData)
         {
             return 0;

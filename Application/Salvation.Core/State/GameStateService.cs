@@ -397,7 +397,21 @@ namespace Salvation.Core.State
             if (clothCount == 8)
                 intellect *= 1.05d;
 
+            intellect *= GetIntellectMultiplier(state);
+
             return intellect;
+        }
+
+        internal double GetIntellectMultiplier(GameState state)
+        {
+            var intMulti = 1d;
+
+            foreach (var spell in state.RegisteredSpells.Where(s => s.SpellService != null))
+            {
+                intMulti += spell.SpellService.GetAverageIntellectBonus(state, spell.SpellData);
+            }
+
+            return intMulti;
         }
 
         public double GetBaseIntellect(GameState state)

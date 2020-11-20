@@ -42,12 +42,13 @@ namespace Salvation.CoreTests.Common.Traits
             IGameStateService gameStateService = new GameStateService();
             var gamestate = gameStateService.CloneGameState(_gameState);
             gameStateService.OverridePlaystyle(gamestate, new Core.Profile.Model.PlaystyleEntry("ValiantStrikesEventsPerMinute", 120));
+            gameStateService.OverridePlaystyle(gamestate, new Core.Profile.Model.PlaystyleEntry("ValiantStrikesProcsPerMinute", 1));
 
             // Act
             var value = _spell.GetAverageRawHealing(gamestate, null);
 
             // Assert
-            Assert.AreEqual(189.60240000000019d, value);
+            Assert.AreEqual(3792.0480000000034d, value);
         }
 
         [Test]
@@ -57,12 +58,13 @@ namespace Salvation.CoreTests.Common.Traits
             IGameStateService gameStateService = new GameStateService();
             var gamestate = gameStateService.CloneGameState(_gameState);
             gameStateService.OverridePlaystyle(gamestate, new Core.Profile.Model.PlaystyleEntry("ValiantStrikesEventsPerMinute", 120));
-            
+            gameStateService.OverridePlaystyle(gamestate, new Core.Profile.Model.PlaystyleEntry("ValiantStrikesProcsPerMinute", 1));
+
             // Act
             var value = _spell.GetAverageHealing(gamestate, null);
 
             // Assert
-            Assert.AreEqual(187.70637600000018d, value);
+            Assert.AreEqual(3754.1275200000032d, value);
         }
 
         [Test]
@@ -72,9 +74,26 @@ namespace Salvation.CoreTests.Common.Traits
             IGameStateService gameStateService = new GameStateService();
             var gamestate = gameStateService.CloneGameState(_gameState);
             gameStateService.OverridePlaystyle(gamestate, new Core.Profile.Model.PlaystyleEntry("ValiantStrikesEventsPerMinute", 120));
+            gameStateService.OverridePlaystyle(gamestate, new Core.Profile.Model.PlaystyleEntry("ValiantStrikesProcsPerMinute", 1));
 
             // Act
             var value = _spell.GetNumberOfHealingTargets(gamestate, null);
+
+            // Assert
+            Assert.AreEqual(1d, value);
+        }
+
+        [Test]
+        public void GetActualCastsPerMinute()
+        {
+            // Arrange
+            IGameStateService gameStateService = new GameStateService();
+            var gamestate = gameStateService.CloneGameState(_gameState);
+            gameStateService.OverridePlaystyle(gamestate, new Core.Profile.Model.PlaystyleEntry("ValiantStrikesEventsPerMinute", 120));
+            gameStateService.OverridePlaystyle(gamestate, new Core.Profile.Model.PlaystyleEntry("ValiantStrikesProcsPerMinute", 1));
+
+            // Act
+            var value = _spell.GetActualCastsPerMinute(gamestate, null);
 
             // Assert
             Assert.AreEqual(1d, value);

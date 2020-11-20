@@ -27,7 +27,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             AveragedSpellCastResult result = base.GetCastResults(gameState, spellData);
 
             // Apply the transufion DoT/HoT
-            var unholyTransfusionSpellData = _gameStateService.GetSpellData(gameState, Spell.UnholyTransfusion);
+            var unholyTransfusionSpellData = _gameStateService.GetSpellData(gameState, Spell.UnholyTransfusionDoT);
 
             var uhtResults = _unholyTransfuionSpellService.GetCastResults(gameState, unholyTransfusionSpellData);
 

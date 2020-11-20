@@ -20,7 +20,8 @@ namespace Salvation.Explorer.Modelling
     {
         public Task GenerateStatWeights();
         public Task TestHolyPriestModelAsync();
-        public void CompareCovenants();
+        public Task CompareCovenants();
+        public Task CompareCovenantsAdvanced();
     }
 
     class HolyPriestExplorer : IHolyPriestExplorer
@@ -31,13 +32,15 @@ namespace Salvation.Explorer.Modelling
         private readonly IStatWeightGenerationService _statWeightGenerationService;
         private readonly IGameStateService _gameStateService;
         private readonly ISimcProfileService _simcProfileService;
+        private readonly IComparisonModeller<AdvancedCovenantComparisonResult> _comparisonModellerCovenantAdv;
 
         public HolyPriestExplorer(IModellingService modellingService,
             IProfileService profileService,
             IComparisonModeller<CovenantComparisonsResult> comparisonModellerCovenant,
             IStatWeightGenerationService statWeightGenerationService,
             IGameStateService gameStateService,
-            ISimcProfileService simcProfileService)
+            ISimcProfileService simcProfileService,
+            IComparisonModeller<AdvancedCovenantComparisonResult> comparisonModellerCovenantAdv)
         {
             _modellingService = modellingService;
             _profileService = profileService;
@@ -45,6 +48,7 @@ namespace Salvation.Explorer.Modelling
             _statWeightGenerationService = statWeightGenerationService;
             _gameStateService = gameStateService;
             _simcProfileService = simcProfileService;
+            _comparisonModellerCovenantAdv = comparisonModellerCovenantAdv;
         }
 
         public async Task GenerateStatWeights()
@@ -79,15 +83,15 @@ namespace Salvation.Explorer.Modelling
             Console.WriteLine(JsonConvert.SerializeObject(results, Formatting.Indented));
         }
 
-        public void CompareCovenants()
+        public async Task CompareCovenants()
         {
-            var results = _comparisonModellerCovenant.RunComparison().Results;
+            var results = await _comparisonModellerCovenant.RunComparison(null);
 
             StringBuilder sb = new StringBuilder();
 
-            var baselineResults = results.Where(a => a.Key == "Baseline").FirstOrDefault().Value;
+            var baselineResults = results.Results.Where(a => a.Key == "Baseline").FirstOrDefault().Value;
 
-            foreach (var result in results)
+            foreach (var result in results.Results)
             {
                 sb.AppendLine($"{result.Key}, {result.Value.TotalRawHPS - baselineResults.TotalRawHPS:0.##}");
             }
@@ -115,6 +119,38 @@ namespace Salvation.Explorer.Modelling
             var results = _modellingService.GetResults(state);
             File.WriteAllText("hpriest_model_results.json",
                 JsonConvert.SerializeObject(results, Formatting.Indented));
+        }
+
+        public async Task CompareCovenantsAdvanced()
+        {
+            // Get default profile
+            var profile = _profileService.GetDefaultProfile(Spec.HolyPriest);
+
+            // Apply a simc profile to it
+            var profileData = File.ReadAllText(Path.Combine("Profile", "HolyPriest", "mythic_base.simc"));
+            profile = await _simcProfileService.ApplySimcProfileAsync(profileData, profile);
+
+            // Create the gamestate
+            GameState state = _gameStateService.CreateValidatedGameState(profile);
+
+            var results = await _comparisonModellerCovenantAdv.RunComparison(state);
+
+            StringBuilder sb = new StringBuilder();
+
+            var baselineResults = results.Results.Where(a => a.Key == state.Profile.Name).FirstOrDefault().Value;
+
+            sb.AppendLine($"profile_name, raw_hps_diff, actual_hps_diff, raw_hps, actual_hps");
+
+            foreach (var result in results.Results)
+            {
+                sb.AppendLine($"{result.Key}, " +
+                    $"{result.Value.TotalRawHPS - baselineResults.TotalRawHPS:0.##}, " +
+                    $"{result.Value.TotalActualHPS - baselineResults.TotalActualHPS:0.##}, " +
+                    $"{result.Value.TotalRawHPS:0.##}, " +
+                    $"{result.Value.TotalActualHPS:0.##}, ");
+            }
+
+            File.WriteAllText("covenant_results_adv.csv", sb.ToString());
         }
     }
 }

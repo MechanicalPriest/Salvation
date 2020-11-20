@@ -50,7 +50,7 @@ namespace Salvation.Core.Modelling.Common.Traits
 
         public override double GetActualCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
         {
-            return _fleshcraftSpellService.GetActualCastsPerMinute(gameState, spellData);
+            return _fleshcraftSpellService.GetActualCastsPerMinute(gameState, null);
         }
     }
 }

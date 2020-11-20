@@ -91,6 +91,7 @@
         CauterizingShadows = 336370,
         CauterizingShadowsHeal = 336373,
         FlashConcentration = 336266,
+        DivineImage = 336400,
 
         // Conduits
         CharitableSoul = 337715,

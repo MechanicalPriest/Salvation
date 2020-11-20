@@ -262,28 +262,28 @@ namespace Salvation.Core.Profile
                 Casts = new List<CastProfile>()
                 {
                     // Base Spells (SpellId, Efficiency, Overheal, HealTargets, DamageTargets)
-                    new CastProfile((int)Spell.FlashHeal, 0.0603d, 0.1084d, 1, 0),
-                    new CastProfile((int)Spell.Heal, 0.0664d, 0.3054d, 1, 0),
+                    new CastProfile((int)Spell.FlashHeal, 0.1103d, 0.1084d, 1, 0),
+                    new CastProfile((int)Spell.Heal, 0.1564d, 0.3054d, 1, 0),
                     new CastProfile((int)Spell.Renew, 0.0364d, 0.3643d, 1, 0),
                     new CastProfile((int)Spell.PrayerOfMending, 0.9056d, 0.0219d, 1, 0),
                     new CastProfile((int)Spell.PrayerOfHealing, 0.2931d, 0.2715d, 5, 0),
                     new CastProfile((int)Spell.HolyNova, 0.0034d, 0.15d, 20, 1),
                     new CastProfile((int)Spell.HolyWordSerenity, 0.677d, 0.1515d, 1, 0),
                     new CastProfile((int)Spell.HolyWordSanctify, 0.7822d, 0.3234d, 6, 0),
-                    new CastProfile((int)Spell.DivineHymn, 0.8805d, 0.314d, 20, 0),
+                    new CastProfile((int)Spell.DivineHymn, 0.8005d, 0.314d, 20, 0),
                     new CastProfile((int)Spell.BindingHeal, 0.12d, 0.34d, 3, 0),
                     new CastProfile((int)Spell.CircleOfHealing, 0.8653d, 0.1417d, 5, 0),
                     new CastProfile((int)Spell.DivineStar, 0.81d, 0.44d, 6, 1),
                     new CastProfile((int)Spell.Halo, 0.7596d, 0.3658d, 6, 1),
-                    new CastProfile((int)Spell.HolyWordSalvation, 0.874d, 0.3142d, 20, 0),
+                    new CastProfile((int)Spell.HolyWordSalvation, 0.804d, 0.3142d, 20, 0),
                     new CastProfile((int)Spell.CosmicRipple, 0d, 0.2332d, 5, 0),
                     new CastProfile((int)Spell.PowerWordShield, 0.01d, 0.38d, 1, 0),
                     new CastProfile((int)Spell.EchoOfLight, 0d, 0.4224d, 1, 0),
-                    new CastProfile((int)Spell.GuardianSpirit, 0.4d, 0d, 1, 0),
+                    new CastProfile((int)Spell.GuardianSpirit, 0.36d, 0d, 1, 0),
 
                     // DPS Spells
                     new CastProfile((int)Spell.Smite, 0.12d, 0, 0, 1),
-                    new CastProfile((int)Spell.ShadowWordPain, 0.01d, 0, 0, 1),
+                    new CastProfile((int)Spell.ShadowWordPain, 0.04d, 0, 0, 1),
                     new CastProfile((int)Spell.ShadowWordDeath, 0.01d, 0, 0, 1),
                     new CastProfile((int)Spell.HolyWordChastise, 0.01d, 0, 0, 1),
                     new CastProfile((int)Spell.HolyFire, 0.01d, 0, 0, 1),
@@ -372,14 +372,18 @@ namespace Salvation.Core.Profile
                     new PlaystyleEntry("LetGoOfThePastAverageUptime", 0.9, (uint)Spell.LetGoOfThePast),
                     // Average number of nearby allies
                     new PlaystyleEntry("PointedCourageAverageNearbyAllies", 4.5, (uint)Spell.PointedCourage),
-                    // For now use roughly 2 spell events every second.
-                    new PlaystyleEntry("ValiantStrikesEventsPerMinute", 2, (uint)Spell.ValiantStrikes),
+                    // The rough number of crittable events per minute
+                    new PlaystyleEntry("ValiantStrikesEventsPerMinute", 120, (uint)Spell.ValiantStrikes),
+                    // Number of times Valiant Strikes procs per minute
+                    new PlaystyleEntry("ValiantStrikesProcsPerMinute", 1, (uint)Spell.ValiantStrikes),
+                    // Percentage of healing events over 70% for resonant accolades
+                    new PlaystyleEntry("ResonantAccoladesHealingOver70Percent", 0.7, (uint)Spell.ResonantAccolades),
                     // Bronns spellpower per cast. It's currently 1.15.
                     new PlaystyleEntry("BronsCallToActionSpellpower", 1.15, (uint)Spell.BronsCallToAction),
                     // The average amount of times Bronn procs per minute
-                    new PlaystyleEntry("BronsCallToActionSpellpower", 0.4, (uint)Spell.BronsCallToAction),
+                    new PlaystyleEntry("BronsCallToActionProcsPerMinute", 0.4, (uint)Spell.BronsCallToAction),
                     // Amount of times bron casts healing spells during his duration
-                    new PlaystyleEntry("BronsCallToActionSpellpower", 5.25, (uint)Spell.BronsCallToAction),
+                    new PlaystyleEntry("BronsCallToActionCastsPerProc", 5.25, (uint)Spell.BronsCallToAction),
                 },
                 Items = new List<Item>()
                 {

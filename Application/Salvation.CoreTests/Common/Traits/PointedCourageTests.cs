@@ -36,7 +36,7 @@ namespace Salvation.CoreTests.Common.Traits
         }
 
         [Test]
-        public void GetAverageCriticalStrikePercent_Adds_Average_VersPercent()
+        public void GetAverageCriticalStrikePercent_Adds_Average_CritPercent()
         {
             // Arrange
             IGameStateService gameStateService = new GameStateService();
@@ -47,7 +47,7 @@ namespace Salvation.CoreTests.Common.Traits
             var value = _spell.GetAverageCriticalStrikePercent(gamestate, null);
 
             // Assert
-            Assert.AreEqual(5.0d, value);
+            Assert.AreEqual(0.050000000000000003d, value);
         }
     }
 }

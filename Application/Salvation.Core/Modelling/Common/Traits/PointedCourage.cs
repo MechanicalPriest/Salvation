@@ -32,7 +32,7 @@ namespace Salvation.Core.Modelling.Common.Traits
                 throw new ArgumentOutOfRangeException("PointedCourageAverageNearbyAllies", $"PointedCourageAverageNearbyAllies needs to be set.");
 
             // Amount * Stacks * Uptime / Convert_To_Seconds / Convert_To_Percent
-            return critAmount * Math.Min(averageStacks.Value, critBuffSpell.MaxStacks);
+            return critAmount * Math.Min(averageStacks.Value, critBuffSpell.MaxStacks) / 100;
         }
     }
 }

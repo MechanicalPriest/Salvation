@@ -1,5 +1,5 @@
 {
-  "GameVersion": "9.0.2.36639",
+  "GameVersion": "9.0.2.36671",
   "Specs": [
     {
       "Class": "Priest",
@@ -3787,45 +3787,6 @@
               "Amplitude": 3000.0,
               "TriggerSpell": null,
               "Type": 6
-            },
-            {
-              "Id": 872035,
-              "BaseValue": 0.0,
-              "SpCoefficient": 0.0,
-              "Coefficient": 0.0,
-              "TriggerSpellid": 345861,
-              "Amplitude": 0.0,
-              "TriggerSpell": {
-                "Id": 345861,
-                "Name": "Combat Meditation",
-                "ManaCost": 0.0,
-                "MaxRange": 0.0,
-                "BaseCastTime": 0.0,
-                "BaseCooldown": 0.0,
-                "IsCooldownHasted": false,
-                "Duration": 60000.0,
-                "Gcd": 0.0,
-                "ChargeCooldown": 0,
-                "Charges": 0,
-                "MaxStacks": 0.0,
-                "Rppm": 0.0,
-                "RppmIsHasted": false,
-                "ScaleValues": {},
-                "Effects": [
-                  {
-                    "Id": 872034,
-                    "BaseValue": 5.0,
-                    "SpCoefficient": 0.0,
-                    "Coefficient": 0.0,
-                    "TriggerSpellid": 0,
-                    "Amplitude": 0.0,
-                    "TriggerSpell": null,
-                    "Type": 6
-                  }
-                ],
-                "ConduitRanks": {}
-              },
-              "Type": 64
             }
           ],
           "ConduitRanks": {}
@@ -3982,7 +3943,7 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "MaxStacks": 8.0,
+          "MaxStacks": 5.0,
           "Rppm": 0.0,
           "RppmIsHasted": false,
           "ScaleValues": {},
@@ -4064,7 +4025,7 @@
           "Id": 330943,
           "Name": "Valiant Strikes",
           "ManaCost": 0.0,
-          "MaxRange": 8.0,
+          "MaxRange": 0.0,
           "BaseCastTime": 0.0,
           "BaseCooldown": 0.0,
           "IsCooldownHasted": false,
@@ -4072,7 +4033,7 @@
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "MaxStacks": 40.0,
+          "MaxStacks": 20.0,
           "Rppm": 0.0,
           "RppmIsHasted": false,
           "ScaleValues": {},

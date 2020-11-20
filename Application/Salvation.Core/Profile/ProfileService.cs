@@ -296,7 +296,7 @@ namespace Salvation.Core.Profile
                     new CastProfile((int)Spell.AscendedBlast, 1.0d, 0.01d, 1, 1),
                     new CastProfile((int)Spell.AscendedEruption, 1.0d, 0.01d, 5, 1),
                     new CastProfile((int)Spell.UnholyNova, 1.0d, 0.01d, 6, 1),
-                    new CastProfile((int)Spell.UnholyTransfusion, 1.0d, 0.01d, 1, 1),
+                    new CastProfile((int)Spell.UnholyTransfusionDoT, 1.0d, 0.01d, 20, 1),
                     new CastProfile((int)Spell.Fleshcraft, 1.0d, 0.01d, 1, 0),
 
                     // Consumables (SpellId, Efficiency, Overheal, HealTargets, DamageTargets)

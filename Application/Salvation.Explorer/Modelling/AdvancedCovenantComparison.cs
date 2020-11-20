@@ -54,6 +54,9 @@ namespace Salvation.Explorer.Modelling
             states.Add(baseState);
             states.AddRange(GetSingleComparisons(baseState));
             states.AddRange(GetKyrianStates(baseState));
+            states.AddRange(GetNecrolordStates(baseState));
+            states.AddRange(GetNightFaeStates(baseState));
+            states.AddRange(GetVenthyrStates(baseState));
 
             // Run them
             foreach (var state in states)
@@ -93,6 +96,63 @@ namespace Salvation.Explorer.Modelling
             var states = new List<GameState>();
 
 
+
+            return states;
+        }
+
+        public List<GameState> GetNecrolordStates(GameState baseState)
+        {
+            var states = new List<GameState>();
+
+            var baseNecroState = _gameStateService.CloneGameState(baseState);
+
+            _gameStateService.SetCovenant(baseNecroState, new CovenantProfile()
+            {
+                Covenant = Covenant.Necrolord,
+            });
+            _gameStateService.SetProfileName(baseNecroState, "necro_base");
+
+            states.Add(baseNecroState);
+            states.Add(SetSingleConduit(baseNecroState, "necro_festering_transfusion", Conduit.FesteringTransfusion, 7));
+            states.AddRange(GetKyrianPelagosStates(baseNecroState));
+
+            return states;
+        }
+
+        public List<GameState> GetNightFaeStates(GameState baseState)
+        {
+            var states = new List<GameState>();
+
+            var baseNightFaeState = _gameStateService.CloneGameState(baseState);
+
+            _gameStateService.SetCovenant(baseNightFaeState, new CovenantProfile()
+            {
+                Covenant = Covenant.NightFae,
+            });
+            _gameStateService.SetProfileName(baseNightFaeState, "nf_base");
+
+            states.Add(baseNightFaeState);
+            states.Add(SetSingleConduit(baseNightFaeState, "nf_fae_fermata", Conduit.FaeFermata, 7));
+            states.AddRange(GetKyrianPelagosStates(baseNightFaeState));
+
+            return states;
+        }
+
+        public List<GameState> GetVenthyrStates(GameState baseState)
+        {
+            var states = new List<GameState>();
+
+            var baseVenthyrState = _gameStateService.CloneGameState(baseState);
+
+            _gameStateService.SetCovenant(baseVenthyrState, new CovenantProfile()
+            {
+                Covenant = Covenant.Venthyr,
+            });
+            _gameStateService.SetProfileName(baseVenthyrState, "venthyr_base");
+
+            states.Add(baseVenthyrState);
+            states.Add(SetSingleConduit(baseVenthyrState, "venthyr_shattered_perceptions", Conduit.ShatteredPerceptions, 7));
+            states.AddRange(GetKyrianPelagosStates(baseVenthyrState));
 
             return states;
         }

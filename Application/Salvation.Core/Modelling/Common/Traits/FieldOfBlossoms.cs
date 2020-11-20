@@ -48,9 +48,6 @@ namespace Salvation.Core.Modelling.Common.Traits
             return duration;
         }
 
-        /// <summary>
-        /// Uptime is a bit misleading for this spell as it only applies to the RPPM stacks, not the ones applied by the class ability
-        /// </summary>
         public override double GetUptime(GameState gameState, BaseSpellData spellData)
         {
             spellData = ValidateSpellData(gameState, spellData);

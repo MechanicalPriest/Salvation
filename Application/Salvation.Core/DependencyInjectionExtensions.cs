@@ -83,6 +83,7 @@ namespace Salvation.Core
             // - Night Fae Traits
             services.AddSingleton<ISpellService<IGroveInvigorationSpellService>, GroveInvigoration>();
             services.AddSingleton<ISpellService<IFieldOfBlossomsSpellService>, FieldOfBlossoms>();
+            services.AddSingleton<ISpellService<INiyasToolsHerbsSpellService>, NiyasToolsHerbs>();
 
             return services;
         }

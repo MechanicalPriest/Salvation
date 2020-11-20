@@ -76,6 +76,7 @@ namespace Salvation.Core.Modelling
                 Spell.LeadByExample => typeof(ILeadByExampleSpellService),
                 Spell.LetGoOfThePast => typeof(ILetGoOfThePastSpellService),
                 Spell.MarrowedGemstone => typeof(IMarrowedGemstoneSpellService),
+                Spell.NiyasToolsHerbs => typeof(INiyasToolsHerbsSpellService),
                 Spell.PointedCourage => typeof(IPointedCourageSpellService),
                 Spell.ResonantAccolades => typeof(IResonantAccoladesSpellService),
                 Spell.ValiantStrikes => typeof(IValiantStrikesSpellService),

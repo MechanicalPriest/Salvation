@@ -143,6 +143,8 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.FieldOfBlossoms,
                 (uint)Spell.FieldOfBlossomsEffect,
                 (uint)Spell.FieldOfBlossomsBuff,
+                (uint)Spell.NiyasToolsHerbs,
+                (uint)Spell.NiyasToolsHerbsBuff,
             };
         }
 

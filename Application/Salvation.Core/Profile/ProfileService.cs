@@ -392,6 +392,10 @@ namespace Salvation.Core.Profile
                     new PlaystyleEntry("LeadByExampleNearbyAllies", 4, (uint)Spell.LeadByExample),
                     // The rough number of crit-able events per minute
                     new PlaystyleEntry("MarrowedGemstoneEventsPerMinute", 200, (uint)Spell.MarrowedGemstone),
+
+                    // #### Night Fae 
+                    // Whether to include allies or not. 1 = yes.
+                    new PlaystyleEntry("NiyasToolsHerbsUptime", .775, (uint)Spell.NiyasToolsHerbs),
                 },
                 Items = new List<Item>()
                 {

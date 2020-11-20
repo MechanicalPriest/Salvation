@@ -264,7 +264,7 @@ namespace Salvation.Core.State
             return versatilityRating;
         }
 
-        internal double GetBaseVersatilityMultiplier(GameState state, Spell requestingSpell = Spell.None)
+        internal double GetBaseVersatilityMultiplier(GameState state)
         {
             var playStyleValue = GetPlaystyle(state, "OverrideStatVersatility").Value;
             if (playStyleValue != 0)
@@ -289,7 +289,7 @@ namespace Salvation.Core.State
             return versatilityRating;
         }
 
-        public double GetVersatilityMultiplier(GameState state)
+        public double GetVersatilityMultiplier(GameState state, Spell requestingSpell = Spell.None)
         {
             var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.Spec).FirstOrDefault();
 

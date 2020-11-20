@@ -164,6 +164,7 @@ namespace Salvation.Explorer.Modelling
             // --------------------- Soulbinds ---------------------
             states.Add(SetSingleSoulbindTrait(baseState, "base_sb_brons_call_to_action", SoulbindTrait.BronsCalltoAction));
             states.Add(SetSingleSoulbindTrait(baseState, "base_sb_combat_meditation", SoulbindTrait.CombatMeditation));
+            states.Add(SetSingleSoulbindTrait(baseState, "base_sb_grove_invigoration", SoulbindTrait.GroveInvigoration));
             states.Add(SetSingleSoulbindTrait(baseState, "base_sb_let_go_of_the_past", SoulbindTrait.LetGoofthePast));
             states.Add(SetSingleSoulbindTrait(baseState, "base_sb_marrowed_gemstone", SoulbindTrait.HeirmirsArsenalMarrowedGemstone));
             states.Add(SetSingleSoulbindTrait(baseState, "base_sb_pointed_courage", SoulbindTrait.PointedCourage));

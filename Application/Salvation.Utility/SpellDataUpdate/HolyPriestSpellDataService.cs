@@ -126,6 +126,7 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.VolatileSolventBeast,
                 (uint)Spell.VolatileSolventDragonkin,
                 (uint)Spell.VolatileSolventElemental,
+                //(uint)Spell.VolatileSolventMechanical, // TOOD: Not coming through on spelldata
                 (uint)Spell.UltimateForm,
                 (uint)Spell.UltimateFormHeal,
                 (uint)Spell.LeadByExample,
@@ -136,7 +137,9 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.MarrowedGemstoneCooldown,
                 (uint)Spell.ForgeborneReveries,
                 (uint)Spell.ForgeborneReveriesBuff,
-                //(uint)Spell.VolatileSolventMechanical, // TOOD: Not coming through on spelldata
+                // Night Fae
+                (uint)Spell.GroveInvigoration,
+                (uint)Spell.GroveInvigorationAnimaBuff,
             };
         }
 

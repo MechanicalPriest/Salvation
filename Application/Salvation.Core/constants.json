@@ -4932,6 +4932,127 @@
             }
           ],
           "ConduitRanks": {}
+        },
+        {
+          "Id": 322721,
+          "Name": "Grove Invigoration",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "Rppm": 2.0,
+          "RppmIsHasted": false,
+          "ScaleValues": {},
+          "Effects": [
+            {
+              "Id": 811164,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6
+            },
+            {
+              "Id": 844396,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 342937,
+              "Amplitude": 0.0,
+              "TriggerSpell": {
+                "Id": 342937,
+                "Name": "Grove Invigoration",
+                "ManaCost": 0.0,
+                "MaxRange": 0.0,
+                "BaseCastTime": 0.0,
+                "BaseCooldown": 0.0,
+                "IsCooldownHasted": false,
+                "Duration": -1.0,
+                "Gcd": 0.0,
+                "ChargeCooldown": 0,
+                "Charges": 0,
+                "MaxStacks": 0.0,
+                "Rppm": 0.0,
+                "RppmIsHasted": false,
+                "ScaleValues": {},
+                "Effects": [
+                  {
+                    "Id": 844392,
+                    "BaseValue": 0.0,
+                    "SpCoefficient": 0.0,
+                    "Coefficient": 0.0,
+                    "TriggerSpellid": 0,
+                    "Amplitude": 0.0,
+                    "TriggerSpell": null,
+                    "Type": 6
+                  }
+                ],
+                "ConduitRanks": {}
+              },
+              "Type": 6
+            },
+            {
+              "Id": 875153,
+              "BaseValue": 8.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 3
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 342814,
+          "Name": "Redirected Anima",
+          "ManaCost": 0.0,
+          "MaxRange": 100.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 30000.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 50.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "ScaleValues": {
+            "60": 95.0
+          },
+          "Effects": [
+            {
+              "Id": 844157,
+              "BaseValue": 1.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6
+            },
+            {
+              "Id": 844158,
+              "BaseValue": 2.9412,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.263158,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6
+            }
+          ],
+          "ConduitRanks": {}
         }
       ],
       "Conduits": [],

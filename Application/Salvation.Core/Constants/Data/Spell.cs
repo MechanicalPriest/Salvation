@@ -175,5 +175,8 @@
         /// Magic damage taken reduced
         /// </summary>
         VolatileSolventMechanical = 323507,
+        // NF - Niya
+        GroveInvigoration = 322721,
+        GroveInvigorationAnimaBuff = 342814,
     }
 }

@@ -84,6 +84,8 @@ namespace Salvation.Core
             services.AddSingleton<ISpellService<IGroveInvigorationSpellService>, GroveInvigoration>();
             services.AddSingleton<ISpellService<IFieldOfBlossomsSpellService>, FieldOfBlossoms>();
             services.AddSingleton<ISpellService<INiyasToolsHerbsSpellService>, NiyasToolsHerbs>();
+            // - Venthyr Traits
+            services.AddSingleton<ISpellService<IThrillSeekerSpellService>, ThrillSeeker>();
 
             return services;
         }

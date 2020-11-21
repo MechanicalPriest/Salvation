@@ -184,5 +184,9 @@
         FieldOfBlossoms = 319191,
         FieldOfBlossomsEffect = 342761,
         FieldOfBlossomsBuff = 342774,
+        // Venthyr - Nadjia
+        ThrillSeeker = 331586,
+        ThrillSeekerStacks = 331939,
+        ThrillSeekerBuff = 331937,
     }
 }

@@ -145,6 +145,10 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.FieldOfBlossomsBuff,
                 (uint)Spell.NiyasToolsHerbs,
                 (uint)Spell.NiyasToolsHerbsBuff,
+                // Venthyr
+                (uint)Spell.ThrillSeeker,
+                (uint)Spell.ThrillSeekerBuff,
+                (uint)Spell.ThrillSeekerStacks,
             };
         }
 

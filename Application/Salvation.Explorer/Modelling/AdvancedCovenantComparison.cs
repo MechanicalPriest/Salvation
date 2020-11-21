@@ -171,6 +171,7 @@ namespace Salvation.Explorer.Modelling
             states.Add(SetSingleSoulbindTrait(baseState, "base_sb_niyas_tools_herbs", SoulbindTrait.NiyasToolsHerbs));
             states.Add(SetSingleSoulbindTrait(baseState, "base_sb_pointed_courage", SoulbindTrait.PointedCourage));
             states.Add(SetSingleSoulbindTrait(baseState, "base_sb_resonant_accolades", SoulbindTrait.ResonantAccolades));
+            states.Add(SetSingleSoulbindTrait(baseState, "base_sb_soothing_shade", SoulbindTrait.SoothingShade));
             states.Add(SetSingleSoulbindTrait(baseState, "base_sb_thrill_seeker", SoulbindTrait.ThrillSeeker));
             states.Add(SetSingleSoulbindTrait(baseState, "base_sb_ultimate_form", SoulbindTrait.UltimateForm));
             states.Add(SetSingleSoulbindTrait(baseState, "base_sb_valiant_strikes", SoulbindTrait.ValiantStrikes));

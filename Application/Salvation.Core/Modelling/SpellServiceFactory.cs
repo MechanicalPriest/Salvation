@@ -79,6 +79,7 @@ namespace Salvation.Core.Modelling
                 Spell.NiyasToolsHerbs => typeof(INiyasToolsHerbsSpellService),
                 Spell.PointedCourage => typeof(IPointedCourageSpellService),
                 Spell.ResonantAccolades => typeof(IResonantAccoladesSpellService),
+                Spell.SoothingShade => typeof(ISoothingShadeSpellService),
                 Spell.ThrillSeeker => typeof(IThrillSeekerSpellService),
                 Spell.ValiantStrikes => typeof(IValiantStrikesSpellService),
                 Spell.VolatileSolvent => typeof(IVolatileSolventSpellService),

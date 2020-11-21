@@ -188,5 +188,9 @@
         ThrillSeeker = 331586,
         ThrillSeekerStacks = 331939,
         ThrillSeekerBuff = 331937,
+        // Venthyr - Theotar
+        SoothingShade = 336239,
+        SoothingShadeBuff = 336885,
+        SoothingShadeEffect = 336808,
     }
 }

@@ -149,6 +149,9 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.ThrillSeeker,
                 (uint)Spell.ThrillSeekerBuff,
                 (uint)Spell.ThrillSeekerStacks,
+                (uint)Spell.SoothingShade,
+                (uint)Spell.SoothingShadeBuff,
+                (uint)Spell.SoothingShadeEffect,
             };
         }
 

@@ -923,7 +923,6 @@ namespace Salvation.Core.State
             var sancCDRRenew = GetSpellData(state, Spell.HolyWordSanctify).GetEffect(709476).BaseValue;
             var bhCDR = GetSpellData(state, Spell.BindingHeal).GetEffect(325998).BaseValue;
             var salvCDRBase = GetSpellData(state, Spell.HolyWordSalvation).GetEffect(709211).BaseValue;
-            var haCDRBase = GetSpellData(state, Spell.HarmoniousApparatus).GetEffect(833714).BaseValue;
             var chastiseCDRBase = GetSpellData(state, Spell.HolyWordChastise).GetEffect(709477).BaseValue;
 
             var isLotnActive = IsTalentActive(state, Talent.LightOfTheNaaru);
@@ -937,6 +936,13 @@ namespace Salvation.Core.State
                 var holyOrationSpellData = GetSpellData(state, Spell.HolyOration);
 
                 holyOrationModifier = holyOrationSpellData.ConduitRanks[holyOrationRank] / 100;
+            }
+
+            var haCDRBase = 0d;
+
+            if (IsLegendaryActive(state, Spell.HarmoniousApparatus))
+            {
+                haCDRBase = GetSpellData(state, Spell.HarmoniousApparatus).GetEffect(833714).BaseValue;
             }
 
             var returnCDR = 0d;
@@ -998,11 +1004,11 @@ namespace Salvation.Core.State
                     returnCDR *= isLotnActive ? 1d + 1d / 3d : 1d; // LotN adds 33% more CDR.
                     returnCDR *= isApotheosisActive ? 4d : 1d; // Apotheosis adds 200% more CDR
                     // Apply this last as it's additive overall and not multiplicative with others
-                    returnCDR += isHolyOrationActive ? haCDRBase * holyOrationModifier : 0d;
+                    returnCDR += isHolyOrationActive ? chastiseCDRBase * holyOrationModifier : 0d;
                     break;
 
                 case Spell.HolyFire:
-                    returnCDR = chastiseCDRBase;
+                    returnCDR = haCDRBase;
                     returnCDR *= isLotnActive ? 1d + 1d / 3d : 1d; // LotN adds 33% more CDR.
                     returnCDR *= isApotheosisActive ? 4d : 1d; // Apotheosis adds 200% more CDR
                     // Apply this last as it's additive overall and not multiplicative with others

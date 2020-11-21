@@ -5361,6 +5361,127 @@
             }
           ],
           "ConduitRanks": {}
+        },
+        {
+          "Id": 336239,
+          "Name": "Soothing Shade",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "Rppm": 1.0,
+          "RppmIsHasted": false,
+          "ScaleValues": {},
+          "Effects": [
+            {
+              "Id": 833355,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 336808,
+              "Amplitude": 0.0,
+              "TriggerSpell": {
+                "Id": 336808,
+                "Name": "Soothing Shade",
+                "ManaCost": 0.0,
+                "MaxRange": 40.0,
+                "BaseCastTime": 0.0,
+                "BaseCooldown": 0.0,
+                "IsCooldownHasted": false,
+                "Duration": 12000.0,
+                "Gcd": 0.0,
+                "ChargeCooldown": 0,
+                "Charges": 0,
+                "MaxStacks": 0.0,
+                "Rppm": 0.0,
+                "RppmIsHasted": false,
+                "ScaleValues": {},
+                "Effects": [
+                  {
+                    "Id": 834447,
+                    "BaseValue": 0.0,
+                    "SpCoefficient": 0.0,
+                    "Coefficient": 0.0,
+                    "TriggerSpellid": 0,
+                    "Amplitude": 0.0,
+                    "TriggerSpell": null,
+                    "Type": 179
+                  }
+                ],
+                "ConduitRanks": {}
+              },
+              "Type": 6
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 336885,
+          "Name": "Soothing Shade",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 12000.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "ScaleValues": {
+            "60": 95.0
+          },
+          "Effects": [
+            {
+              "Id": 834570,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 5.526316,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 336808,
+          "Name": "Soothing Shade",
+          "ManaCost": 0.0,
+          "MaxRange": 40.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 12000.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "ScaleValues": {},
+          "Effects": [
+            {
+              "Id": 834447,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 179
+            }
+          ],
+          "ConduitRanks": {}
         }
       ],
       "Conduits": [],

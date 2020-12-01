@@ -90,6 +90,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             renewSpellData.Gcd = 0;
             renewSpellData.BaseCastTime = 0;
             renewSpellData.Overrides[Override.NumberOfHealingTargets] = GetNumberOfHealingTargets(gameState, spellData);
+            renewSpellData.Overrides[Override.CastsPerMinute] = GetActualCastsPerMinute(gameState, spellData); // Force the number of cpm
 
             // grab the result of the spell cast
             var renewResult = _renewSpellService.GetCastResults(gameState, renewSpellData);
@@ -104,6 +105,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             pomSpellData.BaseCooldown = 0;
             pomSpellData.Overrides[Override.NumberOfHealingTargets] = GetNumberOfHealingTargets(gameState, spellData);
             pomSpellData.Overrides[Override.ResultMultiplier] = 2; // Force the number of stacks
+            pomSpellData.Overrides[Override.CastsPerMinute] = GetActualCastsPerMinute(gameState, spellData); // Force the number of cpm
 
             // grab the result of the spell cast
             var pomResult = _prayerOfMendingSpellService.GetCastResults(gameState, pomSpellData);

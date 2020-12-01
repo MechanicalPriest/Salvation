@@ -341,6 +341,9 @@ namespace Salvation.Core.Modelling
             result.SpellName = "Echo of Light";
             result.RawHealing = averageMasteryHeal;
             result.Healing = averageMasteryHeal * (1 - castProfile.OverhealPercent);
+            result.Overhealing = averageMasteryHeal * castProfile.OverhealPercent;
+            result.CastsPerMinute = GetActualCastsPerMinute(gameState, spellData);
+            result.NumberOfHealingTargets = GetNumberOfHealingTargets(gameState, spellData);
 
             return result;
         }

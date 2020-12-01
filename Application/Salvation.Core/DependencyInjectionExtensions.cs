@@ -135,6 +135,8 @@ namespace Salvation.Core
             // Legendary Powers
             services.AddSingleton<ISpellService<IEchoOfEonarSpellSevice>, EchoOfEonar>();
             services.AddSingleton<ISpellService<ICauterizingShadowsSpellSevice>, CauterizingShadows>();
+            services.AddSingleton<ISpellService<IDivineImageSpellSevice>, DivineImage>();
+            services.AddSingleton<ISpellService<IDivineImageHealingLightSpellService>, DivineImageHealingLight>();
 
             return services;
         }

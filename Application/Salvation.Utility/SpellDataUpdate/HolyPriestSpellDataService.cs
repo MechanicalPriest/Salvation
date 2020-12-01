@@ -76,6 +76,13 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.CauterizingShadows,
                 (uint)Spell.CauterizingShadowsHeal,
                 (uint)Spell.FlashConcentration,
+                (uint)Spell.DivineImage,
+                (uint)Spell.DivineImageHealingLight,
+                (uint)Spell.DivineImageDazzlingLight,
+                (uint)Spell.DivineImageSearingLight,
+                (uint)Spell.DivineImageLightEruption,
+                (uint)Spell.DivineImageBlessedLight,
+                (uint)Spell.DivineImageTranquilLight,
 
                 // Conduits
                 (uint)Spell.CharitableSoul,
@@ -226,7 +233,9 @@ namespace Salvation.Utility.SpellDataUpdate
                 Duration = spell.Duration,
                 Gcd = spell.Gcd / 1000d,
                 ConduitRanks = spell.ConduitRanks,
-                Rppm = spell.Rppm
+                Rppm = spell.Rppm,
+                ProcChance = spell.ProcChance,
+                InternalCooldown = spell.InternalCooldown
             };
 
             // Add Scale budget (for player scaled spells)

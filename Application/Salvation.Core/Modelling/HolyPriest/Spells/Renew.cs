@@ -88,5 +88,15 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         {
             return 1;
         }
+
+        public override double GetActualCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
+        {
+            spellData = ValidateSpellData(gameState, spellData);
+
+            // Override used by Salvation to apply 2-stack PoMs
+            if (spellData.Overrides.ContainsKey(Override.CastsPerMinute))
+                return spellData.Overrides[Override.CastsPerMinute];
+            return base.GetActualCastsPerMinute(gameState, spellData);
+        }
     }
 }

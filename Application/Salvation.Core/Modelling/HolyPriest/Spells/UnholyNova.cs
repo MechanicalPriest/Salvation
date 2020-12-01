@@ -5,6 +5,7 @@ using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.Modelling.Common;
 using Salvation.Core.State;
+using System;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
@@ -53,6 +54,9 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {averageHeal:0.##}");
 
             averageHeal *= _gameStateService.GetCriticalStrikeMultiplier(gameState);
+
+            // Apply target reduction scaling
+            averageHeal *= 1 / Math.Sqrt(GetNumberOfDamageTargets(gameState, spellData));
 
             return averageHeal * GetNumberOfHealingTargets(gameState, spellData);
         }

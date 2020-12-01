@@ -62,6 +62,7 @@ namespace Salvation.Core.Modelling
                 // Holy Priest Legendary Power
                 Spell.EchoOfEonar => typeof(IEchoOfEonarSpellSevice),
                 Spell.CauterizingShadows => typeof(ICauterizingShadowsSpellSevice),
+                Spell.DivineImage => typeof(IDivineImageSpellSevice),
                 // Consumables
                 Spell.SpectralFlaskOfPower => typeof(ISpectralFlaskOfPowerSpellService),
                 Spell.SpiritualManaPotion => typeof(ISpiritualManaPotionSpellService),

@@ -92,6 +92,12 @@
         CauterizingShadowsHeal = 336373,
         FlashConcentration = 336266,
         DivineImage = 336400,
+        DivineImageHealingLight = 196809,
+        DivineImageDazzlingLight = 196810,
+        DivineImageSearingLight = 196810,
+        DivineImageLightEruption = 196812,
+        DivineImageBlessedLight = 196813,
+        DivineImageTranquilLight = 196816,
 
         // Conduits
         CharitableSoul = 337715,

@@ -53,6 +53,8 @@ namespace Salvation.Core.Constants
         public uint ChargeCooldown { get; set; }
         public uint Charges { get; set; }
         public double MaxStacks { get; set; }
+        public double ProcChance { get; set; }
+        public double InternalCooldown { get; set; }
         public double Rppm { get; set; }
         public bool RppmIsHasted { get; set; }
 

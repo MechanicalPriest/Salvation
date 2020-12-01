@@ -57,6 +57,7 @@ namespace Salvation.Explorer.Modelling
             states.AddRange(GetNecrolordStates(baseState));
             states.AddRange(GetNightFaeStates(baseState));
             states.AddRange(GetVenthyrStates(baseState));
+            states.AddRange(GetLegendaryStates(baseState));
 
             // Run them
             foreach (var state in states)
@@ -184,6 +185,42 @@ namespace Salvation.Explorer.Modelling
             states.Add(SetSingleConduit(baseState, "base_cn_holy_oration", Conduit.HolyOration, 7));
             states.Add(SetSingleConduit(baseState, "base_cn_resonant_words", Conduit.ResonantWords, 7));
             states.Add(SetSingleConduit(baseState, "base_cn_lasting_spirit", Conduit.LastingSpirit, 7));
+
+            return states;
+        }
+
+        private IEnumerable<GameState> GetLegendaryStates(GameState baseState)
+        {
+            var states = new List<GameState>();
+
+            var legendaries = new Dictionary<string, uint>()
+            {
+                { "harmonious_apparatus", (uint)Spell.HarmoniousApparatus },
+                { "echo_of_eonar", (uint)Spell.EchoOfEonar },
+                { "flash_concentration", (uint)Spell.FlashConcentration },
+                { "divine_image", (uint)Spell.DivineImage }
+            };
+
+            foreach(var legendary in legendaries)
+            {
+                var newState = _gameStateService.CloneGameState(baseState);
+
+                var harmoniousApparatusItem = new Item()
+                {
+                    Equipped = true
+                };
+                harmoniousApparatusItem.Effects.Add(new ItemEffect()
+                {
+                    Spell = new Core.Constants.BaseSpellData()
+                    {
+                        Id = legendary.Value
+                    }
+                });
+                newState.Profile.Items.Add(harmoniousApparatusItem);
+                _gameStateService.SetProfileName(newState, $"le_{legendary.Key}");
+
+                states.Add(newState);
+            }
 
             return states;
         }

@@ -292,11 +292,11 @@ namespace Salvation.Core.Profile
                     new CastProfile((int)Spell.Mindgames, 1.0d, 0.01d, 1, 1),
                     new CastProfile((int)Spell.FaeGuardians, 1.0d, 0.01d, 1, 0),
                     new CastProfile((int)Spell.BoonOfTheAscended, 1.0d, 0.01d, 0, 0),
-                    new CastProfile((int)Spell.AscendedNova, 1.0d, 0.01d, 6, 1),
-                    new CastProfile((int)Spell.AscendedBlast, 1.0d, 0.01d, 1, 1),
-                    new CastProfile((int)Spell.AscendedEruption, 1.0d, 0.01d, 5, 1),
-                    new CastProfile((int)Spell.UnholyNova, 1.0d, 0.01d, 6, 1),
-                    new CastProfile((int)Spell.UnholyTransfusionDoT, 1.0d, 0.01d, 20, 1),
+                    new CastProfile((int)Spell.AscendedNova, 1.0d, 0.31d, 6, 1),
+                    new CastProfile((int)Spell.AscendedBlast, 1.0d, 0.16d, 1, 1),
+                    new CastProfile((int)Spell.AscendedEruption, 1.0d, 0.47d, 10, 1),
+                    new CastProfile((int)Spell.UnholyNova, 1.0d, 0.24d, 6, 1),
+                    new CastProfile((int)Spell.UnholyTransfusionDoT, 1.0d, 0.46d, 20, 1),
                     new CastProfile((int)Spell.Fleshcraft, 1.0d, 0.01d, 1, 0),
 
                     // Consumables (SpellId, Efficiency, Overheal, HealTargets, DamageTargets)
@@ -307,6 +307,14 @@ namespace Salvation.Core.Profile
                     new CastProfile((int)Spell.BronsCallToAction, 0.0d, 0.1d, 1, 0),
                     new CastProfile((int)Spell.ValiantStrikes, 0.0d, 0.01d, 1, 0),
                     new CastProfile((int)Spell.UltimateForm, 0.0d, 0.25d, 1, 0),
+                    
+                    // Legendaries
+                    new CastProfile((int)Spell.DivineImageBlessedLight, 0.0d, 0.20d, 1, 0),
+                    new CastProfile((int)Spell.DivineImageDazzlingLight, 0.0d, 0.25d, 1, 0),
+                    new CastProfile((int)Spell.DivineImageHealingLight, 0.0d, 0.20d, 1, 0),
+                    new CastProfile((int)Spell.DivineImageLightEruption, 0.0d, 0.25d, 1, 0),
+                    new CastProfile((int)Spell.DivineImageSearingLight, 0.0d, 0.25d, 1, 0),
+                    new CastProfile((int)Spell.DivineImageTranquilLight, 0.0d, 0.25d, 1, 0),
                 },
                 Talents = new List<Talent>()
                 {

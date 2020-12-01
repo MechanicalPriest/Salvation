@@ -33,6 +33,10 @@ const Results = () => {
     const { cast } = props;
     const [open, setOpen] = React.useState(false);
 
+    useEffect(() => {
+      window.$WowheadPower.refreshLinks();
+    }, [open]);
+
     return (
       <>
       <TableRow key={cast.spellId + cast.rawHealing}>

@@ -139,6 +139,7 @@ namespace Salvation.Core
             services.AddSingleton<ISpellService<IDivineImageHealingLightSpellService>, DivineImageHealingLight>();
             services.AddSingleton<ISpellService<IDivineImageTranquilLightSpellService>, DivineImageTranquilLight>();
             services.AddSingleton<ISpellService<IDivineImageDazzlingsLightSpellService>, DivineImageDazzlingLights>();
+            services.AddSingleton<ISpellService<IDivineImageBlessedLightSpellService>, DivineImageBlessedLight>();
 
             return services;
         }

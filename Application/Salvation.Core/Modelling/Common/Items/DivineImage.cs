@@ -17,6 +17,7 @@ namespace Salvation.Core.Modelling.Common.Items
         private readonly ISpellService<IDivineImageHealingLightSpellService> _healingLightSpellSevice;
         private readonly ISpellService<IDivineImageTranquilLightSpellService> _tranquilLightSpellService;
         private readonly ISpellService<IDivineImageDazzlingsLightSpellService> _dazzlingLightsSpellService;
+        private readonly ISpellService<IDivineImageBlessedLightSpellService> _blessedLightSpellService;
 
         public DivineImage(IGameStateService gameStateService,
             ISpellService<IHolyWordSerenitySpellService> serenitySpellService,
@@ -24,7 +25,8 @@ namespace Salvation.Core.Modelling.Common.Items
             ISpellService<IHolyWordChastiseSpellService> chastiseSpellService,
             ISpellService<IDivineImageHealingLightSpellService> healingLightSpellSevice,
             ISpellService<IDivineImageTranquilLightSpellService> tranquilLightSpellService,
-            ISpellService<IDivineImageDazzlingsLightSpellService> dazzlingLightsSpellService)
+            ISpellService<IDivineImageDazzlingsLightSpellService> dazzlingLightsSpellService,
+            ISpellService<IDivineImageBlessedLightSpellService> blessedLightSpellService)
             : base(gameStateService)
         {
             Spell = Spell.DivineImage;
@@ -34,6 +36,7 @@ namespace Salvation.Core.Modelling.Common.Items
             _healingLightSpellSevice = healingLightSpellSevice;
             _tranquilLightSpellService = tranquilLightSpellService;
             _dazzlingLightsSpellService = dazzlingLightsSpellService;
+            _blessedLightSpellService = blessedLightSpellService;
         }
 
         public override AveragedSpellCastResult GetCastResults(GameState gameState, BaseSpellData spellData = null)
@@ -62,6 +65,11 @@ namespace Salvation.Core.Modelling.Common.Items
             var dazzlingLightsSpellData = _gameStateService.GetSpellData(gameState, Spell.DivineImageDazzlingLight);
             dazzlingLightsSpellData.Overrides.Add(Override.AllowedDuration, windchimeUptime);
             castResult.AdditionalCasts.Add(_dazzlingLightsSpellService.GetCastResults(gameState, dazzlingLightsSpellData));
+
+            //  Blessed Light
+            var blessedLightSpellData = _gameStateService.GetSpellData(gameState, Spell.DivineImageBlessedLight);
+            blessedLightSpellData.Overrides.Add(Override.AllowedDuration, windchimeUptime);
+            castResult.AdditionalCasts.Add(_blessedLightSpellService.GetCastResults(gameState, blessedLightSpellData));
 
             return castResult;
         }

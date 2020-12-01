@@ -43,6 +43,9 @@ namespace Salvation.CoreTests.Common.Items
                 new DivineHymn(_gameStateService),
                 new CircleOfHealing(_gameStateService));
 
+            var diBlessedLight = new DivineImageBlessedLight(_gameStateService,
+                new PrayerOfMending(_gameStateService));
+
             _spell = new DivineImage(_gameStateService,
                 new HolyWordSerenity(_gameStateService,
                     new FlashHeal(_gameStateService),
@@ -59,7 +62,8 @@ namespace Salvation.CoreTests.Common.Items
                     new HolyFire(_gameStateService)),
                 diHealingLight,
                 diTranquilLight,
-                diDazzlingLights);
+                diDazzlingLights,
+                diBlessedLight);
             _gameState = GetGameState();
         }
 

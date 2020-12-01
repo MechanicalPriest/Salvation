@@ -45,8 +45,10 @@ namespace Salvation.CoreTests.Common.Items
                     new FlashHeal(_gameStateService), new Heal(_gameStateService), 
                     new BindingHeal(_gameStateService), new PrayerOfMending(_gameStateService)),
                 new BindingHeal(_gameStateService)));
+
             Spells.Add(new DivineImageTranquilLight(_gameStateService,
                 new Renew(_gameStateService)));
+
             Spells.Add(new DivineImageDazzlingLights(_gameStateService,
                 new PrayerOfHealing(_gameStateService),
                 new HolyWordSanctify(_gameStateService,
@@ -56,6 +58,9 @@ namespace Salvation.CoreTests.Common.Items
                 new Halo(_gameStateService),
                 new DivineHymn(_gameStateService),
                 new CircleOfHealing(_gameStateService)));
+
+            Spells.Add(new DivineImageBlessedLight(_gameStateService,
+                new PrayerOfMending(_gameStateService)));
 
             _gameState = _gameStateService.CreateValidatedGameState(profile, constants);
         }
@@ -131,6 +136,7 @@ namespace Salvation.CoreTests.Common.Items
                 yield return new TestCaseData(typeof(DivineImageHealingLight)).Returns(1060.9165271250004d);
                 yield return new TestCaseData(typeof(DivineImageTranquilLight)).Returns(3733.1890745639457d);
                 yield return new TestCaseData(typeof(DivineImageDazzlingLights)).Returns(3182.7495813750006d);
+                yield return new TestCaseData(typeof(DivineImageBlessedLight)).Returns(636.5499162750001d);
             }
         }
 
@@ -141,6 +147,7 @@ namespace Salvation.CoreTests.Common.Items
                 yield return new TestCaseData(typeof(DivineImageHealingLight)).Returns(1.4023714496517976d);
                 yield return new TestCaseData(typeof(DivineImageTranquilLight)).Returns(0.41109939393939399d);
                 yield return new TestCaseData(typeof(DivineImageDazzlingLights)).Returns(4.0293109369348583d);
+                yield return new TestCaseData(typeof(DivineImageBlessedLight)).Returns(1.2784739393939395d);
             }
         }
 
@@ -151,6 +158,7 @@ namespace Salvation.CoreTests.Common.Items
                 yield return new TestCaseData(typeof(DivineImageHealingLight)).Returns(5.6094857986071904d);
                 yield return new TestCaseData(typeof(DivineImageTranquilLight)).Returns(1.6443975757575759d);
                 yield return new TestCaseData(typeof(DivineImageDazzlingLights)).Returns(16.117243747739433d);
+                yield return new TestCaseData(typeof(DivineImageBlessedLight)).Returns(5.113895757575758d);
             }
         }
 
@@ -161,6 +169,7 @@ namespace Salvation.CoreTests.Common.Items
                 yield return new TestCaseData(typeof(DivineImageHealingLight)).Returns(true);
                 yield return new TestCaseData(typeof(DivineImageTranquilLight)).Returns(true);
                 yield return new TestCaseData(typeof(DivineImageDazzlingLights)).Returns(true);
+                yield return new TestCaseData(typeof(DivineImageBlessedLight)).Returns(true);
             }
         }
     }

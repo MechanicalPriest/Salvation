@@ -86,7 +86,7 @@ namespace Salvation.CoreTests.HolyPriest.Conduits
 
             // Assert
             Assert.AreEqual(3618.1497241071006d, resultWithout);
-            Assert.AreEqual(4287.1644828334192d, resultWith);
+            Assert.AreEqual(4251.2316550826417d, resultWith);
         }
     }
 

@@ -31,6 +31,18 @@ namespace Salvation.CoreTests.Common.Items
             var diTranquilLight = new DivineImageTranquilLight(_gameStateService,
                 new Renew(_gameStateService));
 
+            var diDazzlingLights = new DivineImageDazzlingLights(_gameStateService,
+                new PrayerOfHealing(_gameStateService),
+                new HolyWordSanctify(_gameStateService,
+                    new PrayerOfHealing(_gameStateService),
+                    new Renew(_gameStateService),
+                    new BindingHeal(_gameStateService),
+                    new CircleOfHealing(_gameStateService)),
+                new DivineStar(_gameStateService),
+                new Halo(_gameStateService),
+                new DivineHymn(_gameStateService),
+                new CircleOfHealing(_gameStateService));
+
             _spell = new DivineImage(_gameStateService,
                 new HolyWordSerenity(_gameStateService,
                     new FlashHeal(_gameStateService),
@@ -46,7 +58,8 @@ namespace Salvation.CoreTests.Common.Items
                     new Smite(_gameStateService), 
                     new HolyFire(_gameStateService)),
                 diHealingLight,
-                diTranquilLight);
+                diTranquilLight,
+                diDazzlingLights);
             _gameState = GetGameState();
         }
 
@@ -71,7 +84,7 @@ namespace Salvation.CoreTests.Common.Items
             var value = _spell.GetActualCastsPerMinute(_gameState, null);
 
             // Assert
-            Assert.AreEqual(1.0764545046910579d, value);
+            Assert.AreEqual(1.03357750470943d, value);
         }
 
         [Test]
@@ -83,7 +96,7 @@ namespace Salvation.CoreTests.Common.Items
             var value = _spell.GetUptime(_gameState, null);
 
             // Assert
-            Assert.AreEqual(0.26911362617276446d, value);
+            Assert.AreEqual(0.2583943761773575d, value);
         }
     }
 }

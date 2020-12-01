@@ -61,18 +61,22 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             var cpmFlashHeal = _flashHealSpellService.GetActualCastsPerMinute(gameState);
             var cpmHeal = _healSpellService.GetActualCastsPerMinute(gameState);
-            var cpmBindingHeal = _bindingHealSpellService.GetActualCastsPerMinute(gameState);
 
             var hastedCD = GetHastedCooldown(gameState, spellData);
             var fightLength = _gameStateService.GetFightLength(gameState);
 
             var hwCDRFlashHeal = _gameStateService.GetTotalHolyWordCooldownReduction(gameState, Spell.FlashHeal);
             var hwCDRHeal = _gameStateService.GetTotalHolyWordCooldownReduction(gameState, Spell.Heal);
-            var hwCDRBindingHeal = _gameStateService.GetTotalHolyWordCooldownReduction(gameState, Spell.BindingHeal);
 
             double hwCDR = cpmFlashHeal * hwCDRFlashHeal +
-                cpmHeal * hwCDRHeal +
-                cpmBindingHeal * hwCDRBindingHeal;
+                cpmHeal * hwCDRHeal;
+
+            if (_gameStateService.IsTalentActive(gameState, Talent.BindingHeal))
+            {
+                var cpmBindingHeal = _bindingHealSpellService.GetActualCastsPerMinute(gameState);
+                var hwCDRBindingHeal = _gameStateService.GetTotalHolyWordCooldownReduction(gameState, Spell.BindingHeal);
+                hwCDR += cpmBindingHeal * hwCDRBindingHeal;
+            }
 
             if (_gameStateService.IsLegendaryActive(gameState, Spell.HarmoniousApparatus))
             {

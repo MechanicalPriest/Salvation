@@ -67,7 +67,9 @@ namespace Salvation.Core.Modelling.Common.Items
             var cpm = _flashHealSpellService.GetActualCastsPerMinute(gameState, null);
             cpm += _healSpellService.GetActualCastsPerMinute(gameState, null);
             cpm += _serenitySpellService.GetActualCastsPerMinute(gameState, null);
-            cpm += _bindingHealSpellService.GetActualCastsPerMinute(gameState, null);
+
+            if (_gameStateService.IsTalentActive(gameState, Talent.BindingHeal))
+                cpm += _bindingHealSpellService.GetActualCastsPerMinute(gameState, null);
 
             return cpm;
         }

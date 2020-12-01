@@ -44,7 +44,7 @@ namespace Salvation.Core.Modelling.Common.Items
 
             averageHeal *= _gameStateService.GetCriticalStrikeMultiplier(gameState);
 
-            return averageHeal;
+            return averageHeal * GetNumberOfHealingTargets(gameState, spellData);
         }
 
         public override double GetActualCastsPerMinute(GameState gameState, BaseSpellData spellData = null)

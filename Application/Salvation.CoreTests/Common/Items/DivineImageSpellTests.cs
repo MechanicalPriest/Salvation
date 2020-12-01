@@ -36,7 +36,7 @@ namespace Salvation.CoreTests.Common.Items
             var constants = constantsService.ParseConstants(
                 File.ReadAllText(Path.Combine("TestData", "BaseTests_constants.json")));
             var profile = JsonConvert.DeserializeObject<PlayerProfile>(
-                File.ReadAllText(Path.Combine("TestData", "SpellServiceTests_profile.json")));
+                File.ReadAllText(Path.Combine("TestData", "BaseTests_profile.json")));
 
             Spells.Add(new DivineImageHealingLight(_gameStateService,
                 new FlashHeal(_gameStateService),
@@ -45,6 +45,8 @@ namespace Salvation.CoreTests.Common.Items
                     new FlashHeal(_gameStateService), new Heal(_gameStateService), 
                     new BindingHeal(_gameStateService), new PrayerOfMending(_gameStateService)),
                 new BindingHeal(_gameStateService)));
+            Spells.Add(new DivineImageTranquilLight(_gameStateService,
+                new Renew(_gameStateService)));
 
             _gameState = _gameStateService.CreateValidatedGameState(profile, constants);
         }
@@ -94,21 +96,6 @@ namespace Salvation.CoreTests.Common.Items
             return result;
         }
 
-        [TestCaseSource(typeof(DivineImageSpellTestsData), nameof(DivineImageSpellTestsData.GetDuration))]
-        public double GetDuration(Type t)
-        {
-            // Arrange
-            var spellService = Spells.Where(s => s.GetType() == t).FirstOrDefault();
-            var spellData = _gameStateService.GetSpellData(_gameState, (Spell)spellService.SpellId);
-            spellData.Overrides[Override.AllowedDuration] = 15;
-
-            // Act
-            var result = spellService.GetDuration(_gameState, spellData);
-
-            // Assert
-            return result;
-        }
-
         [TestCaseSource(typeof(DivineImageSpellTestsData), nameof(DivineImageSpellTestsData.GetActualCastsPerMinute_NoOvveride_Throws))]
         public bool GetActualCastsPerMinute_NoOvveride_Throws(Type t)
         {
@@ -132,7 +119,8 @@ namespace Salvation.CoreTests.Common.Items
         {
             get
             {
-                yield return new TestCaseData(typeof(DivineImageHealingLight)).Returns(697.53774037500011d);
+                yield return new TestCaseData(typeof(DivineImageHealingLight)).Returns(1060.9165271250004d);
+                yield return new TestCaseData(typeof(DivineImageTranquilLight)).Returns(3730.4549053504925d);
             }
         }
 
@@ -141,6 +129,7 @@ namespace Salvation.CoreTests.Common.Items
             get
             {
                 yield return new TestCaseData(typeof(DivineImageHealingLight)).Returns(2.6838297565063431d);
+                yield return new TestCaseData(typeof(DivineImageTranquilLight)).Returns(0.41109939393939399d);
             }
         }
 
@@ -149,14 +138,7 @@ namespace Salvation.CoreTests.Common.Items
             get
             {
                 yield return new TestCaseData(typeof(DivineImageHealingLight)).Returns(10.735319026025373d);
-            }
-        }
-
-        public static IEnumerable GetDuration
-        {
-            get
-            {
-                yield return new TestCaseData(typeof(DivineImageHealingLight)).Returns(0);
+                yield return new TestCaseData(typeof(DivineImageTranquilLight)).Returns(1.6443975757575759d);
             }
         }
 
@@ -165,6 +147,7 @@ namespace Salvation.CoreTests.Common.Items
             get
             {
                 yield return new TestCaseData(typeof(DivineImageHealingLight)).Returns(true);
+                yield return new TestCaseData(typeof(DivineImageTranquilLight)).Returns(true);
             }
         }
     }

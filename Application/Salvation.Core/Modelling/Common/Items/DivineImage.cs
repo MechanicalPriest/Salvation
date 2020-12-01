@@ -15,12 +15,14 @@ namespace Salvation.Core.Modelling.Common.Items
         private readonly ISpellService<IHolyWordSanctifySpellService> _sanctifySpellService;
         private readonly ISpellService<IHolyWordChastiseSpellService> _chastiseSpellService;
         private readonly ISpellService<IDivineImageHealingLightSpellService> _healingLightSpellSevice;
+        private readonly ISpellService<IDivineImageTranquilLightSpellService> _tranquilLightSpellService;
 
         public DivineImage(IGameStateService gameStateService,
             ISpellService<IHolyWordSerenitySpellService> serenitySpellService,
             ISpellService<IHolyWordSanctifySpellService> sanctifySpellService,
             ISpellService<IHolyWordChastiseSpellService> chastiseSpellService,
-            ISpellService<IDivineImageHealingLightSpellService> healingLightSpellSevice)
+            ISpellService<IDivineImageHealingLightSpellService> healingLightSpellSevice,
+            ISpellService<IDivineImageTranquilLightSpellService> tranquilLightSpellService)
             : base(gameStateService)
         {
             Spell = Spell.DivineImage;
@@ -28,6 +30,7 @@ namespace Salvation.Core.Modelling.Common.Items
             _sanctifySpellService = sanctifySpellService;
             _chastiseSpellService = chastiseSpellService;
             _healingLightSpellSevice = healingLightSpellSevice;
+            _tranquilLightSpellService = tranquilLightSpellService;
         }
 
         public override AveragedSpellCastResult GetCastResults(GameState gameState, BaseSpellData spellData = null)
@@ -40,11 +43,17 @@ namespace Salvation.Core.Modelling.Common.Items
             // 2 of them are broken and don't scale how they should and haven't been fixed still
             // Duration is garbage
             // Proc rate is atrocious and based on HW casts.
+            var windchimeUptime = GetUptime(gameState, spellData) * 60;
 
             // Healing Light
             var healingLightSpellData = _gameStateService.GetSpellData(gameState, Spell.DivineImageHealingLight);
-            healingLightSpellData.Overrides.Add(Override.AllowedDuration, GetUptime(gameState, spellData) * 60);
+            healingLightSpellData.Overrides.Add(Override.AllowedDuration, windchimeUptime);
             castResult.AdditionalCasts.Add(_healingLightSpellSevice.GetCastResults(gameState, healingLightSpellData));
+
+            // Tranquil Light
+            var tranquilLightSpellData = _gameStateService.GetSpellData(gameState, Spell.DivineImageTranquilLight);
+            tranquilLightSpellData.Overrides.Add(Override.AllowedDuration, windchimeUptime);
+            castResult.AdditionalCasts.Add(_tranquilLightSpellService.GetCastResults(gameState, tranquilLightSpellData));
 
             return castResult;
         }

@@ -30,7 +30,7 @@ namespace Salvation.Core.Modelling.Common.Items
             // Overall healing for the HoT is: (220 + sp% * int) * int * vers * haste * crit * 6
             // Each tick is: (220 + sp% * int) * int * vers
             // Ticks is like a regular HoT: total_amount / tick_amount
-            var baseTick = (220 + healingSp * _gameStateService.GetIntellect(gameState))
+            var baseTick = (220.3 + healingSp * _gameStateService.GetIntellect(gameState))
                 * _gameStateService.GetVersatilityMultiplier(gameState);
 
             _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Base Tick: {baseTick:0.##}");

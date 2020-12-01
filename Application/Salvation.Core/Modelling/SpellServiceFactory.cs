@@ -68,6 +68,7 @@ namespace Salvation.Core.Modelling
                 Spell.SpiritualManaPotion => typeof(ISpiritualManaPotionSpellService),
                 // Items
                 Spell.UnboundChangeling => typeof(IUnboundChangelingSpellService),
+                Spell.CabalistsHymnal => typeof(ICabalistsHymnalSpellService),
                 // Traits
                 Spell.BronsCallToAction => typeof(IBronsCallToActionSpellService),
                 Spell.CombatMeditation => typeof(ICombatMeditationSpellSerivce),

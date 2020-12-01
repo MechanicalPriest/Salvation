@@ -129,7 +129,9 @@
         /// Trinket 178708
         /// </summary>
         UnboundChangeling = 330733,
-        UnboundChangelingHasteProc = 330747,
+        UnboundChangelingBuff = 330747,
+        CabalistsHymnal = 344806,
+        CabalistsHymnalBuff = 344803,
 
         // Traits
         // Kyrian - Pelagos

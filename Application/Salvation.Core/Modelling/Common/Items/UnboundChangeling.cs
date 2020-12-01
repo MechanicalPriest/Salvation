@@ -26,7 +26,7 @@ namespace Salvation.Core.Modelling.Common.Items
 
             var itemLevel = (int)spellData.Overrides[Override.ItemLevel];
 
-            var hasteBuffSpell = _gameStateService.GetSpellData(gameState, Spell.UnboundChangelingHasteProc);
+            var hasteBuffSpell = _gameStateService.GetSpellData(gameState, Spell.UnboundChangelingBuff);
 
             // Get scale budget
             if(!hasteBuffSpell.ScaleValues.ContainsKey(itemLevel))

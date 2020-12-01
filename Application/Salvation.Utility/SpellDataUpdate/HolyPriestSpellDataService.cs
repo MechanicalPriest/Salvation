@@ -111,7 +111,9 @@ namespace Salvation.Utility.SpellDataUpdate
 
                 // Trinket
                 (uint)Spell.UnboundChangeling,
-                (uint)Spell.UnboundChangelingHasteProc,
+                (uint)Spell.UnboundChangelingBuff,
+                (uint)Spell.CabalistsHymnal,
+                (uint)Spell.CabalistsHymnalBuff,
 
                 // Trait
                 // Kyrian

@@ -8,9 +8,9 @@ using System;
 namespace Salvation.CoreTests.Common.Items
 {
     [TestFixture]
-    class UnboundChangelingTests : BaseTest
+    class CabalistsHymnalTests : BaseTest
     {
-        private UnboundChangeling _spell;
+        private CabalistsHymnal _spell;
         private GameState _gameState;
 
         [SetUp]
@@ -18,40 +18,40 @@ namespace Salvation.CoreTests.Common.Items
         {
             IGameStateService gameStateService = new GameStateService();
 
-            _spell = new UnboundChangeling(gameStateService);
+            _spell = new CabalistsHymnal(gameStateService);
             _gameState = GetGameState();
         }
 
         [Test]
-        public void GetAverageHaste_Throws_Without_Overrides()
+        public void GetAverageCriticalStrike_Throws_Without_Overrides()
         {
             // Arrange
 
             // Act
             var methodCall = new TestDelegate(
-                () => _spell.GetAverageHaste(_gameState, null));
+                () => _spell.GetAverageCriticalStrike(_gameState, null));
 
             // Assert
             Assert.Throws<ArgumentOutOfRangeException>(methodCall);
         }
 
         [Test]
-        public void GetAverageHaste_Adds_Average_Haste()
+        public void GetAverageCriticalStrike_Adds_Average_Crit()
         {
             // Arrange
             IGameStateService gameStateService = new GameStateService();
-            var spellData = gameStateService.GetSpellData(_gameState, Spell.UnboundChangeling);
-            var hasteBuffSpellData = gameStateService.GetSpellData(_gameState, Spell.UnboundChangelingBuff);
+            var spellData = gameStateService.GetSpellData(_gameState, Spell.CabalistsHymnal);
+            var buffSpellData = gameStateService.GetSpellData(_gameState, Spell.CabalistsHymnalBuff);
             // 155 is scale budget for ilvl 226 (testing)
             spellData.Overrides.Add(Core.Constants.Override.ItemLevel, 226);
-            hasteBuffSpellData.ScaleValues.Add(226, 155);
-            gameStateService.OverrideSpellData(_gameState, hasteBuffSpellData);
+            buffSpellData.ScaleValues.Add(226, 203.03347229957581);
+            gameStateService.OverrideSpellData(_gameState, buffSpellData);
 
             // Act
-            var value = _spell.GetAverageHaste(_gameState, spellData);
+            var value = _spell.GetAverageCriticalStrike(_gameState, spellData);
 
             // Assert
-            Assert.AreEqual(49.93525751235682d, value);
+            Assert.AreEqual(94.999970789388428d, value);
         }
 
         [Test]
@@ -63,7 +63,7 @@ namespace Salvation.CoreTests.Common.Items
             var value = _spell.GetDuration(_gameState, null);
 
             // Assert
-            Assert.AreEqual(12, value);
+            Assert.AreEqual(30.0d, value);
         }
 
         [Test]
@@ -75,7 +75,7 @@ namespace Salvation.CoreTests.Common.Items
             var value = _spell.GetUptime(_gameState, null);
 
             // Assert
-            Assert.AreEqual(0.29287541062965877d, value);
+            Assert.AreEqual(0.5d, value);
         }
     }
 }

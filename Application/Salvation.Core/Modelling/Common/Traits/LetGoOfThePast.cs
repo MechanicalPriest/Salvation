@@ -19,8 +19,6 @@ namespace Salvation.Core.Modelling.Common.Traits
 
         public override double GetAverageVersatilityPercent(GameState gameState, BaseSpellData spellData)
         {
-            spellData = ValidateSpellData(gameState, spellData);
-
             // This was changed:
             // Using a spell or ability reduces your magic damage taken by 1% for 6 sec. Using another spell or ability 
             // increases this amount by 1% when it is not a repeat of the previous spell or ability, stacking to 3%.

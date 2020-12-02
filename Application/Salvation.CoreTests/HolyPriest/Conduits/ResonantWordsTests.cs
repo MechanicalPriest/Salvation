@@ -95,17 +95,13 @@ namespace Salvation.CoreTests.HolyPriest.Conduits
         public ISpellService GetSpellService(Spell spell)
         {
             IGameStateService gss = new GameStateService();
-            switch(spell)
+            return spell switch
             {
-                case Spell.HolyWordSerenity:
-                    return new HolyWordSerenity(gss, new FlashHeal(gss), new Heal(gss), new BindingHeal(gss), new PrayerOfMending(gss));
-                case Spell.HolyWordSanctify:
-                    return new HolyWordSanctify(gss, new PrayerOfHealing(gss), new Renew(gss), new BindingHeal(gss), new CircleOfHealing(gss));
-                case Spell.HolyWordChastise:
-                    return new HolyWordChastise(gss, new Smite(gss), new HolyFire(gss));
-                default:
-                    return null;
-            }
+                Spell.HolyWordSerenity => new HolyWordSerenity(gss, new FlashHeal(gss), new Heal(gss), new BindingHeal(gss), new PrayerOfMending(gss)),
+                Spell.HolyWordSanctify => new HolyWordSanctify(gss, new PrayerOfHealing(gss), new Renew(gss), new BindingHeal(gss), new CircleOfHealing(gss)),
+                Spell.HolyWordChastise => new HolyWordChastise(gss, new Smite(gss), new HolyFire(gss)),
+                _ => null,
+            };
         }
     }
 }

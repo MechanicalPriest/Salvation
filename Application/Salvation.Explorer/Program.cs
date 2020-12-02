@@ -48,7 +48,7 @@ namespace Salvation.Explorer
 
                     // Explorer specific utility services
                     services.AddSingleton<IComparisonModeller<CovenantComparisonsResult>, CovenantComparisons>();
-                    services.AddSingleton<IComparisonModeller<AdvancedCovenantComparisonResult>, AdvancedCovenantComparison>();
+                    services.AddSingleton<IComparisonModeller<AdvancedComparisonResult>, AdvancedComparison>();
 
                     services.AddSingleton<IHolyPriestExplorer, HolyPriestExplorer>();
 

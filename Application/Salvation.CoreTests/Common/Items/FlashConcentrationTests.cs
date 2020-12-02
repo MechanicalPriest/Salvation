@@ -49,9 +49,9 @@ namespace Salvation.CoreTests.Common.Items
 
             // Act
             var methodCallGetFlashConcentrationCastTimeReduction = new TestDelegate(
-                () => _spell.GetFlashConcentrationCastTimeReduction(_gameState, null));
+                () => _spell.GetFlashConcentrationCastTimeReduction(_gameState));
             var methodCallGetFlashConcentrationHealingModifier = new TestDelegate(
-                () => _spell.GetFlashConcentrationHealingModifier(_gameState, null));
+                () => _spell.GetFlashConcentrationHealingModifier(_gameState));
 
             // Assert
             Assert.Throws<ArgumentOutOfRangeException>(methodCallGetFlashConcentrationCastTimeReduction);
@@ -67,7 +67,7 @@ namespace Salvation.CoreTests.Common.Items
             gameStateService.OverridePlaystyle(gamestate, new PlaystyleEntry("FlashConcentrationAverageStacks", 5));
             
             // Act
-            var value = _spell.GetFlashConcentrationCastTimeReduction(gamestate, null);
+            var value = _spell.GetFlashConcentrationCastTimeReduction(gamestate);
 
             // Assert
             Assert.AreEqual(0.75d, value);
@@ -82,7 +82,7 @@ namespace Salvation.CoreTests.Common.Items
             gameStateService.OverridePlaystyle(gamestate, new PlaystyleEntry("FlashConcentrationAverageStacks", 5));
 
             // Act
-            var value = _spell.GetFlashConcentrationHealingModifier(gamestate, null);
+            var value = _spell.GetFlashConcentrationHealingModifier(gamestate);
 
             // Assert
             Assert.AreEqual(1.1499999999999999d, value);

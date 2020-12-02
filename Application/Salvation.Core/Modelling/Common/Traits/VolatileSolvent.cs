@@ -21,10 +21,10 @@ namespace Salvation.Core.Modelling.Common.Traits
         public override double GetAverageMastery(GameState gameState, BaseSpellData spellData)
         {
             // TODO: Humanoid buff: X mastery for 2 mins
-            var masteryBuffSpell = _gameStateService.GetSpellData(gameState, Spell.VolatileSolventHumanoid);
+            //var masteryBuffSpell = _gameStateService.GetSpellData(gameState, Spell.VolatileSolventHumanoid);
 
             // Crit amount: 824199 effect 1
-            var masteryAmount = masteryBuffSpell.GetEffect(812461).Coefficient * ItemCoefficientMultiplier;
+            //var masteryAmount = masteryBuffSpell.GetEffect(812461).Coefficient * ItemCoefficientMultiplier;
 
             //// Average number of allies nearby
             //var averageStacks = _gameStateService.GetPlaystyle(gameState, "PointedCourageAverageNearbyAllies");

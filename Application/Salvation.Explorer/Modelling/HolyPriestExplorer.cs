@@ -32,7 +32,7 @@ namespace Salvation.Explorer.Modelling
         private readonly IStatWeightGenerationService _statWeightGenerationService;
         private readonly IGameStateService _gameStateService;
         private readonly ISimcProfileService _simcProfileService;
-        private readonly IComparisonModeller<AdvancedCovenantComparisonResult> _comparisonModellerCovenantAdv;
+        private readonly IComparisonModeller<AdvancedComparisonResult> _comparisonModellerCovenantAdv;
 
         public HolyPriestExplorer(IModellingService modellingService,
             IProfileService profileService,
@@ -40,7 +40,7 @@ namespace Salvation.Explorer.Modelling
             IStatWeightGenerationService statWeightGenerationService,
             IGameStateService gameStateService,
             ISimcProfileService simcProfileService,
-            IComparisonModeller<AdvancedCovenantComparisonResult> comparisonModellerCovenantAdv)
+            IComparisonModeller<AdvancedComparisonResult> comparisonModellerCovenantAdv)
         {
             _modellingService = modellingService;
             _profileService = profileService;
@@ -114,8 +114,6 @@ namespace Salvation.Explorer.Modelling
             // Make some other modifications if needed
 
             // Kick off modelling against it.
-            var modelResults = _modellingService.GetResults(state);
-
             var results = _modellingService.GetResults(state);
             File.WriteAllText("hpriest_model_results.json",
                 JsonConvert.SerializeObject(results, Formatting.Indented));

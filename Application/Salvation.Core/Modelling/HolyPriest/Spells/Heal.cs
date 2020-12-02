@@ -38,7 +38,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             averageHeal *= GetResonantWordsMulti(gameState, spellData);
 
-            averageHeal *= GetFlashConcentrationHealingModifier(gameState, spellData);
+            averageHeal *= GetFlashConcentrationHealingModifier(gameState);
 
             return averageHeal * GetNumberOfHealingTargets(gameState, spellData);
         }
@@ -127,14 +127,14 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             var castTime = spellData.BaseCastTime / 1000;
 
-            castTime -= GetFlashConcentrationCastTimeReduction(gameState, spellData);
+            castTime -= GetFlashConcentrationCastTimeReduction(gameState);
 
             var hastedCastTime = castTime / _gameStateService.GetHasteMultiplier(gameState);
 
             return hastedCastTime;
         }
 
-        internal double GetFlashConcentrationCastTimeReduction(GameState gameState, BaseSpellData spellData)
+        internal double GetFlashConcentrationCastTimeReduction(GameState gameState)
         {
             var castTimeReduction = 0d;
 
@@ -156,7 +156,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             return castTimeReduction;
         }
 
-        internal double GetFlashConcentrationHealingModifier(GameState gameState, BaseSpellData spellData)
+        internal double GetFlashConcentrationHealingModifier(GameState gameState)
         {
             var modifier = 1d;
 

@@ -40,8 +40,6 @@ namespace Salvation.Core.Modelling.Common.Items
 
         public override double GetDuration(GameState gameState, BaseSpellData spellData = null)
         {
-            spellData = ValidateSpellData(gameState, spellData);
-
             var buffSpellData = _gameStateService.GetSpellData(gameState, Spell.EchoOfEonarHealingBuffSelf);
 
             var duration = buffSpellData.Duration / 1000;

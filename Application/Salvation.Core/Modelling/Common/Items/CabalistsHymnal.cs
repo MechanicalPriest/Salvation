@@ -44,8 +44,6 @@ namespace Salvation.Core.Modelling.Common.Items
 
         public override double GetDuration(GameState gameState, BaseSpellData spellData = null)
         {
-            spellData = ValidateSpellData(gameState, spellData);
-
             var critBuffSpell = _gameStateService.GetSpellData(gameState, Spell.CabalistsHymnalBuff);
 
             // Duration of the buff is 10s * 3 stacks
@@ -54,8 +52,6 @@ namespace Salvation.Core.Modelling.Common.Items
 
         public override double GetUptime(GameState gameState, BaseSpellData spellData)
         {
-            var critBuffSpell = _gameStateService.GetSpellData(gameState, Spell.CabalistsHymnalBuff);
-
             // Uptime is uptime is duration per minute. One proc every minute almost exactly 
             return GetDuration(gameState, spellData) / 60;
         }

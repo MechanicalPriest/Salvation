@@ -95,8 +95,6 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
         public override bool TriggersMastery(GameState gameState, BaseSpellData spellData)
         {
-            spellData = ValidateSpellData(gameState, spellData);
-
             // Prayer Of Healing Spellid doesnt have the "right" type, heal component does
             var healData = _gameStateService.GetSpellData(gameState, Spell.PrayerOfMendingHeal);
 

@@ -43,8 +43,6 @@ namespace Salvation.Core.Modelling.Common.Traits
 
         public override double GetUptime(GameState gameState, BaseSpellData spellData)
         {
-            spellData = ValidateSpellData(gameState, spellData);
-
             // While the proc rate is 30% with 10s duration 10s ICD, the buff uptime is on average around 75-80%.
             var averageStacks = _gameStateService.GetPlaystyle(gameState, "NiyasToolsHerbsUptime");
 

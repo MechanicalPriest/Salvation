@@ -27,7 +27,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             // Get the healing bonus
             var healingBonus = (spellData.GetEffect(40042).BaseValue / 100);
 
-            healingBonus += GetLastingSpiritAdditionalHealing(gameState, spellData);
+            healingBonus += GetLastingSpiritAdditionalHealing(gameState);
 
             return healingBonus * GetUptime(gameState, spellData);
         }
@@ -84,7 +84,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             return duration;
         }
 
-        internal double GetLastingSpiritAdditionalHealing(GameState gameState, BaseSpellData spellData)
+        internal double GetLastingSpiritAdditionalHealing(GameState gameState)
         {
             var additionalHealing = 0d;
 

@@ -80,8 +80,10 @@ namespace Salvation.Core.Profile
 
                 if (newCovenant != profile.Covenant.Covenant)
                 {
-                    cp = new CovenantProfile();
-                    cp.Covenant = newCovenant;
+                    cp = new CovenantProfile
+                    {
+                        Covenant = newCovenant
+                    };
                 }
             }
 
@@ -143,6 +145,64 @@ namespace Salvation.Core.Profile
             profile.Covenant = cp;
         }
 
+        public Item CreateItem(SimcItem item)
+        {
+            var newItem = new Item
+            {
+                ItemId = item.ItemId,
+                Name = item.Name,
+                ItemLevel = item.ItemLevel,
+                Slot = (InventorySlot)item.InventoryType,
+                ItemType = (ItemType)item.ItemClass,
+                ItemSubType = item.ItemSubClass,
+                Equipped = item.Equipped
+            };
+
+            // Add the items mods
+            foreach (var mod in item.Mods)
+            {
+                var newMod = new ItemMod()
+                {
+                    StatRating = mod.StatRating,
+                    Type = (ItemModType)mod.Type
+                };
+
+                newItem.Mods.Add(newMod);
+            }
+
+            // Add the items gems
+            foreach (var gem in item.Gems)
+            {
+                var newGem = new ItemGem()
+                {
+                    StatRating = gem.StatRating,
+                    Type = (ItemModType)gem.Type
+                };
+
+                newItem.Gems.Add(newGem);
+            }
+
+            // Add the items effects
+            foreach (var effect in item.Effects)
+            {
+                var newEffect = new ItemEffect()
+                {
+                    EffectId = effect.EffectId,
+                    Type = effect.Type,
+                    CooldownDuration = effect.CooldownDuration,
+                    CooldownGroup = effect.CooldownGroup,
+                    CooldownGroupDuration = effect.CooldownGroupDuration
+                };
+
+                // Populate this based on what we actually need
+                newEffect.Spell = GetBaseSpellData(effect.Spell, item.ItemLevel);
+
+                newItem.Effects.Add(newEffect);
+            }
+
+            return newItem;
+        }
+
         internal void ApplyItems(PlayerProfile profile, IList<SimcItem> items)
         {
             if (items.Count == 0)
@@ -152,58 +212,7 @@ namespace Salvation.Core.Profile
 
             foreach (var item in items)
             {
-                var newItem = new Item
-                {
-                    ItemId = item.ItemId,
-                    Name = item.Name,
-                    ItemLevel = item.ItemLevel,
-                    Slot = (InventorySlot)item.InventoryType,
-                    ItemType = (ItemType)item.ItemClass,
-                    ItemSubType = item.ItemSubClass,
-                    Equipped = item.Equipped
-                };
-
-                // Add the items mods
-                foreach (var mod in item.Mods)
-                {
-                    var newMod = new ItemMod()
-                    {
-                        StatRating = mod.StatRating,
-                        Type = (ItemModType)mod.Type
-                    };
-
-                    newItem.Mods.Add(newMod);
-                }
-
-                // Add the items gems
-                foreach (var gem in item.Gems)
-                {
-                    var newGem = new ItemGem()
-                    {
-                        StatRating = gem.StatRating,
-                        Type = (ItemModType)gem.Type
-                    };
-
-                    newItem.Gems.Add(newGem);
-                }
-
-                // Add the items effects
-                foreach (var effect in item.Effects)
-                {
-                    var newEffect = new ItemEffect()
-                    {
-                        EffectId = effect.EffectId,
-                        Type = effect.Type,
-                        CooldownDuration = effect.CooldownDuration,
-                        CooldownGroup = effect.CooldownGroup,
-                        CooldownGroupDuration = effect.CooldownGroupDuration
-                    };
-
-                    // Populate this based on what we actually need
-                    newEffect.Spell = GetBaseSpellData(effect.Spell, item.ItemLevel);
-
-                    newItem.Effects.Add(newEffect);
-                }
+                var newItem = CreateItem(item);
 
                 profile.Items.Add(newItem);
             }

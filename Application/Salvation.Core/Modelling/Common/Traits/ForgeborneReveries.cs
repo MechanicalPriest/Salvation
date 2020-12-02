@@ -20,8 +20,6 @@ namespace Salvation.Core.Modelling.Common.Traits
 
         public override double GetAverageIntellectBonus(GameState gameState, BaseSpellData spellData)
         {
-            spellData = ValidateSpellData(gameState, spellData);
-
             // Your $pri and Armor are increased by $<buff>% for each enchantment on your armor, up to $<max>%.
             // $buff=${$348272s1} $max=${3*$<buff>
             var buffSpellData = _gameStateService.GetSpellData(gameState, Spell.ForgeborneReveriesBuff);

@@ -5,6 +5,8 @@ using Salvation.Core.Interfaces.State;
 using Salvation.Core.Modelling.Common;
 using Salvation.Core.Profile.Model;
 using Salvation.Core.State;
+using SimcProfileParser.Interfaces;
+using SimcProfileParser.Model.Generated;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,50 +16,56 @@ using System.Threading.Tasks;
 
 namespace Salvation.Explorer.Modelling
 {
-    public class AdvancedCovenantComparisonResult
+    public class AdvancedComparisonResult
     {
         public Dictionary<string, BaseModelResults> Results { get; set; }
 
-        public AdvancedCovenantComparisonResult() { Results = new Dictionary<string, BaseModelResults>(); }
-        public AdvancedCovenantComparisonResult(Dictionary<string, BaseModelResults> results)
+        public AdvancedComparisonResult() { Results = new Dictionary<string, BaseModelResults>(); }
+        public AdvancedComparisonResult(Dictionary<string, BaseModelResults> results)
         {
             Results = results;
         }
     }
 
-    public class AdvancedCovenantComparison : IComparisonModeller<AdvancedCovenantComparisonResult>
+    public class AdvancedComparison : IComparisonModeller<AdvancedComparisonResult>
     {
         private readonly IProfileService _profileService;
         private readonly IModellingService _modellingService;
         private readonly IGameStateService _gameStateService;
         private readonly ISimcProfileService _simcProfileService;
+        private readonly ISimcGenerationService _simcGenerationService;
 
-        public AdvancedCovenantComparison(IProfileService profileService,
+        public AdvancedComparison(IProfileService profileService,
             IModellingService modellingService,
             IGameStateService gameStateService,
-            ISimcProfileService simcProfileService)
+            ISimcProfileService simcProfileService,
+            ISimcGenerationService simcGenerationService)
         {
             _profileService = profileService;
             _modellingService = modellingService;
             _gameStateService = gameStateService;
             _simcProfileService = simcProfileService;
+            _simcGenerationService = simcGenerationService;
         }
 
-        public async Task<AdvancedCovenantComparisonResult> RunComparison(GameState baseState)
+        public async Task<AdvancedComparisonResult> RunComparison(GameState baseState)
         {
             var results = new Dictionary<string, BaseModelResults>();
             _gameStateService.SetProfileName(baseState, "base");
 
             // Generate all the states to run
-            var states = new List<GameState>();
+            var states = new List<GameState>
+            {
+                baseState
+            };
 
-            states.Add(baseState);
             states.AddRange(GetSingleComparisons(baseState));
             states.AddRange(GetKyrianStates(baseState));
             states.AddRange(GetNecrolordStates(baseState));
             states.AddRange(GetNightFaeStates(baseState));
             states.AddRange(GetVenthyrStates(baseState));
             states.AddRange(GetLegendaryStates(baseState));
+            states.AddRange(await GetTrinketStates(baseState));
 
             // Run them
             foreach (var state in states)
@@ -70,7 +78,7 @@ namespace Salvation.Explorer.Modelling
                 });
             }
 
-            return new AdvancedCovenantComparisonResult(results);
+            return new AdvancedComparisonResult(results);
         }
 
         public List<GameState> GetKyrianStates(GameState baseState)
@@ -160,31 +168,33 @@ namespace Salvation.Explorer.Modelling
 
         private IEnumerable<GameState> GetSingleComparisons(GameState baseState)
         {
-            var states = new List<GameState>();
+            var states = new List<GameState>
+            {
 
-            // --------------------- Soulbinds ---------------------
-            states.Add(SetSingleSoulbindTrait(baseState, "base_sb_brons_call_to_action", SoulbindTrait.BronsCalltoAction));
-            states.Add(SetSingleSoulbindTrait(baseState, "base_sb_combat_meditation", SoulbindTrait.CombatMeditation));
-            states.Add(SetSingleSoulbindTrait(baseState, "base_sb_field_of_blossoms", SoulbindTrait.FieldofBlossoms));
-            states.Add(SetSingleSoulbindTrait(baseState, "base_sb_grove_invigoration", SoulbindTrait.GroveInvigoration));
-            states.Add(SetSingleSoulbindTrait(baseState, "base_sb_let_go_of_the_past", SoulbindTrait.LetGoofthePast));
-            states.Add(SetSingleSoulbindTrait(baseState, "base_sb_marrowed_gemstone", SoulbindTrait.HeirmirsArsenalMarrowedGemstone));
-            states.Add(SetSingleSoulbindTrait(baseState, "base_sb_niyas_tools_herbs", SoulbindTrait.NiyasToolsHerbs));
-            states.Add(SetSingleSoulbindTrait(baseState, "base_sb_pointed_courage", SoulbindTrait.PointedCourage));
-            states.Add(SetSingleSoulbindTrait(baseState, "base_sb_resonant_accolades", SoulbindTrait.ResonantAccolades));
-            states.Add(SetSingleSoulbindTrait(baseState, "base_sb_soothing_shade", SoulbindTrait.SoothingShade));
-            states.Add(SetSingleSoulbindTrait(baseState, "base_sb_thrill_seeker", SoulbindTrait.ThrillSeeker));
-            states.Add(SetSingleSoulbindTrait(baseState, "base_sb_ultimate_form", SoulbindTrait.UltimateForm));
-            states.Add(SetSingleSoulbindTrait(baseState, "base_sb_valiant_strikes", SoulbindTrait.ValiantStrikes));
-            states.Add(SetSingleSoulbindTrait(baseState, "base_sb_volatile_solvent", SoulbindTrait.VolatileSolvent));
-            states.Add(SetSingleSoulbindTrait(baseState, "base_sb_lead_by_example", SoulbindTrait.LeadByExample));
+                // --------------------- Soulbinds ---------------------
+                SetSingleSoulbindTrait(baseState, "base_sb_brons_call_to_action", SoulbindTrait.BronsCalltoAction),
+                SetSingleSoulbindTrait(baseState, "base_sb_combat_meditation", SoulbindTrait.CombatMeditation),
+                SetSingleSoulbindTrait(baseState, "base_sb_field_of_blossoms", SoulbindTrait.FieldofBlossoms),
+                SetSingleSoulbindTrait(baseState, "base_sb_grove_invigoration", SoulbindTrait.GroveInvigoration),
+                SetSingleSoulbindTrait(baseState, "base_sb_let_go_of_the_past", SoulbindTrait.LetGoofthePast),
+                SetSingleSoulbindTrait(baseState, "base_sb_marrowed_gemstone", SoulbindTrait.HeirmirsArsenalMarrowedGemstone),
+                SetSingleSoulbindTrait(baseState, "base_sb_niyas_tools_herbs", SoulbindTrait.NiyasToolsHerbs),
+                SetSingleSoulbindTrait(baseState, "base_sb_pointed_courage", SoulbindTrait.PointedCourage),
+                SetSingleSoulbindTrait(baseState, "base_sb_resonant_accolades", SoulbindTrait.ResonantAccolades),
+                SetSingleSoulbindTrait(baseState, "base_sb_soothing_shade", SoulbindTrait.SoothingShade),
+                SetSingleSoulbindTrait(baseState, "base_sb_thrill_seeker", SoulbindTrait.ThrillSeeker),
+                SetSingleSoulbindTrait(baseState, "base_sb_ultimate_form", SoulbindTrait.UltimateForm),
+                SetSingleSoulbindTrait(baseState, "base_sb_valiant_strikes", SoulbindTrait.ValiantStrikes),
+                SetSingleSoulbindTrait(baseState, "base_sb_volatile_solvent", SoulbindTrait.VolatileSolvent),
+                SetSingleSoulbindTrait(baseState, "base_sb_lead_by_example", SoulbindTrait.LeadByExample),
 
-            // --------------------- Conduits ---------------------
-            states.Add(SetSingleConduit(baseState, "base_cn_charitable_soul", Conduit.CharitableSoul, 7));
-            states.Add(SetSingleConduit(baseState, "base_cn_focused_mending", Conduit.FocusedMending, 7));
-            states.Add(SetSingleConduit(baseState, "base_cn_holy_oration", Conduit.HolyOration, 7));
-            states.Add(SetSingleConduit(baseState, "base_cn_resonant_words", Conduit.ResonantWords, 7));
-            states.Add(SetSingleConduit(baseState, "base_cn_lasting_spirit", Conduit.LastingSpirit, 7));
+                // --------------------- Conduits ---------------------
+                SetSingleConduit(baseState, "base_cn_charitable_soul", Conduit.CharitableSoul, 7),
+                SetSingleConduit(baseState, "base_cn_focused_mending", Conduit.FocusedMending, 7),
+                SetSingleConduit(baseState, "base_cn_holy_oration", Conduit.HolyOration, 7),
+                SetSingleConduit(baseState, "base_cn_resonant_words", Conduit.ResonantWords, 7),
+                SetSingleConduit(baseState, "base_cn_lasting_spirit", Conduit.LastingSpirit, 7)
+            };
 
             return states;
         }
@@ -205,19 +215,49 @@ namespace Salvation.Explorer.Modelling
             {
                 var newState = _gameStateService.CloneGameState(baseState);
 
-                var harmoniousApparatusItem = new Item()
+                var legendaryItem = new Item()
                 {
                     Equipped = true
                 };
-                harmoniousApparatusItem.Effects.Add(new ItemEffect()
+
+                legendaryItem.Effects.Add(new ItemEffect()
                 {
                     Spell = new Core.Constants.BaseSpellData()
                     {
                         Id = legendary.Value
                     }
                 });
-                newState.Profile.Items.Add(harmoniousApparatusItem);
+
+                newState.Profile.Items.Add(legendaryItem);
                 _gameStateService.SetProfileName(newState, $"le_{legendary.Key}");
+
+                states.Add(newState);
+            }
+
+            return states;
+        }
+
+        private async Task<IEnumerable<GameState>> GetTrinketStates(GameState baseState)
+        {
+            var states = new List<GameState>();
+
+            var trinkets = new Dictionary<string, SimcItemOptions>()
+            {
+                { "tr_cabalists_hymnal", new SimcItemOptions() { ItemId = 184028, ItemLevel = 226 } },
+                { "tr_unbound_changeling", new SimcItemOptions() { ItemId = 178708, ItemLevel = 226, BonusIds = new List<int>() { 6646 } } },
+            };
+
+            foreach (var trinket in trinkets)
+            {
+                var newState = _gameStateService.CloneGameState(baseState);
+
+                var trinketItem = await _simcGenerationService.GenerateItemAsync(trinket.Value);
+
+                var newItem = _simcProfileService.CreateItem(trinketItem);
+                newItem.Equipped = true;
+
+                newState.Profile.Items.Add(newItem);
+                _gameStateService.SetProfileName(newState, $"tr_{trinket.Key}");
 
                 states.Add(newState);
             }

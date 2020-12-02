@@ -43,8 +43,6 @@ namespace Salvation.Core.Modelling.Common.Traits
 
         public override double GetDuration(GameState gameState, BaseSpellData spellData = null)
         {
-            spellData = ValidateSpellData(gameState, spellData);
-
             // Get the base duration: 328908d
             var masteryBuffSpell = _gameStateService.GetSpellData(gameState, Spell.CombatMeditationBuff);
 

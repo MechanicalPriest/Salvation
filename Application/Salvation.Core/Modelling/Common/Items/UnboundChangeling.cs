@@ -58,6 +58,7 @@ namespace Salvation.Core.Modelling.Common.Items
 
             var duration = GetDuration(gameState, spellData);
 
+            // TODO: validate actual number of procs per minute
             // Poisson function is (e^-λ) / 1
             return RppmBadluckProtection * (1 - (Math.Exp(-1 * spellData.Rppm * duration / 60) / 1));
         }
@@ -67,16 +68,6 @@ namespace Salvation.Core.Modelling.Common.Items
             spellData = ValidateSpellData(gameState, spellData);
 
             return GetMaximumCastsPerMinute(gameState, spellData);
-        }
-
-        public override double GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
-        {
-            spellData = ValidateSpellData(gameState, spellData);
-
-            // TODO: validate actual number of procs per minute
-            var numCasts = spellData.Rppm;
-
-            return base.GetMaximumCastsPerMinute(gameState, spellData);
         }
     }
 }

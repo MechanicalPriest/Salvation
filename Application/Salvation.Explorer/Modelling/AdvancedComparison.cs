@@ -244,7 +244,7 @@ namespace Salvation.Explorer.Modelling
             var trinkets = new Dictionary<string, SimcItemOptions>()
             {
                 { "tr_cabalists_hymnal", new SimcItemOptions() { ItemId = 184028, ItemLevel = 226 } },
-                { "tr_unbound_changeling", new SimcItemOptions() { ItemId = 178708, ItemLevel = 226, BonusIds = new List<int>() { 6646 } } },
+                { "tr_unbound_changeling", new SimcItemOptions() { ItemId = 178708, ItemLevel = 226, BonusIds = new List<int>() { 6917 } } },
             };
 
             foreach (var trinket in trinkets)

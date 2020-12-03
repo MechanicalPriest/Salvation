@@ -38,7 +38,8 @@ namespace Salvation.Core.Modelling.Common.Items
             // Currently there is a bug where this trinket is providing less than the tooltip
             // The tooltip provides 2.2 * scale_value (from effect #1 824555) but buff provides
             // only 1.1 * scale_value (from effect #2 873512)
-            var hasteAmount = scaleBudget * hasteBuffSpell.GetEffect(873512).Coefficient;
+            // 03 Dec. 2020: Effect 824555 is now being used. 873512 was hotfixed down from 1.1 to 0.92 - not sure what this is for now. Split buffs?
+            var hasteAmount = scaleBudget * hasteBuffSpell.GetEffect(824555).Coefficient;
 
             return hasteAmount * GetUptime(gameState, spellData);
         }

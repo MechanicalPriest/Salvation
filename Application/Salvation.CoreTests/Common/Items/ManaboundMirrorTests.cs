@@ -9,7 +9,7 @@ using System;
 namespace Salvation.CoreTests.Common.Items
 {
     [TestFixture]
-    class SoullettingRubyTests : BaseTest
+    class ManaboundMirrorTests : BaseTest
     {
         private SpellService _spell;
         private GameState _gameState;
@@ -19,7 +19,7 @@ namespace Salvation.CoreTests.Common.Items
         {
             IGameStateService gameStateService = new GameStateService();
 
-            _spell = new SoullettingRuby(gameStateService);
+            _spell = new ManaboundMirror(gameStateService);
             _gameState = GetGameState();
         }
 
@@ -37,35 +37,23 @@ namespace Salvation.CoreTests.Common.Items
         }
 
         [Test]
-        public void GetAverageCriticalStrike_Throws_Without_Overrides()
-        {
-            // Arrange
-
-            // Act
-            var methodCall = new TestDelegate(
-                () => _spell.GetAverageCriticalStrike(_gameState, null));
-
-            // Assert
-            Assert.Throws<ArgumentOutOfRangeException>(methodCall);
-        }
-
-        [Test]
         public void GetAverageRawHealing()
         {
             // Arrange
             IGameStateService gameStateService = new GameStateService();
-            var spellData = gameStateService.GetSpellData(_gameState, Spell.SoullettingRuby);
-            var buffSpellData = gameStateService.GetSpellData(_gameState, Spell.SoullettingRubyHeal);
+            var spellData = gameStateService.GetSpellData(_gameState, Spell.ManaboundMirror);
+            var buffSpellData = gameStateService.GetSpellData(_gameState, Spell.ManaboundMirrorHeal);
             // 58 is scale budget for ilvl 226 healing effect (testing)
             spellData.Overrides.Add(Core.Constants.Override.ItemLevel, 226);
             buffSpellData.ScaleValues.Add(226, 58);
             gameStateService.OverrideSpellData(_gameState, buffSpellData);
+            gameStateService.OverridePlaystyle(_gameState, new Core.Profile.Model.PlaystyleEntry("ManaboundMirrorPercentMirrorFilled", 1.0));
 
             // Act
             var value = _spell.GetAverageRawHealing(_gameState, spellData);
 
             // Assert
-            Assert.AreEqual(4028.4062745981601d, value);
+            Assert.AreEqual(16260.493636737641d, value);
         }
 
         [Test]
@@ -73,38 +61,19 @@ namespace Salvation.CoreTests.Common.Items
         {
             // Arrange
             IGameStateService gameStateService = new GameStateService();
-            var spellData = gameStateService.GetSpellData(_gameState, Spell.SoullettingRuby);
-            var buffSpellData = gameStateService.GetSpellData(_gameState, Spell.SoullettingRubyHeal);
+            var spellData = gameStateService.GetSpellData(_gameState, Spell.ManaboundMirror);
+            var buffSpellData = gameStateService.GetSpellData(_gameState, Spell.ManaboundMirrorHeal);
             // 58 is scale budget for ilvl 226 healing effect (testing)
             spellData.Overrides.Add(Core.Constants.Override.ItemLevel, 226);
             buffSpellData.ScaleValues.Add(226, 58);
             gameStateService.OverrideSpellData(_gameState, buffSpellData);
+            gameStateService.OverridePlaystyle(_gameState, new Core.Profile.Model.PlaystyleEntry("ManaboundMirrorPercentMirrorFilled", 1.0));
 
             // Act
             var value = _spell.GetAverageHealing(_gameState, spellData);
 
             // Assert
-            Assert.AreEqual(2819.884392218712d, value);
-        }
-
-        [Test]
-        public void GetAverageCriticalStrike()
-        {
-            // Arrange
-            IGameStateService gameStateService = new GameStateService();
-            var spellData = gameStateService.GetSpellData(_gameState, Spell.SoullettingRuby);
-            var buffSpellData = gameStateService.GetSpellData(_gameState, Spell.SoullettingRubyTrigger);
-            // 58 is scale budget for ilvl 226 healing effect (testing)
-            spellData.Overrides.Add(Core.Constants.Override.ItemLevel, 226);
-            buffSpellData.ScaleValues.Add(226, 203.03347229957581);
-            gameStateService.OverrideSpellData(_gameState, buffSpellData);
-            gameStateService.OverridePlaystyle(_gameState, new Core.Profile.Model.PlaystyleEntry("SoullettingRubyAverageEnemyHP", .5));
-
-            // Act
-            var value = _spell.GetAverageCriticalStrike(_gameState, spellData);
-
-            // Assert
-            Assert.AreEqual(118.0166534359139d, value);
+            Assert.AreEqual(13821.419591226995d, value);
         }
 
         [Test]
@@ -116,7 +85,7 @@ namespace Salvation.CoreTests.Common.Items
             var value = _spell.GetMaximumCastsPerMinute(_gameState, null);
 
             // Assert
-            Assert.AreEqual(0.65113350125944591d, value);
+            Assert.AreEqual(1.0d, value);
         }
 
         [Test]
@@ -128,31 +97,7 @@ namespace Salvation.CoreTests.Common.Items
             var value = _spell.GetActualCastsPerMinute(_gameState, null);
 
             // Assert
-            Assert.AreEqual(0.58602015113350137d, value);
-        }
-
-        [Test]
-        public void GetDuration()
-        {
-            // Arrange
-
-            // Act
-            var value = _spell.GetDuration(_gameState, null);
-
-            // Assert
-            Assert.AreEqual(16, value);
-        }
-
-        [Test]
-        public void GetUptime()
-        {
-            // Arrange
-
-            // Act
-            var value = _spell.GetUptime(_gameState, null);
-
-            // Assert
-            Assert.AreEqual(0.15627204030226702d, value);
+            Assert.AreEqual(0.90000000000000002d, value);
         }
 
         [Test]

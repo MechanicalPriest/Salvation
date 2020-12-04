@@ -67,6 +67,7 @@ namespace Salvation.Core
             services.AddSingleton<ISpellService<IUnboundChangelingSpellService>, UnboundChangeling>();
             services.AddSingleton<ISpellService<ICabalistsHymnalSpellService>, CabalistsHymnal>();
             services.AddSingleton<ISpellService<ISoullettingRubySpellService>, SoullettingRuby>();
+            services.AddSingleton<ISpellService<IManaboundMirrorSpellService>, ManaboundMirror>();
 
             // Covenant
             // - Kyrian Traits

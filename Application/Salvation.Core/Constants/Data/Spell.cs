@@ -136,6 +136,9 @@
         SoullettingRubyBuff = 345805,
         SoullettingRubyHeal = 345806,
         SoullettingRubyTrigger = 345807,
+        ManaboundMirror = 344243,
+        ManaboundMirrorBuff = 344244,
+        ManaboundMirrorHeal = 344245,
 
         // Traits
         // Kyrian - Pelagos

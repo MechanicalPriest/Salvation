@@ -318,6 +318,7 @@ namespace Salvation.Core.Profile
 
                     // Items  (SpellId, Efficiency, Overheal, HealTargets, DamageTargets)
                     new CastProfile((int)Spell.SoullettingRuby, 0.9d, 0.30d, 1, 0),
+                    new CastProfile((int)Spell.ManaboundMirror, 0.9d, 0.15d, 1, 0),
                 },
                 Talents = new List<Talent>()
                 {
@@ -364,6 +365,8 @@ namespace Salvation.Core.Profile
 
                     // ## Item overrides
                     new PlaystyleEntry("SoullettingRubyAverageEnemyHP", 0.5, (uint)Spell.SoullettingRuby),
+                    // Average amount of the mirror that's filled when it's cast. Very easy to fill playing normally.
+                    new PlaystyleEntry("ManaboundMirrorPercentMirrorFilled", 1.0, (uint)Spell.ManaboundMirror),
 
                     // ## Legendary overrides
                     new PlaystyleEntry("EchoOfEonarCountAllyBuffs", 1, (uint)Spell.EchoOfEonar),

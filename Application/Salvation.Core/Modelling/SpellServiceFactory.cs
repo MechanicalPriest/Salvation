@@ -70,6 +70,7 @@ namespace Salvation.Core.Modelling
                 Spell.UnboundChangeling => typeof(IUnboundChangelingSpellService),
                 Spell.CabalistsHymnal => typeof(ICabalistsHymnalSpellService),
                 Spell.SoullettingRuby => typeof(ISoullettingRubySpellService),
+                Spell.ManaboundMirror => typeof(IManaboundMirrorSpellService),
                 // Traits
                 Spell.BronsCallToAction => typeof(IBronsCallToActionSpellService),
                 Spell.CombatMeditation => typeof(ICombatMeditationSpellSerivce),

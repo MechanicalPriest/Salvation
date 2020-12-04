@@ -118,6 +118,9 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.SoullettingRubyBuff,
                 (uint)Spell.SoullettingRubyHeal,
                 (uint)Spell.SoullettingRubyTrigger,
+                (uint)Spell.ManaboundMirror,
+                (uint)Spell.ManaboundMirrorBuff,
+                (uint)Spell.ManaboundMirrorHeal,
 
                 // Trait
                 // Kyrian

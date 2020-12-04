@@ -1,5 +1,5 @@
 {
-  "GameVersion": "9.0.2.36671",
+  "GameVersion": "9.0.2.36753",
   "Specs": [
     {
       "Class": "Priest",
@@ -2858,7 +2858,7 @@
                 "Effects": [
                   {
                     "Id": 833395,
-                    "BaseValue": -150.0,
+                    "BaseValue": -200.0,
                     "SpCoefficient": 0.0,
                     "Coefficient": 0.0,
                     "TriggerSpellid": 0,
@@ -4196,7 +4196,7 @@
               "Id": 873512,
               "BaseValue": 0.0,
               "SpCoefficient": 0.0,
-              "Coefficient": 1.1,
+              "Coefficient": 0.92,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
@@ -4520,6 +4520,122 @@
               "Amplitude": 0.0,
               "TriggerSpell": null,
               "Type": 6
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 344243,
+          "Name": "Manabound Mirror",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 100.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "ScaleValues": {},
+          "Effects": [
+            {
+              "Id": 868431,
+              "BaseValue": 3240.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6
+            },
+            {
+              "Id": 868610,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 12.827586,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 3
+            },
+            {
+              "Id": 868611,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 128.275864,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 3
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 344244,
+          "Name": "Manabound Mirror",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 30000.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "ScaleValues": {},
+          "Effects": [
+            {
+              "Id": 868432,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 344245,
+          "Name": "Manabound Mirror",
+          "ManaCost": 0.0,
+          "MaxRange": 50.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 60000.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "ScaleValues": {},
+          "Effects": [
+            {
+              "Id": 868433,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 80.172409,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 10
             }
           ],
           "ConduitRanks": {}

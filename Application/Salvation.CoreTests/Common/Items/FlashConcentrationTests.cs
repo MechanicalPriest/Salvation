@@ -70,7 +70,7 @@ namespace Salvation.CoreTests.Common.Items
             var value = _spell.GetFlashConcentrationCastTimeReduction(gamestate);
 
             // Assert
-            Assert.AreEqual(0.75d, value);
+            Assert.AreEqual(1.0d, value);
         }
 
         [Test]
@@ -100,7 +100,7 @@ namespace Salvation.CoreTests.Common.Items
             var value = _spell.GetHastedCastTime(gamestate, null);
 
             // Assert
-            Assert.AreEqual(1.5495036222162597d, value);
+            Assert.AreEqual(1.3281459618996512d, value);
         }
 
         [Test]

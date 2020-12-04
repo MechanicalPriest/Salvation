@@ -40,6 +40,10 @@ namespace Salvation.Core.Modelling.Common.Items
 
             var healAmount = scaleBudget * healSpell.GetEffect(871957).Coefficient;
 
+            healAmount *= _gameStateService.GetVersatilityMultiplier(gameState);
+
+            healAmount *= _gameStateService.GetCriticalStrikeMultiplier(gameState);
+
             return healAmount * GetNumberOfHealingTargets(gameState, spellData);
         }
 

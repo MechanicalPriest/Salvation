@@ -65,7 +65,7 @@ namespace Salvation.CoreTests.Common.Items
             var value = _spell.GetAverageRawHealing(_gameState, spellData);
 
             // Assert
-            Assert.AreEqual(2995.2000399999997d, value);
+            Assert.AreEqual(4028.4062745981601d, value);
         }
 
         [Test]
@@ -84,7 +84,7 @@ namespace Salvation.CoreTests.Common.Items
             var value = _spell.GetAverageHealing(_gameState, spellData);
 
             // Assert
-            Assert.AreEqual(2096.6400279999998d, value);
+            Assert.AreEqual(2819.884392218712d, value);
         }
 
         [Test]

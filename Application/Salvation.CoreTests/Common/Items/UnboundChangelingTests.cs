@@ -51,7 +51,7 @@ namespace Salvation.CoreTests.Common.Items
             var value = _spell.GetAverageHaste(_gameState, spellData);
 
             // Assert
-            Assert.AreEqual(49.93525751235682d, value);
+            Assert.AreEqual(99.87051502471364d, value);
         }
 
         [Test]

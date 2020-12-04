@@ -315,6 +315,9 @@ namespace Salvation.Core.Profile
                     new CastProfile((int)Spell.DivineImageLightEruption, 0.0d, 0.25d, 1, 0),
                     new CastProfile((int)Spell.DivineImageSearingLight, 0.0d, 0.25d, 1, 0),
                     new CastProfile((int)Spell.DivineImageTranquilLight, 0.0d, 0.20d, 1, 0),
+
+                    // Items  (SpellId, Efficiency, Overheal, HealTargets, DamageTargets)
+                    new CastProfile((int)Spell.SoullettingRuby, 0.9d, 0.30d, 1, 0),
                 },
                 Talents = new List<Talent>()
                 {
@@ -358,6 +361,9 @@ namespace Salvation.Core.Profile
                     // ## Damage & Healing overrides
                     new PlaystyleEntry("ShadowWordDeathPercentExecute", 0.2, (uint)Spell.ShadowWordDeath),
                     new PlaystyleEntry("HolyNovaPercentOfCastsOnThreeOrMore", 0.1, (uint)Spell.HolyNovaRank2),
+
+                    // ## Item overrides
+                    new PlaystyleEntry("SoullettingRubyAverageEnemyHP", 0.5, (uint)Spell.SoullettingRuby),
 
                     // ## Legendary overrides
                     new PlaystyleEntry("EchoOfEonarCountAllyBuffs", 1, (uint)Spell.EchoOfEonar),

@@ -114,6 +114,10 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.UnboundChangelingBuff,
                 (uint)Spell.CabalistsHymnal,
                 (uint)Spell.CabalistsHymnalBuff,
+                (uint)Spell.SoullettingRuby,
+                (uint)Spell.SoullettingRubyBuff,
+                (uint)Spell.SoullettingRubyHeal,
+                (uint)Spell.SoullettingRubyTrigger,
 
                 // Trait
                 // Kyrian

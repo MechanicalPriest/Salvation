@@ -4313,6 +4313,218 @@
           "ConduitRanks": {}
         },
         {
+          "Id": 345801,
+          "Name": "Soulletting Ruby",
+          "ManaCost": 0.0,
+          "MaxRange": 40.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 120000.0,
+          "IsCooldownHasted": false,
+          "Duration": 20000.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "ScaleValues": {},
+          "Effects": [
+            {
+              "Id": 871952,
+              "BaseValue": 30.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6
+            },
+            {
+              "Id": 871963,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 345802,
+              "Amplitude": 0.0,
+              "TriggerSpell": {
+                "Id": 345802,
+                "Name": "Soul Fragment",
+                "ManaCost": 0.0,
+                "MaxRange": 40.0,
+                "BaseCastTime": 0.0,
+                "BaseCooldown": 0.0,
+                "IsCooldownHasted": false,
+                "Duration": 0.0,
+                "Gcd": 0.0,
+                "ChargeCooldown": 0,
+                "Charges": 0,
+                "MaxStacks": 0.0,
+                "ProcChance": 0.0,
+                "InternalCooldown": 0.0,
+                "Rppm": 0.0,
+                "RppmIsHasted": false,
+                "ScaleValues": {},
+                "Effects": [
+                  {
+                    "Id": 871953,
+                    "BaseValue": 0.0,
+                    "SpCoefficient": 0.0,
+                    "Coefficient": 0.0,
+                    "TriggerSpellid": 345804,
+                    "Amplitude": 0.0,
+                    "TriggerSpell": {
+                      "Id": 345804,
+                      "Name": "Soul Transfer",
+                      "ManaCost": 0.0,
+                      "MaxRange": 40.0,
+                      "BaseCastTime": 0.0,
+                      "BaseCooldown": 0.0,
+                      "IsCooldownHasted": false,
+                      "Duration": 0.0,
+                      "Gcd": 0.0,
+                      "ChargeCooldown": 0,
+                      "Charges": 0,
+                      "MaxStacks": 0.0,
+                      "ProcChance": 0.0,
+                      "InternalCooldown": 0.0,
+                      "Rppm": 0.0,
+                      "RppmIsHasted": false,
+                      "ScaleValues": {},
+                      "Effects": [
+                        {
+                          "Id": 871955,
+                          "BaseValue": 0.0,
+                          "SpCoefficient": 0.0,
+                          "Coefficient": 0.0,
+                          "TriggerSpellid": 0,
+                          "Amplitude": 0.0,
+                          "TriggerSpell": null,
+                          "Type": 10
+                        }
+                      ],
+                      "ConduitRanks": {}
+                    },
+                    "Type": 32
+                  }
+                ],
+                "ConduitRanks": {}
+              },
+              "Type": 64
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 345805,
+          "Name": "Soul Infusion",
+          "ManaCost": 0.0,
+          "MaxRange": 40.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 16000.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "ScaleValues": {},
+          "Effects": [
+            {
+              "Id": 871956,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 345806,
+          "Name": "Soul Infusion",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "ScaleValues": {},
+          "Effects": [
+            {
+              "Id": 871957,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 51.64138,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 345807,
+          "Name": "Soul Infusion",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "ScaleValues": {
+            "60": 95.0
+          },
+          "Effects": [
+            {
+              "Id": 871958,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 2.269577,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6
+            },
+            {
+              "Id": 871962,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 2.900014,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
           "Id": 328266,
           "Name": "Combat Meditation",
           "ManaCost": 0.0,

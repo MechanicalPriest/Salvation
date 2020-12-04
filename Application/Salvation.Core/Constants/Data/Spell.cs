@@ -132,6 +132,10 @@
         UnboundChangelingBuff = 330747,
         CabalistsHymnal = 344806,
         CabalistsHymnalBuff = 344803,
+        SoullettingRuby = 345801,
+        SoullettingRubyBuff = 345805,
+        SoullettingRubyHeal = 345806,
+        SoullettingRubyTrigger = 345807,
 
         // Traits
         // Kyrian - Pelagos

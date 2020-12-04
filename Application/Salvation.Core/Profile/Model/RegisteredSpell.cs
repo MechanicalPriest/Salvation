@@ -30,5 +30,10 @@ namespace Salvation.Core.Profile.Model
         {
             Spell = spell;
         }
+
+        public override string ToString()
+        {
+            return $"{Spell} (ilvl: {ItemLevel})";
+        }
     }
 }

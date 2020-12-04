@@ -6,7 +6,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Azure.Functions.Extensions" Version="1.1.0" />
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="3.0.11" />
-    <PackageReference Include="SimcProfileParser" Version="0.3.5" />
+    <PackageReference Include="SimcProfileParser" Version="0.3.6" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Salvation.Core\Salvation.Core.csproj" />

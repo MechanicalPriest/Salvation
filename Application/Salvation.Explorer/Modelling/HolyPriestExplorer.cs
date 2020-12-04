@@ -142,10 +142,10 @@ namespace Salvation.Explorer.Modelling
             foreach (var result in results.Results)
             {
                 sb.AppendLine($"{result.Key}, " +
-                    $"{result.Value.TotalRawHPS - baselineResults.TotalRawHPS:0.##}, " +
                     $"{result.Value.TotalActualHPS - baselineResults.TotalActualHPS:0.##}, " +
-                    $"{result.Value.TotalRawHPS:0.##}, " +
-                    $"{result.Value.TotalActualHPS:0.##}, ");
+                    $"{result.Value.TotalRawHPS - baselineResults.TotalRawHPS:0.##}, " +
+                    $"{result.Value.TotalActualHPS:0.##}, " +
+                    $"{result.Value.TotalRawHPS:0.##}, ");
             }
 
             File.WriteAllText("covenant_results_adv.csv", sb.ToString());

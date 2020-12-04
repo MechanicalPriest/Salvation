@@ -78,7 +78,10 @@ namespace Salvation.Explorer.Modelling
                 });
             }
 
-            return new AdvancedComparisonResult(results);
+            return new AdvancedComparisonResult(results
+                .OrderByDescending(r => r.Key.Split('_')[0])
+                .ThenByDescending(r => r.Value.TotalActualHPS)
+                .ToDictionary(r => r.Key, r => r.Value));
         }
 
         public List<GameState> GetKyrianStates(GameState baseState)
@@ -91,10 +94,10 @@ namespace Salvation.Explorer.Modelling
             {
                 Covenant = Covenant.Kyrian,
             });
-            _gameStateService.SetProfileName(baseKyrianState, "kyrian_base");
+            _gameStateService.SetProfileName(baseKyrianState, "cov_kyrian_base");
 
             states.Add(baseKyrianState);
-            states.Add(SetSingleConduit(baseKyrianState, "kyrian_courageous_ascension", Conduit.CourageousAscension, 7));
+            states.Add(SetSingleConduit(baseKyrianState, "cov_kyrian_courageous_ascension", Conduit.CourageousAscension, 7));
             states.AddRange(GetKyrianPelagosStates(baseKyrianState));
 
             return states;
@@ -119,10 +122,10 @@ namespace Salvation.Explorer.Modelling
             {
                 Covenant = Covenant.Necrolord,
             });
-            _gameStateService.SetProfileName(baseNecroState, "necro_base");
+            _gameStateService.SetProfileName(baseNecroState, "cov_necro_base");
 
             states.Add(baseNecroState);
-            states.Add(SetSingleConduit(baseNecroState, "necro_festering_transfusion", Conduit.FesteringTransfusion, 7));
+            states.Add(SetSingleConduit(baseNecroState, "cov_necro_festering_transfusion", Conduit.FesteringTransfusion, 7));
             states.AddRange(GetKyrianPelagosStates(baseNecroState));
 
             return states;
@@ -138,10 +141,10 @@ namespace Salvation.Explorer.Modelling
             {
                 Covenant = Covenant.NightFae,
             });
-            _gameStateService.SetProfileName(baseNightFaeState, "nf_base");
+            _gameStateService.SetProfileName(baseNightFaeState, "cov_nf_base");
 
             states.Add(baseNightFaeState);
-            states.Add(SetSingleConduit(baseNightFaeState, "nf_fae_fermata", Conduit.FaeFermata, 7));
+            states.Add(SetSingleConduit(baseNightFaeState, "cov_nf_fae_fermata", Conduit.FaeFermata, 7));
             states.AddRange(GetKyrianPelagosStates(baseNightFaeState));
 
             return states;
@@ -157,10 +160,10 @@ namespace Salvation.Explorer.Modelling
             {
                 Covenant = Covenant.Venthyr,
             });
-            _gameStateService.SetProfileName(baseVenthyrState, "venthyr_base");
+            _gameStateService.SetProfileName(baseVenthyrState, "cov_venthyr_base");
 
             states.Add(baseVenthyrState);
-            states.Add(SetSingleConduit(baseVenthyrState, "venthyr_shattered_perceptions", Conduit.ShatteredPerceptions, 7));
+            states.Add(SetSingleConduit(baseVenthyrState, "cov_venthyr_shattered_perceptions", Conduit.ShatteredPerceptions, 7));
             states.AddRange(GetKyrianPelagosStates(baseVenthyrState));
 
             return states;
@@ -172,28 +175,28 @@ namespace Salvation.Explorer.Modelling
             {
 
                 // --------------------- Soulbinds ---------------------
-                SetSingleSoulbindTrait(baseState, "base_sb_brons_call_to_action", SoulbindTrait.BronsCalltoAction),
-                SetSingleSoulbindTrait(baseState, "base_sb_combat_meditation", SoulbindTrait.CombatMeditation),
-                SetSingleSoulbindTrait(baseState, "base_sb_field_of_blossoms", SoulbindTrait.FieldofBlossoms),
-                SetSingleSoulbindTrait(baseState, "base_sb_grove_invigoration", SoulbindTrait.GroveInvigoration),
-                SetSingleSoulbindTrait(baseState, "base_sb_let_go_of_the_past", SoulbindTrait.LetGoofthePast),
-                SetSingleSoulbindTrait(baseState, "base_sb_marrowed_gemstone", SoulbindTrait.HeirmirsArsenalMarrowedGemstone),
-                SetSingleSoulbindTrait(baseState, "base_sb_niyas_tools_herbs", SoulbindTrait.NiyasToolsHerbs),
-                SetSingleSoulbindTrait(baseState, "base_sb_pointed_courage", SoulbindTrait.PointedCourage),
-                SetSingleSoulbindTrait(baseState, "base_sb_resonant_accolades", SoulbindTrait.ResonantAccolades),
-                SetSingleSoulbindTrait(baseState, "base_sb_soothing_shade", SoulbindTrait.SoothingShade),
-                SetSingleSoulbindTrait(baseState, "base_sb_thrill_seeker", SoulbindTrait.ThrillSeeker),
-                SetSingleSoulbindTrait(baseState, "base_sb_ultimate_form", SoulbindTrait.UltimateForm),
-                SetSingleSoulbindTrait(baseState, "base_sb_valiant_strikes", SoulbindTrait.ValiantStrikes),
-                SetSingleSoulbindTrait(baseState, "base_sb_volatile_solvent", SoulbindTrait.VolatileSolvent),
-                SetSingleSoulbindTrait(baseState, "base_sb_lead_by_example", SoulbindTrait.LeadByExample),
+                SetSingleSoulbindTrait(baseState, "sb_brons_call_to_action", SoulbindTrait.BronsCalltoAction),
+                SetSingleSoulbindTrait(baseState, "sb_combat_meditation", SoulbindTrait.CombatMeditation),
+                SetSingleSoulbindTrait(baseState, "sb_field_of_blossoms", SoulbindTrait.FieldofBlossoms),
+                SetSingleSoulbindTrait(baseState, "sb_grove_invigoration", SoulbindTrait.GroveInvigoration),
+                SetSingleSoulbindTrait(baseState, "sb_let_go_of_the_past", SoulbindTrait.LetGoofthePast),
+                SetSingleSoulbindTrait(baseState, "sb_marrowed_gemstone", SoulbindTrait.HeirmirsArsenalMarrowedGemstone),
+                SetSingleSoulbindTrait(baseState, "sb_niyas_tools_herbs", SoulbindTrait.NiyasToolsHerbs),
+                SetSingleSoulbindTrait(baseState, "sb_pointed_courage", SoulbindTrait.PointedCourage),
+                SetSingleSoulbindTrait(baseState, "sb_resonant_accolades", SoulbindTrait.ResonantAccolades),
+                SetSingleSoulbindTrait(baseState, "sb_soothing_shade", SoulbindTrait.SoothingShade),
+                SetSingleSoulbindTrait(baseState, "sb_thrill_seeker", SoulbindTrait.ThrillSeeker),
+                SetSingleSoulbindTrait(baseState, "sb_ultimate_form", SoulbindTrait.UltimateForm),
+                SetSingleSoulbindTrait(baseState, "sb_valiant_strikes", SoulbindTrait.ValiantStrikes),
+                SetSingleSoulbindTrait(baseState, "sb_volatile_solvent", SoulbindTrait.VolatileSolvent),
+                SetSingleSoulbindTrait(baseState, "sb_lead_by_example", SoulbindTrait.LeadByExample),
 
                 // --------------------- Conduits ---------------------
-                SetSingleConduit(baseState, "base_cn_charitable_soul", Conduit.CharitableSoul, 7),
-                SetSingleConduit(baseState, "base_cn_focused_mending", Conduit.FocusedMending, 7),
-                SetSingleConduit(baseState, "base_cn_holy_oration", Conduit.HolyOration, 7),
-                SetSingleConduit(baseState, "base_cn_resonant_words", Conduit.ResonantWords, 7),
-                SetSingleConduit(baseState, "base_cn_lasting_spirit", Conduit.LastingSpirit, 7)
+                SetSingleConduit(baseState, "cn_charitable_soul", Conduit.CharitableSoul, 7),
+                SetSingleConduit(baseState, "cn_focused_mending", Conduit.FocusedMending, 7),
+                SetSingleConduit(baseState, "cn_holy_oration", Conduit.HolyOration, 7),
+                SetSingleConduit(baseState, "cn_resonant_words", Conduit.ResonantWords, 7),
+                SetSingleConduit(baseState, "cn_lasting_spirit", Conduit.LastingSpirit, 7)
             };
 
             return states;

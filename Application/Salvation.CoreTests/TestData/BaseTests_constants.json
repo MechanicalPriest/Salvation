@@ -4641,6 +4641,124 @@
           "ConduitRanks": {}
         },
         {
+          "Id": 345432,
+          "Name": "Blood Waltz",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 90000.0,
+          "IsCooldownHasted": false,
+          "Duration": 4000.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "ScaleValues": {},
+          "Effects": [
+            {
+              "Id": 871311,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 1000.0,
+              "TriggerSpell": null,
+              "Type": 6
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 345431,
+          "Name": "Blood Waltz",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "ScaleValues": {
+            "60": 95.0
+          },
+          "Effects": [
+            {
+              "Id": 871310,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.482679,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6
+            },
+            {
+              "Id": 871316,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.271,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 345439,
+          "Name": "Blood Waltz",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 20000.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 4.0,
+          "ProcChance": 101.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "ScaleValues": {},
+          "Effects": [
+            {
+              "Id": 871323,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6
+            },
+            {
+              "Id": 871324,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
           "Id": 328266,
           "Name": "Combat Meditation",
           "ManaCost": 0.0,

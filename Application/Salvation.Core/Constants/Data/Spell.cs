@@ -139,6 +139,9 @@
         ManaboundMirror = 344243,
         ManaboundMirrorBuff = 344244,
         ManaboundMirrorHeal = 344245,
+        MacabreSheetMusic = 345432,
+        MacabreSheetMusicTrigger = 345431,
+        MacabreSheetMusicBuff = 345439,
 
         // Traits
         // Kyrian - Pelagos

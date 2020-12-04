@@ -71,6 +71,7 @@ namespace Salvation.Core.Modelling
                 Spell.CabalistsHymnal => typeof(ICabalistsHymnalSpellService),
                 Spell.SoullettingRuby => typeof(ISoullettingRubySpellService),
                 Spell.ManaboundMirror => typeof(IManaboundMirrorSpellService),
+                Spell.MacabreSheetMusic => typeof(IMacabreSheetMusicSpellService),
                 // Traits
                 Spell.BronsCallToAction => typeof(IBronsCallToActionSpellService),
                 Spell.CombatMeditation => typeof(ICombatMeditationSpellSerivce),

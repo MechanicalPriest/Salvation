@@ -319,6 +319,7 @@ namespace Salvation.Core.Profile
                     // Items  (SpellId, Efficiency, Overheal, HealTargets, DamageTargets)
                     new CastProfile((int)Spell.SoullettingRuby, 0.9d, 0.30d, 1, 0),
                     new CastProfile((int)Spell.ManaboundMirror, 0.9d, 0.15d, 1, 0),
+                    new CastProfile((int)Spell.MacabreSheetMusic, 0.9d, 0.0d, 0, 0),
                 },
                 Talents = new List<Talent>()
                 {

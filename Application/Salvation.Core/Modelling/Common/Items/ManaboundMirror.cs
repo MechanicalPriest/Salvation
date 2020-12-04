@@ -61,7 +61,7 @@ namespace Salvation.Core.Modelling.Common.Items
             // This procs every minute almost exactly with very little variation
             var healSpell = _gameStateService.GetSpellData(gameState, Spell.ManaboundMirrorHeal);
             var hastedCd = GetHastedCooldown(gameState, healSpell);
-            var fightLength = _gameStateService.GetFightLength(gameState);
+            //var fightLength = _gameStateService.GetFightLength(gameState);
 
             // TODO: If this can be stacked up pre-fight, add the one at the start of the fight
             // TODO: Factor in you can get your first usage about 30-seconds in rather than a minute.

@@ -247,6 +247,7 @@ namespace Salvation.Explorer.Modelling
                 { "unbound_changeling", new SimcItemOptions() { ItemId = 178708, ItemLevel = 226, BonusIds = new List<int>() { 6917 } } },
                 { "soulletting_ruby", new SimcItemOptions() { ItemId = 178809, ItemLevel = 226 } },
                 { "manabound_mirror", new SimcItemOptions() { ItemId = 184029, ItemLevel = 226 } },
+                { "macabre_sheet_music", new SimcItemOptions() { ItemId = 184024, ItemLevel = 226 } },
             };
 
             foreach (var trinket in trinkets)

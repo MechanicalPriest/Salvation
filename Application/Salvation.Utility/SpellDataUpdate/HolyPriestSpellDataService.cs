@@ -121,6 +121,9 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.ManaboundMirror,
                 (uint)Spell.ManaboundMirrorBuff,
                 (uint)Spell.ManaboundMirrorHeal,
+                (uint)Spell.MacabreSheetMusic,
+                (uint)Spell.MacabreSheetMusicTrigger,
+                (uint)Spell.MacabreSheetMusicBuff,
 
                 // Trait
                 // Kyrian

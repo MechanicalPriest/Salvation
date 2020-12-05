@@ -104,5 +104,10 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         {
             return 1;
         }
+
+        public override bool TriggersLeech(GameState gameState, BaseSpellData spellData)
+        {
+            return false;
+        }
     }
 }

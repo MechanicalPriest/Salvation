@@ -362,6 +362,64 @@ namespace Salvation.Core.State
                 + addedMasteryPercent;
         }
 
+        public double GetLeechRating(GameState state)
+        {
+            var leechRating = GetBaseLeechRating(state);
+
+            // Add any forced additional stats if specified (stat weights)
+            var bonusLeech = GetPlaystyle(state, "GrantAdditionalStatLeech");
+            if (bonusLeech != null)
+                leechRating += bonusLeech.Value;
+
+            // Get average mastery from effects
+            foreach (var spell in state.RegisteredSpells.Where(s => s.SpellService != null))
+            {
+                leechRating += spell.SpellService.GetAverageLeech(state, spell.SpellData);
+            }
+
+            return leechRating;
+        }
+
+        internal double GetBaseLeechRating(GameState state)
+        {
+            var playStyleValue = GetPlaystyle(state, "OverrideStatLeech").Value;
+            if (playStyleValue != 0)
+            {
+                return playStyleValue;
+            }
+
+            var leechRating = 0d;
+
+            // Get mastery from gear
+            foreach (var item in _profileService.GetEquippedItems(state.Profile))
+            {
+                foreach (var mod in item.Mods)
+                {
+                    if (mod.Type == ItemModType.ITEM_MOD_LEECH_RATING)
+                    {
+                        leechRating += mod.StatRating;
+                    }
+                }
+            }
+
+            return leechRating;
+        }
+
+        public double GetLeechMultiplier(GameState state, Spell requestingSpell = Spell.None)
+        {
+            var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.Spec).FirstOrDefault();
+
+            var addedLeechPercent = 0d;
+            foreach (var spell in state.RegisteredSpells.Where(s => s.SpellService != null))
+            {
+                if (spell.Spell != requestingSpell)
+                    addedLeechPercent += spell.SpellService.GetAverageLeechPercent(state, spell.SpellData);
+            }
+
+            return 1 + (GetDrRating(GetLeechRating(state), specData.LeechCost) / specData.LeechCost / 100)
+                + addedLeechPercent;
+        }
+
         public double GetIntellect(GameState state)
         {
             double intellect = GetBaseIntellect(state);

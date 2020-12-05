@@ -103,6 +103,8 @@ namespace Salvation.Core.Interfaces.Modelling
         double GetAverageMasteryPercent(GameState gameState, BaseSpellData spellData);
         double GetAverageVersatility(GameState gameState, BaseSpellData spellData);
         double GetAverageVersatilityPercent(GameState gameState, BaseSpellData spellData);
+        double GetAverageLeech(GameState gameState, BaseSpellData spellData);
+        double GetAverageLeechPercent(GameState gameState, BaseSpellData spellData);
         double GetAverageMp5(GameState gameState, BaseSpellData spellData);
         double GetAverageHealingBonus(GameState gameState, BaseSpellData spellData);
     }

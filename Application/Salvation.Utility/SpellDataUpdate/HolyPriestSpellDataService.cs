@@ -20,6 +20,7 @@ namespace Salvation.Utility.SpellDataUpdate
             {
                 (uint)Spell.HolyPriest,
                 (uint)Spell.Priest,
+                (uint)Spell.LeechHeal,
 
                 // Talents
                 (uint)Spell.Enlightenment,

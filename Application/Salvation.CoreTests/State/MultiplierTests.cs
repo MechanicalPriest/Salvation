@@ -87,5 +87,18 @@ namespace Salvation.CoreTests.State
             // Assert
             Assert.AreEqual(1.2030000000000001d, vers);
         }
+
+        [Test]
+        public void LeechMultiplierTest()
+        {
+            // Arrange
+
+
+            // Act
+            var vers = _gameStateService.GetLeechMultiplier(_state);
+
+            // Assert
+            Assert.AreEqual(1.0d, vers);
+        }
     }
 }

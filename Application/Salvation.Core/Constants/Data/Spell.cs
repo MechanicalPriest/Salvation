@@ -18,6 +18,7 @@
         /// Priest aura, misc stuff
         /// </summary>
         Priest = 137030,
+        LeechHeal = 143924,
 
         // Base healing spells
         Heal = 2060,

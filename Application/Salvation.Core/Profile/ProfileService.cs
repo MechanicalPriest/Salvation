@@ -261,6 +261,8 @@ namespace Salvation.Core.Profile
                 Class = Class.Priest,
                 Casts = new List<CastProfile>()
                 {
+                    new CastProfile((int)Spell.LeechHeal, 0.0d, 0.3475d, 1, 0),
+
                     // Base Spells (SpellId, Efficiency, Overheal, HealTargets, DamageTargets)
                     new CastProfile((int)Spell.FlashHeal, 0.1103d, 0.1084d, 1, 0),
                     new CastProfile((int)Spell.Heal, 0.1564d, 0.3054d, 1, 0),
@@ -336,6 +338,7 @@ namespace Salvation.Core.Profile
                     new PlaystyleEntry("OverrideStatCriticalStrike", 0, (uint)Spell.HolyPriest),
                     new PlaystyleEntry("OverrideStatVersatility", 0, (uint)Spell.HolyPriest),
                     new PlaystyleEntry("OverrideStatMastery", 0, (uint)Spell.HolyPriest),
+                    new PlaystyleEntry("OverrideStatLeech", 0, (uint)Spell.HolyPriest),
 
                     // Adds additional stats (for use with stat weights)
                     new PlaystyleEntry("GrantAdditionalStatIntellect", 0, (uint)Spell.HolyPriest),
@@ -343,6 +346,9 @@ namespace Salvation.Core.Profile
                     new PlaystyleEntry("GrantAdditionalStatHaste", 0, (uint)Spell.HolyPriest),
                     new PlaystyleEntry("GrantAdditionalStatVersatility", 0, (uint)Spell.HolyPriest),
                     new PlaystyleEntry("GrantAdditionalStatCriticalStrike", 0, (uint)Spell.HolyPriest),
+                    new PlaystyleEntry("GrantAdditionalStatLeech", 0, (uint)Spell.HolyPriest),
+
+                    new PlaystyleEntry("LeechSelfHealPercent", 0.20, (uint)Spell.HolyPriest),
 
                     // Force the cloth armor bonus
                     new PlaystyleEntry("ForceClothBonus", 0, (uint)Spell.HolyPriest),

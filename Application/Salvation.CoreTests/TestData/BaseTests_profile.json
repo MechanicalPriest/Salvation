@@ -3899,6 +3899,11 @@
       "SpellId": 0
     },
     {
+      "Name": "OverrideStatLeech",
+      "Value": 0.0,
+      "SpellId": 0
+    },
+    {
       "Name": "CharitableSoulAllyCasts",
       "Value": 0.9,
       "SpellId": 0

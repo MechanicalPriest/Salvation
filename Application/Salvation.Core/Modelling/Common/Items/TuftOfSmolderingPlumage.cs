@@ -8,13 +8,13 @@ using System.Linq;
 
 namespace Salvation.Core.Modelling.Common.Items
 {
-    public interface IManaboundMirrorSpellService : ISpellService { }
-    public class ManaboundMirror : SpellService, ISpellService<IManaboundMirrorSpellService>
+    public interface ITuftOfSmolderingPlumageSpellService : ISpellService { }
+    public class TuftOfSmolderingPlumage : SpellService, ISpellService<ITuftOfSmolderingPlumageSpellService>
     {
-        public ManaboundMirror(IGameStateService gameStateService)
+        public TuftOfSmolderingPlumage(IGameStateService gameStateService)
             : base(gameStateService)
         {
-            Spell = Spell.ManaboundMirror;
+            Spell = Spell.TuftOfSmolderingPlumage;
         }
 
         public override double GetAverageRawHealing(GameState gameState, BaseSpellData spellData)
@@ -30,7 +30,7 @@ namespace Salvation.Core.Modelling.Common.Items
 
             var itemLevel = (int)spellData.Overrides[Override.ItemLevel];
 
-            var healSpell = _gameStateService.GetSpellData(gameState, Spell.ManaboundMirrorHeal);
+            var healSpell = _gameStateService.GetSpellData(gameState, Spell.TuftOfSmolderingPlumageBuff);
 
             // Get scale budget
             if(!healSpell.ScaleValues.ContainsKey(itemLevel))
@@ -38,16 +38,18 @@ namespace Salvation.Core.Modelling.Common.Items
 
             var scaleBudget = healSpell.ScaleValues[itemLevel];
 
-            var baseHealAmount = scaleBudget * healSpell.GetEffect(868433).Coefficient;
-            var bonusHealAmount = scaleBudget * spellData.GetEffect(868611).Coefficient;
+            var healAmount = scaleBudget * healSpell.GetEffect(869705).Coefficient;
 
             // Get the percentage of the mirror that's filled up each cast
-            var avgMirrorFill = _gameStateService.GetPlaystyle(gameState, "ManaboundMirrorPercentMirrorFilled");
+            var avgTargetHp = _gameStateService.GetPlaystyle(gameState, "TuftOfSmolderingPlumageAvgAllyHp");
 
-            if (avgMirrorFill == null)
-                throw new ArgumentOutOfRangeException("ManaboundMirrorPercentMirrorFilled", $"ManaboundMirrorPercentMirrorFilled needs to be set.");
+            if (avgTargetHp == null)
+                throw new ArgumentOutOfRangeException("TuftOfSmolderingPlumageAvgAllyHp", $"TuftOfSmolderingPlumageAvgAllyHp needs to be set.");
 
-            var totalHeal = baseHealAmount + (bonusHealAmount * avgMirrorFill.Value);
+            // Total healing is the base heal amount then an additional 25%, depending on target HP.
+            // 0.75 (75%) average hp = heal amount * (1.25 * (1 + (1 - 0.75)))
+            var addedHealing = 1 + ((spellData.GetEffect(870061).BaseValue / 100) * (1 - avgTargetHp.Value));
+            var totalHeal = healAmount * addedHealing;
 
             totalHeal *= _gameStateService.GetVersatilityMultiplier(gameState);
 
@@ -58,22 +60,21 @@ namespace Salvation.Core.Modelling.Common.Items
 
         public override double GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
         {
-            var healSpell = _gameStateService.GetSpellData(gameState, Spell.ManaboundMirrorHeal);
-            var hastedCd = GetHastedCooldown(gameState, healSpell);
-            //var fightLength = _gameStateService.GetFightLength(gameState);
+            spellData = ValidateSpellData(gameState, spellData);
 
-            // TODO: If this can be stacked up pre-fight, add the one at the start of the fight
-            // TODO: Factor in you can get your first usage about 30-seconds in rather than a minute.
-            return 60 / hastedCd;
-                //+ 1d / (fightLength / 60d); // plus one at the start of the fight
+            var hastedCd = GetHastedCooldown(gameState, spellData);
+            var fightLength = _gameStateService.GetFightLength(gameState);
+
+            return 60 / hastedCd
+                + 1d / (fightLength / 60d); // plus one at the start of the fight
         }
 
         public override bool TriggersMastery(GameState gameState, BaseSpellData spellData)
         {
             var healSpell = _gameStateService.GetSpellData(gameState, Spell.ManaboundMirrorHeal);
 
-            // The spell effect type is nested down inside a couple of effect trigger spells
-            return base.TriggersMastery(gameState, healSpell);
+            // TODO: Add the direct heal effect from 344917?
+            return true;
         }
     }
 }

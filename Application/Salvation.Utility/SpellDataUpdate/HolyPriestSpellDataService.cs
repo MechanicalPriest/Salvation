@@ -124,6 +124,8 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.MacabreSheetMusic,
                 (uint)Spell.MacabreSheetMusicTrigger,
                 (uint)Spell.MacabreSheetMusicBuff,
+                (uint)Spell.TuftOfSmolderingPlumage,
+                (uint)Spell.TuftOfSmolderingPlumageBuff,
 
                 // Trait
                 // Kyrian

@@ -4759,6 +4759,100 @@
           "ConduitRanks": {}
         },
         {
+          "Id": 344916,
+          "Name": "Tuft of Smoldering Plumage",
+          "ManaCost": 0.0,
+          "MaxRange": 50.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 120000.0,
+          "IsCooldownHasted": false,
+          "Duration": 6000.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "ScaleValues": {},
+          "Effects": [
+            {
+              "Id": 869707,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6
+            },
+            {
+              "Id": 870061,
+              "BaseValue": 25.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 3
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 344915,
+          "Name": "Tuft of Smoldering Plumage",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "ScaleValues": {},
+          "Effects": [
+            {
+              "Id": 869705,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 326.793091,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6
+            },
+            {
+              "Id": 869710,
+              "BaseValue": 2.5,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6
+            },
+            {
+              "Id": 869711,
+              "BaseValue": 10.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 35
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
           "Id": 328266,
           "Name": "Combat Meditation",
           "ManaCost": 0.0,

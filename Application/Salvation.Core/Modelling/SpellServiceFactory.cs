@@ -72,6 +72,7 @@ namespace Salvation.Core.Modelling
                 Spell.SoullettingRuby => typeof(ISoullettingRubySpellService),
                 Spell.ManaboundMirror => typeof(IManaboundMirrorSpellService),
                 Spell.MacabreSheetMusic => typeof(IMacabreSheetMusicSpellService),
+                Spell.TuftOfSmolderingPlumage => typeof(ITuftOfSmolderingPlumageSpellService),
                 // Traits
                 Spell.BronsCallToAction => typeof(IBronsCallToActionSpellService),
                 Spell.CombatMeditation => typeof(ICombatMeditationSpellSerivce),

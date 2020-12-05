@@ -142,6 +142,9 @@
         MacabreSheetMusic = 345432,
         MacabreSheetMusicTrigger = 345431,
         MacabreSheetMusicBuff = 345439,
+        TuftOfSmolderingPlumage = 344916,
+        TuftOfSmolderingPlumageBuff = 344915,
+        TuftOfSmolderingPlumageHeal = 344917,
 
         // Traits
         // Kyrian - Pelagos

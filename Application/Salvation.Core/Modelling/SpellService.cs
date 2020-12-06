@@ -363,7 +363,9 @@ namespace Salvation.Core.Modelling
                 + GetAverageDamage(gameState, spellData);
 
             // Don't return a result if there is nothing generating leech
-            if (!TriggersLeech(gameState, spellData) || totalDamageHealing == 0)
+            if (!TriggersLeech(gameState, spellData)
+                || totalDamageHealing == 0
+                || _gameStateService.GetLeechMultiplier(gameState) == 1)
                 return null;
 
             AveragedSpellCastResult result = new AveragedSpellCastResult();
@@ -383,7 +385,7 @@ namespace Salvation.Core.Modelling
             result.Healing = averageLeechHeal * (1 - overhealPercent);
             result.Overhealing = averageLeechHeal * overhealPercent;
             result.CastsPerMinute = GetActualCastsPerMinute(gameState, spellData);
-            result.NumberOfHealingTargets = GetNumberOfHealingTargets(gameState, spellData);
+            result.NumberOfHealingTargets = 1;
 
             return result;
         }

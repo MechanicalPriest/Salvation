@@ -56,7 +56,9 @@ const Profile = () => {
       {newProfile.playstyleEntries?.map((playstyle) => {
         return (
           <div key={playstyle.name}>
-            <label>{playstyle.name} ({playstyle.spellId})</label>
+            <label>
+              {playstyle.name} (<Link target='_blank' rel='noreferrer' href={'//wowhead.com/spell=' + playstyle.spellId} data-wowhead={'spell=' + playstyle.spellId}>{playstyle.spellId}</Link>)
+            </label>
             <input type='text' value={playstyle.value} onChange={(e) => { updatePlaystyleValue(playstyle, e.target.value); }} />
           </div>
         );

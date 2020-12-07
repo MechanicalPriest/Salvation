@@ -71,6 +71,7 @@ namespace Salvation.Core
             services.AddSingleton<ISpellService<IMacabreSheetMusicSpellService>, MacabreSheetMusic>();
             services.AddSingleton<ISpellService<ITuftOfSmolderingPlumageSpellService>, TuftOfSmolderingPlumage>();
             services.AddSingleton<ISpellService<IConsumptiveInfusionSpellService>, ConsumptiveInfusion>();
+            services.AddSingleton<ISpellService<IDarkmoonDeckReposeSpellSevice>, DarkmoonDeckRepose>();
 
             // Covenant
             // - Kyrian Traits

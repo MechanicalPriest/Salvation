@@ -14,64 +14,63 @@ namespace Salvation.Core.Modelling.Common.Items
         public DarkmoonDeckRepose(IGameStateService gameStateService)
             : base(gameStateService)
         {
-            Spell = Spell.CauterizingShadows;
+            Spell = Spell.DarkmoonDeckRepose;
         }
 
-        public override double GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
+        public override double GetAverageRawHealing(GameState gameState, BaseSpellData spellData)
         {
             spellData = ValidateSpellData(gameState, spellData);
 
-            var holyPriestAuraHealingBonus = _gameStateService.GetSpellData(gameState, Spell.HolyPriest)
-                .GetEffect(179715).BaseValue / 100 + 1;
+            // Use: Draw out a piece of the target's soul, decreasing their movement speed by 30% until the soul 
+            // reaches you. The soul instantly heals you for 2995, and grants you up to 1050 Critical Strike for 16 sec. 
+            // You gain more Critical Strike from lower health targets. (2 Min Cooldown)
 
-            // grab healing data, use the other methods to calc
-            var healingSpell = _gameStateService.GetSpellData(gameState, Spell.CauterizingShadowsHeal);
+            if (!spellData.Overrides.ContainsKey(Override.ItemLevel))
+                throw new ArgumentOutOfRangeException("ItemLevel", "Does not contain ItemLevel");
 
-            var healingSp = healingSpell.GetEffect(833801).SpCoefficient;
+            var itemLevel = (int)spellData.Overrides[Override.ItemLevel];
 
-            double averageHeal = healingSp
-                * _gameStateService.GetIntellect(gameState)
-                * _gameStateService.GetVersatilityMultiplier(gameState)
-                * holyPriestAuraHealingBonus;
+            var lowHeal = _gameStateService.GetSpellData(gameState, Spell.DarkmoonDeckReposeAce);
+            var highHeal = _gameStateService.GetSpellData(gameState, Spell.DarkmoonDeckReposeEight);
 
-            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {averageHeal:0.##}");
+            // Get scale budget
+            if (!spellData.ScaleValues.ContainsKey(itemLevel))
+                throw new ArgumentOutOfRangeException("itemLevel", $"healSpell.ScaleValues does not contain itemLevel: {itemLevel}");
 
-            averageHeal *= _gameStateService.GetCriticalStrikeMultiplier(gameState)
-                * _gameStateService.GetGlobalHealingMultiplier(gameState);
+            // TODO: Fix this once the spelldata is updated.
+            //var scaleBudget = spellData.ScaleValues[itemLevel];
+            if (itemLevel != 200)
+                throw new ArgumentOutOfRangeException("itemLevel", $"Only itemLevel 200 is supported. itemLevel: {itemLevel}");
 
-            return averageHeal * GetNumberOfHealingTargets(gameState, spellData);
+            var scaleBudget = 39;
+
+            var healAmount = ((scaleBudget * lowHeal.GetEffect(792442).Coefficient) + (scaleBudget * highHeal.GetEffect(792449).Coefficient)) / 2;
+
+            healAmount *= _gameStateService.GetVersatilityMultiplier(gameState);
+
+            healAmount *= _gameStateService.GetCriticalStrikeMultiplier(gameState);
+
+            // The pool is split between all targets so we spread it between them all. Can't heal one target for more than 30% though
+            healAmount = Math.Min(healAmount * 0.30, healAmount / GetNumberOfHealingTargets(gameState, spellData));
+
+            return healAmount * GetNumberOfHealingTargets(gameState, spellData);
         }
 
-        public override double GetMaximumHealTargets(GameState gameState, BaseSpellData spellData)
+        public override double GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
         {
             spellData = ValidateSpellData(gameState, spellData);
-            // 3 from spelldata
-            var numTargets = spellData.GetEffect(833798).BaseValue;
 
-            return numTargets;
-        }
+            var hastedCd = GetHastedCooldown(gameState, spellData);
+            var fightLength = _gameStateService.GetFightLength(gameState);
 
-        public override double GetActualCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
-        {
-            spellData = ValidateSpellData(gameState, spellData);
-            // Maximum with the casts that don't do healing (target dies / sw:p is refreshed
-            var maxCasts = GetMaximumCastsPerMinute(gameState, spellData);
-
-            // Grab the playstyle value that indicates what percentage of sw:p casts expire
-            var expiryPercent = _gameStateService.GetPlaystyle(gameState, "CauterizingShadowsSwpExpiryPercent");
-
-            if(expiryPercent == null)
-                throw new ArgumentOutOfRangeException("CauterizingShadowsSwpExpiryPercent", $"CauterizingShadowsSwpExpiryPercent needs to be set.");
-
-            // Apply the expiry percent. 90% expire means we get max_casts * 0.9
-            return maxCasts * expiryPercent.Value;
+            return 60 / hastedCd
+                + 1d / (fightLength / 60d); // plus one at the start of the fight
         }
 
         public override bool TriggersMastery(GameState gameState, BaseSpellData spellData)
         {
-            var healingSpell = _gameStateService.GetSpellData(gameState, Spell.CauterizingShadowsHeal);
-
-            return base.TriggersMastery(gameState, healingSpell);
+            // TODO: Add the direct heal effect from 333732?
+            return true;
         }
     }
 }

@@ -74,6 +74,7 @@ namespace Salvation.Core.Modelling
                 Spell.MacabreSheetMusic => typeof(IMacabreSheetMusicSpellService),
                 Spell.TuftOfSmolderingPlumage => typeof(ITuftOfSmolderingPlumageSpellService),
                 Spell.ConsumptiveInfusion => typeof(IConsumptiveInfusionSpellService),
+                Spell.DarkmoonDeckRepose => typeof(IDarkmoonDeckReposeSpellSevice),
                 // Traits
                 Spell.BronsCallToAction => typeof(IBronsCallToActionSpellService),
                 Spell.CombatMeditation => typeof(ICombatMeditationSpellSerivce),

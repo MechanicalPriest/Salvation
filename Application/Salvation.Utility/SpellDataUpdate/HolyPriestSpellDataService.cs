@@ -130,6 +130,9 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.ConsumptiveInfusion,
                 (uint)Spell.ConsumptiveInfusionBuff,
                 (uint)Spell.ConsumptiveInfusionDebuff,
+                (uint)Spell.DarkmoonDeckRepose,
+                (uint)Spell.DarkmoonDeckReposeAce,
+                (uint)Spell.DarkmoonDeckReposeEight,
 
                 // Trait
                 // Kyrian

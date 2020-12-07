@@ -5088,6 +5088,143 @@
           "ConduitRanks": {}
         },
         {
+          "Id": 333734,
+          "Name": "Web of Repose",
+          "ManaCost": 0.0,
+          "MaxRange": 50.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 90000.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "ScaleValues": {},
+          "Effects": [
+            {
+              "Id": 829040,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 3
+            },
+            {
+              "Id": 830069,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 334249,
+              "Amplitude": 0.0,
+              "TriggerSpell": {
+                "Id": 334249,
+                "Name": "Darkmoon Deck: Repose On Cooldown",
+                "ManaCost": 0.0,
+                "MaxRange": 0.0,
+                "BaseCastTime": 0.0,
+                "BaseCooldown": 0.0,
+                "IsCooldownHasted": false,
+                "Duration": 90000.0,
+                "Gcd": 0.0,
+                "ChargeCooldown": 0,
+                "Charges": 0,
+                "MaxStacks": 0.0,
+                "ProcChance": 0.0,
+                "InternalCooldown": 0.0,
+                "Rppm": 0.0,
+                "RppmIsHasted": false,
+                "ScaleValues": {},
+                "Effects": [
+                  {
+                    "Id": 830068,
+                    "BaseValue": 0.0,
+                    "SpCoefficient": 0.0,
+                    "Coefficient": 0.0,
+                    "TriggerSpellid": 0,
+                    "Amplitude": 0.0,
+                    "TriggerSpell": null,
+                    "Type": 6
+                  }
+                ],
+                "ConduitRanks": {}
+              },
+              "Type": 64
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 311474,
+          "Name": "Ace of Repose",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": -1.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "ScaleValues": {},
+          "Effects": [
+            {
+              "Id": 792442,
+              "BaseValue": 1.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 207.844818,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 311481,
+          "Name": "Eight of Repose",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": -1.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "ScaleValues": {},
+          "Effects": [
+            {
+              "Id": 792449,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 415.706909,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
           "Id": 328266,
           "Name": "Combat Meditation",
           "ManaCost": 0.0,

@@ -150,6 +150,8 @@
         ConsumptiveInfusionBuff = 344227,
         ConsumptiveInfusionDebuff = 344229,
         DarkmoonDeckRepose = 333734,
+        DarkmoonDeckReposeAce = 311474,
+        DarkmoonDeckReposeEight = 311481,
 
         // Traits
         // Kyrian - Pelagos

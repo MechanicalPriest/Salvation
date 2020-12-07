@@ -127,6 +127,9 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.MacabreSheetMusicBuff,
                 (uint)Spell.TuftOfSmolderingPlumage,
                 (uint)Spell.TuftOfSmolderingPlumageBuff,
+                (uint)Spell.ConsumptiveInfusion,
+                (uint)Spell.ConsumptiveInfusionBuff,
+                (uint)Spell.ConsumptiveInfusionDebuff,
 
                 // Trait
                 // Kyrian

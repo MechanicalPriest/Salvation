@@ -182,6 +182,27 @@ namespace Salvation.Core.Profile
                 newItem.Gems.Add(newGem);
             }
 
+            // Add missing effects for items by building fake effects
+            switch(item.ItemId)
+            {
+                // Consumptive Infusion
+                case 184022:
+
+                    var buffSpell = _simcGenerationService.GenerateSpellAsync(new SimcSpellOptions()
+                    {
+                        ItemInventoryType = item.InventoryType,
+                        ItemLevel = item.ItemLevel,
+                        ItemQuality = item.Quality,
+                        SpellId = (uint)Spell.ConsumptiveInfusionBuff
+                    }).Result;
+
+                    item.Effects.Add(new SimcItemEffect() { Spell = buffSpell });
+                    break;
+
+                default:;
+                    break;
+            }
+
             // Add the items effects
             foreach (var effect in item.Effects)
             {

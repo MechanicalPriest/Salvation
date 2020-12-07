@@ -4885,6 +4885,209 @@
           "ConduitRanks": {}
         },
         {
+          "Id": 344221,
+          "Name": "Consumptive Infusion",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 100.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "ScaleValues": {},
+          "Effects": [
+            {
+              "Id": 868384,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 344225,
+              "Amplitude": 0.0,
+              "TriggerSpell": {
+                "Id": 344225,
+                "Name": "Consumptive Infusion",
+                "ManaCost": 0.0,
+                "MaxRange": 0.0,
+                "BaseCastTime": 0.0,
+                "BaseCooldown": 0.0,
+                "IsCooldownHasted": false,
+                "Duration": 15000.0,
+                "Gcd": 0.0,
+                "ChargeCooldown": 0,
+                "Charges": 0,
+                "MaxStacks": 0.0,
+                "ProcChance": 100.0,
+                "InternalCooldown": 0.0,
+                "Rppm": 0.0,
+                "RppmIsHasted": false,
+                "ScaleValues": {},
+                "Effects": [
+                  {
+                    "Id": 868391,
+                    "BaseValue": 0.0,
+                    "SpCoefficient": 0.0,
+                    "Coefficient": 0.0,
+                    "TriggerSpellid": 344227,
+                    "Amplitude": 0.0,
+                    "TriggerSpell": {
+                      "Id": 344227,
+                      "Name": "Consumptive Infusion",
+                      "ManaCost": 0.0,
+                      "MaxRange": 50.0,
+                      "BaseCastTime": 0.0,
+                      "BaseCooldown": 0.0,
+                      "IsCooldownHasted": false,
+                      "Duration": 10000.0,
+                      "Gcd": 0.0,
+                      "ChargeCooldown": 0,
+                      "Charges": 0,
+                      "MaxStacks": 0.0,
+                      "ProcChance": 0.0,
+                      "InternalCooldown": 0.0,
+                      "Rppm": 0.0,
+                      "RppmIsHasted": false,
+                      "ScaleValues": {
+                        "60": 95.0
+                      },
+                      "Effects": [
+                        {
+                          "Id": 868394,
+                          "BaseValue": 0.0,
+                          "SpCoefficient": 0.0,
+                          "Coefficient": 1.65,
+                          "TriggerSpellid": 0,
+                          "Amplitude": 0.0,
+                          "TriggerSpell": null,
+                          "Type": 6
+                        }
+                      ],
+                      "ConduitRanks": {}
+                    },
+                    "Type": 6
+                  },
+                  {
+                    "Id": 868400,
+                    "BaseValue": 0.0,
+                    "SpCoefficient": 0.0,
+                    "Coefficient": 0.0,
+                    "TriggerSpellid": 344229,
+                    "Amplitude": 0.0,
+                    "TriggerSpell": {
+                      "Id": 344229,
+                      "Name": "Consumptive Infusion",
+                      "ManaCost": 0.0,
+                      "MaxRange": 0.0,
+                      "BaseCastTime": 0.0,
+                      "BaseCooldown": 0.0,
+                      "IsCooldownHasted": false,
+                      "Duration": 30000.0,
+                      "Gcd": 0.0,
+                      "ChargeCooldown": 0,
+                      "Charges": 0,
+                      "MaxStacks": 0.0,
+                      "ProcChance": 0.0,
+                      "InternalCooldown": 0.0,
+                      "Rppm": 0.0,
+                      "RppmIsHasted": false,
+                      "ScaleValues": {},
+                      "Effects": [
+                        {
+                          "Id": 868397,
+                          "BaseValue": 0.0,
+                          "SpCoefficient": 0.0,
+                          "Coefficient": 0.0,
+                          "TriggerSpellid": 0,
+                          "Amplitude": 0.0,
+                          "TriggerSpell": null,
+                          "Type": 6
+                        }
+                      ],
+                      "ConduitRanks": {}
+                    },
+                    "Type": 6
+                  }
+                ],
+                "ConduitRanks": {}
+              },
+              "Type": 6
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 344227,
+          "Name": "Consumptive Infusion",
+          "ManaCost": 0.0,
+          "MaxRange": 50.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 10000.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "ScaleValues": {
+            "60": 95.0
+          },
+          "Effects": [
+            {
+              "Id": 868394,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 1.65,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 344229,
+          "Name": "Consumptive Infusion",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 30000.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "ScaleValues": {},
+          "Effects": [
+            {
+              "Id": 868397,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
           "Id": 328266,
           "Name": "Combat Meditation",
           "ManaCost": 0.0,

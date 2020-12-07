@@ -146,6 +146,9 @@
         TuftOfSmolderingPlumage = 344916,
         TuftOfSmolderingPlumageBuff = 344915,
         TuftOfSmolderingPlumageHeal = 344917,
+        ConsumptiveInfusion = 344221,
+        ConsumptiveInfusionBuff = 344227,
+        ConsumptiveInfusionDebuff = 344229,
 
         // Traits
         // Kyrian - Pelagos

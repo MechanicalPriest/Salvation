@@ -252,6 +252,7 @@ namespace Salvation.Explorer.Modelling
                 { "manabound_mirror", new SimcItemOptions() { ItemId = 184029, ItemLevel = 226 } },
                 { "macabre_sheet_music", new SimcItemOptions() { ItemId = 184024, ItemLevel = 226 } },
                 { "tuft_of_smoldering_plumage", new SimcItemOptions() { ItemId = 184020, ItemLevel = 226 } },
+                { "consumptive_infusion", new SimcItemOptions() { ItemId = 184022, ItemLevel = 226 } },
             };
 
             foreach (var trinket in trinkets)

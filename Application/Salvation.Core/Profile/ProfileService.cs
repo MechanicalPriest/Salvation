@@ -323,6 +323,7 @@ namespace Salvation.Core.Profile
                     new CastProfile((int)Spell.ManaboundMirror, 0.9d, 0.15d, 1, 0),
                     new CastProfile((int)Spell.MacabreSheetMusic, 0.9d, 0.0d, 0, 0),
                     new CastProfile((int)Spell.TuftOfSmolderingPlumage, 0.6d, 0.30d, 1, 0),
+                    new CastProfile((int)Spell.ConsumptiveInfusion, 0.9d, 0.00d, 0, 0),
                 },
                 Talents = new List<Talent>()
                 {

@@ -70,6 +70,7 @@ namespace Salvation.Core
             services.AddSingleton<ISpellService<IManaboundMirrorSpellService>, ManaboundMirror>();
             services.AddSingleton<ISpellService<IMacabreSheetMusicSpellService>, MacabreSheetMusic>();
             services.AddSingleton<ISpellService<ITuftOfSmolderingPlumageSpellService>, TuftOfSmolderingPlumage>();
+            services.AddSingleton<ISpellService<IConsumptiveInfusionSpellService>, ConsumptiveInfusion>();
 
             // Covenant
             // - Kyrian Traits

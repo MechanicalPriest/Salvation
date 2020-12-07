@@ -73,6 +73,7 @@ namespace Salvation.Core.Modelling
                 Spell.ManaboundMirror => typeof(IManaboundMirrorSpellService),
                 Spell.MacabreSheetMusic => typeof(IMacabreSheetMusicSpellService),
                 Spell.TuftOfSmolderingPlumage => typeof(ITuftOfSmolderingPlumageSpellService),
+                Spell.ConsumptiveInfusion => typeof(IConsumptiveInfusionSpellService),
                 // Traits
                 Spell.BronsCallToAction => typeof(IBronsCallToActionSpellService),
                 Spell.CombatMeditation => typeof(ICombatMeditationSpellSerivce),

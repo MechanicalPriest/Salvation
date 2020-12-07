@@ -253,6 +253,7 @@ namespace Salvation.Explorer.Modelling
                 { "macabre_sheet_music", new SimcItemOptions() { ItemId = 184024, ItemLevel = 226 } },
                 { "tuft_of_smoldering_plumage", new SimcItemOptions() { ItemId = 184020, ItemLevel = 226 } },
                 { "consumptive_infusion", new SimcItemOptions() { ItemId = 184022, ItemLevel = 226 } },
+                { "darkmoon_deck_repose", new SimcItemOptions() { ItemId = 173078, ItemLevel = 200 } },
             };
 
             foreach (var trinket in trinkets)

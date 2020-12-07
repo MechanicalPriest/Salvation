@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
 using Salvation.Core.Interfaces.Constants;
@@ -15,21 +16,24 @@ namespace Salvation.Core.State
 {
     public class GameStateService : IGameStateService
     {
+        private readonly ILogger<GameStateService> _logger;
         private readonly IProfileService _profileService;
         private readonly IConstantsService _constantsService;
         private readonly ISpellServiceFactory _spellServiceFactory;
 
-        public GameStateService(IProfileService profileService,
+        public GameStateService(ILogger<GameStateService> logger,
+            IProfileService profileService,
             IConstantsService constantsService,
             ISpellServiceFactory spellServiceFactory)
         {
+            _logger = logger;
             _profileService = profileService;
             _constantsService = constantsService;
             _spellServiceFactory = spellServiceFactory;
         }
 
         public GameStateService()
-            : this(new ProfileService(), new ConstantsService(), null)
+            : this(null, new ProfileService(), new ConstantsService(), null)
         {
 
         }
@@ -777,6 +781,11 @@ namespace Salvation.Core.State
                 // Populate all the spellservices
                 spell.SpellService = _spellServiceFactory.GetSpellService(spell.Spell);
 
+                if (spell.SpellService == null)
+                    _logger?.LogInformation($"No spell service found for [{spell.Spell}]");
+                else
+                    _logger?.LogTrace($"Successfully registered spell service for [{spell.Spell}]");
+
                 // And the spelldata
                 // TODO: Consider moving these overrides to another location. Could run into race conditions
                 // if the order isn't: Modify Spelldata => RegisterSpells as we're applying spelldata here.
@@ -800,6 +809,8 @@ namespace Salvation.Core.State
                         spell.SpellData.Overrides.Add(Override.ItemLevel, spell.ItemLevel);
                 }
 
+                if(spell.SpellData == null)
+                    _logger?.LogInformation($"No spell data for [{spell.Spell}]");
             }
 
             state.RegisteredSpells = registeredSpells;

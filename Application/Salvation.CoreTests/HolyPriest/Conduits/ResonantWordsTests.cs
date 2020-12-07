@@ -27,7 +27,7 @@ namespace Salvation.CoreTests.HolyPriest.Conduits
         public void RW_Increases_Heal_Amount()
         {
             // Arrange
-            IGameStateService gameStateService = new GameStateService(new ProfileService(), new ConstantsService(), new RWTestSpellFactory());
+            IGameStateService gameStateService = new GameStateService(null, new ProfileService(), new ConstantsService(), new RWTestSpellFactory());
             var profileService = new ProfileService();
             var spellService = new Heal(gameStateService);
             var gamestate1 = gameStateService.CloneGameState(_gameState);
@@ -60,7 +60,7 @@ namespace Salvation.CoreTests.HolyPriest.Conduits
         public void RW_Increases_FlashHeal_Amount()
         {
             // Arrange
-            IGameStateService gameStateService = new GameStateService(new ProfileService(), new ConstantsService(), new RWTestSpellFactory());
+            IGameStateService gameStateService = new GameStateService(null, new ProfileService(), new ConstantsService(), new RWTestSpellFactory());
             var profileService = new ProfileService();
             var spellService = new FlashHeal(gameStateService);
             var gamestate1 = gameStateService.CloneGameState(_gameState);

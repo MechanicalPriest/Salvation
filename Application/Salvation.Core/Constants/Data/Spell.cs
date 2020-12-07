@@ -152,6 +152,7 @@
         DarkmoonDeckRepose = 333734,
         DarkmoonDeckReposeAce = 311474,
         DarkmoonDeckReposeEight = 311481,
+        VialOfSpectralEssence = 345695,
 
         // Traits
         // Kyrian - Pelagos

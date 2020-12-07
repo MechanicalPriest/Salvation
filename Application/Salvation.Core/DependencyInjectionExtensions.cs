@@ -64,14 +64,18 @@ namespace Salvation.Core
             services.AddSingleton<ISpellService<ISpiritualManaPotionSpellService>, SpiritualManaPotion>();
 
             // Items
-            services.AddSingleton<ISpellService<IUnboundChangelingSpellService>, UnboundChangeling>();
+            // - Trinket - Raid
             services.AddSingleton<ISpellService<ICabalistsHymnalSpellService>, CabalistsHymnal>();
             services.AddSingleton<ISpellService<ISoullettingRubySpellService>, SoullettingRuby>();
             services.AddSingleton<ISpellService<IManaboundMirrorSpellService>, ManaboundMirror>();
             services.AddSingleton<ISpellService<IMacabreSheetMusicSpellService>, MacabreSheetMusic>();
             services.AddSingleton<ISpellService<ITuftOfSmolderingPlumageSpellService>, TuftOfSmolderingPlumage>();
             services.AddSingleton<ISpellService<IConsumptiveInfusionSpellService>, ConsumptiveInfusion>();
+            // - Trinket - Crafted
             services.AddSingleton<ISpellService<IDarkmoonDeckReposeSpellSevice>, DarkmoonDeckRepose>();
+            // - Trinket - Dungeon
+            services.AddSingleton<ISpellService<IVialOfSpectralEssenceSpellSevice>, VialOfSpectralEssence>();
+            services.AddSingleton<ISpellService<IUnboundChangelingSpellService>, UnboundChangeling>();
 
             // Covenant
             // - Kyrian Traits

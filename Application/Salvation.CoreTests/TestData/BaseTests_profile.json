@@ -333,6 +333,13 @@
       "OverhealPercent": 0.15,
       "AverageHealingTargets": 4.0,
       "AverageDamageTargets": 0.0
+    },
+    {
+      "SpellId": 345695,
+      "Efficiency": 0.95,
+      "OverhealPercent": 0.05,
+      "AverageHealingTargets": 1.0,
+      "AverageDamageTargets": 0.0
     }
   ],
   "Items": [

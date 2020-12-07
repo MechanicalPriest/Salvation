@@ -246,14 +246,15 @@ namespace Salvation.Explorer.Modelling
 
             var trinkets = new Dictionary<string, SimcItemOptions>()
             {
-                { "cabalists_hymnal", new SimcItemOptions() { ItemId = 184028, ItemLevel = 226 } },
+                { "cabalists_hymnal", new SimcItemOptions() { ItemId = 184028, ItemLevel = 233 } },
                 { "unbound_changeling", new SimcItemOptions() { ItemId = 178708, ItemLevel = 226, BonusIds = new List<int>() { 6917 } } },
                 { "soulletting_ruby", new SimcItemOptions() { ItemId = 178809, ItemLevel = 226 } },
-                { "manabound_mirror", new SimcItemOptions() { ItemId = 184029, ItemLevel = 226 } },
+                { "manabound_mirror", new SimcItemOptions() { ItemId = 184029, ItemLevel = 233 } },
                 { "macabre_sheet_music", new SimcItemOptions() { ItemId = 184024, ItemLevel = 226 } },
                 { "tuft_of_smoldering_plumage", new SimcItemOptions() { ItemId = 184020, ItemLevel = 226 } },
                 { "consumptive_infusion", new SimcItemOptions() { ItemId = 184022, ItemLevel = 226 } },
                 { "darkmoon_deck_repose", new SimcItemOptions() { ItemId = 173078, ItemLevel = 200 } },
+                { "vial_of_spectral_essence", new SimcItemOptions() { ItemId = 178810, ItemLevel = 226 } },
             };
 
             foreach (var trinket in trinkets)

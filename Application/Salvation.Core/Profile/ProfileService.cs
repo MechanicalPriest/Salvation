@@ -323,9 +323,10 @@ namespace Salvation.Core.Profile
                     new CastProfile((int)Spell.ManaboundMirror, 0.9d, 0.15d, 1, 0),
                     new CastProfile((int)Spell.MacabreSheetMusic, 0.9d, 0.0d, 0, 0),
                     new CastProfile((int)Spell.TuftOfSmolderingPlumage, 0.6d, 0.30d, 1, 0),
-                    new CastProfile((int)Spell.ConsumptiveInfusion, 0.9d, 0.00d, 0, 0),
+                    new CastProfile((int)Spell.ConsumptiveInfusion, 0.9d, 0.0d, 0, 0),
                     new CastProfile((int)Spell.DarkmoonDeckRepose, 0.80d, 0.25d, 4, 0),
                     new CastProfile((int)Spell.VialOfSpectralEssence, 0.95d, 0.05d, 1, 0),
+                    new CastProfile((int)Spell.OverflowingAnimaCage, 0.85d, 0.0d, 0, 0),
                 },
                 Talents = new List<Talent>()
                 {
@@ -380,11 +381,14 @@ namespace Salvation.Core.Profile
                     new PlaystyleEntry("ManaboundMirrorPercentMirrorFilled", 1.0, (uint)Spell.ManaboundMirror),
                     // The average amount of health as a percentage that the target has
                     new PlaystyleEntry("TuftOfSmolderingPlumageAvgAllyHp", .75, (uint)Spell.TuftOfSmolderingPlumage),
+                    // Toggle if we use Overflowing Anima Cage buff pseudo-including allies
+                    new PlaystyleEntry("OverflowingAnimaCageCountAllyBuffs", 1, (uint)Spell.OverflowingAnimaCage),
+                    new PlaystyleEntry("OverflowingAnimaCageAverageNumberAllies", 5, (uint)Spell.OverflowingAnimaCage),
 
                     // ## Legendary overrides
                     new PlaystyleEntry("EchoOfEonarCountAllyBuffs", 1, (uint)Spell.EchoOfEonar),
                     new PlaystyleEntry("CauterizingShadowsSwpExpiryPercent", 0.9, (uint)Spell.CauterizingShadows),
-                    new PlaystyleEntry("FlashConcentrationAverageStacks", 5, (uint)Spell.FlashConcentration),
+                    new PlaystyleEntry("FlashConcentrationAverageStacks", 4, (uint)Spell.FlashConcentration),
 
                     // ## Conduit overrides
                     // How often Charitable Soul is cast on an alt. 0.9 = 90% of the time

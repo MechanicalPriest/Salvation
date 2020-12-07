@@ -76,6 +76,7 @@ namespace Salvation.Core
             // - Trinket - Dungeon
             services.AddSingleton<ISpellService<IVialOfSpectralEssenceSpellSevice>, VialOfSpectralEssence>();
             services.AddSingleton<ISpellService<IUnboundChangelingSpellService>, UnboundChangeling>();
+            services.AddSingleton<ISpellService<IOverflowingAnimaCageSpellService>, OverflowingAnimaCage>();
 
             // Covenant
             // - Kyrian Traits

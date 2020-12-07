@@ -76,6 +76,7 @@ namespace Salvation.Core.Modelling
                 Spell.ConsumptiveInfusion => typeof(IConsumptiveInfusionSpellService),
                 Spell.DarkmoonDeckRepose => typeof(IDarkmoonDeckReposeSpellSevice),
                 Spell.VialOfSpectralEssence => typeof(IVialOfSpectralEssenceSpellSevice),
+                Spell.OverflowingAnimaCage => typeof(IOverflowingAnimaCageSpellService),
                 // Traits
                 Spell.BronsCallToAction => typeof(IBronsCallToActionSpellService),
                 Spell.CombatMeditation => typeof(ICombatMeditationSpellSerivce),

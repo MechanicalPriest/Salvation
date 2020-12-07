@@ -153,6 +153,8 @@
         DarkmoonDeckReposeAce = 311474,
         DarkmoonDeckReposeEight = 311481,
         VialOfSpectralEssence = 345695,
+        OverflowingAnimaCage = 343385,
+        OverflowingAnimaCageBuff = 343387,
 
         // Traits
         // Kyrian - Pelagos

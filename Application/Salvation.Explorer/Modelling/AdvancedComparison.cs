@@ -255,6 +255,7 @@ namespace Salvation.Explorer.Modelling
                 { "consumptive_infusion", new SimcItemOptions() { ItemId = 184022, ItemLevel = 226 } },
                 { "darkmoon_deck_repose", new SimcItemOptions() { ItemId = 173078, ItemLevel = 200 } },
                 { "vial_of_spectral_essence", new SimcItemOptions() { ItemId = 178810, ItemLevel = 226 } },
+                { "overflowing_anima_cage", new SimcItemOptions() { ItemId = 178849, ItemLevel = 226 } },
             };
 
             foreach (var trinket in trinkets)

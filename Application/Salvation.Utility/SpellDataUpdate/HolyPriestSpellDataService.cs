@@ -134,6 +134,8 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.DarkmoonDeckReposeAce,
                 (uint)Spell.DarkmoonDeckReposeEight,
                 (uint)Spell.VialOfSpectralEssence,
+                (uint)Spell.OverflowingAnimaCage,
+                (uint)Spell.OverflowingAnimaCageBuff,
 
                 // Trait
                 // Kyrian

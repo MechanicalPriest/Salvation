@@ -13,12 +13,6 @@ namespace Salvation.Core.Profile.Model
         public Race Race { get; set; }
         public Class Class { get; set; }
 
-        public int Intellect { get; set; }
-        public int MasteryRating { get; set; }
-        public int VersatilityRating { get; set; }
-        public int HasteRating { get; set; }
-        public int CritRating { get; set; }
-
         /// <summary>
         /// Data containing cast effiency and overheal
         /// </summary>

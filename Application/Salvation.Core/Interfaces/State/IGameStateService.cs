@@ -32,10 +32,13 @@ namespace Salvation.Core.Interfaces.State
         double GetMasteryRating(GameState state);
         double GetVersatilityRating(GameState state);
         double GetIntellect(GameState state);
-        double GetVersatilityMultiplier(GameState state);
-        double GetCriticalStrikeMultiplier(GameState state);
-        double GetMasteryMultiplier(GameState state);
-        double GetHasteMultiplier(GameState state);
+        double GetLeechRating(GameState state);
+        double GetVersatilityMultiplier(GameState state, Spell spell = Spell.None);
+        double GetCriticalStrikeMultiplier(GameState state, Spell spell = Spell.None);
+        double GetMasteryMultiplier(GameState state, Spell spell = Spell.None);
+        double GetHasteMultiplier(GameState state, Spell spell = Spell.None);
+        double GetLeechMultiplier(GameState state, Spell spell = Spell.None);
+        double GetGlobalHealingMultiplier(GameState state);
         double GetBaseManaAmount(GameState state);
         double GetGCDFloor(GameState gameState);
 
@@ -58,5 +61,7 @@ namespace Salvation.Core.Interfaces.State
 
         // Holy Priest specific
         double GetTotalHolyWordCooldownReduction(GameState state, Spell spell, bool IsApotheosisActive = false);
+        double GetStamina(GameState state);
+        double GetHitpoints(GameState state);
     }
 }

@@ -44,6 +44,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             return averageHeal * GetNumberOfHealingTargets(gameState, spellData) * (duration / 3d);
         }
 
+        // TODO: Validate how the scaling works for the reduction in DoT size to confirm its 1/sqrt(dmg_targets)
         public override double GetAverageDamage(GameState gameState, BaseSpellData spellData = null)
         {
             spellData = ValidateSpellData(gameState, spellData);

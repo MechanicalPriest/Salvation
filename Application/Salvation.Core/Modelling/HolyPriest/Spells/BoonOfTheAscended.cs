@@ -65,7 +65,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             // 1 base stack + 5 per AB + 1 per AE target
             var boonStacks = 1 + abResults.CastsPerMinute * 5 + anResults.CastsPerMinute * anResults.NumberOfDamageTargets;
 
-            var aeSpellData = _gameStateService.GetSpellData(gameState, Spell.AscendedNova);
+            var aeSpellData = _gameStateService.GetSpellData(gameState, Spell.AscendedEruption);
             aeSpellData.Overrides[Override.ResultMultiplier] = boonStacks;
 
             var aeResults = _ascendedEruptionSpellService.GetCastResults(gameState, aeSpellData);

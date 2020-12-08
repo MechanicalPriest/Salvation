@@ -91,10 +91,10 @@ namespace Salvation.CoreTests.HolyPriest.Conduits
 
             // Act
             var resultWithout = spellService.GetCastResults(gamestateWithout);
-            var dhResultWithout = resultWithout.AdditionalCasts.FirstOrDefault();
+            var dhResultWithout = resultWithout.AdditionalCasts.Where(c => c.SpellId == (int)Spell.DivineHymn).FirstOrDefault();
 
             var resultWith = spellService.GetCastResults(gamestateWith);
-            var dhResultWith = resultWith.AdditionalCasts.FirstOrDefault();
+            var dhResultWith = resultWith.AdditionalCasts.Where(c => c.SpellId == (int)Spell.DivineHymn).FirstOrDefault();
 
             // Assert
             Assert.IsNotNull(resultWithout);

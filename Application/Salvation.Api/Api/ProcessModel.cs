@@ -14,7 +14,7 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace Salvation.Api
+namespace Salvation.Api.Api
 {
     public class ProcessModel
     {
@@ -48,7 +48,7 @@ namespace Salvation.Api
             }
             catch (Exception ex)
             {
-                log.LogError("Unable to process request body, wrong format?", ex);
+                log.LogError(ex, "Unable to process request body, wrong format?");
                 return new BadRequestResult();
             }
 
@@ -80,11 +80,14 @@ namespace Salvation.Api
 
                 return new JsonResult(new
                 {
-                    ModelResults = results,
-                    StatWeightsEffective = effectiveHealingStatWeights,
-                    StatWeightsRaw = rawHealingStatWeights,
-                    State = state,
-                    Journal = _gameStateService.GetJournal(state)
+                    Data = new
+                    {
+                        ModelResults = results,
+                        StatWeightsEffective = effectiveHealingStatWeights,
+                        StatWeightsRaw = rawHealingStatWeights,
+                        State = state,
+                        Journal = _gameStateService.GetJournal(state)
+                    }
                 });
             }
             catch (Exception ex)

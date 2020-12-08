@@ -47,7 +47,7 @@ namespace Salvation.Core.Modelling.HolyPriest
             }
 
             // Create a sumamry for each spell cast that's a sum of its children
-            RollUpResults(results, results.SpellCastResults);
+            RollUpResults(results);
 
             results.TotalRawHPM = results.TotalRawHPS / results.TotalMPS;
             results.TotalActualHPM = results.TotalActualHPS / results.TotalMPS;
@@ -100,6 +100,7 @@ namespace Salvation.Core.Modelling.HolyPriest
                 new RegisteredSpell(Spell.Smite),
 
                 // Utility Spells
+                new RegisteredSpell(Spell.GuardianSpirit),
             };
 
             return result;
@@ -107,11 +108,11 @@ namespace Salvation.Core.Modelling.HolyPriest
 
         #region Spell Result Calculatoins
 
-        private void RollUpResults(BaseModelResults results, List<AveragedSpellCastResult> spells)
+        private void RollUpResults(BaseModelResults results)
         {
             var newSpells = new List<AveragedSpellCastResult>();
 
-            foreach (var spellResult in spells)
+            foreach (var spellResult in results.SpellCastResults)
             {
                 newSpells.Add(RollUpResultsSummary(spellResult));
             }
@@ -120,9 +121,20 @@ namespace Salvation.Core.Modelling.HolyPriest
 
             foreach (var spellResult in results.RolledUpResultsSummary)
             {
-                results.TotalActualHPS += spellResult.HPS;
-                results.TotalRawHPS += spellResult.RawHPS;
-                results.TotalMPS += spellResult.MPS;
+                if (!double.IsNaN(spellResult.HPS))
+                    results.TotalActualHPS += spellResult.HPS;
+                else
+                    Console.WriteLine($"Error getting spell result HPS from {spellResult.SpellName}");
+
+                if (!double.IsNaN(spellResult.RawHPS))
+                    results.TotalRawHPS += spellResult.RawHPS;
+                else
+                    Console.WriteLine($"Error getting spell result RawHPS from {spellResult.SpellName}");
+
+                if (!double.IsNaN(spellResult.MPS))
+                    results.TotalMPS += spellResult.MPS;
+                else
+                    Console.WriteLine($"Error getting spell result MPS from {spellResult.SpellName}");
             }
         }
 

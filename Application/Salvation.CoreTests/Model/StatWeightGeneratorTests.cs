@@ -36,7 +36,7 @@ namespace Salvation.CoreTests.Model
 
             // Assert
             Assert.IsNotNull(profiles);
-            Assert.AreEqual(6, profiles.Count);
+            Assert.AreEqual(7, profiles.Count);
         }
 
         [Test]

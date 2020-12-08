@@ -66,7 +66,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             // TODO: For some reason PW:S is done kinda weird. No basevalue of spcoeff.
             // It just seems to use $shield=${$SP*1.8*(1+$@versadmg)*
             // It also doesn't scaling with the healing aura bonus, see issue #71
-            var absorbSp = 1.8;
+            var absorbSp = 1.65;
 
             double averageHeal = absorbSp
                 * _gameStateService.GetIntellect(gameState)
@@ -103,6 +103,11 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         public override double GetMaximumHealTargets(GameState gameState, BaseSpellData spellData)
         {
             return 1;
+        }
+
+        public override bool TriggersLeech(GameState gameState, BaseSpellData spellData)
+        {
+            return false;
         }
     }
 }

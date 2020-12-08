@@ -44,7 +44,8 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {averageHeal:0.##}");
 
-            averageHeal *= _gameStateService.GetCriticalStrikeMultiplier(gameState);
+            averageHeal *= _gameStateService.GetCriticalStrikeMultiplier(gameState)
+                * _gameStateService.GetGlobalHealingMultiplier(gameState);
 
             return averageHeal * GetNumberOfHealingTargets(gameState, spellData);
         }
@@ -61,18 +62,22 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             // TODO: Update these to point to their spells when implemented
             var cpmPoH = _prayerOfHealingSpellService.GetActualCastsPerMinute(gameState);
             var cpmRenew = _renewSpellService.GetActualCastsPerMinute(gameState);
-            var cpmBindingHeal = _bindingHealSpellService.GetActualCastsPerMinute(gameState);
 
             var hastedCD = GetHastedCooldown(gameState, spellData);
             var fightLength = _gameStateService.GetFightLength(gameState);
 
             var hwCDRPoH = _gameStateService.GetTotalHolyWordCooldownReduction(gameState, Spell.PrayerOfHealing);
-            var hwCDRBindingHeal = _gameStateService.GetTotalHolyWordCooldownReduction(gameState, Spell.BindingHeal);
             var hwCDRRenew = _gameStateService.GetTotalHolyWordCooldownReduction(gameState, Spell.Renew);
 
             double hwCDR = cpmPoH * hwCDRPoH +
-                cpmBindingHeal * hwCDRBindingHeal +
                 cpmRenew * hwCDRRenew;
+
+            if (_gameStateService.IsTalentActive(gameState, Talent.BindingHeal))
+            {
+                var cpmBindingHeal = _bindingHealSpellService.GetActualCastsPerMinute(gameState);
+                var hwCDRBindingHeal = _gameStateService.GetTotalHolyWordCooldownReduction(gameState, Spell.BindingHeal);
+                hwCDR += cpmBindingHeal * hwCDRBindingHeal;
+            }
 
             if (_gameStateService.IsLegendaryActive(gameState, Spell.HarmoniousApparatus))
             {

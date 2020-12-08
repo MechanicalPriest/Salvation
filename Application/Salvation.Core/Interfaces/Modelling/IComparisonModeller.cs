@@ -1,7 +1,10 @@
-﻿namespace Salvation.Core.Interfaces.Modelling
+﻿using Salvation.Core.State;
+using System.Threading.Tasks;
+
+namespace Salvation.Core.Interfaces.Modelling
 {
     public interface IComparisonModeller<T>
     {
-        public T RunComparison();
+        public Task<T> RunComparison(GameState baseState);
     }
 }

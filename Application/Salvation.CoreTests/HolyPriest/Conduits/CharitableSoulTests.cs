@@ -41,8 +41,8 @@ namespace Salvation.CoreTests.HolyPriest.Conduits
             Assert.NotNull(resultWithout);
             Assert.NotNull(resultWith);
             Assert.AreEqual(0, resultWithout.AdditionalCasts.Count);
-            Assert.AreEqual(197.01474528677767d, resultWith.AdditionalCasts[0].Healing);
-            Assert.AreEqual(317.76571820448015d, resultWith.AdditionalCasts[0].RawHealing);
+            Assert.AreEqual(180.59684984621285d, resultWith.AdditionalCasts[0].Healing);
+            Assert.AreEqual(291.28524168744008d, resultWith.AdditionalCasts[0].RawHealing);
         }
 
         [Test]

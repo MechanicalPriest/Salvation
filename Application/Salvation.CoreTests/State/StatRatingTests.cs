@@ -90,10 +90,21 @@ namespace Salvation.CoreTests.State
 
             // Act
             var intellect = _gameStateService.GetIntellect(_state);
-            File.WriteAllText("temp.json", JsonConvert.SerializeObject(_state.Profile, Formatting.Indented));
 
             // Assert
             Assert.AreEqual(1262.1000000000001d, intellect);
+        }
+
+        [Test]
+        public void GSG_Calculates_Leech()
+        {
+            // Arrange
+
+            // Act
+            var intellect = _gameStateService.GetLeechRating(_state);
+
+            // Assert
+            Assert.AreEqual(0.0d, intellect);
         }
     }
 }

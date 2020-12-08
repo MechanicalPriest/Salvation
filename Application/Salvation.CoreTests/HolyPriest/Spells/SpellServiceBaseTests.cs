@@ -216,6 +216,20 @@ namespace Salvation.CoreTests.HolyPriest.Spells
         }
 
         [Test]
+        public void GetAverageIntellectBonus_Defaults_Zero()
+        {
+            // Arrange
+            IGameStateService gameStateService = new GameStateService();
+            var spellService = new SpellService(gameStateService);
+
+            // Act
+            var result = spellService.GetAverageIntellectBonus(_gameState, null);
+
+            // Assert
+            Assert.AreEqual(0, result);
+        }
+
+        [Test]
         public void GetAverageCriticalStrike_Defaults_Zero()
         {
             // Arrange

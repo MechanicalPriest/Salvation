@@ -88,7 +88,7 @@ namespace Salvation.CoreTests.Common.Items
             var value = _spell.GetActualCastsPerMinute(_gameState, null);
 
             // Assert
-            Assert.AreEqual(1.03357750470943d, value);
+            Assert.AreEqual(1.2135765424775473d, value);
         }
 
         [Test]
@@ -100,7 +100,7 @@ namespace Salvation.CoreTests.Common.Items
             var value = _spell.GetUptime(_gameState, null);
 
             // Assert
-            Assert.AreEqual(0.2583943761773575d, value);
+            Assert.AreEqual(0.30339413561938683d, value);
         }
     }
 }

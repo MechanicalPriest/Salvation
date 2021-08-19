@@ -438,7 +438,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(CircleOfHealing)).Returns(6152.2828701075014d);
                 yield return new TestCaseData(typeof(DivineHymn)).Returns(75936.748568184019d);
                 yield return new TestCaseData(typeof(DivineStar)).Returns(9843.6525921720022d);
-                yield return new TestCaseData(typeof(FaeGuardians)).Returns(8000.0d);
+                yield return new TestCaseData(typeof(FaeGuardians)).Returns(16000.0d);
                 yield return new TestCaseData(typeof(FlashHeal)).Returns(2378.8827097749004d);
                 yield return new TestCaseData(typeof(Halo)).Returns(10124.899809091203d);
                 yield return new TestCaseData(typeof(Heal)).Returns(3456.9970412985012d);
@@ -472,7 +472,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(CircleOfHealing)).Returns(5280.5043874132689d);
                 yield return new TestCaseData(typeof(DivineHymn)).Returns(52092.609517774232d);
                 yield return new TestCaseData(typeof(DivineStar)).Returns(5512.4454516163214d);
-                yield return new TestCaseData(typeof(FaeGuardians)).Returns(7920.0d);
+                yield return new TestCaseData(typeof(FaeGuardians)).Returns(15840.0d);
                 yield return new TestCaseData(typeof(FlashHeal)).Returns(2121.0118240353008d);
                 yield return new TestCaseData(typeof(Halo)).Returns(6421.2114589256407d);
                 yield return new TestCaseData(typeof(Heal)).Returns(2401.2301448859389d);
@@ -820,7 +820,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(CircleOfHealing)).Returns(871.77848269419997d);
                 yield return new TestCaseData(typeof(DivineHymn)).Returns(23844.139050409802d);
                 yield return new TestCaseData(typeof(DivineStar)).Returns(4331.2071405556999d);
-                yield return new TestCaseData(typeof(FaeGuardians)).Returns(80.0d);
+                yield return new TestCaseData(typeof(FaeGuardians)).Returns(160.0d);
                 yield return new TestCaseData(typeof(FlashHeal)).Returns(257.8708857396d);
                 yield return new TestCaseData(typeof(Halo)).Returns(3703.6883501655998d);
                 yield return new TestCaseData(typeof(Heal)).Returns(1055.7668964126001d);

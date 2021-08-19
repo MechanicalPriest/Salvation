@@ -36,7 +36,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
             var result = _spell.GetAverageRawHealing(gamestate, null);
 
             // Assert
-            Assert.AreEqual(8034.0d, result);
+            Assert.AreEqual(16068.0d, result);
         }
 
         [Test]
@@ -61,7 +61,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
             var result = _spell.GetMaximumCastsPerMinute(_gameState, null);
 
             // Assert
-            Assert.AreEqual(0.63679938606528375d, result);
+            Assert.AreEqual(0.64030530858324164d, result);
         }
 
         [Test]

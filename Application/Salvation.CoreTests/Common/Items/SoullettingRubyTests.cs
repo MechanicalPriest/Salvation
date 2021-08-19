@@ -58,7 +58,7 @@ namespace Salvation.CoreTests.Common.Items
             var buffSpellData = gameStateService.GetSpellData(_gameState, Spell.SoullettingRubyHeal);
             // 58 is scale budget for ilvl 226 healing effect (testing)
             spellData.Overrides.Add(Core.Constants.Override.ItemLevel, 226);
-            buffSpellData.ScaleValues.Add(226, 58);
+            buffSpellData.GetEffect(871957).ScaleValues.Add(226, 58);
             gameStateService.OverrideSpellData(_gameState, buffSpellData);
 
             // Act
@@ -77,7 +77,7 @@ namespace Salvation.CoreTests.Common.Items
             var buffSpellData = gameStateService.GetSpellData(_gameState, Spell.SoullettingRubyHeal);
             // 58 is scale budget for ilvl 226 healing effect (testing)
             spellData.Overrides.Add(Core.Constants.Override.ItemLevel, 226);
-            buffSpellData.ScaleValues.Add(226, 58);
+            buffSpellData.GetEffect(871957).ScaleValues.Add(226, 58);
             gameStateService.OverrideSpellData(_gameState, buffSpellData);
 
             // Act
@@ -94,9 +94,10 @@ namespace Salvation.CoreTests.Common.Items
             IGameStateService gameStateService = new GameStateService();
             var spellData = gameStateService.GetSpellData(_gameState, Spell.SoullettingRuby);
             var buffSpellData = gameStateService.GetSpellData(_gameState, Spell.SoullettingRubyTrigger);
-            // 58 is scale budget for ilvl 226 healing effect (testing)
+            // 203.03347229957581 is scale budget for ilvl 226 crit effect (testing)
             spellData.Overrides.Add(Core.Constants.Override.ItemLevel, 226);
-            buffSpellData.ScaleValues.Add(226, 203.03347229957581);
+            buffSpellData.GetEffect(871958).ScaleValues.Add(226, 203.03347229957581);
+            buffSpellData.GetEffect(871962).ScaleValues.Add(226, 203.03347229957581);
             gameStateService.OverrideSpellData(_gameState, buffSpellData);
             gameStateService.OverridePlaystyle(_gameState, new Core.Profile.Model.PlaystyleEntry("SoullettingRubyAverageEnemyHP", .5));
 

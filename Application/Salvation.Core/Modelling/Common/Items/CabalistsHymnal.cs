@@ -26,15 +26,13 @@ namespace Salvation.Core.Modelling.Common.Items
 
             var itemLevel = (int)spellData.Overrides[Override.ItemLevel];
 
-            var critBuffSpell = _gameStateService.GetSpellData(gameState, Spell.CabalistsHymnalBuff);
-
             // Get scale budget
-            if(!critBuffSpell.ScaleValues.ContainsKey(itemLevel))
+            var scaledCritValue = spellData.GetEffect(869450).GetScaledCoefficientValue(itemLevel);
+
+            if (scaledCritValue == 0)
                 throw new ArgumentOutOfRangeException("itemLevel", $"critBuffSpell.ScaleValues does not contain itemLevel: {itemLevel}");
 
-            var scaleBudget = critBuffSpell.ScaleValues[itemLevel];
-
-            var critAmount = scaleBudget * spellData.GetEffect(869450).Coefficient;
+            var critAmount = scaledCritValue;
 
             // 3 stacks, average of 2 for its duration
             var averageCritAmount = critAmount * 2;

@@ -133,10 +133,10 @@ namespace Salvation.CoreTests.Common.Items
         {
             get
             {
-                yield return new TestCaseData(typeof(DivineImageHealingLight)).Returns(1060.9165271250004d);
-                yield return new TestCaseData(typeof(DivineImageTranquilLight)).Returns(3733.1890745639457d);
-                yield return new TestCaseData(typeof(DivineImageDazzlingLights)).Returns(3182.7495813750006d);
-                yield return new TestCaseData(typeof(DivineImageBlessedLight)).Returns(3182.7495813750006d);
+                yield return new TestCaseData(typeof(DivineImageHealingLight)).Returns(1697.4664434000003d);
+                yield return new TestCaseData(typeof(DivineImageTranquilLight)).Returns(2243.0167267956385d);
+                yield return new TestCaseData(typeof(DivineImageDazzlingLights)).Returns(4137.5744557875014d);
+                yield return new TestCaseData(typeof(DivineImageBlessedLight)).Returns(10184.798660400003d);
             }
         }
 

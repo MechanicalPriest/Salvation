@@ -29,12 +29,12 @@ namespace Salvation.Core.Modelling.Common.Items
             var triggerSpell = _gameStateService.GetSpellData(gameState, Spell.MacabreSheetMusicTrigger);
 
             // Get scale budget
-            if(!triggerSpell.ScaleValues.ContainsKey(itemLevel))
+            var scaledHasteAmount = triggerSpell.GetEffect(871310).GetScaledCoefficientValue(itemLevel);
+
+            if (scaledHasteAmount == 0)
                 throw new ArgumentOutOfRangeException("itemLevel", $"buffSpell.ScaleValues does not contain itemLevel: {itemLevel}");
 
-            var scaleBudget = triggerSpell.ScaleValues[itemLevel];
-
-            var hasteAmount = scaleBudget * triggerSpell.GetEffect(871310).Coefficient;
+            var hasteAmount = scaledHasteAmount;
 
             // 3 stacks, average of 2 for its duration
             var buffSpell = _gameStateService.GetSpellData(gameState, Spell.MacabreSheetMusicBuff);

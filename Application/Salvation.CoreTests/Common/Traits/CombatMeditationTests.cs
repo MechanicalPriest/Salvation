@@ -31,7 +31,9 @@ namespace Salvation.CoreTests.Common.Traits
             // Arrange
             IGameStateService gameStateService = new GameStateService();
             var spellData = gameStateService.GetSpellData(_gameState, Spell.CombatMeditation);
-            spellData.ScaleValues = new System.Collections.Generic.Dictionary<int, double>();
+            var masteryBuffSpell = gameStateService.GetSpellData(_gameState, Spell.CombatMeditationBuff);
+            masteryBuffSpell.GetEffect(821722).ScaleValues = new System.Collections.Generic.Dictionary<int, double>();
+            gameStateService.OverrideSpellData(_gameState, masteryBuffSpell);
 
             // Act
             var methodCall = new TestDelegate(
@@ -67,7 +69,7 @@ namespace Salvation.CoreTests.Common.Traits
             var value = _spell.GetAverageMastery(gamestate, null);
 
             // Assert
-            Assert.AreEqual(61.596190476190479d, value);
+            Assert.AreEqual(55.499992071428572d, value);
         }
 
         [Test]

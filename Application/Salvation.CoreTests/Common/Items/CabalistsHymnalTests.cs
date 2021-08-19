@@ -41,11 +41,9 @@ namespace Salvation.CoreTests.Common.Items
             // Arrange
             IGameStateService gameStateService = new GameStateService();
             var spellData = gameStateService.GetSpellData(_gameState, Spell.CabalistsHymnal);
-            var buffSpellData = gameStateService.GetSpellData(_gameState, Spell.CabalistsHymnalBuff);
-            // 155 is scale budget for ilvl 226 (testing)
+            // 203.03347229957581 is scale budget for ilvl 226 (testing)
             spellData.Overrides.Add(Core.Constants.Override.ItemLevel, 226);
-            buffSpellData.ScaleValues.Add(226, 203.03347229957581);
-            gameStateService.OverrideSpellData(_gameState, buffSpellData);
+            spellData.GetEffect(869450).ScaleValues.Add(226, 203.03347229957581);
 
             // Act
             var value = _spell.GetAverageCriticalStrike(_gameState, spellData);

@@ -44,7 +44,7 @@ namespace Salvation.CoreTests.Common.Items
             var buffSpellData = gameStateService.GetSpellData(_gameState, Spell.ConsumptiveInfusionBuff);
             // 155 is scale budget for ilvl 226 (testing)
             spellData.Overrides.Add(Core.Constants.Override.ItemLevel, 226);
-            buffSpellData.ScaleValues.Add(226, 203.03347229957581);
+            buffSpellData.GetEffect(868394).ScaleValues.Add(226, 203.03347229957581);
             gameStateService.OverrideSpellData(_gameState, buffSpellData);
 
             // Act

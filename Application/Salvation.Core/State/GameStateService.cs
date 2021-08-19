@@ -775,7 +775,7 @@ namespace Salvation.Core.State
 
             // TODO: Conduits
 
-            
+            // Process all the registered spells
             foreach (var spell in registeredSpells)
             {
                 // Populate all the spellservices
@@ -792,13 +792,21 @@ namespace Salvation.Core.State
                 // Ideally though the modelling run does RegisterSpells last right before the run begins?
                 spell.SpellData = GetSpellData(state, spell.Spell);
 
-                // Add scalevalues
                 if (spell.SpellData != null)
                 {
-                    foreach(var kvp in spell.ScaleValues)
+                    // Go through each effect from the spell data
+                    foreach (var effect in spell.SpellData.Effects)
                     {
-                        if(!spell.SpellData.ScaleValues.ContainsKey(kvp.Key))
-                            spell.SpellData.ScaleValues.Add(kvp.Key, kvp.Value);
+                        if (spell.EffectScaleValues.ContainsKey(effect.Id))
+                        {
+                            // then for each of the stored effectscalevalues, update
+                            // the effect in the spelldata to contain the scale value
+                            foreach (var kvp in spell.EffectScaleValues[effect.Id])
+                            {
+                                if (!effect.ScaleValues.ContainsKey(kvp.Key))
+                                    effect.ScaleValues.Add(kvp.Key, kvp.Value);
+                            }
+                        }
                     }
 
                     // Update the spelldata to have the new scalevalues added
@@ -825,9 +833,18 @@ namespace Salvation.Core.State
                 var newSpell = new RegisteredSpell()
                 {
                     Spell = (Spell)spell.Id,
-                    ScaleValues= spell.ScaleValues,
                     ItemLevel = itemLevel
                 };
+
+                // Loop through each of the effects found in the spelldata
+                // For each one add the scale values that were pulled (likely from items from simc data)
+                // to the effect scale values collection for this registered spell.
+                // This essentially just ends up condensing all the scale values into the one BaseSpellData object for usage
+                // later on in the app.
+                foreach(var effect in spell.Effects)
+                {
+                    newSpell.EffectScaleValues.Add(effect.Id, effect.ScaleValues);
+                }
 
                 spells.Add(newSpell);
 

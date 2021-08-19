@@ -44,7 +44,7 @@ namespace Salvation.CoreTests.Common.Items
             var spellData = gameStateService.GetSpellData(_gameState, Spell.VialOfSpectralEssence);
             // 58 is scale budget for ilvl 226 healing effect (testing)
             spellData.Overrides.Add(Core.Constants.Override.ItemLevel, 226);
-            spellData.ScaleValues.Add(226, 58);
+            spellData.GetEffect(871762).ScaleValues.Add(226, 58);
             gameStateService.OverrideSpellData(_gameState, spellData);
 
             // Act
@@ -62,7 +62,7 @@ namespace Salvation.CoreTests.Common.Items
             var spellData = gameStateService.GetSpellData(_gameState, Spell.VialOfSpectralEssence);
             // 58 is scale budget for ilvl 226 healing effect (testing)
             spellData.Overrides.Add(Core.Constants.Override.ItemLevel, 226);
-            spellData.ScaleValues.Add(226, 58);
+            spellData.GetEffect(871762).ScaleValues.Add(226, 58);
             gameStateService.OverrideSpellData(_gameState, spellData);
 
             // Act

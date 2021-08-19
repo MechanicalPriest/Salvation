@@ -33,12 +33,12 @@ namespace Salvation.Core.Modelling.Common.Items
             var buffSpell = _gameStateService.GetSpellData(gameState, Spell.ConsumptiveInfusionBuff);
 
             // Get scale budget
-            if(!buffSpell.ScaleValues.ContainsKey(itemLevel))
+            var scaledLeechValue = buffSpell.GetEffect(868394).GetScaledCoefficientValue(itemLevel);
+
+            if (scaledLeechValue == 0)
                 throw new ArgumentOutOfRangeException("itemLevel", $"buffSpell.ScaleValues does not contain itemLevel: {itemLevel}");
 
-            var scaleBudget = buffSpell.ScaleValues[itemLevel];
-
-            var leechAmount = scaleBudget * buffSpell.GetEffect(868394).Coefficient;
+            var leechAmount = scaledLeechValue;
 
             return leechAmount * GetUptime(gameState, spellData);
         }

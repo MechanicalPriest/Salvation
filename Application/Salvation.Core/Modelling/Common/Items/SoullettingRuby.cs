@@ -33,12 +33,12 @@ namespace Salvation.Core.Modelling.Common.Items
             var healSpell = _gameStateService.GetSpellData(gameState, Spell.SoullettingRubyHeal);
 
             // Get scale budget
-            if(!healSpell.ScaleValues.ContainsKey(itemLevel))
+            var scaledHealValue = healSpell.GetEffect(871957).GetScaledCoefficientValue(itemLevel);
+
+            if (scaledHealValue == 0)
                 throw new ArgumentOutOfRangeException("itemLevel", $"critBuffSpell.ScaleValues does not contain itemLevel: {itemLevel}");
 
-            var scaleBudget = healSpell.ScaleValues[itemLevel];
-
-            var healAmount = scaleBudget * healSpell.GetEffect(871957).Coefficient;
+            var healAmount = scaledHealValue;
 
             healAmount *= _gameStateService.GetVersatilityMultiplier(gameState);
 
@@ -59,13 +59,15 @@ namespace Salvation.Core.Modelling.Common.Items
             var critBuffSpell = _gameStateService.GetSpellData(gameState, Spell.SoullettingRubyTrigger);
 
             // Get scale budget
-            if (!critBuffSpell.ScaleValues.ContainsKey(itemLevel))
+            var scaledLowCritValue = critBuffSpell.GetEffect(871958).GetScaledCoefficientValue(itemLevel);
+            var scaledHighCritValue = critBuffSpell.GetEffect(871962).GetScaledCoefficientValue(itemLevel);
+
+
+            if (scaledLowCritValue == 0 || scaledHighCritValue == 0)
                 throw new ArgumentOutOfRangeException("itemLevel", $"critBuffSpell.ScaleValues does not contain itemLevel: {itemLevel}");
 
-            var scaleBudget = critBuffSpell.ScaleValues[itemLevel];
-
-            var critAmountLow = scaleBudget * critBuffSpell.GetEffect(871958).Coefficient;
-            var critAmountHigh = scaleBudget * critBuffSpell.GetEffect(871962).Coefficient;
+            var critAmountLow = scaledLowCritValue;
+            var critAmountHigh = scaledHighCritValue;
 
             var avgEnemyHp = _gameStateService.GetPlaystyle(gameState, "SoullettingRubyAverageEnemyHP");
 

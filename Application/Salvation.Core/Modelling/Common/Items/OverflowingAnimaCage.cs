@@ -29,12 +29,12 @@ namespace Salvation.Core.Modelling.Common.Items
             var buffSpell = _gameStateService.GetSpellData(gameState, Spell.OverflowingAnimaCageBuff);
 
             // Get scale budget
-            if(!buffSpell.ScaleValues.ContainsKey(itemLevel))
+            var scaledCritAmount = buffSpell.GetEffect(845125).GetScaledCoefficientValue(itemLevel);
+
+            if (scaledCritAmount == 0)
                 throw new ArgumentOutOfRangeException("itemLevel", $"buffSpell.ScaleValues does not contain itemLevel: {itemLevel}");
 
-            var scaleBudget = buffSpell.ScaleValues[itemLevel];
-
-            var critAmount = scaleBudget * buffSpell.GetEffect(845125).Coefficient;
+            var critAmount = scaledCritAmount;
 
             // If we are counting ally buffs, multiply our crit amount
             var countAllyBuffs = _gameStateService.GetPlaystyle(gameState, "OverflowingAnimaCageCountAllyBuffs");

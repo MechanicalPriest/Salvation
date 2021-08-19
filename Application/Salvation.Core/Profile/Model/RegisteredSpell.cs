@@ -18,11 +18,11 @@ namespace Salvation.Core.Profile.Model
         /// <summary>
         /// Scale multiplier used for scaling item-scaled spells
         /// </summary>
-        public Dictionary<int, double> ScaleValues { get; set; }
+        public Dictionary<uint, Dictionary<int, double>> EffectScaleValues { get; set; }
 
         public RegisteredSpell()
         {
-            ScaleValues = new Dictionary<int, double>();
+            EffectScaleValues = new Dictionary<uint, Dictionary<int, double>>();
         }
 
         public RegisteredSpell(Spell spell)

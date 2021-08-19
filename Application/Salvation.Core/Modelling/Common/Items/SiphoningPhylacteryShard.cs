@@ -8,22 +8,18 @@ using System;
 
 namespace Salvation.Core.Modelling.Common.Items
 {
-    public interface IVialOfSpectralEssenceSpellService : ISpellService { }
-    class VialOfSpectralEssence : SpellService, ISpellService<IVialOfSpectralEssenceSpellService>
+    public interface ISiphoningPhylacteryShardSpellService : ISpellService { }
+    class SiphoningPhylacteryShard : SpellService, ISpellService<ISiphoningPhylacteryShardSpellService>
     {
-        public VialOfSpectralEssence(IGameStateService gameStateService)
+        public SiphoningPhylacteryShard(IGameStateService gameStateService)
             : base(gameStateService)
         {
-            Spell = Spell.VialOfSpectralEssence;
+            Spell = Spell.SiphoningPhylacteryShard;
         }
 
         public override double GetAverageRawHealing(GameState gameState, BaseSpellData spellData)
         {
             spellData = ValidateSpellData(gameState, spellData);
-
-            // Use: Draw out a piece of the target's soul, decreasing their movement speed by 30% until the soul 
-            // reaches you. The soul instantly heals you for 2995, and grants you up to 1050 Critical Strike for 16 sec. 
-            // You gain more Critical Strike from lower health targets. (2 Min Cooldown)
 
             if (!spellData.Overrides.ContainsKey(Override.ItemLevel))
                 throw new ArgumentOutOfRangeException("ItemLevel", "Does not contain ItemLevel");
@@ -31,17 +27,18 @@ namespace Salvation.Core.Modelling.Common.Items
             var itemLevel = (int)spellData.Overrides[Override.ItemLevel];
 
             // Get scale budget
-            var scaledHealingValue = spellData.GetEffect(871762).GetScaledCoefficientValue(itemLevel);
+            var scaledHealingValue = spellData.GetEffect(871498).GetScaledCoefficientValue(itemLevel);
+
             if (scaledHealingValue == 0)
                 throw new ArgumentOutOfRangeException("itemLevel", $"healSpell.ScaleValues does not contain itemLevel: {itemLevel}");
 
-            var healingPool = scaledHealingValue;
+            var healingAmount = scaledHealingValue;
 
-            healingPool *= _gameStateService.GetVersatilityMultiplier(gameState);
+            healingAmount *= _gameStateService.GetVersatilityMultiplier(gameState);
 
-            healingPool *= _gameStateService.GetCriticalStrikeMultiplier(gameState);
+            healingAmount *= _gameStateService.GetCriticalStrikeMultiplier(gameState);
 
-            return healingPool * GetNumberOfHealingTargets(gameState, spellData);
+            return healingAmount * GetNumberOfHealingTargets(gameState, spellData);
         }
 
         public override double GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)

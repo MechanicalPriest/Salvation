@@ -45,7 +45,7 @@ namespace Salvation.CoreTests.Common.Items
             var buffSpellData = gameStateService.GetSpellData(_gameState, Spell.OverflowingAnimaCageBuff);
             // 155 is scale budget for ilvl 226 (testing)
             spellData.Overrides.Add(Core.Constants.Override.ItemLevel, 226);
-            buffSpellData.ScaleValues.Add(226, 203.03347229957581);
+            buffSpellData.GetEffect(845125).ScaleValues.Add(226, 203.03347229957581);
             gameStateService.OverrideSpellData(_gameState, buffSpellData);
             gameStateService.OverridePlaystyle(_gameState, new Core.Profile.Model.PlaystyleEntry("OverflowingAnimaCageCountAllyBuffs", 1));
             gameStateService.OverridePlaystyle(_gameState, new Core.Profile.Model.PlaystyleEntry("OverflowingAnimaCageAverageNumberAllies", 5));

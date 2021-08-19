@@ -260,8 +260,6 @@ namespace Salvation.Core.Profile
                 Rppm = spell.Rppm
             };
 
-            newSpell.ScaleValues.Add(itemLevel, spell.ScaleBudget);
-
             // Check if RPPM is modified by spec or haste
             foreach (var rppmMod in spell.RppmModifiers)
             {
@@ -321,6 +319,8 @@ namespace Salvation.Core.Profile
                 TriggerSpell = GetBaseSpellData(effect.TriggerSpell, itemLevel),
                 Type = effect.EffectType,
             };
+
+            newEffect.ScaleValues.Add(itemLevel, effect.ScaleBudget);
 
             return newEffect;
         }

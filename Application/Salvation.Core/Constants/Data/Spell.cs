@@ -155,6 +155,8 @@
         VialOfSpectralEssence = 345695,
         OverflowingAnimaCage = 343385,
         OverflowingAnimaCageBuff = 343387,
+        SiphoningPhylacteryShard = 345549,
+        SiphoningPhylacteryShardBuff = 345551,
 
         // Traits
         // Kyrian - Pelagos

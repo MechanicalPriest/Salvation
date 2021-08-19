@@ -136,6 +136,8 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.VialOfSpectralEssence,
                 (uint)Spell.OverflowingAnimaCage,
                 (uint)Spell.OverflowingAnimaCageBuff,
+                (uint)Spell.SiphoningPhylacteryShard,
+                (uint)Spell.SiphoningPhylacteryShardBuff,
 
                 // Trait
                 // Kyrian
@@ -262,10 +264,6 @@ namespace Salvation.Utility.SpellDataUpdate
                 InternalCooldown = spell.InternalCooldown
             };
 
-            // Add Scale budget (for player scaled spells)
-            if(spell.ScaleBudget != 0)
-                newSpell.ScaleValues.Add(60, spell.ScaleBudget);
-
             // Check if RPPM is modified by spec or haste
             foreach(var rppmMod in spell.RppmModifiers)
             {
@@ -327,6 +325,10 @@ namespace Salvation.Utility.SpellDataUpdate
                 Type = effect.EffectType,
             };
 
+            // Add the level 60 spellbudget value if it exists in the spelldata.
+            if (effect.ScaleBudget != 0)
+                newEffect.ScaleValues.Add(60, effect.ScaleBudget);
+
             return newEffect;
         }
 
@@ -344,6 +346,11 @@ namespace Salvation.Utility.SpellDataUpdate
                 case (uint)Spell.ShadowWordDeath:
                     // This comes from the Priest aura 137030 effect #1 179714
                     baseSpellData.IsCooldownHasted = true;
+                    break;
+                case (uint)Spell.DivineImageBlessedLight:
+                    // Blessed light's spelldata for targets is now in Effect #1 288952 as part of chain targets
+                    // We don't get chain targets through yet, so set it manually
+                    baseSpellData.GetEffect(288952).BaseValue = 5;
                     break;
                 default:
                     break;

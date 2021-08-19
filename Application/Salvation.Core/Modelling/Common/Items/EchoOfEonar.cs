@@ -7,8 +7,8 @@ using System;
 
 namespace Salvation.Core.Modelling.Common.Items
 {
-    public interface IEchoOfEonarSpellSevice : ISpellService { }
-    class EchoOfEonar : SpellService, ISpellService<IEchoOfEonarSpellSevice>
+    public interface IEchoOfEonarSpellService : ISpellService { }
+    class EchoOfEonar : SpellService, ISpellService<IEchoOfEonarSpellService>
     {
         public EchoOfEonar(IGameStateService gameStateService)
             : base(gameStateService)

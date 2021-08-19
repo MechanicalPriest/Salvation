@@ -67,7 +67,7 @@ namespace Salvation.CoreTests.Common.Traits
             var value = _spell.GetActualCastsPerMinute(_gameState, null);
 
             // Assert
-            Assert.AreEqual(0.63679938606528375d, value);
+            Assert.AreEqual(0.64030530858324164d, value);
         }
     }
 }

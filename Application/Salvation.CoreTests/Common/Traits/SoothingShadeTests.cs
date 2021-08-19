@@ -31,7 +31,7 @@ namespace Salvation.CoreTests.Common.Traits
             var value = _spell.GetAverageMastery(_gameState, null);
 
             // Assert
-            Assert.AreEqual(78.750002999999992d, value);
+            Assert.AreEqual(82.500004500000003d, value);
         }
 
         [Test]

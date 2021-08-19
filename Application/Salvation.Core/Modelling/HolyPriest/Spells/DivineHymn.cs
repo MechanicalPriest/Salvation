@@ -13,6 +13,8 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             : base(gameStateService)
         {
             Spell = Spell.DivineHymn;
+            // TODO: Include the hymn healing amp bonus in the GetGlobalHealingMultiplier in some way.
+            // May need to then remove it for the hymn specific healing calcs.
         }
 
         public override double GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
@@ -22,7 +24,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             var holyPriestAuraHealingBonus = _gameStateService.GetSpellData(gameState, Spell.HolyPriest)
                 .GetEffect(179715).BaseValue / 100 + 1;
 
-            // Effect 59166 holds the aura bonus, 10 = 10%.
+            // Effect 59166 holds the aura bonus, 4% per stack.
             var divineHymnAura = spellData.GetEffect(59162).TriggerSpell.GetEffect(59166).BaseValue / 100;
 
             // DH's average heal for the first tick is:
@@ -41,13 +43,16 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {firstTickRaid * 5:0.##} & {firstTickParty * 5:0.##} (all ticks)");
 
             // Pick whether we're in part or raid
-            double firstTick = GetNumberOfHealingTargets(gameState, spellData) <= 5 ? firstTickParty : firstTickRaid;
+            double baseTick = GetNumberOfHealingTargets(gameState, spellData) <= 5 ? firstTickParty : firstTickRaid;
 
-            firstTick *= _gameStateService.GetCriticalStrikeMultiplier(gameState)
+            // TODO: Include a configurable variable here to set the average number of ticks.
+            double numTicks = spellData.GetEffect(59162).TriggerSpell.MaxStacks;
+
+            baseTick *= _gameStateService.GetCriticalStrikeMultiplier(gameState)
                 * _gameStateService.GetGlobalHealingMultiplier(gameState);
 
-            // Now the rest of the 4 ticks including the aura:
-            double averageHeal = firstTick + (firstTick * 4 * (1 + divineHymnAura));
+            // This is the healing per tick, then add on the bonus healing per tick.
+            double averageHeal = baseTick * numTicks + baseTick * divineHymnAura * ((numTicks - 1) * numTicks / 2);
 
             return averageHeal * GetNumberOfHealingTargets(gameState, spellData);
         }

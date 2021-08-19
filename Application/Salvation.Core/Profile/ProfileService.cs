@@ -327,6 +327,7 @@ namespace Salvation.Core.Profile
                     new CastProfile((int)Spell.DarkmoonDeckRepose, 0.80d, 0.25d, 4, 0),
                     new CastProfile((int)Spell.VialOfSpectralEssence, 0.95d, 0.05d, 1, 0),
                     new CastProfile((int)Spell.OverflowingAnimaCage, 0.85d, 0.0d, 0, 0),
+                    new CastProfile((int)Spell.SiphoningPhylacteryShard, 0.95d, 0.01d, 1, 0),
                 },
                 Talents = new List<Talent>()
                 {

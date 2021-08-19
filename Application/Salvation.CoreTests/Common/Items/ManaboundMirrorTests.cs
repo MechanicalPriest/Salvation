@@ -45,7 +45,8 @@ namespace Salvation.CoreTests.Common.Items
             var buffSpellData = gameStateService.GetSpellData(_gameState, Spell.ManaboundMirrorHeal);
             // 58 is scale budget for ilvl 226 healing effect (testing)
             spellData.Overrides.Add(Core.Constants.Override.ItemLevel, 226);
-            buffSpellData.ScaleValues.Add(226, 58);
+            buffSpellData.GetEffect(868433).ScaleValues.Add(226, 58); // base heal
+            spellData.GetEffect(868611).ScaleValues.Add(226, 58); // bonus heal
             gameStateService.OverrideSpellData(_gameState, buffSpellData);
             gameStateService.OverridePlaystyle(_gameState, new Core.Profile.Model.PlaystyleEntry("ManaboundMirrorPercentMirrorFilled", 1.0));
 
@@ -65,7 +66,8 @@ namespace Salvation.CoreTests.Common.Items
             var buffSpellData = gameStateService.GetSpellData(_gameState, Spell.ManaboundMirrorHeal);
             // 58 is scale budget for ilvl 226 healing effect (testing)
             spellData.Overrides.Add(Core.Constants.Override.ItemLevel, 226);
-            buffSpellData.ScaleValues.Add(226, 58);
+            buffSpellData.GetEffect(868433).ScaleValues.Add(226, 58); // base heal
+            spellData.GetEffect(868611).ScaleValues.Add(226, 58); // bonus heal
             gameStateService.OverrideSpellData(_gameState, buffSpellData);
             gameStateService.OverridePlaystyle(_gameState, new Core.Profile.Model.PlaystyleEntry("ManaboundMirrorPercentMirrorFilled", 1.0));
 

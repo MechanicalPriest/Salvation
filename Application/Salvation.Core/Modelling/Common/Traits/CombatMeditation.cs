@@ -30,13 +30,13 @@ namespace Salvation.Core.Modelling.Common.Traits
             // 328908e1 for 328908d extended up to 328913e2 * 3 times.
             var masteryBuffSpell = _gameStateService.GetSpellData(gameState, Spell.CombatMeditationBuff);
 
-            if (!masteryBuffSpell.ScaleValues.ContainsKey(PlayerLevel))
+            // Mastery amount: 328908 effect 1
+            var scaledMasteryValue = masteryBuffSpell.GetEffect(821722).GetScaledCoefficientValue(PlayerLevel);
+
+            if (scaledMasteryValue == 0)
                 throw new ArgumentOutOfRangeException("PlayerLevel", $"masteryBuffSpell.ScaleValues does not contain player level: {PlayerLevel}");
 
-            var scaleBudget = masteryBuffSpell.ScaleValues[PlayerLevel];
-
-            // Mastery amount: 328908 effect 1
-            var masteryAmount = scaleBudget * masteryBuffSpell.GetEffect(821722).Coefficient;
+            var masteryAmount = scaledMasteryValue;
 
             return masteryAmount * GetUptime(gameState, spellData) / 60;
         }

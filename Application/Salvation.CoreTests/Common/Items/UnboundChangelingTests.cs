@@ -44,7 +44,7 @@ namespace Salvation.CoreTests.Common.Items
             var hasteBuffSpellData = gameStateService.GetSpellData(_gameState, Spell.UnboundChangelingBuff);
             // 155 is scale budget for ilvl 226 (testing)
             spellData.Overrides.Add(Core.Constants.Override.ItemLevel, 226);
-            hasteBuffSpellData.ScaleValues.Add(226, 155);
+            hasteBuffSpellData.GetEffect(824555).ScaleValues.Add(226, 155);
             gameStateService.OverrideSpellData(_gameState, hasteBuffSpellData);
 
             // Act

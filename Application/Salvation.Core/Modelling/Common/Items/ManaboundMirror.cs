@@ -33,13 +33,17 @@ namespace Salvation.Core.Modelling.Common.Items
             var healSpell = _gameStateService.GetSpellData(gameState, Spell.ManaboundMirrorHeal);
 
             // Get scale budget
-            if(!healSpell.ScaleValues.ContainsKey(itemLevel))
+            var scaledBaseHealAmount = healSpell.GetEffect(868433).GetScaledCoefficientValue(itemLevel);
+            var scaledBonusHealAmount = spellData.GetEffect(868611).GetScaledCoefficientValue(itemLevel);
+
+            if (scaledBaseHealAmount == 0)
                 throw new ArgumentOutOfRangeException("itemLevel", $"healSpell.ScaleValues does not contain itemLevel: {itemLevel}");
 
-            var scaleBudget = healSpell.ScaleValues[itemLevel];
+            if (scaledBonusHealAmount == 0)
+                throw new ArgumentOutOfRangeException("itemLevel", $"healSpell.ScaleValues does not contain itemLevel: {itemLevel}");
 
-            var baseHealAmount = scaleBudget * healSpell.GetEffect(868433).Coefficient;
-            var bonusHealAmount = scaleBudget * spellData.GetEffect(868611).Coefficient;
+            var baseHealAmount = scaledBaseHealAmount;
+            var bonusHealAmount = scaledBonusHealAmount;
 
             // Get the percentage of the mirror that's filled up each cast
             var avgMirrorFill = _gameStateService.GetPlaystyle(gameState, "ManaboundMirrorPercentMirrorFilled");

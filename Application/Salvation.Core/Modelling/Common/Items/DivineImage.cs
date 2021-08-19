@@ -8,8 +8,8 @@ using System;
 
 namespace Salvation.Core.Modelling.Common.Items
 {
-    public interface IDivineImageSpellSevice : ISpellService { }
-    class DivineImage : SpellService, ISpellService<IDivineImageSpellSevice>
+    public interface IDivineImageSpellService : ISpellService { }
+    class DivineImage : SpellService, ISpellService<IDivineImageSpellService>
     {
         private readonly ISpellService<IHolyWordSerenitySpellService> _serenitySpellService;
         private readonly ISpellService<IHolyWordSanctifySpellService> _sanctifySpellService;

@@ -60,9 +60,9 @@ namespace Salvation.Core.Modelling
                 Spell.ShadowWordDeath => typeof(IShadowWordDeathSpellService),
                 Spell.HolyFire => typeof(IHolyFireSpellService),
                 // Holy Priest Legendary Power
-                Spell.EchoOfEonar => typeof(IEchoOfEonarSpellSevice),
-                Spell.CauterizingShadows => typeof(ICauterizingShadowsSpellSevice),
-                Spell.DivineImage => typeof(IDivineImageSpellSevice),
+                Spell.EchoOfEonar => typeof(IEchoOfEonarSpellService),
+                Spell.CauterizingShadows => typeof(ICauterizingShadowsSpellService),
+                Spell.DivineImage => typeof(IDivineImageSpellService),
                 // Consumables
                 Spell.SpectralFlaskOfPower => typeof(ISpectralFlaskOfPowerSpellService),
                 Spell.SpiritualManaPotion => typeof(ISpiritualManaPotionSpellService),
@@ -74,9 +74,10 @@ namespace Salvation.Core.Modelling
                 Spell.MacabreSheetMusic => typeof(IMacabreSheetMusicSpellService),
                 Spell.TuftOfSmolderingPlumage => typeof(ITuftOfSmolderingPlumageSpellService),
                 Spell.ConsumptiveInfusion => typeof(IConsumptiveInfusionSpellService),
-                Spell.DarkmoonDeckRepose => typeof(IDarkmoonDeckReposeSpellSevice),
-                Spell.VialOfSpectralEssence => typeof(IVialOfSpectralEssenceSpellSevice),
+                Spell.DarkmoonDeckRepose => typeof(IDarkmoonDeckReposeSpellService),
+                Spell.VialOfSpectralEssence => typeof(IVialOfSpectralEssenceSpellService),
                 Spell.OverflowingAnimaCage => typeof(IOverflowingAnimaCageSpellService),
+                Spell.SiphoningPhylacteryShard => typeof(ISiphoningPhylacteryShardSpellService),
                 // Traits
                 Spell.BronsCallToAction => typeof(IBronsCallToActionSpellService),
                 Spell.CombatMeditation => typeof(ICombatMeditationSpellSerivce),

@@ -8,8 +8,8 @@ using System;
 
 namespace Salvation.Core.Modelling.Common.Items
 {
-    public interface IDarkmoonDeckReposeSpellSevice : ISpellService { }
-    class DarkmoonDeckRepose : SpellService, ISpellService<IDarkmoonDeckReposeSpellSevice>
+    public interface IDarkmoonDeckReposeSpellService : ISpellService { }
+    class DarkmoonDeckRepose : SpellService, ISpellService<IDarkmoonDeckReposeSpellService>
     {
         public DarkmoonDeckRepose(IGameStateService gameStateService)
             : base(gameStateService)
@@ -34,17 +34,16 @@ namespace Salvation.Core.Modelling.Common.Items
             var highHeal = _gameStateService.GetSpellData(gameState, Spell.DarkmoonDeckReposeEight);
 
             // Get scale budget
-            if (!spellData.ScaleValues.ContainsKey(itemLevel))
-                throw new ArgumentOutOfRangeException("itemLevel", $"healSpell.ScaleValues does not contain itemLevel: {itemLevel}");
+            var scaledHealValueLow = lowHeal.GetEffect(792442).GetScaledCoefficientValue(itemLevel);
+            var scaledHealValueHigh = highHeal.GetEffect(792449).GetScaledCoefficientValue(itemLevel);
 
-            // TODO: Fix this once the spelldata is updated.
-            //var scaleBudget = spellData.ScaleValues[itemLevel];
-            if (itemLevel != 200)
-                throw new ArgumentOutOfRangeException("itemLevel", $"Only itemLevel 200 is supported. itemLevel: {itemLevel}");
+            if (scaledHealValueLow == 0)
+                throw new ArgumentOutOfRangeException("itemLevel", $"lowHeal.ScaleValues does not contain itemLevel: {itemLevel}");
 
-            var scaleBudget = 39;
+            if (scaledHealValueHigh == 0)
+                throw new ArgumentOutOfRangeException("itemLevel", $"highHeal.ScaleValues does not contain itemLevel: {itemLevel}");
 
-            var healAmount = ((scaleBudget * lowHeal.GetEffect(792442).Coefficient) + (scaleBudget * highHeal.GetEffect(792449).Coefficient)) / 2;
+            var healAmount = (scaledHealValueLow + scaledHealValueHigh) / 2;
 
             healAmount *= _gameStateService.GetVersatilityMultiplier(gameState);
 

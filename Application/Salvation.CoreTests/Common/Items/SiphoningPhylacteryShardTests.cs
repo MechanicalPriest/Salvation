@@ -9,7 +9,7 @@ using System;
 namespace Salvation.CoreTests.Common.Items
 {
     [TestFixture]
-    class TuftOfSmolderingPlumageTests : BaseTest
+    class SiphoningPhylacteryShardTests : BaseTest
     {
         private SpellService _spell;
         private GameState _gameState;
@@ -19,7 +19,7 @@ namespace Salvation.CoreTests.Common.Items
         {
             IGameStateService gameStateService = new GameStateService();
 
-            _spell = new TuftOfSmolderingPlumage(gameStateService);
+            _spell = new SiphoningPhylacteryShard(gameStateService);
             _gameState = GetGameState();
         }
 
@@ -41,19 +41,17 @@ namespace Salvation.CoreTests.Common.Items
         {
             // Arrange
             IGameStateService gameStateService = new GameStateService();
-            var spellData = gameStateService.GetSpellData(_gameState, Spell.TuftOfSmolderingPlumage);
-            var buffSpellData = gameStateService.GetSpellData(_gameState, Spell.TuftOfSmolderingPlumageBuff);
+            var spellData = gameStateService.GetSpellData(_gameState, Spell.SiphoningPhylacteryShardBuff);
             // 58 is scale budget for ilvl 226 healing effect (testing)
             spellData.Overrides.Add(Core.Constants.Override.ItemLevel, 226);
-            buffSpellData.GetEffect(869705).ScaleValues.Add(226, 58);
-            gameStateService.OverrideSpellData(_gameState, buffSpellData);
-            gameStateService.OverridePlaystyle(_gameState, new Core.Profile.Model.PlaystyleEntry("TuftOfSmolderingPlumageAvgAllyHp", 0.75));
+            spellData.GetEffect(871498).ScaleValues.Add(226, 64.93099976);
+            gameStateService.OverrideSpellData(_gameState, spellData);
 
             // Act
             var value = _spell.GetAverageRawHealing(_gameState, spellData);
 
             // Assert
-            Assert.AreEqual(27085.523216502163d, value);
+            Assert.AreEqual(7779.8277131205987d, value);
         }
 
         [Test]
@@ -61,19 +59,17 @@ namespace Salvation.CoreTests.Common.Items
         {
             // Arrange
             IGameStateService gameStateService = new GameStateService();
-            var spellData = gameStateService.GetSpellData(_gameState, Spell.TuftOfSmolderingPlumage);
-            var buffSpellData = gameStateService.GetSpellData(_gameState, Spell.TuftOfSmolderingPlumageBuff);
+            var spellData = gameStateService.GetSpellData(_gameState, Spell.SiphoningPhylacteryShardBuff);
             // 58 is scale budget for ilvl 226 healing effect (testing)
             spellData.Overrides.Add(Core.Constants.Override.ItemLevel, 226);
-            buffSpellData.GetEffect(869705).ScaleValues.Add(226, 58);
-            gameStateService.OverrideSpellData(_gameState, buffSpellData);
-            gameStateService.OverridePlaystyle(_gameState, new Core.Profile.Model.PlaystyleEntry("TuftOfSmolderingPlumageAvgAllyHp", 0.75));
+            spellData.GetEffect(871498).ScaleValues.Add(226, 58);
+            gameStateService.OverrideSpellData(_gameState, spellData);
 
             // Act
             var value = _spell.GetAverageHealing(_gameState, spellData);
 
             // Assert
-            Assert.AreEqual(18959.866251551513d, value);
+            Assert.AreEqual(6879.883398354511d, value);
         }
 
         [Test]
@@ -85,7 +81,7 @@ namespace Salvation.CoreTests.Common.Items
             var value = _spell.GetMaximumCastsPerMinute(_gameState, null);
 
             // Assert
-            Assert.AreEqual(0.65113350125944591d, value);
+            Assert.AreEqual(2.1511335012594457d, value);
         }
 
         [Test]
@@ -97,7 +93,7 @@ namespace Salvation.CoreTests.Common.Items
             var value = _spell.GetActualCastsPerMinute(_gameState, null);
 
             // Assert
-            Assert.AreEqual(0.52090680100755671d, value);
+            Assert.AreEqual(2.0435768261964733d, value);
         }
 
         [Test]

@@ -47,7 +47,7 @@ namespace Salvation.CoreTests.Common.Traits
             var value = _spell.GetAverageCriticalStrikePercent(gamestate, null);
 
             // Assert
-            Assert.AreEqual(0.050000000000000003d, value);
+            Assert.AreEqual(0.059999999999999998d, value);
         }
     }
 }

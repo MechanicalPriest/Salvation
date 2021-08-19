@@ -33,12 +33,12 @@ namespace Salvation.Core.Modelling.Common.Items
             var healSpell = _gameStateService.GetSpellData(gameState, Spell.TuftOfSmolderingPlumageBuff);
 
             // Get scale budget
-            if(!healSpell.ScaleValues.ContainsKey(itemLevel))
+            var scaledHealValue = healSpell.GetEffect(869705).GetScaledCoefficientValue(itemLevel);
+
+            if (scaledHealValue == 0)
                 throw new ArgumentOutOfRangeException("itemLevel", $"healSpell.ScaleValues does not contain itemLevel: {itemLevel}");
 
-            var scaleBudget = healSpell.ScaleValues[itemLevel];
-
-            var healAmount = scaleBudget * healSpell.GetEffect(869705).Coefficient;
+            var healAmount = scaledHealValue;
 
             // Get the percentage of the mirror that's filled up each cast
             var avgTargetHp = _gameStateService.GetPlaystyle(gameState, "TuftOfSmolderingPlumageAvgAllyHp");

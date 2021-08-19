@@ -31,7 +31,7 @@ namespace Salvation.CoreTests.Common.Traits
             var value = _spell.GetAverageHastePercent(_gameState, null);
 
             // Assert
-            Assert.AreEqual(0.024534005037783371d, value);
+            Assert.AreEqual(0.036801007556675057d, value);
         }
 
         [Test]
@@ -42,7 +42,7 @@ namespace Salvation.CoreTests.Common.Traits
             var value = _spell.GetUptime(_gameState, null);
 
             // Assert
-            Assert.AreEqual(0.20445004198152811d, value);
+            Assert.AreEqual(0.24534005037783371d, value);
         }
 
         [Test]
@@ -53,7 +53,7 @@ namespace Salvation.CoreTests.Common.Traits
             var value = _spell.GetDuration(_gameState, null);
 
             // Assert
-            Assert.AreEqual(15.0d, value);
+            Assert.AreEqual(18.0d, value);
         }
 
         [Test]

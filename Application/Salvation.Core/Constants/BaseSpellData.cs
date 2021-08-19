@@ -58,11 +58,6 @@ namespace Salvation.Core.Constants
         public double Rppm { get; set; }
         public bool RppmIsHasted { get; set; }
 
-        /// <summary>
-        /// Scale multiplier used for scaling item-scaled spells
-        /// </summary>
-        public Dictionary<int, double> ScaleValues { get; set; }
-
         public IList<BaseSpellDataEffect> Effects { get; set; }
         public IDictionary<uint, double> ConduitRanks { get; set; }
         /// <summary>
@@ -75,7 +70,6 @@ namespace Salvation.Core.Constants
         {
             Effects = new List<BaseSpellDataEffect>();
             Overrides = new Dictionary<Override, double>();
-            ScaleValues = new Dictionary<int, double>();
         }
 
         /// <summary>

@@ -8,8 +8,8 @@ using System;
 
 namespace Salvation.Core.Modelling.Common.Items
 {
-    public interface ICauterizingShadowsSpellSevice : ISpellService { }
-    class CauterizingShadows : SpellService, ISpellService<ICauterizingShadowsSpellSevice>
+    public interface ICauterizingShadowsSpellService : ISpellService { }
+    class CauterizingShadows : SpellService, ISpellService<ICauterizingShadowsSpellService>
     {
         private readonly ISpellService<IShadowWordPainSpellService> _shadowWordPainSpellService;
 

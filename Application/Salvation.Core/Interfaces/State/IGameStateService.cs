@@ -16,6 +16,13 @@ namespace Salvation.Core.Interfaces.State
         BaseSpellData GetSpellData(GameState state, Spell spellId);
         CastProfile GetSpellCastProfile(GameState state, int spellId);
         void SetSpellCastProfile(GameState state, CastProfile castProfile);
+        /// <summary>
+        /// Playstyle entry is a value that modifies a component of playstyle, from overheal to proc rate, number of targets etc.
+        /// Stored as a (string, value) KVP dictionary.
+        /// </summary>
+        /// <param name="state"></param>
+        /// <param name="name"></param>
+        /// <returns></returns>
         PlaystyleEntry GetPlaystyle(GameState state, string name);
         void SetCovenant(GameState state, CovenantProfile covenant);
         Covenant GetActiveCovenant(GameState state);

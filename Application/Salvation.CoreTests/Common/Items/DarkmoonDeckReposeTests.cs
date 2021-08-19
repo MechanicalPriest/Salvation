@@ -42,10 +42,14 @@ namespace Salvation.CoreTests.Common.Items
             // Arrange
             IGameStateService gameStateService = new GameStateService();
             var spellData = gameStateService.GetSpellData(_gameState, Spell.DarkmoonDeckRepose);
-            // 58 is scale budget for ilvl 226 healing effect (testing)
+            var spellDataLow = gameStateService.GetSpellData(_gameState, Spell.DarkmoonDeckReposeAce);
+            var spellDataHigh = gameStateService.GetSpellData(_gameState, Spell.DarkmoonDeckReposeEight);
+            // 39 is scale budget for ilvl 200 healing effect (testing)
             spellData.Overrides.Add(Core.Constants.Override.ItemLevel, 200);
-            spellData.ScaleValues.Add(200, 39);
-            gameStateService.OverrideSpellData(_gameState, spellData);
+            spellDataLow.GetEffect(792442).ScaleValues.Add(200, 39);
+            spellDataHigh.GetEffect(792449).ScaleValues.Add(200, 39);
+            gameStateService.OverrideSpellData(_gameState, spellDataLow);
+            gameStateService.OverrideSpellData(_gameState, spellDataHigh);
 
             // Act
             var value = _spell.GetAverageRawHealing(_gameState, spellData);
@@ -58,12 +62,16 @@ namespace Salvation.CoreTests.Common.Items
         public void GetAverageHealing_Includes_Overheal()
         {
             // Arrange
-            IGameStateService gameStateService = new GameStateService();
+            IGameStateService gameStateService = new GameStateService(); 
             var spellData = gameStateService.GetSpellData(_gameState, Spell.DarkmoonDeckRepose);
-            // 58 is scale budget for ilvl 226 healing effect (testing)
+            var spellDataLow = gameStateService.GetSpellData(_gameState, Spell.DarkmoonDeckReposeAce);
+            var spellDataHigh = gameStateService.GetSpellData(_gameState, Spell.DarkmoonDeckReposeEight);
+            // 39 is scale budget for ilvl 200 healing effect (testing)
             spellData.Overrides.Add(Core.Constants.Override.ItemLevel, 200);
-            spellData.ScaleValues.Add(200, 39);
-            gameStateService.OverrideSpellData(_gameState, spellData);
+            spellDataLow.GetEffect(792442).ScaleValues.Add(200, 39); 
+            spellDataHigh.GetEffect(792449).ScaleValues.Add(200, 39); 
+            gameStateService.OverrideSpellData(_gameState, spellDataLow);
+            gameStateService.OverrideSpellData(_gameState, spellDataHigh);
 
             // Act
             var value = _spell.GetAverageHealing(_gameState, spellData);

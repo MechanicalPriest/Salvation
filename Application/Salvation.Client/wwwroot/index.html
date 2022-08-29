@@ -7,13 +7,15 @@
     <title>Salvation.Client</title>
     <base href="/" />
     <link href="css/app.css" rel="stylesheet" />
-    <!--<link href="Salvation.Client.styles.css" rel="stylesheet" />-->
+    <link href="Salvation.Client.styles.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
     <link href="_content/MudBlazor/MudBlazor.min.css" rel="stylesheet" />
+    <script>const whTooltips = { colorLinks: true, iconizeLinks: true, renameLinks: true, iconSize: 'medium' };</script>
+    <script src="https://wow.zamimg.com/js/tooltips.js"></script>
 </head>
 
 <body>
-    <div id="app">Loading...</div>
+    <div id="app">Loading application...</div>
 
     <div id="blazor-error-ui">
         An unhandled error has occurred.
@@ -22,6 +24,11 @@
     </div>
     <script src="_framework/blazor.webassembly.js"></script>
     <script src="_content/MudBlazor/MudBlazor.min.js"></script>
+    <script>
+        window.updateWowheadTooltips = () => {
+            window.$WowheadPower.refreshLinks();
+        }
+    </script>
 </body>
 
 </html>

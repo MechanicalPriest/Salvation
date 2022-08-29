@@ -1,0 +1,1846 @@
+[
+  {
+    "className": "Priest",
+    "classId": 5,
+    "specName": "Holy",
+    "specId": 257,
+    "classNodes": [
+      {
+        "id": 15531,
+        "name": "Prayer of Mending",
+        "type": "single",
+        "posX": 3900,
+        "posY": 1500,
+        "maxRanks": 1,
+        "entryNode": true,
+        "next": [
+          15529,
+          15470,
+          15565
+        ],
+        "entries": [
+          {
+            "id": 19943,
+            "maxRanks": 1,
+            "type": "active",
+            "name": "Prayer of Mending",
+            "spellId": 33076,
+            "icon": "spell_holy_prayerofmendingtga"
+          }
+        ],
+        "freeNode": true
+      },
+      {
+        "id": 15564,
+        "name": "Shadow Word: Death",
+        "type": "single",
+        "posX": 5100,
+        "posY": 1500,
+        "maxRanks": 1,
+        "entryNode": true,
+        "next": [
+          15605,
+          15600,
+          15565
+        ],
+        "entries": [
+          {
+            "id": 19979,
+            "maxRanks": 1,
+            "type": "active",
+            "name": "Shadow Word: Death",
+            "spellId": 32379,
+            "icon": "spell_shadow_demonicfortitude"
+          }
+        ]
+      },
+      {
+        "id": 15529,
+        "name": "Renew",
+        "type": "single",
+        "posX": 3300,
+        "posY": 2100,
+        "maxRanks": 1,
+        "next": [
+          15543,
+          15593,
+          15467
+        ],
+        "entries": [
+          {
+            "id": 19941,
+            "maxRanks": 1,
+            "type": "active",
+            "name": "Renew",
+            "spellId": 139,
+            "icon": "spell_holy_renew"
+          }
+        ]
+      },
+      {
+        "id": 15470,
+        "name": "Focused Mending",
+        "type": "single",
+        "posX": 3900,
+        "posY": 2100,
+        "maxRanks": 1,
+        "next": [],
+        "entries": [
+          {
+            "id": 19879,
+            "maxRanks": 1,
+            "type": "passive",
+            "name": "Focused Mending",
+            "spellId": 372354,
+            "icon": "achievement_bg_returnxflags_def_wsg"
+          }
+        ]
+      },
+      {
+        "id": 15565,
+        "name": "Angelic Feather / Body and Soul",
+        "type": "choice",
+        "posX": 4500,
+        "posY": 2100,
+        "maxRanks": 1,
+        "next": [
+          15467,
+          15440
+        ],
+        "entries": [
+          {
+            "id": 19980,
+            "maxRanks": 1,
+            "type": "active",
+            "name": "Angelic Feather",
+            "spellId": 121536,
+            "icon": "ability_priest_angelicfeather"
+          },
+          {
+            "id": 19981,
+            "maxRanks": 1,
+            "type": "active",
+            "name": "Body and Soul",
+            "spellId": 64129,
+            "icon": "spell_holy_symbolofhope"
+          }
+        ]
+      },
+      {
+        "id": 15605,
+        "name": "Shadow Word: Death",
+        "type": "single",
+        "posX": 5100,
+        "posY": 2100,
+        "maxRanks": 1,
+        "next": [],
+        "entries": [
+          {
+            "id": 20024,
+            "maxRanks": 1,
+            "type": "passive",
+            "name": "Shadow Word: Death",
+            "spellId": 322107,
+            "icon": "spell_shadow_demonicfortitude"
+          }
+        ]
+      },
+      {
+        "id": 15600,
+        "name": "Shadow Mend",
+        "type": "single",
+        "posX": 5700,
+        "posY": 2100,
+        "maxRanks": 1,
+        "next": [
+          15453,
+          15440,
+          15580
+        ],
+        "entries": [
+          {
+            "id": 20019,
+            "maxRanks": 1,
+            "type": "active",
+            "name": "Shadow Mend",
+            "spellId": 186263,
+            "icon": "spell_shadow_shadowmend"
+          }
+        ]
+      },
+      {
+        "id": 15543,
+        "name": "Renewed Faith",
+        "type": "single",
+        "posX": 2700,
+        "posY": 2700,
+        "maxRanks": 2,
+        "next": [
+          15566,
+          15561
+        ],
+        "entries": [
+          {
+            "id": 19956,
+            "maxRanks": 2,
+            "type": "passive",
+            "name": "Renewed Faith",
+            "spellId": 341997,
+            "icon": "ability_pvp_innerrenewal"
+          }
+        ]
+      },
+      {
+        "id": 15593,
+        "name": "Benediction",
+        "type": "single",
+        "posX": 3300,
+        "posY": 2700,
+        "maxRanks": 1,
+        "next": [],
+        "entries": [
+          {
+            "id": 20011,
+            "maxRanks": 1,
+            "type": "passive",
+            "name": "Benediction",
+            "spellId": 193157,
+            "icon": "spell_monk_diffusemagic"
+          }
+        ]
+      },
+      {
+        "id": 15467,
+        "name": "Purify Disease",
+        "type": "single",
+        "posX": 3900,
+        "posY": 2700,
+        "maxRanks": 1,
+        "next": [
+          15561,
+          15471,
+          15468
+        ],
+        "entries": [
+          {
+            "id": 19876,
+            "maxRanks": 1,
+            "type": "active",
+            "name": "Purify Disease",
+            "spellId": 213634,
+            "icon": "spell_holy_nullifydisease"
+          }
+        ]
+      },
+      {
+        "id": 15440,
+        "name": "Dispel Magic",
+        "type": "single",
+        "posX": 5100,
+        "posY": 2700,
+        "maxRanks": 1,
+        "next": [
+          15528,
+          15468,
+          15450
+        ],
+        "entries": [
+          {
+            "id": 19847,
+            "maxRanks": 1,
+            "type": "active",
+            "name": "Dispel Magic",
+            "spellId": 528,
+            "icon": "spell_nature_nullifydisease"
+          }
+        ]
+      },
+      {
+        "id": 15453,
+        "name": "Masochism",
+        "type": "single",
+        "posX": 5700,
+        "posY": 2700,
+        "maxRanks": 1,
+        "next": [],
+        "entries": [
+          {
+            "id": 19861,
+            "maxRanks": 1,
+            "type": "passive",
+            "name": "Masochism",
+            "spellId": 193063,
+            "icon": "spell_shadow_misery"
+          }
+        ]
+      },
+      {
+        "id": 15580,
+        "name": "Mind Restrain",
+        "type": "single",
+        "posX": 6300,
+        "posY": 2700,
+        "maxRanks": 2,
+        "next": [
+          15528,
+          15483
+        ],
+        "entries": [
+          {
+            "id": 19998,
+            "maxRanks": 2,
+            "type": "passive",
+            "name": "Mind Restrain",
+            "spellId": 231682,
+            "icon": "spell_shadow_unholyfrenzy"
+          }
+        ]
+      },
+      {
+        "id": 15566,
+        "name": "Say Your Prayers",
+        "type": "single",
+        "posX": 2700,
+        "posY": 3300,
+        "maxRanks": 1,
+        "next": [],
+        "entries": [
+          {
+            "id": 19982,
+            "maxRanks": 1,
+            "type": "passive",
+            "name": "Say Your Prayers",
+            "spellId": 196358,
+            "icon": "spell_holy_prayerofmendingtga"
+          }
+        ]
+      },
+      {
+        "id": 15561,
+        "name": "Enlightenment",
+        "type": "single",
+        "posX": 3300,
+        "posY": 3300,
+        "maxRanks": 2,
+        "next": [
+          15594
+        ],
+        "entries": [
+          {
+            "id": 19976,
+            "maxRanks": 2,
+            "type": "passive",
+            "name": "Enlightenment",
+            "spellId": 193155,
+            "icon": "spell_arcane_mindmastery"
+          }
+        ]
+      },
+      {
+        "id": 15471,
+        "name": "Improved Smite",
+        "type": "single",
+        "posX": 3900,
+        "posY": 3300,
+        "maxRanks": 2,
+        "next": [],
+        "entries": [
+          {
+            "id": 19880,
+            "maxRanks": 2,
+            "type": "passive",
+            "name": "Improved Smite",
+            "spellId": 262861,
+            "icon": "spell_holy_holysmite"
+          }
+        ]
+      },
+      {
+        "id": 15468,
+        "name": "Power Infusion",
+        "type": "single",
+        "posX": 4500,
+        "posY": 3300,
+        "maxRanks": 1,
+        "next": [
+          15474,
+          15574,
+          15541
+        ],
+        "entries": [
+          {
+            "id": 19877,
+            "maxRanks": 1,
+            "type": "active",
+            "name": "Power Infusion",
+            "spellId": 10060,
+            "icon": "spell_holy_powerinfusion"
+          }
+        ]
+      },
+      {
+        "id": 15450,
+        "name": "Improved Mind Blast",
+        "type": "single",
+        "posX": 5100,
+        "posY": 3300,
+        "maxRanks": 2,
+        "next": [],
+        "entries": [
+          {
+            "id": 19858,
+            "maxRanks": 2,
+            "type": "passive",
+            "name": "Improved Mind Blast",
+            "spellId": 319899,
+            "icon": "spell_shadow_unholyfrenzy"
+          }
+        ]
+      },
+      {
+        "id": 15528,
+        "name": "Twist of Fate",
+        "type": "single",
+        "posX": 5700,
+        "posY": 3300,
+        "maxRanks": 2,
+        "next": [
+          15478
+        ],
+        "entries": [
+          {
+            "id": 19940,
+            "maxRanks": 2,
+            "type": "passive",
+            "name": "Twist of Fate",
+            "spellId": 265259,
+            "icon": "spell_shadow_mindtwisting"
+          }
+        ]
+      },
+      {
+        "id": 15483,
+        "name": "Taming the Shadows",
+        "type": "single",
+        "posX": 6300,
+        "posY": 3300,
+        "maxRanks": 1,
+        "next": [],
+        "entries": [
+          {
+            "id": 19892,
+            "maxRanks": 1,
+            "type": "passive",
+            "name": "Taming the Shadows",
+            "spellId": 197779,
+            "icon": "spell_shadow_shadowmend"
+          }
+        ]
+      },
+      {
+        "id": 15594,
+        "name": "Holy Nova",
+        "type": "single",
+        "posX": 3300,
+        "posY": 3900,
+        "reqPoints": 8,
+        "maxRanks": 1,
+        "next": [
+          15591,
+          15509
+        ],
+        "entries": [
+          {
+            "id": 20012,
+            "maxRanks": 1,
+            "type": "active",
+            "name": "Holy Nova",
+            "spellId": 132157,
+            "icon": "spell_holy_holynova"
+          }
+        ]
+      },
+      {
+        "id": 15474,
+        "name": "Leap of Faith",
+        "type": "single",
+        "posX": 3900,
+        "posY": 3900,
+        "reqPoints": 8,
+        "maxRanks": 1,
+        "next": [],
+        "entries": [
+          {
+            "id": 19883,
+            "maxRanks": 1,
+            "type": "active",
+            "name": "Leap of Faith",
+            "spellId": 73325,
+            "icon": "priest_spell_leapoffaith_a"
+          }
+        ]
+      },
+      {
+        "id": 15574,
+        "name": "Mass Dispel",
+        "type": "single",
+        "posX": 4500,
+        "posY": 3900,
+        "reqPoints": 8,
+        "maxRanks": 1,
+        "next": [
+          15545,
+          15476
+        ],
+        "entries": [
+          {
+            "id": 19991,
+            "maxRanks": 1,
+            "type": "active",
+            "name": "Mass Dispel",
+            "spellId": 32375,
+            "icon": "spell_arcane_massdispel"
+          }
+        ]
+      },
+      {
+        "id": 15541,
+        "name": "Mind Control",
+        "type": "single",
+        "posX": 5100,
+        "posY": 3900,
+        "reqPoints": 8,
+        "maxRanks": 1,
+        "next": [
+          15451
+        ],
+        "entries": [
+          {
+            "id": 19954,
+            "maxRanks": 1,
+            "type": "active",
+            "name": "Mind Control",
+            "spellId": 205364,
+            "icon": "spell_shadow_shadowworddominate"
+          }
+        ]
+      },
+      {
+        "id": 15478,
+        "name": "Shadowfiend",
+        "type": "single",
+        "posX": 5700,
+        "posY": 3900,
+        "reqPoints": 8,
+        "maxRanks": 1,
+        "next": [
+          15533,
+          15525
+        ],
+        "entries": [
+          {
+            "id": 19887,
+            "maxRanks": 1,
+            "type": "active",
+            "name": "Shadowfiend",
+            "spellId": 34433,
+            "icon": "spell_shadow_shadowfiend"
+          }
+        ]
+      },
+      {
+        "id": 15509,
+        "name": "Cleric's Armaments",
+        "type": "single",
+        "posX": 2700,
+        "posY": 4500,
+        "reqPoints": 8,
+        "maxRanks": 1,
+        "next": [
+          15546,
+          15575
+        ],
+        "entries": [
+          {
+            "id": 19920,
+            "maxRanks": 1,
+            "type": "passive",
+            "name": "Cleric's Armaments",
+            "spellId": 377436,
+            "icon": "inv_circlet_firelands_d_01"
+          }
+        ]
+      },
+      {
+        "id": 15591,
+        "name": "Improved Holy Nova",
+        "type": "single",
+        "posX": 3300,
+        "posY": 4500,
+        "reqPoints": 8,
+        "maxRanks": 1,
+        "next": [
+          15546
+        ],
+        "entries": [
+          {
+            "id": 20009,
+            "maxRanks": 1,
+            "type": "passive",
+            "name": "Improved Holy Nova",
+            "spellId": 322112,
+            "icon": "spell_holy_holynova"
+          }
+        ]
+      },
+      {
+        "id": 15545,
+        "name": "Clear Mind",
+        "type": "single",
+        "posX": 3900,
+        "posY": 4500,
+        "reqPoints": 8,
+        "maxRanks": 1,
+        "next": [],
+        "entries": [
+          {
+            "id": 19958,
+            "maxRanks": 1,
+            "type": "passive",
+            "name": "Clear Mind",
+            "spellId": 373445,
+            "icon": "ability_pvp_innerrenewal"
+          }
+        ]
+      },
+      {
+        "id": 15476,
+        "name": "Angel's Mercy",
+        "type": "single",
+        "posX": 4500,
+        "posY": 4500,
+        "reqPoints": 8,
+        "maxRanks": 1,
+        "next": [
+          15441,
+          15569
+        ],
+        "entries": [
+          {
+            "id": 19885,
+            "maxRanks": 1,
+            "type": "passive",
+            "name": "Angel's Mercy",
+            "spellId": 238100,
+            "icon": "spell_holy_testoffaith"
+          }
+        ]
+      },
+      {
+        "id": 15451,
+        "name": "Dominant Mind",
+        "type": "single",
+        "posX": 5100,
+        "posY": 4500,
+        "reqPoints": 8,
+        "maxRanks": 1,
+        "next": [
+          15567
+        ],
+        "entries": [
+          {
+            "id": 19859,
+            "maxRanks": 1,
+            "type": "passive",
+            "name": "Dominant Mind",
+            "spellId": 205367,
+            "icon": "spell_priest_void_flay"
+          }
+        ]
+      },
+      {
+        "id": 15525,
+        "name": "Throes of Pain",
+        "type": "single",
+        "posX": 5700,
+        "posY": 4500,
+        "reqPoints": 8,
+        "maxRanks": 2,
+        "next": [
+          15567
+        ],
+        "entries": [
+          {
+            "id": 19937,
+            "maxRanks": 2,
+            "type": "passive",
+            "name": "Throes of Pain",
+            "spellId": 377422,
+            "icon": "spell_shadow_haunting"
+          }
+        ]
+      },
+      {
+        "id": 15533,
+        "name": "Improved Shadowfiend",
+        "type": "single",
+        "posX": 6300,
+        "posY": 4500,
+        "reqPoints": 8,
+        "maxRanks": 1,
+        "next": [
+          15568
+        ],
+        "entries": [
+          {
+            "id": 19945,
+            "maxRanks": 1,
+            "type": "passive",
+            "name": "Improved Shadowfiend",
+            "spellId": 382122,
+            "icon": "spell_shadow_shadowfiend"
+          }
+        ]
+      },
+      {
+        "id": 15546,
+        "name": "Tools of the Cloth",
+        "type": "single",
+        "posX": 3300,
+        "posY": 5100,
+        "reqPoints": 8,
+        "maxRanks": 1,
+        "next": [],
+        "entries": [
+          {
+            "id": 19959,
+            "maxRanks": 1,
+            "type": "passive",
+            "name": "Tools of the Cloth",
+            "spellId": 377438,
+            "icon": "spell_holy_devineaegis"
+          }
+        ]
+      },
+      {
+        "id": 15441,
+        "name": "Shackle Undead",
+        "type": "single",
+        "posX": 3900,
+        "posY": 5100,
+        "reqPoints": 8,
+        "maxRanks": 1,
+        "next": [],
+        "entries": [
+          {
+            "id": 19848,
+            "maxRanks": 1,
+            "type": "active",
+            "name": "Shackle Undead",
+            "spellId": 9484,
+            "icon": "spell_nature_slow"
+          }
+        ]
+      },
+      {
+        "id": 15569,
+        "name": "Twins of the Sun Priestess",
+        "type": "single",
+        "posX": 4500,
+        "posY": 5100,
+        "reqPoints": 8,
+        "maxRanks": 1,
+        "next": [
+          15604,
+          15532
+        ],
+        "entries": [
+          {
+            "id": 19985,
+            "maxRanks": 1,
+            "type": "passive",
+            "name": "Twins of the Sun Priestess",
+            "spellId": 373466,
+            "icon": "spell_fire_felflamering_red"
+          }
+        ]
+      },
+      {
+        "id": 15567,
+        "name": "Puppet Master",
+        "type": "single",
+        "posX": 5700,
+        "posY": 5100,
+        "reqPoints": 8,
+        "maxRanks": 2,
+        "next": [],
+        "entries": [
+          {
+            "id": 19983,
+            "maxRanks": 2,
+            "type": "passive",
+            "name": "Puppet Master",
+            "spellId": 377387,
+            "icon": "ability_rogue_masterofsubtlety"
+          }
+        ]
+      },
+      {
+        "id": 15575,
+        "name": "Blessing of Renewal",
+        "type": "single",
+        "posX": 2700,
+        "posY": 5700,
+        "reqPoints": 20,
+        "maxRanks": 1,
+        "next": [
+          15512
+        ],
+        "entries": [
+          {
+            "id": 19992,
+            "maxRanks": 1,
+            "type": "passive",
+            "name": "Blessing of Renewal",
+            "spellId": 373455,
+            "icon": "spell_holy_renew"
+          }
+        ]
+      },
+      {
+        "id": 15604,
+        "name": "Charitable Soul",
+        "type": "single",
+        "posX": 3900,
+        "posY": 5700,
+        "reqPoints": 20,
+        "maxRanks": 2,
+        "next": [
+          15514
+        ],
+        "entries": [
+          {
+            "id": 20023,
+            "maxRanks": 2,
+            "type": "passive",
+            "name": "Charitable Soul",
+            "spellId": 373452,
+            "icon": "ability_priest_clarityofwill"
+          }
+        ]
+      },
+      {
+        "id": 15532,
+        "name": "Translucent Image",
+        "type": "single",
+        "posX": 5100,
+        "posY": 5700,
+        "reqPoints": 20,
+        "maxRanks": 2,
+        "next": [
+          15469
+        ],
+        "entries": [
+          {
+            "id": 19944,
+            "maxRanks": 2,
+            "type": "passive",
+            "name": "Translucent Image",
+            "spellId": 373446,
+            "icon": "spell_nature_invisibilty"
+          }
+        ]
+      },
+      {
+        "id": 15568,
+        "name": "Mindbender",
+        "type": "single",
+        "posX": 6300,
+        "posY": 5700,
+        "reqPoints": 20,
+        "maxRanks": 1,
+        "next": [
+          15547
+        ],
+        "entries": [
+          {
+            "id": 19984,
+            "maxRanks": 1,
+            "type": "passive",
+            "name": "Mindbender",
+            "spellId": 382109,
+            "icon": "spell_shadow_soulleech_3"
+          }
+        ]
+      },
+      {
+        "id": 15512,
+        "name": "Unwavering Will",
+        "type": "single",
+        "posX": 2700,
+        "posY": 6300,
+        "reqPoints": 20,
+        "maxRanks": 2,
+        "next": [
+          15573
+        ],
+        "entries": [
+          {
+            "id": 19923,
+            "maxRanks": 2,
+            "type": "passive",
+            "name": "Unwavering Will",
+            "spellId": 373456,
+            "icon": "ability_warrior_unrelentingassault"
+          }
+        ]
+      },
+      {
+        "id": 15514,
+        "name": "Light's Inspiration",
+        "type": "single",
+        "posX": 3900,
+        "posY": 6300,
+        "reqPoints": 20,
+        "maxRanks": 2,
+        "next": [
+          15523
+        ],
+        "entries": [
+          {
+            "id": 19926,
+            "maxRanks": 2,
+            "type": "passive",
+            "name": "Light's Inspiration",
+            "spellId": 373450,
+            "icon": "spell_holy_restoration"
+          }
+        ]
+      },
+      {
+        "id": 15469,
+        "name": "Tithe Evasion",
+        "type": "single",
+        "posX": 5100,
+        "posY": 6300,
+        "reqPoints": 20,
+        "maxRanks": 2,
+        "next": [
+          15449
+        ],
+        "entries": [
+          {
+            "id": 19878,
+            "maxRanks": 2,
+            "type": "passive",
+            "name": "Tithe Evasion",
+            "spellId": 373223,
+            "icon": "spell_nzinsanity_bloodthirst"
+          }
+        ]
+      },
+      {
+        "id": 15547,
+        "name": "Rabid Shadows",
+        "type": "single",
+        "posX": 6300,
+        "posY": 6300,
+        "reqPoints": 20,
+        "maxRanks": 2,
+        "next": [
+          15475
+        ],
+        "entries": [
+          {
+            "id": 19960,
+            "maxRanks": 2,
+            "type": "passive",
+            "name": "Rabid Shadows",
+            "spellId": 373426,
+            "icon": "spell_deathknight_gnaw_ghoul"
+          }
+        ]
+      },
+      {
+        "id": 15573,
+        "name": "Holy Word: Life",
+        "type": "single",
+        "posX": 2700,
+        "posY": 6900,
+        "reqPoints": 20,
+        "maxRanks": 1,
+        "next": [],
+        "entries": [
+          {
+            "id": 19990,
+            "maxRanks": 1,
+            "type": "active",
+            "name": "Holy Word: Life",
+            "spellId": 373481,
+            "icon": "ability_paladin_selflesshealer"
+          }
+        ]
+      },
+      {
+        "id": 15523,
+        "name": "Crystalline Reflection",
+        "type": "single",
+        "posX": 3900,
+        "posY": 6900,
+        "reqPoints": 20,
+        "maxRanks": 1,
+        "next": [],
+        "entries": [
+          {
+            "id": 19935,
+            "maxRanks": 1,
+            "type": "passive",
+            "name": "Crystalline Reflection",
+            "spellId": 373457,
+            "icon": "ability_priest_reflectiveshield"
+          }
+        ]
+      },
+      {
+        "id": 15449,
+        "name": "Mindgames",
+        "type": "single",
+        "posX": 5100,
+        "posY": 6900,
+        "reqPoints": 20,
+        "maxRanks": 1,
+        "next": [],
+        "entries": [
+          {
+            "id": 19857,
+            "maxRanks": 1,
+            "type": "active",
+            "name": "Mindgames",
+            "spellId": 375901,
+            "icon": "ability_revendreth_priest"
+          }
+        ]
+      },
+      {
+        "id": 15475,
+        "name": "Shadowflame Prism",
+        "type": "single",
+        "posX": 6300,
+        "posY": 6900,
+        "reqPoints": 20,
+        "maxRanks": 1,
+        "next": [],
+        "entries": [
+          {
+            "id": 19884,
+            "maxRanks": 1,
+            "type": "passive",
+            "name": "Shadowflame Prism",
+            "spellId": 373427,
+            "icon": "inv_jewelcrafting_shadowsongamethyst_02"
+          }
+        ]
+      }
+    ],
+    "specNodes": [
+      {
+        "id": 15503,
+        "name": "Heal",
+        "type": "single",
+        "posX": 12300,
+        "posY": 1500,
+        "maxRanks": 1,
+        "entryNode": true,
+        "next": [
+          15504,
+          15535,
+          15519
+        ],
+        "entries": [
+          {
+            "id": 19913,
+            "maxRanks": 1,
+            "type": "active",
+            "name": "Heal",
+            "spellId": 2060,
+            "icon": "spell_holy_greaterheal"
+          }
+        ]
+      },
+      {
+        "id": 15504,
+        "name": "Prayer of Healing",
+        "type": "single",
+        "posX": 11700,
+        "posY": 2100,
+        "maxRanks": 1,
+        "next": [
+          15461
+        ],
+        "entries": [
+          {
+            "id": 19914,
+            "maxRanks": 1,
+            "type": "active",
+            "name": "Prayer of Healing",
+            "spellId": 596,
+            "icon": "spell_holy_prayerofhealing02"
+          }
+        ]
+      },
+      {
+        "id": 15535,
+        "name": "Holy Word: Serenity",
+        "type": "single",
+        "posX": 12300,
+        "posY": 2100,
+        "maxRanks": 1,
+        "next": [
+          15479
+        ],
+        "entries": [
+          {
+            "id": 19947,
+            "maxRanks": 1,
+            "type": "active",
+            "name": "Holy Word: Serenity",
+            "spellId": 2050,
+            "icon": "spell_holy_persuitofjustice"
+          }
+        ]
+      },
+      {
+        "id": 15519,
+        "name": "Holy Fire",
+        "type": "tiered",
+        "posX": 12900,
+        "posY": 2100,
+        "maxRanks": 1,
+        "next": [
+          15452
+        ],
+        "entries": [
+          {
+            "id": 19931,
+            "maxRanks": 1,
+            "type": "active",
+            "name": "Holy Fire",
+            "spellId": 14914,
+            "icon": "spell_holy_searinglight"
+          }
+        ]
+      },
+      {
+        "id": 15461,
+        "name": "Holy Word: Sanctify",
+        "type": "single",
+        "posX": 11700,
+        "posY": 2700,
+        "maxRanks": 1,
+        "next": [
+          15482
+        ],
+        "entries": [
+          {
+            "id": 19869,
+            "maxRanks": 1,
+            "type": "active",
+            "name": "Holy Word: Sanctify",
+            "spellId": 34861,
+            "icon": "spell_holy_divineprovidence"
+          }
+        ]
+      },
+      {
+        "id": 15452,
+        "name": "Holy Word: Chastise",
+        "type": "single",
+        "posX": 12900,
+        "posY": 2700,
+        "maxRanks": 1,
+        "next": [
+          15559,
+          15572
+        ],
+        "entries": [
+          {
+            "id": 19860,
+            "maxRanks": 1,
+            "type": "active",
+            "name": "Holy Word: Chastise",
+            "spellId": 88625,
+            "icon": "spell_holy_chastise"
+          }
+        ]
+      },
+      {
+        "id": 15482,
+        "name": "Spirit of Redemption",
+        "type": "single",
+        "posX": 11100,
+        "posY": 3300,
+        "maxRanks": 1,
+        "next": [
+          15556,
+          15522,
+          15585
+        ],
+        "entries": [
+          {
+            "id": 19891,
+            "maxRanks": 1,
+            "type": "passive",
+            "name": "Spirit of Redemption",
+            "spellId": 20711,
+            "icon": "inv_enchant_essenceeternallarge"
+          }
+        ]
+      },
+      {
+        "id": 15479,
+        "name": "Trail of Light",
+        "type": "single",
+        "posX": 12300,
+        "posY": 3300,
+        "maxRanks": 1,
+        "next": [
+          15556,
+          15538,
+          15481
+        ],
+        "entries": [
+          {
+            "id": 19888,
+            "maxRanks": 1,
+            "type": "passive",
+            "name": "Trail of Light",
+            "spellId": 200128,
+            "icon": "ability_priest_wordsofmeaning"
+          }
+        ]
+      },
+      {
+        "id": 15559,
+        "name": "Censure",
+        "type": "single",
+        "posX": 12900,
+        "posY": 3300,
+        "maxRanks": 1,
+        "next": [],
+        "entries": [
+          {
+            "id": 19974,
+            "maxRanks": 1,
+            "type": "passive",
+            "name": "Censure",
+            "spellId": 200199,
+            "icon": "spell_holy_eyeforaneye"
+          }
+        ]
+      },
+      {
+        "id": 15572,
+        "name": "Guardian Spirit",
+        "type": "single",
+        "posX": 13500,
+        "posY": 3300,
+        "maxRanks": 1,
+        "next": [
+          15481,
+          15505,
+          15446
+        ],
+        "entries": [
+          {
+            "id": 19989,
+            "maxRanks": 1,
+            "type": "active",
+            "name": "Guardian Spirit",
+            "spellId": 47788,
+            "icon": "spell_holy_guardianspirit"
+          }
+        ]
+      },
+      {
+        "id": 15522,
+        "name": "Afterlife",
+        "type": "single",
+        "posX": 10500,
+        "posY": 3900,
+        "reqPoints": 8,
+        "maxRanks": 1,
+        "next": [],
+        "entries": [
+          {
+            "id": 19934,
+            "maxRanks": 1,
+            "type": "passive",
+            "name": "Afterlife",
+            "spellId": 196707,
+            "icon": "inv_enchant_essencemagiclarge"
+          }
+        ]
+      },
+      {
+        "id": 15585,
+        "name": "Cosmic Ripple",
+        "type": "single",
+        "posX": 11100,
+        "posY": 3900,
+        "reqPoints": 8,
+        "maxRanks": 1,
+        "next": [
+          15459
+        ],
+        "entries": [
+          {
+            "id": 20003,
+            "maxRanks": 1,
+            "type": "passive",
+            "name": "Cosmic Ripple",
+            "spellId": 238136,
+            "icon": "spell_holy_summonlightwell"
+          }
+        ]
+      },
+      {
+        "id": 15556,
+        "name": "Circle of Healing",
+        "type": "single",
+        "posX": 11700,
+        "posY": 3900,
+        "reqPoints": 8,
+        "maxRanks": 1,
+        "next": [
+          15521
+        ],
+        "entries": [
+          {
+            "id": 19971,
+            "maxRanks": 1,
+            "type": "active",
+            "name": "Circle of Healing",
+            "spellId": 204883,
+            "icon": "spell_holy_circleofrenewal"
+          }
+        ]
+      },
+      {
+        "id": 15538,
+        "name": "Halo / Divine Star",
+        "type": "choice",
+        "posX": 12300,
+        "posY": 3900,
+        "reqPoints": 8,
+        "maxRanks": 1,
+        "next": [
+          15598,
+          15480
+        ],
+        "entries": [
+          {
+            "id": 19950,
+            "maxRanks": 1,
+            "type": "active",
+            "name": "Halo",
+            "spellId": 120517,
+            "icon": "ability_priest_halo"
+          },
+          {
+            "id": 19951,
+            "maxRanks": 1,
+            "type": "active",
+            "name": "Divine Star",
+            "spellId": 110744,
+            "icon": "spell_priest_divinestar"
+          }
+        ]
+      },
+      {
+        "id": 15481,
+        "name": "Binding Heal",
+        "type": "single",
+        "posX": 12900,
+        "posY": 3900,
+        "reqPoints": 8,
+        "maxRanks": 1,
+        "next": [],
+        "entries": [
+          {
+            "id": 19890,
+            "maxRanks": 1,
+            "type": "active",
+            "name": "Binding Heal",
+            "spellId": 32546,
+            "icon": "spell_holy_blindingheal"
+          }
+        ]
+      },
+      {
+        "id": 15505,
+        "name": "Surge of Light",
+        "type": "single",
+        "posX": 13500,
+        "posY": 3900,
+        "reqPoints": 8,
+        "maxRanks": 1,
+        "next": [
+          15598,
+          15502,
+          15555
+        ],
+        "entries": [
+          {
+            "id": 19915,
+            "maxRanks": 1,
+            "type": "passive",
+            "name": "Surge of Light",
+            "spellId": 109186,
+            "icon": "spell_holy_surgeoflight"
+          }
+        ]
+      },
+      {
+        "id": 15446,
+        "name": "Guardian Angel",
+        "type": "single",
+        "posX": 14100,
+        "posY": 3900,
+        "reqPoints": 8,
+        "maxRanks": 1,
+        "next": [],
+        "entries": [
+          {
+            "id": 19854,
+            "maxRanks": 1,
+            "type": "passive",
+            "name": "Guardian Angel",
+            "spellId": 200209,
+            "icon": "ability_priest_pathofthedevout"
+          }
+        ]
+      },
+      {
+        "id": 15521,
+        "name": "Prayer Circle",
+        "type": "single",
+        "posX": 11700,
+        "posY": 4500,
+        "reqPoints": 8,
+        "maxRanks": 1,
+        "next": [],
+        "entries": [
+          {
+            "id": 19933,
+            "maxRanks": 1,
+            "type": "passive",
+            "name": "Prayer Circle",
+            "spellId": 321377,
+            "icon": "spell_paladin_divinecircle"
+          }
+        ]
+      },
+      {
+        "id": 15598,
+        "name": "Psychic Voice / Shining Force",
+        "type": "choice",
+        "posX": 12900,
+        "posY": 4500,
+        "reqPoints": 8,
+        "maxRanks": 1,
+        "next": [],
+        "entries": [
+          {
+            "id": 20016,
+            "maxRanks": 1,
+            "type": "active",
+            "name": "Psychic Voice",
+            "spellId": 196704,
+            "icon": "ability_warrior_commandingshout"
+          },
+          {
+            "id": 20017,
+            "maxRanks": 1,
+            "type": "active",
+            "name": "Shining Force",
+            "spellId": 204263,
+            "icon": "ability_paladin_blindinglight2"
+          }
+        ]
+      },
+      {
+        "id": 15502,
+        "name": "Holy Conductor",
+        "type": "single",
+        "posX": 14100,
+        "posY": 4500,
+        "reqPoints": 8,
+        "maxRanks": 2,
+        "next": [],
+        "entries": [
+          {
+            "id": 19912,
+            "maxRanks": 2,
+            "type": "passive",
+            "name": "Holy Conductor",
+            "spellId": 372350,
+            "icon": "ability_paladin_lightoftheprotector"
+          }
+        ]
+      },
+      {
+        "id": 15459,
+        "name": "Divine Hymn",
+        "type": "single",
+        "posX": 11100,
+        "posY": 5100,
+        "reqPoints": 8,
+        "maxRanks": 1,
+        "next": [
+          15537
+        ],
+        "entries": [
+          {
+            "id": 19867,
+            "maxRanks": 1,
+            "type": "active",
+            "name": "Divine Hymn",
+            "spellId": 64843,
+            "icon": "spell_holy_divinehymn"
+          }
+        ]
+      },
+      {
+        "id": 15480,
+        "name": "Light of the Naaru",
+        "type": "single",
+        "posX": 12300,
+        "posY": 5100,
+        "reqPoints": 8,
+        "maxRanks": 1,
+        "next": [],
+        "entries": [
+          {
+            "id": 19889,
+            "maxRanks": 1,
+            "type": "passive",
+            "name": "Light of the Naaru",
+            "spellId": 196985,
+            "icon": "inv_pet_naaru"
+          }
+        ]
+      },
+      {
+        "id": 15555,
+        "name": "Symbol of Hope",
+        "type": "single",
+        "posX": 13500,
+        "posY": 5100,
+        "reqPoints": 8,
+        "maxRanks": 1,
+        "next": [
+          15460
+        ],
+        "entries": [
+          {
+            "id": 19970,
+            "maxRanks": 1,
+            "type": "active",
+            "name": "Symbol of Hope",
+            "spellId": 64901,
+            "icon": "spell_holy_symbolofhope"
+          }
+        ]
+      },
+      {
+        "id": 15537,
+        "name": "Piety of Mana",
+        "type": "single",
+        "posX": 11100,
+        "posY": 5700,
+        "reqPoints": 20,
+        "maxRanks": 2,
+        "next": [
+          15570,
+          15506,
+          15586
+        ],
+        "entries": [
+          {
+            "id": 19949,
+            "maxRanks": 2,
+            "type": "passive",
+            "name": "Piety of Mana",
+            "spellId": 372358,
+            "icon": "inv_elemental_primal_mana"
+          }
+        ]
+      },
+      {
+        "id": 15571,
+        "name": "Apotheosis / Holy Word: Salvation",
+        "type": "choice",
+        "posX": 12300,
+        "posY": 5700,
+        "reqPoints": 20,
+        "maxRanks": 1,
+        "entryNode": true,
+        "next": [
+          15586,
+          15557,
+          15520
+        ],
+        "entries": [
+          {
+            "id": 19987,
+            "maxRanks": 1,
+            "type": "active",
+            "name": "Apotheosis",
+            "spellId": 200183,
+            "icon": "ability_priest_ascension"
+          },
+          {
+            "id": 19988,
+            "maxRanks": 1,
+            "type": "active",
+            "name": "Holy Word: Salvation",
+            "spellId": 265202,
+            "icon": "ability_priest_archangel"
+          }
+        ]
+      },
+      {
+        "id": 15460,
+        "name": "Burning Vehemence",
+        "type": "single",
+        "posX": 13500,
+        "posY": 5700,
+        "reqPoints": 20,
+        "maxRanks": 2,
+        "next": [
+          15520,
+          15536,
+          15597
+        ],
+        "entries": [
+          {
+            "id": 19868,
+            "maxRanks": 2,
+            "type": "passive",
+            "name": "Burning Vehemence",
+            "spellId": 372307,
+            "icon": "spell_nature_unleashedrage"
+          }
+        ]
+      },
+      {
+        "id": 15570,
+        "name": "Gales of Song",
+        "type": "single",
+        "posX": 10500,
+        "posY": 6300,
+        "reqPoints": 20,
+        "maxRanks": 2,
+        "next": [
+          15596
+        ],
+        "entries": [
+          {
+            "id": 19986,
+            "maxRanks": 2,
+            "type": "passive",
+            "name": "Gales of Song",
+            "spellId": 372370,
+            "icon": "inv_misc_volatileair"
+          }
+        ]
+      },
+      {
+        "id": 15506,
+        "name": "Rune of Healing",
+        "type": "single",
+        "posX": 11100,
+        "posY": 6300,
+        "reqPoints": 20,
+        "maxRanks": 1,
+        "next": [],
+        "entries": [
+          {
+            "id": 19916,
+            "maxRanks": 1,
+            "type": "passive",
+            "name": "Rune of Healing",
+            "spellId": 372591,
+            "icon": "ability_bossfelmagnaron_runeempowered"
+          }
+        ]
+      },
+      {
+        "id": 15586,
+        "name": "Resonant Words",
+        "type": "single",
+        "posX": 11700,
+        "posY": 6300,
+        "reqPoints": 20,
+        "maxRanks": 2,
+        "next": [
+          15595
+        ],
+        "entries": [
+          {
+            "id": 20004,
+            "maxRanks": 2,
+            "type": "passive",
+            "name": "Resonant Words",
+            "spellId": 372309,
+            "icon": "spell_holy_holybolt"
+          }
+        ]
+      },
+      {
+        "id": 15557,
+        "name": "Rune of Mending",
+        "type": "single",
+        "posX": 12300,
+        "posY": 6300,
+        "reqPoints": 20,
+        "maxRanks": 1,
+        "next": [],
+        "entries": [
+          {
+            "id": 19972,
+            "maxRanks": 1,
+            "type": "passive",
+            "name": "Rune of Mending",
+            "spellId": 372599,
+            "icon": "ability_fomor_boss_rune_yellow"
+          }
+        ]
+      },
+      {
+        "id": 15520,
+        "name": "Holy Oration",
+        "type": "single",
+        "posX": 12900,
+        "posY": 6300,
+        "reqPoints": 20,
+        "maxRanks": 2,
+        "next": [
+          15595
+        ],
+        "entries": [
+          {
+            "id": 19932,
+            "maxRanks": 2,
+            "type": "passive",
+            "name": "Holy Oration",
+            "spellId": 372345,
+            "icon": "ability_priest_bindingprayers"
+          }
+        ]
+      },
+      {
+        "id": 15536,
+        "name": "Rune of Fire",
+        "type": "single",
+        "posX": 13500,
+        "posY": 6300,
+        "reqPoints": 20,
+        "maxRanks": 1,
+        "next": [],
+        "entries": [
+          {
+            "id": 19948,
+            "maxRanks": 1,
+            "type": "passive",
+            "name": "Rune of Fire",
+            "spellId": 372602,
+            "icon": "70_inscription_vantus_rune_odyn"
+          }
+        ]
+      },
+      {
+        "id": 15597,
+        "name": "Searing Light",
+        "type": "single",
+        "posX": 14100,
+        "posY": 6300,
+        "reqPoints": 20,
+        "maxRanks": 2,
+        "next": [
+          15558
+        ],
+        "entries": [
+          {
+            "id": 20015,
+            "maxRanks": 2,
+            "type": "passive",
+            "name": "Searing Light",
+            "spellId": 372611,
+            "icon": "inv_summerfest_firespirit"
+          }
+        ]
+      },
+      {
+        "id": 15596,
+        "name": "Lightwell",
+        "type": "single",
+        "posX": 10500,
+        "posY": 6900,
+        "reqPoints": 20,
+        "maxRanks": 1,
+        "next": [],
+        "entries": [
+          {
+            "id": 20014,
+            "maxRanks": 1,
+            "type": "active",
+            "name": "Lightwell",
+            "spellId": 372835,
+            "icon": "spell_holy_summonlightwell"
+          }
+        ]
+      },
+      {
+        "id": 15595,
+        "name": "Divine Word",
+        "type": "single",
+        "posX": 12300,
+        "posY": 6900,
+        "reqPoints": 20,
+        "maxRanks": 1,
+        "next": [],
+        "entries": [
+          {
+            "id": 20013,
+            "maxRanks": 1,
+            "type": "active",
+            "name": "Divine Word",
+            "spellId": 372760,
+            "icon": "spell_priest_chakra"
+          }
+        ]
+      },
+      {
+        "id": 15558,
+        "name": "Empyreal Blaze",
+        "type": "single",
+        "posX": 14100,
+        "posY": 6900,
+        "reqPoints": 20,
+        "maxRanks": 1,
+        "next": [],
+        "entries": [
+          {
+            "id": 19973,
+            "maxRanks": 1,
+            "type": "active",
+            "name": "Empyreal Blaze",
+            "spellId": 372616,
+            "icon": "spell_fire_ragnaros_lavabolt"
+          }
+        ]
+      }
+    ]
+  }
+]

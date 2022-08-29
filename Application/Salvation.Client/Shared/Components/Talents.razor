@@ -1,0 +1,43 @@
+﻿@inject HttpClient Http
+@inject IJSRuntime JS
+@using Salvation.Core.ViewModel
+
+@if (holyPriest == null)
+{
+    <MudProgressCircular Color="Color.Default" Indeterminate="true" />
+}
+else
+{
+    <MudGrid Justify="Justify.Center">
+        <MudItem xs="6">
+            <div>
+                <MudText Class="mb-8">@holyPriest.ClassName</MudText>
+            </div>
+            <div class="talent-container mud-theme-dark">
+                @foreach(var talent in holyPriest.ClassNodes)
+                {
+                    <div class="talent talent-col-@(talent.TreeColumn) talent-row-@(talent.TreeRow)">
+                        <a href="https://www.wowhead.com/beta/spell=@(talent.TalentEntries.FirstOrDefault().SpellId)" data-wh-rename-link="false"></a>
+                    </div>
+                }
+            </div>
+        </MudItem>
+        <MudItem xs="6">
+            <div>
+                <MudText Class="mb-8">@holyPriest.SpecName</MudText>
+            </div>
+            <div class="talent-container mud-theme-dark">
+                @foreach(var talent in holyPriest.SpecNodes)
+                {
+                    <div class="talent talent-col-@(talent.TreeColumn) talent-row-@(talent.TreeRow)">
+                        <a href="https://www.wowhead.com/beta/spell=@(talent.TalentEntries.FirstOrDefault().SpellId)" data-wh-rename-link="false"></a>
+                    </div>
+                }
+            </div>
+        </MudItem>
+    </MudGrid>
+}
+
+@code {
+    
+}

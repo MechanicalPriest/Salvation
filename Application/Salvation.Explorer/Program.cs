@@ -4,6 +4,7 @@ using Salvation.Core;
 using Salvation.Core.Interfaces.Modelling;
 using Salvation.Explorer.Modelling;
 using Salvation.Utility.SpellDataUpdate;
+using Salvation.Utility.TalentStructureUpdate;
 using Serilog;
 using Serilog.Events;
 using System;
@@ -53,6 +54,7 @@ namespace Salvation.Explorer
                     services.AddSingleton<IHolyPriestExplorer, HolyPriestExplorer>();
 
                     services.AddSingleton<ISpellDataUpdateService, SpellDataUpdateService>();
+                    services.AddSingleton<ITalentStructureUpdateService, TalentStructureUpdateService>();
                     services.AddSingleton<ISpellDataService<HolyPriestSpellDataService>, HolyPriestSpellDataService>();
 
                     // Application service
@@ -60,7 +62,8 @@ namespace Salvation.Explorer
                         new Explorer(
                             args,
                             serviceProvider.GetService<IHolyPriestExplorer>(),
-                            serviceProvider.GetService<ISpellDataUpdateService>()));
+                            serviceProvider.GetService<ISpellDataUpdateService>(),
+                            serviceProvider.GetService<ITalentStructureUpdateService>()));
                 })
                 .UseSerilog();
     }

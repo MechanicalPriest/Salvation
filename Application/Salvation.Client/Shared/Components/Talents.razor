@@ -10,30 +10,12 @@ else
 {
     <MudGrid Justify="Justify.Center">
         <MudItem xs="6">
-            <div>
-                <MudText Class="mb-8">@holyPriest.ClassName</MudText>
-            </div>
-            <div class="talent-container mud-theme-dark">
-                @foreach(var talent in holyPriest.ClassNodes)
-                {
-                    <div class="talent talent-col-@(talent.TreeColumn) talent-row-@(talent.TreeRow)">
-                        <a href="https://www.wowhead.com/beta/spell=@(talent.TalentEntries.FirstOrDefault().SpellId)" data-wh-rename-link="false"></a>
-                    </div>
-                }
-            </div>
+            <MudText Typo="Typo.h6" Align="Align.Center" Class="mb-4">@holyPriest.ClassName</MudText>
+            <TalentTree Talents=@holyPriest.ClassNodes></TalentTree>
         </MudItem>
         <MudItem xs="6">
-            <div>
-                <MudText Class="mb-8">@holyPriest.SpecName</MudText>
-            </div>
-            <div class="talent-container mud-theme-dark">
-                @foreach(var talent in holyPriest.SpecNodes)
-                {
-                    <div class="talent talent-col-@(talent.TreeColumn) talent-row-@(talent.TreeRow)">
-                        <a href="https://www.wowhead.com/beta/spell=@(talent.TalentEntries.FirstOrDefault().SpellId)" data-wh-rename-link="false"></a>
-                    </div>
-                }
-            </div>
+            <MudText Typo="Typo.h6" Align="Align.Center" Class="mb-4">@holyPriest.SpecName</MudText>
+            <TalentTree Talents=@holyPriest.SpecNodes></TalentTree>
         </MudItem>
     </MudGrid>
 }

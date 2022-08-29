@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Salvation.Utility", "Salvat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Salvation.Api", "Salvation.Api\Salvation.Api.csproj", "{FB988FD4-8874-406F-9738-883B791C293A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Salvation.Client", "Salvation.Client\Salvation.Client.csproj", "{E71A76D2-7080-4B09-9178-65C13521E30F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Salvation.Client", "Salvation.Client\Salvation.Client.csproj", "{E71A76D2-7080-4B09-9178-65C13521E30F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

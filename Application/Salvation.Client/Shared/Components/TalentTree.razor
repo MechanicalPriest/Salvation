@@ -1,0 +1,34 @@
+﻿@using Salvation.Core.ViewModel
+
+@if(Talents.Count == 0)
+{
+    <MudProgressCircular Color="Color.Default" Indeterminate="true" />
+}
+else
+{
+    <div class="talent-container mud-theme-dark">
+        @foreach (var talent in Talents)
+        {
+            @if (talent.Type == NodeTypeSingle)
+            {
+                <div class="talent talent-col-@(talent.TreeColumn) talent-row-@(talent.TreeRow)">
+                    <a href="https://www.wowhead.com/beta/spell=@(talent.TalentEntries[0].SpellId)" data-wh-rename-link="false"></a>
+                </div>
+            }
+            else if (talent.Type == NodeTypeChoice)
+            {
+                <div class="talent talent-col-@(talent.TreeColumn) talent-row-@(talent.TreeRow)">
+                    <a href="https://www.wowhead.com/beta/spell=@(talent.TalentEntries[0].SpellId)" data-wh-rename-link="false"></a>
+                </div>
+            }
+        }
+    </div>
+}
+
+@code {
+    private static string NodeTypeSingle = "single";
+    private static string NodeTypeChoice = "choice";
+
+    [Parameter]
+    public List<Talent> Talents { get; set; } = new List<Talent>();
+}

@@ -134,7 +134,7 @@ namespace Salvation.Utility.TalentStructureUpdate
 
             foreach (var node in nodes)
             {
-                options.Add(new TalentOption()
+                var talentOption = new TalentOption()
                 {
                     Id = node.id,
                     MaxRanks= node.maxRanks,
@@ -142,7 +142,15 @@ namespace Salvation.Utility.TalentStructureUpdate
                     Name = node.name,
                     SpellId = node.spellId,
                     Icon = node.icon,
-                });
+                };
+
+                // FIX: For spelldata having wrong icon name
+                // The spell data is "spell_priest_void flay" and raidbots turns the space into an underscore
+                // Battle.net remove the space. Wowhead replace it with a dash "-", raidbots replace it with an underscore "_"
+                if (talentOption.Icon == "spell_priest_void_flay")
+                    talentOption.Icon = "spell_priest_voidflay";
+
+                options.Add(talentOption);
             }
 
             return options;
@@ -156,6 +164,17 @@ namespace Salvation.Utility.TalentStructureUpdate
             var allTalents = new List<Talent>();
             allTalents.AddRange(holyPriestData.ClassNodes);
             allTalents.AddRange(holyPriestData.SpecNodes);
+            // Also get the "unknown" icon.
+            allTalents.Add(new Talent()
+            {
+                TalentEntries = new List<TalentOption>()
+                {
+                    new TalentOption()
+                    {
+                        Icon = "inv_misc_questionmark"
+                    }
+                }
+            });
 
             foreach (var talent in allTalents)
             {

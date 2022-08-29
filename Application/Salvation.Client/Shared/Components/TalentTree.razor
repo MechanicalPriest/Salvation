@@ -6,29 +6,34 @@
 }
 else
 {
-    <div class="talent-container mud-theme-dark">
-        @foreach (var talent in Talents)
-        {
-            @if (talent.Type == NodeTypeSingle)
+    <div class="talent-container">
+        <div class="talent-grid mud-theme-dark">
+            @foreach (var talent in Talents)
             {
-                <div class="talent talent-col-@(talent.TreeColumn) talent-row-@(talent.TreeRow)">
-                    <a href="https://www.wowhead.com/beta/spell=@(talent.TalentEntries[0].SpellId)" data-wh-rename-link="false"></a>
-                </div>
+                <a href="#" data-wowhead="spell=@(talent.TalentEntries[0].SpellId)" data-wh-rename-link="false"
+                    class="talent talent-col-@(talent.TreeColumn) talent-row-@(talent.TreeRow)">
+                    <div class="talent-border">
+                        <div class="talent-image-holder">
+                            <div class="talent-image" style="@GetImageStyle(talent.TalentEntries[0].Icon)">
+                            </div>
+                        </div>
+                    </div>
+                </a>
             }
-            else if (talent.Type == NodeTypeChoice)
-            {
-                <div class="talent talent-col-@(talent.TreeColumn) talent-row-@(talent.TreeRow)">
-                    <a href="https://www.wowhead.com/beta/spell=@(talent.TalentEntries[0].SpellId)" data-wh-rename-link="false"></a>
-                </div>
-            }
-        }
+        </div>
     </div>
 }
 
 @code {
     private static string NodeTypeSingle = "single";
-    private static string NodeTypeChoice = "choice";
+    private static string NodeTypeChoice = "choice"; // Implement something for choice node later
+    private static string UnknownIconName = "inv_misc_questionmark.jpg";
 
     [Parameter]
     public List<Talent> Talents { get; set; } = new List<Talent>();
+
+    public string GetImageStyle(string talentIcon)
+    {
+        return $"background-image: url('static-data/icons/{talentIcon}.jpg'), url('static-data/icons/{UnknownIconName}');";
+    }
 }

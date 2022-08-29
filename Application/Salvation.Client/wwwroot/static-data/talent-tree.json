@@ -786,7 +786,7 @@
           "Type": "passive",
           "Name": "Dominant Mind",
           "SpellId": 205367,
-          "Icon": "spell_priest_void_flay"
+          "Icon": "spell_priest_voidflay"
         }
       ],
       "IsFreeNode": false,

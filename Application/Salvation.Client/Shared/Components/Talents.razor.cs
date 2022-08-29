@@ -9,6 +9,8 @@ namespace Salvation.Client.Shared.Components
     public partial class Talents : ComponentBase
     {
         private Spec? holyPriest;
+        private static int ClassPoints = 31;
+        private static int SpecPoints = 30;
 
         protected override async Task OnInitializedAsync()
         {

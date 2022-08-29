@@ -7,6 +7,9 @@
 }
 else
 {
+    <div>
+        <MudText Typo="Typo.h6" Align="Align.Center" Class="mb-4 Error">@TotalPointsSpent / @PointsTotal</MudText>
+    </div>
     <div class="talent-container">
         <div class="talent-grid mud-theme-dark">
             @foreach (var talent in Talents)
@@ -15,7 +18,7 @@ else
                     class="talent talent-col-@(talent.TreeColumn) talent-row-@(talent.TreeRow)"
                     @onclick="e => OnTalentClick(e, talent)"
                     @oncontextmenu="e => OnTalentClick(e, talent)"
-                    @oncontextmenu:preventDefault="true" data-ready="@(talent.PointsSpent == talent.TalentEntries[0].MaxRanks ? 0 : 1)">
+                    @oncontextmenu:preventDefault="true" data-ready="@(talent.PointsSpent == talent.MaxRanks || talent.IsFreeNode ? 0 : 1)">
                     <div class="talent-contents">
                         <div class="talent-image-holder">
                             <div class="talent-image" style="@GetImageStyle(talent.TalentEntries[0].Icon)">
@@ -23,6 +26,12 @@ else
                         </div>
                     </div>
                 </a>
+                @if (!talent.IsFreeNode)
+                {
+                    <div class="talent-points-spent talent-col-@(talent.TreeColumn) talent-row-@(talent.TreeRow)">
+                        @talent.PointsSpent/@talent.MaxRanks
+                    </div>
+                }
             }
         </div>
     </div>
@@ -39,10 +48,13 @@ else
 
 @code {
     private static string NodeTypeSingle = "single";
+    private static string NodeTypeTiered = "tiered"; // No idea what this is.
     private static string NodeTypeChoice = "choice"; // Implement something for choice node later
     private static string UnknownIconName = "inv_misc_questionmark.jpg";
-    public static int ClassPointsSpent = 0;
-    public static int ClassPointsTotal = 31;
+    private int TotalPointsSpent = 0;
+
+    [Parameter]
+    public int PointsTotal { get; set; } = 0;
 
     [Parameter]
     public List<Talent> Talents { get; set; } = new List<Talent>();
@@ -50,6 +62,15 @@ else
     public string GetImageStyle(string talentIcon)
     {
         return $"background-image: url('static-data/icons/{talentIcon}.jpg'), url('static-data/icons/{UnknownIconName}');";
+    }
+
+    protected override void OnInitialized()
+    {
+        foreach(var talent in Talents)
+        {
+            if (talent.IsFreeNode)
+                talent.PointsSpent = 1;
+        }
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -77,13 +98,13 @@ else
     {
         Console.WriteLine("Left clicked {0}", talent.Name);
 
-        if (talent.Type == NodeTypeSingle)
+        if (talent.Type == NodeTypeSingle || talent.Type == NodeTypeTiered)
         {
             // If there are points to spend, spend them
-            if (talent.PointsSpent < talent.TalentEntries[0].MaxRanks)
+            if (talent.PointsSpent < talent.MaxRanks)
             {
                 talent.PointsSpent++;
-                ClassPointsSpent++;
+                TotalPointsSpent++;
             }
         }
         else if (talent.Type == NodeTypeChoice)
@@ -98,13 +119,13 @@ else
     {
         Console.WriteLine("Right clicked {0}", talent.Name);
 
-        if (talent.Type == NodeTypeSingle)
+        if (talent.Type == NodeTypeSingle || talent.Type == NodeTypeTiered)
         {
             // If there are points spent, remove one
             if (talent.PointsSpent > 0)
             {
                 talent.PointsSpent--;
-                ClassPointsSpent--;
+                TotalPointsSpent--;
             }
         }
         else if (talent.Type == NodeTypeChoice)

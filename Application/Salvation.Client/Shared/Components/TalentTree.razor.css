@@ -32,6 +32,7 @@
 .talent {
     position: relative;
     margin: 20%;
+    z-index: 20;
 }
 
 .talent:hover {
@@ -59,6 +60,19 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+.talent-points-spent {
+    align-self: end;
+    background-color: #000000;
+    border-radius: 6px;
+    color: #fff;
+    justify-self: end;
+    margin: 10%;
+    padding: 0px 3px;
+    pointer-events: none;
+    z-index: 20;
+    font-size: 0.6rem;
 }
 
 /* Talent col settings */

@@ -34,7 +34,19 @@
     margin: 20%;
 }
 
-.talent-border {
+.talent:hover {
+    filter: brightness(1.5);
+}
+
+.talent[data-ready="0"] {
+    border: 2px solid rgb(252, 205, 51);
+}
+
+.talent[data-ready="1"] {
+    border: 2px solid rgb(36, 161, 36);
+}
+
+.talent-contents {
 
 }
 

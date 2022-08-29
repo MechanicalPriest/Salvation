@@ -33,6 +33,8 @@ namespace Salvation.Core.ViewModel
         // Manual fields
         public int TreeRow { get; set; }
         public int TreeColumn { get; set; }
+        public int PointsSpent { get; set; }
+        public bool IsUnlocked { get; set; }
     }
 
     public class TalentOption

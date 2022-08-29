@@ -66,17 +66,22 @@ else
 
     protected override void OnInitialized()
     {
-        foreach(var talent in Talents)
-        {
-            if (talent.IsFreeNode)
-                talent.PointsSpent = 1;
-        }
+        InitialiseTalents();   
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         await JS.InvokeVoidAsync("updateWowheadTooltips");
         Console.WriteLine("updating tooltips");
+    }
+
+    private void InitialiseTalents()
+    {
+        foreach (var talent in Talents)
+        {
+            if (talent.IsFreeNode)
+                talent.PointsSpent = 1;
+        }
     }
 
     public void OnTalentClick(MouseEventArgs eventArgs, Talent talent)

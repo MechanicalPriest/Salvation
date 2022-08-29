@@ -5,12 +5,11 @@
 <MudSnackbarProvider />
 
 <MudLayout>
-    <MudAppBar Elevation="0">
+    <MudAppBar Elevation="0" Dense="true">
         <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
         <MudText Typo="Typo.h6">Salvation</MudText>
         <MudSpacer />
-        <MudIcon Icon="@GetDarkMode()" />
-        <MudSwitch @bind-Checked="@_isDarkMode" Color="Color.Primary" Class="ma-0" T="bool">
+        <MudSwitch @bind-Checked="@_isDarkMode" ThumbIcon="@GetDarkMode()" Color="Color.Primary" Class="ma-0" T="bool">
         </MudSwitch>
         <MudIconButton Icon="@Icons.Custom.Brands.Twitter" Color="Color.Inherit" Link="https://twitter.com/MechPriest" Target="_blank" />
         <MudIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit" Link="https://github.com/MechanicalPriest/Salvation/" Target="_blank" />
@@ -40,7 +39,7 @@
 
     string GetDarkMode()
     {
-        return _isDarkMode ? Icons.Material.Sharp.DarkMode : Icons.Material.Sharp.LightMode;
+        return _isDarkMode ? Icons.Material.Sharp.LightMode : Icons.Material.Sharp.DarkMode;
     }
 
     protected override void OnAfterRender(bool firstRender)

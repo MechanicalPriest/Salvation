@@ -55,11 +55,27 @@
 
 }
 
+.talent[data-node-type="choice"] {
+    transform: rotate(45deg);
+}
+
 
 .talent-image {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+.talent-image-choice-left {
+    background-position: left center;
+    transform: rotate(-45deg);
+    transform-origin: right center;
+    width: 50%;
+    z-index: 10;
+}
+
+.talent-image-choice-right {
+    transform: rotate(-45deg);
 }
 
 .talent-points-spent {

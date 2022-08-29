@@ -8,22 +8,34 @@
 else
 {
     <div>
-        <MudText Typo="Typo.h6" Align="Align.Center" Class="mb-4 Error">@TotalPointsSpent / @PointsTotal</MudText>
+        <MudText Typo="Typo.h6" Align="Align.Center" Class="@($"mb-4 {(TotalPointsSpent > PointsTotal ? "mud-error-text" : "")}")">@TotalPointsSpent / @PointsTotal</MudText>
     </div>
     <div class="talent-container">
         <div class="talent-grid mud-theme-dark">
             @foreach (var talent in Talents)
             {
-                <a href="#" data-wowhead="spell=@(talent.TalentEntries[0].SpellId)" data-wh-rename-link="false"
+                <a href="https://www.wowhead.com/beta/spell=@(talent.TalentEntries[0].SpellId)" data-wowhead="def=20352&rank=2" data-wh-rename-link="false"
                     class="talent talent-col-@(talent.TreeColumn) talent-row-@(talent.TreeRow)"
                     @onclick="e => OnTalentClick(e, talent)"
+                    @onclick:preventDefault="true"
                     @oncontextmenu="e => OnTalentClick(e, talent)"
-                    @oncontextmenu:preventDefault="true" data-ready="@(talent.PointsSpent == talent.MaxRanks || talent.IsFreeNode ? 0 : 1)">
+                    @oncontextmenu:preventDefault="true" 
+                    data-ready="@(talent.PointsSpent == talent.MaxRanks || talent.IsFreeNode ? 0 : 1)"
+                    data-node-type="@talent.Type">
                     <div class="talent-contents">
-                        <div class="talent-image-holder">
-                            <div class="talent-image" style="@GetImageStyle(talent.TalentEntries[0].Icon)">
-                            </div>
-                        </div>
+                            @if(talent.Type == NodeTypeChoice)
+                            {
+                                <div class="talent-image-holder">
+                                    <div class="talent-image talent-image-choice-left" style="@GetImageStyle(talent.TalentEntries[0].Icon)"></div>
+                                    <div class="talent-image talent-image-choice-right" style="@GetImageStyle(talent.TalentEntries[1].Icon)"></div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="talent-image-holder">
+                                    <div class="talent-image" style="@GetImageStyle(talent.TalentEntries[0].Icon)"></div>
+                                </div>
+                            }
                     </div>
                 </a>
                 @if (!talent.IsFreeNode)
@@ -72,7 +84,6 @@ else
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         await JS.InvokeVoidAsync("updateWowheadTooltips");
-        Console.WriteLine("updating tooltips");
     }
 
     private void InitialiseTalents()

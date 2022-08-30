@@ -15,7 +15,9 @@ else
             @foreach (var talent in Talents)
             {
                 <a href="https://www.wowhead.com/beta/spell=@(talent.TalentEntries[talent.IsSecondChoiceSelected ? 1 : 0].SpellId)"
-                    data-wowhead="def=@(talent.TalentEntries[talent.IsSecondChoiceSelected ? 1 : 0].DefinitionId)&rank=@(talent.PointsSpent == 2 ? 2 : 1)" data-wh-rename-link="false"
+                    data-wowhead="def=@(talent.TalentEntries[talent.IsSecondChoiceSelected ? 1 : 0].DefinitionId)&rank=@(talent.PointsSpent == 2 ? 2 : 1)" 
+                    data-wh-rename-link="false"
+                    data-no-touch-lightbox="true"
                     class="talent talent-col-@(talent.TreeColumn) talent-row-@(talent.TreeRow)"
                     @onclick="e => OnTalentClick(e, talent)"
                     @onclick:preventDefault="true"

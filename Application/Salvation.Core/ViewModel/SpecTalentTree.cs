@@ -35,6 +35,7 @@ namespace Salvation.Core.ViewModel
         public int TreeColumn { get; set; }
         public int PointsSpent { get; set; }
         public bool IsUnlocked { get; set; }
+        public bool IsSecondChoiceSelected { get; set; }
     }
 
     public class TalentOption
@@ -45,5 +46,6 @@ namespace Salvation.Core.ViewModel
         public string Name { get; set; }
         public int SpellId { get; set; }
         public string Icon { get; set; }
+        public int DefinitionId { get; set; }
     }
 }

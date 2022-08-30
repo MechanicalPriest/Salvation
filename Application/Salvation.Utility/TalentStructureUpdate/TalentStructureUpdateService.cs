@@ -142,6 +142,7 @@ namespace Salvation.Utility.TalentStructureUpdate
                     Name = node.name,
                     SpellId = node.spellId,
                     Icon = node.icon,
+                    DefinitionId = node.definitionId
                 };
 
                 // FIX: For spelldata having wrong icon name
@@ -241,6 +242,7 @@ namespace Salvation.Utility.TalentStructureUpdate
             public string name { get; set; }
             public int spellId { get; set; }
             public string icon { get; set; }
+            public int definitionId { get; set; }
         }
     }
 }

@@ -59,7 +59,6 @@
     transform: rotate(45deg);
 }
 
-
 .talent-image {
     background-position: center;
     background-repeat: no-repeat;
@@ -74,9 +73,28 @@
     z-index: 10;
 }
 
+.talent-image-choice-left[data-ready="0"] {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transform-origin: unset;
+    width: 100%;
+    z-index: auto;
+}
+
+.talent-image-choice-left[data-ready="0"][data-choice-selected="0"] {
+    visibility: hidden;
+}
+
+
 .talent-image-choice-right {
     transform: rotate(-45deg);
 }
+
+.talent-image-choice-right[data-ready="0"][data-choice-selected="0"] {
+    visibility: hidden;
+}
+
 
 .talent-points-spent {
     align-self: end;

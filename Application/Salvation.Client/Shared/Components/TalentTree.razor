@@ -22,7 +22,8 @@ else
                     @oncontextmenu="e => OnTalentClick(e, talent)"
                     @oncontextmenu:preventDefault="true" 
                     data-ready="@(talent.PointsSpent == talent.MaxRanks || talent.IsFreeNode ? 0 : 1)"
-                    data-node-type="@talent.Type">
+                    data-node-type="@talent.Type"
+                    data-node-unlocked="@(talent.IsUnlocked ? 1 : 0)">
                     <div class="talent-contents">
                             @if(talent.Type == NodeTypeChoice)
                             {
@@ -101,7 +102,6 @@ else
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         await JS.InvokeVoidAsync("updateWowheadTooltips");
-        Console.WriteLine("wow");
     }
 
     private void InitialiseTalents()
@@ -109,7 +109,44 @@ else
         foreach (var talent in Talents)
         {
             if (talent.IsFreeNode)
+            {
                 talent.PointsSpent = 1;
+            }
+        }
+
+        UpdateUnlockedTalents();
+    }
+
+    private void UpdateUnlockedTalents()
+    {
+        foreach(var talent in Talents)
+        {
+            var talentIsUnlocked = false;
+
+            // A node is active if:
+
+            // 1. It's a free node
+            if (talent.IsFreeNode)
+                talentIsUnlocked = true;
+
+            // 2. It's a valid entry node
+            if(talent.EntryNode)
+            {
+                talentIsUnlocked = true;
+            }
+
+            // 3. One of its parent nodes is maxed out
+            foreach(var parent in Talents.Where(t => t.NextNodes.Contains(talent.Id)))
+            {
+                if(parent.PointsSpent == parent.MaxRanks)
+                    talentIsUnlocked = true;
+            }
+
+            // Finally, it can't be unlocked if it doesn't meet required total points
+            if (TotalPointsSpent < (talent.RequiredPoints ?? 0))
+                talentIsUnlocked = false;
+
+            talent.IsUnlocked = talentIsUnlocked;
         }
     }
 
@@ -143,6 +180,8 @@ else
             talent.IsSecondChoiceSelected = !talent.IsSecondChoiceSelected;
         }
 
+        UpdateUnlockedTalents();
+
         Console.WriteLine("{0} is at {1}/{2}", talent.Name, talent.PointsSpent, talent.TalentEntries[0].MaxRanks);
     }
 
@@ -156,6 +195,8 @@ else
             talent.PointsSpent--;
             TotalPointsSpent--;
         }
+
+        UpdateUnlockedTalents();
 
         Console.WriteLine("{0} is at {1}/{2}", talent.Name, talent.PointsSpent, talent.TalentEntries[0].MaxRanks);
     }

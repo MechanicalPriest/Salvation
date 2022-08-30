@@ -47,6 +47,10 @@
     border: 2px solid rgb(36, 161, 36);
 }
 
+.talent[data-node-unlocked="0"] {
+    border: 2px solid rgb(128, 128, 128);
+}
+
 .talent-contents {
 
 }

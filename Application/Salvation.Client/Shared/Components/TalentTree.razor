@@ -57,16 +57,6 @@ else
         </div>
     </div>
     <div>
-        @foreach(var talent in Talents.Where(t => t.PointsSpent > 0 && t.Type == NodeTypeChoice))
-        {
-            <div class="object-center">
-                <a href="https://www.wowhead.com/beta/spell=@talent.TalentEntries[0].SpellId" data-wh-icon-size="tiny">@talent.Name</a>
-                <MudSwitch @bind-Checked="@talent.IsSecondChoiceSelected" Color="Color.Primary" UnCheckedColor="Color.Primary" T="bool" class="mx-4" />
-                <a href="https://www.wowhead.com/beta/spell=@talent.TalentEntries[1].SpellId" data-wh-icon-size="tiny">@talent.Name</a>
-            </div>
-        }
-    </div>
-    <div>
         <p>Selected talents</p>
         <ul>
             @foreach(var talent in Talents.Where(t => t.PointsSpent > 0))

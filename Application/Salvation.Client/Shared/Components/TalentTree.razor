@@ -98,12 +98,17 @@ else
 
     protected override void OnInitialized()
     {
-        InitialiseTalents();   
+        InitialiseTalents();  
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         await JS.InvokeVoidAsync("updateWowheadTooltips");
+
+        if(firstRender)
+        {
+            // Configure all of the talent path lines here?
+        }
     }
 
     private void InitialiseTalents()
@@ -148,6 +153,10 @@ else
             if (TotalPointsSpent < (talent.RequiredPoints ?? 0))
                 talentIsUnlocked = false;
 
+            // It is unlocked though, if you have any points in it
+            if (talent.PointsSpent > 0)
+                talentIsUnlocked = true;
+
             talent.IsUnlocked = talentIsUnlocked;
         }
     }
@@ -169,8 +178,6 @@ else
 
     private void TalentLeftClick(MouseEventArgs eventArgs, Talent talent)
     {
-        Console.WriteLine("Left clicked {0}", talent.Name);
-
         // If there are points to spend, spend them
         if (talent.PointsSpent < talent.MaxRanks)
         {
@@ -183,14 +190,10 @@ else
         }
 
         UpdateUnlockedTalents();
-
-        Console.WriteLine("{0} is at {1}/{2}", talent.Name, talent.PointsSpent, talent.TalentEntries[0].MaxRanks);
     }
 
     private void TalentRightClick(MouseEventArgs eventArgs, Talent talent)
     {
-        Console.WriteLine("Right clicked {0}", talent.Name);
-
         // If there are points spent, remove one
         if (talent.PointsSpent > 0 && !talent.IsFreeNode)
         {
@@ -199,7 +202,5 @@ else
         }
 
         UpdateUnlockedTalents();
-
-        Console.WriteLine("{0} is at {1}/{2}", talent.Name, talent.PointsSpent, talent.TalentEntries[0].MaxRanks);
     }
 }

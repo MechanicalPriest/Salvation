@@ -151,7 +151,7 @@ else
         Console.WriteLine("Right clicked {0}", talent.Name);
 
         // If there are points spent, remove one
-        if (talent.PointsSpent > 0)
+        if (talent.PointsSpent > 0 && !talent.IsFreeNode)
         {
             talent.PointsSpent--;
             TotalPointsSpent--;

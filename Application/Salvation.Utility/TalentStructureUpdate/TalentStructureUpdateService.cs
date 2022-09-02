@@ -151,6 +151,9 @@ namespace Salvation.Utility.TalentStructureUpdate
                 if (talentOption.Icon == "spell_priest_void_flay")
                     talentOption.Icon = "spell_priest_voidflay";
 
+                // ability_priest_holywordlife doesn't exist on blizzard API at the moment. Obtaining instead from
+                // https://wow.zamimg.com/images/wow/icons/large/ability_priest_holywordlife.jpg
+
                 options.Add(talentOption);
             }
 

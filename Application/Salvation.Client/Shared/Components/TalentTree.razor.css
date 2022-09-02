@@ -19,7 +19,7 @@
     position: absolute;
 }
 
-.talent-image, .talent-image-holder, .talent-border {
+.talent-image, .talent-image-holder, .talent-contents {
     position: absolute;
     top: 0;
     left: 0;
@@ -97,6 +97,10 @@
 
 .talent-image-choice-right[data-ready="0"][data-choice-selected="0"] {
     visibility: hidden;
+}
+
+.talent[data-spell-passive="1"], .talent-contents[data-spell-passive="1"] {
+    border-radius: 50px;
 }
 
 
@@ -192,6 +196,11 @@
 .talent-col-16 {
     grid-column-start: 16;
     grid-column-end: 18;
+}
+
+.talent-col-17 {
+    grid-column-start: 17;
+    grid-column-end: 19;
 }
 
 /* Talent row settings */

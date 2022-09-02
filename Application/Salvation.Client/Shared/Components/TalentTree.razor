@@ -25,8 +25,9 @@ else
                     @oncontextmenu:preventDefault="true" 
                     data-ready="@(talent.PointsSpent == talent.MaxRanks || talent.IsFreeNode ? 0 : 1)"
                     data-node-type="@talent.Type"
+                    data-spell-passive="@(talent.Type != NodeTypeChoice && talent.TalentEntries[0].Type == NodeSpellTypePassive ? 1 : 0)"
                     data-node-unlocked="@(talent.IsUnlocked ? 1 : 0)">
-                    <div class="talent-contents">
+                    <div class="talent-contents"data-spell-passive="@(talent.Type != NodeTypeChoice && talent.TalentEntries[0].Type == NodeSpellTypePassive ? 1 : 0)">
                             @if(talent.Type == NodeTypeChoice)
                             {
                                 <div class="talent-image-holder">
@@ -82,6 +83,7 @@ else
     private static string NodeTypeSingle = "single";
     private static string NodeTypeTiered = "tiered"; // No idea what this is.
     private static string NodeTypeChoice = "choice"; // Implement something for choice node later
+    private static string NodeSpellTypePassive = "passive"; // Passive talents
     private static string UnknownIconName = "inv_misc_questionmark.jpg";
     private int TotalPointsSpent = 0;
 

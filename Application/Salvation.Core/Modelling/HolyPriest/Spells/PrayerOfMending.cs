@@ -40,7 +40,8 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             if (spellData.Overrides.ContainsKey(Override.ResultMultiplier))
                 numPoMStacks = spellData.Overrides[Override.ResultMultiplier];
 
-            averageHeal *= _gameStateService.GetCriticalStrikeMultiplier(gameState);
+            averageHeal *= _gameStateService.GetCriticalStrikeMultiplier(gameState)
+                * _gameStateService.GetGlobalHealingMultiplier(gameState);
 
             var pomFirstTargetHeal = averageHeal * GetFocusedMendingMultiplier(gameState, spellData);
 
@@ -98,6 +99,16 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             var healData = _gameStateService.GetSpellData(gameState, Spell.PrayerOfMendingHeal);
 
             return base.TriggersMastery(gameState, healData);
+        }
+
+        public override double GetActualCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
+        {
+            spellData = ValidateSpellData(gameState, spellData);
+
+            // Override used by Salvation to apply 2-stack PoMs
+            if (spellData.Overrides.ContainsKey(Override.CastsPerMinute))
+                return spellData.Overrides[Override.CastsPerMinute];
+            return base.GetActualCastsPerMinute(gameState, spellData);
         }
 
         internal double GetFocusedMendingMultiplier(GameState gameState, BaseSpellData spellData)

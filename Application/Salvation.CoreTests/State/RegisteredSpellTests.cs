@@ -21,7 +21,7 @@ namespace Salvation.CoreTests.State
             IServiceProvider serviceProvider = new TestProvider();
             ISpellService spellFactoryFunc(Type type) => (ISpellService)serviceProvider.GetService(type);
             ISpellServiceFactory spellServiceFactory = new SpellServiceFactory(spellFactoryFunc);
-            IGameStateService gameStateService = new GameStateService(new ProfileService(), new ConstantsService(), spellServiceFactory);
+            IGameStateService gameStateService = new GameStateService(null, new ProfileService(), new ConstantsService(), spellServiceFactory);
             var state = GetGameState();
 
             // Act

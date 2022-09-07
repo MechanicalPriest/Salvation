@@ -4,7 +4,10 @@ using Salvation.Core;
 using Salvation.Core.Interfaces.Modelling;
 using Salvation.Explorer.Modelling;
 using Salvation.Utility.SpellDataUpdate;
+using Serilog;
+using Serilog.Events;
 using System;
+using System.IO;
 
 namespace Salvation.Explorer
 {
@@ -12,7 +15,26 @@ namespace Salvation.Explorer
     {
         static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            Log.Logger = new LoggerConfiguration()
+            .MinimumLevel.Verbose()
+            .Enrich.FromLogContext()
+            .WriteTo.Console()
+            .WriteTo.File("logs" + Path.DirectorySeparatorChar + "salvation.explorer.log", rollingInterval: RollingInterval.Day)
+            .CreateLogger();
+
+            try
+            {
+                CreateHostBuilder(args).Build().Run();
+                return;
+            }
+            catch (Exception ex)
+            {
+                Log.Fatal(ex, "Application start-up failed");
+            }
+            finally
+            {
+                Log.CloseAndFlush();
+            }
 
             Console.WriteLine("Press any key to exit...");
             Console.ReadKey();
@@ -26,6 +48,7 @@ namespace Salvation.Explorer
 
                     // Explorer specific utility services
                     services.AddSingleton<IComparisonModeller<CovenantComparisonsResult>, CovenantComparisons>();
+                    services.AddSingleton<IComparisonModeller<AdvancedComparisonResult>, AdvancedComparison>();
 
                     services.AddSingleton<IHolyPriestExplorer, HolyPriestExplorer>();
 
@@ -38,6 +61,7 @@ namespace Salvation.Explorer
                             args,
                             serviceProvider.GetService<IHolyPriestExplorer>(),
                             serviceProvider.GetService<ISpellDataUpdateService>()));
-                });
+                })
+                .UseSerilog();
     }
 }

@@ -53,13 +53,10 @@ namespace Salvation.Core.Constants
         public uint ChargeCooldown { get; set; }
         public uint Charges { get; set; }
         public double MaxStacks { get; set; }
+        public double ProcChance { get; set; }
+        public double InternalCooldown { get; set; }
         public double Rppm { get; set; }
         public bool RppmIsHasted { get; set; }
-
-        /// <summary>
-        /// Scale multiplier used for scaling item-scaled spells
-        /// </summary>
-        public Dictionary<int, double> ScaleValues { get; set; }
 
         public IList<BaseSpellDataEffect> Effects { get; set; }
         public IDictionary<uint, double> ConduitRanks { get; set; }
@@ -73,7 +70,6 @@ namespace Salvation.Core.Constants
         {
             Effects = new List<BaseSpellDataEffect>();
             Overrides = new Dictionary<Override, double>();
-            ScaleValues = new Dictionary<int, double>();
         }
 
         /// <summary>

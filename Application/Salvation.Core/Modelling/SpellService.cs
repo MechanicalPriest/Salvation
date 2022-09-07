@@ -67,12 +67,19 @@ namespace Salvation.Core.Modelling
                 Mp5 = GetAverageMp5(gameState, spellData),
             };
 
+            // Add mastery if it triggers mastery
             if (TriggersMastery(gameState, spellData))
             {
                 var echoResult = GetHolyPriestMasteryResult(gameState, spellData);
                 if (echoResult != null)
                     result.AdditionalCasts.Add(echoResult);
             }
+
+            // Add leech if there is any
+            var leechResult = GetLeechResult(gameState, spellData);
+
+            if(leechResult != null)
+                result.AdditionalCasts.Add(leechResult);
 
             return result;
         }
@@ -263,6 +270,11 @@ namespace Salvation.Core.Modelling
             return 0;
         }
 
+        public virtual double GetAverageIntellectBonus(GameState gameState, BaseSpellData spellData)
+        {
+            return 0;
+        }
+
         public virtual double GetAverageCriticalStrike(GameState gameState, BaseSpellData spellData)
         {
             return 0;
@@ -303,9 +315,87 @@ namespace Salvation.Core.Modelling
             return 0;
         }
 
+        public virtual double GetAverageLeech(GameState gameState, BaseSpellData spellData)
+        {
+            return 0;
+        }
+
+        public virtual double GetAverageLeechPercent(GameState gameState, BaseSpellData spellData)
+        {
+            return 0;
+        }
+
         public virtual double GetAverageMp5(GameState gameState, BaseSpellData spellData)
         {
             return 0;
+        }
+
+        public virtual double GetAverageHealingBonus(GameState gameState, BaseSpellData spellData)
+        {
+            return 0;
+        }
+
+        #endregion
+
+        #region Leech
+        /// <summary>
+        /// Calculates a spell cast result for leech for this spell
+        /// </summary>
+        public virtual AveragedSpellCastResult GetLeechResult(GameState gameState, BaseSpellData spellData)
+        {
+            spellData = ValidateSpellData(gameState, spellData);
+
+            // If the spell doesn't trigger leech, or the total damage/healing is 0 then return null
+
+            // Remove self healing as it doesn't generate leech
+            double selfHealingPercent = 0;
+
+            // Use the selfheal percent if it's set. Otherwise 0% self healing
+            var selfHealingPlaystyle = _gameStateService.GetPlaystyle(gameState, "LeechSelfHealPercent");
+
+            if (selfHealingPlaystyle != null)
+                selfHealingPercent = selfHealingPlaystyle.Value;
+
+            var totalNonSelfHealing = GetAverageRawHealing(gameState, spellData) * (1 - selfHealingPercent);
+
+            // Add damage + healing together as both generate leech
+            var totalDamageHealing = totalNonSelfHealing
+                + GetAverageDamage(gameState, spellData);
+
+            // Don't return a result if there is nothing generating leech
+            if (!TriggersLeech(gameState, spellData)
+                || totalDamageHealing == 0
+                || _gameStateService.GetLeechMultiplier(gameState) == 1)
+                return null;
+
+            AveragedSpellCastResult result = new AveragedSpellCastResult();
+
+            var averageLeechHeal = totalDamageHealing
+                * (_gameStateService.GetLeechMultiplier(gameState) - 1);
+
+            var castProfile = _gameStateService.GetSpellCastProfile(gameState, (int)Spell.LeechHeal);
+
+            double overhealPercent = 0;
+            if (castProfile != null)
+                overhealPercent = castProfile.OverhealPercent;
+
+            result.SpellId = (int)Spell.LeechHeal;
+            result.SpellName = "Leech";
+            result.RawHealing = averageLeechHeal;
+            result.Healing = averageLeechHeal * (1 - overhealPercent);
+            result.Overhealing = averageLeechHeal * overhealPercent;
+            result.CastsPerMinute = GetActualCastsPerMinute(gameState, spellData);
+            result.NumberOfHealingTargets = 1;
+
+            return result;
+        }
+
+        /// <summary>
+        /// Defaults to True. Used to override if something doesn't trigger leech
+        /// </summary>
+        public virtual bool TriggersLeech(GameState gameState, BaseSpellData spellData)
+        {
+            return true;
         }
 
         #endregion
@@ -331,6 +421,9 @@ namespace Salvation.Core.Modelling
             result.SpellName = "Echo of Light";
             result.RawHealing = averageMasteryHeal;
             result.Healing = averageMasteryHeal * (1 - castProfile.OverhealPercent);
+            result.Overhealing = averageMasteryHeal * castProfile.OverhealPercent;
+            result.CastsPerMinute = GetActualCastsPerMinute(gameState, spellData);
+            result.NumberOfHealingTargets = GetNumberOfHealingTargets(gameState, spellData);
 
             return result;
         }

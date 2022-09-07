@@ -34,7 +34,8 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {averageHeal:0.##} (per pass)");
 
             averageHeal *= 2 // Add the second pass-back through each target
-                * _gameStateService.GetCriticalStrikeMultiplier(gameState);
+                * _gameStateService.GetCriticalStrikeMultiplier(gameState)
+                * _gameStateService.GetGlobalHealingMultiplier(gameState);
 
             // Divine Star caps at roughly 6 targets worth of healing
             return averageHeal * Math.Min(6, GetNumberOfHealingTargets(gameState, spellData));

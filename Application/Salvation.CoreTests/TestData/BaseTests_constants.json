@@ -1,5 +1,5 @@
 {
-  "GameVersion": "9.0.2.36532",
+  "GameVersion": "9.1.0.39584",
   "Specs": [
     {
       "Class": "Priest",
@@ -34,9 +34,10 @@
           "ChargeCooldown": 0,
           "Charges": 0,
           "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
           "Rppm": 0.0,
           "RppmIsHasted": false,
-          "ScaleValues": {},
           "Effects": [
             {
               "Id": 179715,
@@ -46,7 +47,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 6
+              "Type": 6,
+              "ScaleValues": {}
             },
             {
               "Id": 191076,
@@ -56,7 +58,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 6
+              "Type": 6,
+              "ScaleValues": {}
             },
             {
               "Id": 191077,
@@ -66,7 +69,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 6
+              "Type": 6,
+              "ScaleValues": {}
             },
             {
               "Id": 191078,
@@ -76,7 +80,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 6
+              "Type": 6,
+              "ScaleValues": {}
             },
             {
               "Id": 191079,
@@ -86,7 +91,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 6
+              "Type": 6,
+              "ScaleValues": {}
             },
             {
               "Id": 869198,
@@ -96,7 +102,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 6
+              "Type": 6,
+              "ScaleValues": {}
             },
             {
               "Id": 871790,
@@ -106,7 +113,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 6
+              "Type": 6,
+              "ScaleValues": {}
             },
             {
               "Id": 871791,
@@ -116,7 +124,116 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 6
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 137030,
+          "Name": "Priest",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 179714,
+              "BaseValue": 100.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 191080,
+              "BaseValue": 100.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 191081,
+              "BaseValue": -36.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 777113,
+              "BaseValue": 100.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 868949,
+              "BaseValue": 100.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 143924,
+          "Name": "Leech",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 193035,
+              "BaseValue": 1.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 10,
+              "ScaleValues": {}
             }
           ],
           "ConduitRanks": {}
@@ -134,9 +251,10 @@
           "ChargeCooldown": 0,
           "Charges": 0,
           "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
           "Rppm": 0.0,
           "RppmIsHasted": false,
-          "ScaleValues": {},
           "Effects": [
             {
               "Id": 283373,
@@ -146,7 +264,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 6
+              "Type": 6,
+              "ScaleValues": {}
             }
           ],
           "ConduitRanks": {}
@@ -164,9 +283,10 @@
           "ChargeCooldown": 0,
           "Charges": 0,
           "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
           "Rppm": 0.0,
           "RppmIsHasted": false,
-          "ScaleValues": {},
           "Effects": [
             {
               "Id": 360821,
@@ -176,7 +296,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 6
+              "Type": 6,
+              "ScaleValues": {}
             }
           ],
           "ConduitRanks": {}
@@ -194,9 +315,10 @@
           "ChargeCooldown": 0,
           "Charges": 0,
           "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
           "Rppm": 0.0,
           "RppmIsHasted": false,
-          "ScaleValues": {},
           "Effects": [
             {
               "Id": 22313,
@@ -206,7 +328,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 3
+              "Type": 3,
+              "ScaleValues": {}
             },
             {
               "Id": 22314,
@@ -216,7 +339,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 10
+              "Type": 10,
+              "ScaleValues": {}
             },
             {
               "Id": 191249,
@@ -226,7 +350,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 10
+              "Type": 10,
+              "ScaleValues": {}
             },
             {
               "Id": 325998,
@@ -236,7 +361,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 3
+              "Type": 3,
+              "ScaleValues": {}
             }
           ],
           "ConduitRanks": {}
@@ -254,9 +380,10 @@
           "ChargeCooldown": 0,
           "Charges": 0,
           "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
           "Rppm": 0.0,
           "RppmIsHasted": false,
-          "ScaleValues": {},
           "Effects": [
             {
               "Id": 140102,
@@ -266,7 +393,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 179
+              "Type": 179,
+              "ScaleValues": {}
             }
           ],
           "ConduitRanks": {}
@@ -284,9 +412,10 @@
           "ChargeCooldown": 0,
           "Charges": 0,
           "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
           "Rppm": 0.0,
           "RppmIsHasted": false,
-          "ScaleValues": {},
           "Effects": [
             {
               "Id": 140516,
@@ -296,7 +425,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 10
+              "Type": 10,
+              "ScaleValues": {}
             }
           ],
           "ConduitRanks": {}
@@ -314,9 +444,10 @@
           "ChargeCooldown": 0,
           "Charges": 0,
           "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
           "Rppm": 0.0,
           "RppmIsHasted": false,
-          "ScaleValues": {},
           "Effects": [
             {
               "Id": 140527,
@@ -326,7 +457,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 2
+              "Type": 2,
+              "ScaleValues": {}
             }
           ],
           "ConduitRanks": {}
@@ -344,9 +476,10 @@
           "ChargeCooldown": 0,
           "Charges": 0,
           "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
           "Rppm": 0.0,
           "RppmIsHasted": false,
-          "ScaleValues": {},
           "Effects": [
             {
               "Id": 122871,
@@ -356,7 +489,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 179
+              "Type": 179,
+              "ScaleValues": {}
             }
           ],
           "ConduitRanks": {}
@@ -374,9 +508,10 @@
           "ChargeCooldown": 0,
           "Charges": 0,
           "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
           "Rppm": 0.0,
           "RppmIsHasted": false,
-          "ScaleValues": {},
           "Effects": [
             {
               "Id": 122873,
@@ -386,7 +521,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 10
+              "Type": 10,
+              "ScaleValues": {}
             }
           ],
           "ConduitRanks": {}
@@ -404,9 +540,10 @@
           "ChargeCooldown": 0,
           "Charges": 0,
           "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
           "Rppm": 0.0,
           "RppmIsHasted": false,
-          "ScaleValues": {},
           "Effects": [
             {
               "Id": 153526,
@@ -416,7 +553,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 2
+              "Type": 2,
+              "ScaleValues": {}
             }
           ],
           "ConduitRanks": {}
@@ -434,9 +572,10 @@
           "ChargeCooldown": 0,
           "Charges": 0,
           "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
           "Rppm": 0.0,
           "RppmIsHasted": false,
-          "ScaleValues": {},
           "Effects": [
             {
               "Id": 283376,
@@ -446,7 +585,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 6
+              "Type": 6,
+              "ScaleValues": {}
             }
           ],
           "ConduitRanks": {}
@@ -464,9 +604,10 @@
           "ChargeCooldown": 0,
           "Charges": 0,
           "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
           "Rppm": 0.0,
           "RppmIsHasted": false,
-          "ScaleValues": {},
           "Effects": [
             {
               "Id": 709207,
@@ -476,7 +617,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 10
+              "Type": 10,
+              "ScaleValues": {}
             },
             {
               "Id": 709209,
@@ -486,7 +628,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 3
+              "Type": 3,
+              "ScaleValues": {}
             },
             {
               "Id": 709211,
@@ -496,7 +639,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 3
+              "Type": 3,
+              "ScaleValues": {}
             }
           ],
           "ConduitRanks": {}
@@ -514,9 +658,10 @@
           "ChargeCooldown": 0,
           "Charges": 0,
           "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
           "Rppm": 0.0,
           "RppmIsHasted": false,
-          "ScaleValues": {},
           "Effects": [
             {
               "Id": 612,
@@ -526,7 +671,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 10
+              "Type": 10,
+              "ScaleValues": {}
             }
           ],
           "ConduitRanks": {}
@@ -544,9 +690,10 @@
           "ChargeCooldown": 0,
           "Charges": 0,
           "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
           "Rppm": 0.0,
           "RppmIsHasted": false,
-          "ScaleValues": {},
           "Effects": [
             {
               "Id": 613,
@@ -556,7 +703,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 10
+              "Type": 10,
+              "ScaleValues": {}
             }
           ],
           "ConduitRanks": {}
@@ -574,9 +722,10 @@
           "ChargeCooldown": 0,
           "Charges": 0,
           "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
           "Rppm": 0.0,
           "RppmIsHasted": false,
-          "ScaleValues": {},
           "Effects": [
             {
               "Id": 243,
@@ -598,9 +747,10 @@
                 "ChargeCooldown": 0,
                 "Charges": 0,
                 "MaxStacks": 0.0,
+                "ProcChance": 0.0,
+                "InternalCooldown": 0.0,
                 "Rppm": 0.0,
                 "RppmIsHasted": false,
-                "ScaleValues": {},
                 "Effects": [
                   {
                     "Id": 105331,
@@ -610,12 +760,14 @@
                     "TriggerSpellid": 0,
                     "Amplitude": 0.0,
                     "TriggerSpell": null,
-                    "Type": 3
+                    "Type": 3,
+                    "ScaleValues": {}
                   }
                 ],
                 "ConduitRanks": {}
               },
-              "Type": 64
+              "Type": 64,
+              "ScaleValues": {}
             },
             {
               "Id": 105332,
@@ -625,7 +777,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 10
+              "Type": 10,
+              "ScaleValues": {}
             },
             {
               "Id": 288930,
@@ -635,7 +788,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 3
+              "Type": 3,
+              "ScaleValues": {}
             }
           ],
           "ConduitRanks": {}
@@ -653,9 +807,10 @@
           "ChargeCooldown": 0,
           "Charges": 0,
           "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
           "Rppm": 0.0,
           "RppmIsHasted": false,
-          "ScaleValues": {},
           "Effects": [
             {
               "Id": 170810,
@@ -665,7 +820,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 2
+              "Type": 2,
+              "ScaleValues": {}
             },
             {
               "Id": 709210,
@@ -687,9 +843,10 @@
                 "ChargeCooldown": 0,
                 "Charges": 0,
                 "MaxStacks": 0.0,
+                "ProcChance": 0.0,
+                "InternalCooldown": 0.0,
                 "Rppm": 0.0,
                 "RppmIsHasted": false,
-                "ScaleValues": {},
                 "Effects": [
                   {
                     "Id": 739572,
@@ -699,12 +856,14 @@
                     "TriggerSpellid": 0,
                     "Amplitude": 0.0,
                     "TriggerSpell": null,
-                    "Type": 10
+                    "Type": 10,
+                    "ScaleValues": {}
                   }
                 ],
                 "ConduitRanks": {}
               },
-              "Type": 64
+              "Type": 64,
+              "ScaleValues": {}
             },
             {
               "Id": 845266,
@@ -714,7 +873,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 3
+              "Type": 3,
+              "ScaleValues": {}
             }
           ],
           "ConduitRanks": {}
@@ -732,9 +892,10 @@
           "ChargeCooldown": 0,
           "Charges": 0,
           "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
           "Rppm": 0.0,
           "RppmIsHasted": false,
-          "ScaleValues": {},
           "Effects": [
             {
               "Id": 810253,
@@ -744,7 +905,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 6
+              "Type": 6,
+              "ScaleValues": {}
             },
             {
               "Id": 844508,
@@ -754,7 +916,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 0
+              "Type": 0,
+              "ScaleValues": {}
             }
           ],
           "ConduitRanks": {}
@@ -772,9 +935,10 @@
           "ChargeCooldown": 0,
           "Charges": 0,
           "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
           "Rppm": 0.0,
           "RppmIsHasted": false,
-          "ScaleValues": {},
           "Effects": [
             {
               "Id": 302436,
@@ -784,7 +948,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 10
+              "Type": 10,
+              "ScaleValues": {}
             },
             {
               "Id": 302437,
@@ -794,7 +959,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 3
+              "Type": 3,
+              "ScaleValues": {}
             }
           ],
           "ConduitRanks": {}
@@ -812,9 +978,10 @@
           "ChargeCooldown": 0,
           "Charges": 0,
           "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
           "Rppm": 0.0,
           "RppmIsHasted": false,
-          "ScaleValues": {},
           "Effects": [
             {
               "Id": 95,
@@ -824,7 +991,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 3000.0,
               "TriggerSpell": null,
-              "Type": 6
+              "Type": 6,
+              "ScaleValues": {}
             },
             {
               "Id": 256131,
@@ -834,7 +1002,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 6
+              "Type": 6,
+              "ScaleValues": {}
             }
           ],
           "ConduitRanks": {}
@@ -852,9 +1021,10 @@
           "ChargeCooldown": 0,
           "Charges": 0,
           "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
           "Rppm": 0.0,
           "RppmIsHasted": false,
-          "ScaleValues": {},
           "Effects": [
             {
               "Id": 13,
@@ -864,7 +1034,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 6
+              "Type": 6,
+              "ScaleValues": {}
             }
           ],
           "ConduitRanks": {}
@@ -882,9 +1053,10 @@
           "ChargeCooldown": 0,
           "Charges": 0,
           "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
           "Rppm": 0.0,
           "RppmIsHasted": false,
-          "ScaleValues": {},
           "Effects": [
             {
               "Id": 59162,
@@ -901,14 +1073,15 @@
                 "BaseCastTime": 0.0,
                 "BaseCooldown": 0.0,
                 "IsCooldownHasted": false,
-                "Duration": 8000.0,
+                "Duration": 15000.0,
                 "Gcd": 0.0,
                 "ChargeCooldown": 0,
                 "Charges": 0,
-                "MaxStacks": 0.0,
+                "MaxStacks": 5.0,
+                "ProcChance": 101.0,
+                "InternalCooldown": 0.0,
                 "Rppm": 0.0,
                 "RppmIsHasted": false,
-                "ScaleValues": {},
                 "Effects": [
                   {
                     "Id": 59165,
@@ -918,22 +1091,25 @@
                     "TriggerSpellid": 0,
                     "Amplitude": 0.0,
                     "TriggerSpell": null,
-                    "Type": 10
+                    "Type": 10,
+                    "ScaleValues": {}
                   },
                   {
                     "Id": 59166,
-                    "BaseValue": 10.0,
+                    "BaseValue": 4.0,
                     "SpCoefficient": 0.0,
                     "Coefficient": 0.0,
                     "TriggerSpellid": 0,
                     "Amplitude": 0.0,
                     "TriggerSpell": null,
-                    "Type": 6
+                    "Type": 6,
+                    "ScaleValues": {}
                   }
                 ],
                 "ConduitRanks": {}
               },
-              "Type": 6
+              "Type": 6,
+              "ScaleValues": {}
             },
             {
               "Id": 59163,
@@ -943,7 +1119,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 6
+              "Type": 6,
+              "ScaleValues": {}
             },
             {
               "Id": 59164,
@@ -953,7 +1130,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 6
+              "Type": 6,
+              "ScaleValues": {}
             },
             {
               "Id": 192423,
@@ -963,7 +1141,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 3
+              "Type": 3,
+              "ScaleValues": {}
             }
           ],
           "ConduitRanks": {}
@@ -981,9 +1160,10 @@
           "ChargeCooldown": 0,
           "Charges": 0,
           "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
           "Rppm": 0.0,
           "RppmIsHasted": false,
-          "ScaleValues": {},
           "Effects": [
             {
               "Id": 24949,
@@ -993,7 +1173,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 10
+              "Type": 10,
+              "ScaleValues": {}
             },
             {
               "Id": 288932,
@@ -1003,7 +1184,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 3
+              "Type": 3,
+              "ScaleValues": {}
             },
             {
               "Id": 709475,
@@ -1013,7 +1195,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 3
+              "Type": 3,
+              "ScaleValues": {}
             },
             {
               "Id": 709476,
@@ -1023,7 +1206,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 3
+              "Type": 3,
+              "ScaleValues": {}
             }
           ],
           "ConduitRanks": {}
@@ -1041,9 +1225,10 @@
           "ChargeCooldown": 60000,
           "Charges": 1,
           "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
           "Rppm": 0.0,
           "RppmIsHasted": false,
-          "ScaleValues": {},
           "Effects": [
             {
               "Id": 611,
@@ -1053,7 +1238,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 10
+              "Type": 10,
+              "ScaleValues": {}
             },
             {
               "Id": 709474,
@@ -1063,7 +1249,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 3
+              "Type": 3,
+              "ScaleValues": {}
             }
           ],
           "ConduitRanks": {}
@@ -1081,9 +1268,10 @@
           "ChargeCooldown": 0,
           "Charges": 0,
           "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
           "Rppm": 0.0,
           "RppmIsHasted": false,
-          "ScaleValues": {},
           "Effects": [
             {
               "Id": 22870,
@@ -1093,7 +1281,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 3
+              "Type": 3,
+              "ScaleValues": {}
             }
           ],
           "ConduitRanks": {}
@@ -1111,9 +1300,10 @@
           "ChargeCooldown": 0,
           "Charges": 0,
           "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
           "Rppm": 0.0,
           "RppmIsHasted": false,
-          "ScaleValues": {},
           "Effects": [
             {
               "Id": 806684,
@@ -1123,7 +1313,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 6
+              "Type": 6,
+              "ScaleValues": {}
             }
           ],
           "ConduitRanks": {}
@@ -1141,9 +1332,10 @@
           "ChargeCooldown": 0,
           "Charges": 0,
           "MaxStacks": 10.0,
+          "ProcChance": 100.0,
+          "InternalCooldown": 0.0,
           "Rppm": 0.0,
           "RppmIsHasted": false,
-          "ScaleValues": {},
           "Effects": [
             {
               "Id": 33141,
@@ -1153,7 +1345,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 6
+              "Type": 6,
+              "ScaleValues": {}
             }
           ],
           "ConduitRanks": {}
@@ -1171,9 +1364,10 @@
           "ChargeCooldown": 0,
           "Charges": 0,
           "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
           "Rppm": 0.0,
           "RppmIsHasted": false,
-          "ScaleValues": {},
           "Effects": [
             {
               "Id": 22918,
@@ -1183,7 +1377,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 10
+              "Type": 10,
+              "ScaleValues": {}
             }
           ],
           "ConduitRanks": {}
@@ -1201,9 +1396,10 @@
           "ChargeCooldown": 0,
           "Charges": 0,
           "MaxStacks": 0.0,
+          "ProcChance": 100.0,
+          "InternalCooldown": 0.0,
           "Rppm": 0.0,
           "RppmIsHasted": false,
-          "ScaleValues": {},
           "Effects": [
             {
               "Id": 68102,
@@ -1213,7 +1409,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 6
+              "Type": 6,
+              "ScaleValues": {}
             },
             {
               "Id": 90770,
@@ -1223,7 +1420,62 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 6
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 47788,
+          "Name": "Guardian Spirit",
+          "ManaCost": 0.9,
+          "MaxRange": 40.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 180000.0,
+          "IsCooldownHasted": false,
+          "Duration": 10000.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 40042,
+              "BaseValue": 60.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 40043,
+              "BaseValue": 40.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 3,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 188025,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
             }
           ],
           "ConduitRanks": {}
@@ -1241,9 +1493,10 @@
           "ChargeCooldown": 0,
           "Charges": 0,
           "MaxStacks": 0.0,
+          "ProcChance": 101.0,
+          "InternalCooldown": 0.0,
           "Rppm": 0.0,
           "RppmIsHasted": false,
-          "ScaleValues": {},
           "Effects": [
             {
               "Id": 812771,
@@ -1253,7 +1506,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 2
+              "Type": 2,
+              "ScaleValues": {}
             },
             {
               "Id": 812776,
@@ -1263,7 +1517,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 6
+              "Type": 6,
+              "ScaleValues": {}
             },
             {
               "Id": 812810,
@@ -1273,7 +1528,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 6
+              "Type": 6,
+              "ScaleValues": {}
             },
             {
               "Id": 812816,
@@ -1295,9 +1551,10 @@
                 "ChargeCooldown": 0,
                 "Charges": 0,
                 "MaxStacks": 0.0,
+                "ProcChance": 0.0,
+                "InternalCooldown": 0.0,
                 "Rppm": 0.0,
                 "RppmIsHasted": false,
-                "ScaleValues": {},
                 "Effects": [
                   {
                     "Id": 812814,
@@ -1307,15 +1564,39 @@
                     "TriggerSpellid": 0,
                     "Amplitude": 0.0,
                     "TriggerSpell": null,
-                    "Type": 6
+                    "Type": 6,
+                    "ScaleValues": {}
                   }
                 ],
                 "ConduitRanks": {}
               },
-              "Type": 64
+              "Type": 64,
+              "ScaleValues": {}
             },
             {
               "Id": 812823,
+              "BaseValue": 450.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 819553,
+              "BaseValue": 450.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 872982,
               "BaseValue": 0.0,
               "SpCoefficient": 0.0,
               "Coefficient": 0.0,
@@ -1334,9 +1615,10 @@
                 "ChargeCooldown": 0,
                 "Charges": 0,
                 "MaxStacks": 0.0,
+                "ProcChance": 0.0,
+                "InternalCooldown": 0.0,
                 "Rppm": 0.0,
                 "RppmIsHasted": false,
-                "ScaleValues": {},
                 "Effects": [
                   {
                     "Id": 812821,
@@ -1346,32 +1628,14 @@
                     "TriggerSpellid": 0,
                     "Amplitude": 0.0,
                     "TriggerSpell": null,
-                    "Type": 6
+                    "Type": 6,
+                    "ScaleValues": {}
                   }
                 ],
                 "ConduitRanks": {}
               },
-              "Type": 64
-            },
-            {
-              "Id": 819553,
-              "BaseValue": 450.0,
-              "SpCoefficient": 0.0,
-              "Coefficient": 0.0,
-              "TriggerSpellid": 0,
-              "Amplitude": 0.0,
-              "TriggerSpell": null,
-              "Type": 6
-            },
-            {
-              "Id": 872982,
-              "BaseValue": 450.0,
-              "SpCoefficient": 0.0,
-              "Coefficient": 0.0,
-              "TriggerSpellid": 0,
-              "Amplitude": 0.0,
-              "TriggerSpell": null,
-              "Type": 6
+              "Type": 64,
+              "ScaleValues": {}
             }
           ],
           "ConduitRanks": {}
@@ -1389,9 +1653,10 @@
           "ChargeCooldown": 0,
           "Charges": 0,
           "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
           "Rppm": 0.0,
           "RppmIsHasted": false,
-          "ScaleValues": {},
           "Effects": [
             {
               "Id": 812824,
@@ -1401,7 +1666,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 10
+              "Type": 10,
+              "ScaleValues": {}
             },
             {
               "Id": 819551,
@@ -1411,7 +1677,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 30
+              "Type": 30,
+              "ScaleValues": {}
             },
             {
               "Id": 819578,
@@ -1421,7 +1688,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 137
+              "Type": 137,
+              "ScaleValues": {}
             }
           ],
           "ConduitRanks": {}
@@ -1430,7 +1698,7 @@
           "Id": 327661,
           "Name": "Fae Guardians",
           "ManaCost": 2.0,
-          "MaxRange": 0.0,
+          "MaxRange": 40.0,
           "BaseCastTime": 0.0,
           "BaseCooldown": 90000.0,
           "IsCooldownHasted": false,
@@ -1439,19 +1707,32 @@
           "ChargeCooldown": 0,
           "Charges": 0,
           "MaxStacks": 1.0,
+          "ProcChance": 100.0,
+          "InternalCooldown": 0.0,
           "Rppm": 0.0,
           "RppmIsHasted": false,
-          "ScaleValues": {},
           "Effects": [
             {
               "Id": 819246,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 3,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 892376,
               "BaseValue": 10.0,
               "SpCoefficient": 0.0,
               "Coefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 6
+              "Type": 6,
+              "ScaleValues": {}
             }
           ],
           "ConduitRanks": {}
@@ -1469,9 +1750,10 @@
           "ChargeCooldown": 0,
           "Charges": 0,
           "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
           "Rppm": 0.0,
           "RppmIsHasted": false,
-          "ScaleValues": {},
           "Effects": [
             {
               "Id": 819312,
@@ -1481,7 +1763,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 6
+              "Type": 6,
+              "ScaleValues": {}
             },
             {
               "Id": 868651,
@@ -1491,7 +1774,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 6
+              "Type": 6,
+              "ScaleValues": {}
             },
             {
               "Id": 868652,
@@ -1501,7 +1785,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 6
+              "Type": 6,
+              "ScaleValues": {}
             },
             {
               "Id": 868655,
@@ -1511,7 +1796,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 6
+              "Type": 6,
+              "ScaleValues": {}
             },
             {
               "Id": 868656,
@@ -1521,7 +1807,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 6
+              "Type": 6,
+              "ScaleValues": {}
             }
           ],
           "ConduitRanks": {}
@@ -1539,19 +1826,21 @@
           "ChargeCooldown": 0,
           "Charges": 0,
           "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
           "Rppm": 0.0,
           "RppmIsHasted": false,
-          "ScaleValues": {},
           "Effects": [
             {
               "Id": 819281,
-              "BaseValue": -10.0,
+              "BaseValue": -20.0,
               "SpCoefficient": 0.0,
               "Coefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 6
+              "Type": 6,
+              "ScaleValues": {}
             }
           ],
           "ConduitRanks": {}
@@ -1569,9 +1858,10 @@
           "ChargeCooldown": 0,
           "Charges": 0,
           "MaxStacks": 99.0,
+          "ProcChance": 100.0,
+          "InternalCooldown": 0.0,
           "Rppm": 0.0,
           "RppmIsHasted": false,
-          "ScaleValues": {},
           "Effects": [
             {
               "Id": 814983,
@@ -1581,7 +1871,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 6
+              "Type": 6,
+              "ScaleValues": {}
             },
             {
               "Id": 815010,
@@ -1591,7 +1882,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 6
+              "Type": 6,
+              "ScaleValues": {}
             },
             {
               "Id": 815013,
@@ -1601,7 +1893,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 6
+              "Type": 6,
+              "ScaleValues": {}
             },
             {
               "Id": 815072,
@@ -1611,7 +1904,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 6
+              "Type": 6,
+              "ScaleValues": {}
             },
             {
               "Id": 815475,
@@ -1621,7 +1915,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 6
+              "Type": 6,
+              "ScaleValues": {}
             },
             {
               "Id": 819021,
@@ -1631,7 +1926,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 6
+              "Type": 6,
+              "ScaleValues": {}
             },
             {
               "Id": 819722,
@@ -1641,7 +1937,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 6
+              "Type": 6,
+              "ScaleValues": {}
             },
             {
               "Id": 821227,
@@ -1651,7 +1948,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 6
+              "Type": 6,
+              "ScaleValues": {}
             }
           ],
           "ConduitRanks": {}
@@ -1669,9 +1967,10 @@
           "ChargeCooldown": 0,
           "Charges": 0,
           "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
           "Rppm": 0.0,
           "RppmIsHasted": false,
-          "ScaleValues": {},
           "Effects": [
             {
               "Id": 814997,
@@ -1681,7 +1980,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 2
+              "Type": 2,
+              "ScaleValues": {}
             },
             {
               "Id": 815031,
@@ -1703,9 +2003,10 @@
                 "ChargeCooldown": 0,
                 "Charges": 0,
                 "MaxStacks": 0.0,
+                "ProcChance": 0.0,
+                "InternalCooldown": 0.0,
                 "Rppm": 0.0,
                 "RppmIsHasted": false,
-                "ScaleValues": {},
                 "Effects": [
                   {
                     "Id": 815030,
@@ -1715,7 +2016,8 @@
                     "TriggerSpellid": 0,
                     "Amplitude": 0.0,
                     "TriggerSpell": null,
-                    "Type": 10
+                    "Type": 10,
+                    "ScaleValues": {}
                   },
                   {
                     "Id": 844031,
@@ -1725,12 +2027,14 @@
                     "TriggerSpellid": 0,
                     "Amplitude": 0.0,
                     "TriggerSpell": null,
-                    "Type": 3
+                    "Type": 3,
+                    "ScaleValues": {}
                   }
                 ],
                 "ConduitRanks": {}
               },
-              "Type": 64
+              "Type": 64,
+              "ScaleValues": {}
             },
             {
               "Id": 815723,
@@ -1740,7 +2044,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 3
+              "Type": 3,
+              "ScaleValues": {}
             }
           ],
           "ConduitRanks": {}
@@ -1758,9 +2063,10 @@
           "ChargeCooldown": 0,
           "Charges": 0,
           "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
           "Rppm": 0.0,
           "RppmIsHasted": false,
-          "ScaleValues": {},
           "Effects": [
             {
               "Id": 815465,
@@ -1770,7 +2076,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 2
+              "Type": 2,
+              "ScaleValues": {}
             },
             {
               "Id": 815550,
@@ -1780,7 +2087,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 3
+              "Type": 3,
+              "ScaleValues": {}
             },
             {
               "Id": 815724,
@@ -1790,7 +2098,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 3
+              "Type": 3,
+              "ScaleValues": {}
             }
           ],
           "ConduitRanks": {}
@@ -1808,9 +2117,10 @@
           "ChargeCooldown": 0,
           "Charges": 0,
           "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
           "Rppm": 0.0,
           "RppmIsHasted": false,
-          "ScaleValues": {},
           "Effects": [
             {
               "Id": 815508,
@@ -1820,7 +2130,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 10
+              "Type": 10,
+              "ScaleValues": {}
             }
           ],
           "ConduitRanks": {}
@@ -1838,9 +2149,10 @@
           "ChargeCooldown": 0,
           "Charges": 0,
           "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
           "Rppm": 0.0,
           "RppmIsHasted": false,
-          "ScaleValues": {},
           "Effects": [
             {
               "Id": 815531,
@@ -1850,7 +2162,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 2
+              "Type": 2,
+              "ScaleValues": {}
             },
             {
               "Id": 875046,
@@ -1872,9 +2185,10 @@
                 "ChargeCooldown": 0,
                 "Charges": 0,
                 "MaxStacks": 0.0,
+                "ProcChance": 0.0,
+                "InternalCooldown": 0.0,
                 "Rppm": 0.0,
                 "RppmIsHasted": false,
-                "ScaleValues": {},
                 "Effects": [
                   {
                     "Id": 875045,
@@ -1884,12 +2198,14 @@
                     "TriggerSpellid": 0,
                     "Amplitude": 0.0,
                     "TriggerSpell": null,
-                    "Type": 10
+                    "Type": 10,
+                    "ScaleValues": {}
                   }
                 ],
                 "ConduitRanks": {}
               },
-              "Type": 64
+              "Type": 64,
+              "ScaleValues": {}
             }
           ],
           "ConduitRanks": {}
@@ -1907,9 +2223,10 @@
           "ChargeCooldown": 0,
           "Charges": 0,
           "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
           "Rppm": 0.0,
           "RppmIsHasted": false,
-          "ScaleValues": {},
           "Effects": [
             {
               "Id": 814521,
@@ -1931,9 +2248,10 @@
                 "ChargeCooldown": 0,
                 "Charges": 0,
                 "MaxStacks": 0.0,
+                "ProcChance": 0.0,
+                "InternalCooldown": 0.0,
                 "Rppm": 0.0,
                 "RppmIsHasted": false,
-                "ScaleValues": {},
                 "Effects": [
                   {
                     "Id": 875387,
@@ -1943,12 +2261,14 @@
                     "TriggerSpellid": 0,
                     "Amplitude": 0.0,
                     "TriggerSpell": null,
-                    "Type": 10
+                    "Type": 10,
+                    "ScaleValues": {}
                   }
                 ],
                 "ConduitRanks": {}
               },
-              "Type": 32
+              "Type": 32,
+              "ScaleValues": {}
             },
             {
               "Id": 844015,
@@ -1970,9 +2290,10 @@
                 "ChargeCooldown": 0,
                 "Charges": 0,
                 "MaxStacks": 0.0,
+                "ProcChance": 100.0,
+                "InternalCooldown": 0.0,
                 "Rppm": 0.0,
                 "RppmIsHasted": false,
-                "ScaleValues": {},
                 "Effects": [
                   {
                     "Id": 815346,
@@ -1982,7 +2303,8 @@
                     "TriggerSpellid": 0,
                     "Amplitude": 3000.0,
                     "TriggerSpell": null,
-                    "Type": 6
+                    "Type": 6,
+                    "ScaleValues": {}
                   },
                   {
                     "Id": 815347,
@@ -2004,9 +2326,10 @@
                       "ChargeCooldown": 0,
                       "Charges": 0,
                       "MaxStacks": 0.0,
+                      "ProcChance": 0.0,
+                      "InternalCooldown": 0.0,
                       "Rppm": 0.0,
                       "RppmIsHasted": false,
-                      "ScaleValues": {},
                       "Effects": [
                         {
                           "Id": 815191,
@@ -2016,17 +2339,20 @@
                           "TriggerSpellid": 0,
                           "Amplitude": 0.0,
                           "TriggerSpell": null,
-                          "Type": 10
+                          "Type": 10,
+                          "ScaleValues": {}
                         }
                       ],
                       "ConduitRanks": {}
                     },
-                    "Type": 6
+                    "Type": 6,
+                    "ScaleValues": {}
                   }
                 ],
                 "ConduitRanks": {}
               },
-              "Type": 32
+              "Type": 32,
+              "ScaleValues": {}
             }
           ],
           "ConduitRanks": {}
@@ -2044,9 +2370,10 @@
           "ChargeCooldown": 0,
           "Charges": 0,
           "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
           "Rppm": 0.0,
           "RppmIsHasted": false,
-          "ScaleValues": {},
           "Effects": [
             {
               "Id": 815191,
@@ -2056,7 +2383,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 10
+              "Type": 10,
+              "ScaleValues": {}
             }
           ],
           "ConduitRanks": {}
@@ -2074,9 +2402,10 @@
           "ChargeCooldown": 0,
           "Charges": 0,
           "MaxStacks": 0.0,
+          "ProcChance": 100.0,
+          "InternalCooldown": 0.0,
           "Rppm": 0.0,
           "RppmIsHasted": false,
-          "ScaleValues": {},
           "Effects": [
             {
               "Id": 815346,
@@ -2086,7 +2415,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 3000.0,
               "TriggerSpell": null,
-              "Type": 6
+              "Type": 6,
+              "ScaleValues": {}
             },
             {
               "Id": 815347,
@@ -2108,9 +2438,10 @@
                 "ChargeCooldown": 0,
                 "Charges": 0,
                 "MaxStacks": 0.0,
+                "ProcChance": 0.0,
+                "InternalCooldown": 0.0,
                 "Rppm": 0.0,
                 "RppmIsHasted": false,
-                "ScaleValues": {},
                 "Effects": [
                   {
                     "Id": 815191,
@@ -2120,12 +2451,297 @@
                     "TriggerSpellid": 0,
                     "Amplitude": 0.0,
                     "TriggerSpell": null,
-                    "Type": 10
+                    "Type": 10,
+                    "ScaleValues": {}
                   }
                 ],
                 "ConduitRanks": {}
               },
-              "Type": 6
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 324631,
+          "Name": "Fleshcraft",
+          "ManaCost": 0.0,
+          "MaxRange": 10.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 120000.0,
+          "IsCooldownHasted": false,
+          "Duration": 3000.0,
+          "Gcd": 1.5,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 814354,
+              "BaseValue": 40.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 500.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 814790,
+              "BaseValue": -20.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 814808,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 323524,
+              "Amplitude": 0.0,
+              "TriggerSpell": {
+                "Id": 323524,
+                "Name": "Ultimate Form",
+                "ManaCost": 0.0,
+                "MaxRange": 0.0,
+                "BaseCastTime": 0.0,
+                "BaseCooldown": 0.0,
+                "IsCooldownHasted": false,
+                "Duration": 3000.0,
+                "Gcd": 0.0,
+                "ChargeCooldown": 0,
+                "Charges": 0,
+                "MaxStacks": 0.0,
+                "ProcChance": 0.0,
+                "InternalCooldown": 0.0,
+                "Rppm": 0.0,
+                "RppmIsHasted": false,
+                "Effects": [
+                  {
+                    "Id": 812501,
+                    "BaseValue": 0.0,
+                    "SpCoefficient": 0.0,
+                    "Coefficient": 0.0,
+                    "TriggerSpellid": 0,
+                    "Amplitude": 0.0,
+                    "TriggerSpell": null,
+                    "Type": 6,
+                    "ScaleValues": {}
+                  },
+                  {
+                    "Id": 816156,
+                    "BaseValue": 0.0,
+                    "SpCoefficient": 0.0,
+                    "Coefficient": 0.0,
+                    "TriggerSpellid": 0,
+                    "Amplitude": 0.0,
+                    "TriggerSpell": null,
+                    "Type": 6,
+                    "ScaleValues": {}
+                  },
+                  {
+                    "Id": 816157,
+                    "BaseValue": 0.0,
+                    "SpCoefficient": 0.0,
+                    "Coefficient": 0.0,
+                    "TriggerSpellid": 0,
+                    "Amplitude": 0.0,
+                    "TriggerSpell": null,
+                    "Type": 6,
+                    "ScaleValues": {}
+                  },
+                  {
+                    "Id": 816158,
+                    "BaseValue": 0.0,
+                    "SpCoefficient": 0.0,
+                    "Coefficient": 0.0,
+                    "TriggerSpellid": 0,
+                    "Amplitude": 0.0,
+                    "TriggerSpell": null,
+                    "Type": 6,
+                    "ScaleValues": {}
+                  },
+                  {
+                    "Id": 816159,
+                    "BaseValue": 0.0,
+                    "SpCoefficient": 0.0,
+                    "Coefficient": 0.0,
+                    "TriggerSpellid": 0,
+                    "Amplitude": 0.0,
+                    "TriggerSpell": null,
+                    "Type": 6,
+                    "ScaleValues": {}
+                  },
+                  {
+                    "Id": 816160,
+                    "BaseValue": 0.0,
+                    "SpCoefficient": 0.0,
+                    "Coefficient": 0.0,
+                    "TriggerSpellid": 0,
+                    "Amplitude": 0.0,
+                    "TriggerSpell": null,
+                    "Type": 6,
+                    "ScaleValues": {}
+                  },
+                  {
+                    "Id": 816161,
+                    "BaseValue": 0.0,
+                    "SpCoefficient": 0.0,
+                    "Coefficient": 0.0,
+                    "TriggerSpellid": 0,
+                    "Amplitude": 0.0,
+                    "TriggerSpell": null,
+                    "Type": 6,
+                    "ScaleValues": {}
+                  },
+                  {
+                    "Id": 816162,
+                    "BaseValue": 0.0,
+                    "SpCoefficient": 0.0,
+                    "Coefficient": 0.0,
+                    "TriggerSpellid": 0,
+                    "Amplitude": 0.0,
+                    "TriggerSpell": null,
+                    "Type": 6,
+                    "ScaleValues": {}
+                  },
+                  {
+                    "Id": 816163,
+                    "BaseValue": 0.0,
+                    "SpCoefficient": 0.0,
+                    "Coefficient": 0.0,
+                    "TriggerSpellid": 0,
+                    "Amplitude": 0.0,
+                    "TriggerSpell": null,
+                    "Type": 6,
+                    "ScaleValues": {}
+                  },
+                  {
+                    "Id": 816164,
+                    "BaseValue": 0.0,
+                    "SpCoefficient": 0.0,
+                    "Coefficient": 0.0,
+                    "TriggerSpellid": 0,
+                    "Amplitude": 0.0,
+                    "TriggerSpell": null,
+                    "Type": 6,
+                    "ScaleValues": {}
+                  },
+                  {
+                    "Id": 816165,
+                    "BaseValue": 0.0,
+                    "SpCoefficient": 0.0,
+                    "Coefficient": 0.0,
+                    "TriggerSpellid": 0,
+                    "Amplitude": 0.0,
+                    "TriggerSpell": null,
+                    "Type": 6,
+                    "ScaleValues": {}
+                  },
+                  {
+                    "Id": 816166,
+                    "BaseValue": 0.0,
+                    "SpCoefficient": 0.0,
+                    "Coefficient": 0.0,
+                    "TriggerSpellid": 0,
+                    "Amplitude": 0.0,
+                    "TriggerSpell": null,
+                    "Type": 6,
+                    "ScaleValues": {}
+                  },
+                  {
+                    "Id": 816167,
+                    "BaseValue": 0.0,
+                    "SpCoefficient": 0.0,
+                    "Coefficient": 0.0,
+                    "TriggerSpellid": 0,
+                    "Amplitude": 0.0,
+                    "TriggerSpell": null,
+                    "Type": 6,
+                    "ScaleValues": {}
+                  },
+                  {
+                    "Id": 816168,
+                    "BaseValue": 0.0,
+                    "SpCoefficient": 0.0,
+                    "Coefficient": 0.0,
+                    "TriggerSpellid": 0,
+                    "Amplitude": 0.0,
+                    "TriggerSpell": null,
+                    "Type": 6,
+                    "ScaleValues": {}
+                  },
+                  {
+                    "Id": 816169,
+                    "BaseValue": 0.0,
+                    "SpCoefficient": 0.0,
+                    "Coefficient": 0.0,
+                    "TriggerSpellid": 0,
+                    "Amplitude": 0.0,
+                    "TriggerSpell": null,
+                    "Type": 6,
+                    "ScaleValues": {}
+                  },
+                  {
+                    "Id": 816170,
+                    "BaseValue": 0.0,
+                    "SpCoefficient": 0.0,
+                    "Coefficient": 0.0,
+                    "TriggerSpellid": 0,
+                    "Amplitude": 0.0,
+                    "TriggerSpell": null,
+                    "Type": 6,
+                    "ScaleValues": {}
+                  },
+                  {
+                    "Id": 873342,
+                    "BaseValue": 2.0,
+                    "SpCoefficient": 0.0,
+                    "Coefficient": 0.0,
+                    "TriggerSpellid": 0,
+                    "Amplitude": 1000.0,
+                    "TriggerSpell": null,
+                    "Type": 6,
+                    "ScaleValues": {}
+                  },
+                  {
+                    "Id": 875200,
+                    "BaseValue": 0.0,
+                    "SpCoefficient": 0.0,
+                    "Coefficient": 0.0,
+                    "TriggerSpellid": 0,
+                    "Amplitude": 0.0,
+                    "TriggerSpell": null,
+                    "Type": 6,
+                    "ScaleValues": {}
+                  },
+                  {
+                    "Id": 875201,
+                    "BaseValue": -100.0,
+                    "SpCoefficient": 0.0,
+                    "Coefficient": 0.0,
+                    "TriggerSpellid": 0,
+                    "Amplitude": 0.0,
+                    "TriggerSpell": null,
+                    "Type": 6,
+                    "ScaleValues": {}
+                  }
+                ],
+                "ConduitRanks": {}
+              },
+              "Type": 6,
+              "ScaleValues": {}
             }
           ],
           "ConduitRanks": {}
@@ -2143,9 +2759,10 @@
           "ChargeCooldown": 0,
           "Charges": 0,
           "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
           "Rppm": 0.0,
           "RppmIsHasted": false,
-          "ScaleValues": {},
           "Effects": [
             {
               "Id": 833714,
@@ -2155,7 +2772,573 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 6
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 338477,
+          "Name": "Echo of Eonar",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 101.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 1.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 837142,
+              "BaseValue": 10.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 875114,
+              "BaseValue": 5.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 875130,
+              "BaseValue": 50.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 347660,
+          "Name": "Echo of Eonar",
+          "ManaCost": 0.0,
+          "MaxRange": 100.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 10000.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 875123,
+              "BaseValue": 10.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 336370,
+          "Name": "Cauterizing Shadows",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 833798,
+              "BaseValue": 3.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 336373,
+          "Name": "Cauterizing Shadows",
+          "ManaCost": 0.0,
+          "MaxRange": 100.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 833801,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.75,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 10,
+              "ScaleValues": {}
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 336266,
+          "Name": "Flash Concentration",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 100.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 833393,
+              "BaseValue": 500.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 336267,
+              "Amplitude": 0.0,
+              "TriggerSpell": {
+                "Id": 336267,
+                "Name": "Flash Concentration",
+                "ManaCost": 0.0,
+                "MaxRange": 100.0,
+                "BaseCastTime": 0.0,
+                "BaseCooldown": 0.0,
+                "IsCooldownHasted": false,
+                "Duration": 20000.0,
+                "Gcd": 0.0,
+                "ChargeCooldown": 0,
+                "Charges": 0,
+                "MaxStacks": 5.0,
+                "ProcChance": 101.0,
+                "InternalCooldown": 0.0,
+                "Rppm": 0.0,
+                "RppmIsHasted": false,
+                "Effects": [
+                  {
+                    "Id": 833395,
+                    "BaseValue": -200.0,
+                    "SpCoefficient": 0.0,
+                    "Coefficient": 0.0,
+                    "TriggerSpellid": 0,
+                    "Amplitude": 0.0,
+                    "TriggerSpell": null,
+                    "Type": 6,
+                    "ScaleValues": {}
+                  },
+                  {
+                    "Id": 833396,
+                    "BaseValue": 3.0,
+                    "SpCoefficient": 0.0,
+                    "Coefficient": 0.0,
+                    "TriggerSpellid": 0,
+                    "Amplitude": 0.0,
+                    "TriggerSpell": null,
+                    "Type": 6,
+                    "ScaleValues": {}
+                  }
+                ],
+                "ConduitRanks": {}
+              },
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 833394,
+              "BaseValue": 10.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 336400,
+          "Name": "Divine Image",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 25.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 833842,
+              "BaseValue": 6.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 336401,
+              "Amplitude": 0.0,
+              "TriggerSpell": {
+                "Id": 336401,
+                "Name": "Divine Image",
+                "ManaCost": 0.0,
+                "MaxRange": 100.0,
+                "BaseCastTime": 0.0,
+                "BaseCooldown": 0.0,
+                "IsCooldownHasted": false,
+                "Duration": 15000.0,
+                "Gcd": 0.0,
+                "ChargeCooldown": 0,
+                "Charges": 0,
+                "MaxStacks": 0.0,
+                "ProcChance": 0.0,
+                "InternalCooldown": 0.0,
+                "Rppm": 0.0,
+                "RppmIsHasted": false,
+                "Effects": [
+                  {
+                    "Id": 833843,
+                    "BaseValue": 60.0,
+                    "SpCoefficient": 0.0,
+                    "Coefficient": 0.0,
+                    "TriggerSpellid": 0,
+                    "Amplitude": 0.0,
+                    "TriggerSpell": null,
+                    "Type": 28,
+                    "ScaleValues": {}
+                  },
+                  {
+                    "Id": 833844,
+                    "BaseValue": 0.0,
+                    "SpCoefficient": 0.0,
+                    "Coefficient": 0.0,
+                    "TriggerSpellid": 196705,
+                    "Amplitude": 0.0,
+                    "TriggerSpell": {
+                      "Id": 196705,
+                      "Name": "Divine Image",
+                      "ManaCost": 0.0,
+                      "MaxRange": 100.0,
+                      "BaseCastTime": 0.0,
+                      "BaseCooldown": 0.0,
+                      "IsCooldownHasted": false,
+                      "Duration": 15000.0,
+                      "Gcd": 0.0,
+                      "ChargeCooldown": 0,
+                      "Charges": 0,
+                      "MaxStacks": 0.0,
+                      "ProcChance": 100.0,
+                      "InternalCooldown": 200.0,
+                      "Rppm": 0.0,
+                      "RppmIsHasted": false,
+                      "Effects": [
+                        {
+                          "Id": 288791,
+                          "BaseValue": 1.0,
+                          "SpCoefficient": 0.0,
+                          "Coefficient": 0.0,
+                          "TriggerSpellid": 0,
+                          "Amplitude": 0.0,
+                          "TriggerSpell": null,
+                          "Type": 6,
+                          "ScaleValues": {}
+                        },
+                        {
+                          "Id": 880574,
+                          "BaseValue": 0.0,
+                          "SpCoefficient": 0.0,
+                          "Coefficient": 0.0,
+                          "TriggerSpellid": 0,
+                          "Amplitude": 1500.0,
+                          "TriggerSpell": null,
+                          "Type": 6,
+                          "ScaleValues": {}
+                        }
+                      ],
+                      "ConduitRanks": {}
+                    },
+                    "Type": 64,
+                    "ScaleValues": {}
+                  }
+                ],
+                "ConduitRanks": {}
+              },
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 196809,
+          "Name": "Healing Light",
+          "ManaCost": 0.0,
+          "MaxRange": 100.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 288947,
+              "BaseValue": 0.0,
+              "SpCoefficient": 1.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 10,
+              "ScaleValues": {}
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 196810,
+          "Name": "Dazzling Lights",
+          "ManaCost": 0.0,
+          "MaxRange": 100.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 288949,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.4875,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 10,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 336109,
+              "BaseValue": 5.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 3,
+              "ScaleValues": {}
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 196810,
+          "Name": "Dazzling Lights",
+          "ManaCost": 0.0,
+          "MaxRange": 100.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 288949,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.4875,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 10,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 336109,
+              "BaseValue": 5.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 3,
+              "ScaleValues": {}
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 196812,
+          "Name": "Light Eruption",
+          "ManaCost": 0.0,
+          "MaxRange": 100.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 288951,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.26,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 2,
+              "ScaleValues": {}
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 196813,
+          "Name": "Blessed Light",
+          "ManaCost": 0.0,
+          "MaxRange": 100.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 288952,
+              "BaseValue": 5.0,
+              "SpCoefficient": 1.2,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 10,
+              "ScaleValues": {}
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 196816,
+          "Name": "Tranquil Light",
+          "ManaCost": 0.0,
+          "MaxRange": 100.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 6000.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 288956,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.195,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 1000.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
             }
           ],
           "ConduitRanks": {}
@@ -2173,9 +3356,10 @@
           "ChargeCooldown": 0,
           "Charges": 0,
           "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
           "Rppm": 0.0,
           "RppmIsHasted": false,
-          "ScaleValues": {},
           "Effects": [
             {
               "Id": 835898,
@@ -2185,7 +3369,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 6
+              "Type": 6,
+              "ScaleValues": {}
             }
           ],
           "ConduitRanks": {
@@ -2219,9 +3404,10 @@
           "ChargeCooldown": 0,
           "Charges": 0,
           "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
           "Rppm": 0.0,
           "RppmIsHasted": false,
-          "ScaleValues": {},
           "Effects": [
             {
               "Id": 836264,
@@ -2231,7 +3417,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 6
+              "Type": 6,
+              "ScaleValues": {}
             },
             {
               "Id": 842371,
@@ -2241,7 +3428,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 6
+              "Type": 6,
+              "ScaleValues": {}
             }
           ],
           "ConduitRanks": {
@@ -2275,9 +3463,10 @@
           "ChargeCooldown": 0,
           "Charges": 0,
           "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
           "Rppm": 0.0,
           "RppmIsHasted": false,
-          "ScaleValues": {},
           "Effects": [
             {
               "Id": 836282,
@@ -2287,7 +3476,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 6
+              "Type": 6,
+              "ScaleValues": {}
             },
             {
               "Id": 836285,
@@ -2297,7 +3487,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 6
+              "Type": 6,
+              "ScaleValues": {}
             }
           ],
           "ConduitRanks": {
@@ -2331,9 +3522,10 @@
           "ChargeCooldown": 0,
           "Charges": 0,
           "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
           "Rppm": 0.0,
           "RppmIsHasted": false,
-          "ScaleValues": {},
           "Effects": [
             {
               "Id": 836807,
@@ -2343,17 +3535,19 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 6
+              "Type": 6,
+              "ScaleValues": {}
             },
             {
               "Id": 871353,
-              "BaseValue": 60.0,
+              "BaseValue": 80.0,
               "SpCoefficient": 0.0,
               "Coefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 6
+              "Type": 6,
+              "ScaleValues": {}
             }
           ],
           "ConduitRanks": {
@@ -2387,9 +3581,10 @@
           "ChargeCooldown": 0,
           "Charges": 0,
           "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
           "Rppm": 0.0,
           "RppmIsHasted": false,
-          "ScaleValues": {},
           "Effects": [
             {
               "Id": 836824,
@@ -2399,7 +3594,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 6
+              "Type": 6,
+              "ScaleValues": {}
             },
             {
               "Id": 836825,
@@ -2409,7 +3605,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 6
+              "Type": 6,
+              "ScaleValues": {}
             },
             {
               "Id": 836828,
@@ -2419,7 +3616,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 6
+              "Type": 6,
+              "ScaleValues": {}
             }
           ],
           "ConduitRanks": {
@@ -2453,9 +3651,10 @@
           "ChargeCooldown": 0,
           "Charges": 0,
           "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
           "Rppm": 0.0,
           "RppmIsHasted": false,
-          "ScaleValues": {},
           "Effects": [
             {
               "Id": 836877,
@@ -2465,7 +3664,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 6
+              "Type": 6,
+              "ScaleValues": {}
             }
           ],
           "ConduitRanks": {
@@ -2499,9 +3699,10 @@
           "ChargeCooldown": 0,
           "Charges": 0,
           "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
           "Rppm": 0.0,
           "RppmIsHasted": false,
-          "ScaleValues": {},
           "Effects": [
             {
               "Id": 836184,
@@ -2511,7 +3712,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 6
+              "Type": 6,
+              "ScaleValues": {}
             }
           ],
           "ConduitRanks": {
@@ -2533,6 +3735,113 @@
           }
         },
         {
+          "Id": 337947,
+          "Name": "Resonant Words",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 101.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 836234,
+              "BaseValue": 10.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ],
+          "ConduitRanks": {
+            "0": 38.0,
+            "1": 41.799999,
+            "2": 45.599998,
+            "3": 49.400002,
+            "4": 53.200001,
+            "5": 57.0,
+            "6": 60.799999,
+            "7": 64.599998,
+            "8": 68.400002,
+            "9": 72.199997,
+            "10": 76.0,
+            "11": 79.800003,
+            "12": 83.599998,
+            "13": 87.400002,
+            "14": 91.199997
+          }
+        },
+        {
+          "Id": 337811,
+          "Name": "Lasting Spirit",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 836028,
+              "BaseValue": 10.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 836029,
+              "BaseValue": 2000.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ],
+          "ConduitRanks": {
+            "0": 13.0,
+            "1": 14.3,
+            "2": 15.6,
+            "3": 16.9,
+            "4": 18.200001,
+            "5": 19.5,
+            "6": 20.799999,
+            "7": 22.1,
+            "8": 23.4,
+            "9": 24.700001,
+            "10": 26.0,
+            "11": 27.299999,
+            "12": 28.6,
+            "13": 29.9,
+            "14": 31.200001
+          }
+        },
+        {
           "Id": 585,
           "Name": "Smite",
           "ManaCost": 0.2,
@@ -2545,9 +3854,10 @@
           "ChargeCooldown": 0,
           "Charges": 0,
           "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
           "Rppm": 0.0,
           "RppmIsHasted": false,
-          "ScaleValues": {},
           "Effects": [
             {
               "Id": 236,
@@ -2557,7 +3867,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 2
+              "Type": 2,
+              "ScaleValues": {}
             }
           ],
           "ConduitRanks": {}
@@ -2575,9 +3886,10 @@
           "ChargeCooldown": 0,
           "Charges": 0,
           "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
           "Rppm": 0.0,
           "RppmIsHasted": false,
-          "ScaleValues": {},
           "Effects": [
             {
               "Id": 624379,
@@ -2587,7 +3899,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 6
+              "Type": 6,
+              "ScaleValues": {}
             }
           ],
           "ConduitRanks": {}
@@ -2605,9 +3918,10 @@
           "ChargeCooldown": 0,
           "Charges": 0,
           "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
           "Rppm": 0.0,
           "RppmIsHasted": false,
-          "ScaleValues": {},
           "Effects": [
             {
               "Id": 91044,
@@ -2617,7 +3931,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 2
+              "Type": 2,
+              "ScaleValues": {}
             },
             {
               "Id": 709477,
@@ -2627,7 +3942,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 3
+              "Type": 3,
+              "ScaleValues": {}
             }
           ],
           "ConduitRanks": {}
@@ -2645,9 +3961,10 @@
           "ChargeCooldown": 0,
           "Charges": 0,
           "MaxStacks": 0.0,
+          "ProcChance": 100.0,
+          "InternalCooldown": 0.0,
           "Rppm": 0.0,
           "RppmIsHasted": false,
-          "ScaleValues": {},
           "Effects": [
             {
               "Id": 242,
@@ -2657,7 +3974,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 2
+              "Type": 2,
+              "ScaleValues": {}
             },
             {
               "Id": 254257,
@@ -2667,7 +3985,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 2000.0,
               "TriggerSpell": null,
-              "Type": 6
+              "Type": 6,
+              "ScaleValues": {}
             },
             {
               "Id": 323674,
@@ -2677,7 +3996,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 30
+              "Type": 30,
+              "ScaleValues": {}
             }
           ],
           "ConduitRanks": {}
@@ -2695,9 +4015,10 @@
           "ChargeCooldown": 0,
           "Charges": 0,
           "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
           "Rppm": 0.0,
           "RppmIsHasted": false,
-          "ScaleValues": {},
           "Effects": [
             {
               "Id": 819469,
@@ -2707,7 +4028,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 6
+              "Type": 6,
+              "ScaleValues": {}
             }
           ],
           "ConduitRanks": {}
@@ -2725,9 +4047,10 @@
           "ChargeCooldown": 30000,
           "Charges": 1,
           "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
           "Rppm": 0.0,
           "RppmIsHasted": false,
-          "ScaleValues": {},
           "Effects": [
             {
               "Id": 22171,
@@ -2737,7 +4060,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 2
+              "Type": 2,
+              "ScaleValues": {}
             },
             {
               "Id": 165318,
@@ -2747,7 +4071,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 3
+              "Type": 3,
+              "ScaleValues": {}
             },
             {
               "Id": 340366,
@@ -2757,7 +4082,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 0
+              "Type": 77,
+              "ScaleValues": {}
             }
           ],
           "ConduitRanks": {}
@@ -2775,9 +4101,10 @@
           "ChargeCooldown": 0,
           "Charges": 0,
           "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
           "Rppm": 0.0,
           "RppmIsHasted": false,
-          "ScaleValues": {},
           "Effects": [
             {
               "Id": 810248,
@@ -2787,7 +4114,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 6
+              "Type": 6,
+              "ScaleValues": {}
             }
           ],
           "ConduitRanks": {}
@@ -2805,9 +4133,10 @@
           "ChargeCooldown": 0,
           "Charges": 0,
           "MaxStacks": 1.0,
+          "ProcChance": 101.0,
+          "InternalCooldown": 0.0,
           "Rppm": 0.0,
           "RppmIsHasted": false,
-          "ScaleValues": {},
           "Effects": [
             {
               "Id": 6990,
@@ -2817,7 +4146,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 2
+              "Type": 2,
+              "ScaleValues": {}
             },
             {
               "Id": 6991,
@@ -2827,7 +4157,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 1000.0,
               "TriggerSpell": null,
-              "Type": 6
+              "Type": 6,
+              "ScaleValues": {}
             },
             {
               "Id": 808675,
@@ -2837,7 +4168,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 6
+              "Type": 6,
+              "ScaleValues": {}
             }
           ],
           "ConduitRanks": {}
@@ -2855,11 +4187,10 @@
           "ChargeCooldown": 0,
           "Charges": 0,
           "MaxStacks": 0.0,
+          "ProcChance": 101.0,
+          "InternalCooldown": 0.0,
           "Rppm": 0.0,
           "RppmIsHasted": false,
-          "ScaleValues": {
-            "60": 95.0
-          },
           "Effects": [
             {
               "Id": 785591,
@@ -2869,7 +4200,10 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 6
+              "Type": 6,
+              "ScaleValues": {
+                "60": 95.0
+              }
             }
           ],
           "ConduitRanks": {}
@@ -2887,11 +4221,10 @@
           "ChargeCooldown": 0,
           "Charges": 0,
           "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
           "Rppm": 0.0,
           "RppmIsHasted": false,
-          "ScaleValues": {
-            "60": 25000.0
-          },
           "Effects": [
             {
               "Id": 785599,
@@ -2901,7 +4234,10 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 30
+              "Type": 30,
+              "ScaleValues": {
+                "60": 25000.0
+              }
             }
           ],
           "ConduitRanks": {}
@@ -2919,9 +4255,10 @@
           "ChargeCooldown": 0,
           "Charges": 0,
           "MaxStacks": 0.0,
+          "ProcChance": 101.0,
+          "InternalCooldown": 0.0,
           "Rppm": 1.5,
           "RppmIsHasted": false,
-          "ScaleValues": {},
           "Effects": [
             {
               "Id": 824536,
@@ -2943,11 +4280,10 @@
                 "ChargeCooldown": 0,
                 "Charges": 0,
                 "MaxStacks": 0.0,
+                "ProcChance": 0.0,
+                "InternalCooldown": 0.0,
                 "Rppm": 0.0,
                 "RppmIsHasted": false,
-                "ScaleValues": {
-                  "60": 95.0
-                },
                 "Effects": [
                   {
                     "Id": 823705,
@@ -2957,12 +4293,16 @@
                     "TriggerSpellid": 0,
                     "Amplitude": 0.0,
                     "TriggerSpell": null,
-                    "Type": 6
+                    "Type": 6,
+                    "ScaleValues": {
+                      "60": 95.0
+                    }
                   }
                 ],
                 "ConduitRanks": {}
               },
-              "Type": 6
+              "Type": 6,
+              "ScaleValues": {}
             }
           ],
           "ConduitRanks": {}
@@ -2980,11 +4320,10 @@
           "ChargeCooldown": 0,
           "Charges": 0,
           "MaxStacks": 0.0,
+          "ProcChance": 100.0,
+          "InternalCooldown": 0.0,
           "Rppm": 0.0,
           "RppmIsHasted": false,
-          "ScaleValues": {
-            "60": 95.0
-          },
           "Effects": [
             {
               "Id": 824555,
@@ -2994,17 +4333,1285 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 6
+              "Type": 6,
+              "ScaleValues": {
+                "60": 95.0
+              }
             },
             {
               "Id": 873512,
               "BaseValue": 0.0,
               "SpCoefficient": 0.0,
-              "Coefficient": 1.1,
+              "Coefficient": 0.92,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 6
+              "Type": 6,
+              "ScaleValues": {
+                "60": 95.0
+              }
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 344806,
+          "Name": "Crimson Chorus",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 100.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 869450,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.467903,
+              "TriggerSpellid": 344803,
+              "Amplitude": 0.0,
+              "TriggerSpell": {
+                "Id": 344803,
+                "Name": "Crimson Chorus",
+                "ManaCost": 0.0,
+                "MaxRange": 0.0,
+                "BaseCastTime": 0.0,
+                "BaseCooldown": 0.0,
+                "IsCooldownHasted": false,
+                "Duration": 10000.0,
+                "Gcd": 0.0,
+                "ChargeCooldown": 0,
+                "Charges": 0,
+                "MaxStacks": 3.0,
+                "ProcChance": 101.0,
+                "InternalCooldown": 0.0,
+                "Rppm": 0.0,
+                "RppmIsHasted": false,
+                "Effects": [
+                  {
+                    "Id": 869431,
+                    "BaseValue": 0.0,
+                    "SpCoefficient": 0.0,
+                    "Coefficient": 0.0,
+                    "TriggerSpellid": 0,
+                    "Amplitude": 0.0,
+                    "TriggerSpell": null,
+                    "Type": 6,
+                    "ScaleValues": {}
+                  }
+                ],
+                "ConduitRanks": {}
+              },
+              "Type": 6,
+              "ScaleValues": {
+                "60": 95.0
+              }
+            },
+            {
+              "Id": 869545,
+              "BaseValue": 5.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 3,
+              "ScaleValues": {}
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 344803,
+          "Name": "Crimson Chorus",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 10000.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 3.0,
+          "ProcChance": 101.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 869431,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 345801,
+          "Name": "Soulletting Ruby",
+          "ManaCost": 0.0,
+          "MaxRange": 40.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 120000.0,
+          "IsCooldownHasted": false,
+          "Duration": 20000.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 871952,
+              "BaseValue": 30.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 871963,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 345802,
+              "Amplitude": 0.0,
+              "TriggerSpell": {
+                "Id": 345802,
+                "Name": "Soul Fragment",
+                "ManaCost": 0.0,
+                "MaxRange": 40.0,
+                "BaseCastTime": 0.0,
+                "BaseCooldown": 0.0,
+                "IsCooldownHasted": false,
+                "Duration": 0.0,
+                "Gcd": 0.0,
+                "ChargeCooldown": 0,
+                "Charges": 0,
+                "MaxStacks": 0.0,
+                "ProcChance": 0.0,
+                "InternalCooldown": 0.0,
+                "Rppm": 0.0,
+                "RppmIsHasted": false,
+                "Effects": [
+                  {
+                    "Id": 871953,
+                    "BaseValue": 0.0,
+                    "SpCoefficient": 0.0,
+                    "Coefficient": 0.0,
+                    "TriggerSpellid": 345804,
+                    "Amplitude": 0.0,
+                    "TriggerSpell": {
+                      "Id": 345804,
+                      "Name": "Soul Transfer",
+                      "ManaCost": 0.0,
+                      "MaxRange": 40.0,
+                      "BaseCastTime": 0.0,
+                      "BaseCooldown": 0.0,
+                      "IsCooldownHasted": false,
+                      "Duration": 0.0,
+                      "Gcd": 0.0,
+                      "ChargeCooldown": 0,
+                      "Charges": 0,
+                      "MaxStacks": 0.0,
+                      "ProcChance": 0.0,
+                      "InternalCooldown": 0.0,
+                      "Rppm": 0.0,
+                      "RppmIsHasted": false,
+                      "Effects": [
+                        {
+                          "Id": 871955,
+                          "BaseValue": 0.0,
+                          "SpCoefficient": 0.0,
+                          "Coefficient": 0.0,
+                          "TriggerSpellid": 0,
+                          "Amplitude": 0.0,
+                          "TriggerSpell": null,
+                          "Type": 10,
+                          "ScaleValues": {}
+                        }
+                      ],
+                      "ConduitRanks": {}
+                    },
+                    "Type": 32,
+                    "ScaleValues": {}
+                  }
+                ],
+                "ConduitRanks": {}
+              },
+              "Type": 64,
+              "ScaleValues": {}
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 345805,
+          "Name": "Soul Infusion",
+          "ManaCost": 0.0,
+          "MaxRange": 40.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 16000.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 871956,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 345806,
+          "Name": "Soul Infusion",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 871957,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 51.64138,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 345807,
+          "Name": "Soul Infusion",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 871958,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 2.269577,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {
+                "60": 95.0
+              }
+            },
+            {
+              "Id": 871962,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 2.900014,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {
+                "60": 95.0
+              }
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 344243,
+          "Name": "Manabound Mirror",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 100.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 868431,
+              "BaseValue": 3240.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 868610,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 12.827586,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 3,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 868611,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 128.275864,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 3,
+              "ScaleValues": {}
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 344244,
+          "Name": "Manabound Mirror",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 30000.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 868432,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 344245,
+          "Name": "Manabound Mirror",
+          "ManaCost": 0.0,
+          "MaxRange": 50.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 60000.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 868433,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 80.172409,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 10,
+              "ScaleValues": {}
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 345432,
+          "Name": "Blood Waltz",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 90000.0,
+          "IsCooldownHasted": false,
+          "Duration": 4000.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 871311,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 750.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 345431,
+          "Name": "Blood Waltz",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 871310,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.482679,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {
+                "60": 95.0
+              }
+            },
+            {
+              "Id": 871316,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.271,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {
+                "60": 95.0
+              }
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 345439,
+          "Name": "Blood Waltz",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 20000.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 4.0,
+          "ProcChance": 101.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 871323,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 871324,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 344916,
+          "Name": "Tuft of Smoldering Plumage",
+          "ManaCost": 0.0,
+          "MaxRange": 50.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 120000.0,
+          "IsCooldownHasted": false,
+          "Duration": 6000.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 869707,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 870061,
+              "BaseValue": 25.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 3,
+              "ScaleValues": {}
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 344915,
+          "Name": "Tuft of Smoldering Plumage",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 869705,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 326.793091,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 869710,
+              "BaseValue": 2.5,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 869711,
+              "BaseValue": 10.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 35,
+              "ScaleValues": {}
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 344221,
+          "Name": "Consumptive Infusion",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 100.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 868384,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 344225,
+              "Amplitude": 0.0,
+              "TriggerSpell": {
+                "Id": 344225,
+                "Name": "Consumptive Infusion",
+                "ManaCost": 0.0,
+                "MaxRange": 0.0,
+                "BaseCastTime": 0.0,
+                "BaseCooldown": 0.0,
+                "IsCooldownHasted": false,
+                "Duration": 15000.0,
+                "Gcd": 0.0,
+                "ChargeCooldown": 0,
+                "Charges": 0,
+                "MaxStacks": 0.0,
+                "ProcChance": 100.0,
+                "InternalCooldown": 0.0,
+                "Rppm": 0.0,
+                "RppmIsHasted": false,
+                "Effects": [
+                  {
+                    "Id": 868391,
+                    "BaseValue": 0.0,
+                    "SpCoefficient": 0.0,
+                    "Coefficient": 0.0,
+                    "TriggerSpellid": 344227,
+                    "Amplitude": 0.0,
+                    "TriggerSpell": {
+                      "Id": 344227,
+                      "Name": "Consumptive Infusion",
+                      "ManaCost": 0.0,
+                      "MaxRange": 50.0,
+                      "BaseCastTime": 0.0,
+                      "BaseCooldown": 0.0,
+                      "IsCooldownHasted": false,
+                      "Duration": 10000.0,
+                      "Gcd": 0.0,
+                      "ChargeCooldown": 0,
+                      "Charges": 0,
+                      "MaxStacks": 0.0,
+                      "ProcChance": 0.0,
+                      "InternalCooldown": 0.0,
+                      "Rppm": 0.0,
+                      "RppmIsHasted": false,
+                      "Effects": [
+                        {
+                          "Id": 868394,
+                          "BaseValue": 0.0,
+                          "SpCoefficient": 0.0,
+                          "Coefficient": 1.65,
+                          "TriggerSpellid": 0,
+                          "Amplitude": 0.0,
+                          "TriggerSpell": null,
+                          "Type": 6,
+                          "ScaleValues": {
+                            "60": 95.0
+                          }
+                        }
+                      ],
+                      "ConduitRanks": {}
+                    },
+                    "Type": 6,
+                    "ScaleValues": {}
+                  },
+                  {
+                    "Id": 868400,
+                    "BaseValue": 0.0,
+                    "SpCoefficient": 0.0,
+                    "Coefficient": 0.0,
+                    "TriggerSpellid": 344229,
+                    "Amplitude": 0.0,
+                    "TriggerSpell": {
+                      "Id": 344229,
+                      "Name": "Consumptive Infusion",
+                      "ManaCost": 0.0,
+                      "MaxRange": 0.0,
+                      "BaseCastTime": 0.0,
+                      "BaseCooldown": 0.0,
+                      "IsCooldownHasted": false,
+                      "Duration": 30000.0,
+                      "Gcd": 0.0,
+                      "ChargeCooldown": 0,
+                      "Charges": 0,
+                      "MaxStacks": 0.0,
+                      "ProcChance": 0.0,
+                      "InternalCooldown": 0.0,
+                      "Rppm": 0.0,
+                      "RppmIsHasted": false,
+                      "Effects": [
+                        {
+                          "Id": 868397,
+                          "BaseValue": 0.0,
+                          "SpCoefficient": 0.0,
+                          "Coefficient": 0.0,
+                          "TriggerSpellid": 0,
+                          "Amplitude": 0.0,
+                          "TriggerSpell": null,
+                          "Type": 6,
+                          "ScaleValues": {}
+                        }
+                      ],
+                      "ConduitRanks": {}
+                    },
+                    "Type": 6,
+                    "ScaleValues": {}
+                  }
+                ],
+                "ConduitRanks": {}
+              },
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 344227,
+          "Name": "Consumptive Infusion",
+          "ManaCost": 0.0,
+          "MaxRange": 50.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 10000.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 868394,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 1.65,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {
+                "60": 95.0
+              }
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 344229,
+          "Name": "Consumptive Infusion",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 30000.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 868397,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 333734,
+          "Name": "Web of Repose",
+          "ManaCost": 0.0,
+          "MaxRange": 50.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 90000.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 829040,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 3,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 830069,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 334249,
+              "Amplitude": 0.0,
+              "TriggerSpell": {
+                "Id": 334249,
+                "Name": "Darkmoon Deck: Repose On Cooldown",
+                "ManaCost": 0.0,
+                "MaxRange": 0.0,
+                "BaseCastTime": 0.0,
+                "BaseCooldown": 0.0,
+                "IsCooldownHasted": false,
+                "Duration": 90000.0,
+                "Gcd": 0.0,
+                "ChargeCooldown": 0,
+                "Charges": 0,
+                "MaxStacks": 0.0,
+                "ProcChance": 0.0,
+                "InternalCooldown": 0.0,
+                "Rppm": 0.0,
+                "RppmIsHasted": false,
+                "Effects": [
+                  {
+                    "Id": 830068,
+                    "BaseValue": 0.0,
+                    "SpCoefficient": 0.0,
+                    "Coefficient": 0.0,
+                    "TriggerSpellid": 0,
+                    "Amplitude": 0.0,
+                    "TriggerSpell": null,
+                    "Type": 6,
+                    "ScaleValues": {}
+                  }
+                ],
+                "ConduitRanks": {}
+              },
+              "Type": 64,
+              "ScaleValues": {}
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 311474,
+          "Name": "Ace of Repose",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": -1.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 792442,
+              "BaseValue": 1.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 207.844818,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 311481,
+          "Name": "Eight of Repose",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": -1.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 792449,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 415.706909,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 345695,
+          "Name": "Vial of Spectral Essence",
+          "ManaCost": 0.0,
+          "MaxRange": 40.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 90000.0,
+          "IsCooldownHasted": false,
+          "Duration": 20000.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 871762,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 161.379318,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 871776,
+              "BaseValue": 30.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 3,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 871777,
+              "BaseValue": 5.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 3,
+              "ScaleValues": {}
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 343385,
+          "Name": "Overflowing Anima Cage",
+          "ManaCost": 0.0,
+          "MaxRange": 40.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 150000.0,
+          "IsCooldownHasted": false,
+          "Duration": 15000.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 845122,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 3,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 845132,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 179,
+              "ScaleValues": {}
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 343387,
+          "Name": "Overflowing Anima Cage",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": -1.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 845125,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.985059,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {
+                "60": 95.0
+              }
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 345549,
+          "Name": "Charged Phylactery",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 30000.0,
+          "IsCooldownHasted": false,
+          "Duration": 600000.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 100.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 871494,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 871495,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 346040,
+              "Amplitude": 0.0,
+              "TriggerSpell": {
+                "Id": 346040,
+                "Name": "Phylactery's Toll",
+                "ManaCost": 0.0,
+                "MaxRange": 0.0,
+                "BaseCastTime": 0.0,
+                "BaseCooldown": 0.0,
+                "IsCooldownHasted": false,
+                "Duration": 0.0,
+                "Gcd": 0.0,
+                "ChargeCooldown": 0,
+                "Charges": 0,
+                "MaxStacks": 0.0,
+                "ProcChance": 0.0,
+                "InternalCooldown": 0.0,
+                "Rppm": 0.0,
+                "RppmIsHasted": false,
+                "Effects": [
+                  {
+                    "Id": 872327,
+                    "BaseValue": 0.0,
+                    "SpCoefficient": 0.0,
+                    "Coefficient": 0.0,
+                    "TriggerSpellid": 0,
+                    "Amplitude": 0.0,
+                    "TriggerSpell": null,
+                    "Type": 2,
+                    "ScaleValues": {}
+                  }
+                ],
+                "ConduitRanks": {}
+              },
+              "Type": 142,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 871497,
+              "BaseValue": 30.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 3,
+              "ScaleValues": {}
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 345551,
+          "Name": "Churning Phylactery",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 871498,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 89.086205,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 872330,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 44.534481,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
             }
           ],
           "ConduitRanks": {}
@@ -3022,9 +5629,10 @@
           "ChargeCooldown": 0,
           "Charges": 0,
           "MaxStacks": 0.0,
+          "ProcChance": 101.0,
+          "InternalCooldown": 0.0,
           "Rppm": 0.0,
           "RppmIsHasted": false,
-          "ScaleValues": {},
           "Effects": [
             {
               "Id": 820394,
@@ -3034,7 +5642,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 6
+              "Type": 6,
+              "ScaleValues": {}
             }
           ],
           "ConduitRanks": {}
@@ -3052,21 +5661,23 @@
           "ChargeCooldown": 0,
           "Charges": 0,
           "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
           "Rppm": 0.0,
           "RppmIsHasted": false,
-          "ScaleValues": {
-            "60": 95.0
-          },
           "Effects": [
             {
               "Id": 821722,
               "BaseValue": 60.5042,
               "SpCoefficient": 0.0,
-              "Coefficient": 3.68,
+              "Coefficient": 3.315789,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 6
+              "Type": 6,
+              "ScaleValues": {
+                "60": 95.0
+              }
             },
             {
               "Id": 821730,
@@ -3076,46 +5687,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 3000.0,
               "TriggerSpell": null,
-              "Type": 6
-            },
-            {
-              "Id": 872035,
-              "BaseValue": 0.0,
-              "SpCoefficient": 0.0,
-              "Coefficient": 0.0,
-              "TriggerSpellid": 345861,
-              "Amplitude": 0.0,
-              "TriggerSpell": {
-                "Id": 345861,
-                "Name": "Combat Meditation",
-                "ManaCost": 0.0,
-                "MaxRange": 0.0,
-                "BaseCastTime": 0.0,
-                "BaseCooldown": 0.0,
-                "IsCooldownHasted": false,
-                "Duration": 60000.0,
-                "Gcd": 0.0,
-                "ChargeCooldown": 0,
-                "Charges": 0,
-                "MaxStacks": 0.0,
-                "Rppm": 0.0,
-                "RppmIsHasted": false,
-                "ScaleValues": {},
-                "Effects": [
-                  {
-                    "Id": 872034,
-                    "BaseValue": 5.0,
-                    "SpCoefficient": 0.0,
-                    "Coefficient": 0.0,
-                    "TriggerSpellid": 0,
-                    "Amplitude": 0.0,
-                    "TriggerSpell": null,
-                    "Type": 6
-                  }
-                ],
-                "ConduitRanks": {}
-              },
-              "Type": 64
+              "Type": 6,
+              "ScaleValues": {}
             }
           ],
           "ConduitRanks": {}
@@ -3133,9 +5706,10 @@
           "ChargeCooldown": 0,
           "Charges": 0,
           "MaxStacks": 0.0,
+          "ProcChance": 101.0,
+          "InternalCooldown": 0.0,
           "Rppm": 0.0,
           "RppmIsHasted": false,
-          "ScaleValues": {},
           "Effects": [
             {
               "Id": 821729,
@@ -3145,7 +5719,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 179
+              "Type": 179,
+              "ScaleValues": {}
             },
             {
               "Id": 829213,
@@ -3155,7 +5730,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 3
+              "Type": 3,
+              "ScaleValues": {}
             }
           ],
           "ConduitRanks": {}
@@ -3173,9 +5749,10 @@
           "ChargeCooldown": 0,
           "Charges": 0,
           "MaxStacks": 0.0,
+          "ProcChance": 101.0,
+          "InternalCooldown": 700.0,
           "Rppm": 0.0,
           "RppmIsHasted": false,
-          "ScaleValues": {},
           "Effects": [
             {
               "Id": 820379,
@@ -3185,7 +5762,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 6
+              "Type": 6,
+              "ScaleValues": {}
             },
             {
               "Id": 821660,
@@ -3195,7 +5773,8 @@
               "TriggerSpellid": 0,
               "Amplitude": 2000.0,
               "TriggerSpell": null,
-              "Type": 6
+              "Type": 6,
+              "ScaleValues": {}
             }
           ],
           "ConduitRanks": {}
@@ -3208,24 +5787,1802 @@
           "BaseCastTime": 0.0,
           "BaseCooldown": 0.0,
           "IsCooldownHasted": false,
-          "Duration": 4000.0,
+          "Duration": 6000.0,
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
-          "MaxStacks": 4.0,
+          "MaxStacks": 3.0,
+          "ProcChance": 101.0,
+          "InternalCooldown": 0.0,
           "Rppm": 0.0,
           "RppmIsHasted": false,
-          "ScaleValues": {},
           "Effects": [
             {
               "Id": 821709,
+              "BaseValue": -1.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 329778,
+          "Name": "Pointed Courage",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 823160,
+              "BaseValue": 1.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 1000.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 330511,
+          "Name": "Pointed Courage",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": -1.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 3.0,
+          "ProcChance": 101.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 824199,
+              "BaseValue": 2.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 824200,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 1000.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 329791,
+          "Name": "Valiant Strikes",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 100.0,
+          "InternalCooldown": 1500.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 823175,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 875121,
+              "BaseValue": 50.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 875122,
               "BaseValue": 1.0,
               "SpCoefficient": 0.0,
               "Coefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 6
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 330943,
+          "Name": "Valiant Strikes",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": -1.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 20.0,
+          "ProcChance": 101.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 824856,
+              "BaseValue": 1.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 884377,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 329781,
+          "Name": "Resonant Accolades",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 100.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 823165,
+              "BaseValue": 70.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 839991,
+              "BaseValue": 4.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 330859,
+          "Name": "Resonant Accolades",
+          "ManaCost": 0.0,
+          "MaxRange": 100.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 5000.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 824734,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 1000.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 333950,
+          "Name": "Bron's Call to Action",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 101.0,
+          "InternalCooldown": 50.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 829590,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 323074,
+          "Name": "Volatile Solvent",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 811765,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 833121,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 323491,
+          "Name": "Volatile Solvent: Humanoid",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 120000.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 812461,
+              "BaseValue": 2.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 1.263158,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {
+                "60": 95.0
+              }
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 323498,
+          "Name": "Volatile Solvent: Beast",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 120000.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 812469,
+              "BaseValue": 2.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 873552,
+              "BaseValue": 2.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 873553,
+              "BaseValue": 2.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 323502,
+          "Name": "Volatile Solvent: Dragonkin",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 120000.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 812473,
+              "BaseValue": 3.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 323504,
+          "Name": "Volatile Solvent: Elemental",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 120000.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 812475,
+              "BaseValue": 3.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 323095,
+          "Name": "Ultimate Form",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 811790,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 323524,
+          "Name": "Ultimate Form",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 3000.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 812501,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 816156,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 816157,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 816158,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 816159,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 816160,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 816161,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 816162,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 816163,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 816164,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 816165,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 816166,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 816167,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 816168,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 816169,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 816170,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 873342,
+              "BaseValue": 2.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 1000.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 875200,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 875201,
+              "BaseValue": -100.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 342156,
+          "Name": "Lead by Example",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 101.0,
+          "InternalCooldown": 700.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 843010,
+              "BaseValue": 2.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 843026,
+              "BaseValue": 5.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 843079,
+              "BaseValue": 10.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 872117,
+              "BaseValue": 20.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 342181,
+          "Name": "Lead by Example",
+          "ManaCost": 0.0,
+          "MaxRange": 100.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 10000.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 843050,
+              "BaseValue": 5.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 872120,
+              "BaseValue": 2.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 872121,
+              "BaseValue": 4.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 326572,
+          "Name": "Heirmir's Arsenal: Marrowed Gemstone",
+          "ManaCost": 0.0,
+          "MaxRange": 100.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 101.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 817654,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 875215,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 5000.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 327066,
+          "Name": "Marrowed Gemstone Charging",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": -1.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 9.0,
+          "ProcChance": 101.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 818391,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 327069,
+          "Name": "Marrowed Gemstone Enhancement",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 10000.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 818394,
+              "BaseValue": 18.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 327073,
+          "Name": "Dull Gemstone",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 50000.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 818398,
+              "BaseValue": 20.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 326514,
+          "Name": "Forgeborne Reveries",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 817567,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 818504,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 876235,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 876236,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 876250,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 876253,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 348272,
+          "Name": "Forgeborne Reveries",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 876233,
+              "BaseValue": 1.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 876234,
+              "BaseValue": 1.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 322721,
+          "Name": "Grove Invigoration",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 100.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 2.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 811164,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 844396,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 342937,
+              "Amplitude": 0.0,
+              "TriggerSpell": {
+                "Id": 342937,
+                "Name": "Grove Invigoration",
+                "ManaCost": 0.0,
+                "MaxRange": 0.0,
+                "BaseCastTime": 0.0,
+                "BaseCooldown": 0.0,
+                "IsCooldownHasted": false,
+                "Duration": -1.0,
+                "Gcd": 0.0,
+                "ChargeCooldown": 0,
+                "Charges": 0,
+                "MaxStacks": 0.0,
+                "ProcChance": 100.0,
+                "InternalCooldown": 0.0,
+                "Rppm": 0.0,
+                "RppmIsHasted": false,
+                "Effects": [
+                  {
+                    "Id": 844392,
+                    "BaseValue": 0.0,
+                    "SpCoefficient": 0.0,
+                    "Coefficient": 0.0,
+                    "TriggerSpellid": 0,
+                    "Amplitude": 0.0,
+                    "TriggerSpell": null,
+                    "Type": 6,
+                    "ScaleValues": {}
+                  }
+                ],
+                "ConduitRanks": {}
+              },
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 875153,
+              "BaseValue": 8.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 3,
+              "ScaleValues": {}
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 342814,
+          "Name": "Redirected Anima",
+          "ManaCost": 0.0,
+          "MaxRange": 100.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 30000.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 50.0,
+          "ProcChance": 101.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 844157,
+              "BaseValue": 1.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 844158,
+              "BaseValue": 2.9412,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.263158,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {
+                "60": 95.0
+              }
+            },
+            {
+              "Id": 884216,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 352871,
+              "Amplitude": 0.0,
+              "TriggerSpell": {
+                "Id": 352871,
+                "Name": "Bonded Hearts",
+                "ManaCost": 0.0,
+                "MaxRange": 0.0,
+                "BaseCastTime": 0.0,
+                "BaseCooldown": 0.0,
+                "IsCooldownHasted": false,
+                "Duration": 0.0,
+                "Gcd": 0.0,
+                "ChargeCooldown": 0,
+                "Charges": 0,
+                "MaxStacks": 0.0,
+                "ProcChance": 0.0,
+                "InternalCooldown": 0.0,
+                "Rppm": 0.0,
+                "RppmIsHasted": false,
+                "Effects": [
+                  {
+                    "Id": 884212,
+                    "BaseValue": 2.0,
+                    "SpCoefficient": 0.0,
+                    "Coefficient": 0.0,
+                    "TriggerSpellid": 0,
+                    "Amplitude": 0.0,
+                    "TriggerSpell": null,
+                    "Type": 3,
+                    "ScaleValues": {}
+                  },
+                  {
+                    "Id": 885613,
+                    "BaseValue": 0.0,
+                    "SpCoefficient": 0.0,
+                    "Coefficient": 0.0,
+                    "TriggerSpellid": 0,
+                    "Amplitude": 0.0,
+                    "TriggerSpell": null,
+                    "Type": 10,
+                    "ScaleValues": {}
+                  },
+                  {
+                    "Id": 893211,
+                    "BaseValue": 2000.0,
+                    "SpCoefficient": 0.0,
+                    "Coefficient": 0.0,
+                    "TriggerSpellid": 0,
+                    "Amplitude": 0.0,
+                    "TriggerSpell": null,
+                    "Type": 3,
+                    "ScaleValues": {}
+                  }
+                ],
+                "ConduitRanks": {}
+              },
+              "Type": 64,
+              "ScaleValues": {}
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 319191,
+          "Name": "Field of Blossoms",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 101.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 805487,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 342761,
+          "Name": "Field of Blossoms",
+          "ManaCost": 0.0,
+          "MaxRange": 100.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 12000.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 844081,
+              "BaseValue": 5.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 179,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 844114,
+              "BaseValue": 5.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 342781,
+              "Amplitude": 0.0,
+              "TriggerSpell": {
+                "Id": 342781,
+                "Name": "Field of Blossoms",
+                "ManaCost": 0.0,
+                "MaxRange": 100.0,
+                "BaseCastTime": 0.0,
+                "BaseCooldown": 0.0,
+                "IsCooldownHasted": false,
+                "Duration": 60000.0,
+                "Gcd": 0.0,
+                "ChargeCooldown": 0,
+                "Charges": 0,
+                "MaxStacks": 0.0,
+                "ProcChance": 0.0,
+                "InternalCooldown": 0.0,
+                "Rppm": 0.0,
+                "RppmIsHasted": false,
+                "Effects": [
+                  {
+                    "Id": 844111,
+                    "BaseValue": 0.0,
+                    "SpCoefficient": 0.0,
+                    "Coefficient": 0.0,
+                    "TriggerSpellid": 0,
+                    "Amplitude": 0.0,
+                    "TriggerSpell": null,
+                    "Type": 6,
+                    "ScaleValues": {}
+                  }
+                ],
+                "ConduitRanks": {}
+              },
+              "Type": 64,
+              "ScaleValues": {}
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 342774,
+          "Name": "Field of Blossoms",
+          "ManaCost": 0.0,
+          "MaxRange": 100.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 12000.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 844100,
+              "BaseValue": 15.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 320662,
+          "Name": "Niya's Tools: Herbs",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 30.0,
+          "InternalCooldown": 10000.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 807857,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 321510,
+              "Amplitude": 0.0,
+              "TriggerSpell": {
+                "Id": 321510,
+                "Name": "Invigorating Herbs",
+                "ManaCost": 0.0,
+                "MaxRange": 100.0,
+                "BaseCastTime": 0.0,
+                "BaseCooldown": 0.0,
+                "IsCooldownHasted": false,
+                "Duration": 10000.0,
+                "Gcd": 0.0,
+                "ChargeCooldown": 0,
+                "Charges": 0,
+                "MaxStacks": 0.0,
+                "ProcChance": 0.0,
+                "InternalCooldown": 0.0,
+                "Rppm": 0.0,
+                "RppmIsHasted": false,
+                "Effects": [
+                  {
+                    "Id": 809259,
+                    "BaseValue": 5.0,
+                    "SpCoefficient": 0.0,
+                    "Coefficient": 0.0,
+                    "TriggerSpellid": 0,
+                    "Amplitude": 0.0,
+                    "TriggerSpell": null,
+                    "Type": 6,
+                    "ScaleValues": {}
+                  }
+                ],
+                "ConduitRanks": {}
+              },
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 321510,
+          "Name": "Invigorating Herbs",
+          "ManaCost": 0.0,
+          "MaxRange": 100.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 10000.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 809259,
+              "BaseValue": 5.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 331586,
+          "Name": "Thrill Seeker",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 100.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 825885,
+              "BaseValue": 4.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 2000.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 331937,
+          "Name": "Euphoria",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 10000.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 826391,
+              "BaseValue": 20.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 331939,
+          "Name": "Thrill Seeker",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": -1.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 40.0,
+          "ProcChance": 101.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 826393,
+              "BaseValue": 1.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 2000.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 336239,
+          "Name": "Soothing Shade",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 101.0,
+          "InternalCooldown": 20000.0,
+          "Rppm": 1.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 833355,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 336808,
+              "Amplitude": 0.0,
+              "TriggerSpell": {
+                "Id": 336808,
+                "Name": "Soothing Shade",
+                "ManaCost": 0.0,
+                "MaxRange": 40.0,
+                "BaseCastTime": 0.0,
+                "BaseCooldown": 0.0,
+                "IsCooldownHasted": false,
+                "Duration": 12000.0,
+                "Gcd": 0.0,
+                "ChargeCooldown": 0,
+                "Charges": 0,
+                "MaxStacks": 0.0,
+                "ProcChance": 0.0,
+                "InternalCooldown": 0.0,
+                "Rppm": 0.0,
+                "RppmIsHasted": false,
+                "Effects": [
+                  {
+                    "Id": 834447,
+                    "BaseValue": 0.0,
+                    "SpCoefficient": 0.0,
+                    "Coefficient": 0.0,
+                    "TriggerSpellid": 0,
+                    "Amplitude": 0.0,
+                    "TriggerSpell": null,
+                    "Type": 179,
+                    "ScaleValues": {}
+                  }
+                ],
+                "ConduitRanks": {}
+              },
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 336885,
+          "Name": "Soothing Shade",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 12000.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 834570,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 5.789474,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {
+                "60": 95.0
+              }
+            }
+          ],
+          "ConduitRanks": {}
+        },
+        {
+          "Id": 336808,
+          "Name": "Soothing Shade",
+          "ManaCost": 0.0,
+          "MaxRange": 40.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 12000.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 834447,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 179,
+              "ScaleValues": {}
             }
           ],
           "ConduitRanks": {}

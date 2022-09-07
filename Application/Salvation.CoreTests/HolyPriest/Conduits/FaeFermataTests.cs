@@ -36,8 +36,8 @@ namespace Salvation.CoreTests.HolyPriest.Conduits
             var resultWithout = spellService.GetAverageRawHealing(gamestate2, null);
 
             // Assert
-            Assert.AreEqual(8000.0d, resultWithout);
-            Assert.AreEqual(8912.0d, resultWith);
+            Assert.AreEqual(16000.0d, resultWithout);
+            Assert.AreEqual(18432.0d, resultWith);
         }
 
         [Test]
@@ -58,8 +58,8 @@ namespace Salvation.CoreTests.HolyPriest.Conduits
             var resultR2 = spellService.GetFaeFermataBonus(gamestateR2);
 
             // Assert
-            Assert.AreEqual(2.2799999999999998d, resultR1);
-            Assert.AreEqual(2.5079999999999996d, resultR2);
+            Assert.AreEqual(3.04d, resultR1);
+            Assert.AreEqual(3.3439999999999999d, resultR2);
         }
 
         [Test]
@@ -91,10 +91,10 @@ namespace Salvation.CoreTests.HolyPriest.Conduits
 
             // Act
             var resultWithout = spellService.GetCastResults(gamestateWithout);
-            var dhResultWithout = resultWithout.AdditionalCasts.FirstOrDefault();
+            var dhResultWithout = resultWithout.AdditionalCasts.Where(c => c.SpellId == (int)Spell.DivineHymn).FirstOrDefault();
 
             var resultWith = spellService.GetCastResults(gamestateWith);
-            var dhResultWith = resultWith.AdditionalCasts.FirstOrDefault();
+            var dhResultWith = resultWith.AdditionalCasts.Where(c => c.SpellId == (int)Spell.DivineHymn).FirstOrDefault();
 
             // Assert
             Assert.IsNotNull(resultWithout);
@@ -102,7 +102,7 @@ namespace Salvation.CoreTests.HolyPriest.Conduits
             Assert.IsNotNull(dhResultWithout);
             Assert.IsNotNull(dhResultWith);
             Assert.AreEqual(12832.846312104002d, dhResultWithout.RawHealing);
-            Assert.AreEqual(17221.679750843574d, dhResultWith.RawHealing);
+            Assert.AreEqual(18684.624230423429d, dhResultWith.RawHealing);
         }
     }
 }

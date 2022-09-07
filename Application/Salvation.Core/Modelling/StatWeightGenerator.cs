@@ -117,6 +117,13 @@ namespace Salvation.Core.Modelling
             _gameStateService.SetProfileName(masteryState, "Mastery Profile");
             states.Add(masteryState);
 
+            // Leech
+            var leechState = _gameStateService.CloneGameState(baselineState);
+            _gameStateService.OverridePlaystyle(leechState,
+                new PlaystyleEntry("GrantAdditionalStatLeech", numAdditionalStats));
+            _gameStateService.SetProfileName(leechState, "Leech Profile");
+            states.Add(leechState);
+
             return states;
         }
 

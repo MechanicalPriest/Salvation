@@ -37,7 +37,7 @@ namespace Salvation.Core
             // SpellFactoryService
             services.AddSingleton<ISpellServiceFactory>(serviceProvider =>
             {
-                Func<Type, ISpellService> spellFactoryFunc = type => (ISpellService)serviceProvider.GetService(type);
+                ISpellService spellFactoryFunc(Type type) => (ISpellService)serviceProvider.GetService(type);
                 return new SpellServiceFactory(spellFactoryFunc);
             });
 
@@ -64,12 +64,42 @@ namespace Salvation.Core
             services.AddSingleton<ISpellService<ISpiritualManaPotionSpellService>, SpiritualManaPotion>();
 
             // Items
+            // - Trinket - Raid
+            services.AddSingleton<ISpellService<ICabalistsHymnalSpellService>, CabalistsHymnal>();
+            services.AddSingleton<ISpellService<IManaboundMirrorSpellService>, ManaboundMirror>();
+            services.AddSingleton<ISpellService<IMacabreSheetMusicSpellService>, MacabreSheetMusic>();
+            services.AddSingleton<ISpellService<ITuftOfSmolderingPlumageSpellService>, TuftOfSmolderingPlumage>();
+            services.AddSingleton<ISpellService<IConsumptiveInfusionSpellService>, ConsumptiveInfusion>();
+            // - Trinket - Crafted
+            services.AddSingleton<ISpellService<IDarkmoonDeckReposeSpellService>, DarkmoonDeckRepose>();
+            // - Trinket - Dungeon
+            services.AddSingleton<ISpellService<IVialOfSpectralEssenceSpellService>, VialOfSpectralEssence>();
+            services.AddSingleton<ISpellService<ISoullettingRubySpellService>, SoullettingRuby>();
             services.AddSingleton<ISpellService<IUnboundChangelingSpellService>, UnboundChangeling>();
+            services.AddSingleton<ISpellService<IOverflowingAnimaCageSpellService>, OverflowingAnimaCage>();
+            services.AddSingleton<ISpellService<ISiphoningPhylacteryShardSpellService>, SiphoningPhylacteryShard>();
 
             // Covenant
             // - Kyrian Traits
             services.AddSingleton<ISpellService<ILetGoOfThePastSpellService>, LetGoOfThePast>();
             services.AddSingleton<ISpellService<ICombatMeditationSpellSerivce>, CombatMeditation>();
+            services.AddSingleton<ISpellService<IPointedCourageSpellService>, PointedCourage>();
+            services.AddSingleton<ISpellService<IValiantStrikesSpellService>, ValiantStrikes>();
+            services.AddSingleton<ISpellService<IResonantAccoladesSpellService>, ResonantAccolades>();
+            services.AddSingleton<ISpellService<IBronsCallToActionSpellService>, BronsCallToAction>();
+            // - Necrolord Traits
+            services.AddSingleton<ISpellService<IVolatileSolventSpellService>, VolatileSolvent>();
+            services.AddSingleton<ISpellService<IUltimateFormSpellService>, UltimateForm>();
+            services.AddSingleton<ISpellService<ILeadByExampleSpellService>, LeadByExample>();
+            services.AddSingleton<ISpellService<IMarrowedGemstoneSpellService>, MarrowedGemstone>();
+            services.AddSingleton<ISpellService<IForgeborneReveriesSpellService>, ForgeborneReveries>();
+            // - Night Fae Traits
+            services.AddSingleton<ISpellService<IGroveInvigorationSpellService>, GroveInvigoration>();
+            services.AddSingleton<ISpellService<IFieldOfBlossomsSpellService>, FieldOfBlossoms>();
+            services.AddSingleton<ISpellService<INiyasToolsHerbsSpellService>, NiyasToolsHerbs>();
+            // - Venthyr Traits
+            services.AddSingleton<ISpellService<IThrillSeekerSpellService>, ThrillSeeker>();
+            services.AddSingleton<ISpellService<ISoothingShadeSpellService>, SoothingShade>();
 
             return services;
         }
@@ -95,6 +125,7 @@ namespace Salvation.Core
             services.AddSingleton<ISpellService<IHaloSpellService>, Halo>();
             services.AddSingleton<ISpellService<IHolyNovaSpellService>, HolyNova>();
             services.AddSingleton<ISpellService<IPowerWordShieldSpellService>, PowerWordShield>();
+            services.AddSingleton<ISpellService<IGuardianSpiritSpellService>, GuardianSpirit>();
 
             // Covenants
             services.AddSingleton<ISpellService<IFaeGuardiansSpellService>, FaeGuardians>();
@@ -105,6 +136,7 @@ namespace Salvation.Core
             services.AddSingleton<ISpellService<IAscendedBlastSpellService>, AscendedBlast>();
             services.AddSingleton<ISpellService<IAscendedNovaSpellService>, AscendedNova>();
             services.AddSingleton<ISpellService<IAscendedEruptionSpellService>, AscendedEruption>();
+            services.AddSingleton<ISpellService<IFleshcraftSpellService>, Fleshcraft>();
 
             // DPS
             services.AddSingleton<ISpellService<ISmiteSpellService>, Smite>();
@@ -112,6 +144,15 @@ namespace Salvation.Core
             services.AddSingleton<ISpellService<IShadowWordPainSpellService>, ShadowWordPain>();
             services.AddSingleton<ISpellService<IShadowWordDeathSpellService>, ShadowWordDeath>();
             services.AddSingleton<ISpellService<IHolyFireSpellService>, HolyFire>();
+
+            // Legendary Powers
+            services.AddSingleton<ISpellService<IEchoOfEonarSpellService>, EchoOfEonar>();
+            services.AddSingleton<ISpellService<ICauterizingShadowsSpellService>, CauterizingShadows>();
+            services.AddSingleton<ISpellService<IDivineImageSpellService>, DivineImage>();
+            services.AddSingleton<ISpellService<IDivineImageHealingLightSpellService>, DivineImageHealingLight>();
+            services.AddSingleton<ISpellService<IDivineImageTranquilLightSpellService>, DivineImageTranquilLight>();
+            services.AddSingleton<ISpellService<IDivineImageDazzlingsLightSpellService>, DivineImageDazzlingLights>();
+            services.AddSingleton<ISpellService<IDivineImageBlessedLightSpellService>, DivineImageBlessedLight>();
 
             return services;
         }

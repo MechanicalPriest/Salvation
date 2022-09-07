@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
 using Salvation.Core.Interfaces.Constants;
@@ -15,21 +16,24 @@ namespace Salvation.Core.State
 {
     public class GameStateService : IGameStateService
     {
+        private readonly ILogger<GameStateService> _logger;
         private readonly IProfileService _profileService;
         private readonly IConstantsService _constantsService;
         private readonly ISpellServiceFactory _spellServiceFactory;
 
-        public GameStateService(IProfileService profileService,
+        public GameStateService(ILogger<GameStateService> logger,
+            IProfileService profileService,
             IConstantsService constantsService,
             ISpellServiceFactory spellServiceFactory)
         {
+            _logger = logger;
             _profileService = profileService;
             _constantsService = constantsService;
             _spellServiceFactory = spellServiceFactory;
         }
 
         public GameStateService()
-            : this(new ProfileService(), new ConstantsService(), null)
+            : this(null, new ProfileService(), new ConstantsService(), null)
         {
 
         }
@@ -154,7 +158,7 @@ namespace Salvation.Core.State
             return critRating;
         }
 
-        public double GetCriticalStrikeMultiplier(GameState state)
+        public double GetCriticalStrikeMultiplier(GameState state, Spell requestingSpell = Spell.None)
         {
             var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.Spec).FirstOrDefault();
             double criticalEffectMultiplier = specData.CritMultiplier - 1; // 2 by default higher based on items but lowered to 1 for calc below
@@ -174,7 +178,8 @@ namespace Salvation.Core.State
             var addedCriticalStrikePercent = 0d;
             foreach (var spell in state.RegisteredSpells.Where(s => s.SpellService != null))
             {
-                addedCriticalStrikePercent += spell.SpellService.GetAverageCriticalStrikePercent(state, spell.SpellData);
+                if(spell.Spell != requestingSpell)
+                    addedCriticalStrikePercent += spell.SpellService.GetAverageCriticalStrikePercent(state, spell.SpellData);
             }
 
             // 1 is to turn it into a multiplier (making it 1.15 for 15% for example) and is added to the overall result
@@ -230,14 +235,15 @@ namespace Salvation.Core.State
             return hasteRating;
         }
 
-        public double GetHasteMultiplier(GameState state)
+        public double GetHasteMultiplier(GameState state, Spell requestingSpell = Spell.None)
         {
             var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.Spec).FirstOrDefault();
 
             var addedHastePercent = 0d;
             foreach (var spell in state.RegisteredSpells.Where(s => s.SpellService != null))
             {
-                addedHastePercent += spell.SpellService.GetAverageHastePercent(state, spell.SpellData);
+                if (spell.Spell != requestingSpell)
+                    addedHastePercent += spell.SpellService.GetAverageHastePercent(state, spell.SpellData);
             }
 
             return 1 + specData.HasteBase + (GetDrRating(GetHasteRating(state), specData.HasteCost) / specData.HasteCost / 100) 
@@ -287,14 +293,15 @@ namespace Salvation.Core.State
             return versatilityRating;
         }
 
-        public double GetVersatilityMultiplier(GameState state)
+        public double GetVersatilityMultiplier(GameState state, Spell requestingSpell = Spell.None)
         {
             var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.Spec).FirstOrDefault();
 
             var addedVersatilityPercent = 0d;
             foreach (var spell in state.RegisteredSpells.Where(s => s.SpellService != null))
             {
-                addedVersatilityPercent += spell.SpellService.GetAverageVersatilityPercent(state, spell.SpellData);
+                if (spell.Spell != requestingSpell)
+                    addedVersatilityPercent += spell.SpellService.GetAverageVersatilityPercent(state, spell.SpellData);
             }
 
             return 1 + specData.VersBase + (GetDrRating(GetVersatilityRating(state), specData.VersCost) / specData.VersCost / 100) 
@@ -344,18 +351,77 @@ namespace Salvation.Core.State
             return masteryRating;
         }
 
-        public double GetMasteryMultiplier(GameState state)
+        public double GetMasteryMultiplier(GameState state, Spell requestingSpell = Spell.None)
         {
             var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.Spec).FirstOrDefault();
 
             var addedMasteryPercent = 0d;
             foreach (var spell in state.RegisteredSpells.Where(s => s.SpellService != null))
             {
-                addedMasteryPercent += spell.SpellService.GetAverageMasteryPercent(state, spell.SpellData);
+                if (spell.Spell != requestingSpell)
+                    addedMasteryPercent += spell.SpellService.GetAverageMasteryPercent(state, spell.SpellData);
             }
 
             return 1 + specData.MasteryBase + (GetDrRating(GetMasteryRating(state), specData.MasteryCost) / specData.MasteryCost / 100)
                 + addedMasteryPercent;
+        }
+
+        public double GetLeechRating(GameState state)
+        {
+            var leechRating = GetBaseLeechRating(state);
+
+            // Add any forced additional stats if specified (stat weights)
+            var bonusLeech = GetPlaystyle(state, "GrantAdditionalStatLeech");
+            if (bonusLeech != null)
+                leechRating += bonusLeech.Value;
+
+            // Get average mastery from effects
+            foreach (var spell in state.RegisteredSpells.Where(s => s.SpellService != null))
+            {
+                leechRating += spell.SpellService.GetAverageLeech(state, spell.SpellData);
+            }
+
+            return leechRating;
+        }
+
+        internal double GetBaseLeechRating(GameState state)
+        {
+            var playStyleValue = GetPlaystyle(state, "OverrideStatLeech").Value;
+            if (playStyleValue != 0)
+            {
+                return playStyleValue;
+            }
+
+            var leechRating = 0d;
+
+            // Get mastery from gear
+            foreach (var item in _profileService.GetEquippedItems(state.Profile))
+            {
+                foreach (var mod in item.Mods)
+                {
+                    if (mod.Type == ItemModType.ITEM_MOD_LEECH_RATING)
+                    {
+                        leechRating += mod.StatRating;
+                    }
+                }
+            }
+
+            return leechRating;
+        }
+
+        public double GetLeechMultiplier(GameState state, Spell requestingSpell = Spell.None)
+        {
+            var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.Spec).FirstOrDefault();
+
+            var addedLeechPercent = 0d;
+            foreach (var spell in state.RegisteredSpells.Where(s => s.SpellService != null))
+            {
+                if (spell.Spell != requestingSpell)
+                    addedLeechPercent += spell.SpellService.GetAverageLeechPercent(state, spell.SpellData);
+            }
+
+            return 1 + (GetDrRating(GetLeechRating(state), specData.LeechCost) / specData.LeechCost / 100)
+                + addedLeechPercent;
         }
 
         public double GetIntellect(GameState state)
@@ -397,7 +463,21 @@ namespace Salvation.Core.State
             if (clothCount == 8)
                 intellect *= 1.05d;
 
+            intellect *= GetIntellectMultiplier(state);
+
             return intellect;
+        }
+
+        internal double GetIntellectMultiplier(GameState state)
+        {
+            var intMulti = 1d;
+
+            foreach (var spell in state.RegisteredSpells.Where(s => s.SpellService != null))
+            {
+                intMulti += spell.SpellService.GetAverageIntellectBonus(state, spell.SpellData);
+            }
+
+            return intMulti;
         }
 
         public double GetBaseIntellect(GameState state)
@@ -411,6 +491,7 @@ namespace Salvation.Core.State
             double intellect = 0;
 
             // Get base intellect based on class
+            // From sc_extra_data.inc
             intellect += state.Profile.Class switch
             {
                 Class.Priest => 450,
@@ -484,6 +565,103 @@ namespace Salvation.Core.State
             }
 
             return intellect;
+        }
+
+        public double GetStamina(GameState state)
+        {
+            var stamina = 0d;
+
+            // Apply class base stam
+            // From sc_extra_data.inc
+            stamina += state.Profile.Class switch
+            {
+                Class.Priest => 414,
+                _ => throw new NotImplementedException("This class is not yet implemented."),
+            };
+
+            // Apply race modifiers
+            switch (state.Profile.Race)
+            {
+                case Race.Orc:
+                case Race.Dwarf:
+                case Race.Undead:
+                case Race.DarkIronDwarf:
+                case Race.MagharOrc:
+                case Race.LightforgedDraenei:
+                    stamina += 1;
+                    break;
+
+                case Race.Draenei:
+                case Race.Pandaren:
+                case Race.PandarenAlliance:
+                case Race.PandarenHorde:
+                case Race.KulTiran:
+                case Race.Tauren:
+                case Race.HighmountainTauren:
+                    stamina += 2;
+                    break;
+
+                case Race.Gnome:
+                case Race.Goblin:
+                case Race.Vulpera:
+                case Race.Mechagnome:
+                    stamina -= 1;
+                    break;
+
+                case Race.NoRace:
+                case Race.NightElf:
+                case Race.Troll:
+                case Race.BloodElf:
+                case Race.Worgen:
+                case Race.Nightborne:
+                case Race.VoidElf:
+                case Race.ZandalariTroll:
+                case Race.Human:
+
+                case Race.Vrykul:
+                case Race.Tuskarr:
+                case Race.ForestTroll:
+                case Race.Tanuka:
+                case Race.Skeleton:
+                case Race.IceTroll:
+                case Race.Gilnean:
+                default:
+                    break;
+            }
+
+            foreach (var item in _profileService.GetEquippedItems(state.Profile))
+            {
+                foreach (var mod in item.Mods)
+                {
+                    if (mod.Type == ItemModType.ITEM_MOD_STAMINA)
+                    {
+                        stamina += mod.StatRating;
+                    }
+                }
+            }
+
+            return stamina;
+        }
+
+        public double GetHitpoints(GameState state)
+        {
+            // Health is stamina * 20 - from sc_scale_data_inc
+            var hitpointsPerStaminaPoint = 20;
+
+            return GetStamina(state) * hitpointsPerStaminaPoint;
+        }
+
+        public double GetGlobalHealingMultiplier(GameState state)
+        {
+            var modifier = 1.0d;
+
+            // Get healing mod from other spells and effects
+            foreach (var spell in state.RegisteredSpells.Where(s => s.SpellService != null))
+            {
+                modifier += spell.SpellService.GetAverageHealingBonus(state, spell.SpellData);
+            }
+
+            return modifier;
         }
 
         public BaseSpellData GetSpellData(GameState state, Spell spellId)
@@ -569,6 +747,7 @@ namespace Salvation.Core.State
                     break;
                 case Covenant.Necrolord:
                     registeredSpells.Add(new RegisteredSpell(Spell.UnholyNova));
+                    registeredSpells.Add(new RegisteredSpell(Spell.Fleshcraft));
                     break;
                 case Covenant.None:
                 default:
@@ -596,11 +775,16 @@ namespace Salvation.Core.State
 
             // TODO: Conduits
 
-            
+            // Process all the registered spells
             foreach (var spell in registeredSpells)
             {
                 // Populate all the spellservices
                 spell.SpellService = _spellServiceFactory.GetSpellService(spell.Spell);
+
+                if (spell.SpellService == null)
+                    _logger?.LogInformation($"No spell service found for [{spell.Spell}]");
+                else
+                    _logger?.LogTrace($"Successfully registered spell service for [{spell.Spell}]");
 
                 // And the spelldata
                 // TODO: Consider moving these overrides to another location. Could run into race conditions
@@ -608,12 +792,21 @@ namespace Salvation.Core.State
                 // Ideally though the modelling run does RegisterSpells last right before the run begins?
                 spell.SpellData = GetSpellData(state, spell.Spell);
 
-                // Add scalevalues
                 if (spell.SpellData != null)
                 {
-                    foreach(var kvp in spell.ScaleValues)
+                    // Go through each effect from the spell data
+                    foreach (var effect in spell.SpellData.Effects)
                     {
-                        spell.SpellData.ScaleValues.Add(kvp.Key, kvp.Value);
+                        if (spell.EffectScaleValues.ContainsKey(effect.Id))
+                        {
+                            // then for each of the stored effectscalevalues, update
+                            // the effect in the spelldata to contain the scale value
+                            foreach (var kvp in spell.EffectScaleValues[effect.Id])
+                            {
+                                if (!effect.ScaleValues.ContainsKey(kvp.Key))
+                                    effect.ScaleValues.Add(kvp.Key, kvp.Value);
+                            }
+                        }
                     }
 
                     // Update the spelldata to have the new scalevalues added
@@ -624,6 +817,8 @@ namespace Salvation.Core.State
                         spell.SpellData.Overrides.Add(Override.ItemLevel, spell.ItemLevel);
                 }
 
+                if(spell.SpellData == null)
+                    _logger?.LogInformation($"No spell data for [{spell.Spell}]");
             }
 
             state.RegisteredSpells = registeredSpells;
@@ -638,9 +833,18 @@ namespace Salvation.Core.State
                 var newSpell = new RegisteredSpell()
                 {
                     Spell = (Spell)spell.Id,
-                    ScaleValues= spell.ScaleValues,
                     ItemLevel = itemLevel
                 };
+
+                // Loop through each of the effects found in the spelldata
+                // For each one add the scale values that were pulled (likely from items from simc data)
+                // to the effect scale values collection for this registered spell.
+                // This essentially just ends up condensing all the scale values into the one BaseSpellData object for usage
+                // later on in the app.
+                foreach(var effect in spell.Effects)
+                {
+                    newSpell.EffectScaleValues.Add(effect.Id, effect.ScaleValues);
+                }
 
                 spells.Add(newSpell);
 
@@ -805,7 +1009,6 @@ namespace Salvation.Core.State
             var sancCDRRenew = GetSpellData(state, Spell.HolyWordSanctify).GetEffect(709476).BaseValue;
             var bhCDR = GetSpellData(state, Spell.BindingHeal).GetEffect(325998).BaseValue;
             var salvCDRBase = GetSpellData(state, Spell.HolyWordSalvation).GetEffect(709211).BaseValue;
-            var haCDRBase = GetSpellData(state, Spell.HarmoniousApparatus).GetEffect(833714).BaseValue;
             var chastiseCDRBase = GetSpellData(state, Spell.HolyWordChastise).GetEffect(709477).BaseValue;
 
             var isLotnActive = IsTalentActive(state, Talent.LightOfTheNaaru);
@@ -819,6 +1022,13 @@ namespace Salvation.Core.State
                 var holyOrationSpellData = GetSpellData(state, Spell.HolyOration);
 
                 holyOrationModifier = holyOrationSpellData.ConduitRanks[holyOrationRank] / 100;
+            }
+
+            var haCDRBase = 0d;
+
+            if (IsLegendaryActive(state, Spell.HarmoniousApparatus))
+            {
+                haCDRBase = GetSpellData(state, Spell.HarmoniousApparatus).GetEffect(833714).BaseValue;
             }
 
             var returnCDR = 0d;
@@ -880,11 +1090,11 @@ namespace Salvation.Core.State
                     returnCDR *= isLotnActive ? 1d + 1d / 3d : 1d; // LotN adds 33% more CDR.
                     returnCDR *= isApotheosisActive ? 4d : 1d; // Apotheosis adds 200% more CDR
                     // Apply this last as it's additive overall and not multiplicative with others
-                    returnCDR += isHolyOrationActive ? haCDRBase * holyOrationModifier : 0d;
+                    returnCDR += isHolyOrationActive ? chastiseCDRBase * holyOrationModifier : 0d;
                     break;
 
                 case Spell.HolyFire:
-                    returnCDR = chastiseCDRBase;
+                    returnCDR = haCDRBase;
                     returnCDR *= isLotnActive ? 1d + 1d / 3d : 1d; // LotN adds 33% more CDR.
                     returnCDR *= isApotheosisActive ? 4d : 1d; // Apotheosis adds 200% more CDR
                     // Apply this last as it's additive overall and not multiplicative with others

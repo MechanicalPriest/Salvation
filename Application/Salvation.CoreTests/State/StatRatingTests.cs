@@ -44,7 +44,7 @@ namespace Salvation.CoreTests.State
             var crit = _gameStateService.GetCriticalStrikeRating(_state);
 
             // Assert
-            Assert.AreEqual(238, crit);
+            Assert.AreEqual(237, crit);
         }
 
         [Test]
@@ -56,7 +56,7 @@ namespace Salvation.CoreTests.State
             var haste = _gameStateService.GetHasteRating(_state);
 
             // Assert
-            Assert.AreEqual(427, haste);
+            Assert.AreEqual(426, haste);
         }
 
         [Test]
@@ -80,7 +80,7 @@ namespace Salvation.CoreTests.State
             var vers = _gameStateService.GetVersatilityRating(_state);
 
             // Assert
-            Assert.AreEqual(810, vers);
+            Assert.AreEqual(812, vers);
         }
 
         [Test]
@@ -90,10 +90,21 @@ namespace Salvation.CoreTests.State
 
             // Act
             var intellect = _gameStateService.GetIntellect(_state);
-            File.WriteAllText("temp.json", JsonConvert.SerializeObject(_state.Profile, Formatting.Indented));
 
             // Assert
-            Assert.AreEqual(1262.1000000000001d, intellect);
+            Assert.AreEqual(1261.05d, intellect);
+        }
+
+        [Test]
+        public void GSG_Calculates_Leech()
+        {
+            // Arrange
+
+            // Act
+            var intellect = _gameStateService.GetLeechRating(_state);
+
+            // Assert
+            Assert.AreEqual(0.0d, intellect);
         }
     }
 }

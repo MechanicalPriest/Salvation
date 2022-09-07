@@ -19,6 +19,8 @@ namespace Salvation.Utility.SpellDataUpdate
             _spells = new List<uint>()
             {
                 (uint)Spell.HolyPriest,
+                (uint)Spell.Priest,
+                (uint)Spell.LeechHeal,
 
                 // Talents
                 (uint)Spell.Enlightenment,
@@ -50,6 +52,7 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.PrayerOfMendingBuff,
                 (uint)Spell.PrayerOfMendingHeal,
                 (uint)Spell.EchoOfLight,
+                (uint)Spell.GuardianSpirit,
 
                 // Covenant
                 (uint)Spell.Mindgames,
@@ -65,9 +68,22 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.UnholyNova,
                 (uint)Spell.UnholyTransfusion,
                 (uint)Spell.UnholyTransfusionDoT,
+                (uint)Spell.Fleshcraft,
 
                 // Legendaries
                 (uint)Spell.HarmoniousApparatus,
+                (uint)Spell.EchoOfEonar,
+                (uint)Spell.EchoOfEonarHealingBuffSelf,
+                (uint)Spell.CauterizingShadows,
+                (uint)Spell.CauterizingShadowsHeal,
+                (uint)Spell.FlashConcentration,
+                (uint)Spell.DivineImage,
+                (uint)Spell.DivineImageHealingLight,
+                (uint)Spell.DivineImageDazzlingLight,
+                (uint)Spell.DivineImageSearingLight,
+                (uint)Spell.DivineImageLightEruption,
+                (uint)Spell.DivineImageBlessedLight,
+                (uint)Spell.DivineImageTranquilLight,
 
                 // Conduits
                 (uint)Spell.CharitableSoul,
@@ -77,6 +93,8 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.ShatteredPerceptions,
                 (uint)Spell.HolyOration,
                 (uint)Spell.FocusedMending,
+                (uint)Spell.ResonantWords,
+                (uint)Spell.LastingSpirit,
                 
                 // DPS
                 (uint)Spell.Smite,
@@ -94,14 +112,79 @@ namespace Salvation.Utility.SpellDataUpdate
 
                 // Trinket
                 (uint)Spell.UnboundChangeling,
-                (uint)Spell.UnboundChangelingHasteProc,
+                (uint)Spell.UnboundChangelingBuff,
+                (uint)Spell.CabalistsHymnal,
+                (uint)Spell.CabalistsHymnalBuff,
+                (uint)Spell.SoullettingRuby,
+                (uint)Spell.SoullettingRubyBuff,
+                (uint)Spell.SoullettingRubyHeal,
+                (uint)Spell.SoullettingRubyTrigger,
+                (uint)Spell.ManaboundMirror,
+                (uint)Spell.ManaboundMirrorBuff,
+                (uint)Spell.ManaboundMirrorHeal,
+                (uint)Spell.MacabreSheetMusic,
+                (uint)Spell.MacabreSheetMusicTrigger,
+                (uint)Spell.MacabreSheetMusicBuff,
+                (uint)Spell.TuftOfSmolderingPlumage,
+                (uint)Spell.TuftOfSmolderingPlumageBuff,
+                (uint)Spell.ConsumptiveInfusion,
+                (uint)Spell.ConsumptiveInfusionBuff,
+                (uint)Spell.ConsumptiveInfusionDebuff,
+                (uint)Spell.DarkmoonDeckRepose,
+                (uint)Spell.DarkmoonDeckReposeAce,
+                (uint)Spell.DarkmoonDeckReposeEight,
+                (uint)Spell.VialOfSpectralEssence,
+                (uint)Spell.OverflowingAnimaCage,
+                (uint)Spell.OverflowingAnimaCageBuff,
+                (uint)Spell.SiphoningPhylacteryShard,
+                (uint)Spell.SiphoningPhylacteryShardBuff,
 
                 // Trait
+                // Kyrian
                 (uint)Spell.CombatMeditation,
                 (uint)Spell.CombatMeditationBuff,
                 (uint)Spell.CombatMeditationExtension,
                 (uint)Spell.LetGoOfThePast,
                 (uint)Spell.LetGoOfThePastBuff,
+                (uint)Spell.PointedCourage,
+                (uint)Spell.PointedCourageBuff,
+                (uint)Spell.ValiantStrikes,
+                (uint)Spell.ValiantStrikesBuff,
+                (uint)Spell.ResonantAccolades,
+                (uint)Spell.ResonantAccoladesBuff,
+                (uint)Spell.BronsCallToAction,
+                // Necrolord
+                (uint)Spell.VolatileSolvent,
+                (uint)Spell.VolatileSolventHumanoid,
+                (uint)Spell.VolatileSolventBeast,
+                (uint)Spell.VolatileSolventDragonkin,
+                (uint)Spell.VolatileSolventElemental,
+                //(uint)Spell.VolatileSolventMechanical, // TOOD: Not coming through on spelldata
+                (uint)Spell.UltimateForm,
+                (uint)Spell.UltimateFormHeal,
+                (uint)Spell.LeadByExample,
+                (uint)Spell.LeadByExampleBuff,
+                (uint)Spell.MarrowedGemstone,
+                (uint)Spell.MarrowedGemstoneStacks,
+                (uint)Spell.MarrowedGemstoneBuff,
+                (uint)Spell.MarrowedGemstoneCooldown,
+                (uint)Spell.ForgeborneReveries,
+                (uint)Spell.ForgeborneReveriesBuff,
+                // Night Fae
+                (uint)Spell.GroveInvigoration,
+                (uint)Spell.GroveInvigorationAnimaBuff,
+                (uint)Spell.FieldOfBlossoms,
+                (uint)Spell.FieldOfBlossomsEffect,
+                (uint)Spell.FieldOfBlossomsBuff,
+                (uint)Spell.NiyasToolsHerbs,
+                (uint)Spell.NiyasToolsHerbsBuff,
+                // Venthyr
+                (uint)Spell.ThrillSeeker,
+                (uint)Spell.ThrillSeekerBuff,
+                (uint)Spell.ThrillSeekerStacks,
+                (uint)Spell.SoothingShade,
+                (uint)Spell.SoothingShadeBuff,
+                (uint)Spell.SoothingShadeEffect,
             };
         }
 
@@ -176,12 +259,10 @@ namespace Salvation.Utility.SpellDataUpdate
                 Duration = spell.Duration,
                 Gcd = spell.Gcd / 1000d,
                 ConduitRanks = spell.ConduitRanks,
-                Rppm = spell.Rppm
+                Rppm = spell.Rppm,
+                ProcChance = spell.ProcChance,
+                InternalCooldown = spell.InternalCooldown
             };
-
-            // Add Scale budget (for player scaled spells)
-            if(spell.ScaleBudget != 0)
-                newSpell.ScaleValues.Add(60, spell.ScaleBudget);
 
             // Check if RPPM is modified by spec or haste
             foreach(var rppmMod in spell.RppmModifiers)
@@ -244,6 +325,10 @@ namespace Salvation.Utility.SpellDataUpdate
                 Type = effect.EffectType,
             };
 
+            // Add the level 60 spellbudget value if it exists in the spelldata.
+            if (effect.ScaleBudget != 0)
+                newEffect.ScaleValues.Add(60, effect.ScaleBudget);
+
             return newEffect;
         }
 
@@ -261,6 +346,11 @@ namespace Salvation.Utility.SpellDataUpdate
                 case (uint)Spell.ShadowWordDeath:
                     // This comes from the Priest aura 137030 effect #1 179714
                     baseSpellData.IsCooldownHasted = true;
+                    break;
+                case (uint)Spell.DivineImageBlessedLight:
+                    // Blessed light's spelldata for targets is now in Effect #1 288952 as part of chain targets
+                    // We don't get chain targets through yet, so set it manually
+                    baseSpellData.GetEffect(288952).BaseValue = 5;
                     break;
                 default:
                     break;

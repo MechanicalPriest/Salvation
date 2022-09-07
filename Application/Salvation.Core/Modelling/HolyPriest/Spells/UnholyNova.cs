@@ -1,18 +1,20 @@
 ﻿using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
+using Salvation.Core.Interfaces.Modelling;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.Modelling.Common;
 using Salvation.Core.State;
+using System;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
-    public class UnholyNova : SpellService, IUnholyNovaSpellService
+    public class UnholyNova : SpellService, ISpellService<IUnholyNovaSpellService>
     {
-        private readonly IUnholyTransfusionSpellService _unholyTransfuionSpellService;
+        private readonly ISpellService<IUnholyTransfusionSpellService> _unholyTransfuionSpellService;
 
         public UnholyNova(IGameStateService gameStateService,
-            IUnholyTransfusionSpellService unholyTransfuionSpellService)
+            ISpellService<IUnholyTransfusionSpellService> unholyTransfuionSpellService)
             : base(gameStateService)
         {
             Spell = Spell.UnholyNova;
@@ -26,7 +28,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             AveragedSpellCastResult result = base.GetCastResults(gameState, spellData);
 
             // Apply the transufion DoT/HoT
-            var unholyTransfusionSpellData = _gameStateService.GetSpellData(gameState, Spell.UnholyTransfusion);
+            var unholyTransfusionSpellData = _gameStateService.GetSpellData(gameState, Spell.UnholyTransfusionDoT);
 
             var uhtResults = _unholyTransfuionSpellService.GetCastResults(gameState, unholyTransfusionSpellData);
 
@@ -42,7 +44,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             var holyPriestAuraHealingBonus = _gameStateService.GetSpellData(gameState, Spell.HolyPriest)
                 .GetEffect(179715).BaseValue / 100 + 1;
 
-            var healingSp = spellData.GetEffect(814521).SpCoefficient;
+            var healingSp = spellData.GetEffect(814521).TriggerSpell.GetEffect(875387).SpCoefficient;
 
             double averageHeal = healingSp
                 * _gameStateService.GetIntellect(gameState)
@@ -52,6 +54,9 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {averageHeal:0.##}");
 
             averageHeal *= _gameStateService.GetCriticalStrikeMultiplier(gameState);
+
+            // Apply target reduction scaling
+            averageHeal *= 1 / Math.Sqrt(GetNumberOfDamageTargets(gameState, spellData));
 
             return averageHeal * GetNumberOfHealingTargets(gameState, spellData);
         }

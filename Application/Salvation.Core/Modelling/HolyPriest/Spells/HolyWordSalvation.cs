@@ -1,5 +1,6 @@
 ﻿using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
+using Salvation.Core.Interfaces.Modelling;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.Modelling.Common;
@@ -7,18 +8,18 @@ using Salvation.Core.State;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
-    public class HolyWordSalvation : SpellService, IHolyWordSalvationSpellService
+    public class HolyWordSalvation : SpellService, ISpellService<IHolyWordSalvationSpellService>
     {
-        private readonly IHolyWordSerenitySpellService _serenitySpellService;
-        private readonly IHolyWordSanctifySpellService _holyWordSanctifySpellService;
-        private readonly IRenewSpellService _renewSpellService;
-        private readonly IPrayerOfMendingSpellService _prayerOfMendingSpellService;
+        private readonly ISpellService<IHolyWordSerenitySpellService> _serenitySpellService;
+        private readonly ISpellService<IHolyWordSanctifySpellService> _holyWordSanctifySpellService;
+        private readonly ISpellService<IRenewSpellService> _renewSpellService;
+        private readonly ISpellService<IPrayerOfMendingSpellService> _prayerOfMendingSpellService;
 
         public HolyWordSalvation(IGameStateService gameStateService,
-            IHolyWordSerenitySpellService serenitySpellService,
-            IHolyWordSanctifySpellService holyWordSanctifySpellService,
-            IRenewSpellService renewSpellService,
-            IPrayerOfMendingSpellService prayerOfMendingSpellService)
+            ISpellService<IHolyWordSerenitySpellService> serenitySpellService,
+            ISpellService<IHolyWordSanctifySpellService> holyWordSanctifySpellService,
+            ISpellService<IRenewSpellService> renewSpellService,
+            ISpellService<IPrayerOfMendingSpellService> prayerOfMendingSpellService)
             : base(gameStateService)
         {
             Spell = Spell.HolyWordSalvation;
@@ -44,7 +45,8 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {averageHeal:0.##}");
 
-            averageHeal *= _gameStateService.GetCriticalStrikeMultiplier(gameState);
+            averageHeal *= _gameStateService.GetCriticalStrikeMultiplier(gameState)
+                * _gameStateService.GetGlobalHealingMultiplier(gameState);
 
             return averageHeal * GetNumberOfHealingTargets(gameState, spellData);
         }
@@ -88,6 +90,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             renewSpellData.Gcd = 0;
             renewSpellData.BaseCastTime = 0;
             renewSpellData.Overrides[Override.NumberOfHealingTargets] = GetNumberOfHealingTargets(gameState, spellData);
+            renewSpellData.Overrides[Override.CastsPerMinute] = GetActualCastsPerMinute(gameState, spellData); // Force the number of cpm
 
             // grab the result of the spell cast
             var renewResult = _renewSpellService.GetCastResults(gameState, renewSpellData);
@@ -102,6 +105,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             pomSpellData.BaseCooldown = 0;
             pomSpellData.Overrides[Override.NumberOfHealingTargets] = GetNumberOfHealingTargets(gameState, spellData);
             pomSpellData.Overrides[Override.ResultMultiplier] = 2; // Force the number of stacks
+            pomSpellData.Overrides[Override.CastsPerMinute] = GetActualCastsPerMinute(gameState, spellData); // Force the number of cpm
 
             // grab the result of the spell cast
             var pomResult = _prayerOfMendingSpellService.GetCastResults(gameState, pomSpellData);

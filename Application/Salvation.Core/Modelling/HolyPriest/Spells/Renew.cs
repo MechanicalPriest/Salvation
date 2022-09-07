@@ -1,12 +1,13 @@
 ﻿using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
+using Salvation.Core.Interfaces.Modelling;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.State;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
-    public class Renew : SpellService, IRenewSpellService
+    public class Renew : SpellService, ISpellService<IRenewSpellService>
     {
         public Renew(IGameStateService gameStateService)
             : base(gameStateService)
@@ -35,7 +36,8 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {averageHealFirstTick:0.##} (first)");
 
             averageHealFirstTick *= _gameStateService.GetCriticalStrikeMultiplier(gameState)
-                * _gameStateService.GetHasteMultiplier(gameState);
+                * _gameStateService.GetHasteMultiplier(gameState)
+                * _gameStateService.GetGlobalHealingMultiplier(gameState);
 
             double duration = spellData.Duration / 1000;
             double tickrate = spellData.GetEffect(95).Amplitude / 1000;
@@ -49,7 +51,8 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {averageHealTicks:0.##} (ticks)");
 
-            averageHealTicks *= _gameStateService.GetCriticalStrikeMultiplier(gameState);
+            averageHealTicks *= _gameStateService.GetCriticalStrikeMultiplier(gameState)
+                * _gameStateService.GetGlobalHealingMultiplier(gameState);
 
             return (averageHealFirstTick + averageHealTicks) * GetNumberOfHealingTargets(gameState, spellData);
         }
@@ -84,6 +87,16 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         public override double GetMaximumHealTargets(GameState gameState, BaseSpellData spellData)
         {
             return 1;
+        }
+
+        public override double GetActualCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
+        {
+            spellData = ValidateSpellData(gameState, spellData);
+
+            // Override used by Salvation to apply 2-stack PoMs
+            if (spellData.Overrides.ContainsKey(Override.CastsPerMinute))
+                return spellData.Overrides[Override.CastsPerMinute];
+            return base.GetActualCastsPerMinute(gameState, spellData);
         }
     }
 }

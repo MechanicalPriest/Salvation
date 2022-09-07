@@ -1,23 +1,24 @@
 ﻿using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
+using Salvation.Core.Interfaces.Modelling;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.State;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
-    public class HolyWordSerenity : SpellService, IHolyWordSerenitySpellService
+    public class HolyWordSerenity : SpellService, ISpellService<IHolyWordSerenitySpellService>
     {
-        private readonly IFlashHealSpellService _flashHealSpellService;
-        private readonly IHealSpellService _healSpellService;
-        private readonly IBindingHealSpellService _bindingHealSpellService;
-        private readonly IPrayerOfMendingSpellService _prayerOfMendingSpellService;
+        private readonly ISpellService<IFlashHealSpellService> _flashHealSpellService;
+        private readonly ISpellService<IHealSpellService> _healSpellService;
+        private readonly ISpellService<IBindingHealSpellService> _bindingHealSpellService;
+        private readonly ISpellService<IPrayerOfMendingSpellService> _prayerOfMendingSpellService;
 
         public HolyWordSerenity(IGameStateService gameStateService,
-            IFlashHealSpellService flashHealSpellService,
-            IHealSpellService healSpellService,
-            IBindingHealSpellService bindingHealSpellService,
-            IPrayerOfMendingSpellService prayerOfMendingSpellService)
+            ISpellService<IFlashHealSpellService> flashHealSpellService,
+            ISpellService<IHealSpellService> healSpellService,
+            ISpellService<IBindingHealSpellService> bindingHealSpellService,
+            ISpellService<IPrayerOfMendingSpellService> prayerOfMendingSpellService)
             : base(gameStateService)
         {
             Spell = Spell.HolyWordSerenity;
@@ -43,7 +44,8 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {averageHeal:0.##}");
 
-            averageHeal *= _gameStateService.GetCriticalStrikeMultiplier(gameState);
+            averageHeal *= _gameStateService.GetCriticalStrikeMultiplier(gameState)
+                * _gameStateService.GetGlobalHealingMultiplier(gameState);
 
             return averageHeal * GetNumberOfHealingTargets(gameState, spellData);
         }
@@ -59,18 +61,22 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             var cpmFlashHeal = _flashHealSpellService.GetActualCastsPerMinute(gameState);
             var cpmHeal = _healSpellService.GetActualCastsPerMinute(gameState);
-            var cpmBindingHeal = _bindingHealSpellService.GetActualCastsPerMinute(gameState);
 
             var hastedCD = GetHastedCooldown(gameState, spellData);
             var fightLength = _gameStateService.GetFightLength(gameState);
 
             var hwCDRFlashHeal = _gameStateService.GetTotalHolyWordCooldownReduction(gameState, Spell.FlashHeal);
             var hwCDRHeal = _gameStateService.GetTotalHolyWordCooldownReduction(gameState, Spell.Heal);
-            var hwCDRBindingHeal = _gameStateService.GetTotalHolyWordCooldownReduction(gameState, Spell.BindingHeal);
 
             double hwCDR = cpmFlashHeal * hwCDRFlashHeal +
-                cpmHeal * hwCDRHeal +
-                cpmBindingHeal * hwCDRBindingHeal;
+                cpmHeal * hwCDRHeal;
+
+            if (_gameStateService.IsTalentActive(gameState, Talent.BindingHeal))
+            {
+                var cpmBindingHeal = _bindingHealSpellService.GetActualCastsPerMinute(gameState);
+                var hwCDRBindingHeal = _gameStateService.GetTotalHolyWordCooldownReduction(gameState, Spell.BindingHeal);
+                hwCDR += cpmBindingHeal * hwCDRBindingHeal;
+            }
 
             if (_gameStateService.IsLegendaryActive(gameState, Spell.HarmoniousApparatus))
             {

@@ -1,12 +1,13 @@
 ﻿using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
+using Salvation.Core.Interfaces.Modelling;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.State;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
-    public class HolyFire : SpellService, IHolyFireSpellService
+    public class HolyFire : SpellService, ISpellService<IHolyFireSpellService>
     {
         public HolyFire(IGameStateService gameStateService)
             : base(gameStateService)

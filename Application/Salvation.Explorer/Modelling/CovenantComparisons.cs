@@ -8,6 +8,7 @@ using Salvation.Core.Profile.Model;
 using Salvation.Core.State;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Salvation.Explorer.Modelling
 {
@@ -46,7 +47,7 @@ namespace Salvation.Explorer.Modelling
             _gameStateService = gameStateService;
         }
 
-        public CovenantComparisonsResult RunComparison()
+        public async Task<CovenantComparisonsResult> RunComparison(GameState baseState)
         {
             var results = new Dictionary<string, BaseModelResults>();
 
@@ -68,9 +69,12 @@ namespace Salvation.Explorer.Modelling
             // Run them
             foreach (var state in states)
             {
-                var modelResult = _modellingService.GetResults(state);
+                await Task.Run(() =>
+                {
+                    var modelResult = _modellingService.GetResults(state);
 
-                results.Add(modelResult.Profile.Name, modelResult);
+                    results.Add(modelResult.Profile.Name, modelResult);
+                });
             }
 
             var baselineResults = results.Where(a => a.Key == "Baseline").FirstOrDefault().Value;
@@ -161,25 +165,21 @@ namespace Salvation.Explorer.Modelling
             _gameStateService.SetCovenant(state,
                 new CovenantProfile() { Covenant = Covenant.Kyrian });
 
-            _gameStateService.SetSpellCastProfile(state, new CastProfile()
-            {
-                SpellId = (int)Spell.AscendedBlast,
-                Efficiency = abEfficiency,
-                OverhealPercent = 0d
-            });
-            _gameStateService.SetSpellCastProfile(state, new CastProfile()
-            {
-                SpellId = (int)Spell.AscendedNova,
-                Efficiency = anEfficiency,
-                OverhealPercent = 0d
-            });
-            _gameStateService.SetSpellCastProfile(state, new CastProfile()
-            {
-                SpellId = (int)Spell.AscendedEruption,
-                Efficiency = 1d,
-                OverhealPercent = 0d
-            });
+            // Set the cast profiles
+            var abCastProfile = _gameStateService.GetSpellCastProfile(state, (int)Spell.AscendedBlast);
+            abCastProfile.Efficiency = abEfficiency;
 
+            _gameStateService.SetSpellCastProfile(state, abCastProfile);
+
+            var anCastProfile = _gameStateService.GetSpellCastProfile(state, (int)Spell.AscendedBlast);
+            anCastProfile.Efficiency = anEfficiency;
+            _gameStateService.SetSpellCastProfile(state, anCastProfile);
+
+            var aeCastProfile = _gameStateService.GetSpellCastProfile(state, (int)Spell.AscendedBlast);
+            aeCastProfile.Efficiency = 1;
+            _gameStateService.SetSpellCastProfile(state, aeCastProfile);
+
+            // Set profile name
             _gameStateService.SetProfileName(state, profileName);
 
             var anData = _gameStateService.GetSpellData(state, Spell.AscendedNova);

@@ -5,17 +5,21 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{dc1b1268-5306-4134-8c90-8e25e8491cde}</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <ProjectView>ShowAllFiles</ProjectView>
-    <StartupFile />
+    <ProjectView>ProjectFiles</ProjectView>
+    <StartupFile>
+    </StartupFile>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{349c5851-65df-11da-9384-00065b846f21};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">16.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <StartWebBrowser>True</StartWebBrowser>
+    <SaveNodeJsSettingsInProjectFile>True</SaveNodeJsSettingsInProjectFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
   <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
   <ItemGroup>
+    <Content Include=".env" />
     <Content Include=".env.development.local" />
     <Content Include=".env.production" />
     <Content Include="package-lock.json" />
@@ -34,16 +38,28 @@
     <Content Include="src\App.js" />
     <Content Include="src\index.css" />
     <Content Include="src\index.js" />
-    <Content Include="src\interface\TwoWayText.js">
-      <SubType>Code</SubType>
-    </Content>
+    <Content Include="src\Modules\Gear\index.js" />
+    <Content Include="src\Modules\Profile\index.js" />
+    <Content Include="src\Modules\Results\index.js" />
     <Content Include="src\Modules\SpellComparison.js" />
+    <Content Include="src\redux\actionTypes.js" />
+    <Content Include="src\redux\api.js" />
+    <Content Include="src\redux\profileSaga.js" />
+    <Content Include="src\redux\reducers\gear.js" />
+    <Content Include="src\redux\reducers\index.js" />
+    <Content Include="src\redux\reducers\profile.js" />
+    <Content Include="src\redux\reducers\results.js" />
+    <Content Include="src\redux\store.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="public" />
     <Folder Include="src" />
-    <Folder Include="src\interface\" />
     <Folder Include="src\Modules\" />
+    <Folder Include="src\Modules\Gear\" />
+    <Folder Include="src\Modules\Profile\" />
+    <Folder Include="src\Modules\Results\" />
+    <Folder Include="src\redux\" />
+    <Folder Include="src\redux\reducers\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />

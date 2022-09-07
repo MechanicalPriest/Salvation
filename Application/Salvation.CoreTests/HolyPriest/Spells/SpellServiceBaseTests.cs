@@ -2,7 +2,7 @@
 using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
 using Salvation.Core.Interfaces.State;
-using Salvation.Core.Modelling.HolyPriest.Spells;
+using Salvation.Core.Modelling;
 using Salvation.Core.State;
 using System;
 
@@ -96,18 +96,17 @@ namespace Salvation.CoreTests.HolyPriest.Spells
         }
 
         [Test]
-        public void GetMaximumCastsPerMinute_Throws()
+        public void GetMaximumCastsPerMinute_DefaultsZero()
         {
             // Arrange
             IGameStateService gameStateService = new GameStateService();
             var spellService = new SpellService(gameStateService);
 
             // Act
-            var methodCall = new TestDelegate(
-                () => spellService.GetMaximumCastsPerMinute(_gameState, null));
+            var value = spellService.GetMaximumCastsPerMinute(_gameState, null);
 
             // Assert
-            Assert.Throws<NotImplementedException>(methodCall);
+            Assert.AreEqual(0, value);
         }
 
         [Test]
@@ -200,6 +199,174 @@ namespace Salvation.CoreTests.HolyPriest.Spells
 
             // Assert
             Assert.Throws<ArgumentOutOfRangeException>(methodCall);
+        }
+
+        [Test]
+        public void GetAverageIntellect_Defaults_Zero()
+        {
+            // Arrange
+            IGameStateService gameStateService = new GameStateService();
+            var spellService = new SpellService(gameStateService);
+
+            // Act
+            var result = spellService.GetAverageIntellect(_gameState, null);
+
+            // Assert
+            Assert.AreEqual(0, result);
+        }
+
+        [Test]
+        public void GetAverageIntellectBonus_Defaults_Zero()
+        {
+            // Arrange
+            IGameStateService gameStateService = new GameStateService();
+            var spellService = new SpellService(gameStateService);
+
+            // Act
+            var result = spellService.GetAverageIntellectBonus(_gameState, null);
+
+            // Assert
+            Assert.AreEqual(0, result);
+        }
+
+        [Test]
+        public void GetAverageCriticalStrike_Defaults_Zero()
+        {
+            // Arrange
+            IGameStateService gameStateService = new GameStateService();
+            var spellService = new SpellService(gameStateService);
+
+            // Act
+            var result = spellService.GetAverageCriticalStrike(_gameState, null);
+
+            // Assert
+            Assert.AreEqual(0, result);
+        }
+
+        [Test]
+        public void GetAverageCriticalStrikePercent_Defaults_Zero()
+        {
+            // Arrange
+            IGameStateService gameStateService = new GameStateService();
+            var spellService = new SpellService(gameStateService);
+
+            // Act
+            var result = spellService.GetAverageCriticalStrikePercent(_gameState, null);
+
+            // Assert
+            Assert.AreEqual(0, result);
+        }
+
+        [Test]
+        public void GetAverageHaste_Defaults_Zero()
+        {
+            // Arrange
+            IGameStateService gameStateService = new GameStateService();
+            var spellService = new SpellService(gameStateService);
+
+            // Act
+            var result = spellService.GetAverageHaste(_gameState, null);
+
+            // Assert
+            Assert.AreEqual(0, result);
+        }
+
+        [Test]
+        public void GetAverageHastePercent_Defaults_Zero()
+        {
+            // Arrange
+            IGameStateService gameStateService = new GameStateService();
+            var spellService = new SpellService(gameStateService);
+
+            // Act
+            var result = spellService.GetAverageHastePercent(_gameState, null);
+
+            // Assert
+            Assert.AreEqual(0, result);
+        }
+
+        [Test]
+        public void GetAverageMastery_Defaults_Zero()
+        {
+            // Arrange
+            IGameStateService gameStateService = new GameStateService();
+            var spellService = new SpellService(gameStateService);
+
+            // Act
+            var result = spellService.GetAverageMastery(_gameState, null);
+
+            // Assert
+            Assert.AreEqual(0, result);
+        }
+
+        [Test]
+        public void GetAverageMasteryPercent_Defaults_Zero()
+        {
+            // Arrange
+            IGameStateService gameStateService = new GameStateService();
+            var spellService = new SpellService(gameStateService);
+
+            // Act
+            var result = spellService.GetAverageMasteryPercent(_gameState, null);
+
+            // Assert
+            Assert.AreEqual(0, result);
+        }
+
+        [Test]
+        public void GetAverageVersatility_Defaults_Zero()
+        {
+            // Arrange
+            IGameStateService gameStateService = new GameStateService();
+            var spellService = new SpellService(gameStateService);
+
+            // Act
+            var result = spellService.GetAverageVersatility(_gameState, null);
+
+            // Assert
+            Assert.AreEqual(0, result);
+        }
+
+        [Test]
+        public void GetAverageVersatilityPercent_Defaults_Zero()
+        {
+            // Arrange
+            IGameStateService gameStateService = new GameStateService();
+            var spellService = new SpellService(gameStateService);
+
+            // Act
+            var result = spellService.GetAverageVersatilityPercent(_gameState, null);
+
+            // Assert
+            Assert.AreEqual(0, result);
+        }
+
+        [Test]
+        public void GetUptime_Defaults_Zero()
+        {
+            // Arrange
+            IGameStateService gameStateService = new GameStateService();
+            var spellService = new SpellService(gameStateService);
+
+            // Act
+            var result = spellService.GetUptime(_gameState, null);
+
+            // Assert
+            Assert.AreEqual(0, result);
+        }
+
+        [Test]
+        public void GetAverageMp5_Defaults_Zero()
+        {
+            // Arrange
+            IGameStateService gameStateService = new GameStateService();
+            var spellService = new SpellService(gameStateService);
+
+            // Act
+            var result = spellService.GetAverageMp5(_gameState, null);
+
+            // Assert
+            Assert.AreEqual(0, result);
         }
     }
 

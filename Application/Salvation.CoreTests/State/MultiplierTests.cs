@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using Salvation.Core.Constants.Data;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.State;
 
@@ -10,8 +11,8 @@ namespace Salvation.CoreTests.State
         IGameStateService _gameStateService;
         private GameState _state;
 
-        [OneTimeSetUp]
-        public void InitOnce()
+        [SetUp]
+        public void Init()
         {
             _state = GetGameState();
             _gameStateService = new GameStateService();
@@ -27,7 +28,25 @@ namespace Salvation.CoreTests.State
             var crit = _gameStateService.GetCriticalStrikeMultiplier(_state);
 
             // Assert
-            Assert.AreEqual(1.14036d, crit);
+            Assert.AreEqual(1.1180000000000001d, crit);
+        }
+
+        [Test]
+        public void CritMultiplier_Increased_By_Racial()
+        {
+            // Arrange
+            _state.Profile.Race = Race.Dwarf;
+            var baseState = GetGameState();
+            baseState.Profile.Race = Race.Orc;
+
+             // Act
+             var crit = _gameStateService.GetCriticalStrikeMultiplier(_state);
+             var critbase = _gameStateService.GetCriticalStrikeMultiplier(baseState);
+
+            // Assert
+            Assert.AreEqual(1.12036d, crit);
+            Assert.AreEqual(1.1180000000000001d, critbase);
+            Assert.Less(critbase, crit);
         }
 
         [Test]
@@ -67,6 +86,19 @@ namespace Salvation.CoreTests.State
 
             // Assert
             Assert.AreEqual(1.2030000000000001d, vers);
+        }
+
+        [Test]
+        public void LeechMultiplierTest()
+        {
+            // Arrange
+
+
+            // Act
+            var vers = _gameStateService.GetLeechMultiplier(_state);
+
+            // Assert
+            Assert.AreEqual(1.0d, vers);
         }
     }
 }

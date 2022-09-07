@@ -1,12 +1,13 @@
 ﻿using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
+using Salvation.Core.Interfaces.Modelling;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.State;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
-    public class Mindgames : SpellService, IMindgamesSpellService
+    public class Mindgames : SpellService, ISpellService<IMindgamesSpellService>
     {
         public Mindgames(IGameStateService gameStateService)
             : base(gameStateService)
@@ -28,6 +29,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {averageHeal:0.##}");
 
+            averageHeal *= GetShatteredPerceptionsModifier(gameState);
             // Mindgames absorbs the incoming hit 323701, and heals for the amount absorbed 323706. 
             // The order of events though is Heal then Absorb/Damage.
 
@@ -51,14 +53,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip (Dmg): {averageDamage:0.##}");
 
             // Get the Shattered Perceptions conduit bonus damage
-            // TODO: Shift this out to another method maybe, for testing?
-            if (_gameStateService.IsConduitActive(gameState, Conduit.ShatteredPerceptions))
-            {
-                var rank = _gameStateService.GetConduitRank(gameState, Conduit.ShatteredPerceptions);
-                var conduitData = _gameStateService.GetSpellData(gameState, Spell.ShatteredPerceptions);
-
-                averageDamage *= (1d + (conduitData.ConduitRanks[rank] / 100d));
-            }
+            averageDamage *= GetShatteredPerceptionsModifier(gameState);
 
             return averageDamage * GetNumberOfDamageTargets(gameState, spellData);
         }
@@ -115,6 +110,21 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             var healData = _gameStateService.GetSpellData(gameState, Spell.MindgamesHeal);
 
             return base.TriggersMastery(gameState, healData);
+        }
+
+        internal double GetShatteredPerceptionsModifier(GameState gameState)
+        {
+            var multi = 1d;
+
+            if (_gameStateService.IsConduitActive(gameState, Conduit.ShatteredPerceptions))
+            {
+                var rank = _gameStateService.GetConduitRank(gameState, Conduit.ShatteredPerceptions);
+                var conduitData = _gameStateService.GetSpellData(gameState, Spell.ShatteredPerceptions);
+
+                multi += (conduitData.ConduitRanks[rank] / 100d);
+            }
+
+            return multi;
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
+using Salvation.Core.Interfaces.Modelling;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.State;
@@ -7,7 +8,7 @@ using System;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
-    public class AscendedEruption : SpellService, IAscendedEruptionSpellService
+    public class AscendedEruption : SpellService, ISpellService<IAscendedEruptionSpellService>
     {
         public AscendedEruption(IGameStateService gameStateService)
             : base(gameStateService)
@@ -32,7 +33,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             // --Boon of the Ascended--
             // AE explodes at the end healing 3% more per stack to all friendlies (15y)
-            var healingSp = spellData.GetEffect(815532).SpCoefficient;
+            var healingSp = spellData.GetEffect(875046).TriggerSpell.GetEffect(875045).SpCoefficient;
 
             double averageHeal = healingSp
                 * _gameStateService.GetIntellect(gameState)
@@ -50,9 +51,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             averageHeal *= 1 + ((bonusPerStack / 100d) * numberOfBoonStacks);
 
             // Apply 1/SQRT() scaling
-            // Healing scales down with the number of enemy + friendly targets, see Issue #24
-            var numTargetReduction = GetNumberOfHealingTargets(gameState, spellData) + GetNumberOfDamageTargets(gameState, spellData);
-            averageHeal *= 1d / Math.Sqrt(numTargetReduction);
+            averageHeal *= 1d / Math.Sqrt(GetNumberOfHealingTargets(gameState, spellData));
 
             return averageHeal * GetNumberOfHealingTargets(gameState, spellData);
         }
@@ -73,27 +72,24 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             // AE explodes at the end healing 3% more per stack to all friendlies (15y)
             var damageSp = spellData.GetEffect(815531).SpCoefficient;
 
-            double averageHeal = damageSp
+            double averageDamage = damageSp
                 * _gameStateService.GetIntellect(gameState)
                 * _gameStateService.GetVersatilityMultiplier(gameState)
                 * holyPriestAuraDamageBonus; // ??? scales with the damage aura for reasons
 
-            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {averageHeal:0.##}");
+            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {averageDamage:0.##}");
 
-            averageHeal *= _gameStateService.GetCriticalStrikeMultiplier(gameState);
+            averageDamage *= _gameStateService.GetCriticalStrikeMultiplier(gameState);
 
             var bonusPerStack = GetBoonBonusPerStack(gameState);
 
             // Apply boon stack damage bonus
-            averageHeal *= 1d + ((bonusPerStack / 100d) * numberOfBoonStacks);
+            averageDamage *= 1d + ((bonusPerStack / 100d) * numberOfBoonStacks);
             _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Stacks: {numberOfBoonStacks:0.##} Bonus/stack: {bonusPerStack:0.##}");
 
             // Apply 1/SQRT() 
-            // Damage scales down with the number of enemy + friendly targets, see Issue #52
-            var numTargetReduction = GetNumberOfHealingTargets(gameState, spellData) + GetNumberOfDamageTargets(gameState, spellData);
-            averageHeal *= 1d / Math.Sqrt(numTargetReduction);
 
-            return averageHeal * GetNumberOfHealingTargets(gameState, spellData);
+            return averageDamage *= 1d / Math.Sqrt(GetNumberOfDamageTargets(gameState, spellData));
         }
 
         public override double GetActualCastsPerMinute(GameState gameState, BaseSpellData spellData = null)

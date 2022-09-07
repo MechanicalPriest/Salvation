@@ -22,51 +22,7 @@ namespace Salvation.Api
     {
         public override void Configure(IFunctionsHostBuilder builder)
         {
-            // Common services
-            builder.Services.AddSingleton<IConstantsService, ConstantsService>();
-            builder.Services.AddSingleton<IGameStateService, GameStateService>();
-            builder.Services.AddSingleton<IProfileService, ProfileService>();
-            builder.Services.AddSingleton<IStatWeightGenerationService, StatWeightGenerator>();
-
-            // Holy Priest specific services
-            builder.Services.AddSingleton<IModellingService, HolyPriestModellingService>();
-
-            // Spells
-            builder.Services.AddSingleton<IFlashHealSpellService, FlashHeal>();
-            builder.Services.AddSingleton<IHolyWordSerenitySpellService, HolyWordSerenity>();
-            builder.Services.AddSingleton<IHolyWordSalvationSpellService, HolyWordSalvation>();
-            builder.Services.AddSingleton<IRenewSpellService, Renew>();
-            builder.Services.AddSingleton<IPrayerOfMendingSpellService, PrayerOfMending>();
-            builder.Services.AddSingleton<IPrayerOfHealingSpellService, PrayerOfHealing>();
-            builder.Services.AddSingleton<IHealSpellService, Heal>();
-            builder.Services.AddSingleton<IBindingHealSpellService, BindingHeal>();
-            builder.Services.AddSingleton<IHolyWordSanctifySpellService, HolyWordSanctify>();
-            builder.Services.AddSingleton<ICircleOfHealingSpellService, CircleOfHealing>();
-            builder.Services.AddSingleton<IDivineHymnSpellService, DivineHymn>();
-            builder.Services.AddSingleton<IDivineStarSpellService, DivineStar>();
-            builder.Services.AddSingleton<IHaloSpellService, Halo>();
-            builder.Services.AddSingleton<IHolyNovaSpellService, HolyNova>();
-            builder.Services.AddSingleton<IPowerWordShieldSpellService, PowerWordShield>();
-
-            // Covenants
-            builder.Services.AddSingleton<IFaeGuardiansSpellService, FaeGuardians>();
-            builder.Services.AddSingleton<IMindgamesSpellService, Mindgames>();
-            builder.Services.AddSingleton<IUnholyNovaSpellService, UnholyNova>();
-            builder.Services.AddSingleton<IUnholyTransfusionSpellService, UnholyTransfusion>();
-            builder.Services.AddSingleton<IBoonOfTheAscendedSpellService, BoonOfTheAscended>();
-            builder.Services.AddSingleton<IAscendedBlastSpellService, AscendedBlast>();
-            builder.Services.AddSingleton<IAscendedNovaSpellService, AscendedNova>();
-            builder.Services.AddSingleton<IAscendedEruptionSpellService, AscendedEruption>();
-
-            // SimcProfileParser
-            builder.Services.AddSimcProfileParser();
-
-            // DPS
-            builder.Services.AddSingleton<ISmiteSpellService, Smite>();
-            builder.Services.AddSingleton<IHolyWordChastiseSpellService, HolyWordChastise>();
-            builder.Services.AddSingleton<IShadowWordPainSpellService, ShadowWordPain>();
-            builder.Services.AddSingleton<IShadowWordDeathSpellService, ShadowWordDeath>();
-            builder.Services.AddSingleton<IHolyFireSpellService, HolyFire>();
+           builder.Services.AddSalvationCore();
         }
     }
 }

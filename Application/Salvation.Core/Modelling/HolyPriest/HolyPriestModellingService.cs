@@ -3,6 +3,7 @@ using Salvation.Core.Interfaces.Modelling;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.Modelling.Common;
+using Salvation.Core.Profile.Model;
 using Salvation.Core.State;
 using System;
 using System.Collections.Generic;
@@ -14,63 +15,9 @@ namespace Salvation.Core.Modelling.HolyPriest
     {
         private readonly IGameStateService _gameStateService;
 
-        public List<ISpellService> Spells { get; private set; }
-
-        public HolyPriestModellingService(IGameStateService gameStateService,
-            IFlashHealSpellService flashHealService,
-            IHolyWordSerenitySpellService holyWordSerenitySpellService,
-            IHolyWordSalvationSpellService holyWordSalvationSpellService,
-            IRenewSpellService renewSpellService,
-            IPrayerOfMendingSpellService prayerOfMendingSpellService,
-            IPrayerOfHealingSpellService prayerOfHealingSpellService,
-            IHealSpellService healSpellService,
-            IBindingHealSpellService bindingHealSpellService,
-            IHolyWordSanctifySpellService holyWordSanctifySpellService,
-            ICircleOfHealingSpellService circleOfHealingSpellService,
-            IDivineHymnSpellService divineHymnSpellService,
-            IDivineStarSpellService divineStarSpellService,
-            IHaloSpellService haloSpellService,
-            IHolyNovaSpellService holyNovaSpellService,
-            IPowerWordShieldSpellService powerWordShieldSpellService,
-            IFaeGuardiansSpellService faeGuardiansSpellService,
-            IMindgamesSpellService mindgamesSpellService,
-            IUnholyNovaSpellService unholyNovaSpellService,
-            IBoonOfTheAscendedSpellService boonOfTheAscendedSpellService,
-            ISmiteSpellService smiteSpellService,
-            IHolyWordChastiseSpellService chastiseSpellService,
-            IShadowWordPainSpellService shadowWordPainSpellService,
-            IShadowWordDeathSpellService shadowWordDeathSpellService,
-            IHolyFireSpellService holyFireSpellService)
+        public HolyPriestModellingService(IGameStateService gameStateService)
         {
             _gameStateService = gameStateService;
-
-            Spells = new List<ISpellService>
-            {
-                flashHealService,
-                healSpellService,
-                renewSpellService,
-                prayerOfHealingSpellService,
-                holyNovaSpellService,
-                powerWordShieldSpellService,
-                bindingHealSpellService,
-                prayerOfMendingSpellService,
-                circleOfHealingSpellService,
-                divineStarSpellService,
-                haloSpellService,
-                holyWordSerenitySpellService,
-                holyWordSanctifySpellService,
-                divineHymnSpellService,
-                holyWordSalvationSpellService,
-                faeGuardiansSpellService,
-                mindgamesSpellService,
-                unholyNovaSpellService,
-                boonOfTheAscendedSpellService,
-                smiteSpellService,
-                chastiseSpellService,
-                shadowWordPainSpellService,
-                shadowWordDeathSpellService,
-                holyFireSpellService
-            };
         }
 
         public BaseModelResults GetResults(GameState state)
@@ -84,21 +31,23 @@ namespace Salvation.Core.Modelling.HolyPriest
             var sw = new Stopwatch();
             sw.Start();
 
-            foreach (var spell in Spells)
+            _gameStateService.RegisterSpells(state, GetBaseSpells());
+
+            foreach (var spell in _gameStateService.GetRegisteredSpells(state))
             {
-                if (IsSpellBeingCast(state, (Spell)spell.SpellId))
+                if (spell.SpellService != null)
                 {
-                    var castResults = spell.GetCastResults(state);
+                    var castResults = spell.SpellService.GetCastResults(state, spell.SpellData);
                     results.SpellCastResults.Add(castResults);
                 }
                 else
                 {
-                    _gameStateService.JournalEntry(state, $"[{spell.SpellId}] Skipped casting due to profile.");
+                    _gameStateService.JournalEntry(state, $"[{spell.Spell}] Skipped casting due to no spellservice.");
                 }
             }
 
             // Create a sumamry for each spell cast that's a sum of its children
-            RollUpResults(results, results.SpellCastResults);
+            RollUpResults(results);
 
             results.TotalRawHPM = results.TotalRawHPS / results.TotalMPS;
             results.TotalActualHPM = results.TotalActualHPS / results.TotalMPS;
@@ -126,26 +75,44 @@ namespace Salvation.Core.Modelling.HolyPriest
             return results;
         }
 
-        /// <summary>
-        /// Check to see if this spell should be cast as part of the modelling
-        /// </summary>
-        public bool IsSpellBeingCast(GameState state, Spell spellId)
+        internal List<RegisteredSpell> GetBaseSpells()
         {
-            return spellId switch
+            var result = new List<RegisteredSpell>()
             {
-                Spell.BoonOfTheAscended => _gameStateService.GetActiveCovenant(state) == Covenant.Kyrian,
-                Spell.Mindgames => _gameStateService.GetActiveCovenant(state) == Covenant.Venthyr,
-                Spell.FaeGuardians => _gameStateService.GetActiveCovenant(state) == Covenant.NightFae,
-                Spell.UnholyNova => _gameStateService.GetActiveCovenant(state) == Covenant.Necrolord,
-                _ => true,
+                // Healing Spells
+                new RegisteredSpell(Spell.CircleOfHealing),
+                new RegisteredSpell(Spell.DivineHymn),
+                new RegisteredSpell(Spell.FlashHeal),
+                new RegisteredSpell(Spell.Heal),
+                new RegisteredSpell(Spell.HolyNova),
+                new RegisteredSpell(Spell.HolyWordSanctify),
+                new RegisteredSpell(Spell.HolyWordSerenity),
+                new RegisteredSpell(Spell.PowerWordShield),
+                new RegisteredSpell(Spell.PrayerOfHealing),
+                new RegisteredSpell(Spell.PrayerOfMending),
+                new RegisteredSpell(Spell.Renew),
+
+                // DPS Spells
+                new RegisteredSpell(Spell.HolyFire),
+                new RegisteredSpell(Spell.HolyWordChastise),
+                new RegisteredSpell(Spell.ShadowWordDeath),
+                new RegisteredSpell(Spell.ShadowWordPain),
+                new RegisteredSpell(Spell.Smite),
+
+                // Utility Spells
+                new RegisteredSpell(Spell.GuardianSpirit),
             };
+
+            return result;
         }
 
-        private void RollUpResults(BaseModelResults results, List<AveragedSpellCastResult> spells)
+        #region Spell Result Calculatoins
+
+        private void RollUpResults(BaseModelResults results)
         {
             var newSpells = new List<AveragedSpellCastResult>();
 
-            foreach (var spellResult in spells)
+            foreach (var spellResult in results.SpellCastResults)
             {
                 newSpells.Add(RollUpResultsSummary(spellResult));
             }
@@ -154,9 +121,20 @@ namespace Salvation.Core.Modelling.HolyPriest
 
             foreach (var spellResult in results.RolledUpResultsSummary)
             {
-                results.TotalActualHPS += spellResult.HPS;
-                results.TotalRawHPS += spellResult.RawHPS;
-                results.TotalMPS += spellResult.MPS;
+                if (!double.IsNaN(spellResult.HPS))
+                    results.TotalActualHPS += spellResult.HPS;
+                else
+                    Console.WriteLine($"Error getting spell result HPS from {spellResult.SpellName}");
+
+                if (!double.IsNaN(spellResult.RawHPS))
+                    results.TotalRawHPS += spellResult.RawHPS;
+                else
+                    Console.WriteLine($"Error getting spell result RawHPS from {spellResult.SpellName}");
+
+                if (!double.IsNaN(spellResult.MPS))
+                    results.TotalMPS += spellResult.MPS;
+                else
+                    Console.WriteLine($"Error getting spell result MPS from {spellResult.SpellName}");
             }
         }
 
@@ -181,7 +159,7 @@ namespace Salvation.Core.Modelling.HolyPriest
                 NumberOfDamageTargets = castResult.NumberOfDamageTargets,
                 NumberOfHealingTargets = castResult.NumberOfHealingTargets,
                 SpellId = castResult.SpellId,
-                SpellName = castResult.SpellName
+                SpellName = castResult.SpellName,
             };
 
             // Properties that are sums of all the parts
@@ -232,6 +210,7 @@ namespace Salvation.Core.Modelling.HolyPriest
                 resultSummary.Overhealing += part.Overhealing * partCPM / resultSummary.CastsPerMinute;
                 resultSummary.Damage += part.Damage * partCPM / resultSummary.CastsPerMinute;
                 resultSummary.ManaCost += part.ManaCost * partCPM / resultSummary.CastsPerMinute;
+                resultSummary.Mp5 += part.Mp5;
 
                 //Console.WriteLine($"[{resultSummary.SpellName}] child added doing {part.RawHealing:0.##} " +
                 //        $"raw healing (total now: {resultSummary.RawHealing:0.##}) from {part.SpellName} " +
@@ -242,5 +221,7 @@ namespace Salvation.Core.Modelling.HolyPriest
                     RollUpSpellParts(resultSummary, part.AdditionalCasts, partCPM);
             }
         }
+
+        #endregion
     }
 }

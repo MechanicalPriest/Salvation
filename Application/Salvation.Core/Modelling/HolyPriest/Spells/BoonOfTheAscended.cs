@@ -1,5 +1,6 @@
 ﻿using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
+using Salvation.Core.Interfaces.Modelling;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.Modelling.Common;
@@ -7,16 +8,16 @@ using Salvation.Core.State;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
-    public class BoonOfTheAscended : SpellService, IBoonOfTheAscendedSpellService
+    public class BoonOfTheAscended : SpellService, ISpellService<IBoonOfTheAscendedSpellService>
     {
-        private readonly IAscendedBlastSpellService _ascendedBlastSpellService;
-        private readonly IAscendedNovaSpellService _ascendedNovaSpellService;
-        private readonly IAscendedEruptionSpellService _ascendedEruptionSpellService;
+        private readonly ISpellService<IAscendedBlastSpellService> _ascendedBlastSpellService;
+        private readonly ISpellService<IAscendedNovaSpellService> _ascendedNovaSpellService;
+        private readonly ISpellService<IAscendedEruptionSpellService> _ascendedEruptionSpellService;
 
         public BoonOfTheAscended(IGameStateService gameStateService,
-            IAscendedBlastSpellService ascendedBlastSpellService,
-            IAscendedNovaSpellService ascendedNovaSpellService,
-            IAscendedEruptionSpellService ascendedEruptionSpellService)
+            ISpellService<IAscendedBlastSpellService> ascendedBlastSpellService,
+            ISpellService<IAscendedNovaSpellService> ascendedNovaSpellService,
+            ISpellService<IAscendedEruptionSpellService> ascendedEruptionSpellService)
             : base(gameStateService)
         {
             Spell = Spell.BoonOfTheAscended;
@@ -64,7 +65,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             // 1 base stack + 5 per AB + 1 per AE target
             var boonStacks = 1 + abResults.CastsPerMinute * 5 + anResults.CastsPerMinute * anResults.NumberOfDamageTargets;
 
-            var aeSpellData = _gameStateService.GetSpellData(gameState, Spell.AscendedNova);
+            var aeSpellData = _gameStateService.GetSpellData(gameState, Spell.AscendedEruption);
             aeSpellData.Overrides[Override.ResultMultiplier] = boonStacks;
 
             var aeResults = _ascendedEruptionSpellService.GetCastResults(gameState, aeSpellData);

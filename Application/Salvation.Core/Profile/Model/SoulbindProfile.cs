@@ -8,13 +8,13 @@ namespace Salvation.Core.Profile.Model
         public string Name { get; set; }
         public int SoulbindId { get; set; }
         public bool IsActive { get; set; }
-        public List<SoulbindAbility> ActiveAbilities { get; set; }
+        public List<SoulbindTrait> ActiveTraits { get; set; }
         public Dictionary<Conduit, uint> ActiveConduits { get; set; }
 
         public SoulbindProfile()
         {
             ActiveConduits = new Dictionary<Conduit, uint>();
-            ActiveAbilities = new List<SoulbindAbility>();
+            ActiveTraits = new List<SoulbindTrait>();
         }
     }
 }

@@ -84,7 +84,21 @@ namespace Salvation.CoreTests.State
             var statValue = _gameStateService.GetIntellect(_state);
 
             // Assert
-            Assert.AreEqual(132513, statValue);
+            Assert.AreEqual(139138.64999999999d, statValue);
+        }
+
+        [Test]
+        public void Leech_AppliesOverride()
+        {
+            // Arrange
+            PlaystyleEntry playstyle = new PlaystyleEntry("OverrideStatLeech", 1234);
+
+            // Act
+            _gameStateService.OverridePlaystyle(_state, playstyle);
+            var statValue = _gameStateService.GetLeechRating(_state);
+
+            // Assert
+            Assert.AreEqual(1234.0d, statValue);
         }
     }
 }

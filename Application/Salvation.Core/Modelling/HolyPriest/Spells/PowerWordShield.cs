@@ -1,13 +1,15 @@
 ﻿using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
+using Salvation.Core.Interfaces.Modelling;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.Modelling.Common;
 using Salvation.Core.State;
+using System;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
-    public class PowerWordShield : SpellService, IPowerWordShieldSpellService
+    public class PowerWordShield : SpellService, ISpellService<IPowerWordShieldSpellService>
     {
         public PowerWordShield(IGameStateService gameStateService)
             : base(gameStateService)
@@ -28,6 +30,13 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
                 // Turn the rank value into a multiplier. "Rank" 10 = 0.10
                 var rank = _gameStateService.GetConduitRank(gameState, Conduit.CharitableSoul);
                 var rankMulti = csSpellData.ConduitRanks[rank] / 100;
+
+                // Apply the modifier to see how often it's cast on an ally. 0.9 = 90% of the time
+                var csPlaystyle = _gameStateService.GetPlaystyle(gameState, "CharitableSoulAllyCasts");
+                if (csPlaystyle == null)
+                    throw new ArgumentNullException("CharitableSoulAllyCasts playstyle is not set");
+
+                rankMulti *= csPlaystyle.Value;
 
                 AveragedSpellCastResult csComponent = new AveragedSpellCastResult
                 {
@@ -57,7 +66,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             // TODO: For some reason PW:S is done kinda weird. No basevalue of spcoeff.
             // It just seems to use $shield=${$SP*1.8*(1+$@versadmg)*
             // It also doesn't scaling with the healing aura bonus, see issue #71
-            var absorbSp = 1.8;
+            var absorbSp = 1.65;
 
             double averageHeal = absorbSp
                 * _gameStateService.GetIntellect(gameState)
@@ -94,6 +103,11 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         public override double GetMaximumHealTargets(GameState gameState, BaseSpellData spellData)
         {
             return 1;
+        }
+
+        public override bool TriggersLeech(GameState gameState, BaseSpellData spellData)
+        {
+            return false;
         }
     }
 }

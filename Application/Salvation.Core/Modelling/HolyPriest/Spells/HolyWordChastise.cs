@@ -1,5 +1,6 @@
 ﻿using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
+using Salvation.Core.Interfaces.Modelling;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.State;
@@ -7,14 +8,14 @@ using Salvation.Core.State;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
-    public class HolyWordChastise : SpellService, IHolyWordChastiseSpellService
+    public class HolyWordChastise : SpellService, ISpellService<IHolyWordChastiseSpellService>
     {
-        private readonly ISmiteSpellService _smiteSpellService;
-        private readonly IHolyFireSpellService _holyFireSpellService;
+        private readonly ISpellService<ISmiteSpellService> _smiteSpellService;
+        private readonly ISpellService<IHolyFireSpellService> _holyFireSpellService;
 
         public HolyWordChastise(IGameStateService gameStateService,
-            ISmiteSpellService smiteSpellService,
-            IHolyFireSpellService holyFireSpellService)
+            ISpellService<ISmiteSpellService> smiteSpellService,
+            ISpellService<IHolyFireSpellService> holyFireSpellService)
             : base(gameStateService)
         {
             Spell = Spell.HolyWordChastise;

@@ -1,12 +1,13 @@
 ﻿using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
+using Salvation.Core.Interfaces.Modelling;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.State;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
-    public class PrayerOfHealing : SpellService, IPrayerOfHealingSpellService
+    public class PrayerOfHealing : SpellService, ISpellService<IPrayerOfHealingSpellService>
     {
         public PrayerOfHealing(IGameStateService gameStateService)
             : base(gameStateService)
@@ -29,7 +30,8 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {averageHeal:0.##}");
 
-            averageHeal *= _gameStateService.GetCriticalStrikeMultiplier(gameState);
+            averageHeal *= _gameStateService.GetCriticalStrikeMultiplier(gameState)
+                * _gameStateService.GetGlobalHealingMultiplier(gameState);
 
             return averageHeal * GetNumberOfHealingTargets(gameState, spellData);
         }

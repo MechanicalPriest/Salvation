@@ -16,6 +16,13 @@ namespace Salvation.Core.Interfaces.State
         BaseSpellData GetSpellData(GameState state, Spell spellId);
         CastProfile GetSpellCastProfile(GameState state, int spellId);
         void SetSpellCastProfile(GameState state, CastProfile castProfile);
+        /// <summary>
+        /// Playstyle entry is a value that modifies a component of playstyle, from overheal to proc rate, number of targets etc.
+        /// Stored as a (string, value) KVP dictionary.
+        /// </summary>
+        /// <param name="state"></param>
+        /// <param name="name"></param>
+        /// <returns></returns>
         PlaystyleEntry GetPlaystyle(GameState state, string name);
         void SetCovenant(GameState state, CovenantProfile covenant);
         Covenant GetActiveCovenant(GameState state);
@@ -32,10 +39,13 @@ namespace Salvation.Core.Interfaces.State
         double GetMasteryRating(GameState state);
         double GetVersatilityRating(GameState state);
         double GetIntellect(GameState state);
-        double GetVersatilityMultiplier(GameState state);
-        double GetCriticalStrikeMultiplier(GameState state);
-        double GetMasteryMultiplier(GameState state);
-        double GetHasteMultiplier(GameState state);
+        double GetLeechRating(GameState state);
+        double GetVersatilityMultiplier(GameState state, Spell spell = Spell.None);
+        double GetCriticalStrikeMultiplier(GameState state, Spell spell = Spell.None);
+        double GetMasteryMultiplier(GameState state, Spell spell = Spell.None);
+        double GetHasteMultiplier(GameState state, Spell spell = Spell.None);
+        double GetLeechMultiplier(GameState state, Spell spell = Spell.None);
+        double GetGlobalHealingMultiplier(GameState state);
         double GetBaseManaAmount(GameState state);
         double GetGCDFloor(GameState gameState);
 
@@ -47,6 +57,8 @@ namespace Salvation.Core.Interfaces.State
         bool IsLegendaryActive(GameState state, Spell legendary);
         void SetActiveTalent(GameState state, Talent talent);
         bool IsTalentActive(GameState state, Talent talent);
+        List<RegisteredSpell> GetRegisteredSpells(GameState state);
+        void RegisterSpells(GameState state, List<RegisteredSpell> additionalSpells);
 
         // Utility
         GameState CloneGameState(GameState state);
@@ -56,5 +68,7 @@ namespace Salvation.Core.Interfaces.State
 
         // Holy Priest specific
         double GetTotalHolyWordCooldownReduction(GameState state, Spell spell, bool IsApotheosisActive = false);
+        double GetStamina(GameState state);
+        double GetHitpoints(GameState state);
     }
 }

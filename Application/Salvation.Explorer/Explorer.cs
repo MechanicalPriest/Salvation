@@ -34,13 +34,16 @@ namespace Salvation.Explorer
                         await _spellDataUpdateService.UpdateSpellData();
                         break;
                     case "generatestatweights":
-                        _holyPriestExplorer.GenerateStatWeights();
+                        await _holyPriestExplorer.GenerateStatWeights();
                         break;
                     case "comparecovenants":
-                        _holyPriestExplorer.CompareCovenants();
+                        await _holyPriestExplorer.CompareCovenants();
+                        break;
+                    case "comparecovenantsadvanced":
+                        await _holyPriestExplorer.CompareCovenantsAdvanced();
                         break;
                     case "testholypriest":
-                        _holyPriestExplorer.TestHolyPriestModel(); // Test stat weights
+                        await _holyPriestExplorer.TestHolyPriestModelAsync(); // Test stat weights
                         break;
                     default:
                         break;

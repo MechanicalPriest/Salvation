@@ -1,22 +1,13 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Salvation.Core;
-using Salvation.Core.Constants;
-using Salvation.Core.Interfaces;
-using Salvation.Core.Interfaces.Constants;
 using Salvation.Core.Interfaces.Modelling;
-using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
-using Salvation.Core.Interfaces.Profile;
-using Salvation.Core.Interfaces.State;
-using Salvation.Core.Modelling;
-using Salvation.Core.Modelling.HolyPriest;
-using Salvation.Core.Modelling.HolyPriest.Spells;
-using Salvation.Core.Profile;
-using Salvation.Core.State;
 using Salvation.Explorer.Modelling;
 using Salvation.Utility.SpellDataUpdate;
-using SimcProfileParser;
+using Serilog;
+using Serilog.Events;
 using System;
+using System.IO;
 
 namespace Salvation.Explorer
 {
@@ -24,7 +15,26 @@ namespace Salvation.Explorer
     {
         static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            Log.Logger = new LoggerConfiguration()
+            .MinimumLevel.Verbose()
+            .Enrich.FromLogContext()
+            .WriteTo.Console()
+            .WriteTo.File("logs" + Path.DirectorySeparatorChar + "salvation.explorer.log", rollingInterval: RollingInterval.Day)
+            .CreateLogger();
+
+            try
+            {
+                CreateHostBuilder(args).Build().Run();
+                return;
+            }
+            catch (Exception ex)
+            {
+                Log.Fatal(ex, "Application start-up failed");
+            }
+            finally
+            {
+                Log.CloseAndFlush();
+            }
 
             Console.WriteLine("Press any key to exit...");
             Console.ReadKey();
@@ -34,62 +44,24 @@ namespace Salvation.Explorer
             Host.CreateDefaultBuilder(args)
                 .ConfigureServices((hostContext, services) =>
                 {
-                    // Common services
-                    services.AddSingleton<IConstantsService, ConstantsService>();
-                    services.AddSingleton<IGameStateService, GameStateService>();
-                    services.AddSingleton<IProfileService, ProfileService>();
+                    services.AddSalvationCore();
+
+                    // Explorer specific utility services
                     services.AddSingleton<IComparisonModeller<CovenantComparisonsResult>, CovenantComparisons>();
-                    services.AddSingleton<IStatWeightGenerationService, StatWeightGenerator>();
+                    services.AddSingleton<IComparisonModeller<AdvancedComparisonResult>, AdvancedComparison>();
 
-                    // Holy Priest specific services
                     services.AddSingleton<IHolyPriestExplorer, HolyPriestExplorer>();
-                    services.AddSingleton<IModellingService, HolyPriestModellingService>();
 
-                    // Spells
-                    services.AddSingleton<IFlashHealSpellService, FlashHeal>();
-                    services.AddSingleton<IHolyWordSerenitySpellService, HolyWordSerenity>();
-                    services.AddSingleton<IHolyWordSalvationSpellService, HolyWordSalvation>();
-                    services.AddSingleton<IRenewSpellService, Renew>();
-                    services.AddSingleton<IPrayerOfMendingSpellService, PrayerOfMending>();
-                    services.AddSingleton<IPrayerOfHealingSpellService, PrayerOfHealing>();
-                    services.AddSingleton<IHealSpellService, Heal>();
-                    services.AddSingleton<IBindingHealSpellService, BindingHeal>();
-                    services.AddSingleton<IHolyWordSanctifySpellService, HolyWordSanctify>();
-                    services.AddSingleton<ICircleOfHealingSpellService, CircleOfHealing>();
-                    services.AddSingleton<IDivineHymnSpellService, DivineHymn>();
-                    services.AddSingleton<IDivineStarSpellService, DivineStar>();
-                    services.AddSingleton<IHaloSpellService, Halo>();
-                    services.AddSingleton<IHolyNovaSpellService, HolyNova>();
-                    services.AddSingleton<IPowerWordShieldSpellService, PowerWordShield>();
-                    // Covenants
-                    services.AddSingleton<IFaeGuardiansSpellService, FaeGuardians>();
-                    services.AddSingleton<IMindgamesSpellService, Mindgames>();
-                    services.AddSingleton<IUnholyNovaSpellService, UnholyNova>();
-                    services.AddSingleton<IUnholyTransfusionSpellService, UnholyTransfusion>();
-                    services.AddSingleton<IBoonOfTheAscendedSpellService, BoonOfTheAscended>();
-                    services.AddSingleton<IAscendedBlastSpellService, AscendedBlast>();
-                    services.AddSingleton<IAscendedNovaSpellService, AscendedNova>();
-                    services.AddSingleton<IAscendedEruptionSpellService, AscendedEruption>();
-
-                    // DPS
-                    services.AddSingleton<ISmiteSpellService, Smite>();
-                    services.AddSingleton<IHolyWordChastiseSpellService, HolyWordChastise>(); 
-                    services.AddSingleton<IShadowWordPainSpellService, ShadowWordPain>();
-                    services.AddSingleton<IShadowWordDeathSpellService, ShadowWordDeath>();
-                    services.AddSingleton<IHolyFireSpellService, HolyFire>();
-
-                    // Utility services
                     services.AddSingleton<ISpellDataUpdateService, SpellDataUpdateService>();
                     services.AddSingleton<ISpellDataService<HolyPriestSpellDataService>, HolyPriestSpellDataService>();
 
-                    services.AddSimcProfileParser();
-
                     // Application service
-                    services.AddHostedService<Explorer>(serviceProvider =>
+                    services.AddHostedService(serviceProvider =>
                         new Explorer(
                             args,
                             serviceProvider.GetService<IHolyPriestExplorer>(),
                             serviceProvider.GetService<ISpellDataUpdateService>()));
-                });
+                })
+                .UseSerilog();
     }
 }

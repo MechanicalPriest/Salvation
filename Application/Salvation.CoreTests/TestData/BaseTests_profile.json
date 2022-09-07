@@ -4,7 +4,7 @@
   "Server": "torghast",
   "Region": "us",
   "Level": 60,
-  "Race": 3,
+  "Race": 0,
   "Class": 5,
   "Intellect": 0,
   "MasteryRating": 0,
@@ -216,11 +216,144 @@
       "AverageDamageTargets": 1.0
     },
     {
-      "SpellId": 325118,
+      "SpellId": 325203,
       "Efficiency": 1.0,
       "OverhealPercent": 0.01,
       "AverageHealingTargets": 1.0,
       "AverageDamageTargets": 1.0
+    },
+    {
+      "SpellId": 307193,
+      "Efficiency": 0.9,
+      "OverhealPercent": 0.00,
+      "AverageHealingTargets": 0.0,
+      "AverageDamageTargets": 0.0
+    },
+    {
+      "SpellId": 329781,
+      "Efficiency": 0.0,
+      "OverhealPercent": 0.60,
+      "AverageHealingTargets": 0.0,
+      "AverageDamageTargets": 0.0
+    },
+    {
+      "SpellId": 333950,
+      "Efficiency": 0.0,
+      "OverhealPercent": 0.10,
+      "AverageHealingTargets": 0.0,
+      "AverageDamageTargets": 0.0
+    },
+    {
+      "SpellId": 324631,
+      "Efficiency": 1.0,
+      "OverhealPercent": 0.01,
+      "AverageHealingTargets": 1.0,
+      "AverageDamageTargets": 0.0
+    },
+    {
+      "SpellId": 329791,
+      "Efficiency": 0.0,
+      "OverhealPercent": 0.01,
+      "AverageHealingTargets": 1.0,
+      "AverageDamageTargets": 0.0
+    },
+    {
+      "SpellId": 323095,
+      "Efficiency": 0.0,
+      "OverhealPercent": 0.25,
+      "AverageHealingTargets": 1.0,
+      "AverageDamageTargets": 0.0
+    },
+    {
+      "SpellId": 47788,
+      "Efficiency": 0.4,
+      "OverhealPercent": 0.0,
+      "AverageHealingTargets": 1.0,
+      "AverageDamageTargets": 0.0
+    },
+    {
+      "SpellId": 196809,
+      "Efficiency": 0.0,
+      "OverhealPercent": 0.20,
+      "AverageHealingTargets": 1.0,
+      "AverageDamageTargets": 0.0
+    },
+    {
+      "SpellId": 196816,
+      "Efficiency": 0.0,
+      "OverhealPercent": 0.25,
+      "AverageHealingTargets": 1.0,
+      "AverageDamageTargets": 0.0
+    },
+    {
+      "SpellId": 196810,
+      "Efficiency": 0.0,
+      "OverhealPercent": 0.25,
+      "AverageHealingTargets": 5.0,
+      "AverageDamageTargets": 0.0
+    },
+    {
+      "SpellId": 196813,
+      "Efficiency": 0.0,
+      "OverhealPercent": 0.20,
+      "AverageHealingTargets": 5.0,
+      "AverageDamageTargets": 0.0
+    },
+    {
+      "SpellId": 345801,
+      "Efficiency": 0.9,
+      "OverhealPercent": 0.30,
+      "AverageHealingTargets": 1.0,
+      "AverageDamageTargets": 0.0
+    },
+    {
+      "SpellId": 344243,
+      "Efficiency": 0.9,
+      "OverhealPercent": 0.15,
+      "AverageHealingTargets": 1.0,
+      "AverageDamageTargets": 0.0
+    },
+    {
+      "SpellId": 345432,
+      "Efficiency": 0.9,
+      "OverhealPercent": 0.0,
+      "AverageHealingTargets": 0.0,
+      "AverageDamageTargets": 0.0
+    },
+    {
+      "SpellId": 344916,
+      "Efficiency": 0.8,
+      "OverhealPercent": 0.3,
+      "AverageHealingTargets": 1.0,
+      "AverageDamageTargets": 0.0
+    },
+    {
+      "SpellId": 333734,
+      "Efficiency": 0.85,
+      "OverhealPercent": 0.15,
+      "AverageHealingTargets": 4.0,
+      "AverageDamageTargets": 0.0
+    },
+    {
+      "SpellId": 345695,
+      "Efficiency": 0.95,
+      "OverhealPercent": 0.05,
+      "AverageHealingTargets": 1.0,
+      "AverageDamageTargets": 0.0
+    },
+    {
+      "SpellId": 343385,
+      "Efficiency": 0.9,
+      "OverhealPercent": 0.0,
+      "AverageHealingTargets": 0.0,
+      "AverageDamageTargets": 0.0
+    },
+    {
+      "SpellId": 345549,
+      "Efficiency": 0.95,
+      "OverhealPercent": 0.01,
+      "AverageHealingTargets": 1.0,
+      "AverageDamageTargets": 0.0
     }
   ],
   "Items": [
@@ -3719,14 +3852,14 @@
         "Name": "pelagos",
         "SoulbindId": 7,
         "IsActive": true,
-        "ActiveAbilities": [],
+        "ActiveTraits": [],
         "ActiveConduits": {}
       },
       {
         "Name": "forgelite_prime_mikanikos",
         "SoulbindId": 18,
         "IsActive": false,
-        "ActiveAbilities": [
+        "ActiveTraits": [
           331609
         ],
         "ActiveConduits": {
@@ -3791,6 +3924,21 @@
     {
       "Name": "OverrideStatMastery",
       "Value": 0.0,
+      "SpellId": 0
+    },
+    {
+      "Name": "OverrideStatLeech",
+      "Value": 0.0,
+      "SpellId": 0
+    },
+    {
+      "Name": "CharitableSoulAllyCasts",
+      "Value": 0.9,
+      "SpellId": 0
+    },
+    {
+      "Name": "DamageTakenPerSecond",
+      "Value": 1500,
       "SpellId": 0
     }
   ]

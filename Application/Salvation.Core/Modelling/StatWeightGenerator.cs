@@ -1,6 +1,7 @@
 ﻿using Salvation.Core.Interfaces.Modelling;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.Modelling.Common;
+using Salvation.Core.Profile.Model;
 using Salvation.Core.State;
 using System;
 using System.Collections.Generic;
@@ -83,38 +84,45 @@ namespace Salvation.Core.Modelling
 
             // Int
             var intState = _gameStateService.CloneGameState(baselineState);
-            // TODO: Add a buff to the profile to add the additional stats
-            intState.Profile.Intellect += numAdditionalStats;
-            intState.Profile.Name = "Intellect Profile";
+            _gameStateService.OverridePlaystyle(intState, 
+                new PlaystyleEntry("GrantAdditionalStatIntellect", numAdditionalStats));
+            _gameStateService.SetProfileName(intState, "Intellect Profile");
             states.Add(intState);
 
             // Haste
             var hasteState = _gameStateService.CloneGameState(baselineState);
-            // TODO: Add a buff to the profile to add the additional stats
-            //hasteState.Profile.HasteRating += numAdditionalStats;
-            hasteState.Profile.Name = "Haste Profile";
+            _gameStateService.OverridePlaystyle(hasteState,
+                new PlaystyleEntry("GrantAdditionalStatHaste", numAdditionalStats));
+            _gameStateService.SetProfileName(hasteState, "Haste Profile");
             states.Add(hasteState);
 
             // Crit
             var critState = _gameStateService.CloneGameState(baselineState);
-            // TODO: Add a buff to the profile to add the additional stats
-            //critState.Profile.CritRating += numAdditionalStats;
-            critState.Profile.Name = "Crit Profile";
+            _gameStateService.OverridePlaystyle(critState,
+                new PlaystyleEntry("GrantAdditionalStatCriticalStrike", numAdditionalStats));
+            _gameStateService.SetProfileName(critState, "Critical Strike Profile");
             states.Add(critState);
 
             // Vers
             var versState = _gameStateService.CloneGameState(baselineState);
-            // TODO: Add a buff to the profile to add the additional stats
-            //versState.Profile.VersatilityRating += numAdditionalStats;
-            versState.Profile.Name = "Vers Profile";
+            _gameStateService.OverridePlaystyle(versState,
+                new PlaystyleEntry("GrantAdditionalStatVersatility", numAdditionalStats));
+            _gameStateService.SetProfileName(versState, "Versatility Profile");
             states.Add(versState);
 
             // Mastery
             var masteryState = _gameStateService.CloneGameState(baselineState);
-            // TODO: Add a buff to the profile to add the additional stats
-            //masteryState.Profile.MasteryRating += numAdditionalStats;
-            masteryState.Profile.Name = "Mastery Profile";
+            _gameStateService.OverridePlaystyle(masteryState,
+                new PlaystyleEntry("GrantAdditionalStatMastery", numAdditionalStats));
+            _gameStateService.SetProfileName(masteryState, "Mastery Profile");
             states.Add(masteryState);
+
+            // Leech
+            var leechState = _gameStateService.CloneGameState(baselineState);
+            _gameStateService.OverridePlaystyle(leechState,
+                new PlaystyleEntry("GrantAdditionalStatLeech", numAdditionalStats));
+            _gameStateService.SetProfileName(leechState, "Leech Profile");
+            states.Add(leechState);
 
             return states;
         }

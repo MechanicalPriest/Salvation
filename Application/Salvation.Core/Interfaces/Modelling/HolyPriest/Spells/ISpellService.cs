@@ -2,7 +2,7 @@
 using Salvation.Core.Modelling.Common;
 using Salvation.Core.State;
 
-namespace Salvation.Core.Interfaces.Modelling.HolyPriest.Spells
+namespace Salvation.Core.Interfaces.Modelling
 {
     /// <summary>
     /// Inherited by each spell implementation. 
@@ -88,14 +88,29 @@ namespace Salvation.Core.Interfaces.Modelling.HolyPriest.Spells
         public double GetMaximumHealTargets(GameState gameState, BaseSpellData spellData);
         public double GetMinimumDamageTargets(GameState gameState, BaseSpellData spellData);
         public double GetMaximumDamageTargets(GameState gameState, BaseSpellData spellData);
+
+        // Effect Behaviour
+        double GetUptime(GameState gameState, BaseSpellData spellData);
+
+        // Effect Properties
+        double GetAverageCriticalStrike(GameState gameState, BaseSpellData spellData);
+        double GetAverageCriticalStrikePercent(GameState gameState, BaseSpellData spellData);
+        double GetAverageHaste(GameState gameState, BaseSpellData spellData);
+        double GetAverageHastePercent(GameState gameState, BaseSpellData spellData);
+        double GetAverageIntellect(GameState gameState, BaseSpellData spellData);
+        double GetAverageIntellectBonus(GameState gameState, BaseSpellData spellData);
+        double GetAverageMastery(GameState gameState, BaseSpellData spellData);
+        double GetAverageMasteryPercent(GameState gameState, BaseSpellData spellData);
+        double GetAverageVersatility(GameState gameState, BaseSpellData spellData);
+        double GetAverageVersatilityPercent(GameState gameState, BaseSpellData spellData);
+        double GetAverageLeech(GameState gameState, BaseSpellData spellData);
+        double GetAverageLeechPercent(GameState gameState, BaseSpellData spellData);
+        double GetAverageMp5(GameState gameState, BaseSpellData spellData);
+        double GetAverageHealingBonus(GameState gameState, BaseSpellData spellData);
     }
 
-    /// <summary>
-    /// Could use the following if needed to override a spells model / data. 
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    //public interface ISpellService<T> : ISpellService where T : BaseSpell
-    //{
-    //    //SpellCastResult GetCastResults(HolyPriestModel model, T spellOverride = null);
-    //}
+    public interface ISpellService<T> : ISpellService where T : ISpellService
+    {
+        // TODO: Create ServiceProvider mock for testing?
+    }
 }

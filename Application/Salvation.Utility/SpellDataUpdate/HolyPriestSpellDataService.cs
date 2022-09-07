@@ -222,7 +222,7 @@ namespace Salvation.Utility.SpellDataUpdate
 
             foreach (var spell in _spells)
             {
-                // TODO: feed up level 60 from somewhere else. Now level 70?
+                // TODO: feed up level 60 from somewhere else. Now level 70.
                 var spellOptions = new SimcSpellOptions()
                 {
                     SpellId = spell,

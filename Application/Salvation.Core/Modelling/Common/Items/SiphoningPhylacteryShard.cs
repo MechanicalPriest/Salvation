@@ -27,7 +27,8 @@ namespace Salvation.Core.Modelling.Common.Items
             var itemLevel = (int)spellData.Overrides[Override.ItemLevel];
 
             // Get scale budget
-            var scaledHealingValue = spellData.GetEffect(871498).GetScaledCoefficientValue(itemLevel);
+            var healSpell = _gameStateService.GetSpellData(gameState, Spell.SiphoningPhylacteryShardBuff);
+            var scaledHealingValue = healSpell.GetEffect(871498).GetScaledCoefficientValue(itemLevel);
 
             if (scaledHealingValue == 0)
                 throw new ArgumentOutOfRangeException("itemLevel", $"healSpell.ScaleValues does not contain itemLevel: {itemLevel}");

@@ -34,6 +34,7 @@ namespace Salvation.Core.Modelling.Common.Items
             var highHeal = _gameStateService.GetSpellData(gameState, Spell.DarkmoonDeckReposeEight);
 
             // Get scale budget
+            // TODO: These spells aren't getting scale values for ilvl 200.
             var scaledHealValueLow = lowHeal.GetEffect(792442).GetScaledCoefficientValue(itemLevel);
             var scaledHealValueHigh = highHeal.GetEffect(792449).GetScaledCoefficientValue(itemLevel);
 

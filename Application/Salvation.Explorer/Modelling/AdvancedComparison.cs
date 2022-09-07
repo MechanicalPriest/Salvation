@@ -240,38 +240,108 @@ namespace Salvation.Explorer.Modelling
             return states;
         }
 
+        class TrinketGenerationTemplate
+        {
+            internal string Name { get; set; }
+            internal SimcItemOptions Options { get; set; }
+            internal List<int> ItemLevels { get; set; }
+
+            public TrinketGenerationTemplate()
+            {
+                ItemLevels = new List<int>();
+            }
+
+            public TrinketGenerationTemplate(string name, SimcItemOptions options, params int[] itemLevels)
+                : this()
+            {
+                Name = name;
+                Options = options;
+                ItemLevels = itemLevels.ToList();
+            }
+        }
+
         private async Task<IEnumerable<GameState>> GetTrinketStates(GameState baseState)
         {
             var states = new List<GameState>();
 
-            var trinkets = new Dictionary<string, SimcItemOptions>()
+            // Common item levels:
+            // Mythic +15 9/12: 236
+            // 10/12: 239
+            // 11/12: 242
+            // 12/12: 246
+            // Vault: 252
+            // LFRaid raid (8/2): 213/220
+            // Normal raid (8/2): 226/233
+            // Heroic raid (8/2): 239/246
+            // Mythic raid (8/2): 252/259
+            // CN Heroic (8/2): 213/220
+            // CN Mythic (8/2): 226/233
+            // World boss trinket: 233
+            // Crafted (Alch): 230
+
+            // Dungeon trinkets: 236, 239, 242, 246, 252
+            // Raid trinkets (8): 213, 226, 239, 252
+            // Raid trinkets (2): 220, 233, 246, 259
+            // World boss: 233
+            // Crafted: 230
+            // PVP: 220, 226, 233, 239, 246
+
+            var trinkets = new List<TrinketGenerationTemplate>()
             {
-                { "cabalists_hymnal", new SimcItemOptions() { ItemId = 184028, ItemLevel = 233 } },
-                { "unbound_changeling", new SimcItemOptions() { ItemId = 178708, ItemLevel = 226, BonusIds = new List<int>() { 6917 } } },
-                { "soulletting_ruby", new SimcItemOptions() { ItemId = 178809, ItemLevel = 226 } },
-                { "manabound_mirror", new SimcItemOptions() { ItemId = 184029, ItemLevel = 233 } },
-                { "macabre_sheet_music", new SimcItemOptions() { ItemId = 184024, ItemLevel = 226 } },
-                { "tuft_of_smoldering_plumage", new SimcItemOptions() { ItemId = 184020, ItemLevel = 226 } },
-                { "consumptive_infusion", new SimcItemOptions() { ItemId = 184022, ItemLevel = 226 } },
-                { "darkmoon_deck_repose", new SimcItemOptions() { ItemId = 173078, ItemLevel = 200 } },
-                { "vial_of_spectral_essence", new SimcItemOptions() { ItemId = 178810, ItemLevel = 226 } },
-                { "overflowing_anima_cage", new SimcItemOptions() { ItemId = 178849, ItemLevel = 226 } },
-                { "siphoning_phylactery_shard", new SimcItemOptions() { ItemId = 178783, ItemLevel = 226 } },
+                // Castle Nathria
+                { new TrinketGenerationTemplate("cabalists_hymnal", new SimcItemOptions() { ItemId = 184028 }, 220, 233) },
+                { new TrinketGenerationTemplate("manabound_mirror", new SimcItemOptions() { ItemId = 184029 }, 220, 233) },
+                { new TrinketGenerationTemplate("macabre_sheet_music", new SimcItemOptions() { ItemId = 184024 }, 213, 226) },
+                { new TrinketGenerationTemplate("consumptive_infusion", new SimcItemOptions() { ItemId = 184022 }, 213, 226) },
+                { new TrinketGenerationTemplate("tuft_of_smoldering_plumage", new SimcItemOptions() { ItemId = 184020 }, 213, 226) },
+
+                // Sanctum of Domination
+                { new TrinketGenerationTemplate("titanic_ocular_gland", new SimcItemOptions() { ItemId = 186423 }, 213, 226, 239, 252) },
+                { new TrinketGenerationTemplate("scrawled_word_of_recall", new SimcItemOptions() { ItemId = 186425 }, 213, 226, 239, 252) },
+                { new TrinketGenerationTemplate("shadowed_orb_of_torment", new SimcItemOptions() { ItemId = 186428 }, 213, 226, 239, 252) },
+                { new TrinketGenerationTemplate("carved_ivory_keepsake", new SimcItemOptions() { ItemId = 186435 }, 213, 226, 239, 252) },
+                { new TrinketGenerationTemplate("resonant_silver_bell", new SimcItemOptions() { ItemId = 186436 }, 220, 233, 246, 259) },
+
+                // Dungeon trinkets
+                { new TrinketGenerationTemplate("unbound_changeling_haste", new SimcItemOptions() { ItemId = 178708, BonusIds = new List<int>() { 6917 } }, 236, 239, 242, 246, 252) },
+                { new TrinketGenerationTemplate("unbound_changeling_crit", new SimcItemOptions() { ItemId = 178708, BonusIds = new List<int>() { 6916 } }, 236, 239, 242, 246, 252) },
+                { new TrinketGenerationTemplate("unbound_changeling_mastery", new SimcItemOptions() { ItemId = 178708, BonusIds = new List<int>() { 6918 } }, 236, 239, 242, 246, 252) },
+                { new TrinketGenerationTemplate("unbound_changeling_triple", new SimcItemOptions() { ItemId = 178708, BonusIds = new List<int>() { 6915 } }, 236, 239, 242, 246, 252) },
+                { new TrinketGenerationTemplate("soulletting_ruby", new SimcItemOptions() { ItemId = 178809 }, 236, 239, 242, 246, 252) },
+                { new TrinketGenerationTemplate("overflowing_anima_cage", new SimcItemOptions() { ItemId = 178849 }, 236, 239, 242, 246, 252) },
+                { new TrinketGenerationTemplate("vial_of_spectral_essence", new SimcItemOptions() { ItemId = 178810 }, 236, 239, 242, 246, 252) },
+                { new TrinketGenerationTemplate("siphoning_phylactery_shard", new SimcItemOptions() { ItemId = 178783 }, 236, 239, 242, 246, 252) },
+                // IQD
+                // Sunblood Amethyst
+                // Lingering Sunmote
+                // Boon of the Archon
+                // First Class Healing Distributor 
+                // So'leah's Secret Technique
+                // 
+
+                // Crafted
+                //{ new TrinketGenerationTemplate("darkmoon_deck_repose", new SimcItemOptions() { ItemId = 173078 }, 200) },
+                { new TrinketGenerationTemplate("spiritual_alchemy_stone", new SimcItemOptions() { ItemId = 171323 }, 200, 230) },
             };
 
             foreach (var trinket in trinkets)
             {
-                var newState = _gameStateService.CloneGameState(baseState);
+                foreach (var itemLevel in trinket.ItemLevels)
+                {
+                    var newState = _gameStateService.CloneGameState(baseState);
 
-                var trinketItem = await _simcGenerationService.GenerateItemAsync(trinket.Value);
+                    trinket.Options.ItemLevel = itemLevel;
 
-                var newItem = _simcProfileService.CreateItem(trinketItem);
-                newItem.Equipped = true;
+                    var trinketItem = await _simcGenerationService.GenerateItemAsync(trinket.Options);
 
-                newState.Profile.Items.Add(newItem);
-                _gameStateService.SetProfileName(newState, $"tr_{trinket.Key}");
+                    var newItem = _simcProfileService.CreateItem(trinketItem);
+                    newItem.Equipped = true;
 
-                states.Add(newState);
+                    newState.Profile.Items.Add(newItem);
+                    _gameStateService.SetProfileName(newState, $"tr_{trinket.Name}_{itemLevel}");
+
+                    states.Add(newState);
+                }
             }
 
             return states;

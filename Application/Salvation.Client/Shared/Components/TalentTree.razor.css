@@ -1,0 +1,255 @@
+﻿.talent-container {
+    /* This multiplier accounts for the ratio of 18:10 presented by the 18:10 grid. 
+       This keeps the grid ratio's correct, making every 2 columns a square (2:1)
+       It essentially makes 9 columns (18 even columns)
+    */
+    padding-bottom: 111.111111111%;
+    position: relative;
+}
+
+.talent-grid {
+    display: grid;
+    grid-template-columns: repeat(18, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* The grid relies on the container it's in being relative */
+    position: absolute;
+}
+
+.talent-image, .talent-image-holder, .talent-contents {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.talent {
+    position: relative;
+    margin: 20%;
+    z-index: 20;
+}
+
+.talent:hover {
+    filter: brightness(1.5);
+}
+
+.talent[data-ready="0"] {
+    border: 2px solid rgb(252, 205, 51);
+}
+
+.talent[data-ready="1"] {
+    border: 2px solid rgb(36, 161, 36);
+}
+
+.talent[data-node-unlocked="0"] {
+    border: 2px solid rgb(128, 128, 128);
+}
+
+.talent-contents {
+
+}
+
+.talent-image-holder {
+
+}
+
+.talent[data-node-type="choice"] {
+    transform: rotate(45deg);
+}
+
+.talent-image {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.talent-image-choice-left {
+    background-position: left center;
+    transform: rotate(-45deg);
+    transform-origin: right center;
+    width: 50%;
+    z-index: 10;
+}
+
+.talent-image-choice-left[data-ready="0"] {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transform-origin: unset;
+    width: 100%;
+    z-index: auto;
+}
+
+.talent-image-choice-left[data-ready="0"][data-choice-selected="0"] {
+    visibility: hidden;
+}
+
+
+.talent-image-choice-right {
+    transform: rotate(-45deg);
+}
+
+.talent-image-choice-right[data-ready="0"][data-choice-selected="0"] {
+    visibility: hidden;
+}
+
+.talent[data-spell-passive="1"], .talent-contents[data-spell-passive="1"] {
+    border-radius: 50px;
+}
+
+
+.talent-points-spent {
+    align-self: end;
+    background-color: #000000;
+    border-radius: 6px;
+    color: #fff;
+    justify-self: end;
+    margin: 10%;
+    padding: 0px 3px;
+    pointer-events: none;
+    z-index: 20;
+    font-size: 0.6rem;
+}
+
+/* Talent col settings */
+.talent-col-1 {
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+.talent-col-2 {
+    grid-column-start: 2;
+    grid-column-end: 4;
+}
+
+.talent-col-3 {
+    grid-column-start: 3;
+    grid-column-end: 5;
+}
+
+.talent-col-4 {
+    grid-column-start: 4;
+    grid-column-end: 6;
+}
+
+.talent-col-5 {
+    grid-column-start: 5;
+    grid-column-end: 7;
+}
+
+.talent-col-6 {
+    grid-column-start: 6;
+    grid-column-end: 8;
+}
+
+.talent-col-7 {
+    grid-column-start: 7;
+    grid-column-end: 9;
+}
+
+.talent-col-8 {
+    grid-column-start: 8;
+    grid-column-end: 10;
+}
+
+.talent-col-9 {
+    grid-column-start: 9;
+    grid-column-end: 11;
+}
+
+.talent-col-10 {
+    grid-column-start: 10;
+    grid-column-end: 12;
+}
+
+.talent-col-11 {
+    grid-column-start: 11;
+    grid-column-end: 13;
+}
+
+.talent-col-12 {
+    grid-column-start: 12;
+    grid-column-end: 14;
+}
+
+.talent-col-13 {
+    grid-column-start: 13;
+    grid-column-end: 15;
+}
+
+.talent-col-14 {
+    grid-column-start: 14;
+    grid-column-end: 16;
+}
+
+.talent-col-15 {
+    grid-column-start: 15;
+    grid-column-end: 17;
+}
+
+.talent-col-16 {
+    grid-column-start: 16;
+    grid-column-end: 18;
+}
+
+.talent-col-17 {
+    grid-column-start: 17;
+    grid-column-end: 19;
+}
+
+/* Talent row settings */
+.talent-row-1 {
+    grid-row-start: 1;
+    grid-row-end: auto;
+}
+
+.talent-row-2 {
+    grid-row-start: 2;
+    grid-row-end: auto;
+}
+
+.talent-row-3 {
+    grid-row-start: 3;
+    grid-row-end: auto;
+}
+
+.talent-row-4 {
+    grid-row-start: 4;
+    grid-row-end: auto;
+}
+
+.talent-row-5 {
+    grid-row-start: 5;
+    grid-row-end: auto;
+}
+
+.talent-row-6 {
+    grid-row-start: 6;
+    grid-row-end: auto;
+}
+
+.talent-row-7 {
+    grid-row-start: 7;
+    grid-row-end: auto;
+}
+
+.talent-row-8 {
+    grid-row-start: 8;
+    grid-row-end: auto;
+}
+
+.talent-row-9 {
+    grid-row-start: 9;
+    grid-row-end: auto;
+}
+
+.talent-row-10 {
+    grid-row-start: 10;
+    grid-row-end: auto;
+}

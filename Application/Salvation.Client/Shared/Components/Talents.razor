@@ -1,0 +1,25 @@
+﻿@inject HttpClient Http
+@inject IJSRuntime JS
+@using Salvation.Core.ViewModel
+
+@if (holyPriest == null)
+{
+    <MudProgressCircular Color="Color.Default" Indeterminate="true" />
+}
+else
+{
+    <MudGrid Justify="Justify.Center">
+        <MudItem xs="12" sm="6">
+            <MudText Typo="Typo.h6" Align="Align.Center" Class="mb-4">@holyPriest.ClassName</MudText>
+            <TalentTree Talents=@holyPriest.ClassNodes PointsTotal=@ClassPoints></TalentTree>
+        </MudItem>
+        <MudItem xs="12" sm="6">
+            <MudText Typo="Typo.h6" Align="Align.Center" Class="mb-4">@holyPriest.SpecName</MudText>
+            <TalentTree Talents=@holyPriest.SpecNodes PointsTotal=@SpecPoints></TalentTree>
+        </MudItem>
+    </MudGrid>
+}
+
+@code {
+    
+}

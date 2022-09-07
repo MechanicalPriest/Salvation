@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Hosting;
 using Salvation.Explorer.Modelling;
 using Salvation.Utility.SpellDataUpdate;
+using Salvation.Utility.TalentStructureUpdate;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -11,14 +12,17 @@ namespace Salvation.Explorer
         private readonly string[] _args;
         private readonly IHolyPriestExplorer _holyPriestExplorer;
         private readonly ISpellDataUpdateService _spellDataUpdateService;
+        private readonly ITalentStructureUpdateService _talentStructureUpdateService;
 
         public Explorer(string[] args,
             IHolyPriestExplorer holyPriestExplorer,
-            ISpellDataUpdateService spellDataUpdateService)
+            ISpellDataUpdateService spellDataUpdateService,
+            ITalentStructureUpdateService talentStructureUpdateService)
         {
             _args = args;
             _holyPriestExplorer = holyPriestExplorer;
             _spellDataUpdateService = spellDataUpdateService;
+            _talentStructureUpdateService = talentStructureUpdateService;
         }
 
         public async Task StartAsync(CancellationToken cancellationToken)
@@ -44,6 +48,9 @@ namespace Salvation.Explorer
                         break;
                     case "testholypriest":
                         await _holyPriestExplorer.TestHolyPriestModelAsync(); // Test stat weights
+                        break;
+                    case "updatetalentdata":
+                        await _talentStructureUpdateService.UpdateTalentStructure(); // Update talent data from raidbots
                         break;
                     default:
                         break;

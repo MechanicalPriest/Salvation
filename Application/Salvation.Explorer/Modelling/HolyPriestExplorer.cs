@@ -139,13 +139,15 @@ namespace Salvation.Explorer.Modelling
 
             sb.AppendLine($"profile_name, raw_hps_diff, actual_hps_diff, raw_hps, actual_hps");
 
+            results.Results.OrderBy(o => o.Value.TotalActualHPS);
+
             foreach (var result in results.Results)
             {
                 sb.AppendLine($"{result.Key}, " +
                     $"{result.Value.TotalActualHPS - baselineResults.TotalActualHPS:0.##}, " +
                     $"{result.Value.TotalRawHPS - baselineResults.TotalRawHPS:0.##}, " +
-                    $"{result.Value.TotalActualHPS:0.##}, " +
-                    $"{result.Value.TotalRawHPS:0.##}, ");
+                    $"{result.Value.TotalRawHPS:0.##}, " +
+                    $"{result.Value.TotalActualHPS:0.##}, ");
             }
 
             File.WriteAllText("covenant_results_adv.csv", sb.ToString());

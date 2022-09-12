@@ -3,12 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Extensions.Logging;
-using Salvation.Core.Constants.Data;
 using Salvation.Core.Interfaces.Profile;
-using Salvation.Core.Profile.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using Salvation.Core.ViewModel;
+using Spec = Salvation.Core.Constants.Data.Spec;
 
 namespace Salvation.Api.Api
 {
@@ -35,26 +32,11 @@ namespace Salvation.Api.Api
                 return new BadRequestResult();
             }
 
-            var response = BuildProfileResponse(specId);
+            var profile = _profileGenerationService.GetDefaultProfile((Spec)specId);
 
-            // Remove the .Profile to return the full response - requires client support
-            return new OkObjectResult(new { Data = response.Profile });
-        }
+            var profileVM = profile.ToViewModel();
 
-        internal class ProfileResponse
-        {
-            public PlayerProfile Profile;
-            public Dictionary<string, int> Covenants;
-        }
-
-        private ProfileResponse BuildProfileResponse(int specId)
-        {
-            ProfileResponse response = new ProfileResponse
-            {
-                Profile = _profileGenerationService.GetDefaultProfile((Spec)specId)
-            };
-
-            return response;
+            return new OkObjectResult(profileVM);
         }
     }
 

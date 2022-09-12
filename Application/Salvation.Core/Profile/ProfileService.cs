@@ -261,17 +261,17 @@ namespace Salvation.Core.Profile
                 Class = Class.Priest,
                 Casts = new List<CastProfile>()
                 {
-                    new CastProfile((int)Spell.LeechHeal, 0.0d, 0.3475d, 1, 0),
+                    new CastProfile((int)Spell.LeechHeal, 0.0d, 0.3475d, 1, 0, "Leech"),
 
                     // Base Spells (SpellId, Efficiency, Overheal, HealTargets, DamageTargets)
-                    new CastProfile((int)Spell.FlashHeal, 0.1103d, 0.1084d, 1, 0),
-                    new CastProfile((int)Spell.Heal, 0.1564d, 0.3054d, 1, 0),
-                    new CastProfile((int)Spell.Renew, 0.0364d, 0.3643d, 1, 0),
-                    new CastProfile((int)Spell.PrayerOfMending, 0.9056d, 0.0219d, 1, 0),
-                    new CastProfile((int)Spell.PrayerOfHealing, 0.2931d, 0.2715d, 5, 0),
-                    new CastProfile((int)Spell.HolyNova, 0.0034d, 0.15d, 20, 1),
-                    new CastProfile((int)Spell.HolyWordSerenity, 0.677d, 0.1515d, 1, 0),
-                    new CastProfile((int)Spell.HolyWordSanctify, 0.7822d, 0.3234d, 6, 0),
+                    new CastProfile((int)Spell.FlashHeal, 0.1103d, 0.1084d, 1, 0, "Flash Heal, FH"),
+                    new CastProfile((int)Spell.Heal, 0.1564d, 0.3054d, 1, 0, "Heal"),
+                    new CastProfile((int)Spell.Renew, 0.0364d, 0.3643d, 1, 0, "Renew"),
+                    new CastProfile((int)Spell.PrayerOfMending, 0.9056d, 0.0219d, 1, 0, "Prayer of Mending, PoM"),
+                    new CastProfile((int)Spell.PrayerOfHealing, 0.2931d, 0.2715d, 5, 0, "Prayer of Healing, PoH"),
+                    new CastProfile((int)Spell.HolyNova, 0.0034d, 0.15d, 20, 1, "Holy Nova"),
+                    new CastProfile((int)Spell.HolyWordSerenity, 0.677d, 0.1515d, 1, 0, "Holy Word: Serenity, HW"),
+                    new CastProfile((int)Spell.HolyWordSanctify, 0.7822d, 0.3234d, 6, 0, "Holy Word: Sanctify, HW"),
                     new CastProfile((int)Spell.DivineHymn, 0.8005d, 0.314d, 20, 0),
                     new CastProfile((int)Spell.CircleOfHealing, 0.8653d, 0.1417d, 5, 0),
                     new CastProfile((int)Spell.DivineStar, 0.81d, 0.44d, 6, 1),

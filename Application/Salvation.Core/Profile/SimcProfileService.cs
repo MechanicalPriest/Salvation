@@ -30,7 +30,6 @@ namespace Salvation.Core.Profile
             var simcProfile = await _simcGenerationService.GenerateProfileAsync(simcAddonString);
 
             ApplyCharacterDetails(profile, simcProfile.ParsedProfile);
-            ApplyCovenant(profile, simcProfile.ParsedProfile);
             ApplyItems(profile, simcProfile.GeneratedItems);
             ApplyTalents(profile, simcProfile.ParsedProfile.Talents);
 

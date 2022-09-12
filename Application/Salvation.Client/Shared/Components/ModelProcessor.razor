@@ -1,0 +1,88 @@
+﻿@using Salvation.Core.ViewModel
+@inject IJSRuntime JS
+
+<MudGrid>
+    <MudItem xs="12" Class="align-center justify-center">
+        <MudText Typo="Typo.h4" Align="Align.Center">Import, Configure, Run!</MudText>
+    </MudItem>
+    <MudItem xs="12" md="6" xl="4">
+        <MudPaper Class="d-flex align-center justify-center mud-width-full py-2 px-2">
+            <MudStack Class="mud-width-full">
+                <MudText Typo="Typo.h6" Align="Align.Center">Profile</MudText>
+                <MudExpansionPanels MultiExpansion="true">
+                    <MudExpansionPanel>
+                        <TitleContent>
+                            <MudStack Row="true" Class="align-center">
+                                <MudText>Import in-game profile</MudText>
+                            </MudStack>
+                        </TitleContent>
+                        <ChildContent>
+                             <MudStack Class="mud-width-full">
+                                <MudText Typo="Typo.subtitle2">To import, download the <MudLink Href="https://www.curseforge.com/wow/addons/simulationcraft" Target="_blank">Simulationcraft Addon</MudLink>, then type <span style="font-family: monospace">/simc</span> in-game.</MudText>
+                                <MudTextField T="string" Label="Paste /simc output here" Variant="Variant.Outlined" Text="" Lines="3" />
+                                <MudAlert Severity="Severity.Warning">This will override your current profile.</MudAlert>
+                                <MudButton Variant="Variant.Filled" Color="Color.Primary" FullWidth="true">Import</MudButton>
+                            </MudStack>
+                        </ChildContent>
+                    </MudExpansionPanel>
+                </MudExpansionPanels>
+                <MudPaper Class="py-2 px-2">
+                    <MudStack>
+                        @if (loadingData)
+                        {
+                            <MudProgressCircular Color="Color.Secondary" Indeterminate="true" />
+                        }
+                        else
+                        {
+                            @if (data != null)
+                            {
+                                <MudText Typo="Typo.subtitle2">Gear</MudText>
+                                <MudText Typo="Typo.subtitle2">Gear</MudText>
+
+                                @foreach(var item in data.Items)
+                                {
+                                    <a href="@GenerateWowheadItemLink(item)">@item.Name</a>
+                                }
+
+                                <MudText Typo="Typo.subtitle2">Playstyle</MudText>
+
+                                <MudDataGrid Items="@data.Casts" Hover="true" Dense="true" ReadOnly="false" EditMode="DataGridEditMode.Cell" QuickFilter="@playstyleFilter">
+                                    <ToolBarContent>
+                                        <MudText Typo="Typo.subtitle2">Playstyle</MudText>
+                                        <MudSpacer />
+                                        <MudTextField @bind-Value="searchString" Placeholder="Search" Adornment="Adornment.Start" Immediate="true"
+                                            AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+                                    </ToolBarContent>
+                                    <Columns>
+                                        <Column T="CastProfileViewModel" Field="SpellId" Title="Spell" IsEditable="false">
+                                            <CellTemplate>
+                                                <a href="@GenerateWowheadItemLink(context.Item)" data-wh-icon-size="tiny">@context.Item.SpellId</a>
+                                            </CellTemplate>
+                                        </Column>
+                                        <Column T="CastProfileViewModel" Field="EfficiencyPercentValue" Title="Efficiency(%)" Filterable="false">
+                                            <EditTemplate>
+                                                <MudNumericField @bind-Value="context.Item.EfficiencyPercentValue" Mask="@(new PatternMask("000.00"))" Margin="Margin.Dense" Variant="Variant.Text" Adornment="Adornment.End" AdornmentText="%" Min="0" Max="100" Step="5"></MudNumericField>
+                                            </EditTemplate>
+                                        </Column>
+                                        <Column T="CastProfileViewModel" Field="OverhealingPercentValue" Title="Overheal %" Filterable="false">
+                                            <EditTemplate>
+                                                <MudNumericField @bind-Value="context.Item.OverhealingPercentValue" Mask="@(new PatternMask("000.00"))" Margin="Margin.Dense" Variant="Variant.Text" Adornment="Adornment.End" AdornmentText="%" Min="0" Max="100" Step="5"></MudNumericField>
+                                            </EditTemplate>
+                                        </Column>
+                                    </Columns>
+                                </MudDataGrid>
+                            }
+                        }
+                    </MudStack>
+                </MudPaper>
+            </MudStack>
+        </MudPaper>
+    </MudItem>
+    <MudItem xs="12" md="6" xl="8">
+        <MudPaper Class="d-flex align-center justify-center mud-width-full py-8">
+            <MudStack Class="mud-width-full">
+                <MudText Typo="Typo.h6" Align="Align.Center">Results</MudText>
+            </MudStack>
+        </MudPaper>
+    </MudItem>
+</MudGrid>

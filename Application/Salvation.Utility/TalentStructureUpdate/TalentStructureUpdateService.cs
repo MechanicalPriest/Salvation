@@ -62,7 +62,7 @@ namespace Salvation.Utility.TalentStructureUpdate
 
             // 3. Save it to file
             using FileStream processedDataFile = File.Create(Path.Combine(staticDataRelativePath, localTalentDataFile));
-            await JsonSerializer.SerializeAsync<Spec>(processedDataFile, holyPriestData, 
+            await JsonSerializer.SerializeAsync<TalentSpec>(processedDataFile, holyPriestData, 
                 new JsonSerializerOptions() { WriteIndented = true });
 
             // 4. Download icons
@@ -79,12 +79,12 @@ namespace Salvation.Utility.TalentStructureUpdate
         }
 
 
-        private static Spec MassageRawData(RawSpec[] rawTalentData)
+        private static TalentSpec MassageRawData(RawSpec[] rawTalentData)
         {
             var hpriest = rawTalentData.Where(t => t.specId == 257).FirstOrDefault();
 
             // Create new objects and assign all the relevant values to them.
-            Spec holyPriest = new Spec()
+            TalentSpec holyPriest = new TalentSpec()
             {
                 ClassName = hpriest.className,
                 ClassId = hpriest.classId,
@@ -161,7 +161,7 @@ namespace Salvation.Utility.TalentStructureUpdate
         }
 
 
-        private async Task DownloadIcons(Spec holyPriestData, string iconPath)
+        private async Task DownloadIcons(TalentSpec holyPriestData, string iconPath)
         {
             using var client = new HttpClient();
 

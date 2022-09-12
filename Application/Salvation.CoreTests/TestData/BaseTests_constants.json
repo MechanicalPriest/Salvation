@@ -1,5 +1,5 @@
 {
-  "GameVersion": "9.1.0.39584",
+  "GameVersion": "10.0.2.45505",
   "Specs": [
     {
       "Class": "Priest",
@@ -41,7 +41,7 @@
           "Effects": [
             {
               "Id": 179715,
-              "BaseValue": 5.0,
+              "BaseValue": 16.0,
               "SpCoefficient": 0.0,
               "Coefficient": 0.0,
               "TriggerSpellid": 0,
@@ -52,7 +52,7 @@
             },
             {
               "Id": 191076,
-              "BaseValue": 5.0,
+              "BaseValue": 16.0,
               "SpCoefficient": 0.0,
               "Coefficient": 0.0,
               "TriggerSpellid": 0,
@@ -63,7 +63,7 @@
             },
             {
               "Id": 191077,
-              "BaseValue": 25.0,
+              "BaseValue": 44.0,
               "SpCoefficient": 0.0,
               "Coefficient": 0.0,
               "TriggerSpellid": 0,
@@ -74,7 +74,7 @@
             },
             {
               "Id": 191078,
-              "BaseValue": 25.0,
+              "BaseValue": 44.0,
               "SpCoefficient": 0.0,
               "Coefficient": 0.0,
               "TriggerSpellid": 0,
@@ -119,6 +119,28 @@
             {
               "Id": 871791,
               "BaseValue": 47.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 914764,
+              "BaseValue": -15.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 914765,
+              "BaseValue": 15.0,
               "SpCoefficient": 0.0,
               "Coefficient": 0.0,
               "TriggerSpellid": 0,
@@ -183,17 +205,6 @@
             },
             {
               "Id": 777113,
-              "BaseValue": 100.0,
-              "SpCoefficient": 0.0,
-              "Coefficient": 0.0,
-              "TriggerSpellid": 0,
-              "Amplitude": 0.0,
-              "TriggerSpell": null,
-              "Type": 6,
-              "ScaleValues": {}
-            },
-            {
-              "Id": 868949,
               "BaseValue": 100.0,
               "SpCoefficient": 0.0,
               "Coefficient": 0.0,
@@ -303,71 +314,6 @@
           "ConduitRanks": {}
         },
         {
-          "Id": 32546,
-          "Name": "Binding Heal",
-          "ManaCost": 3.4,
-          "MaxRange": 40.0,
-          "BaseCastTime": 1500.0,
-          "BaseCooldown": 0.0,
-          "IsCooldownHasted": false,
-          "Duration": 0.0,
-          "Gcd": 1.5,
-          "ChargeCooldown": 0,
-          "Charges": 0,
-          "MaxStacks": 0.0,
-          "ProcChance": 0.0,
-          "InternalCooldown": 0.0,
-          "Rppm": 0.0,
-          "RppmIsHasted": false,
-          "Effects": [
-            {
-              "Id": 22313,
-              "BaseValue": 0.0,
-              "SpCoefficient": 0.0,
-              "Coefficient": 0.0,
-              "TriggerSpellid": 0,
-              "Amplitude": 0.0,
-              "TriggerSpell": null,
-              "Type": 3,
-              "ScaleValues": {}
-            },
-            {
-              "Id": 22314,
-              "BaseValue": 0.0,
-              "SpCoefficient": 0.94,
-              "Coefficient": 0.0,
-              "TriggerSpellid": 0,
-              "Amplitude": 0.0,
-              "TriggerSpell": null,
-              "Type": 10,
-              "ScaleValues": {}
-            },
-            {
-              "Id": 191249,
-              "BaseValue": 0.0,
-              "SpCoefficient": 0.94,
-              "Coefficient": 0.0,
-              "TriggerSpellid": 0,
-              "Amplitude": 0.0,
-              "TriggerSpell": null,
-              "Type": 10,
-              "ScaleValues": {}
-            },
-            {
-              "Id": 325998,
-              "BaseValue": 3.0,
-              "SpCoefficient": 0.0,
-              "Coefficient": 0.0,
-              "TriggerSpellid": 0,
-              "Amplitude": 0.0,
-              "TriggerSpell": null,
-              "Type": 3,
-              "ScaleValues": {}
-            }
-          ],
-          "ConduitRanks": {}
-        },
-        {
           "Id": 120517,
           "Name": "Halo",
           "ManaCost": 2.7,
@@ -375,7 +321,7 @@
           "BaseCastTime": 1500.0,
           "BaseCooldown": 40000.0,
           "IsCooldownHasted": false,
-          "Duration": 3200.0,
+          "Duration": 2150.0,
           "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
@@ -387,7 +333,7 @@
           "Effects": [
             {
               "Id": 140102,
-              "BaseValue": 0.0,
+              "BaseValue": 6.0,
               "SpCoefficient": 0.0,
               "Coefficient": 0.0,
               "TriggerSpellid": 0,
@@ -420,7 +366,7 @@
             {
               "Id": 140516,
               "BaseValue": 0.0,
-              "SpCoefficient": 1.44,
+              "SpCoefficient": 1.61,
               "Coefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
@@ -452,7 +398,7 @@
             {
               "Id": 140527,
               "BaseValue": 0.0,
-              "SpCoefficient": 1.03,
+              "SpCoefficient": 1.442,
               "Coefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
@@ -483,7 +429,7 @@
           "Effects": [
             {
               "Id": 122871,
-              "BaseValue": 0.0,
+              "BaseValue": 6.0,
               "SpCoefficient": 0.0,
               "Coefficient": 0.0,
               "TriggerSpellid": 0,
@@ -548,7 +494,7 @@
             {
               "Id": 153526,
               "BaseValue": 0.0,
-              "SpCoefficient": 0.4,
+              "SpCoefficient": 0.56,
               "Coefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
@@ -579,7 +525,7 @@
           "Effects": [
             {
               "Id": 283376,
-              "BaseValue": 25.0,
+              "BaseValue": 15.0,
               "SpCoefficient": 0.0,
               "Coefficient": 0.0,
               "TriggerSpellid": 0,
@@ -712,7 +658,7 @@
         {
           "Id": 596,
           "Name": "Prayer of Healing",
-          "ManaCost": 5.0,
+          "ManaCost": 4.0,
           "MaxRange": 40.0,
           "BaseCastTime": 2000.0,
           "BaseCooldown": 0.0,
@@ -881,7 +827,7 @@
         },
         {
           "Id": 322112,
-          "Name": "Holy Nova",
+          "Name": "Improved Holy Nova",
           "ManaCost": 0.0,
           "MaxRange": 0.0,
           "BaseCastTime": 0.0,
@@ -1014,7 +960,7 @@
           "ManaCost": 3.1,
           "MaxRange": 40.0,
           "BaseCastTime": 0.0,
-          "BaseCooldown": 0.0,
+          "BaseCooldown": 7500.0,
           "IsCooldownHasted": false,
           "Duration": 15000.0,
           "Gcd": 1.5,
@@ -1033,6 +979,17 @@
               "Coefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 1028381,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 1000.0,
               "TriggerSpell": null,
               "Type": 6,
               "ScaleValues": {}
@@ -1150,7 +1107,7 @@
         {
           "Id": 34861,
           "Name": "Holy Word: Sanctify",
-          "ManaCost": 5.0,
+          "ManaCost": 3.5,
           "MaxRange": 40.0,
           "BaseCastTime": 0.0,
           "BaseCooldown": 60000.0,
@@ -1215,7 +1172,7 @@
         {
           "Id": 2050,
           "Name": "Holy Word: Serenity",
-          "ManaCost": 4.0,
+          "ManaCost": 2.5,
           "MaxRange": 40.0,
           "BaseCastTime": 0.0,
           "BaseCooldown": 0.0,
@@ -1282,38 +1239,6 @@
               "Amplitude": 0.0,
               "TriggerSpell": null,
               "Type": 3,
-              "ScaleValues": {}
-            }
-          ],
-          "ConduitRanks": {}
-        },
-        {
-          "Id": 319912,
-          "Name": "Prayer of Mending",
-          "ManaCost": 0.0,
-          "MaxRange": 0.0,
-          "BaseCastTime": 0.0,
-          "BaseCooldown": 0.0,
-          "IsCooldownHasted": false,
-          "Duration": 0.0,
-          "Gcd": 0.0,
-          "ChargeCooldown": 0,
-          "Charges": 0,
-          "MaxStacks": 0.0,
-          "ProcChance": 0.0,
-          "InternalCooldown": 0.0,
-          "Rppm": 0.0,
-          "RppmIsHasted": false,
-          "Effects": [
-            {
-              "Id": 806684,
-              "BaseValue": -100.0,
-              "SpCoefficient": 0.0,
-              "Coefficient": 0.0,
-              "TriggerSpellid": 0,
-              "Amplitude": 0.0,
-              "TriggerSpell": null,
-              "Type": 6,
               "ScaleValues": {}
             }
           ],
@@ -1801,6 +1726,17 @@
             },
             {
               "Id": 868656,
+              "BaseValue": 100.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 913133,
               "BaseValue": 100.0,
               "SpCoefficient": 0.0,
               "Coefficient": 0.0,
@@ -2736,6 +2672,17 @@
                     "TriggerSpell": null,
                     "Type": 6,
                     "ScaleValues": {}
+                  },
+                  {
+                    "Id": 914639,
+                    "BaseValue": 0.0,
+                    "SpCoefficient": 0.0,
+                    "Coefficient": 0.0,
+                    "TriggerSpellid": 0,
+                    "Amplitude": 0.0,
+                    "TriggerSpell": null,
+                    "Type": 6,
+                    "ScaleValues": {}
                   }
                 ],
                 "ConduitRanks": {}
@@ -3442,7 +3389,7 @@
             "6": 40.0,
             "7": 42.5,
             "8": 45.0,
-            "9": 38.0,
+            "9": 47.5,
             "10": 50.0,
             "11": 52.5,
             "12": 55.0,
@@ -3492,21 +3439,21 @@
             }
           ],
           "ConduitRanks": {
-            "0": 6.0,
-            "1": 6.6,
-            "2": 7.2,
-            "3": 7.8,
-            "4": 8.4,
-            "5": 9.0,
-            "6": 9.6,
-            "7": 10.2,
-            "8": 10.8,
-            "9": 11.4,
-            "10": 12.0,
-            "11": 12.6,
-            "12": 13.2,
-            "13": 13.8,
-            "14": 14.4
+            "0": 12.0,
+            "1": 13.2,
+            "2": 14.4,
+            "3": 15.6,
+            "4": 16.799999,
+            "5": 18.0,
+            "6": 19.200001,
+            "7": 20.4,
+            "8": 21.6,
+            "9": 22.799999,
+            "10": 24.0,
+            "11": 25.200001,
+            "12": 26.4,
+            "13": 27.6,
+            "14": 28.799999
           }
         },
         {
@@ -3874,38 +3821,6 @@
           "ConduitRanks": {}
         },
         {
-          "Id": 262861,
-          "Name": "Smite",
-          "ManaCost": 0.0,
-          "MaxRange": 0.0,
-          "BaseCastTime": 0.0,
-          "BaseCooldown": 0.0,
-          "IsCooldownHasted": false,
-          "Duration": 0.0,
-          "Gcd": 0.0,
-          "ChargeCooldown": 0,
-          "Charges": 0,
-          "MaxStacks": 0.0,
-          "ProcChance": 0.0,
-          "InternalCooldown": 0.0,
-          "Rppm": 0.0,
-          "RppmIsHasted": false,
-          "Effects": [
-            {
-              "Id": 624379,
-              "BaseValue": 50.0,
-              "SpCoefficient": 0.0,
-              "Coefficient": 0.0,
-              "TriggerSpellid": 0,
-              "Amplitude": 0.0,
-              "TriggerSpell": null,
-              "Type": 6,
-              "ScaleValues": {}
-            }
-          ],
-          "ConduitRanks": {}
-        },
-        {
           "Id": 88625,
           "Name": "Holy Word: Chastise",
           "ManaCost": 2.0,
@@ -3926,7 +3841,7 @@
             {
               "Id": 91044,
               "BaseValue": 0.0,
-              "SpCoefficient": 1.125,
+              "SpCoefficient": 1.4,
               "Coefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
@@ -4003,38 +3918,6 @@
           "ConduitRanks": {}
         },
         {
-          "Id": 327820,
-          "Name": "Shadow Word: Pain",
-          "ManaCost": 0.0,
-          "MaxRange": 0.0,
-          "BaseCastTime": 0.0,
-          "BaseCooldown": 0.0,
-          "IsCooldownHasted": false,
-          "Duration": 0.0,
-          "Gcd": 0.0,
-          "ChargeCooldown": 0,
-          "Charges": 0,
-          "MaxStacks": 0.0,
-          "ProcChance": 0.0,
-          "InternalCooldown": 0.0,
-          "Rppm": 0.0,
-          "RppmIsHasted": false,
-          "Effects": [
-            {
-              "Id": 819469,
-              "BaseValue": 4000.0,
-              "SpCoefficient": 0.0,
-              "Coefficient": 0.0,
-              "TriggerSpellid": 0,
-              "Amplitude": 0.0,
-              "TriggerSpell": null,
-              "Type": 6,
-              "ScaleValues": {}
-            }
-          ],
-          "ConduitRanks": {}
-        },
-        {
           "Id": 32379,
           "Name": "Shadow Word: Death",
           "ManaCost": 0.5,
@@ -4083,38 +3966,6 @@
               "Amplitude": 0.0,
               "TriggerSpell": null,
               "Type": 77,
-              "ScaleValues": {}
-            }
-          ],
-          "ConduitRanks": {}
-        },
-        {
-          "Id": 322107,
-          "Name": "Shadow Word: Death",
-          "ManaCost": 0.0,
-          "MaxRange": 0.0,
-          "BaseCastTime": 0.0,
-          "BaseCooldown": 0.0,
-          "IsCooldownHasted": false,
-          "Duration": 0.0,
-          "Gcd": 0.0,
-          "ChargeCooldown": 0,
-          "Charges": 0,
-          "MaxStacks": 0.0,
-          "ProcChance": 0.0,
-          "InternalCooldown": 0.0,
-          "Rppm": 0.0,
-          "RppmIsHasted": false,
-          "Effects": [
-            {
-              "Id": 810248,
-              "BaseValue": -10000.0,
-              "SpCoefficient": 0.0,
-              "Coefficient": 0.0,
-              "TriggerSpellid": 0,
-              "Amplitude": 0.0,
-              "TriggerSpell": null,
-              "Type": 6,
               "ScaleValues": {}
             }
           ],
@@ -4202,7 +4053,7 @@
               "TriggerSpell": null,
               "Type": 6,
               "ScaleValues": {
-                "60": 95.0
+                "60": 81.25844197
               }
             }
           ],
@@ -4236,7 +4087,7 @@
               "TriggerSpell": null,
               "Type": 30,
               "ScaleValues": {
-                "60": 25000.0
+                "60": 20000.0
               }
             }
           ],
@@ -4295,7 +4146,7 @@
                     "TriggerSpell": null,
                     "Type": 6,
                     "ScaleValues": {
-                      "60": 95.0
+                      "60": 81.25844197
                     }
                   }
                 ],
@@ -4335,7 +4186,7 @@
               "TriggerSpell": null,
               "Type": 6,
               "ScaleValues": {
-                "60": 95.0
+                "60": 81.25844197
               }
             },
             {
@@ -4348,7 +4199,7 @@
               "TriggerSpell": null,
               "Type": 6,
               "ScaleValues": {
-                "60": 95.0
+                "60": 81.25844197
               }
             }
           ],
@@ -4413,7 +4264,7 @@
               },
               "Type": 6,
               "ScaleValues": {
-                "60": 95.0
+                "60": 81.25844197
               }
             },
             {
@@ -4653,26 +4504,26 @@
               "Id": 871958,
               "BaseValue": 0.0,
               "SpCoefficient": 0.0,
-              "Coefficient": 2.269577,
+              "Coefficient": 1.447286,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
               "Type": 6,
               "ScaleValues": {
-                "60": 95.0
+                "60": 81.25844197
               }
             },
             {
               "Id": 871962,
               "BaseValue": 0.0,
               "SpCoefficient": 0.0,
-              "Coefficient": 2.900014,
+              "Coefficient": 1.847389,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
               "Type": 6,
               "ScaleValues": {
-                "60": 95.0
+                "60": 81.25844197
               }
             }
           ],
@@ -4711,7 +4562,7 @@
               "Id": 868610,
               "BaseValue": 0.0,
               "SpCoefficient": 0.0,
-              "Coefficient": 12.827586,
+              "Coefficient": 15.400964,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
@@ -4786,7 +4637,7 @@
               "Id": 868433,
               "BaseValue": 0.0,
               "SpCoefficient": 0.0,
-              "Coefficient": 80.172409,
+              "Coefficient": 88.201317,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
@@ -4856,7 +4707,7 @@
               "TriggerSpell": null,
               "Type": 6,
               "ScaleValues": {
-                "60": 95.0
+                "60": 81.25844197
               }
             },
             {
@@ -4869,7 +4720,7 @@
               "TriggerSpell": null,
               "Type": 6,
               "ScaleValues": {
-                "60": 95.0
+                "60": 81.25844197
               }
             }
           ],
@@ -5093,7 +4944,7 @@
                           "TriggerSpell": null,
                           "Type": 6,
                           "ScaleValues": {
-                            "60": 95.0
+                            "60": 81.25844197
                           }
                         }
                       ],
@@ -5181,7 +5032,7 @@
               "TriggerSpell": null,
               "Type": 6,
               "ScaleValues": {
-                "60": 95.0
+                "60": 81.25844197
               }
             }
           ],
@@ -5462,7 +5313,7 @@
           "BaseCastTime": 0.0,
           "BaseCooldown": 0.0,
           "IsCooldownHasted": false,
-          "Duration": -1.0,
+          "Duration": 0.0,
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
@@ -5482,7 +5333,7 @@
               "TriggerSpell": null,
               "Type": 6,
               "ScaleValues": {
-                "60": 95.0
+                "60": 81.25844197
               }
             }
           ],
@@ -5676,7 +5527,7 @@
               "TriggerSpell": null,
               "Type": 6,
               "ScaleValues": {
-                "60": 95.0
+                "60": 81.25844197
               }
             },
             {
@@ -6161,7 +6012,7 @@
               "TriggerSpell": null,
               "Type": 6,
               "ScaleValues": {
-                "60": 95.0
+                "60": 81.25844197
               }
             }
           ],
@@ -6536,6 +6387,17 @@
             {
               "Id": 875201,
               "BaseValue": -100.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 914639,
+              "BaseValue": 0.0,
               "SpCoefficient": 0.0,
               "Coefficient": 0.0,
               "TriggerSpellid": 0,
@@ -7059,7 +6921,7 @@
               "TriggerSpell": null,
               "Type": 6,
               "ScaleValues": {
-                "60": 95.0
+                "60": 81.25844197
               }
             },
             {
@@ -7549,7 +7411,7 @@
               "TriggerSpell": null,
               "Type": 6,
               "ScaleValues": {
-                "60": 95.0
+                "60": 81.25844197
               }
             }
           ],

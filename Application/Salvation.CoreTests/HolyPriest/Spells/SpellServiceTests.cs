@@ -46,7 +46,6 @@ namespace Salvation.CoreTests.HolyPriest.Spells
             Spells.Add(new AscendedBlast(gameStateService));
             Spells.Add(new AscendedEruption(gameStateService));
             Spells.Add(new AscendedNova(gameStateService));
-            Spells.Add(new BindingHeal(gameStateService));
             Spells.Add(new BoonOfTheAscended(gameStateService,
                 new AscendedBlast(gameStateService),
                 new AscendedNova(gameStateService),
@@ -64,24 +63,20 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 new HolyWordSerenity(gameStateService,
                     new FlashHeal(gameStateService),
                     new Heal(gameStateService),
-                    new BindingHeal(gameStateService),
                     new PrayerOfMending(gameStateService)),
                 new HolyWordSanctify(gameStateService,
                     new PrayerOfHealing(gameStateService),
                     new Renew(gameStateService),
-                    new BindingHeal(gameStateService),
                     new CircleOfHealing(gameStateService)),
                 new Renew(gameStateService),
                 new PrayerOfMending(gameStateService)));
             Spells.Add(new HolyWordSanctify(gameStateService,
                 new PrayerOfHealing(gameStateService),
                 new Renew(gameStateService),
-                new BindingHeal(gameStateService),
                 new CircleOfHealing(gameStateService)));
             Spells.Add(new HolyWordSerenity(gameStateService,
                 new FlashHeal(gameStateService),
                 new Heal(gameStateService),
-                new BindingHeal(gameStateService),
                 new PrayerOfMending(gameStateService)));
             Spells.Add(new Mindgames(gameStateService));
             Spells.Add(new PowerWordShield(gameStateService));
@@ -329,7 +324,6 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(AscendedBlast)).Returns(1);
                 yield return new TestCaseData(typeof(AscendedEruption)).Returns(double.MaxValue);
                 yield return new TestCaseData(typeof(AscendedNova)).Returns(6);
-                yield return new TestCaseData(typeof(BindingHeal)).Returns(3);
                 yield return new TestCaseData(typeof(BoonOfTheAscended)).Returns(0);
                 yield return new TestCaseData(typeof(CircleOfHealing)).Returns(5);
                 yield return new TestCaseData(typeof(DivineHymn)).Returns(double.MaxValue);
@@ -364,7 +358,6 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(AscendedBlast)).Returns(1);
                 yield return new TestCaseData(typeof(AscendedEruption)).Returns(0);
                 yield return new TestCaseData(typeof(AscendedNova)).Returns(1);
-                yield return new TestCaseData(typeof(BindingHeal)).Returns(2);
                 yield return new TestCaseData(typeof(BoonOfTheAscended)).Returns(0);
                 yield return new TestCaseData(typeof(CircleOfHealing)).Returns(1);
                 yield return new TestCaseData(typeof(DivineHymn)).Returns(1);
@@ -399,7 +392,6 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(AscendedBlast)).Returns(1);
                 yield return new TestCaseData(typeof(AscendedEruption)).Returns(5);
                 yield return new TestCaseData(typeof(AscendedNova)).Returns(5);
-                yield return new TestCaseData(typeof(BindingHeal)).Returns(3);
                 yield return new TestCaseData(typeof(BoonOfTheAscended)).Returns(0);
                 yield return new TestCaseData(typeof(CircleOfHealing)).Returns(5);
                 yield return new TestCaseData(typeof(DivineHymn)).Returns(20);
@@ -433,7 +425,6 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(AscendedBlast)).Returns(2996.6221326510004d);
                 yield return new TestCaseData(typeof(AscendedEruption)).Returns(5364.2172212667338d);
                 yield return new TestCaseData(typeof(AscendedNova)).Returns(1406.2360845960002d);
-                yield return new TestCaseData(typeof(BindingHeal)).Returns(3304.6547988006d);
                 yield return new TestCaseData(typeof(BoonOfTheAscended)).Returns(0);
                 yield return new TestCaseData(typeof(CircleOfHealing)).Returns(6152.2828701075014d);
                 yield return new TestCaseData(typeof(DivineHymn)).Returns(75936.748568184019d);
@@ -467,7 +458,6 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(AscendedBlast)).Returns(2966.6559113244903d);
                 yield return new TestCaseData(typeof(AscendedEruption)).Returns(5310.5750490540668d);
                 yield return new TestCaseData(typeof(AscendedNova)).Returns(1392.1737237500402d);
-                yield return new TestCaseData(typeof(BindingHeal)).Returns(2181.072167208396d);
                 yield return new TestCaseData(typeof(BoonOfTheAscended)).Returns(0);
                 yield return new TestCaseData(typeof(CircleOfHealing)).Returns(5280.5043874132689d);
                 yield return new TestCaseData(typeof(DivineHymn)).Returns(52092.609517774232d);
@@ -502,7 +492,6 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(AscendedBlast)).Returns(2497.1851105425003d);
                 yield return new TestCaseData(typeof(AscendedEruption)).Returns(3017.5482648622506d);
                 yield return new TestCaseData(typeof(AscendedNova)).Returns(1032.3558557550002d);
-                yield return new TestCaseData(typeof(BindingHeal)).Returns(0);
                 yield return new TestCaseData(typeof(BoonOfTheAscended)).Returns(0);
                 yield return new TestCaseData(typeof(CircleOfHealing)).Returns(0);
                 yield return new TestCaseData(typeof(DivineHymn)).Returns(0.0d);
@@ -537,7 +526,6 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(AscendedBlast)).Returns(0);
                 yield return new TestCaseData(typeof(AscendedEruption)).Returns(0);
                 yield return new TestCaseData(typeof(AscendedNova)).Returns(0);
-                yield return new TestCaseData(typeof(BindingHeal)).Returns(0);
                 yield return new TestCaseData(typeof(BoonOfTheAscended)).Returns(10);
                 yield return new TestCaseData(typeof(CircleOfHealing)).Returns(0);
                 yield return new TestCaseData(typeof(DivineHymn)).Returns(8);
@@ -573,7 +561,6 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(AscendedBlast)).Returns(0d);
                 yield return new TestCaseData(typeof(AscendedEruption)).Returns(0d);
                 yield return new TestCaseData(typeof(AscendedNova)).Returns(0d);
-                yield return new TestCaseData(typeof(BindingHeal)).Returns(1700d);
                 yield return new TestCaseData(typeof(BoonOfTheAscended)).Returns(0d);
                 yield return new TestCaseData(typeof(CircleOfHealing)).Returns(1650d);
                 yield return new TestCaseData(typeof(DivineHymn)).Returns(2200d);
@@ -607,7 +594,6 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(AscendedBlast)).Returns(0);
                 yield return new TestCaseData(typeof(AscendedEruption)).Returns(0);
                 yield return new TestCaseData(typeof(AscendedNova)).Returns(0);
-                yield return new TestCaseData(typeof(BindingHeal)).Returns(1.3920134983d);
                 yield return new TestCaseData(typeof(BoonOfTheAscended)).Returns(1.3920134983d);
                 yield return new TestCaseData(typeof(CircleOfHealing)).Returns(0);
                 yield return new TestCaseData(typeof(DivineHymn)).Returns(0);
@@ -641,7 +627,6 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(AscendedBlast)).Returns(3.0d);
                 yield return new TestCaseData(typeof(AscendedEruption)).Returns(0);
                 yield return new TestCaseData(typeof(AscendedNova)).Returns(0);
-                yield return new TestCaseData(typeof(BindingHeal)).Returns(0.0d);
                 yield return new TestCaseData(typeof(BoonOfTheAscended)).Returns(180.0d);
                 yield return new TestCaseData(typeof(CircleOfHealing)).Returns(13.920134983100001d);
                 yield return new TestCaseData(typeof(DivineHymn)).Returns(180.0d);
@@ -677,7 +662,6 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(AscendedEruption)).Returns(0);
                 // This is tested in AscendedNovaTests
                 //yield return new TestCaseData(typeof(AscendedNova)).Returns(0);
-                yield return new TestCaseData(typeof(BindingHeal)).Returns(43.103030302999997d);
                 yield return new TestCaseData(typeof(BoonOfTheAscended)).Returns(0.4819088140d);
                 yield return new TestCaseData(typeof(CircleOfHealing)).Returns(4.46143653160d);
                 yield return new TestCaseData(typeof(DivineHymn)).Returns(0.48446683460000001d);
@@ -711,7 +695,6 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(AscendedBlast)).Returns(1);
                 yield return new TestCaseData(typeof(AscendedEruption)).Returns(double.MaxValue);
                 yield return new TestCaseData(typeof(AscendedNova)).Returns(double.MaxValue);
-                yield return new TestCaseData(typeof(BindingHeal)).Returns(0);
                 yield return new TestCaseData(typeof(BoonOfTheAscended)).Returns(0);
                 yield return new TestCaseData(typeof(CircleOfHealing)).Returns(0);
                 yield return new TestCaseData(typeof(DivineHymn)).Returns(0);
@@ -746,7 +729,6 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(AscendedBlast)).Returns(1);
                 yield return new TestCaseData(typeof(AscendedEruption)).Returns(0);
                 yield return new TestCaseData(typeof(AscendedNova)).Returns(0);
-                yield return new TestCaseData(typeof(BindingHeal)).Returns(0);
                 yield return new TestCaseData(typeof(BoonOfTheAscended)).Returns(0);
                 yield return new TestCaseData(typeof(CircleOfHealing)).Returns(0);
                 yield return new TestCaseData(typeof(DivineHymn)).Returns(0);
@@ -781,7 +763,6 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(AscendedBlast)).Returns(1);
                 yield return new TestCaseData(typeof(AscendedEruption)).Returns(1);
                 yield return new TestCaseData(typeof(AscendedNova)).Returns(1);
-                yield return new TestCaseData(typeof(BindingHeal)).Returns(0);
                 yield return new TestCaseData(typeof(BoonOfTheAscended)).Returns(0);
                 yield return new TestCaseData(typeof(CircleOfHealing)).Returns(0);
                 yield return new TestCaseData(typeof(DivineHymn)).Returns(0);
@@ -815,7 +796,6 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(AscendedBlast)).Returns(29.966221326500001d);
                 yield return new TestCaseData(typeof(AscendedEruption)).Returns(53.642172212699997d);
                 yield return new TestCaseData(typeof(AscendedNova)).Returns(14.062360846000001d);
-                yield return new TestCaseData(typeof(BindingHeal)).Returns(1123.5826315922d);
                 yield return new TestCaseData(typeof(BoonOfTheAscended)).Returns(0);
                 yield return new TestCaseData(typeof(CircleOfHealing)).Returns(871.77848269419997d);
                 yield return new TestCaseData(typeof(DivineHymn)).Returns(23844.139050409802d);
@@ -850,7 +830,6 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(AscendedBlast)).Returns(true); // broken waiting for simcraft spellid 325315
                 yield return new TestCaseData(typeof(AscendedEruption)).Returns(true);
                 yield return new TestCaseData(typeof(AscendedNova)).Returns(true);
-                yield return new TestCaseData(typeof(BindingHeal)).Returns(true);
                 yield return new TestCaseData(typeof(BoonOfTheAscended)).Returns(false);
                 yield return new TestCaseData(typeof(CircleOfHealing)).Returns(true);
                 yield return new TestCaseData(typeof(DivineHymn)).Returns(true);

@@ -11,20 +11,17 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
     {
         private readonly ISpellService<IFlashHealSpellService> _flashHealSpellService;
         private readonly ISpellService<IHealSpellService> _healSpellService;
-        private readonly ISpellService<IBindingHealSpellService> _bindingHealSpellService;
         private readonly ISpellService<IPrayerOfMendingSpellService> _prayerOfMendingSpellService;
 
         public HolyWordSerenity(IGameStateService gameStateService,
             ISpellService<IFlashHealSpellService> flashHealSpellService,
             ISpellService<IHealSpellService> healSpellService,
-            ISpellService<IBindingHealSpellService> bindingHealSpellService,
             ISpellService<IPrayerOfMendingSpellService> prayerOfMendingSpellService)
             : base(gameStateService)
         {
             Spell = Spell.HolyWordSerenity;
             _flashHealSpellService = flashHealSpellService;
             _healSpellService = healSpellService;
-            _bindingHealSpellService = bindingHealSpellService;
             _prayerOfMendingSpellService = prayerOfMendingSpellService;
         }
 

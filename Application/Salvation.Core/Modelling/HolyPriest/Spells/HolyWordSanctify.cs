@@ -11,20 +11,17 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
     {
         private readonly ISpellService<IPrayerOfHealingSpellService> _prayerOfHealingSpellService;
         private readonly ISpellService<IRenewSpellService> _renewSpellService;
-        private readonly ISpellService<IBindingHealSpellService> _bindingHealSpellService;
         private readonly ISpellService<ICircleOfHealingSpellService> _circleOfHealingSpellService;
 
         public HolyWordSanctify(IGameStateService gameStateService,
             ISpellService<IPrayerOfHealingSpellService> prayerOfHealingSpellService,
             ISpellService<IRenewSpellService> renewSpellService,
-            ISpellService<IBindingHealSpellService> bindingHealSpellService,
             ISpellService<ICircleOfHealingSpellService> circleOfHealingSpellService)
             : base(gameStateService)
         {
             Spell = Spell.HolyWordSanctify;
             _prayerOfHealingSpellService = prayerOfHealingSpellService;
             _renewSpellService = renewSpellService;
-            _bindingHealSpellService = bindingHealSpellService;
             _circleOfHealingSpellService = circleOfHealingSpellService;
         }
 

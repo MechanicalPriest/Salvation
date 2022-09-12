@@ -14,20 +14,17 @@ namespace Salvation.Core.Modelling.Common.Items
         private readonly ISpellService<IFlashHealSpellService> _flashHealSpellService;
         private readonly ISpellService<IHealSpellService> _healSpellService;
         private readonly ISpellService<IHolyWordSerenitySpellService> _serenitySpellService;
-        private readonly ISpellService<IBindingHealSpellService> _bindingHealSpellService;
 
         public DivineImageHealingLight(IGameStateService gameStateService,
             ISpellService<IFlashHealSpellService> flashHealSpellService,
             ISpellService<IHealSpellService> healSpellService,
-            ISpellService<IHolyWordSerenitySpellService> serenitySpellService,
-            ISpellService<IBindingHealSpellService> bindingHealSpellService)
+            ISpellService<IHolyWordSerenitySpellService> serenitySpellService)
             : base(gameStateService)
         {
             Spell = Spell.DivineImageHealingLight;
             _flashHealSpellService = flashHealSpellService;
             _healSpellService = healSpellService;
             _serenitySpellService = serenitySpellService;
-            _bindingHealSpellService = bindingHealSpellService;
         }
 
         public override double GetAverageRawHealing(GameState gameState, BaseSpellData spellData)
@@ -67,9 +64,6 @@ namespace Salvation.Core.Modelling.Common.Items
             var cpm = _flashHealSpellService.GetActualCastsPerMinute(gameState, null);
             cpm += _healSpellService.GetActualCastsPerMinute(gameState, null);
             cpm += _serenitySpellService.GetActualCastsPerMinute(gameState, null);
-
-            if (_gameStateService.IsTalentActive(gameState, Talent.BindingHeal))
-                cpm += _bindingHealSpellService.GetActualCastsPerMinute(gameState, null);
 
             return cpm;
         }

@@ -47,7 +47,6 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.HolyWordSanctify,
                 (uint)Spell.HolyWordSerenity,
                 (uint)Spell.PrayerOfMending,
-                (uint)Spell.PrayerOfMendingRank2,
                 (uint)Spell.PrayerOfMendingBuff,
                 (uint)Spell.PrayerOfMendingHeal,
                 (uint)Spell.EchoOfLight,

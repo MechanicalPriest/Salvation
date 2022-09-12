@@ -96,7 +96,6 @@ namespace Salvation.Utility.SpellDataUpdate
                 
                 // DPS
                 (uint)Spell.Smite,
-                (uint)Spell.SmiteRank2,
                 (uint)Spell.HolyWordChastise,
                 (uint)Spell.ShadowWordPain,
                 (uint)Spell.ShadowWordPainRank2,

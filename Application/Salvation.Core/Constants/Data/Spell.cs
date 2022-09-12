@@ -111,7 +111,6 @@
 
         // DPS
         Smite = 585,
-        SmiteRank2 = 262861,
         HolyWordChastise = 88625,
         ShadowWordPain = 589,
         ShadowWordPainRank2 = 327820,

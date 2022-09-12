@@ -117,7 +117,6 @@ namespace Salvation.Core
             services.AddSingleton<ISpellService<IPrayerOfMendingSpellService>, PrayerOfMending>();
             services.AddSingleton<ISpellService<IPrayerOfHealingSpellService>, PrayerOfHealing>();
             services.AddSingleton<ISpellService<IHealSpellService>, Heal>();
-            services.AddSingleton<ISpellService<IBindingHealSpellService>, BindingHeal>();
             services.AddSingleton<ISpellService<IHolyWordSanctifySpellService>, HolyWordSanctify>();
             services.AddSingleton<ISpellService<ICircleOfHealingSpellService>, CircleOfHealing>();
             services.AddSingleton<ISpellService<IDivineHymnSpellService>, DivineHymn>();

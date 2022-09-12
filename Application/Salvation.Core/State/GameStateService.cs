@@ -1007,7 +1007,6 @@ namespace Salvation.Core.State
             var serenityCDRBase = GetSpellData(state, Spell.HolyWordSerenity).GetEffect(709474).BaseValue;
             var sancCDRPoH = GetSpellData(state, Spell.HolyWordSanctify).GetEffect(709475).BaseValue;
             var sancCDRRenew = GetSpellData(state, Spell.HolyWordSanctify).GetEffect(709476).BaseValue;
-            var bhCDR = GetSpellData(state, Spell.BindingHeal).GetEffect(325998).BaseValue;
             var salvCDRBase = GetSpellData(state, Spell.HolyWordSalvation).GetEffect(709211).BaseValue;
             var chastiseCDRBase = GetSpellData(state, Spell.HolyWordChastise).GetEffect(709477).BaseValue;
 
@@ -1051,14 +1050,6 @@ namespace Salvation.Core.State
                     returnCDR *= isApotheosisActive ? 4d : 1d; // Apotheosis adds 200% more CDR
                     // Apply this last as it's additive overall and not multiplicative with others
                     returnCDR += isHolyOrationActive ? sancCDRPoH * holyOrationModifier : 0d;
-                    break;
-
-                case Spell.BindingHeal:
-                    returnCDR = bhCDR; // Binding heal gets half the CDR benefit
-                    returnCDR *= isLotnActive ? 1d + 1d / 3d : 1d; // LotN adds 33% more CDR.
-                    returnCDR *= isApotheosisActive ? 4d : 1d; // Apotheosis adds 200% more CDR
-                    // Apply this last as it's additive overall and not multiplicative with others
-                    returnCDR += isHolyOrationActive ? bhCDR * holyOrationModifier : 0d;
                     break;
 
                 case Spell.Renew:

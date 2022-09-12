@@ -72,13 +72,6 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             double hwCDR = cpmPoH * hwCDRPoH +
                 cpmRenew * hwCDRRenew;
 
-            if (_gameStateService.IsTalentActive(gameState, Talent.BindingHeal))
-            {
-                var cpmBindingHeal = _bindingHealSpellService.GetActualCastsPerMinute(gameState);
-                var hwCDRBindingHeal = _gameStateService.GetTotalHolyWordCooldownReduction(gameState, Spell.BindingHeal);
-                hwCDR += cpmBindingHeal * hwCDRBindingHeal;
-            }
-
             if (_gameStateService.IsLegendaryActive(gameState, Spell.HarmoniousApparatus))
             {
                 var cpmCoH = _circleOfHealingSpellService.GetActualCastsPerMinute(gameState);

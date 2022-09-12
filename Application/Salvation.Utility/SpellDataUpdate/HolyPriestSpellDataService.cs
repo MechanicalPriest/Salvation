@@ -25,7 +25,6 @@ namespace Salvation.Utility.SpellDataUpdate
                 // Talents
                 (uint)Spell.Enlightenment,
                 (uint)Spell.CosmicRipple,
-                (uint)Spell.BindingHeal,
                 (uint)Spell.Halo,
                 (uint)Spell.HaloHeal,
                 (uint)Spell.HaloDamage,

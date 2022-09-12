@@ -48,7 +48,7 @@
         /// Makes PoM instant cast
         /// </summary>
         PrayerOfMendingRank2 = 319912,
-        BindingHeal = 32546,
+        //BindingHeal = 32546,
         Halo = 120517,
         HaloHeal = 120692,
         HaloDamage = 120696,

@@ -34,7 +34,6 @@ namespace Salvation.Core.Modelling
                 Spell.HolyWordSanctify => typeof(IHolyWordSanctifySpellService),
                 Spell.HolyWordSerenity => typeof(IHolyWordSerenitySpellService),
                 Spell.PrayerOfMending => typeof(IPrayerOfMendingSpellService),
-                Spell.BindingHeal => typeof(IBindingHealSpellService),
                 Spell.Halo => typeof(IHaloSpellService),
                 Spell.DivineStar => typeof(IDivineStarSpellService),
                 Spell.HolyWordSalvation => typeof(IHolyWordSalvationSpellService),

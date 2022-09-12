@@ -25,7 +25,6 @@ namespace Salvation.Utility.SpellDataUpdate
                 // Talents
                 (uint)Spell.Enlightenment,
                 (uint)Spell.CosmicRipple,
-                (uint)Spell.BindingHeal,
                 (uint)Spell.Halo,
                 (uint)Spell.HaloHeal,
                 (uint)Spell.HaloDamage,
@@ -48,7 +47,6 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.HolyWordSanctify,
                 (uint)Spell.HolyWordSerenity,
                 (uint)Spell.PrayerOfMending,
-                (uint)Spell.PrayerOfMendingRank2,
                 (uint)Spell.PrayerOfMendingBuff,
                 (uint)Spell.PrayerOfMendingHeal,
                 (uint)Spell.EchoOfLight,
@@ -98,12 +96,9 @@ namespace Salvation.Utility.SpellDataUpdate
                 
                 // DPS
                 (uint)Spell.Smite,
-                (uint)Spell.SmiteRank2,
                 (uint)Spell.HolyWordChastise,
                 (uint)Spell.ShadowWordPain,
-                (uint)Spell.ShadowWordPainRank2,
                 (uint)Spell.ShadowWordDeath,
-                (uint)Spell.ShadowWordDeathRank2,
                 (uint)Spell.HolyFire,
 
                 // Consumable

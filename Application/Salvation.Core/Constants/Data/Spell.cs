@@ -47,8 +47,6 @@
         /// <summary>
         /// Makes PoM instant cast
         /// </summary>
-        PrayerOfMendingRank2 = 319912,
-        BindingHeal = 32546,
         Halo = 120517,
         HaloHeal = 120692,
         HaloDamage = 120696,
@@ -113,12 +111,9 @@
 
         // DPS
         Smite = 585,
-        SmiteRank2 = 262861,
         HolyWordChastise = 88625,
         ShadowWordPain = 589,
-        ShadowWordPainRank2 = 327820,
         ShadowWordDeath = 32379,
-        ShadowWordDeathRank2 = 322107,
         HolyFire = 14914,
 
         // Consumables

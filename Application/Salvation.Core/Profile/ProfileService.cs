@@ -273,7 +273,6 @@ namespace Salvation.Core.Profile
                     new CastProfile((int)Spell.HolyWordSerenity, 0.677d, 0.1515d, 1, 0),
                     new CastProfile((int)Spell.HolyWordSanctify, 0.7822d, 0.3234d, 6, 0),
                     new CastProfile((int)Spell.DivineHymn, 0.8005d, 0.314d, 20, 0),
-                    new CastProfile((int)Spell.BindingHeal, 0.12d, 0.34d, 3, 0),
                     new CastProfile((int)Spell.CircleOfHealing, 0.8653d, 0.1417d, 5, 0),
                     new CastProfile((int)Spell.DivineStar, 0.81d, 0.44d, 6, 1),
                     new CastProfile((int)Spell.Halo, 0.7596d, 0.3658d, 6, 1),

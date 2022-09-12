@@ -3,7 +3,6 @@ using Salvation.Core.Interfaces.Modelling;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Modelling.Common.Consumables;
 using Salvation.Core.Modelling.Common.Items;
-using Salvation.Core.Modelling.Common.Traits;
 using Salvation.Core.Modelling.HolyPriest.Spells;
 using System;
 
@@ -34,7 +33,6 @@ namespace Salvation.Core.Modelling
                 Spell.HolyWordSanctify => typeof(IHolyWordSanctifySpellService),
                 Spell.HolyWordSerenity => typeof(IHolyWordSerenitySpellService),
                 Spell.PrayerOfMending => typeof(IPrayerOfMendingSpellService),
-                Spell.BindingHeal => typeof(IBindingHealSpellService),
                 Spell.Halo => typeof(IHaloSpellService),
                 Spell.DivineStar => typeof(IDivineStarSpellService),
                 Spell.HolyWordSalvation => typeof(IHolyWordSalvationSpellService),
@@ -45,14 +43,6 @@ namespace Salvation.Core.Modelling
                 //Spell.Benediction => typeof(IBenedictionSpellService),
                 // Holy Priest Covenant
                 Spell.Mindgames => typeof(IMindgamesSpellService),
-                Spell.FaeGuardians => typeof(IFaeGuardiansSpellService),
-                Spell.BoonOfTheAscended => typeof(IBoonOfTheAscendedSpellService),
-                Spell.AscendedBlast => typeof(IAscendedBlastSpellService),
-                Spell.AscendedNova => typeof(IAscendedNovaSpellService),
-                Spell.AscendedEruption => typeof(IAscendedEruptionSpellService),
-                Spell.UnholyNova => typeof(IUnholyNovaSpellService),
-                Spell.UnholyTransfusion => typeof(IUnholyTransfusionSpellService),
-                Spell.Fleshcraft => typeof(IFleshcraftSpellService),
                 // Holy Priest Damage
                 Spell.Smite => typeof(ISmiteSpellService),
                 Spell.HolyWordChastise => typeof(IHolyWordChastiseSpellService),
@@ -78,23 +68,6 @@ namespace Salvation.Core.Modelling
                 Spell.VialOfSpectralEssence => typeof(IVialOfSpectralEssenceSpellService),
                 Spell.OverflowingAnimaCage => typeof(IOverflowingAnimaCageSpellService),
                 Spell.SiphoningPhylacteryShard => typeof(ISiphoningPhylacteryShardSpellService),
-                // Traits
-                Spell.BronsCallToAction => typeof(IBronsCallToActionSpellService),
-                Spell.CombatMeditation => typeof(ICombatMeditationSpellSerivce),
-                Spell.FieldOfBlossoms => typeof(IFieldOfBlossomsSpellService),
-                Spell.ForgeborneReveries => typeof(IForgeborneReveriesSpellService),
-                Spell.GroveInvigoration => typeof(IGroveInvigorationSpellService),
-                Spell.LeadByExample => typeof(ILeadByExampleSpellService),
-                Spell.LetGoOfThePast => typeof(ILetGoOfThePastSpellService),
-                Spell.MarrowedGemstone => typeof(IMarrowedGemstoneSpellService),
-                Spell.NiyasToolsHerbs => typeof(INiyasToolsHerbsSpellService),
-                Spell.PointedCourage => typeof(IPointedCourageSpellService),
-                Spell.ResonantAccolades => typeof(IResonantAccoladesSpellService),
-                Spell.SoothingShade => typeof(ISoothingShadeSpellService),
-                Spell.ThrillSeeker => typeof(IThrillSeekerSpellService),
-                Spell.ValiantStrikes => typeof(IValiantStrikesSpellService),
-                Spell.VolatileSolvent => typeof(IVolatileSolventSpellService),
-                Spell.UltimateForm => typeof(IUltimateFormSpellService),
                 _ => null
             };
 

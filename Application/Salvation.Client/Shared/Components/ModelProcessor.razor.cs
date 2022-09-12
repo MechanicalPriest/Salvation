@@ -74,6 +74,11 @@ namespace Salvation.Client.Shared.Components
                 errorMessage = "Unable to generate default profile.";
                 loadingData = false;
             }
+            catch(InvalidOperationException ex)
+            {
+                errorMessage = $"Unable to generate default profile. {ex.Message}";
+                loadingData = false;
+            }
         }
 
         protected override async Task OnAfterRenderAsync(bool firstRender)

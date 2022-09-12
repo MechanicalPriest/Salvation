@@ -61,21 +61,6 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             return maximumPotentialCasts;
         }
 
-        public override double GetHastedCooldown(GameState gameState, BaseSpellData spellData = null)
-        {
-            spellData = ValidateSpellData(gameState, spellData);
-
-            var spellDataRank2 = _gameStateService.GetSpellData(gameState, Spell.ShadowWordDeathRank2);
-
-            // Base Val is neg
-            // for some reason cd of death is a charge cd
-            var baseCooldown = spellData.ChargeCooldown / 1000d + spellDataRank2.GetEffect(810248).BaseValue / 1000d;
-
-            return spellData.IsCooldownHasted
-                ? baseCooldown / _gameStateService.GetHasteMultiplier(gameState)
-                : baseCooldown;
-        }
-
         public override double GetMinimumDamageTargets(GameState gameState, BaseSpellData spellData)
         {
             return 1;

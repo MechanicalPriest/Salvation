@@ -113,9 +113,7 @@
         Smite = 585,
         HolyWordChastise = 88625,
         ShadowWordPain = 589,
-        ShadowWordPainRank2 = 327820,
         ShadowWordDeath = 32379,
-        ShadowWordDeathRank2 = 322107,
         HolyFire = 14914,
 
         // Consumables

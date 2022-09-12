@@ -98,9 +98,7 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.Smite,
                 (uint)Spell.HolyWordChastise,
                 (uint)Spell.ShadowWordPain,
-                (uint)Spell.ShadowWordPainRank2,
                 (uint)Spell.ShadowWordDeath,
-                (uint)Spell.ShadowWordDeathRank2,
                 (uint)Spell.HolyFire,
 
                 // Consumable

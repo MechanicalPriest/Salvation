@@ -51,25 +51,10 @@ namespace Salvation.Api.Api
         {
             ProfileResponse response = new ProfileResponse
             {
-                Profile = _profileGenerationService.GetDefaultProfile((Spec)specId),
-                Covenants = GetCovenants()
+                Profile = _profileGenerationService.GetDefaultProfile((Spec)specId)
             };
 
             return response;
-        }
-
-        private Dictionary<string, int> GetCovenants()
-        {
-            var covenantList = Enum.GetValues(typeof(Covenant)).Cast<Covenant>();
-
-            var values = new Dictionary<string, int>();
-
-            foreach (var covenant in covenantList)
-            {
-                values.Add(covenant.GetDescription(), (int)covenant);
-            }
-
-            return values;
         }
     }
 

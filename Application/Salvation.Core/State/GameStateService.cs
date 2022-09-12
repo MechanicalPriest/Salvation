@@ -733,48 +733,6 @@ namespace Salvation.Core.State
                 }
             }
 
-            // COVENANT: Add covenant ability
-            switch (GetActiveCovenant(state))
-            {
-                case Covenant.Kyrian:
-                    registeredSpells.Add(new RegisteredSpell(Spell.BoonOfTheAscended));
-                    break;
-                case Covenant.Venthyr:
-                    registeredSpells.Add(new RegisteredSpell(Spell.Mindgames));
-                    break;
-                case Covenant.NightFae:
-                    registeredSpells.Add(new RegisteredSpell(Spell.FaeGuardians));
-                    break;
-                case Covenant.Necrolord:
-                    registeredSpells.Add(new RegisteredSpell(Spell.UnholyNova));
-                    registeredSpells.Add(new RegisteredSpell(Spell.Fleshcraft));
-                    break;
-                case Covenant.None:
-                default:
-                    break;
-            }
-
-
-            // SOULBINDS: Loop through each trait and add it to the list
-            if (state.Profile.Covenant.Soulbinds.Where(s => s.IsActive).FirstOrDefault() != null)
-            {
-                foreach (var trait in state.Profile.Covenant.Soulbinds
-                    .Where(s => s.IsActive).FirstOrDefault().ActiveTraits)
-                {
-                    if (Enum.IsDefined(typeof(Spell), (int)trait))
-                    {
-                        var registeredSpell = new RegisteredSpell()
-                        {
-                            Spell = (Spell)trait,
-                        };
-
-                        registeredSpells.Add(registeredSpell);
-                    }
-                }
-            }
-
-            // TODO: Conduits
-
             // Process all the registered spells
             foreach (var spell in registeredSpells)
             {

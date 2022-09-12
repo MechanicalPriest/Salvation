@@ -30,6 +30,14 @@ namespace Salvation.Client.Shared.Components
         {
             await base.OnInitializedAsync();
 
+            await GetDefaultProfile();
+        }
+
+        private async Task GetDefaultProfile()
+        {
+            loadingData = true;
+            errorMessage = "";
+
             var rootUri = _configuration["ModelProcessorSettings:RootUri"];
 
             var request = new HttpRequestMessage(HttpMethod.Get,
@@ -38,24 +46,33 @@ namespace Salvation.Client.Shared.Components
 
             var client = _httpClientFactory.CreateClient();
 
-            var response = await client.SendAsync(request);
-
-            if (response.IsSuccessStatusCode)
+            try
             {
-                using var responseStream = await response.Content.ReadAsStreamAsync();
+                var response = await client.SendAsync(request);
 
-                var jsonOptions = new JsonSerializerOptions
+                if (response.IsSuccessStatusCode)
                 {
-                    PropertyNameCaseInsensitive = true,
-                };
+                    using var responseStream = await response.Content.ReadAsStreamAsync();
 
-                data = await JsonSerializer.DeserializeAsync<PlayerProfileViewModel>(responseStream, jsonOptions);
+                    var jsonOptions = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true,
+                    };
 
-                loadingData = false;
+                    data = await JsonSerializer.DeserializeAsync<PlayerProfileViewModel>(responseStream, jsonOptions);
+
+                    loadingData = false;
+                }
+                else
+                {
+                    errorMessage = "Unable to generate default profile.";
+                    loadingData = false;
+                }
             }
-            else
+            catch (HttpRequestException ex)
             {
                 errorMessage = "Unable to generate default profile.";
+                loadingData = false;
             }
         }
 

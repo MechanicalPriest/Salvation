@@ -32,6 +32,15 @@
                         {
                             <MudProgressCircular Color="Color.Secondary" Indeterminate="true" />
                         }
+                        else if(!loadingData && !string.IsNullOrEmpty(errorMessage))
+                        {
+                            <MudAlert Severity="Severity.Error">
+                                <MudStack Class="mud-width-full">
+                                    <MudText>@errorMessage</MudText>
+                                    <MudButton Variant="Variant.Filled" Color="Color.Secondary" OnClick="GetDefaultProfile">Try Again</MudButton>
+                                </MudStack>
+                            </MudAlert>
+                        }
                         else
                         {
                             @if (data != null)
@@ -48,8 +57,6 @@
 
                                 <MudDataGrid Items="@data.Casts" Hover="true" Dense="true" ReadOnly="false" EditMode="DataGridEditMode.Cell" QuickFilter="@playstyleFilter">
                                     <ToolBarContent>
-                                        <MudText Typo="Typo.subtitle2">Playstyle</MudText>
-                                        <MudSpacer />
                                         <MudTextField @bind-Value="searchString" Placeholder="Search" Adornment="Adornment.Start" Immediate="true"
                                             AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
                                     </ToolBarContent>

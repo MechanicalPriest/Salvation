@@ -70,5 +70,16 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         {
             return 1;
         }
+        public override double GetHastedCooldown(GameState gameState, BaseSpellData spellData = null)
+        {
+            spellData = ValidateSpellData(gameState, spellData);
+
+            // Cooldown for SW:D is stored in the chargecooldown instead as it has charges
+            var cooldown = spellData.ChargeCooldown / 1000;
+
+            return spellData.IsCooldownHasted
+                ? cooldown / _gameStateService.GetHasteMultiplier(gameState)
+                : cooldown;
+        }
     }
 }

@@ -512,7 +512,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(UnholyTransfusion)).Returns(4209.2386505247287d);
                 yield return new TestCaseData(typeof(Halo)).Returns(1436.9277451725002d);
                 yield return new TestCaseData(typeof(HolyNova)).Returns(263.66926586175003d);
-                yield return new TestCaseData(typeof(Smite)).Returns(983.52821392875012d);
+                yield return new TestCaseData(typeof(Smite)).Returns(983.52821392875023d);
                 yield return new TestCaseData(typeof(HolyWordChastise)).Returns(1569.4599158437502d);
                 yield return new TestCaseData(typeof(ShadowWordPain)).Returns(1980.5562252767982d);
                 yield return new TestCaseData(typeof(ShadowWordDeath)).Returns(1055.2560197715113d);

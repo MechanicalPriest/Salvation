@@ -6,7 +6,7 @@ using static System.Net.WebRequestMethods;
 
 namespace Salvation.Client.Shared.Components
 {
-    public partial class Talents : ComponentBase
+    public partial class TalentViewer : ComponentBase
     {
         private Spec? holyPriest;
         private static int ClassPoints = 31;

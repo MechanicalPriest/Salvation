@@ -105,7 +105,7 @@ namespace Salvation.CoreTests.Common.Items
             var value = _spell.GetAverageCriticalStrike(_gameState, spellData);
 
             // Assert
-            Assert.AreEqual(118.0166534359139d, value);
+            Assert.AreEqual(75.227548019297274d, value);
         }
 
         [Test]

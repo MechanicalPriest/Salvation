@@ -117,8 +117,8 @@ namespace Salvation.CoreTests.Common.Items
             var valueWithout = _spell.GetAverageRawHealing(gamestateWithout, null);
 
             // Assert
-            Assert.AreEqual(6046.5876546962272d, valueWith);
-            Assert.AreEqual(5257.9023084315022d, valueWithout);
+            Assert.AreEqual(6680.0396947120216d, valueWith);
+            Assert.AreEqual(5808.730169314802d, valueWithout);
         }
     }
 }

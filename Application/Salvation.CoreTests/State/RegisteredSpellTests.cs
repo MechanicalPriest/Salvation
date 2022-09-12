@@ -51,7 +51,7 @@ namespace Salvation.CoreTests.State
             ISpellService spellFactoryFunc(Type type) => (ISpellService)serviceProvider.GetService(type);
             ISpellServiceFactory spellServiceFactory = new SpellServiceFactory(spellFactoryFunc);
 
-            var spell = spellServiceFactory.GetSpellService(Core.Constants.Data.Spell.Renew);
+            var spell = spellServiceFactory.GetSpellService(Core.Constants.Data.Spell.PrayerOfMending);
 
             Assert.IsNull(spell);
         }

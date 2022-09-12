@@ -534,7 +534,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(FaeGuardians)).Returns(20);
                 yield return new TestCaseData(typeof(FlashHeal)).Returns(0);
                 // Halo has a 3.2s duration, travel time of the expansion?
-                yield return new TestCaseData(typeof(Halo)).Returns(3.2);
+                yield return new TestCaseData(typeof(Halo)).Returns(2.150);
                 yield return new TestCaseData(typeof(Heal)).Returns(0);
                 yield return new TestCaseData(typeof(HolyNova)).Returns(0);
                 yield return new TestCaseData(typeof(HolyWordSalvation)).Returns(0);
@@ -571,11 +571,11 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(Heal)).Returns(1200d);
                 yield return new TestCaseData(typeof(HolyNova)).Returns(800d);
                 yield return new TestCaseData(typeof(HolyWordSalvation)).Returns(3000d);
-                yield return new TestCaseData(typeof(HolyWordSanctify)).Returns(2500d);
-                yield return new TestCaseData(typeof(HolyWordSerenity)).Returns(2000d);
+                yield return new TestCaseData(typeof(HolyWordSanctify)).Returns(1750d);
+                yield return new TestCaseData(typeof(HolyWordSerenity)).Returns(1250d);
                 yield return new TestCaseData(typeof(Mindgames)).Returns(1000d);
                 yield return new TestCaseData(typeof(PowerWordShield)).Returns(1550d);
-                yield return new TestCaseData(typeof(PrayerOfHealing)).Returns(2500d);
+                yield return new TestCaseData(typeof(PrayerOfHealing)).Returns(2000d);
                 yield return new TestCaseData(typeof(PrayerOfMending)).Returns(1000d);
                 yield return new TestCaseData(typeof(Renew)).Returns(900d);
                 yield return new TestCaseData(typeof(UnholyNova)).Returns(2500d);
@@ -640,7 +640,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(HolyWordSanctify)).Returns(60.0d);
                 yield return new TestCaseData(typeof(HolyWordSerenity)).Returns(60.0d);
                 yield return new TestCaseData(typeof(Mindgames)).Returns(45.0d);
-                yield return new TestCaseData(typeof(PowerWordShield)).Returns(0);
+                yield return new TestCaseData(typeof(PowerWordShield)).Returns(7.5d);
                 yield return new TestCaseData(typeof(PrayerOfHealing)).Returns(0.0d);
                 yield return new TestCaseData(typeof(PrayerOfMending)).Returns(11.136107986500001d);
                 yield return new TestCaseData(typeof(Renew)).Returns(0);

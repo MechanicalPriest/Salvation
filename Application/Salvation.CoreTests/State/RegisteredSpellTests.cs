@@ -39,7 +39,7 @@ namespace Salvation.CoreTests.State
             ISpellService spellFactoryFunc(Type type) => (ISpellService)serviceProvider.GetService(type);
             ISpellServiceFactory spellServiceFactory = new SpellServiceFactory(spellFactoryFunc);
 
-            var spell = spellServiceFactory.GetSpellService(Core.Constants.Data.Spell.AscendedBlast);
+            var spell = spellServiceFactory.GetSpellService(Core.Constants.Data.Spell.Renew);
 
             Assert.IsNotNull(spell);
         }
@@ -51,7 +51,7 @@ namespace Salvation.CoreTests.State
             ISpellService spellFactoryFunc(Type type) => (ISpellService)serviceProvider.GetService(type);
             ISpellServiceFactory spellServiceFactory = new SpellServiceFactory(spellFactoryFunc);
 
-            var spell = spellServiceFactory.GetSpellService(Core.Constants.Data.Spell.AscendedBlastHeal);
+            var spell = spellServiceFactory.GetSpellService(Core.Constants.Data.Spell.Renew);
 
             Assert.IsNull(spell);
         }
@@ -61,9 +61,9 @@ namespace Salvation.CoreTests.State
     {
         public object GetService(Type serviceType)
         {
-            if (serviceType == typeof(ISpellService<IAscendedBlastSpellService>))
+            if (serviceType == typeof(ISpellService<IRenewSpellService>))
             {
-                return new AscendedBlast(null);
+                return new Renew(null);
             }
 
             return null;

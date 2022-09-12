@@ -8,7 +8,6 @@ using Salvation.Core.Interfaces.State;
 using Salvation.Core.Modelling;
 using Salvation.Core.Modelling.Common.Consumables;
 using Salvation.Core.Modelling.Common.Items;
-using Salvation.Core.Modelling.Common.Traits;
 using Salvation.Core.Modelling.HolyPriest;
 using Salvation.Core.Modelling.HolyPriest.Spells;
 using Salvation.Core.Profile;
@@ -79,28 +78,6 @@ namespace Salvation.Core
             services.AddSingleton<ISpellService<IOverflowingAnimaCageSpellService>, OverflowingAnimaCage>();
             services.AddSingleton<ISpellService<ISiphoningPhylacteryShardSpellService>, SiphoningPhylacteryShard>();
 
-            // Covenant
-            // - Kyrian Traits
-            services.AddSingleton<ISpellService<ILetGoOfThePastSpellService>, LetGoOfThePast>();
-            services.AddSingleton<ISpellService<ICombatMeditationSpellSerivce>, CombatMeditation>();
-            services.AddSingleton<ISpellService<IPointedCourageSpellService>, PointedCourage>();
-            services.AddSingleton<ISpellService<IValiantStrikesSpellService>, ValiantStrikes>();
-            services.AddSingleton<ISpellService<IResonantAccoladesSpellService>, ResonantAccolades>();
-            services.AddSingleton<ISpellService<IBronsCallToActionSpellService>, BronsCallToAction>();
-            // - Necrolord Traits
-            services.AddSingleton<ISpellService<IVolatileSolventSpellService>, VolatileSolvent>();
-            services.AddSingleton<ISpellService<IUltimateFormSpellService>, UltimateForm>();
-            services.AddSingleton<ISpellService<ILeadByExampleSpellService>, LeadByExample>();
-            services.AddSingleton<ISpellService<IMarrowedGemstoneSpellService>, MarrowedGemstone>();
-            services.AddSingleton<ISpellService<IForgeborneReveriesSpellService>, ForgeborneReveries>();
-            // - Night Fae Traits
-            services.AddSingleton<ISpellService<IGroveInvigorationSpellService>, GroveInvigoration>();
-            services.AddSingleton<ISpellService<IFieldOfBlossomsSpellService>, FieldOfBlossoms>();
-            services.AddSingleton<ISpellService<INiyasToolsHerbsSpellService>, NiyasToolsHerbs>();
-            // - Venthyr Traits
-            services.AddSingleton<ISpellService<IThrillSeekerSpellService>, ThrillSeeker>();
-            services.AddSingleton<ISpellService<ISoothingShadeSpellService>, SoothingShade>();
-
             return services;
         }
 
@@ -127,15 +104,7 @@ namespace Salvation.Core
             services.AddSingleton<ISpellService<IGuardianSpiritSpellService>, GuardianSpirit>();
 
             // Covenants
-            services.AddSingleton<ISpellService<IFaeGuardiansSpellService>, FaeGuardians>();
             services.AddSingleton<ISpellService<IMindgamesSpellService>, Mindgames>();
-            services.AddSingleton<ISpellService<IUnholyNovaSpellService>, UnholyNova>();
-            services.AddSingleton<ISpellService<IUnholyTransfusionSpellService>, UnholyTransfusion>();
-            services.AddSingleton<ISpellService<IBoonOfTheAscendedSpellService>, BoonOfTheAscended>();
-            services.AddSingleton<ISpellService<IAscendedBlastSpellService>, AscendedBlast>();
-            services.AddSingleton<ISpellService<IAscendedNovaSpellService>, AscendedNova>();
-            services.AddSingleton<ISpellService<IAscendedEruptionSpellService>, AscendedEruption>();
-            services.AddSingleton<ISpellService<IFleshcraftSpellService>, Fleshcraft>();
 
             // DPS
             services.AddSingleton<ISpellService<ISmiteSpellService>, Smite>();

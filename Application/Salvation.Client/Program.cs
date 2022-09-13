@@ -14,6 +14,11 @@ builder.Services.AddHttpClient("Api", httpClient =>
     httpClient.BaseAddress = new Uri((builder.Configuration["ModelProcessorSettings:ApiRootUri"] ?? builder.HostEnvironment.BaseAddress) + builder.Configuration["ModelProcessorSettings:ApiPath"]);
     httpClient.DefaultRequestHeaders.Add("Accept", "application/json");
 });
+builder.Services.AddHttpClient("StaticData", httpClient =>
+{
+    httpClient.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress + "static-data/");
+    httpClient.DefaultRequestHeaders.Add("Accept", "application/json");
+});
 builder.Services.AddBlazorApplicationInsights(async applicationInsights =>
 {
     var telemetryItem = new TelemetryItem()

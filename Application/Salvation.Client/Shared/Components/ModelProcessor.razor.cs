@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Forms;
+﻿using BlazorApplicationInsights;
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.WebAssembly.Http;
 using Microsoft.JSInterop;
 using Salvation.Core.Profile.Model;
 using Salvation.Core.ViewModel;
-using System.Reflection.Metadata.Ecma335;
 using System.Text.Json;
 
 namespace Salvation.Client.Shared.Components
@@ -14,6 +14,9 @@ namespace Salvation.Client.Shared.Components
         protected IHttpClientFactory? _httpClientFactory { get; set; }
         [Inject]
         protected IConfiguration? _configuration { get; set; }
+
+        [Inject] 
+        protected IApplicationInsights _appInsights { get; set; }
 
         private static int holyPriestSpecId = 257;
         private static string defaultProfileEndpoint = "DefaultProfile";
@@ -71,12 +74,26 @@ namespace Salvation.Client.Shared.Components
             }
             catch (HttpRequestException ex)
             {
+                Error error = new()
+                {
+                    Message = ex.Message,
+                    Stack = ex.StackTrace
+                };
+                await _appInsights.TrackException(error);
+
                 errorMessage = "Unable to generate default profile.";
                 loadingData = false;
             }
             catch(InvalidOperationException ex)
             {
-                errorMessage = $"Unable to generate default profile. {ex.Message}";
+                Error error = new()
+                {
+                    Message = ex.Message,
+                    Stack = ex.StackTrace
+                };
+                await _appInsights.TrackException(error);
+
+                errorMessage = $"Unable to generate default profile.";
                 loadingData = false;
             }
         }

@@ -8,9 +8,12 @@ var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
-builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 builder.Services.AddMudServices();
-builder.Services.AddHttpClient();
+builder.Services.AddHttpClient("Api", httpClient =>
+{
+    httpClient.BaseAddress = new Uri((builder.Configuration["ModelProcessorSettings:ApiRootUri"] ?? builder.HostEnvironment.BaseAddress) + builder.Configuration["ModelProcessorSettings:ApiPath"]);
+    httpClient.DefaultRequestHeaders.Add("Accept", "application/json");
+});
 builder.Services.AddBlazorApplicationInsights(async applicationInsights =>
 {
     var telemetryItem = new TelemetryItem()

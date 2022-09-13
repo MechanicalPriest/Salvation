@@ -31,8 +31,6 @@ namespace Salvation.Client.Shared.Components
 
         protected override async Task OnInitializedAsync()
         {
-            await base.OnInitializedAsync();
-
             await GetDefaultProfile();
         }
 
@@ -41,19 +39,11 @@ namespace Salvation.Client.Shared.Components
             loadingData = true;
             errorMessage = "";
 
-            var rootUri = _configuration["ModelProcessorSettings:RootUri"];
-
-            var request = new HttpRequestMessage(HttpMethod.Get,
-                rootUri + $"{defaultProfileEndpoint}?specid={holyPriestSpecId}");
-            request.Headers.Add("Accept", "application/json");
-
-            await _appInsights.TrackEvent("API Request", new Dictionary<string, object?>() { { "uri", request.RequestUri } });
-
-            var client = _httpClientFactory.CreateClient();
+            var client = _httpClientFactory.CreateClient("Api");
 
             try
             {
-                var response = await client.SendAsync(request);
+                var response = await client.GetAsync($"{defaultProfileEndpoint}?specid={holyPriestSpecId}");
 
                 if (response.IsSuccessStatusCode)
                 {

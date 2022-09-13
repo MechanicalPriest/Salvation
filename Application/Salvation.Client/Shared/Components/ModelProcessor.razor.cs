@@ -47,6 +47,8 @@ namespace Salvation.Client.Shared.Components
                 rootUri + $"{defaultProfileEndpoint}?specid={holyPriestSpecId}");
             request.Headers.Add("Accept", "application/json");
 
+            await _appInsights.TrackEvent("API Request", new Dictionary<string, object?>() { { "uri", request.RequestUri } });
+
             var client = _httpClientFactory.CreateClient();
 
             try

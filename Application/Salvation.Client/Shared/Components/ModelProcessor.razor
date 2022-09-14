@@ -9,7 +9,7 @@
         <MudPaper Class="d-flex align-center justify-center mud-width-full py-2 px-2">
             <MudStack Class="mud-width-full">
                 <MudText Typo="Typo.h6" Align="Align.Center">Profile</MudText>
-                <MudExpansionPanels MultiExpansion="true">
+                <MudExpansionPanels MultiExpansion="true" Dense="true">
                     <MudExpansionPanel>
                         <TitleContent>
                             <MudStack Row="true" Class="align-center">
@@ -25,63 +25,80 @@
                             </MudStack>
                         </ChildContent>
                     </MudExpansionPanel>
-                </MudExpansionPanels>
-                <MudPaper Class="py-2 px-2">
-                    <MudStack>
-                        @if (loadingData)
-                        {
-                            <MudProgressCircular Color="Color.Secondary" Indeterminate="true" />
-                        }
-                        else if(!loadingData && !string.IsNullOrEmpty(errorMessage))
-                        {
-                            <MudAlert Severity="Severity.Error">
-                                <MudStack Class="mud-width-full">
-                                    <MudText>@errorMessage</MudText>
-                                    <MudButton Variant="Variant.Filled" Color="Color.Secondary" OnClick="GetDefaultProfile">Try Again</MudButton>
-                                </MudStack>
-                            </MudAlert>
-                        }
-                        else
-                        {
-                            @if (data != null)
+                    @if (loadingData)
+                    {
+                        <MudProgressCircular Color="Color.Secondary" Indeterminate="true" />
+                    }
+                    else if(!loadingData && !string.IsNullOrEmpty(errorMessage))
+                    {
+                        <MudAlert Severity="Severity.Error">
+                            <MudStack Class="mud-width-full">
+                                <MudText>@errorMessage</MudText>
+                                <MudButton Variant="Variant.Filled" Color="Color.Secondary" OnClick="GetDefaultProfile">Try Again</MudButton>
+                            </MudStack>
+                        </MudAlert>
+                    }
+                    else
+                    {
+                        <MudExpansionPanel Text="Gear">
+                            @foreach(var item in data.Items)
                             {
-
-                                <MudText Typo="Typo.subtitle2">Gear</MudText>
-
-                                @foreach(var item in data.Items)
-                                {
-                                    <a href="@GenerateWowheadItemLink(item)">@item.Name</a>
-                                }
-
-                                <MudText Typo="Typo.subtitle2">Playstyle</MudText>
-
-                                <MudDataGrid Items="@data.Casts" Hover="true" Dense="true" ReadOnly="false" EditMode="DataGridEditMode.Cell" QuickFilter="@playstyleFilter">
-                                    <ToolBarContent>
-                                        <MudTextField @bind-Value="searchString" Placeholder="Search" Adornment="Adornment.Start" Immediate="true"
-                                            AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
-                                    </ToolBarContent>
-                                    <Columns>
-                                        <Column T="CastProfileViewModel" Field="SpellId" Title="Spell" IsEditable="false">
-                                            <CellTemplate>
-                                                <a href="@GenerateWowheadItemLink(context.Item)" data-wh-icon-size="tiny">@context.Item.SpellId</a>
-                                            </CellTemplate>
-                                        </Column>
-                                        <Column T="CastProfileViewModel" Field="EfficiencyPercentValue" Title="Efficiency(%)" Filterable="false">
-                                            <EditTemplate>
-                                                <MudNumericField @bind-Value="context.Item.EfficiencyPercentValue" Mask="@(new PatternMask("000.00"))" Margin="Margin.Dense" Variant="Variant.Text" Adornment="Adornment.End" AdornmentText="%" Min="0" Max="100" Step="5"></MudNumericField>
-                                            </EditTemplate>
-                                        </Column>
-                                        <Column T="CastProfileViewModel" Field="OverhealingPercentValue" Title="Overheal %" Filterable="false">
-                                            <EditTemplate>
-                                                <MudNumericField @bind-Value="context.Item.OverhealingPercentValue" Mask="@(new PatternMask("000.00"))" Margin="Margin.Dense" Variant="Variant.Text" Adornment="Adornment.End" AdornmentText="%" Min="0" Max="100" Step="5"></MudNumericField>
-                                            </EditTemplate>
-                                        </Column>
-                                    </Columns>
-                                </MudDataGrid>
+                                <a href="@GenerateWowheadItemLink(item)">@item.Name</a>
                             }
-                        }
-                    </MudStack>
-                </MudPaper>
+                        </MudExpansionPanel><MudExpansionPanel Text="Playstyle" IsInitiallyExpanded="true">
+                            <MudDataGrid T="CastProfileViewModel" Items="@data.Casts" Hover="true" Dense="true" ReadOnly="false" EditMode="DataGridEditMode.Cell" QuickFilter="@playstyleFilter" Height="300px;" ShowColumnOptions="false" SortMode="SortMode.None">
+                                <ToolBarContent>
+                                    <MudTextField @bind-Value="searchString" Placeholder="Search" Adornment="Adornment.Start" Immediate="true"
+                                              AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+                                </ToolBarContent>
+                                <Columns>
+                                    <Column T="CastProfileViewModel" Field="SpellId" Title="Spell" IsEditable="false">
+                                        <CellTemplate>
+                                            <a href="@GenerateWowheadSpellLink(context.Item.SpellId)" data-wh-icon-size="tiny">@context.Item.SpellId</a>
+                                        </CellTemplate>
+                                    </Column>
+                                    <Column T="CastProfileViewModel" Field="EfficiencyPercentValue" Title="Efficiency(%)" Filterable="false">
+                                        <EditTemplate>
+                                            <MudNumericField @bind-Value="context.Item.EfficiencyPercentValue" Mask="@(new PatternMask("000.00"))" Margin="Margin.Dense" Variant="Variant.Text" Adornment="Adornment.End" AdornmentText="%" Min="0" Max="100" Step="5"></MudNumericField>
+                                        </EditTemplate>
+                                    </Column>
+                                    <Column T="CastProfileViewModel" Field="OverhealingPercentValue" Title="Overheal(%)" Filterable="false">
+                                        <EditTemplate>
+                                            <MudNumericField @bind-Value="context.Item.OverhealingPercentValue" Mask="@(new PatternMask("000.00"))" Margin="Margin.Dense" Variant="Variant.Text" Adornment="Adornment.End" AdornmentText="%" Min="0" Max="100" Step="5"></MudNumericField>
+                                        </EditTemplate>
+                                    </Column>
+                                </Columns>
+                            </MudDataGrid>
+                        </MudExpansionPanel>
+                        <MudExpansionPanel Text="Advanced" IsInitiallyExpanded="true">
+                            <MudDataGrid Items="@data.AdvancedSettings" Hover="true" Dense="true" ReadOnly="false" EditMode="DataGridEditMode.Cell" QuickFilter="@advancedFilter" Height="300px;" HorizontalScrollbar="false" ShowColumnOptions="false" SortMode="SortMode.None">
+                                <ToolBarContent>
+                                    <MudTextField @bind-Value="advancedSearchString" Placeholder="Search" Adornment="Adornment.Start" Immediate="true"
+                                              AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+                                </ToolBarContent>
+                                <Columns>
+                                    <Column T="AdvancedSettingsViewModel" Field="SpellId" Title="Spell" IsEditable="false">
+                                        <CellTemplate>
+                                            <a href="@GenerateWowheadSpellLink(context.Item.SpellId)" data-wh-icon-size="tiny">@context.Item.SpellId</a>
+                                        </CellTemplate>
+                                    </Column>
+                                    <Column T="AdvancedSettingsViewModel" Field="Name" Title="Setting" IsEditable="false">
+                                        <CellTemplate>
+                                            <MudTooltip Text="@context.Item.Name">
+                                                <MudText Typo="Typo.body2" Style="max-width: 130px; overflow: hidden; text-overflow:ellipsis">@context.Item.Name</MudText>
+                                            </MudTooltip>
+                                        </CellTemplate>
+                                    </Column>
+                                    <Column T="AdvancedSettingsViewModel" Field="Value" Title="Value" Filterable="false">
+                                        <EditTemplate>
+                                            <MudNumericField @bind-Value="context.Item.Value" Margin="Margin.Dense" Variant="Variant.Text"></MudNumericField>
+                                        </EditTemplate>
+                                    </Column>
+                                </Columns>
+                            </MudDataGrid>
+                        </MudExpansionPanel>
+                    }
+                </MudExpansionPanels>
             </MudStack>
         </MudPaper>
     </MudItem>
@@ -89,6 +106,11 @@
         <MudPaper Class="d-flex align-center justify-center mud-width-full py-8">
             <MudStack Class="mud-width-full">
                 <MudText Typo="Typo.h6" Align="Align.Center">Results</MudText>
+                <MudPaper Class="py-1 px-1">
+                    <MudTable Items="@modellingResults.HealingResults">
+
+                    </MudTable>
+                </MudPaper>
             </MudStack>
         </MudPaper>
     </MudItem>

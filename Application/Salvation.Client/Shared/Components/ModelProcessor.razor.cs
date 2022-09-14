@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.WebAssembly.Http;
 using Microsoft.JSInterop;
+using Salvation.Core.Constants;
 using Salvation.Core.Profile.Model;
 using Salvation.Core.ViewModel;
 using System.Text.Json;
@@ -21,13 +22,18 @@ namespace Salvation.Client.Shared.Components
         private static int holyPriestSpecId = 257;
         private static string defaultProfileEndpoint = "DefaultProfile";
         private static string wowheadItemLinkPrefix = "//wowhead.com/item=";
-        private static string wowheadItemSpellPrefix = "//wowhead.com/spell=";
+        private static string wowheadSpellPrefix = "//wowhead.com/spell=";
 
+        // Loading of default profile
         private PlayerProfileViewModel? data;
         private string errorMessage = string.Empty;
         private bool loadingData = true;
 
         private string searchString = "";
+        private string advancedSearchString = "";
+
+        // Loading of results
+        private ModellingResults modellingResults = new ModellingResults();
 
         protected override async Task OnInitializedAsync()
         {
@@ -105,14 +111,18 @@ namespace Salvation.Client.Shared.Components
             return link;
         }
 
-        public string GenerateWowheadItemLink(CastProfileViewModel cast)
+        public string GenerateWowheadSpellLink(int spellId)
         {
-            // Link is in the format item={id}?bonus={bonus}:{bonus}&ilvl={ilvl}&spec={specid}
-            var link = wowheadItemSpellPrefix;
+            var link = wowheadSpellPrefix;
 
-            link += $"{cast.SpellId}";
+            link += $"{spellId}";
 
             return link;
+        }
+
+        public string GenerateWowheadSpellLink(uint spellId)
+        {
+            return GenerateWowheadSpellLink((int)spellId);
         }
 
         /// <summary>
@@ -127,6 +137,23 @@ namespace Salvation.Client.Shared.Components
                 return true;
 
             if (x.Description.Contains(searchString, StringComparison.OrdinalIgnoreCase))
+                return true;
+
+            return false;
+        };
+
+        /// <summary>
+        /// Filters the advanced list based on the search text
+        /// </summary>
+        private Func<AdvancedSettingsViewModel, bool> advancedFilter => x =>
+        {
+            if (string.IsNullOrWhiteSpace(advancedSearchString))
+                return true;
+
+            if (x.SpellId.ToString().Contains(advancedSearchString, StringComparison.OrdinalIgnoreCase))
+                return true;
+
+            if (x.Name.Contains(advancedSearchString, StringComparison.OrdinalIgnoreCase))
                 return true;
 
             return false;

@@ -24,7 +24,7 @@ namespace Salvation.Core.ViewModel
         public List<Constants.Data.Talent> Talents { get; set; }
         public int FightLengthSeconds { get; set; }
         // TODO: Convert this to viewmodel if needed.
-        public List<PlaystyleEntry> PlaystyleEntries { get; set; }
+        public List<AdvancedSettingsViewModel> AdvancedSettings { get; set; }
     }
 
     public class CastProfileViewModel
@@ -49,6 +49,14 @@ namespace Salvation.Core.ViewModel
         }
     }
 
+    public class AdvancedSettingsViewModel
+    {
+        public string Name { get; set; }
+        public double Value { get; set; }
+        public int SpellId { get; set; }
+
+    }
+
     public static class PlayerProfileExtensions
     {
         public static PlayerProfileViewModel ToViewModel(this PlayerProfile profile)
@@ -66,7 +74,7 @@ namespace Salvation.Core.ViewModel
             profileVM.Casts = profile.Casts.Select(c => c.ToViewModel()).ToList();
             profileVM.Talents = profile.Talents;
             profileVM.FightLengthSeconds = profile.FightLengthSeconds;
-            profileVM.PlaystyleEntries = profile.PlaystyleEntries;
+            profileVM.AdvancedSettings = profile.PlaystyleEntries.Select(c => c.ToViewModel()).ToList();
 
             return profileVM;
         }
@@ -86,7 +94,7 @@ namespace Salvation.Core.ViewModel
             profile.Casts = profileVM.Casts.Select(c => c.ToModel()).ToList();
             profile.Talents = profileVM.Talents;
             profile.FightLengthSeconds = profileVM.FightLengthSeconds;
-            profile.PlaystyleEntries = profileVM.PlaystyleEntries;
+            profile.PlaystyleEntries = profileVM.AdvancedSettings.Select(c => c.ToModel()).ToList();
 
             return profile;
         }
@@ -118,6 +126,30 @@ namespace Salvation.Core.ViewModel
             profile.OverhealPercent = profileVM.OverhealPercent;
             profile.AverageHealingTargets = profileVM.AverageHealingTargets;
             profile.AverageDamageTargets = profileVM.AverageDamageTargets;
+
+            return profile;
+        }
+    }
+    public static class AdvancedSettingsExtensions
+    {
+        public static AdvancedSettingsViewModel ToViewModel(this PlaystyleEntry profile)
+        {
+            var profileVM = new AdvancedSettingsViewModel();
+
+            profileVM.SpellId = (int)profile.SpellId;
+            profileVM.Name = profile.Name;
+            profileVM.Value = profile.Value;
+
+            return profileVM;
+        }
+
+        public static PlaystyleEntry ToModel(this AdvancedSettingsViewModel profileVM)
+        {
+            var profile = new PlaystyleEntry();
+
+            profile.SpellId = (uint)profileVM.SpellId;
+            profile.Name = profileVM.Name;
+            profile.Value = profileVM.Value;
 
             return profile;
         }

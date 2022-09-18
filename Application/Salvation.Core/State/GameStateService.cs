@@ -494,7 +494,7 @@ namespace Salvation.Core.State
             // From sc_extra_data.inc
             intellect += state.Profile.Class switch
             {
-                Class.Priest => 450,
+                Class.Priest => 2501,
                 _ => throw new NotImplementedException("This class is not yet implemented."),
             };
 
@@ -910,6 +910,9 @@ namespace Salvation.Core.State
 
         public void JournalEntry(GameState state, string message)
         {
+#if DEBUG
+            _logger?.LogTrace("[JRN] {0}", message);
+#endif
             state.JournalEntries.Add(message);
         }
 

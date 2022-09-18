@@ -1,4 +1,6 @@
-﻿using Salvation.Core.ViewModel;
+﻿using Microsoft.Extensions.Logging;
+using Salvation.Core.State;
+using Salvation.Core.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -43,10 +45,15 @@ namespace Salvation.Utility.TalentStructureUpdate
         /// Height of a talent row
         /// </summary>
         private readonly static int talentRowHeight = 600;
+        private readonly ILogger<TalentStructureUpdateService> _logger;
 
         public TalentStructureUpdateService()
         {
-            
+
+        }
+        public TalentStructureUpdateService(ILogger<TalentStructureUpdateService> logger)
+        {
+            _logger = logger;
         }
 
         public async Task UpdateTalentStructure()
@@ -191,7 +198,10 @@ namespace Salvation.Utility.TalentStructureUpdate
                     var iconName = entry.Icon + ".jpg";
                     var outputFile = Path.Combine(iconPath, iconName);
                     if (!File.Exists(outputFile))
+                    {
                         await DownloadIcon(client, battletNetIconUrlBase + iconName, outputFile);
+                        _logger?.LogInformation("New icon to download: {iconName}", iconName);
+                    }
                 }
             }
         }

@@ -205,18 +205,18 @@ namespace Salvation.Utility.SpellDataUpdate
                 HasteBase = 0.0,
                 VersBase = 0.0,
                 MasteryBase = 0.1,
-                IntBase = 450,
-                StamBase = 416,
-                ManaBase = 50000, // __base_mp in sc_scale_data.inc
+                IntBase = 2501,
+                StamBase = 1910,
+                ManaBase = 250000, // __base_mp in sc_scale_data.inc
 
                 // These come from __combat_ratings in sc_scale_data.inc
-                CritCost = 35,
-                HasteCost = 33,
-                VersCost = 40, // Ver damage taken cost is 80
-                MasteryCost = 28, // This is the 35 base cost * 0.80 holy priest modifier
-                LeechCost = 21,
-                SpeedCost = 10,
-                AvoidanceCost = 14,
+                CritCost = 220,
+                HasteCost = 210,
+                VersCost = 250, // Ver damage taken cost is 80
+                MasteryCost = 176, // This is the 35 base cost * 0.80 holy priest modifier
+                LeechCost = 132,
+                SpeedCost = 62, 
+                AvoidanceCost = 88,
                 StamCost = 20
             };
 

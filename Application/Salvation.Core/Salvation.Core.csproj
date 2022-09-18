@@ -6,11 +6,15 @@
 
   <ItemGroup>
     <None Remove="constants.json" />
+    <None Remove="Profile\HolyPriest\dragonflight_fresh.simc" />
     <None Remove="Profile\HolyPriest\mythic_base.simc" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="constants.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Profile\HolyPriest\dragonflight_fresh.simc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Profile\HolyPriest\mythic_base.simc">

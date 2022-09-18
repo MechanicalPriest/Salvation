@@ -17,20 +17,26 @@ namespace Salvation.Client.Shared.Components
         protected IConfiguration? _configuration { get; set; }
 
         [Inject] 
-        protected IApplicationInsights _appInsights { get; set; }
+        protected IApplicationInsights? _appInsights { get; set; }
 
-        private static int holyPriestSpecId = 257;
-        private static string defaultProfileEndpoint = "DefaultProfile";
-        private static string wowheadItemLinkPrefix = "//wowhead.com/item=";
-        private static string wowheadSpellPrefix = "//wowhead.com/spell=";
+        private static readonly int holyPriestSpecId = 257;
+        private static readonly string defaultProfileEndpoint = "DefaultProfile";
+        private static readonly string wowheadItemLinkPrefix = "//wowhead.com/item=";
+        private static readonly string wowheadSpellPrefix = "//wowhead.com/spell=";
 
         // Loading of default profile
-        private PlayerProfileViewModel? data;
+        private PlayerProfileViewModel? data = default;
         private string errorMessage = string.Empty;
         private bool loadingData = true;
 
         private string searchString = "";
         private string advancedSearchString = "";
+
+        // Talent viewer
+        private Dictionary<int, int> selectedTalents = new Dictionary<int, int>()
+        {
+            { 10060, 1 },
+        };
 
         // Loading of results
         private ModellingResults modellingResults = new ModellingResults();
@@ -44,6 +50,12 @@ namespace Salvation.Client.Shared.Components
         {
             loadingData = true;
             errorMessage = "";
+
+            if (_httpClientFactory == null)
+                throw new NullReferenceException("Web client was not initialised");
+
+            if (_appInsights == null)
+                throw new NullReferenceException("App insights logging was not initialised");
 
             var client = _httpClientFactory.CreateClient("Api");
 

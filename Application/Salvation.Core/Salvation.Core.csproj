@@ -20,7 +20,7 @@
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.2-beta2" />
-    <PackageReference Include="SimcProfileParser" Version="1.0.0" />
+    <PackageReference Include="SimcProfileParser" Version="1.2.0" />
   </ItemGroup>
 
 </Project>

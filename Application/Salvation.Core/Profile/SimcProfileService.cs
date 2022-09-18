@@ -31,7 +31,7 @@ namespace Salvation.Core.Profile
 
             ApplyCharacterDetails(profile, simcProfile.ParsedProfile);
             ApplyItems(profile, simcProfile.GeneratedItems);
-            ApplyTalents(profile, simcProfile.ParsedProfile.Talents);
+            ApplyTalents(profile, simcProfile.Talents);
 
             return _profileService.ValidateProfile(profile);
         }
@@ -240,29 +240,22 @@ namespace Salvation.Core.Profile
             return newEffect;
         }
 
-        private void ApplyTalents(PlayerProfile profile, IReadOnlyList<int> talents)
+        private void ApplyTalents(PlayerProfile profile, IList<SimcTalent> talents)
         {
             if (talents.Count == 0)
                 return;
 
             profile.Talents = new List<Talent>();
 
-            for(var i = 0; i < talents.Count; i++)
+            foreach(var talent in talents)
             {
-                if (talents[i] != 0)
-                    profile.Talents.Add(HolyPriestTalents[i][talents[i] - 1]);
+                profile.Talents.Add(new Talent()
+                {
+                    Spell = (Spell)talent.SpellId,
+                    SpellId = (int)talent.SpellId,
+                    Rank = talent.Rank
+                });
             }
         }
-
-        internal List<List<Talent>> HolyPriestTalents = new List<List<Talent>>()
-        {
-            new List<Talent>() { Talent.Enlightenment, Talent.TrailOfLight, Talent.RenewedFaith },
-            new List<Talent>() { Talent.AngelsMercy, Talent.BodyAndSoul, Talent.AngelicFeather },
-            new List<Talent>() { Talent.CosmicRipple, Talent.GuardianAngel, Talent.Afterlife },
-            new List<Talent>() { Talent.PsychicVoice, Talent.Censure, Talent.ShiningForce },
-            new List<Talent>() { Talent.SurgeOfLight, Talent.BindingHeal, Talent.PrayerCircle },
-            new List<Talent>() { Talent.Benediction, Talent.DivineStar, Talent.Halo },
-            new List<Talent>() { Talent.LightOfTheNaaru, Talent.Apotheosis, Talent.HolyWordSalvation },
-        };
     }
 }

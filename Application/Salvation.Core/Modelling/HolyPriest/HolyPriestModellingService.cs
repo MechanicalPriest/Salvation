@@ -80,27 +80,16 @@ namespace Salvation.Core.Modelling.HolyPriest
             var result = new List<RegisteredSpell>()
             {
                 // Healing Spells
-                new RegisteredSpell(Spell.CircleOfHealing),
-                new RegisteredSpell(Spell.DivineHymn),
                 new RegisteredSpell(Spell.FlashHeal),
                 new RegisteredSpell(Spell.Heal),
-                new RegisteredSpell(Spell.HolyNova),
-                new RegisteredSpell(Spell.HolyWordSanctify),
-                new RegisteredSpell(Spell.HolyWordSerenity),
                 new RegisteredSpell(Spell.PowerWordShield),
-                new RegisteredSpell(Spell.PrayerOfHealing),
                 new RegisteredSpell(Spell.PrayerOfMending),
                 new RegisteredSpell(Spell.Renew),
 
                 // DPS Spells
                 new RegisteredSpell(Spell.HolyFire),
-                new RegisteredSpell(Spell.HolyWordChastise),
-                new RegisteredSpell(Spell.ShadowWordDeath),
                 new RegisteredSpell(Spell.ShadowWordPain),
                 new RegisteredSpell(Spell.Smite),
-
-                // Utility Spells
-                new RegisteredSpell(Spell.GuardianSpirit),
             };
 
             return result;

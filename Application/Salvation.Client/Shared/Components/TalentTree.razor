@@ -60,28 +60,11 @@ else
             }
         </div>
     </div>
-    <div>
-        <p>Selected talents</p>
-        <ul>
-            @foreach(var talent in Talents.Where(t => t.PointsSpent > 0))
-            {
-                @if(talent.Type == NodeTypeChoice && talent.IsSecondChoiceSelected)
-                {
-                    <li><a href="https://www.wowhead.com/beta/spell=@talent.TalentEntries[1].SpellId" data-wh-icon-size="tiny">@talent.Name</a> (@talent.PointsSpent / @talent.TalentEntries[0].MaxRanks)</li>
-                }
-                else
-                {
-                    <li><a href="https://www.wowhead.com/beta/spell=@talent.TalentEntries[0].SpellId" data-wh-icon-size="tiny">@talent.Name</a> (@talent.PointsSpent / @talent.TalentEntries[0].MaxRanks)</li>
-                }
-                
-            }
-        </ul>
-    </div>
 }
 
 @code {
-    private static string NodeTypeSingle = "single";
-    private static string NodeTypeTiered = "tiered"; // No idea what this is.
+    //private static string NodeTypeSingle = "single";
+    //private static string NodeTypeTiered = "tiered"; // No idea what this is.
     private static string NodeTypeChoice = "choice"; // Implement something for choice node later
     private static string NodeSpellTypePassive = "passive"; // Passive talents
     private static string UnknownIconName = "inv_misc_questionmark.jpg";
@@ -92,6 +75,9 @@ else
 
     [Parameter]
     public List<Talent> Talents { get; set; } = new List<Talent>();
+
+    [Parameter]
+    public Dictionary<int, int> SelectedTalents { get; set; } = new Dictionary<int, int>();
 
     public string GetImageStyle(string talentIcon)
     {
@@ -115,11 +101,28 @@ else
 
     private void InitialiseTalents()
     {
+        // Update with any supplied selected talents
+        foreach (var kvp in SelectedTalents)
+        {
+            // Check if the talent exists in the talent tree
+            var talent = Talents.Where(t => t.TalentEntries.Where(te => te.SpellId == kvp.Key).Count() > 0).FirstOrDefault();
+
+            if (talent != null)
+            {
+                // If it does, first update the points spent
+                var talentEntry = talent.TalentEntries.Where(te => te.SpellId == kvp.Key).FirstOrDefault();
+
+                talent.PointsSpent = kvp.Value;
+                talent.IsSecondChoiceSelected = talent.TalentEntries[0] != talentEntry;
+            }
+        }
+
         foreach (var talent in Talents)
         {
             if (talent.IsFreeNode)
             {
                 talent.PointsSpent = 1;
+                UpdateSelectedTalent(talent);
             }
         }
 
@@ -191,6 +194,8 @@ else
             talent.IsSecondChoiceSelected = !talent.IsSecondChoiceSelected;
         }
 
+        UpdateSelectedTalent(talent);
+
         UpdateUnlockedTalents();
     }
 
@@ -203,6 +208,24 @@ else
             TotalPointsSpent--;
         }
 
+        UpdateSelectedTalent(talent);
+
         UpdateUnlockedTalents();
+    }
+
+    // Update the SelectedTalents each time a talent changes
+    private void UpdateSelectedTalent(Talent talent)
+    {
+        var spellId = !talent.IsSecondChoiceSelected ? talent.TalentEntries[0].SpellId : talent.TalentEntries[1].SpellId;
+
+        if (!SelectedTalents.ContainsKey(spellId))
+            SelectedTalents.Add(spellId, 0);
+
+        SelectedTalents[spellId] = talent.PointsSpent;
+
+        InvokeAsync(() =>
+        {
+            StateHasChanged();
+        });
     }
 }

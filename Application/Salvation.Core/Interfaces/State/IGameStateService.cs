@@ -55,8 +55,8 @@ namespace Salvation.Core.Interfaces.State
         bool IsConduitActive(GameState state, Conduit conduit);
         uint GetConduitRank(GameState state, Conduit conduit);
         bool IsLegendaryActive(GameState state, Spell legendary);
-        void SetActiveTalent(GameState state, Talent talent);
-        bool IsTalentActive(GameState state, Talent talent);
+        Talent SetTalentRank(GameState state, Spell spell, int rank);
+        Talent GetTalent(GameState state, Spell spell);
         List<RegisteredSpell> GetRegisteredSpells(GameState state);
         void RegisterSpells(GameState state, List<RegisteredSpell> additionalSpells);
 

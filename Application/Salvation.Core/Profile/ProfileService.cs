@@ -2,9 +2,11 @@
 using Salvation.Core.Constants.Data;
 using Salvation.Core.Interfaces.Profile;
 using Salvation.Core.Profile.Model;
+using Salvation.Core.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Talent = Salvation.Core.Profile.Model.Talent;
 
 namespace Salvation.Core.Profile
 {
@@ -76,10 +78,39 @@ namespace Salvation.Core.Profile
 
         #region Talent Management
 
-        public void AddTalent(PlayerProfile profile, Talent talent)
+        /// <summary>
+        /// Update a talent's rank. If it doesn't exist, add it. 
+        /// </summary>
+        /// <param name="profile"></param>
+        /// <param name="talent"></param>
+        /// <returns>The associated talent</returns>
+        public Talent UpdateTalent(PlayerProfile profile, Spell spellId, int rank)
         {
-            if (!profile.Talents.Contains(talent))
-                profile.Talents.Add(talent);
+            var talent = GetTalent(profile, spellId);
+
+            talent.Rank = rank;
+
+            return talent;
+        }
+
+        /// <summary>
+        /// Return a talent if it exists, if not create it and return the new one.
+        /// </summary>
+        /// <param name="profile"></param>
+        /// <param name="spellId"></param>
+        /// <returns></returns>
+        public Talent GetTalent(PlayerProfile profile, Spell spellId)
+        {
+            var existingTalent = profile.Talents.Where(t => t.SpellId == (int)spellId).FirstOrDefault();
+
+            if (existingTalent != null)
+                return existingTalent;
+
+            var newTalent = new Talent(spellId, 0);
+
+            profile.Talents.Add(newTalent);
+
+            return newTalent;
         }
 
         #endregion Talent Management
@@ -236,7 +267,7 @@ namespace Salvation.Core.Profile
             // Talents
             foreach (var talent in profile.Talents)
             {
-                AddTalent(newProfile, talent);
+                UpdateTalent(newProfile, talent.Spell, talent.Rank);
             }
 
             // Covenant
@@ -272,65 +303,65 @@ namespace Salvation.Core.Profile
                     new CastProfile((int)Spell.HolyNova, 0.0034d, 0.15d, 20, 1, "Holy Nova"),
                     new CastProfile((int)Spell.HolyWordSerenity, 0.677d, 0.1515d, 1, 0, "Holy Word: Serenity, HW"),
                     new CastProfile((int)Spell.HolyWordSanctify, 0.7822d, 0.3234d, 6, 0, "Holy Word: Sanctify, HW"),
-                    new CastProfile((int)Spell.DivineHymn, 0.8005d, 0.314d, 20, 0),
-                    new CastProfile((int)Spell.CircleOfHealing, 0.8653d, 0.1417d, 5, 0),
-                    new CastProfile((int)Spell.DivineStar, 0.81d, 0.44d, 6, 1),
-                    new CastProfile((int)Spell.Halo, 0.7596d, 0.3658d, 6, 1),
-                    new CastProfile((int)Spell.HolyWordSalvation, 0.804d, 0.3142d, 20, 0),
-                    new CastProfile((int)Spell.CosmicRipple, 0d, 0.2332d, 5, 0),
-                    new CastProfile((int)Spell.PowerWordShield, 0.01d, 0.38d, 1, 0),
-                    new CastProfile((int)Spell.EchoOfLight, 0d, 0.4224d, 1, 0),
-                    new CastProfile((int)Spell.GuardianSpirit, 0.36d, 0d, 1, 0),
+                    new CastProfile((int)Spell.DivineHymn, 0.8005d, 0.314d, 20, 0, "Divine Hymn"),
+                    new CastProfile((int)Spell.CircleOfHealing, 0.8653d, 0.1417d, 5, 0, "CoH, Circle of Healing"),
+                    new CastProfile((int)Spell.DivineStar, 0.81d, 0.44d, 6, 1, "Divine Star, Divstar"),
+                    new CastProfile((int)Spell.Halo, 0.7596d, 0.3658d, 6, 1, "Halo"),
+                    new CastProfile((int)Spell.HolyWordSalvation, 0.804d, 0.3142d, 20, 0, "Holy Word: Salvation"),
+                    new CastProfile((int)Spell.CosmicRipple, 0d, 0.2332d, 5, 0, "Cosmic Ripple, CR"),
+                    new CastProfile((int)Spell.PowerWordShield, 0.01d, 0.38d, 1, 0, "Power Word: Shield, PW:S"),
+                    new CastProfile((int)Spell.EchoOfLight, 0d, 0.4224d, 1, 0, "Echo of Light, EoL"),
+                    new CastProfile((int)Spell.GuardianSpirit, 0.36d, 0d, 1, 0, "Guardian Spirit, GS, Angel"),
 
                     // DPS Spells
-                    new CastProfile((int)Spell.Smite, 0.12d, 0, 0, 1),
-                    new CastProfile((int)Spell.ShadowWordPain, 0.04d, 0, 0, 1),
-                    new CastProfile((int)Spell.ShadowWordDeath, 0.01d, 0, 0, 1),
-                    new CastProfile((int)Spell.HolyWordChastise, 0.01d, 0, 0, 1),
-                    new CastProfile((int)Spell.HolyFire, 0.01d, 0, 0, 1),
+                    new CastProfile((int)Spell.Smite, 0.12d, 0, 0, 1, "Smite"),
+                    new CastProfile((int)Spell.ShadowWordPain, 0.04d, 0, 0, 1, "Shadow Word: Pain, SW:P"),
+                    new CastProfile((int)Spell.ShadowWordDeath, 0.01d, 0, 0, 1, "Shadow Word: Death, SW:D"),
+                    new CastProfile((int)Spell.HolyWordChastise, 0.01d, 0, 0, 1, "Holy Word: Chastise"),
+                    new CastProfile((int)Spell.HolyFire, 0.01d, 0, 0, 1, "Holy Fire, HF"),
 
                     // Covenants (SpellId, Efficiency, Overheal, HealTargets, DamageTargets)
-                    new CastProfile((int)Spell.Mindgames, 1.0d, 0.01d, 1, 1),
-                    new CastProfile((int)Spell.FaeGuardians, 1.0d, 0.01d, 1, 0),
-                    new CastProfile((int)Spell.BoonOfTheAscended, 1.0d, 0.01d, 0, 0),
-                    new CastProfile((int)Spell.AscendedNova, 1.0d, 0.31d, 6, 1),
-                    new CastProfile((int)Spell.AscendedBlast, 1.0d, 0.16d, 1, 1),
-                    new CastProfile((int)Spell.AscendedEruption, 1.0d, 0.47d, 10, 1),
-                    new CastProfile((int)Spell.UnholyNova, 1.0d, 0.24d, 6, 1),
-                    new CastProfile((int)Spell.UnholyTransfusionDoT, 1.0d, 0.46d, 20, 1),
-                    new CastProfile((int)Spell.Fleshcraft, 1.0d, 0.01d, 1, 0),
+                    new CastProfile((int)Spell.Mindgames, 1.0d, 0.01d, 1, 1, "Mindgames"),
+                    //new CastProfile((int)Spell.FaeGuardians, 1.0d, 0.01d, 1, 0),
+                    //new CastProfile((int)Spell.BoonOfTheAscended, 1.0d, 0.01d, 0, 0),
+                    //new CastProfile((int)Spell.AscendedNova, 1.0d, 0.31d, 6, 1),
+                    //new CastProfile((int)Spell.AscendedBlast, 1.0d, 0.16d, 1, 1),
+                    //new CastProfile((int)Spell.AscendedEruption, 1.0d, 0.47d, 10, 1),
+                    //new CastProfile((int)Spell.UnholyNova, 1.0d, 0.24d, 6, 1),
+                    //new CastProfile((int)Spell.UnholyTransfusionDoT, 1.0d, 0.46d, 20, 1),
+                    //new CastProfile((int)Spell.Fleshcraft, 1.0d, 0.01d, 1, 0),
 
                     // Consumables (SpellId, Efficiency, Overheal, HealTargets, DamageTargets)
                     new CastProfile((int)Spell.SpiritualManaPotion, 0.9d, 0.00d, 0, 0),
                     
                     // Covenant Traits (SpellId, Efficiency, Overheal, HealTargets, DamageTargets)                   
-                    new CastProfile((int)Spell.ResonantAccolades, 0.0d, 0.5d, 1, 0),
-                    new CastProfile((int)Spell.BronsCallToAction, 0.0d, 0.1d, 1, 0),
-                    new CastProfile((int)Spell.ValiantStrikes, 0.0d, 0.01d, 1, 0),
-                    new CastProfile((int)Spell.UltimateForm, 0.0d, 0.25d, 1, 0),
+                    //new CastProfile((int)Spell.ResonantAccolades, 0.0d, 0.5d, 1, 0),
+                    //new CastProfile((int)Spell.BronsCallToAction, 0.0d, 0.1d, 1, 0),
+                    //new CastProfile((int)Spell.ValiantStrikes, 0.0d, 0.01d, 1, 0),
+                    //new CastProfile((int)Spell.UltimateForm, 0.0d, 0.25d, 1, 0),
                     
                     // Legendaries (SpellId, Efficiency, Overheal, HealTargets, DamageTargets)
-                    new CastProfile((int)Spell.DivineImageBlessedLight, 0.0d, 0.10d, 5, 0),
-                    new CastProfile((int)Spell.DivineImageDazzlingLight, 0.0d, 0.10d, 5, 0),
-                    new CastProfile((int)Spell.DivineImageHealingLight, 0.0d, 0.05d, 1, 0),
-                    new CastProfile((int)Spell.DivineImageLightEruption, 0.0d, 0.25d, 1, 0),
-                    new CastProfile((int)Spell.DivineImageSearingLight, 0.0d, 0.25d, 1, 0),
-                    new CastProfile((int)Spell.DivineImageTranquilLight, 0.0d, 0.20d, 1, 0),
+                    //new CastProfile((int)Spell.DivineImageBlessedLight, 0.0d, 0.10d, 5, 0),
+                    //new CastProfile((int)Spell.DivineImageDazzlingLight, 0.0d, 0.10d, 5, 0),
+                    //new CastProfile((int)Spell.DivineImageHealingLight, 0.0d, 0.05d, 1, 0),
+                    //new CastProfile((int)Spell.DivineImageLightEruption, 0.0d, 0.25d, 1, 0),
+                    //new CastProfile((int)Spell.DivineImageSearingLight, 0.0d, 0.25d, 1, 0),
+                    //new CastProfile((int)Spell.DivineImageTranquilLight, 0.0d, 0.20d, 1, 0),
 
                     // Items  (SpellId, Efficiency, Overheal, HealTargets, DamageTargets)
-                    new CastProfile((int)Spell.SoullettingRuby, 0.9d, 0.30d, 1, 0),
-                    new CastProfile((int)Spell.ManaboundMirror, 0.9d, 0.15d, 1, 0),
-                    new CastProfile((int)Spell.MacabreSheetMusic, 0.9d, 0.0d, 0, 0),
-                    new CastProfile((int)Spell.TuftOfSmolderingPlumage, 0.6d, 0.30d, 1, 0),
-                    new CastProfile((int)Spell.ConsumptiveInfusion, 0.9d, 0.0d, 0, 0),
-                    new CastProfile((int)Spell.DarkmoonDeckRepose, 0.80d, 0.25d, 4, 0),
-                    new CastProfile((int)Spell.VialOfSpectralEssence, 0.95d, 0.05d, 1, 0),
-                    new CastProfile((int)Spell.OverflowingAnimaCage, 0.85d, 0.0d, 0, 0),
-                    new CastProfile((int)Spell.SiphoningPhylacteryShard, 0.95d, 0.01d, 1, 0),
+                    //new CastProfile((int)Spell.SoullettingRuby, 0.9d, 0.30d, 1, 0),
+                    //new CastProfile((int)Spell.ManaboundMirror, 0.9d, 0.15d, 1, 0),
+                    //new CastProfile((int)Spell.MacabreSheetMusic, 0.9d, 0.0d, 0, 0),
+                    //new CastProfile((int)Spell.TuftOfSmolderingPlumage, 0.6d, 0.30d, 1, 0),
+                    //new CastProfile((int)Spell.ConsumptiveInfusion, 0.9d, 0.0d, 0, 0),
+                    //new CastProfile((int)Spell.DarkmoonDeckRepose, 0.80d, 0.25d, 4, 0),
+                    //new CastProfile((int)Spell.VialOfSpectralEssence, 0.95d, 0.05d, 1, 0),
+                    //new CastProfile((int)Spell.OverflowingAnimaCage, 0.85d, 0.0d, 0, 0),
+                    //new CastProfile((int)Spell.SiphoningPhylacteryShard, 0.95d, 0.01d, 1, 0),
                 },
                 Talents = new List<Talent>()
                 {
-                    Talent.Enlightenment
+                    // TODO: Build up some default talents. Maybe do it as sets of talent builds? Then a default build.
                 },
                 FightLengthSeconds = 397,
                 PlaystyleEntries = new List<PlaystyleEntry>()
@@ -362,74 +393,74 @@ namespace Salvation.Core.Profile
                     // #### Holy Priest ####
                     // ## Covenants overrides
 
-                    new PlaystyleEntry("FaeBenevolentFaerieSelfUptime", 1, (uint)Spell.BenevolentFaerie),
-                    // The number of times you move the Guardian Faerie around
-                    new PlaystyleEntry("FaeFermataNumberDRSwaps", 1, (uint)Spell.FaeFermata),
-                    // The number of times you move the Benevolent Faerie around
-                    new PlaystyleEntry("FaeFermataNumberCDRSwaps", 3, (uint)Spell.FaeFermata),
-                    new PlaystyleEntry("FaeGuardianFaerieDTPS", 4000, (uint)Spell.GuardianFaerie),
-                    // Extra shield you get. It can be anywhere from 2.5x at the moment. default to 1 (no mod)
-                    new PlaystyleEntry("FleshCraftShieldMultiplier", 1, (uint)Spell.Fleshcraft),
+                    //new PlaystyleEntry("FaeBenevolentFaerieSelfUptime", 1, (uint)Spell.BenevolentFaerie),
+                    //// The number of times you move the Guardian Faerie around
+                    //new PlaystyleEntry("FaeFermataNumberDRSwaps", 1, (uint)Spell.FaeFermata),
+                    //// The number of times you move the Benevolent Faerie around
+                    //new PlaystyleEntry("FaeFermataNumberCDRSwaps", 3, (uint)Spell.FaeFermata),
+                    //new PlaystyleEntry("FaeGuardianFaerieDTPS", 4000, (uint)Spell.GuardianFaerie),
+                    //// Extra shield you get. It can be anywhere from 2.5x at the moment. default to 1 (no mod)
+                    //new PlaystyleEntry("FleshCraftShieldMultiplier", 1, (uint)Spell.Fleshcraft),
 
                     // ## Damage & Healing overrides
                     new PlaystyleEntry("ShadowWordDeathPercentExecute", 0.2, (uint)Spell.ShadowWordDeath),
                     new PlaystyleEntry("HolyNovaPercentOfCastsOnThreeOrMore", 0.1, (uint)Spell.HolyNovaRank2),
 
                     // ## Item overrides
-                    new PlaystyleEntry("SoullettingRubyAverageEnemyHP", 0.5, (uint)Spell.SoullettingRuby),
-                    // Average amount of the mirror that's filled when it's cast. Very easy to fill playing normally.
-                    new PlaystyleEntry("ManaboundMirrorPercentMirrorFilled", 1.0, (uint)Spell.ManaboundMirror),
-                    // The average amount of health as a percentage that the target has
-                    new PlaystyleEntry("TuftOfSmolderingPlumageAvgAllyHp", .75, (uint)Spell.TuftOfSmolderingPlumage),
-                    // Toggle if we use Overflowing Anima Cage buff pseudo-including allies
-                    new PlaystyleEntry("OverflowingAnimaCageCountAllyBuffs", 1, (uint)Spell.OverflowingAnimaCage),
-                    new PlaystyleEntry("OverflowingAnimaCageAverageNumberAllies", 5, (uint)Spell.OverflowingAnimaCage),
+                    //new PlaystyleEntry("SoullettingRubyAverageEnemyHP", 0.5, (uint)Spell.SoullettingRuby),
+                    //// Average amount of the mirror that's filled when it's cast. Very easy to fill playing normally.
+                    //new PlaystyleEntry("ManaboundMirrorPercentMirrorFilled", 1.0, (uint)Spell.ManaboundMirror),
+                    //// The average amount of health as a percentage that the target has
+                    //new PlaystyleEntry("TuftOfSmolderingPlumageAvgAllyHp", .75, (uint)Spell.TuftOfSmolderingPlumage),
+                    //// Toggle if we use Overflowing Anima Cage buff pseudo-including allies
+                    //new PlaystyleEntry("OverflowingAnimaCageCountAllyBuffs", 1, (uint)Spell.OverflowingAnimaCage),
+                    //new PlaystyleEntry("OverflowingAnimaCageAverageNumberAllies", 5, (uint)Spell.OverflowingAnimaCage),
 
-                    // ## Legendary overrides
-                    new PlaystyleEntry("EchoOfEonarCountAllyBuffs", 1, (uint)Spell.EchoOfEonar),
-                    new PlaystyleEntry("CauterizingShadowsSwpExpiryPercent", 0.9, (uint)Spell.CauterizingShadows),
-                    new PlaystyleEntry("FlashConcentrationAverageStacks", 4, (uint)Spell.FlashConcentration),
+                    //// ## Legendary overrides
+                    //new PlaystyleEntry("EchoOfEonarCountAllyBuffs", 1, (uint)Spell.EchoOfEonar),
+                    //new PlaystyleEntry("CauterizingShadowsSwpExpiryPercent", 0.9, (uint)Spell.CauterizingShadows),
+                    //new PlaystyleEntry("FlashConcentrationAverageStacks", 4, (uint)Spell.FlashConcentration),
 
-                    // ## Conduit overrides
-                    // How often Charitable Soul is cast on an alt. 0.9 = 90% of the time
-                    new PlaystyleEntry("CharitableSoulAllyCasts", 0.9, (uint)Spell.CharitableSoul),
-                    new PlaystyleEntry("ResonantWordsPercentageBuffsUsed", 0.85, (uint)Spell.ResonantWords),
-                    new PlaystyleEntry("ResonantWordsPercentageBuffsHeal", 0.75, (uint)Spell.ResonantWords),
+                    //// ## Conduit overrides
+                    //// How often Charitable Soul is cast on an alt. 0.9 = 90% of the time
+                    //new PlaystyleEntry("CharitableSoulAllyCasts", 0.9, (uint)Spell.CharitableSoul),
+                    //new PlaystyleEntry("ResonantWordsPercentageBuffsUsed", 0.85, (uint)Spell.ResonantWords),
+                    //new PlaystyleEntry("ResonantWordsPercentageBuffsHeal", 0.75, (uint)Spell.ResonantWords),
 
                     // ## Soulbind trait overrides
                     // #### Kyrian
                     // Number of orbs picked up per cast
-                    new PlaystyleEntry("CombatMeditationOrbPickups", 1.0, (uint)Spell.LetGoOfThePast),
-                    // Number of average stacks while it's up
-                    new PlaystyleEntry("LetGoOfThePastAverageStacks", 2.5, (uint)Spell.LetGoOfThePast),
-                    // Average uptime as a percentage. 1 = 100%
-                    new PlaystyleEntry("LetGoOfThePastAverageUptime", 0.9, (uint)Spell.LetGoOfThePast),
-                    // Average number of nearby allies
-                    new PlaystyleEntry("PointedCourageAverageNearbyAllies", 4.5, (uint)Spell.PointedCourage),
-                    // The rough number of crittable events per minute
-                    new PlaystyleEntry("ValiantStrikesEventsPerMinute", 120, (uint)Spell.ValiantStrikes),
-                    // Number of times Valiant Strikes procs per minute
-                    new PlaystyleEntry("ValiantStrikesProcsPerMinute", 1, (uint)Spell.ValiantStrikes),
-                    // Percentage of healing events over 70% for resonant accolades
-                    new PlaystyleEntry("ResonantAccoladesHealingOver70Percent", 0.7, (uint)Spell.ResonantAccolades),
-                    // Bronns spellpower per cast. It's currently 1.15.
-                    new PlaystyleEntry("BronsCallToActionSpellpower", 1.15, (uint)Spell.BronsCallToAction),
-                    // The average amount of times Bronn procs per minute
-                    new PlaystyleEntry("BronsCallToActionProcsPerMinute", 0.4, (uint)Spell.BronsCallToAction),
-                    // Amount of times bron casts healing spells during his duration
-                    new PlaystyleEntry("BronsCallToActionCastsPerProc", 5.25, (uint)Spell.BronsCallToAction),
+                    //new PlaystyleEntry("CombatMeditationOrbPickups", 1.0, (uint)Spell.LetGoOfThePast),
+                    //// Number of average stacks while it's up
+                    //new PlaystyleEntry("LetGoOfThePastAverageStacks", 2.5, (uint)Spell.LetGoOfThePast),
+                    //// Average uptime as a percentage. 1 = 100%
+                    //new PlaystyleEntry("LetGoOfThePastAverageUptime", 0.9, (uint)Spell.LetGoOfThePast),
+                    //// Average number of nearby allies
+                    //new PlaystyleEntry("PointedCourageAverageNearbyAllies", 4.5, (uint)Spell.PointedCourage),
+                    //// The rough number of crittable events per minute
+                    //new PlaystyleEntry("ValiantStrikesEventsPerMinute", 120, (uint)Spell.ValiantStrikes),
+                    //// Number of times Valiant Strikes procs per minute
+                    //new PlaystyleEntry("ValiantStrikesProcsPerMinute", 1, (uint)Spell.ValiantStrikes),
+                    //// Percentage of healing events over 70% for resonant accolades
+                    //new PlaystyleEntry("ResonantAccoladesHealingOver70Percent", 0.7, (uint)Spell.ResonantAccolades),
+                    //// Bronns spellpower per cast. It's currently 1.15.
+                    //new PlaystyleEntry("BronsCallToActionSpellpower", 1.15, (uint)Spell.BronsCallToAction),
+                    //// The average amount of times Bronn procs per minute
+                    //new PlaystyleEntry("BronsCallToActionProcsPerMinute", 0.4, (uint)Spell.BronsCallToAction),
+                    //// Amount of times bron casts healing spells during his duration
+                    //new PlaystyleEntry("BronsCallToActionCastsPerProc", 5.25, (uint)Spell.BronsCallToAction),
 
-                    // #### Necro
-                    // Whether to include allies or not. 1 = yes.
-                    new PlaystyleEntry("LeadByExampleIncludeAllyBuffs", 1, (uint)Spell.LeadByExample),
-                    // Number of nearby allies when proccing it
-                    new PlaystyleEntry("LeadByExampleNearbyAllies", 4, (uint)Spell.LeadByExample),
-                    // The rough number of crit-able events per minute
-                    new PlaystyleEntry("MarrowedGemstoneEventsPerMinute", 200, (uint)Spell.MarrowedGemstone),
+                    //// #### Necro
+                    //// Whether to include allies or not. 1 = yes.
+                    //new PlaystyleEntry("LeadByExampleIncludeAllyBuffs", 1, (uint)Spell.LeadByExample),
+                    //// Number of nearby allies when proccing it
+                    //new PlaystyleEntry("LeadByExampleNearbyAllies", 4, (uint)Spell.LeadByExample),
+                    //// The rough number of crit-able events per minute
+                    //new PlaystyleEntry("MarrowedGemstoneEventsPerMinute", 200, (uint)Spell.MarrowedGemstone),
 
-                    // #### Night Fae 
-                    // Whether to include allies or not. 1 = yes.
-                    new PlaystyleEntry("NiyasToolsHerbsUptime", .775, (uint)Spell.NiyasToolsHerbs),
+                    //// #### Night Fae 
+                    //// Whether to include allies or not. 1 = yes.
+                    //new PlaystyleEntry("NiyasToolsHerbsUptime", .775, (uint)Spell.NiyasToolsHerbs),
                 },
                 Items = new List<Item>()
                 {

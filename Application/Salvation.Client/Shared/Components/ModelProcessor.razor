@@ -70,6 +70,9 @@
                                 </Columns>
                             </MudDataGrid>
                         </MudExpansionPanel>
+                        <MudExpansionPanel Text="Talents" IsInitiallyExpanded="true">
+                            <TalentViewer SelectedTalents=@selectedTalents></TalentViewer>
+                        </MudExpansionPanel>
                         <MudExpansionPanel Text="Advanced" IsInitiallyExpanded="true">
                             <MudDataGrid Items="@data.AdvancedSettings" Hover="true" Dense="true" ReadOnly="false" EditMode="DataGridEditMode.Cell" QuickFilter="@advancedFilter" Height="300px;" HorizontalScrollbar="false" ShowColumnOptions="false" SortMode="SortMode.None">
                                 <ToolBarContent>

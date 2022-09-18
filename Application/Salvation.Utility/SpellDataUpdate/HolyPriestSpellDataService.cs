@@ -18,9 +18,23 @@ namespace Salvation.Utility.SpellDataUpdate
             _simcGenerationService = simcGenerationService;
             _spells = new List<uint>()
             {
+                // Baseline Spells
                 (uint)Spell.HolyPriest,
                 (uint)Spell.Priest,
                 (uint)Spell.LeechHeal,
+                (uint)Spell.EchoOfLight,
+
+                (uint)Spell.Heal,
+                (uint)Spell.FlashHeal,
+                (uint)Spell.PowerWordShield,
+                (uint)Spell.PrayerOfMending,
+                (uint)Spell.PrayerOfMendingBuff,
+                (uint)Spell.PrayerOfMendingHeal,
+                (uint)Spell.Renew,
+
+                (uint)Spell.HolyFire,
+                (uint)Spell.Smite,
+                (uint)Spell.ShadowWordPain,
 
                 // Talents
                 (uint)Spell.Enlightenment,
@@ -35,23 +49,21 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.HolyWordSalvation,
 
                 // Spells
-                (uint)Spell.Heal,
-                (uint)Spell.FlashHeal,
                 (uint)Spell.PrayerOfHealing,
                 (uint)Spell.HolyNova,
                 (uint)Spell.HolyNovaRank2,
                 (uint)Spell.CircleOfHealing,
-                (uint)Spell.Renew,
-                (uint)Spell.PowerWordShield,
                 (uint)Spell.DivineHymn,
                 (uint)Spell.HolyWordSanctify,
                 (uint)Spell.HolyWordSerenity,
-                (uint)Spell.PrayerOfMending,
-                (uint)Spell.PrayerOfMendingBuff,
-                (uint)Spell.PrayerOfMendingHeal,
-                (uint)Spell.EchoOfLight,
                 (uint)Spell.GuardianSpirit,
+                
+                // DPS
+                (uint)Spell.HolyWordChastise,
+                (uint)Spell.ShadowWordDeath,
 
+                #region Shadowlands spells
+                
                 // Covenant
                 (uint)Spell.Mindgames,
                 (uint)Spell.MindgamesHeal,
@@ -93,17 +105,11 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.FocusedMending,
                 (uint)Spell.ResonantWords,
                 (uint)Spell.LastingSpirit,
-                
-                // DPS
-                (uint)Spell.Smite,
-                (uint)Spell.HolyWordChastise,
-                (uint)Spell.ShadowWordPain,
-                (uint)Spell.ShadowWordDeath,
-                (uint)Spell.HolyFire,
 
                 // Consumable
                 (uint)Spell.SpectralFlaskOfPower,
                 (uint)Spell.SpiritualManaPotion,
+
 
                 // Trinket
                 (uint)Spell.UnboundChangeling,
@@ -180,6 +186,8 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.SoothingShade,
                 (uint)Spell.SoothingShadeBuff,
                 (uint)Spell.SoothingShadeEffect,
+
+                #endregion
             };
         }
 

@@ -718,7 +718,7 @@ namespace Salvation.Core.State
             // TALENTS: Add the profiles talents
             foreach(var talent in state.Profile.Talents)
             {
-                registeredSpells.Add(new RegisteredSpell((Spell)talent));
+                registeredSpells.Add(new RegisteredSpell((Spell)talent.SpellId));
             }
 
             // TODO: Consumables
@@ -833,16 +833,14 @@ namespace Salvation.Core.State
 
         #region Talents
 
-        public bool IsTalentActive(GameState state, Talent talent)
+        public Talent GetTalent(GameState state, Spell spell)
         {
-            var exists = state.Profile.Talents.Contains(talent);
-
-            return exists;
+            return _profileService.GetTalent(state.Profile, spell);
         }
 
-        public void SetActiveTalent(GameState state, Talent talent)
+        public Talent SetTalentRank(GameState state, Spell spell, int rank)
         {
-            _profileService.AddTalent(state.Profile, talent);
+            return _profileService.UpdateTalent(state.Profile, spell, rank);
         }
 
         #endregion
@@ -959,7 +957,7 @@ namespace Salvation.Core.State
         public double GetTotalHolyWordCooldownReduction(GameState state, Spell spell, bool isApotheosisActive = false)
         {
             // Only let Apoth actually benefit if apoth is talented
-            if (!IsTalentActive(state, Talent.Apotheosis))
+            if (GetTalent(state, Spell.Apotheosis).Rank == 0)
                 isApotheosisActive = false;
 
             var serenityCDRBase = GetSpellData(state, Spell.HolyWordSerenity).GetEffect(709474).BaseValue;
@@ -968,7 +966,7 @@ namespace Salvation.Core.State
             var salvCDRBase = GetSpellData(state, Spell.HolyWordSalvation).GetEffect(709211).BaseValue;
             var chastiseCDRBase = GetSpellData(state, Spell.HolyWordChastise).GetEffect(709477).BaseValue;
 
-            var isLotnActive = IsTalentActive(state, Talent.LightOfTheNaaru);
+            var isLotnActive = GetTalent(state, Spell.LightOfTheNaaru).Rank > 0;
 
             // Holy Oration
             var isHolyOrationActive = IsConduitActive(state, Conduit.HolyOration);

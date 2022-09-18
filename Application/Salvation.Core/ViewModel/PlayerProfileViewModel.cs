@@ -17,14 +17,14 @@ namespace Salvation.Core.ViewModel
         public int Level { get; set; }
         public int Race { get; set; }
         public int Class { get; set; }
-        public List<CastProfileViewModel> Casts { get; set; }
+        public List<CastProfileViewModel> Casts { get; set; } = new List<CastProfileViewModel>();
         // TODO: Convert this to viewmodel if needed.
         public List<Item> Items { get; set; } = new List<Item>();
         // TODO: Convert this to viewmodel if needed.
-        public List<Constants.Data.Talent> Talents { get; set; }
+        public List<TalentViewModel> Talents { get; set; } = new List<TalentViewModel>();
         public int FightLengthSeconds { get; set; }
         // TODO: Convert this to viewmodel if needed.
-        public List<AdvancedSettingsViewModel> AdvancedSettings { get; set; }
+        public List<AdvancedSettingsViewModel> AdvancedSettings { get; set; } = new List<AdvancedSettingsViewModel>();
     }
 
     public class CastProfileViewModel
@@ -57,6 +57,13 @@ namespace Salvation.Core.ViewModel
 
     }
 
+    public class TalentViewModel
+    {
+        public Spell Spell { get; set; }
+        public int SpellId { get; set; }
+        public int Rank { get; set; }
+    }
+
     public static class PlayerProfileExtensions
     {
         public static PlayerProfileViewModel ToViewModel(this PlayerProfile profile)
@@ -72,7 +79,7 @@ namespace Salvation.Core.ViewModel
             profileVM.Class = (int)profile.Class;
             profileVM.Items = profile.Items;
             profileVM.Casts = profile.Casts.Select(c => c.ToViewModel()).ToList();
-            profileVM.Talents = profile.Talents;
+            profileVM.Talents = profile.Talents.Select(c => c.ToViewModel()).ToList();
             profileVM.FightLengthSeconds = profile.FightLengthSeconds;
             profileVM.AdvancedSettings = profile.PlaystyleEntries.Select(c => c.ToViewModel()).ToList();
 
@@ -92,7 +99,7 @@ namespace Salvation.Core.ViewModel
             profile.Class = (Class)profileVM.Class;
             profile.Items = profileVM.Items;
             profile.Casts = profileVM.Casts.Select(c => c.ToModel()).ToList();
-            profile.Talents = profileVM.Talents;
+            profile.Talents = profileVM.Talents.Select(c => c.ToModel()).ToList();
             profile.FightLengthSeconds = profileVM.FightLengthSeconds;
             profile.PlaystyleEntries = profileVM.AdvancedSettings.Select(c => c.ToModel()).ToList();
 
@@ -152,6 +159,32 @@ namespace Salvation.Core.ViewModel
             profile.Value = profileVM.Value;
 
             return profile;
+        }
+    }
+    public static class TalentExtensions
+    {
+        public static TalentViewModel ToViewModel(this Profile.Model.Talent talent)
+        {
+            var talentVM = new TalentViewModel
+            {
+                Rank = talent.Rank,
+                Spell = talent.Spell,
+                SpellId = talent.SpellId,
+            };
+
+            return talentVM;
+        }
+
+        public static Profile.Model.Talent ToModel(this TalentViewModel talentVM)
+        {
+            var talent = new Profile.Model.Talent
+            {
+                Rank = talentVM.Rank,
+                Spell = talentVM.Spell,
+                SpellId = talentVM.SpellId,
+            };
+
+            return talent;
         }
     }
 }

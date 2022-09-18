@@ -208,6 +208,8 @@ namespace Salvation.Utility.SpellDataUpdate
                 IntBase = 2501,
                 StamBase = 1910,
                 ManaBase = 250000, // __base_mp in sc_scale_data.inc
+                // This is set to 1.0 as part of #159
+                ArmorSkillsMultiplier = 1.00, // 5% extra main stat from Armor Skills
 
                 // These come from __combat_ratings in sc_scale_data.inc
                 CritCost = 220,

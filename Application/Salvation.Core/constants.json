@@ -11,7 +11,7 @@
       "VersBase": 0.0,
       "MasteryBase": 0.1,
       "IntBase": 2501.0,
-      "StamBase": 416.0,
+      "StamBase": 1910.0,
       "CritCost": 220.0,
       "HasteCost": 210.0,
       "VersCost": 250.0,
@@ -7452,7 +7452,8 @@
       ],
       "Conduits": [],
       "GCDFloor": 0.75,
-      "CritMultiplier": 2.0
+      "CritMultiplier": 2.0,
+      "ArmorSkillsMultiplier": 1.0
     }
   ],
   "GlobalModifiers": [],

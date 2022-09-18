@@ -31,6 +31,7 @@ namespace Salvation.Core.Constants
         public List<ConduitData> Conduits { get; set; }
         public double GCDFloor { get; set; }
         public double CritMultiplier { get; set; }
+        public double ArmorSkillsMultiplier { get; set; }
 
         public BaseSpec()
         {

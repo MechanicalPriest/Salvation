@@ -460,8 +460,9 @@ namespace Salvation.Core.State
                 }
             }
 
+            var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.Spec).FirstOrDefault();
             if (clothCount == 8)
-                intellect *= 1.05d;
+                intellect *= specData.ArmorSkillsMultiplier; 
 
             intellect *= GetIntellectMultiplier(state);
 
@@ -911,7 +912,8 @@ namespace Salvation.Core.State
         public void JournalEntry(GameState state, string message)
         {
 #if DEBUG
-            _logger?.LogTrace("[JRN] {0}", message);
+            if(state.JournalEntries.Count > 0 && state.JournalEntries.Last() != message)
+                _logger?.LogTrace("[JRN] {0}", message);
 #endif
             state.JournalEntries.Add(message);
         }

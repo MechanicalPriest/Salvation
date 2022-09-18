@@ -5,6 +5,8 @@ using Microsoft.JSInterop;
 using Salvation.Core.Constants;
 using Salvation.Core.Profile.Model;
 using Salvation.Core.ViewModel;
+using System.Net.Http.Json;
+using System.Text;
 using System.Text.Json;
 
 namespace Salvation.Client.Shared.Components
@@ -20,11 +22,11 @@ namespace Salvation.Client.Shared.Components
         protected IApplicationInsights? _appInsights { get; set; }
 
         private static readonly int holyPriestSpecId = 257;
-        private static readonly string defaultProfileEndpoint = "DefaultProfile";
         private static readonly string wowheadItemLinkPrefix = "//wowhead.com/item=";
         private static readonly string wowheadSpellPrefix = "//wowhead.com/spell=";
 
         // Loading of default profile
+        private static readonly string defaultProfileEndpoint = "DefaultProfile";
         private PlayerProfileViewModel? data = default;
         private string errorMessage = string.Empty;
         private bool loadingData = true;
@@ -39,11 +41,71 @@ namespace Salvation.Client.Shared.Components
         };
 
         // Loading of results
-        private ModellingResults modellingResults = new ModellingResults();
+        private static readonly string processModelEndpoint = "ProcessModel";
+        private ModellingResults? modellingResults = new();
+        private bool loadingResults = false;
 
         protected override async Task OnInitializedAsync()
         {
             await GetDefaultProfile();
+        }
+
+        private async Task GenerateResults()
+        {
+            loadingResults = true;
+
+            if (_httpClientFactory == null)
+                throw new NullReferenceException("Web client was not initialised");
+
+            if (_appInsights == null)
+                throw new NullReferenceException("App insights logging was not initialised");
+
+            var client = _httpClientFactory.CreateClient("Api");
+
+            try
+            {
+                var response = await client.PostAsJsonAsync(processModelEndpoint, data);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    using var responseStream = await response.Content.ReadAsStreamAsync();
+
+                    var jsonOptions = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true,
+                    };
+
+                    modellingResults = await JsonSerializer.DeserializeAsync<ModellingResults>(responseStream, jsonOptions);
+
+                    loadingResults = false;
+                }
+                else
+                {
+                    loadingResults = false;
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+                Error error = new()
+                {
+                    Message = ex.Message,
+                    Stack = ex.StackTrace
+                };
+                await _appInsights.TrackException(error);
+
+                loadingResults = false;
+            }
+            catch (InvalidOperationException ex)
+            {
+                Error error = new()
+                {
+                    Message = ex.Message,
+                    Stack = ex.StackTrace
+                };
+                await _appInsights.TrackException(error);
+
+                loadingResults = false;
+            }
         }
 
         private async Task GetDefaultProfile()

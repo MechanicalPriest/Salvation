@@ -28,7 +28,7 @@ namespace Salvation.CoreTests.State
             var crit = _gameStateService.GetCriticalStrikeMultiplier(_state);
 
             // Assert
-            Assert.AreEqual(1.1180000000000001d, crit);
+            Assert.AreEqual(1.0608181818181819d, crit);
         }
 
         [Test]
@@ -44,8 +44,8 @@ namespace Salvation.CoreTests.State
              var critbase = _gameStateService.GetCriticalStrikeMultiplier(baseState);
 
             // Assert
-            Assert.AreEqual(1.12036d, crit);
-            Assert.AreEqual(1.1180000000000001d, critbase);
+            Assert.AreEqual(1.0620345454545455d, crit);
+            Assert.AreEqual(1.0608181818181819d, critbase);
             Assert.Less(critbase, crit);
         }
 
@@ -59,7 +59,7 @@ namespace Salvation.CoreTests.State
             var haste = _gameStateService.GetHasteMultiplier(_state);
 
             // Assert
-            Assert.AreEqual(1.1293939393939394d, haste);
+            Assert.AreEqual(1.0203333333333333d, haste);
         }
 
         [Test]
@@ -72,7 +72,7 @@ namespace Salvation.CoreTests.State
             var mastery = _gameStateService.GetMasteryMultiplier(_state);
 
             // Assert
-            Assert.AreEqual(1.1357142857142859d, mastery);
+            Assert.AreEqual(1.1056818181818182d, mastery);
         }
 
         [Test]
@@ -85,7 +85,7 @@ namespace Salvation.CoreTests.State
             var vers = _gameStateService.GetVersatilityMultiplier(_state);
 
             // Assert
-            Assert.AreEqual(1.2030000000000001d, vers);
+            Assert.AreEqual(1.0324800000000001d, vers);
         }
 
         [Test]

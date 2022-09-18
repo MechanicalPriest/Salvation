@@ -92,7 +92,7 @@ namespace Salvation.CoreTests.State
             var intellect = _gameStateService.GetIntellect(_state);
 
             // Assert
-            Assert.AreEqual(1261.05d, intellect);
+            Assert.AreEqual(3252.0d, intellect);
         }
 
         [Test]

@@ -6,7 +6,6 @@ using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.Profile;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.Modelling;
-using Salvation.Core.Modelling.Common.Consumables;
 using Salvation.Core.Modelling.Common.Items;
 using Salvation.Core.Modelling.HolyPriest;
 using Salvation.Core.Modelling.HolyPriest.Spells;
@@ -59,24 +58,8 @@ namespace Salvation.Core
         public static IServiceCollection AddCoreSpells(this IServiceCollection services)
         {
             // Consumables
-            services.AddSingleton<ISpellService<ISpectralFlaskOfPowerSpellService>, SpectralFlaskOfPower>();
-            services.AddSingleton<ISpellService<ISpiritualManaPotionSpellService>, SpiritualManaPotion>();
-
+            
             // Items
-            // - Trinket - Raid
-            services.AddSingleton<ISpellService<ICabalistsHymnalSpellService>, CabalistsHymnal>();
-            services.AddSingleton<ISpellService<IManaboundMirrorSpellService>, ManaboundMirror>();
-            services.AddSingleton<ISpellService<IMacabreSheetMusicSpellService>, MacabreSheetMusic>();
-            services.AddSingleton<ISpellService<ITuftOfSmolderingPlumageSpellService>, TuftOfSmolderingPlumage>();
-            services.AddSingleton<ISpellService<IConsumptiveInfusionSpellService>, ConsumptiveInfusion>();
-            // - Trinket - Crafted
-            services.AddSingleton<ISpellService<IDarkmoonDeckReposeSpellService>, DarkmoonDeckRepose>();
-            // - Trinket - Dungeon
-            services.AddSingleton<ISpellService<IVialOfSpectralEssenceSpellService>, VialOfSpectralEssence>();
-            services.AddSingleton<ISpellService<ISoullettingRubySpellService>, SoullettingRuby>();
-            services.AddSingleton<ISpellService<IUnboundChangelingSpellService>, UnboundChangeling>();
-            services.AddSingleton<ISpellService<IOverflowingAnimaCageSpellService>, OverflowingAnimaCage>();
-            services.AddSingleton<ISpellService<ISiphoningPhylacteryShardSpellService>, SiphoningPhylacteryShard>();
 
             return services;
         }
@@ -114,8 +97,6 @@ namespace Salvation.Core
             services.AddSingleton<ISpellService<IHolyFireSpellService>, HolyFire>();
 
             // Legendary Powers
-            services.AddSingleton<ISpellService<IEchoOfEonarSpellService>, EchoOfEonar>();
-            services.AddSingleton<ISpellService<ICauterizingShadowsSpellService>, CauterizingShadows>();
             services.AddSingleton<ISpellService<IDivineImageSpellService>, DivineImage>();
             services.AddSingleton<ISpellService<IDivineImageHealingLightSpellService>, DivineImageHealingLight>();
             services.AddSingleton<ISpellService<IDivineImageTranquilLightSpellService>, DivineImageTranquilLight>();

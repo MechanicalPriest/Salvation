@@ -27,8 +27,6 @@ namespace Salvation.Core.Profile.Model
         /// </summary>
         public List<Talent> Talents { get; set; }
 
-        public CovenantProfile Covenant { get; set; }
-
         // Misc info
         public int FightLengthSeconds { get; set; }
         // TODO: Merge these into Casts associated with SpellIds
@@ -39,7 +37,6 @@ namespace Salvation.Core.Profile.Model
             Talents = new List<Talent>();
             PlaystyleEntries = new List<PlaystyleEntry>();
             Items = new List<Item>();
-            Covenant = new CovenantProfile();
             Level = 70;
         }
     }

@@ -1,7 +1,6 @@
 ﻿using Salvation.Core.Constants.Data;
 using Salvation.Core.Interfaces.Modelling;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
-using Salvation.Core.Modelling.Common.Consumables;
 using Salvation.Core.Modelling.Common.Items;
 using Salvation.Core.Modelling.HolyPriest.Spells;
 using System;
@@ -50,24 +49,9 @@ namespace Salvation.Core.Modelling
                 Spell.ShadowWordDeath => typeof(IShadowWordDeathSpellService),
                 Spell.HolyFire => typeof(IHolyFireSpellService),
                 // Holy Priest Legendary Power
-                Spell.EchoOfEonar => typeof(IEchoOfEonarSpellService),
-                Spell.CauterizingShadows => typeof(ICauterizingShadowsSpellService),
                 Spell.DivineImage => typeof(IDivineImageSpellService),
                 // Consumables
-                Spell.SpectralFlaskOfPower => typeof(ISpectralFlaskOfPowerSpellService),
-                Spell.SpiritualManaPotion => typeof(ISpiritualManaPotionSpellService),
                 // Items
-                Spell.UnboundChangeling => typeof(IUnboundChangelingSpellService),
-                Spell.CabalistsHymnal => typeof(ICabalistsHymnalSpellService),
-                Spell.SoullettingRuby => typeof(ISoullettingRubySpellService),
-                Spell.ManaboundMirror => typeof(IManaboundMirrorSpellService),
-                Spell.MacabreSheetMusic => typeof(IMacabreSheetMusicSpellService),
-                Spell.TuftOfSmolderingPlumage => typeof(ITuftOfSmolderingPlumageSpellService),
-                Spell.ConsumptiveInfusion => typeof(IConsumptiveInfusionSpellService),
-                Spell.DarkmoonDeckRepose => typeof(IDarkmoonDeckReposeSpellService),
-                Spell.VialOfSpectralEssence => typeof(IVialOfSpectralEssenceSpellService),
-                Spell.OverflowingAnimaCage => typeof(IOverflowingAnimaCageSpellService),
-                Spell.SiphoningPhylacteryShard => typeof(ISiphoningPhylacteryShardSpellService),
                 _ => null
             };
 

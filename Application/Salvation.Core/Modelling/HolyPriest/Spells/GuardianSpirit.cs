@@ -74,12 +74,13 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             var duration = base.GetDuration(gameState, spellData);
 
-            if (_gameStateService.IsConduitActive(gameState, Conduit.LastingSpirit))
-            {
-                var conduitData = _gameStateService.GetSpellData(gameState, Spell.LastingSpirit);
+            // TODO: Clean up post-implementation
+            //if (_gameStateService.IsConduitActive(gameState, Conduit.LastingSpirit))
+            //{
+            //    var conduitData = _gameStateService.GetSpellData(gameState, Spell.LastingSpirit);
 
-                duration += (conduitData.GetEffect(836029).BaseValue / 1000);
-            }
+            //    duration += (conduitData.GetEffect(836029).BaseValue / 1000);
+            //}
 
             return duration;
         }
@@ -88,13 +89,14 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         {
             var additionalHealing = 0d;
 
-            if (_gameStateService.IsConduitActive(gameState, Conduit.LastingSpirit))
-            {
-                var conduitData = _gameStateService.GetSpellData(gameState, Spell.LastingSpirit);
-                var rank = _gameStateService.GetConduitRank(gameState, Conduit.FocusedMending);
+            // TODO: Clean up post-implementation
+            //if (_gameStateService.IsConduitActive(gameState, Conduit.LastingSpirit))
+            //{
+            //    var conduitData = _gameStateService.GetSpellData(gameState, Spell.LastingSpirit);
+            //    var rank = _gameStateService.GetConduitRank(gameState, Conduit.FocusedMending);
 
-                additionalHealing += (conduitData.ConduitRanks[rank] / 100);
-            }
+            //    additionalHealing += (conduitData.ConduitRanks[rank] / 100);
+            //}
 
             return additionalHealing;
         }

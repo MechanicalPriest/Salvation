@@ -115,76 +115,6 @@ namespace Salvation.Core.Profile
 
         #endregion Talent Management
 
-        #region Covenant
-
-        public void SetCovenant(PlayerProfile profile, CovenantProfile covenant)
-        {
-            // Can add logic here to validate soulbinds / active conduits here.
-            var newCovenant = new CovenantProfile()
-            {
-                Covenant = covenant.Covenant,
-                Renown = covenant.Renown
-            };
-            // TODO: Create all 3 soulbinds for this class/covenant first to prepopulate
-
-            profile.Covenant = newCovenant;
-
-            // Apply soulbinds
-            foreach (var soulbind in covenant.Soulbinds)
-            {
-                AddSoulbind(profile, soulbind);
-            }
-
-            // Apply available conduits
-            foreach (var conduit in covenant.AvailableConduits)
-            {
-                AddAvailableConduit(profile, conduit.Key, conduit.Value);
-            }
-        }
-
-        public void AddSoulbind(PlayerProfile profile, SoulbindProfile soulbind)
-        {
-            // If we already have this soulbind, replace it.
-            profile.Covenant.Soulbinds.RemoveAll(s => s.SoulbindId == soulbind.SoulbindId);
-
-            // TODO: More validation logic on soulbind before adding it?
-            profile.Covenant.Soulbinds.Add(soulbind);
-        }
-
-        public void AddAvailableConduit(PlayerProfile profile, Conduit conduit, int conduitRank)
-        {
-            if (profile.Covenant.AvailableConduits.ContainsKey(conduit))
-                profile.Covenant.AvailableConduits[conduit] = conduitRank;
-            else
-                profile.Covenant.AvailableConduits.Add(conduit, conduitRank);
-        }
-
-        public void AddActiveConduit(PlayerProfile profile, Conduit conduit,
-            uint conduitRank, int soulbindId = 0)
-        {
-            SoulbindProfile soulbind;
-
-            if (soulbindId > 0)
-            {
-                // If soulbind is set, search for it
-                soulbind = profile.Covenant.Soulbinds
-                    .Where(s => s.SoulbindId == soulbindId).FirstOrDefault();
-            }
-            else
-            {
-                // Otherwise, use the current active soulbind
-                soulbind = profile.Covenant.Soulbinds
-                    .Where(s => s.IsActive).FirstOrDefault();
-            }
-
-            if (soulbind == null)
-                return;
-
-            soulbind.ActiveConduits.Add(conduit, conduitRank);
-        }
-
-        #endregion
-
         /// <summary>
         /// Sets the cast profile for the spellid set inside the provided CastProfile.
         /// Will overwrite an existing CastProfile entry if exists.
@@ -270,9 +200,6 @@ namespace Salvation.Core.Profile
                 UpdateTalent(newProfile, talent.Spell, talent.Rank);
             }
 
-            // Covenant
-            SetCovenant(newProfile, profile.Covenant);
-
             // Playstyle entries
             foreach (var playstyle in profile.PlaystyleEntries)
             {
@@ -332,7 +259,7 @@ namespace Salvation.Core.Profile
                     //new CastProfile((int)Spell.Fleshcraft, 1.0d, 0.01d, 1, 0),
 
                     // Consumables (SpellId, Efficiency, Overheal, HealTargets, DamageTargets)
-                    new CastProfile((int)Spell.SpiritualManaPotion, 0.9d, 0.00d, 0, 0),
+                    //new CastProfile((int)Spell.SpiritualManaPotion, 0.9d, 0.00d, 0, 0),
                     
                     // Covenant Traits (SpellId, Efficiency, Overheal, HealTargets, DamageTargets)                   
                     //new CastProfile((int)Spell.ResonantAccolades, 0.0d, 0.5d, 1, 0),

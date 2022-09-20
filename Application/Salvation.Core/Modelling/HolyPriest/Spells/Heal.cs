@@ -74,49 +74,50 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             // TODO: Move this to its own location rather than copy/pasted in Heal & FH
             var multi = 1d;
 
-            // If resonant words is active, attempt to get a value increasing heal (on average).
-            if(_gameStateService.IsConduitActive(gameState, Conduit.ResonantWords))
-            {
-                // This is very much a hack, but including them directly causes a circular dependency error. 
-                // This could be resolved in RW becomes its own effect/heal.
-                var serenity = _gameStateService.GetRegisteredSpells(gameState).Where(s => s.Spell == Spell.HolyWordSerenity).FirstOrDefault();
-                var sanc = _gameStateService.GetRegisteredSpells(gameState).Where(s => s.Spell == Spell.HolyWordSanctify).FirstOrDefault();
-                var chastise = _gameStateService.GetRegisteredSpells(gameState).Where(s => s.Spell == Spell.HolyWordChastise).FirstOrDefault();
+            // TODO: Clean up post-implementation
+            //// If resonant words is active, attempt to get a value increasing heal (on average).
+            //if (_gameStateService.IsConduitActive(gameState, Conduit.ResonantWords))
+            //{
+            //    // This is very much a hack, but including them directly causes a circular dependency error. 
+            //    // This could be resolved in RW becomes its own effect/heal.
+            //    var serenity = _gameStateService.GetRegisteredSpells(gameState).Where(s => s.Spell == Spell.HolyWordSerenity).FirstOrDefault();
+            //    var sanc = _gameStateService.GetRegisteredSpells(gameState).Where(s => s.Spell == Spell.HolyWordSanctify).FirstOrDefault();
+            //    var chastise = _gameStateService.GetRegisteredSpells(gameState).Where(s => s.Spell == Spell.HolyWordChastise).FirstOrDefault();
 
-                var hwCasts = serenity.SpellService.GetActualCastsPerMinute(gameState, serenity.SpellData)
-                    + sanc.SpellService.GetActualCastsPerMinute(gameState, sanc.SpellData)
-                    + chastise.SpellService.GetActualCastsPerMinute(gameState, chastise.SpellData);
+            //    var hwCasts = serenity.SpellService.GetActualCastsPerMinute(gameState, serenity.SpellData)
+            //        + sanc.SpellService.GetActualCastsPerMinute(gameState, sanc.SpellData)
+            //        + chastise.SpellService.GetActualCastsPerMinute(gameState, chastise.SpellData);
 
-                var numberBuffsUsed = _gameStateService.GetPlaystyle(gameState, "ResonantWordsPercentageBuffsUsed");
+            //    var numberBuffsUsed = _gameStateService.GetPlaystyle(gameState, "ResonantWordsPercentageBuffsUsed");
 
-                if(numberBuffsUsed == null)
-                    throw new ArgumentOutOfRangeException("ResonantWordsPercentageBuffsUsed", $"ResonantWordsPercentageBuffsUsed needs to be set.");
+            //    if(numberBuffsUsed == null)
+            //        throw new ArgumentOutOfRangeException("ResonantWordsPercentageBuffsUsed", $"ResonantWordsPercentageBuffsUsed needs to be set.");
 
-                var percentageBuffsForHeal = _gameStateService.GetPlaystyle(gameState, "ResonantWordsPercentageBuffsHeal");
+            //    var percentageBuffsForHeal = _gameStateService.GetPlaystyle(gameState, "ResonantWordsPercentageBuffsHeal");
 
-                if (percentageBuffsForHeal == null)
-                    throw new ArgumentOutOfRangeException("ResonantWordsPercentageBuffsHeal", $"ResonantWordsPercentageBuffsHeal needs to be set.");
+            //    if (percentageBuffsForHeal == null)
+            //        throw new ArgumentOutOfRangeException("ResonantWordsPercentageBuffsHeal", $"ResonantWordsPercentageBuffsHeal needs to be set.");
 
-                // Finally grab the conduit multi
-                var conduitData = _gameStateService.GetSpellData(gameState, Spell.ResonantWords);
-                var conduitRank = _gameStateService.GetConduitRank(gameState, Conduit.ResonantWords);
+            //    // Finally grab the conduit multi
+            //    var conduitData = _gameStateService.GetSpellData(gameState, Spell.ResonantWords);
+            //    var conduitRank = _gameStateService.GetConduitRank(gameState, Conduit.ResonantWords);
 
-                var conduitValue = conduitData.ConduitRanks[conduitRank] / 100;
+            //    var conduitValue = conduitData.ConduitRanks[conduitRank] / 100;
 
-                var numBuffedSpellsTotal = hwCasts * numberBuffsUsed.Value;
+            //    var numBuffedSpellsTotal = hwCasts * numberBuffsUsed.Value;
 
-                // Max number of Heal spells that can be buffed: hwCasts * Heal_percent
-                // Actual number of buffed casts: lowest of either max spells cast or actual casts per minute
-                var numBuffedCasts = Math.Min(numBuffedSpellsTotal * percentageBuffsForHeal.Value, GetActualCastsPerMinute(gameState, spellData));
+            //    // Max number of Heal spells that can be buffed: hwCasts * Heal_percent
+            //    // Actual number of buffed casts: lowest of either max spells cast or actual casts per minute
+            //    var numBuffedCasts = Math.Min(numBuffedSpellsTotal * percentageBuffsForHeal.Value, GetActualCastsPerMinute(gameState, spellData));
 
-                // This is the extra healing on all the buffed casts
-                var extraHealing = numBuffedCasts * conduitValue;
+            //    // This is the extra healing on all the buffed casts
+            //    var extraHealing = numBuffedCasts * conduitValue;
 
-                // Now divide this by all casts
-                var increase = extraHealing / GetActualCastsPerMinute(gameState, spellData);
+            //    // Now divide this by all casts
+            //    var increase = extraHealing / GetActualCastsPerMinute(gameState, spellData);
 
-                multi += increase;
-            }
+            //    multi += increase;
+            //}
 
             return multi;
         }
@@ -138,20 +139,20 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         {
             var castTimeReduction = 0d;
 
-            if(_gameStateService.IsLegendaryActive(gameState, Spell.FlashConcentration))
-            {
-                var fcSpellData = _gameStateService.GetSpellData(gameState, Spell.FlashConcentration);
+            //if(_gameStateService.IsLegendaryActive(gameState, Spell.FlashConcentration))
+            //{
+            //    var fcSpellData = _gameStateService.GetSpellData(gameState, Spell.FlashConcentration);
 
-                // This value comes through as -150 for -0.15s cast time
-                var castTimeReductionPerStack = fcSpellData.GetEffect(833393).TriggerSpell.GetEffect(833395).BaseValue / 1000;
+            //    // This value comes through as -150 for -0.15s cast time
+            //    var castTimeReductionPerStack = fcSpellData.GetEffect(833393).TriggerSpell.GetEffect(833395).BaseValue / 1000;
 
-                var averageStacks = _gameStateService.GetPlaystyle(gameState, "FlashConcentrationAverageStacks");
+            //    var averageStacks = _gameStateService.GetPlaystyle(gameState, "FlashConcentrationAverageStacks");
 
-                if (averageStacks == null)
-                    throw new ArgumentOutOfRangeException("FlashConcentrationAverageStacks", $"FlashConcentrationAverageStacks needs to be set.");
+            //    if (averageStacks == null)
+            //        throw new ArgumentOutOfRangeException("FlashConcentrationAverageStacks", $"FlashConcentrationAverageStacks needs to be set.");
 
-                castTimeReduction += (castTimeReductionPerStack * averageStacks.Value * -1);
-            }
+            //    castTimeReduction += (castTimeReductionPerStack * averageStacks.Value * -1);
+            //}
 
             return castTimeReduction;
         }
@@ -160,20 +161,20 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         {
             var modifier = 1d;
 
-            if (_gameStateService.IsLegendaryActive(gameState, Spell.FlashConcentration))
-            {
-                var fcSpellData = _gameStateService.GetSpellData(gameState, Spell.FlashConcentration);
+            //if (_gameStateService.IsLegendaryActive(gameState, Spell.FlashConcentration))
+            //{
+            //    var fcSpellData = _gameStateService.GetSpellData(gameState, Spell.FlashConcentration);
 
-                // This comes through as 3 for 3%.
-                var increasedHealingPerStack = fcSpellData.GetEffect(833393).TriggerSpell.GetEffect(833396).BaseValue / 100;
+            //    // This comes through as 3 for 3%.
+            //    var increasedHealingPerStack = fcSpellData.GetEffect(833393).TriggerSpell.GetEffect(833396).BaseValue / 100;
 
-                var averageStacks = _gameStateService.GetPlaystyle(gameState, "FlashConcentrationAverageStacks");
+            //    var averageStacks = _gameStateService.GetPlaystyle(gameState, "FlashConcentrationAverageStacks");
 
-                if (averageStacks == null)
-                    throw new ArgumentOutOfRangeException("FlashConcentrationAverageStacks", $"FlashConcentrationAverageStacks needs to be set.");
+            //    if (averageStacks == null)
+            //        throw new ArgumentOutOfRangeException("FlashConcentrationAverageStacks", $"FlashConcentrationAverageStacks needs to be set.");
 
-                modifier += increasedHealingPerStack * averageStacks.Value;
-            }
+            //    modifier += increasedHealingPerStack * averageStacks.Value;
+            //}
 
             return modifier;
         }

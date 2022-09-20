@@ -59,7 +59,6 @@ namespace Salvation.Core.Constants
         public bool RppmIsHasted { get; set; }
 
         public IList<BaseSpellDataEffect> Effects { get; set; }
-        public IDictionary<uint, double> ConduitRanks { get; set; }
         /// <summary>
         /// Stores value overrides for this particular spell
         /// </summary>

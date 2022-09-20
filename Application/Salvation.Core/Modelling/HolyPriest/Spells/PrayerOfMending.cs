@@ -101,18 +101,18 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         {
             spellData = ValidateSpellData(gameState, spellData);
 
-            if (_gameStateService.IsConduitActive(gameState, Conduit.FocusedMending))
-            {
-                var conduitData = _gameStateService.GetSpellData(gameState, Spell.FocusedMending);
-                var rank = _gameStateService.GetConduitRank(gameState, Conduit.FocusedMending);
+            //if (_gameStateService.IsConduitActive(gameState, Conduit.FocusedMending))
+            //{
+            //    var conduitData = _gameStateService.GetSpellData(gameState, Spell.FocusedMending);
+            //    var rank = _gameStateService.GetConduitRank(gameState, Conduit.FocusedMending);
 
-                var multiplier = 1 + (conduitData.ConduitRanks[rank] / 100);
+            //    var multiplier = 1 + (conduitData.ConduitRanks[rank] / 100);
 
-                _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Applying FocusedMending ({(int)Conduit.FocusedMending}) conduit " +
-                    $"multiplier: {multiplier:0.##}");
+            //    _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Applying FocusedMending ({(int)Conduit.FocusedMending}) conduit " +
+            //        $"multiplier: {multiplier:0.##}");
 
-                return multiplier;
-            }
+            //    return multiplier;
+            //}
 
             return 1;
         }

@@ -101,18 +101,19 @@ namespace Salvation.Core.Profile
             switch(item.ItemId)
             {
                 // Consumptive Infusion
-                case 184022:
+                // TODO: Cleanup post-implementation
+                //case 184022:
 
-                    var buffSpell = _simcGenerationService.GenerateSpellAsync(new SimcSpellOptions()
-                    {
-                        ItemInventoryType = item.InventoryType,
-                        ItemLevel = item.ItemLevel,
-                        ItemQuality = item.Quality,
-                        SpellId = (uint)Spell.ConsumptiveInfusionBuff
-                    }).Result;
+                //    var buffSpell = _simcGenerationService.GenerateSpellAsync(new SimcSpellOptions()
+                //    {
+                //        ItemInventoryType = item.InventoryType,
+                //        ItemLevel = item.ItemLevel,
+                //        ItemQuality = item.Quality,
+                //        SpellId = (uint)Spell.ConsumptiveInfusionBuff
+                //    }).Result;
 
-                    item.Effects.Add(new SimcItemEffect() { Spell = buffSpell });
-                    break;
+                //    item.Effects.Add(new SimcItemEffect() { Spell = buffSpell });
+                //    break;
 
                 default:;
                     break;

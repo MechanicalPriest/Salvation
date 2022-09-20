@@ -1,7 +1,6 @@
 ﻿using Salvation.Core.Constants.Data;
 using Salvation.Core.Interfaces.Modelling;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
-using Salvation.Core.Modelling.Common.Consumables;
 using Salvation.Core.Modelling.Common.Items;
 using Salvation.Core.Modelling.HolyPriest.Spells;
 using System;
@@ -52,8 +51,6 @@ namespace Salvation.Core.Modelling
                 // Holy Priest Legendary Power
                 Spell.DivineImage => typeof(IDivineImageSpellService),
                 // Consumables
-                Spell.SpectralFlaskOfPower => typeof(ISpectralFlaskOfPowerSpellService),
-                Spell.SpiritualManaPotion => typeof(ISpiritualManaPotionSpellService),
                 // Items
                 _ => null
             };

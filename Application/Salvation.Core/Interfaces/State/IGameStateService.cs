@@ -24,8 +24,6 @@ namespace Salvation.Core.Interfaces.State
         /// <param name="name"></param>
         /// <returns></returns>
         PlaystyleEntry GetPlaystyle(GameState state, string name);
-        void SetCovenant(GameState state, CovenantProfile covenant);
-        Covenant GetActiveCovenant(GameState state);
         void OverrideSpellData(GameState state, BaseSpellData newData);
         void OverridePlaystyle(GameState state, PlaystyleEntry newPlaystyle);
         /// <summary>
@@ -52,8 +50,6 @@ namespace Salvation.Core.Interfaces.State
         // Player Profile Configuration
 
         void SetProfileName(GameState state, string profileName);
-        bool IsConduitActive(GameState state, Conduit conduit);
-        uint GetConduitRank(GameState state, Conduit conduit);
         bool IsLegendaryActive(GameState state, Spell legendary);
         Talent SetTalentRank(GameState state, Spell spell, int rank);
         Talent GetTalent(GameState state, Spell spell);

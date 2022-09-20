@@ -23,37 +23,38 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             AveragedSpellCastResult result = base.GetCastResults(gameState, spellData);
 
-            if (_gameStateService.IsConduitActive(gameState, Conduit.CharitableSoul))
-            {
-                var csSpellData = _gameStateService.GetSpellData(gameState, Spell.CharitableSoul);
+            // TODO: Clean up post-implementation
+            //if (_gameStateService.IsConduitActive(gameState, Conduit.CharitableSoul))
+            //{
+            //    var csSpellData = _gameStateService.GetSpellData(gameState, Spell.CharitableSoul);
 
-                // Turn the rank value into a multiplier. "Rank" 10 = 0.10
-                var rank = _gameStateService.GetConduitRank(gameState, Conduit.CharitableSoul);
-                var rankMulti = csSpellData.ConduitRanks[rank] / 100;
+            //    // Turn the rank value into a multiplier. "Rank" 10 = 0.10
+            //    var rank = _gameStateService.GetConduitRank(gameState, Conduit.CharitableSoul);
+            //    var rankMulti = csSpellData.ConduitRanks[rank] / 100;
 
-                // Apply the modifier to see how often it's cast on an ally. 0.9 = 90% of the time
-                var csPlaystyle = _gameStateService.GetPlaystyle(gameState, "CharitableSoulAllyCasts");
-                if (csPlaystyle == null)
-                    throw new ArgumentNullException("CharitableSoulAllyCasts playstyle is not set");
+            //    // Apply the modifier to see how often it's cast on an ally. 0.9 = 90% of the time
+            //    var csPlaystyle = _gameStateService.GetPlaystyle(gameState, "CharitableSoulAllyCasts");
+            //    if (csPlaystyle == null)
+            //        throw new ArgumentNullException("CharitableSoulAllyCasts playstyle is not set");
 
-                rankMulti *= csPlaystyle.Value;
+            //    rankMulti *= csPlaystyle.Value;
 
-                AveragedSpellCastResult csComponent = new AveragedSpellCastResult
-                {
-                    SpellId = (int)Spell.CharitableSoul,
-                    SpellName = csSpellData.Name,
-                    RawHealing = result.RawHealing * rankMulti,
-                    Healing = result.Healing * rankMulti,
-                    Cooldown = 0,
-                    Duration = 0,
-                    Gcd = 0,
-                    ManaCost = 0,
-                    NumberOfHealingTargets = 1
-                };
-                csComponent.MakeSpellHaveNoCasts();
+            //    AveragedSpellCastResult csComponent = new AveragedSpellCastResult
+            //    {
+            //        SpellId = (int)Spell.CharitableSoul,
+            //        SpellName = csSpellData.Name,
+            //        RawHealing = result.RawHealing * rankMulti,
+            //        Healing = result.Healing * rankMulti,
+            //        Cooldown = 0,
+            //        Duration = 0,
+            //        Gcd = 0,
+            //        ManaCost = 0,
+            //        NumberOfHealingTargets = 1
+            //    };
+            //    csComponent.MakeSpellHaveNoCasts();
 
-                result.AdditionalCasts.Add(csComponent);
-            }
+            //    result.AdditionalCasts.Add(csComponent);
+            //}
 
             return result;
         }

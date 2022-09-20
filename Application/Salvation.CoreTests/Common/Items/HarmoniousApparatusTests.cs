@@ -63,52 +63,11 @@ namespace Salvation.CoreTests.State
             return Math.Round(_gameStateService.GetTotalHolyWordCooldownReduction(_state, spell), 10);
         }
 
-        [TestCaseSource(typeof(HarmoniousApparatusTestSpells), nameof(HarmoniousApparatusTestSpells.LotnHoValueTests))]
-        public double HWCDR_LotN_HO_Values(Spell spell)
-        {
-            // Arrange
-            _gameStateService.SetTalentRank(_state, Spell.LightOfTheNaaru, 1);
-            _profileService.AddActiveConduit(_state.Profile, Conduit.HolyOration, 0);
-
-            // Act
-
-
-            // Assert
-            return Math.Round(_gameStateService.GetTotalHolyWordCooldownReduction(_state, spell), 10);
-        }
-
-        [TestCaseSource(typeof(HarmoniousApparatusTestSpells), nameof(HarmoniousApparatusTestSpells.HoValueTests))]
-        public double HWCDR_HO_Values(Spell spell)
-        {
-            // Arrange
-            _profileService.AddActiveConduit(_state.Profile, Conduit.HolyOration, 0);
-
-            // Act
-
-
-            // Assert
-            return Math.Round(_gameStateService.GetTotalHolyWordCooldownReduction(_state, spell), 10);
-        }
-
         [TestCaseSource(typeof(HarmoniousApparatusTestSpells), nameof(HarmoniousApparatusTestSpells.ApothValueTests))]
         public double HWCDR_Apoth_Values(Spell spell)
         {
             // Arrange
             _gameStateService.SetTalentRank(_state, Spell.Apotheosis, 1);
-
-            // Act
-
-
-            // Assert
-            return Math.Round(_gameStateService.GetTotalHolyWordCooldownReduction(_state, spell, true), 10);
-        }
-
-        [TestCaseSource(typeof(HarmoniousApparatusTestSpells), nameof(HarmoniousApparatusTestSpells.ApothHoValueTests))]
-        public double HWCDR_Apoth_HO_Values(Spell spell)
-        {
-            // Arrange
-            _gameStateService.SetTalentRank(_state, Spell.Apotheosis, 1);
-            _profileService.AddActiveConduit(_state.Profile, Conduit.HolyOration, 0);
 
             // Act
 

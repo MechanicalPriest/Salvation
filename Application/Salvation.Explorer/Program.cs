@@ -48,7 +48,6 @@ namespace Salvation.Explorer
                     services.AddSalvationCore();
 
                     // Explorer specific utility services
-                    services.AddSingleton<IComparisonModeller<CovenantComparisonsResult>, CovenantComparisons>();
                     services.AddSingleton<IComparisonModeller<AdvancedComparisonResult>, AdvancedComparison>();
 
                     services.AddSingleton<IHolyPriestExplorer, HolyPriestExplorer>();

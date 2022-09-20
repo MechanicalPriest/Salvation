@@ -79,13 +79,15 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             // Apply the duration component of the Shattered Perceptions conduit.
             // TODO: Shift this out to another method maybe, for testing?
-            if (_gameStateService.IsConduitActive(gameState, Conduit.ShatteredPerceptions))
-            {
-                var conduitData = _gameStateService.GetSpellData(gameState, Spell.ShatteredPerceptions);
+            // TODO: Clean up post-implementation
+            //if (_gameStateService.IsConduitActive(gameState, Conduit.ShatteredPerceptions))
+            //{
+            //    var conduitData = _gameStateService.GetSpellData(gameState, Spell.ShatteredPerceptions);
 
-                // The added duration is the same regardless of rank
-                baseDuration += conduitData.GetEffect(836828).BaseValue / 1000;
-            }
+            //    // The added duration is the same regardless of rank
+            //    baseDuration += conduitData.GetEffect(836828).BaseValue / 1000;
+            //}
+
             return baseDuration;
         }
 
@@ -116,13 +118,14 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         {
             var multi = 1d;
 
-            if (_gameStateService.IsConduitActive(gameState, Conduit.ShatteredPerceptions))
-            {
-                var rank = _gameStateService.GetConduitRank(gameState, Conduit.ShatteredPerceptions);
-                var conduitData = _gameStateService.GetSpellData(gameState, Spell.ShatteredPerceptions);
+            // TODO: Clean up post-implementation
+            //if (_gameStateService.IsConduitActive(gameState, Conduit.ShatteredPerceptions))
+            //{
+            //    var rank = _gameStateService.GetConduitRank(gameState, Conduit.ShatteredPerceptions);
+            //    var conduitData = _gameStateService.GetSpellData(gameState, Spell.ShatteredPerceptions);
 
-                multi += (conduitData.ConduitRanks[rank] / 100d);
-            }
+            //    multi += (conduitData.ConduitRanks[rank] / 100d);
+            //}
 
             return multi;
         }

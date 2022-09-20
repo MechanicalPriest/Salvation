@@ -91,8 +91,8 @@ namespace Salvation.Api.Api
                 {
 
                     ModelResults = results,
-                    //EffectiveStatWeightResult = effectiveHealingStatWeights,
-                    //RawStatWeightResult = rawHealingStatWeights,
+                    EffectiveStatWeightResult = effectiveHealingStatWeights,
+                    RawStatWeightResult = rawHealingStatWeights,
                     //GameState = state,
                     JournalEntries = _gameStateService.GetJournal(state)
 

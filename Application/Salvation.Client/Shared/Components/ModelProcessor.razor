@@ -152,11 +152,41 @@
                                         </MudTable>
                                     </MudStack>
                                 </MudTabPanel>
+                                <MudTabPanel Text="Stat Weights" Icon="@Icons.Material.Filled.ScatterPlot">
+                                    <MudStack Justify="Justify.Center">
+                                        <MudText Typo="Typo.body2">@modellingResults.EffectiveStatWeightResult.Name Weights</MudText>
+                                        <MudStack Row="true" Justify="Justify.Center">
+                                            @foreach (var entry in modellingResults.EffectiveStatWeightResult.Results)
+                                            {
+                                                <MudPaper Class="pa-3">
+                                                    <MudStack>
+                                                        <MudText Typo="Typo.body1" Align="Align.Center">@entry.Stat</MudText>
+                                                        <MudText Typo="Typo.body2" Align="Align.Center">@entry.Weight.ToString("N2")</MudText>
+                                                        <MudText Typo="Typo.body2" Align="Align.Center">@entry.Value.ToString("N2") HPS</MudText>
+                                                    </MudStack>
+                                                </MudPaper>
+                                            }
+                                        </MudStack>
+                                        <MudText Typo="Typo.body2">@modellingResults.RawStatWeightResult.Name Weights</MudText>
+                                        <MudStack Row="true" Justify="Justify.Center">
+                                            @foreach (var entry in modellingResults.RawStatWeightResult.Results)
+                                            {
+                                                <MudPaper Class="pa-3">
+                                                    <MudStack>
+                                                        <MudText Typo="Typo.body1" Align="Align.Center">@entry.Stat</MudText>
+                                                        <MudText Typo="Typo.body2" Align="Align.Center">@entry.Weight.ToString("N2")</MudText>
+                                                        <MudText Typo="Typo.body2" Align="Align.Center">@entry.Value.ToString("N2") HPS</MudText>
+                                                    </MudStack>
+                                                </MudPaper>
+                                            }
+                                        </MudStack>
+                                    </MudStack>
+                                </MudTabPanel>
                                 <MudTabPanel Text="Journal" Icon="@Icons.Material.Filled.TextSnippet">
-                                    <MudStack>
+                                    <MudStack Spacing="0">
                                         @foreach(var entry in modellingResults.JournalEntries)
                                         {
-                                            <MudText Typo="Typo.body2">@entry</MudText>
+                                            <MudText Typo="Typo.body2"><span style="font-family: monospace">@entry</span></MudText>
                                         }
                                     </MudStack>
                                 </MudTabPanel>

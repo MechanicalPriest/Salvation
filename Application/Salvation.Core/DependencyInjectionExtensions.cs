@@ -63,20 +63,6 @@ namespace Salvation.Core
             services.AddSingleton<ISpellService<ISpiritualManaPotionSpellService>, SpiritualManaPotion>();
 
             // Items
-            // - Trinket - Raid
-            services.AddSingleton<ISpellService<ICabalistsHymnalSpellService>, CabalistsHymnal>();
-            services.AddSingleton<ISpellService<IManaboundMirrorSpellService>, ManaboundMirror>();
-            services.AddSingleton<ISpellService<IMacabreSheetMusicSpellService>, MacabreSheetMusic>();
-            services.AddSingleton<ISpellService<ITuftOfSmolderingPlumageSpellService>, TuftOfSmolderingPlumage>();
-            services.AddSingleton<ISpellService<IConsumptiveInfusionSpellService>, ConsumptiveInfusion>();
-            // - Trinket - Crafted
-            services.AddSingleton<ISpellService<IDarkmoonDeckReposeSpellService>, DarkmoonDeckRepose>();
-            // - Trinket - Dungeon
-            services.AddSingleton<ISpellService<IVialOfSpectralEssenceSpellService>, VialOfSpectralEssence>();
-            services.AddSingleton<ISpellService<ISoullettingRubySpellService>, SoullettingRuby>();
-            services.AddSingleton<ISpellService<IUnboundChangelingSpellService>, UnboundChangeling>();
-            services.AddSingleton<ISpellService<IOverflowingAnimaCageSpellService>, OverflowingAnimaCage>();
-            services.AddSingleton<ISpellService<ISiphoningPhylacteryShardSpellService>, SiphoningPhylacteryShard>();
 
             return services;
         }
@@ -114,8 +100,6 @@ namespace Salvation.Core
             services.AddSingleton<ISpellService<IHolyFireSpellService>, HolyFire>();
 
             // Legendary Powers
-            services.AddSingleton<ISpellService<IEchoOfEonarSpellService>, EchoOfEonar>();
-            services.AddSingleton<ISpellService<ICauterizingShadowsSpellService>, CauterizingShadows>();
             services.AddSingleton<ISpellService<IDivineImageSpellService>, DivineImage>();
             services.AddSingleton<ISpellService<IDivineImageHealingLightSpellService>, DivineImageHealingLight>();
             services.AddSingleton<ISpellService<IDivineImageTranquilLightSpellService>, DivineImageTranquilLight>();

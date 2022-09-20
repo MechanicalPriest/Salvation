@@ -159,7 +159,6 @@ namespace Salvation.Utility.SpellDataUpdate
                 MaxStacks = spell.MaxStacks,
                 Duration = spell.Duration,
                 Gcd = spell.Gcd / 1000d,
-                ConduitRanks = spell.ConduitRanks,
                 Rppm = spell.Rppm,
                 ProcChance = spell.ProcChance,
                 InternalCooldown = spell.InternalCooldown

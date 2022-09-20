@@ -172,7 +172,6 @@ namespace Salvation.Core.Profile
                 Charges = spell.Charges,
                 Duration = spell.Duration,
                 Gcd = spell.Gcd / 1000d,
-                ConduitRanks = spell.ConduitRanks,
                 Rppm = spell.Rppm
             };
 

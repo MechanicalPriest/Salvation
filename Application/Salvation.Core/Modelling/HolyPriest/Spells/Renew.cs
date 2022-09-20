@@ -33,10 +33,11 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
                 * _gameStateService.GetVersatilityMultiplier(gameState)
                 * holyPriestAuraHealingBonus;
 
-            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {averageHealFirstTick:0.##} (first)");
+            var journalAverageHealFirstTick = averageHealFirstTick;
+            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Actual: {averageHealFirstTick:0.##} (first)");
 
             averageHealFirstTick *= _gameStateService.GetCriticalStrikeMultiplier(gameState)
-                * _gameStateService.GetHasteMultiplier(gameState)
+                //* _gameStateService.GetHasteMultiplier(gameState)
                 * _gameStateService.GetGlobalHealingMultiplier(gameState);
 
             double duration = spellData.Duration / 1000;
@@ -45,11 +46,16 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             double averageHealTicks = healingSp
                 * _gameStateService.GetIntellect(gameState)
                 * _gameStateService.GetVersatilityMultiplier(gameState)
-                * _gameStateService.GetHasteMultiplier(gameState)
                 * holyPriestAuraHealingPeriodicBonus
                 * duration / tickrate;
 
-            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {averageHealTicks:0.##} (ticks)");
+            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Actual: {averageHealTicks:0.##} (ticks total)");
+
+            averageHealTicks *= _gameStateService.GetHasteMultiplier(gameState); // This just adds extra partial ticks.
+
+            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Actual: {averageHealTicks / journalAverageHealFirstTick:0.##} (num ticks)");
+            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Actual: {averageHealTicks % journalAverageHealFirstTick:0.##} (partial tick)");
+            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {journalAverageHealFirstTick + averageHealTicks:0.##} (total)");
 
             averageHealTicks *= _gameStateService.GetCriticalStrikeMultiplier(gameState)
                 * _gameStateService.GetGlobalHealingMultiplier(gameState);

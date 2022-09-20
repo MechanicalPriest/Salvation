@@ -5,8 +5,8 @@ namespace Salvation.Core.Modelling.Common
 {
     public class BaseModelResults
     {
-        public List<AveragedSpellCastResult> SpellCastResults;
-        public List<AveragedSpellCastResult> RolledUpResultsSummary;
+        public List<AveragedSpellCastResult> SpellCastResults { get; set; }
+        public List<AveragedSpellCastResult> RolledUpResultsSummary { get; set; }
 
         public PlayerProfile Profile { get; set; }
 

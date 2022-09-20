@@ -123,9 +123,45 @@
                 <MudPaper Class="py-1 px-1">
                     @if(modellingResults != null)
                     {
-                        <MudTable Items="@modellingResults.HealingResults">
-
-                        </MudTable>
+                        <MudStack>
+                            <MudStack Row="true" Class="mud-width-full" Justify="Justify.Center">
+                                <MudPaper Class="pa-3"><MudTooltip Text="Healing Per Second">@modellingResults.ModelResults.TotalActualHPS.ToString("N0") HPS</MudTooltip></MudPaper>
+                                <MudPaper Class="pa-3"><MudTooltip Text="Healing Per Mana Spent">@modellingResults.ModelResults.TotalActualHPM.ToString("N1") HPM</MudTooltip></MudPaper>
+                                <MudPaper Class="pa-3"><MudTooltip Text="Time until Out Of Mana">@modellingResults.ModelResults.TimeToOom.ToString("N0")s to OOM</MudTooltip></MudPaper>
+                            </MudStack>
+                            <MudTabs Centered="true">
+                                <MudTabPanel Text="Spell Table" Icon="@Icons.Material.Filled.GridOn">
+                                    <MudStack Class="mud-width-full">                                        
+                                        <MudTable Dense="true" Items="@modellingResults.ModelResults.SpellCastResults">
+                                            <HeaderContent>
+                                                <MudTh>Spell</MudTh>
+                                                <MudTh><MudTooltip Text="Healing Per Cast Time">HPCT</MudTooltip></MudTh>
+                                                <MudTh><MudTooltip Text="Healing Per Mana Spent">HPM</MudTooltip></MudTh>
+                                                <MudTh><MudTooltip Text="Casts Per Minute (Maximum CPM)">CPM</MudTooltip></MudTh>
+                                                <MudTh><MudTooltip Text="Healing Per Second">HPS</MudTooltip></MudTh>
+                                            </HeaderContent>
+                                            <RowTemplate>
+                                                <MudTd DataLabel="Spell">
+                                                    <a href="@GenerateWowheadSpellLink(context.SpellId)" data-wh-icon-size="tiny">@context.SpellName</a>
+                                                </MudTd>
+                                                <MudTd DataLabel="HPCT">@context.HPCT.ToString("N0")</MudTd>
+                                                <MudTd DataLabel="HPM">@context.HPM.ToString("N2")</MudTd>
+                                                <MudTd DataLabel="CPM">@context.CastsPerMinute.ToString("N1") (@context.MaximumCastsPerMinute.ToString("N1"))</MudTd>
+                                                <MudTd DataLabel="CPM">@context.HPS.ToString("N0")</MudTd>
+                                            </RowTemplate>
+                                        </MudTable>
+                                    </MudStack>
+                                </MudTabPanel>
+                                <MudTabPanel Text="Journal" Icon="@Icons.Material.Filled.TextSnippet">
+                                    <MudStack>
+                                        @foreach(var entry in modellingResults.JournalEntries)
+                                        {
+                                            <MudText Typo="Typo.body2">@entry</MudText>
+                                        }
+                                    </MudStack>
+                                </MudTabPanel>
+                            </MudTabs>
+                        </MudStack>
                     }
                 </MudPaper>
             </MudStack>

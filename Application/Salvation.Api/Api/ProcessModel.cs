@@ -75,25 +75,30 @@ namespace Salvation.Api.Api
 
                 var results = _modellingService.GetResults(state);
 
-                var effectiveHealingStatWeights = _statWeightGenerationService.Generate(state, 100,
+                var ehSWState = _gameStateService.CloneGameState(state);
+
+                var effectiveHealingStatWeights = _statWeightGenerationService.Generate(ehSWState, 100,
                     StatWeightGenerator.StatWeightType.EffectiveHealing);
 
-                var rawHealingStatWeights = _statWeightGenerationService.Generate(state, 100,
+                var rhSWState = _gameStateService.CloneGameState(state);
+
+                var rawHealingStatWeights = _statWeightGenerationService.Generate(rhSWState, 100,
                     StatWeightGenerator.StatWeightType.RawHealing);
 
                 //------------------------------
 
-                return new JsonResult(new
+                var finalResults = new ModellingResultsViewModel()
                 {
-                    Data = new
-                    {
-                        ModelResults = results,
-                        StatWeightsEffective = effectiveHealingStatWeights,
-                        StatWeightsRaw = rawHealingStatWeights,
-                        State = state,
-                        Journal = _gameStateService.GetJournal(state)
-                    }
-                });
+
+                    ModelResults = results,
+                    //EffectiveStatWeightResult = effectiveHealingStatWeights,
+                    //RawStatWeightResult = rawHealingStatWeights,
+                    //GameState = state,
+                    JournalEntries = _gameStateService.GetJournal(state)
+
+                };
+
+                return new JsonResult(finalResults);
             }
             catch (Exception ex)
             {

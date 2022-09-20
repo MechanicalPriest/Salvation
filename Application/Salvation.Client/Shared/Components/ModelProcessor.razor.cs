@@ -2,11 +2,11 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.WebAssembly.Http;
 using Microsoft.JSInterop;
+using Newtonsoft.Json;
 using Salvation.Core.Constants;
 using Salvation.Core.Profile.Model;
 using Salvation.Core.ViewModel;
 using System.Net.Http.Json;
-using System.Text;
 using System.Text.Json;
 
 namespace Salvation.Client.Shared.Components
@@ -42,7 +42,7 @@ namespace Salvation.Client.Shared.Components
 
         // Loading of results
         private static readonly string processModelEndpoint = "ProcessModel";
-        private ModellingResults? modellingResults = new();
+        private ModellingResultsViewModel? modellingResults = null;
         private bool loadingResults = false;
 
         protected override async Task OnInitializedAsync()
@@ -68,14 +68,15 @@ namespace Salvation.Client.Shared.Components
 
                 if (response.IsSuccessStatusCode)
                 {
-                    using var responseStream = await response.Content.ReadAsStreamAsync();
+                    modellingResults = await response.Content.ReadFromJsonAsync<ModellingResultsViewModel>();
 
-                    var jsonOptions = new JsonSerializerOptions
-                    {
-                        PropertyNameCaseInsensitive = true,
-                    };
-
-                    modellingResults = await JsonSerializer.DeserializeAsync<ModellingResults>(responseStream, jsonOptions);
+                    //var jsonOptions = new JsonSerializerOptions
+                    //{
+                    //    PropertyNameCaseInsensitive = true,
+                    //};
+                    
+                    //modellingResults = await JsonConvert.DeserializeObject<ModellingResultsViewModel>(responseStream, jsonOptions);
+                    //modellingResults = await JsonSerializer.DeserializeAsync<ModellingResultsViewModel>(responseStream, jsonOptions);
 
                     loadingResults = false;
                 }
@@ -129,12 +130,12 @@ namespace Salvation.Client.Shared.Components
                 {
                     using var responseStream = await response.Content.ReadAsStreamAsync();
 
-                    var jsonOptions = new JsonSerializerOptions
+                    var jsonOptions = new System.Text.Json.JsonSerializerOptions
                     {
                         PropertyNameCaseInsensitive = true,
                     };
 
-                    data = await JsonSerializer.DeserializeAsync<PlayerProfileViewModel>(responseStream, jsonOptions);
+                    data = await System.Text.Json.JsonSerializer.DeserializeAsync<PlayerProfileViewModel>(responseStream, jsonOptions);
 
                     loadingData = false;
                 }

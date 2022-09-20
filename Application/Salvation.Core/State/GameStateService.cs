@@ -911,12 +911,15 @@ namespace Salvation.Core.State
 
         public void JournalEntry(GameState state, string message)
         {
-#if DEBUG
-            if(state.JournalEntries.Count > 0 && 
+            if (state.JournalEntries.Count == 0 ||
                 !state.JournalEntries.Skip(Math.Max(0, state.JournalEntries.Count() - 5)).Where(j => j == message).Any())
+            {
+#if DEBUG
+
                 _logger?.LogTrace("[JRN] {0}", message);
 #endif
-            state.JournalEntries.Add(message);
+                state.JournalEntries.Add(message);
+            }
         }
 
         public List<string> GetJournal(GameState state, bool removeDuplicates = false)

@@ -89,7 +89,6 @@
 
         // Legendaries
         HarmoniousApparatus = 336314,
-        FlashConcentration = 336266,
         DivineImage = 336400,
         DivineImageHealingLight = 196809,
         DivineImageDazzlingLight = 196810,

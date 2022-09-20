@@ -65,9 +65,9 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             // SP% * Intellect * Vers * Hpriest Aura
             // TODO: For some reason PW:S is done kinda weird. No basevalue of spcoeff.
-            // It just seems to use $shield=${$SP*1.8*(1+$@versadmg)*
+            // It just seems to use $shield=${$SP*2.8*(1+$@versadmg)*$<rapture>*$<shadow>*$<pvp>*$<weal>
             // It also doesn't scaling with the healing aura bonus, see issue #71
-            var absorbSp = 1.65;
+            var absorbSp = 2.8;
 
             double averageHeal = absorbSp
                 * _gameStateService.GetIntellect(gameState)
@@ -85,13 +85,11 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             spellData = ValidateSpellData(gameState, spellData);
 
             var hastedCastTime = GetHastedCastTime(gameState, spellData);
-            var hastedGcd = GetHastedGcd(gameState, spellData);
+            var hastedCd = GetHastedCooldown(gameState, spellData);
+            var fightLength = _gameStateService.GetFightLength(gameState);
 
-            double fillerCastTime = hastedCastTime == 0d
-                ? hastedGcd
-                : hastedCastTime;
-
-            double maximumPotentialCasts = 60d / fillerCastTime;
+            double maximumPotentialCasts = 60d / (hastedCastTime + hastedCd)
+                + 1d / (fightLength / 60d);
 
             return maximumPotentialCasts;
         }

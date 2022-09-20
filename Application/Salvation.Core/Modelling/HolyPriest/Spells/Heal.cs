@@ -139,20 +139,20 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         {
             var castTimeReduction = 0d;
 
-            if(_gameStateService.IsLegendaryActive(gameState, Spell.FlashConcentration))
-            {
-                var fcSpellData = _gameStateService.GetSpellData(gameState, Spell.FlashConcentration);
+            //if(_gameStateService.IsLegendaryActive(gameState, Spell.FlashConcentration))
+            //{
+            //    var fcSpellData = _gameStateService.GetSpellData(gameState, Spell.FlashConcentration);
 
-                // This value comes through as -150 for -0.15s cast time
-                var castTimeReductionPerStack = fcSpellData.GetEffect(833393).TriggerSpell.GetEffect(833395).BaseValue / 1000;
+            //    // This value comes through as -150 for -0.15s cast time
+            //    var castTimeReductionPerStack = fcSpellData.GetEffect(833393).TriggerSpell.GetEffect(833395).BaseValue / 1000;
 
-                var averageStacks = _gameStateService.GetPlaystyle(gameState, "FlashConcentrationAverageStacks");
+            //    var averageStacks = _gameStateService.GetPlaystyle(gameState, "FlashConcentrationAverageStacks");
 
-                if (averageStacks == null)
-                    throw new ArgumentOutOfRangeException("FlashConcentrationAverageStacks", $"FlashConcentrationAverageStacks needs to be set.");
+            //    if (averageStacks == null)
+            //        throw new ArgumentOutOfRangeException("FlashConcentrationAverageStacks", $"FlashConcentrationAverageStacks needs to be set.");
 
-                castTimeReduction += (castTimeReductionPerStack * averageStacks.Value * -1);
-            }
+            //    castTimeReduction += (castTimeReductionPerStack * averageStacks.Value * -1);
+            //}
 
             return castTimeReduction;
         }
@@ -161,20 +161,20 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         {
             var modifier = 1d;
 
-            if (_gameStateService.IsLegendaryActive(gameState, Spell.FlashConcentration))
-            {
-                var fcSpellData = _gameStateService.GetSpellData(gameState, Spell.FlashConcentration);
+            //if (_gameStateService.IsLegendaryActive(gameState, Spell.FlashConcentration))
+            //{
+            //    var fcSpellData = _gameStateService.GetSpellData(gameState, Spell.FlashConcentration);
 
-                // This comes through as 3 for 3%.
-                var increasedHealingPerStack = fcSpellData.GetEffect(833393).TriggerSpell.GetEffect(833396).BaseValue / 100;
+            //    // This comes through as 3 for 3%.
+            //    var increasedHealingPerStack = fcSpellData.GetEffect(833393).TriggerSpell.GetEffect(833396).BaseValue / 100;
 
-                var averageStacks = _gameStateService.GetPlaystyle(gameState, "FlashConcentrationAverageStacks");
+            //    var averageStacks = _gameStateService.GetPlaystyle(gameState, "FlashConcentrationAverageStacks");
 
-                if (averageStacks == null)
-                    throw new ArgumentOutOfRangeException("FlashConcentrationAverageStacks", $"FlashConcentrationAverageStacks needs to be set.");
+            //    if (averageStacks == null)
+            //        throw new ArgumentOutOfRangeException("FlashConcentrationAverageStacks", $"FlashConcentrationAverageStacks needs to be set.");
 
-                modifier += increasedHealingPerStack * averageStacks.Value;
-            }
+            //    modifier += increasedHealingPerStack * averageStacks.Value;
+            //}
 
             return modifier;
         }

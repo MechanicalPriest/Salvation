@@ -70,7 +70,6 @@ namespace Salvation.Utility.SpellDataUpdate
 
                 // Legendaries
                 (uint)Spell.HarmoniousApparatus,
-                (uint)Spell.FlashConcentration,
                 (uint)Spell.DivineImage,
                 (uint)Spell.DivineImageHealingLight,
                 (uint)Spell.DivineImageDazzlingLight,

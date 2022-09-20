@@ -1,4 +1,6 @@
-﻿using Salvation.Core.ViewModel;
+﻿using Microsoft.Extensions.Logging;
+using Salvation.Core.State;
+using Salvation.Core.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -43,10 +45,15 @@ namespace Salvation.Utility.TalentStructureUpdate
         /// Height of a talent row
         /// </summary>
         private readonly static int talentRowHeight = 600;
+        private readonly ILogger<TalentStructureUpdateService> _logger;
 
         public TalentStructureUpdateService()
         {
-            
+
+        }
+        public TalentStructureUpdateService(ILogger<TalentStructureUpdateService> logger)
+        {
+            _logger = logger;
         }
 
         public async Task UpdateTalentStructure()
@@ -62,7 +69,7 @@ namespace Salvation.Utility.TalentStructureUpdate
 
             // 3. Save it to file
             using FileStream processedDataFile = File.Create(Path.Combine(staticDataRelativePath, localTalentDataFile));
-            await JsonSerializer.SerializeAsync<Spec>(processedDataFile, holyPriestData, 
+            await JsonSerializer.SerializeAsync<TalentSpec>(processedDataFile, holyPriestData, 
                 new JsonSerializerOptions() { WriteIndented = true });
 
             // 4. Download icons
@@ -79,12 +86,12 @@ namespace Salvation.Utility.TalentStructureUpdate
         }
 
 
-        private static Spec MassageRawData(RawSpec[] rawTalentData)
+        private static TalentSpec MassageRawData(RawSpec[] rawTalentData)
         {
             var hpriest = rawTalentData.Where(t => t.specId == 257).FirstOrDefault();
 
             // Create new objects and assign all the relevant values to them.
-            Spec holyPriest = new Spec()
+            TalentSpec holyPriest = new TalentSpec()
             {
                 ClassName = hpriest.className,
                 ClassId = hpriest.classId,
@@ -161,7 +168,7 @@ namespace Salvation.Utility.TalentStructureUpdate
         }
 
 
-        private async Task DownloadIcons(Spec holyPriestData, string iconPath)
+        private async Task DownloadIcons(TalentSpec holyPriestData, string iconPath)
         {
             using var client = new HttpClient();
 
@@ -191,7 +198,10 @@ namespace Salvation.Utility.TalentStructureUpdate
                     var iconName = entry.Icon + ".jpg";
                     var outputFile = Path.Combine(iconPath, iconName);
                     if (!File.Exists(outputFile))
+                    {
                         await DownloadIcon(client, battletNetIconUrlBase + iconName, outputFile);
+                        _logger?.LogInformation("New icon to download: {iconName}", iconName);
+                    }
                 }
             }
         }

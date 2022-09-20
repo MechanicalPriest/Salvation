@@ -34,11 +34,6 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             averageDmg *= _gameStateService.GetCriticalStrikeMultiplier(gameState);
 
-            // Increases dmg by BaseValue of effect, currently 50% increase
-            var smiteRank2 = _gameStateService.GetSpellData(gameState, Spell.SmiteRank2);
-
-            averageDmg *= 1 + smiteRank2.GetEffect(624379).BaseValue / 100;
-
             return averageDmg * GetNumberOfDamageTargets(gameState, spellData);
         }
 

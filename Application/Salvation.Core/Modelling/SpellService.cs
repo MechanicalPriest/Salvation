@@ -46,7 +46,7 @@ namespace Salvation.Core.Modelling
         {
             spellData = ValidateSpellData(gameState, spellData);
 
-            AveragedSpellCastResult result = new AveragedSpellCastResult
+            AveragedSpellCastResult result = new()
             {
                 SpellName = spellData.Name,
                 SpellId = SpellId,
@@ -244,11 +244,10 @@ namespace Salvation.Core.Modelling
 
         internal virtual BaseSpellData ValidateSpellData(GameState gameState, BaseSpellData spellData)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, Spell);
+            spellData ??= _gameStateService.GetSpellData(gameState, Spell);
 
             if (spellData == null)
-                throw new ArgumentOutOfRangeException(nameof(SpellId),
+                throw new ArgumentOutOfRangeException(nameof(spellData),
                     $"Spelldata for SpellId ({SpellId}) not found: {Spell}");
 
             return spellData;
@@ -368,7 +367,7 @@ namespace Salvation.Core.Modelling
                 || _gameStateService.GetLeechMultiplier(gameState) == 1)
                 return null;
 
-            AveragedSpellCastResult result = new AveragedSpellCastResult();
+            AveragedSpellCastResult result = new();
 
             var averageLeechHeal = totalDamageHealing
                 * (_gameStateService.GetLeechMultiplier(gameState) - 1);
@@ -410,7 +409,7 @@ namespace Salvation.Core.Modelling
         {
             spellData = ValidateSpellData(gameState, spellData);
 
-            AveragedSpellCastResult result = new AveragedSpellCastResult();
+            AveragedSpellCastResult result = new();
 
             var averageMasteryHeal = GetAverageRawHealing(gameState, spellData)
                 * (_gameStateService.GetMasteryMultiplier(gameState) - 1);

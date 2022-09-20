@@ -40,7 +40,7 @@ namespace Salvation.CoreTests.State
         public double HWCDR_LotN_Values(Spell spell)
         {
             // Arrange
-            _gameStateService.SetActiveTalent(_state, Talent.LightOfTheNaaru);
+            _gameStateService.SetTalentRank(_state, Spell.LightOfTheNaaru, 1);
 
             // Act
 
@@ -53,7 +53,7 @@ namespace Salvation.CoreTests.State
         public double HWCDR_LotN_HO_Values(Spell spell)
         {
             // Arrange
-            _gameStateService.SetActiveTalent(_state, Talent.LightOfTheNaaru);
+            _gameStateService.SetTalentRank(_state, Spell.LightOfTheNaaru, 1);
             _profileService.AddActiveConduit(_state.Profile, Conduit.HolyOration, 0);
 
             // Act
@@ -80,7 +80,7 @@ namespace Salvation.CoreTests.State
         public double HWCDR_Apoth_Values(Spell spell)
         {
             // Arrange
-            _gameStateService.SetActiveTalent(_state, Talent.Apotheosis);
+            _gameStateService.SetTalentRank(_state, Spell.Apotheosis, 1);
 
             // Act
 
@@ -93,7 +93,7 @@ namespace Salvation.CoreTests.State
         public double HWCDR_Apoth_HO_Values(Spell spell)
         {
             // Arrange
-            _gameStateService.SetActiveTalent(_state, Talent.Apotheosis);
+            _gameStateService.SetTalentRank(_state, Spell.Apotheosis, 1);
             _profileService.AddActiveConduit(_state.Profile, Conduit.HolyOration, 0);
 
             // Act
@@ -125,7 +125,6 @@ namespace Salvation.CoreTests.State
                 yield return new TestCaseData(Spell.FlashHeal).Returns(6d);
                 yield return new TestCaseData(Spell.Heal).Returns(6d);
                 yield return new TestCaseData(Spell.PrayerOfHealing).Returns(6d);
-                yield return new TestCaseData(Spell.BindingHeal).Returns(3d);
                 yield return new TestCaseData(Spell.Renew).Returns(2d);
                 yield return new TestCaseData(Spell.CircleOfHealing).Returns(0);
                 yield return new TestCaseData(Spell.PrayerOfMending).Returns(0);
@@ -142,7 +141,6 @@ namespace Salvation.CoreTests.State
                 yield return new TestCaseData(Spell.FlashHeal).Returns(8d);
                 yield return new TestCaseData(Spell.Heal).Returns(8d);
                 yield return new TestCaseData(Spell.PrayerOfHealing).Returns(8d);
-                yield return new TestCaseData(Spell.BindingHeal).Returns(4d);
                 yield return new TestCaseData(Spell.Renew).Returns(2.6666666667d);
                 yield return new TestCaseData(Spell.CircleOfHealing).Returns(0);
                 yield return new TestCaseData(Spell.PrayerOfMending).Returns(0);
@@ -159,7 +157,6 @@ namespace Salvation.CoreTests.State
                 yield return new TestCaseData(Spell.FlashHeal).Returns(8.36d);
                 yield return new TestCaseData(Spell.Heal).Returns(8.36d);
                 yield return new TestCaseData(Spell.PrayerOfHealing).Returns(8.36d);
-                yield return new TestCaseData(Spell.BindingHeal).Returns(4.18d);
                 yield return new TestCaseData(Spell.Renew).Returns(2.7866666667d);
                 yield return new TestCaseData(Spell.CircleOfHealing).Returns(0);
                 yield return new TestCaseData(Spell.PrayerOfMending).Returns(0);
@@ -176,7 +173,6 @@ namespace Salvation.CoreTests.State
                 yield return new TestCaseData(Spell.FlashHeal).Returns(6.36d);
                 yield return new TestCaseData(Spell.Heal).Returns(6.36d);
                 yield return new TestCaseData(Spell.PrayerOfHealing).Returns(6.36d);
-                yield return new TestCaseData(Spell.BindingHeal).Returns(3.18d);
                 yield return new TestCaseData(Spell.Renew).Returns(2.12d);
                 yield return new TestCaseData(Spell.CircleOfHealing).Returns(0);
                 yield return new TestCaseData(Spell.PrayerOfMending).Returns(0);
@@ -193,7 +189,6 @@ namespace Salvation.CoreTests.State
                 yield return new TestCaseData(Spell.FlashHeal).Returns(24d);
                 yield return new TestCaseData(Spell.Heal).Returns(24d);
                 yield return new TestCaseData(Spell.PrayerOfHealing).Returns(24d);
-                yield return new TestCaseData(Spell.BindingHeal).Returns(12d);
                 yield return new TestCaseData(Spell.Renew).Returns(8d);
                 yield return new TestCaseData(Spell.CircleOfHealing).Returns(0);
                 yield return new TestCaseData(Spell.PrayerOfMending).Returns(0);
@@ -210,7 +205,6 @@ namespace Salvation.CoreTests.State
                 yield return new TestCaseData(Spell.FlashHeal).Returns(24.36d);
                 yield return new TestCaseData(Spell.Heal).Returns(24.36d);
                 yield return new TestCaseData(Spell.PrayerOfHealing).Returns(24.36d);
-                yield return new TestCaseData(Spell.BindingHeal).Returns(12.18d);
                 yield return new TestCaseData(Spell.Renew).Returns(8.12d);
                 yield return new TestCaseData(Spell.CircleOfHealing).Returns(0);
                 yield return new TestCaseData(Spell.PrayerOfMending).Returns(0);

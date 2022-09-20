@@ -75,10 +75,10 @@ namespace Salvation.Core.Modelling.Common.Items
             cpm += _divineHymnSpellService.GetActualCastsPerMinute(gameState, null);
             cpm += _circleOfHealingSpellService.GetActualCastsPerMinute(gameState, null);
 
-            if(_gameStateService.IsTalentActive(gameState, Talent.DivineStar))
+            if(_gameStateService.GetTalent(gameState, Spell.DivineStar).Rank > 0)
                 cpm += _divineStarSpellService.GetActualCastsPerMinute(gameState, null);
 
-            if (_gameStateService.IsTalentActive(gameState, Talent.Halo))
+            if (_gameStateService.GetTalent(gameState, Spell.Halo).Rank > 0)
                 cpm += _haloSpellService.GetActualCastsPerMinute(gameState, null);
 
             return cpm;

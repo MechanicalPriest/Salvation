@@ -105,7 +105,7 @@ namespace Salvation.Explorer.Modelling
             var profile = _profileService.GetDefaultProfile(Spec.HolyPriest);
 
             // Apply a simc profile to it
-            var profileData = File.ReadAllText(Path.Combine("Profile", "HolyPriest", "mythic_base.simc"));
+            var profileData = File.ReadAllText(Path.Combine("Profile", "HolyPriest", "dragonflight_fresh.simc"));
             profile = await _simcProfileService.ApplySimcProfileAsync(profileData, profile);
 
             // Create the gamestate

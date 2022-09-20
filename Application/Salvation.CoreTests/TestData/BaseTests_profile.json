@@ -1,9 +1,9 @@
 {
   "Spec": 257,
-  "Name": "Beitaky",
+  "Name": "DfBirthday",
   "Server": "torghast",
   "Region": "us",
-  "Level": 60,
+  "Level": 70,
   "Race": 0,
   "Class": 5,
   "Intellect": 0,
@@ -3820,7 +3820,11 @@
     }
   ],
   "Talents": [
-    193155
+    {
+      "Spell": 193155,
+      "SpellId": 193155,
+      "Rank":  1
+    }
   ],
   "Covenant": {
     "Covenant": 1,

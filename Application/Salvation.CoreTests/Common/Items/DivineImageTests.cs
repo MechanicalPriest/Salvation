@@ -24,9 +24,9 @@ namespace Salvation.CoreTests.Common.Items
                 new FlashHeal(_gameStateService),
                 new Heal(_gameStateService),
                 new HolyWordSerenity(_gameStateService,
-                    new FlashHeal(_gameStateService), new Heal(_gameStateService),
-                    new BindingHeal(_gameStateService), new PrayerOfMending(_gameStateService)),
-                new BindingHeal(_gameStateService));
+                    new FlashHeal(_gameStateService), 
+                    new Heal(_gameStateService),
+                    new PrayerOfMending(_gameStateService)));
 
             var diTranquilLight = new DivineImageTranquilLight(_gameStateService,
                 new Renew(_gameStateService));
@@ -36,7 +36,6 @@ namespace Salvation.CoreTests.Common.Items
                 new HolyWordSanctify(_gameStateService,
                     new PrayerOfHealing(_gameStateService),
                     new Renew(_gameStateService),
-                    new BindingHeal(_gameStateService),
                     new CircleOfHealing(_gameStateService)),
                 new DivineStar(_gameStateService),
                 new Halo(_gameStateService),
@@ -50,12 +49,10 @@ namespace Salvation.CoreTests.Common.Items
                 new HolyWordSerenity(_gameStateService,
                     new FlashHeal(_gameStateService),
                     new Heal(_gameStateService),
-                    new BindingHeal(_gameStateService),
                     new PrayerOfMending(_gameStateService)),
                 new HolyWordSanctify(_gameStateService,
                     new PrayerOfHealing(_gameStateService),
                     new Renew(_gameStateService),
-                    new BindingHeal(_gameStateService),
                     new CircleOfHealing(_gameStateService)),
                 new HolyWordChastise(_gameStateService, 
                     new Smite(_gameStateService), 

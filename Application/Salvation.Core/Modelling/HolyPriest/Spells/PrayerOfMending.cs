@@ -79,20 +79,6 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             return 1;
         }
 
-        public override double GetHastedCastTime(GameState gameState, BaseSpellData spellData = null)
-        {
-            spellData = ValidateSpellData(gameState, spellData);
-
-            // Apply PoM rank 2 to reduce the cast time by 100%.
-            var pomRank2 = _gameStateService.GetSpellData(gameState, Spell.PrayerOfMendingRank2);
-
-            var castTimeMulti = pomRank2.GetEffect(806684).BaseValue;
-
-            spellData.BaseCastTime *= (1d + castTimeMulti / 100d);
-
-            return base.GetHastedCastTime(gameState, spellData);
-        }
-
         public override bool TriggersMastery(GameState gameState, BaseSpellData spellData)
         {
             // Prayer Of Healing Spellid doesnt have the "right" type, heal component does

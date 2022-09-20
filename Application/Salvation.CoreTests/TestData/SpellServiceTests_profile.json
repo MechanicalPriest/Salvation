@@ -738,7 +738,11 @@
     }
   ],
   "Talents": [
-    193155
+    {
+      "Spell": 193155,
+      "SpellId": 193155,
+      "Rank": 1
+    }
   ],
   "Conduits": {},
   "Soulbinds": [],

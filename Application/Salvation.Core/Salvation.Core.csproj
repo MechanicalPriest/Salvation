@@ -6,11 +6,15 @@
 
   <ItemGroup>
     <None Remove="constants.json" />
+    <None Remove="Profile\HolyPriest\dragonflight_fresh.simc" />
     <None Remove="Profile\HolyPriest\mythic_base.simc" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="constants.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Profile\HolyPriest\dragonflight_fresh.simc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Profile\HolyPriest\mythic_base.simc">
@@ -20,7 +24,7 @@
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.2-beta2" />
-    <PackageReference Include="SimcProfileParser" Version="0.5.3.1" />
+    <PackageReference Include="SimcProfileParser" Version="1.2.0" />
   </ItemGroup>
 
 </Project>

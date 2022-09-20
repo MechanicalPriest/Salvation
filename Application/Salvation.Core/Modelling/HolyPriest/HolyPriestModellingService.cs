@@ -1,4 +1,5 @@
-﻿using Salvation.Core.Constants.Data;
+﻿using Microsoft.Extensions.Logging;
+using Salvation.Core.Constants.Data;
 using Salvation.Core.Interfaces.Modelling;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
@@ -8,16 +9,20 @@ using Salvation.Core.State;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 
 namespace Salvation.Core.Modelling.HolyPriest
 {
     public class HolyPriestModellingService : IModellingService
     {
         private readonly IGameStateService _gameStateService;
+        private readonly ILogger<HolyPriestModellingService> _logger;
 
-        public HolyPriestModellingService(IGameStateService gameStateService)
+        public HolyPriestModellingService(IGameStateService gameStateService,
+            ILogger<HolyPriestModellingService> logger)
         {
             _gameStateService = gameStateService;
+            _logger = logger;
         }
 
         public BaseModelResults GetResults(GameState state)
@@ -31,7 +36,12 @@ namespace Salvation.Core.Modelling.HolyPriest
             var sw = new Stopwatch();
             sw.Start();
 
+            // Display some basic information.
+            DisplayState(state);
+            
+            _logger?.LogTrace("Registering base spells...");
             _gameStateService.RegisterSpells(state, GetBaseSpells());
+            _logger?.LogTrace("Done registering base spells.");
 
             foreach (var spell in _gameStateService.GetRegisteredSpells(state))
             {
@@ -75,32 +85,54 @@ namespace Salvation.Core.Modelling.HolyPriest
             return results;
         }
 
+        private void DisplayState(GameState state)
+        {
+            // Show some basic info.
+            // Stats
+            _gameStateService.JournalEntry(state, $"Intellect: {_gameStateService.GetIntellect(state)}");
+            _gameStateService.JournalEntry(state, $"Crit: {_gameStateService.GetCriticalStrikeRating(state)} ({_gameStateService.GetCriticalStrikeMultiplier(state)}%)");
+            _gameStateService.JournalEntry(state, $"Haste: {_gameStateService.GetHasteRating(state)} ({_gameStateService.GetHasteMultiplier(state)}%)");
+            _gameStateService.JournalEntry(state, $"Mastery: {_gameStateService.GetMasteryRating(state)} ({_gameStateService.GetMasteryMultiplier(state)}%)");
+            _gameStateService.JournalEntry(state, $"Versatility: {_gameStateService.GetVersatilityRating(state)} ({_gameStateService.GetVersatilityMultiplier(state)}%)");
+
+            // Gear
+            foreach(var item in state.Profile.Items)
+            {
+                var statsMessage = "";
+                foreach(var stat in item.Mods.Select(m => m.Type).Distinct())
+                {
+                    var rating = item.Mods.Where(m => m.Type == stat).Select(s => s.StatRating).Sum();
+                    if(rating > 0)
+                        statsMessage += String.Format("{0}: {1} ", 
+                            stat.ToString().Replace("ITEM_MOD_", "").Replace("_RATING", "").Replace("STRENGTH_AGILITY_", "").ToLower(),
+                            rating);
+                }
+
+                var message = String.Format("{2}: {0} ({1}) - {3}",
+                    item.Name,
+                    item.ItemLevel,
+                    item.Slot,
+                    statsMessage);
+
+                _gameStateService.JournalEntry(state, message);
+            }
+        }
+
         internal List<RegisteredSpell> GetBaseSpells()
         {
             var result = new List<RegisteredSpell>()
             {
                 // Healing Spells
-                new RegisteredSpell(Spell.CircleOfHealing),
-                new RegisteredSpell(Spell.DivineHymn),
                 new RegisteredSpell(Spell.FlashHeal),
                 new RegisteredSpell(Spell.Heal),
-                new RegisteredSpell(Spell.HolyNova),
-                new RegisteredSpell(Spell.HolyWordSanctify),
-                new RegisteredSpell(Spell.HolyWordSerenity),
                 new RegisteredSpell(Spell.PowerWordShield),
-                new RegisteredSpell(Spell.PrayerOfHealing),
                 new RegisteredSpell(Spell.PrayerOfMending),
                 new RegisteredSpell(Spell.Renew),
 
                 // DPS Spells
                 new RegisteredSpell(Spell.HolyFire),
-                new RegisteredSpell(Spell.HolyWordChastise),
-                new RegisteredSpell(Spell.ShadowWordDeath),
                 new RegisteredSpell(Spell.ShadowWordPain),
                 new RegisteredSpell(Spell.Smite),
-
-                // Utility Spells
-                new RegisteredSpell(Spell.GuardianSpirit),
             };
 
             return result;

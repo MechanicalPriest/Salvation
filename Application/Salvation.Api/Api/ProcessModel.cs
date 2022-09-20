@@ -3,15 +3,16 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
 using Salvation.Core.Interfaces.Constants;
 using Salvation.Core.Interfaces.Modelling;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.Modelling;
 using Salvation.Core.Profile.Model;
 using Salvation.Core.State;
+using Salvation.Core.ViewModel;
 using System;
 using System.IO;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Salvation.Api.Api
@@ -40,11 +41,14 @@ namespace Salvation.Api.Api
             ILogger log, ExecutionContext context)
         {
             // Parse the incoming profile
-            PlayerProfile profile;
+            PlayerProfileViewModel profileVM;
             try
             {
-                string requestBody = await new StreamReader(request.Body).ReadToEndAsync();
-                profile = JsonConvert.DeserializeObject<PlayerProfile>(requestBody);
+                var jsonOptions = new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true,
+                };
+                profileVM = await JsonSerializer.DeserializeAsync<PlayerProfileViewModel>(request.Body, jsonOptions);
             }
             catch (Exception ex)
             {
@@ -52,13 +56,13 @@ namespace Salvation.Api.Api
                 return new BadRequestResult();
             }
 
-            if (profile == null)
+            if (profileVM == null)
             {
                 log.LogError("Profile needs to be provided");
                 return new BadRequestResult();
             }
 
-            log.LogInformation("Processing a new profile: {0}", JsonConvert.SerializeObject(profile));
+            log.LogInformation("Processing a new profile: {0}", JsonSerializer.Serialize(profileVM));
 
             // Load the profile into the model and return the results
             try
@@ -66,29 +70,35 @@ namespace Salvation.Api.Api
                 _constantsService.SetDefaultDirectory(context.FunctionAppDirectory);
 
                 //------------------------------
+                var profile = profileVM.ToModel();
                 GameState state = _gameStateService.CreateValidatedGameState(profile);
 
                 var results = _modellingService.GetResults(state);
 
-                var effectiveHealingStatWeights = _statWeightGenerationService.Generate(state, 100,
+                var ehSWState = _gameStateService.CloneGameState(state);
+
+                var effectiveHealingStatWeights = _statWeightGenerationService.Generate(ehSWState, 100,
                     StatWeightGenerator.StatWeightType.EffectiveHealing);
 
-                var rawHealingStatWeights = _statWeightGenerationService.Generate(state, 100,
+                var rhSWState = _gameStateService.CloneGameState(state);
+
+                var rawHealingStatWeights = _statWeightGenerationService.Generate(rhSWState, 100,
                     StatWeightGenerator.StatWeightType.RawHealing);
 
                 //------------------------------
 
-                return new JsonResult(new
+                var finalResults = new ModellingResultsViewModel()
                 {
-                    Data = new
-                    {
-                        ModelResults = results,
-                        StatWeightsEffective = effectiveHealingStatWeights,
-                        StatWeightsRaw = rawHealingStatWeights,
-                        State = state,
-                        Journal = _gameStateService.GetJournal(state)
-                    }
-                });
+
+                    ModelResults = results,
+                    EffectiveStatWeightResult = effectiveHealingStatWeights,
+                    RawStatWeightResult = rawHealingStatWeights,
+                    //GameState = state,
+                    JournalEntries = _gameStateService.GetJournal(state)
+
+                };
+
+                return new JsonResult(finalResults);
             }
             catch (Exception ex)
             {

@@ -266,3 +266,4 @@ __pycache__/
 # Ignore the localsettings.json file as it's primarily used to launch 
 # explorer with different params for testing/generation
 Application/Salvation.Explorer/Properties/launchSettings.json
+appsettings.Development.json

@@ -18,14 +18,27 @@ namespace Salvation.Utility.SpellDataUpdate
             _simcGenerationService = simcGenerationService;
             _spells = new List<uint>()
             {
+                // Baseline Spells
                 (uint)Spell.HolyPriest,
                 (uint)Spell.Priest,
                 (uint)Spell.LeechHeal,
+                (uint)Spell.EchoOfLight,
+
+                (uint)Spell.Heal,
+                (uint)Spell.FlashHeal,
+                (uint)Spell.PowerWordShield,
+                (uint)Spell.PrayerOfMending,
+                (uint)Spell.PrayerOfMendingBuff,
+                (uint)Spell.PrayerOfMendingHeal,
+                (uint)Spell.Renew,
+
+                (uint)Spell.HolyFire,
+                (uint)Spell.Smite,
+                (uint)Spell.ShadowWordPain,
 
                 // Talents
                 (uint)Spell.Enlightenment,
                 (uint)Spell.CosmicRipple,
-                (uint)Spell.BindingHeal,
                 (uint)Spell.Halo,
                 (uint)Spell.HaloHeal,
                 (uint)Spell.HaloDamage,
@@ -36,24 +49,21 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.HolyWordSalvation,
 
                 // Spells
-                (uint)Spell.Heal,
-                (uint)Spell.FlashHeal,
                 (uint)Spell.PrayerOfHealing,
                 (uint)Spell.HolyNova,
                 (uint)Spell.HolyNovaRank2,
                 (uint)Spell.CircleOfHealing,
-                (uint)Spell.Renew,
-                (uint)Spell.PowerWordShield,
                 (uint)Spell.DivineHymn,
                 (uint)Spell.HolyWordSanctify,
                 (uint)Spell.HolyWordSerenity,
-                (uint)Spell.PrayerOfMending,
-                (uint)Spell.PrayerOfMendingRank2,
-                (uint)Spell.PrayerOfMendingBuff,
-                (uint)Spell.PrayerOfMendingHeal,
-                (uint)Spell.EchoOfLight,
                 (uint)Spell.GuardianSpirit,
+                
+                // DPS
+                (uint)Spell.HolyWordChastise,
+                (uint)Spell.ShadowWordDeath,
 
+                #region Shadowlands spells
+                
                 // Covenant
                 (uint)Spell.Mindgames,
                 (uint)Spell.MindgamesHeal,
@@ -95,20 +105,11 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.FocusedMending,
                 (uint)Spell.ResonantWords,
                 (uint)Spell.LastingSpirit,
-                
-                // DPS
-                (uint)Spell.Smite,
-                (uint)Spell.SmiteRank2,
-                (uint)Spell.HolyWordChastise,
-                (uint)Spell.ShadowWordPain,
-                (uint)Spell.ShadowWordPainRank2,
-                (uint)Spell.ShadowWordDeath,
-                (uint)Spell.ShadowWordDeathRank2,
-                (uint)Spell.HolyFire,
 
                 // Consumable
                 (uint)Spell.SpectralFlaskOfPower,
                 (uint)Spell.SpiritualManaPotion,
+
 
                 // Trinket
                 (uint)Spell.UnboundChangeling,
@@ -185,6 +186,8 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.SoothingShade,
                 (uint)Spell.SoothingShadeBuff,
                 (uint)Spell.SoothingShadeEffect,
+
+                #endregion
             };
         }
 
@@ -202,18 +205,20 @@ namespace Salvation.Utility.SpellDataUpdate
                 HasteBase = 0.0,
                 VersBase = 0.0,
                 MasteryBase = 0.1,
-                IntBase = 450,
-                StamBase = 416,
-                ManaBase = 50000, // __base_mp in sc_scale_data.inc
+                IntBase = 2501,
+                StamBase = 1910,
+                ManaBase = 250000, // __base_mp in sc_scale_data.inc
+                // This is set to 1.0 as part of #159
+                ArmorSkillsMultiplier = 1.00, // 5% extra main stat from Armor Skills
 
                 // These come from __combat_ratings in sc_scale_data.inc
-                CritCost = 35,
-                HasteCost = 33,
-                VersCost = 40, // Ver damage taken cost is 80
-                MasteryCost = 28, // This is the 35 base cost * 0.80 holy priest modifier
-                LeechCost = 21,
-                SpeedCost = 10,
-                AvoidanceCost = 14,
+                CritCost = 220,
+                HasteCost = 210,
+                VersCost = 250, // Ver damage taken cost is 80
+                MasteryCost = 176, // This is the 35 base cost * 0.80 holy priest modifier
+                LeechCost = 132,
+                SpeedCost = 62, 
+                AvoidanceCost = 88,
                 StamCost = 20
             };
 

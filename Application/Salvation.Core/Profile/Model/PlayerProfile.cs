@@ -40,7 +40,7 @@ namespace Salvation.Core.Profile.Model
             PlaystyleEntries = new List<PlaystyleEntry>();
             Items = new List<Item>();
             Covenant = new CovenantProfile();
-            Level = 60;
+            Level = 70;
         }
     }
 }

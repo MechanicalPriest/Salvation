@@ -27,6 +27,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             var healingSp = spellData.GetEffect(95).SpCoefficient;
 
+            // This is broken up a bit for the sake of logging.
             // Renews's average heal is initial + HoT portion:
             double averageHealFirstTick = healingSp
                 * _gameStateService.GetIntellect(gameState)
@@ -36,8 +37,8 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             var journalAverageHealFirstTick = averageHealFirstTick;
             _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Actual: {averageHealFirstTick:0.##} (first)");
 
+            // Add the rest of the multipliers
             averageHealFirstTick *= _gameStateService.GetCriticalStrikeMultiplier(gameState)
-                //* _gameStateService.GetHasteMultiplier(gameState)
                 * _gameStateService.GetGlobalHealingMultiplier(gameState);
 
             double duration = spellData.Duration / 1000;
@@ -50,13 +51,15 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
                 * duration / tickrate;
 
             _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Actual: {averageHealTicks:0.##} (ticks total)");
-
-            averageHealTicks *= _gameStateService.GetHasteMultiplier(gameState); // This just adds extra partial ticks.
+            
+            // This just adds extra partial ticks.
+            averageHealTicks *= _gameStateService.GetHasteMultiplier(gameState);
 
             _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Actual: {averageHealTicks / journalAverageHealFirstTick:0.##} (num ticks)");
             _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Actual: {averageHealTicks % journalAverageHealFirstTick:0.##} (partial tick)");
             _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {journalAverageHealFirstTick + averageHealTicks:0.##} (total)");
 
+            // Add the rest of the multipliers
             averageHealTicks *= _gameStateService.GetCriticalStrikeMultiplier(gameState)
                 * _gameStateService.GetGlobalHealingMultiplier(gameState);
 

@@ -244,6 +244,7 @@ namespace Salvation.Utility.SpellDataUpdate
                 case (uint)Spell.CircleOfHealing:
                 case (uint)Spell.PrayerOfMending:
                 case (uint)Spell.ShadowWordDeath:
+                case (uint)Spell.PowerWordShield:
                     // This comes from the Priest aura 137030 effect #1 179714
                     baseSpellData.IsCooldownHasted = true;
                     break;

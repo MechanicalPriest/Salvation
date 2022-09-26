@@ -52,7 +52,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             return totalHealingDone;
         }
 
-        // TODO: This needs testing/validation. Using the healing scaling for now.
+        // TODO: Validate the damage doesn't scale
         public override double GetAverageDamage(GameState gameState, BaseSpellData spellData = null)
         {
             spellData = ValidateSpellData(gameState, spellData);
@@ -70,22 +70,10 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip (Damage): {averageDamage:0.##}");
 
-            // Divine Star healing goes down after 6 targets
-            var targetReductionNum = 6;
-            var totalDamageDone = 0d;
-            var numDamageTargets = GetNumberOfDamageTargets(gameState, spellData);
-
-            for (var i = 1; i <= numDamageTargets; i++)
-            {
-                var damageAmount = averageDamage * (1 / Math.Sqrt(Math.Max(0, i - targetReductionNum) + 1));
-                totalDamageDone += damageAmount;
-                _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Targets: {i:##} Damage Total: {totalDamageDone:0.##} ({damageAmount:0.##})");
-            }
-
-            totalDamageDone *= 2 // Add the second pass-back through each target
+            averageDamage *= 2 // Add the second pass-back through each target
                 * _gameStateService.GetCriticalStrikeMultiplier(gameState);
 
-            return totalDamageDone;
+            return averageDamage * GetNumberOfDamageTargets(gameState, spellData);
         }
 
         public override double GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)

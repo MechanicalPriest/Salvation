@@ -325,7 +325,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(HolyWordChastise)).Returns(1000.0d);
                 yield return new TestCaseData(typeof(ShadowWordPain)).Returns(150.0d);
                 yield return new TestCaseData(typeof(ShadowWordDeath)).Returns(250.0d);
-                yield return new TestCaseData(typeof(HolyFire)).Returns(500.0d);
+                yield return new TestCaseData(typeof(HolyFire)).Returns(2500.0d);
             }
         }
 
@@ -353,7 +353,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(HolyWordChastise)).Returns(2249.9777353536001d);
                 yield return new TestCaseData(typeof(ShadowWordPain)).Returns(2281.6007715188721d);
                 yield return new TestCaseData(typeof(ShadowWordDeath)).Returns(1215.6549347767811d);
-                yield return new TestCaseData(typeof(HolyFire)).Returns(3597.8166705456506d);
+                yield return new TestCaseData(typeof(HolyFire)).Returns(9614.2118628573062d);
             }
         }
 
@@ -490,7 +490,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(HolyWordChastise)).Returns(0);
                 yield return new TestCaseData(typeof(ShadowWordPain)).Returns(0);
                 yield return new TestCaseData(typeof(ShadowWordDeath)).Returns(0);
-                yield return new TestCaseData(typeof(HolyFire)).Returns(1.3920134983000001d);
+                yield return new TestCaseData(typeof(HolyFire)).Returns(1.4819345126000001d);
             }
         }
 
@@ -544,7 +544,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(HolyWordChastise)).Returns(4.0246688547999998d);
                 yield return new TestCaseData(typeof(ShadowWordPain)).Returns(43.103030302999997d);
                 yield return new TestCaseData(typeof(ShadowWordDeath)).Returns(3.2327272727d);
-                yield return new TestCaseData(typeof(HolyFire)).Returns(5.2668476918999998d);
+                yield return new TestCaseData(typeof(HolyFire)).Returns(5.2256002622000004d);
             }
         }
 

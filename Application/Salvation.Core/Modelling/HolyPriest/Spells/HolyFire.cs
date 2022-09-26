@@ -29,14 +29,15 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             var damageSpPeriodic = spellData.GetEffect(6991).SpCoefficient;
 
             // Holy Fire's average dmg is initial + DoT portion:
-            double averageDamageFirstTick = damageSpInstant
+            double averageDamageInitialHit = damageSpInstant
                 * _gameStateService.GetIntellect(gameState)
                 * _gameStateService.GetVersatilityMultiplier(gameState)
                 * holyPriestAuraDamagesBonus;
 
-            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {averageDamageFirstTick:0.##} (first)");
+            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {averageDamageInitialHit:0.##} (initial hit)");
 
-            averageDamageFirstTick *= _gameStateService.GetCriticalStrikeMultiplier(gameState) * _gameStateService.GetHasteMultiplier(gameState);
+            averageDamageInitialHit *= _gameStateService.GetCriticalStrikeMultiplier(gameState) 
+                * _gameStateService.GetHasteMultiplier(gameState);
 
             double tickrate = spellData.GetEffect(6991).Amplitude / 1000;
 
@@ -44,15 +45,21 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             double averageDmgTicks = damageSpPeriodic
                 * _gameStateService.GetIntellect(gameState)
                 * _gameStateService.GetVersatilityMultiplier(gameState)
-                * _gameStateService.GetHasteMultiplier(gameState)
-                * holyPriestAuraDamagePeriodicBonus
-                * GetDuration(gameState, spellData) / tickrate;
+                * holyPriestAuraDamagePeriodicBonus;
 
-            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {averageDmgTicks:0.##} (ticks)");
+            var journalAverageDmgTick = averageDmgTicks;
+            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Actual: {averageDmgTicks:0.##} (per tick)");
+
+            averageDmgTicks *= GetDuration(gameState, spellData) / tickrate
+                * _gameStateService.GetHasteMultiplier(gameState);
+
+            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Actual: {averageDmgTicks / journalAverageDmgTick:0.##} (num ticks)");
+            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Actual: {averageDmgTicks % journalAverageDmgTick:0.##} (partial tick)");
+            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {averageDmgTicks:0.##} (total DoT)");
 
             averageDmgTicks *= _gameStateService.GetCriticalStrikeMultiplier(gameState);
 
-            return (averageDamageFirstTick + averageDmgTicks) * GetNumberOfDamageTargets(gameState, spellData);
+            return (averageDamageInitialHit + averageDmgTicks) * GetNumberOfDamageTargets(gameState, spellData);
         }
 
         public override double GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)

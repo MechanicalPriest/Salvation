@@ -126,8 +126,8 @@ namespace Salvation.Core.Modelling.HolyPriest
                 new RegisteredSpell(Spell.FlashHeal),
                 new RegisteredSpell(Spell.Heal),
                 new RegisteredSpell(Spell.PowerWordShield),
-                new RegisteredSpell(Spell.PrayerOfMending),
-                new RegisteredSpell(Spell.Renew),
+                new RegisteredSpell(Spell.PrayerOfMending), // Default talent, but can be taken with no talents chosen still
+                new RegisteredSpell(Spell.Renew), // Default talent, but can be taken with no talents chosen still
 
                 // DPS Spells
                 new RegisteredSpell(Spell.HolyFire),

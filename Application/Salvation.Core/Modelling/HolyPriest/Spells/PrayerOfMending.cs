@@ -31,7 +31,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
                 * _gameStateService.GetVersatilityMultiplier(gameState)
                 * holyPriestAuraHealingBonus;
 
-            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {averageHeal:0.##}");
+            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {averageHeal:0.##} (per stack)");
 
             // Number of initial PoM stacks
             var numPoMStacks = spellData.GetEffect(22870).BaseValue;
@@ -40,10 +40,15 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             if (spellData.Overrides.ContainsKey(Override.ResultMultiplier))
                 numPoMStacks = spellData.Overrides[Override.ResultMultiplier];
 
+            var pomFirstTargetHeal = averageHeal * GetFocusedMendingMultiplier(gameState, spellData);
+            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {pomFirstTargetHeal:0.##} (first heal)");
+
+            // Apply modifiers
             averageHeal *= _gameStateService.GetCriticalStrikeMultiplier(gameState)
                 * _gameStateService.GetGlobalHealingMultiplier(gameState);
 
-            var pomFirstTargetHeal = averageHeal * GetFocusedMendingMultiplier(gameState, spellData);
+            pomFirstTargetHeal *= _gameStateService.GetCriticalStrikeMultiplier(gameState)
+                * _gameStateService.GetGlobalHealingMultiplier(gameState);
 
             // Apply healing to each PoM stack
             averageHeal = (averageHeal * (numPoMStacks - 1)) + pomFirstTargetHeal; 

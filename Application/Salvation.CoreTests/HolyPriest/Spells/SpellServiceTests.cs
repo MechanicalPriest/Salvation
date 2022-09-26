@@ -399,7 +399,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(Mindgames)).Returns(9032.8628250000002d);
                 yield return new TestCaseData(typeof(PowerWordShield)).Returns(8890.0857153512716d);
                 yield return new TestCaseData(typeof(PrayerOfHealing)).Returns(5664.0064518450017d);
-                yield return new TestCaseData(typeof(PrayerOfMending)).Returns(3948.6216407147995d);
+                yield return new TestCaseData(typeof(PrayerOfMending)).Returns(11233.258307468857d);
                 yield return new TestCaseData(typeof(Renew)).Returns(7143.2649111613355d);
                 yield return new TestCaseData(typeof(Smite)).Returns(0);
                 yield return new TestCaseData(typeof(HolyWordChastise)).Returns(0);
@@ -425,7 +425,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(Mindgames)).Returns(8942.5341967500008d);
                 yield return new TestCaseData(typeof(PowerWordShield)).Returns(5511.8531435177883d);
                 yield return new TestCaseData(typeof(PrayerOfHealing)).Returns(4126.2287001690829d);
-                yield return new TestCaseData(typeof(PrayerOfMending)).Returns(3862.1468267831451d);
+                yield return new TestCaseData(typeof(PrayerOfMending)).Returns(10987.24995053529d);
                 yield return new TestCaseData(typeof(Renew)).Returns(4540.9735040252608d);
                 yield return new TestCaseData(typeof(Smite)).Returns(0);
                 yield return new TestCaseData(typeof(HolyWordChastise)).Returns(0);
@@ -507,7 +507,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(Mindgames)).Returns(1000d);
                 yield return new TestCaseData(typeof(PowerWordShield)).Returns(7750.0d);
                 yield return new TestCaseData(typeof(PrayerOfHealing)).Returns(2000d);
-                yield return new TestCaseData(typeof(PrayerOfMending)).Returns(1000d);
+                yield return new TestCaseData(typeof(PrayerOfMending)).Returns(5000.0d);
                 yield return new TestCaseData(typeof(Renew)).Returns(4500.0d);
                 yield return new TestCaseData(typeof(Smite)).Returns(100.0d);
                 yield return new TestCaseData(typeof(HolyWordChastise)).Returns(1000.0d);
@@ -559,7 +559,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(Mindgames)).Returns(45.0d);
                 yield return new TestCaseData(typeof(PowerWordShield)).Returns(7.5d);
                 yield return new TestCaseData(typeof(PrayerOfHealing)).Returns(0.0d);
-                yield return new TestCaseData(typeof(PrayerOfMending)).Returns(11.136107986500001d);
+                yield return new TestCaseData(typeof(PrayerOfMending)).Returns(11.855476100900001d);
                 yield return new TestCaseData(typeof(Renew)).Returns(0);
                 yield return new TestCaseData(typeof(Smite)).Returns(0.0d);
                 yield return new TestCaseData(typeof(HolyWordChastise)).Returns(60.0d);
@@ -585,7 +585,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(Mindgames)).Returns(1.4844668346d);
                 yield return new TestCaseData(typeof(PowerWordShield)).Returns(8.2486573108000005d);
                 yield return new TestCaseData(typeof(PrayerOfHealing)).Returns(32.327272727299999d);
-                yield return new TestCaseData(typeof(PrayerOfMending)).Returns(5.3878787879000001d);
+                yield return new TestCaseData(typeof(PrayerOfMending)).Returns(5.0609523809999999d);
                 yield return new TestCaseData(typeof(Renew)).Returns(43.103030302999997d);
                 yield return new TestCaseData(typeof(Smite)).Returns(43.103030302999997d);
                 yield return new TestCaseData(typeof(HolyWordChastise)).Returns(4.0246688547999998d);
@@ -691,7 +691,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(Mindgames)).Returns(90.328628249999994d);
                 yield return new TestCaseData(typeof(PowerWordShield)).Returns(3378.2325718335001d);
                 yield return new TestCaseData(typeof(PrayerOfHealing)).Returns(1537.7777516758999d);
-                yield return new TestCaseData(typeof(PrayerOfMending)).Returns(86.474813931699998d);
+                yield return new TestCaseData(typeof(PrayerOfMending)).Returns(246.0083569336d);
                 yield return new TestCaseData(typeof(Renew)).Returns(2602.2914071361001d);
                 yield return new TestCaseData(typeof(Smite)).Returns(0);
                 yield return new TestCaseData(typeof(HolyWordChastise)).Returns(0);

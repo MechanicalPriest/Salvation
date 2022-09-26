@@ -693,11 +693,22 @@ namespace Salvation.Core.State
         {
             var registeredSpells = new List<RegisteredSpell>(additionalSpells);
 
-            // TALENTS: Add the profiles talents
-            foreach(var talent in state.Profile.Talents)
+            JournalEntry(state, $"Registering baseline spells...");
+            foreach (var spell in registeredSpells)
             {
-                registeredSpells.Add(new RegisteredSpell((Spell)talent.SpellId));
+                JournalEntry(state, $"Registered {spell.Spell}.");
             }
+            JournalEntry(state, $"Registering baseline spells... Done!");
+
+            // TALENTS: Add the profiles talents
+            JournalEntry(state, $"Registering talent spells...");
+            foreach (var talent in state.Profile.Talents)
+            {
+
+                registeredSpells.Add(new RegisteredSpell((Spell)talent.SpellId));
+                JournalEntry(state, $"Registered {registeredSpells.LastOrDefault()?.Spell}.");
+            }
+            JournalEntry(state, $"Registering talent spells... Done!");
 
             // TODO: Consumables
 

@@ -883,10 +883,10 @@ namespace Salvation.Core.State
             state.Profile.PlaystyleEntries.Add(newPlaystyle);
         }
 
-        public void JournalEntry(GameState state, string message)
+        public void JournalEntry(GameState state, string message, int historyToCheck = 5)
         {
             if (state.JournalEntries.Count == 0 ||
-                !state.JournalEntries.Skip(Math.Max(0, state.JournalEntries.Count() - 5)).Where(j => j == message).Any())
+                !state.JournalEntries.Skip(Math.Max(0, state.JournalEntries.Count() - historyToCheck)).Where(j => j == message).Any())
             {
 #if DEBUG
 

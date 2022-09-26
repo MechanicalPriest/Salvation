@@ -43,11 +43,13 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             {
                 var healAmount = averageHeal * (1 / Math.Sqrt(Math.Max(0, i - targetReductionNum) + 1));
                 totalHealingDone += healAmount;
-                _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Targets: {i:##} Healing Total: {totalHealingDone:0.##} ({healAmount:0.##})");
+                _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Targets: {i:##} Healing Total: {totalHealingDone:0.##} ({healAmount:0.##})", 25);
             }
 
             totalHealingDone *= _gameStateService.GetCriticalStrikeMultiplier(gameState)
                 * _gameStateService.GetGlobalHealingMultiplier(gameState);
+
+            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Targets: {numHealingTargets:##} Healing Total: {totalHealingDone:0.##} (overall)");
 
             return totalHealingDone;
         }

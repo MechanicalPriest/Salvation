@@ -33,14 +33,26 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {averageHeal:0.##} (per pass)");
 
-            averageHeal *= 2 // Add the second pass-back through each target
+            // Divine Star healing goes down after 6 targets
+            var targetReductionNum = 6;
+            var totalHealingDone = 0d;
+            var numHealingTargets = GetNumberOfHealingTargets(gameState, spellData);
+
+            for (var i = 1; i <= numHealingTargets; i++)
+            {
+                var healAmount = averageHeal * (1 / Math.Sqrt(Math.Max(0, i - targetReductionNum) + 1));
+                totalHealingDone += healAmount;
+                _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Targets: {i:##} Healing Total: {totalHealingDone:0.##} ({healAmount:0.##})");
+            }
+
+            totalHealingDone *= 2 // Add the second pass-back through each target
                 * _gameStateService.GetCriticalStrikeMultiplier(gameState)
                 * _gameStateService.GetGlobalHealingMultiplier(gameState);
 
-            // Divine Star caps at roughly 6 targets worth of healing
-            return averageHeal * Math.Min(6, GetNumberOfHealingTargets(gameState, spellData));
+            return totalHealingDone;
         }
 
+        // TODO: This needs testing/validation. Using the healing scaling for now.
         public override double GetAverageDamage(GameState gameState, BaseSpellData spellData = null)
         {
             spellData = ValidateSpellData(gameState, spellData);
@@ -58,9 +70,22 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip (Damage): {averageDamage:0.##}");
 
-            averageDamage *= _gameStateService.GetCriticalStrikeMultiplier(gameState);
+            // Divine Star healing goes down after 6 targets
+            var targetReductionNum = 6;
+            var totalDamageDone = 0d;
+            var numDamageTargets = GetNumberOfDamageTargets(gameState, spellData);
 
-            return averageDamage * Math.Min(20, GetNumberOfDamageTargets(gameState, spellData));
+            for (var i = 1; i <= numDamageTargets; i++)
+            {
+                var damageAmount = averageDamage * (1 / Math.Sqrt(Math.Max(0, i - targetReductionNum) + 1));
+                totalDamageDone += damageAmount;
+                _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Targets: {i:##} Damage Total: {totalDamageDone:0.##} ({damageAmount:0.##})");
+            }
+
+            totalDamageDone *= 2 // Add the second pass-back through each target
+                * _gameStateService.GetCriticalStrikeMultiplier(gameState);
+
+            return totalDamageDone;
         }
 
         public override double GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)

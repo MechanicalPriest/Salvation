@@ -306,7 +306,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
         {
             get
             {
-                yield return new TestCaseData(typeof(CircleOfHealing)).Returns(1650d);
+                yield return new TestCaseData(typeof(CircleOfHealing)).Returns(8250.0d);
                 yield return new TestCaseData(typeof(DivineHymn)).Returns(2200d);
                 yield return new TestCaseData(typeof(DivineStar)).Returns(1000d);
                 yield return new TestCaseData(typeof(FlashHeal)).Returns(9000.0d);
@@ -361,7 +361,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
         {
             get
             {
-                yield return new TestCaseData(typeof(CircleOfHealing)).Returns(5833.7000851422772d);
+                yield return new TestCaseData(typeof(CircleOfHealing)).Returns(16596.034238632044d);
                 yield return new TestCaseData(typeof(DivineHymn)).Returns(57549.930514874373d);
                 yield return new TestCaseData(typeof(DivineStar)).Returns(6089.9397370237439d);
                 yield return new TestCaseData(typeof(FlashHeal)).Returns(6666.1027564218493d);
@@ -388,7 +388,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
         {
             get
             {
-                yield return new TestCaseData(typeof(CircleOfHealing)).Returns(963.10765707170003d);
+                yield return new TestCaseData(typeof(CircleOfHealing)).Returns(2739.902192257d);
                 yield return new TestCaseData(typeof(DivineHymn)).Returns(26342.096474738399d);
                 yield return new TestCaseData(typeof(DivineStar)).Returns(4784.9526505186996d);
                 yield return new TestCaseData(typeof(FlashHeal)).Returns(810.45933018860001d);
@@ -415,7 +415,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
         {
             get
             {
-                yield return new TestCaseData(typeof(CircleOfHealing)).Returns(6796.8077422140004d);
+                yield return new TestCaseData(typeof(CircleOfHealing)).Returns(19335.936430889018d);
                 yield return new TestCaseData(typeof(DivineHymn)).Returns(83892.026989612801d);
                 yield return new TestCaseData(typeof(DivineStar)).Returns(10874.892387542399d);
                 yield return new TestCaseData(typeof(FlashHeal)).Returns(7476.5620866104191d);
@@ -498,7 +498,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
         {
             get
             {
-                yield return new TestCaseData(typeof(CircleOfHealing)).Returns(13.920134983100001d);
+                yield return new TestCaseData(typeof(CircleOfHealing)).Returns(14.8193451261d);
                 yield return new TestCaseData(typeof(DivineHymn)).Returns(180.0d);
                 yield return new TestCaseData(typeof(DivineStar)).Returns(15.0d);
                 yield return new TestCaseData(typeof(FlashHeal)).Returns(0d);
@@ -525,7 +525,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
         {
             get
             {
-                yield return new TestCaseData(typeof(CircleOfHealing)).Returns(4.46143653160d);
+                yield return new TestCaseData(typeof(CircleOfHealing)).Returns(4.1998954060000004d);
                 yield return new TestCaseData(typeof(DivineHymn)).Returns(0.48446683460000001d);
                 yield return new TestCaseData(typeof(DivineStar)).Returns(4.1511335013000004d);
                 yield return new TestCaseData(typeof(FlashHeal)).Returns(40.487619047599999d);

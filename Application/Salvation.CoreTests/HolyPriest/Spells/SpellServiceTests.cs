@@ -323,7 +323,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(Renew)).Returns(4500.0d);
                 yield return new TestCaseData(typeof(Smite)).Returns(100.0d);
                 yield return new TestCaseData(typeof(HolyWordChastise)).Returns(1000.0d);
-                yield return new TestCaseData(typeof(ShadowWordPain)).Returns(150.0d);
+                yield return new TestCaseData(typeof(ShadowWordPain)).Returns(750.0d);
                 yield return new TestCaseData(typeof(ShadowWordDeath)).Returns(250.0d);
                 yield return new TestCaseData(typeof(HolyFire)).Returns(2500.0d);
             }
@@ -351,7 +351,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(HolyNova)).Returns(303.74699427273612d);
                 yield return new TestCaseData(typeof(Smite)).Returns(1133.0245024459202d);
                 yield return new TestCaseData(typeof(HolyWordChastise)).Returns(2249.9777353536001d);
-                yield return new TestCaseData(typeof(ShadowWordPain)).Returns(2281.6007715188721d);
+                yield return new TestCaseData(typeof(ShadowWordPain)).Returns(6086.3880958888785d);
                 yield return new TestCaseData(typeof(ShadowWordDeath)).Returns(1215.6549347767811d);
                 yield return new TestCaseData(typeof(HolyFire)).Returns(9614.2118628573062d);
             }
@@ -542,7 +542,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(Renew)).Returns(43.103030302999997d);
                 yield return new TestCaseData(typeof(Smite)).Returns(43.103030302999997d);
                 yield return new TestCaseData(typeof(HolyWordChastise)).Returns(4.0246688547999998d);
-                yield return new TestCaseData(typeof(ShadowWordPain)).Returns(43.103030302999997d);
+                yield return new TestCaseData(typeof(ShadowWordPain)).Returns(40.487619047599999d);
                 yield return new TestCaseData(typeof(ShadowWordDeath)).Returns(3.2327272727d);
                 yield return new TestCaseData(typeof(HolyFire)).Returns(5.2256002622000004d);
             }

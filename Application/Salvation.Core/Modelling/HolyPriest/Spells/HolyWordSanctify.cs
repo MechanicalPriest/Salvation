@@ -69,12 +69,13 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             double hwCDR = cpmPoH * hwCDRPoH +
                 cpmRenew * hwCDRRenew;
 
-            if (_gameStateService.IsLegendaryActive(gameState, Spell.HarmoniousApparatus))
-            {
-                var cpmCoH = _circleOfHealingSpellService.GetActualCastsPerMinute(gameState);
-                var hwCDRCoH = _gameStateService.GetTotalHolyWordCooldownReduction(gameState, Spell.CircleOfHealing);
-                hwCDR += cpmCoH * hwCDRCoH;
-            }
+            // TODO: Cleanup post implementation
+            //if (_gameStateService.IsLegendaryActive(gameState, Spell.HarmoniousApparatus))
+            //{
+            //    var cpmCoH = _circleOfHealingSpellService.GetActualCastsPerMinute(gameState);
+            //    var hwCDRCoH = _gameStateService.GetTotalHolyWordCooldownReduction(gameState, Spell.CircleOfHealing);
+            //    hwCDR += cpmCoH * hwCDRCoH;
+            //}
 
             double maximumPotentialCasts = (60d + hwCDR) / hastedCD
                 + 1d / (fightLength / 60d);
@@ -90,6 +91,18 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             var numTargets = spellData.GetEffect(288932).BaseValue;
 
             return numTargets;
+        }
+
+        public override double GetHastedCooldown(GameState gameState, BaseSpellData spellData = null)
+        {
+            spellData = ValidateSpellData(gameState, spellData);
+
+            // Cooldown for Sanctify is stored in the chargecooldown instead as it has charges
+            var cooldown = spellData.ChargeCooldown / 1000;
+
+            return spellData.IsCooldownHasted
+                ? cooldown / _gameStateService.GetHasteMultiplier(gameState)
+                : cooldown;
         }
     }
 }

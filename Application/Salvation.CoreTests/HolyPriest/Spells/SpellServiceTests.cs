@@ -312,7 +312,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(FlashHeal)).Returns(9000.0d);
                 yield return new TestCaseData(typeof(Halo)).Returns(6750.0d);
                 yield return new TestCaseData(typeof(Heal)).Returns(6000.0d);
-                yield return new TestCaseData(typeof(HolyNova)).Returns(800d);
+                yield return new TestCaseData(typeof(HolyNova)).Returns(4000.0d);
                 yield return new TestCaseData(typeof(HolyWordSalvation)).Returns(3000d);
                 yield return new TestCaseData(typeof(HolyWordSanctify)).Returns(1750d);
                 yield return new TestCaseData(typeof(HolyWordSerenity)).Returns(1250d);
@@ -348,7 +348,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(Renew)).Returns(0);
                 yield return new TestCaseData(typeof(SpellService)).Returns(0);
                 yield return new TestCaseData(typeof(Halo)).Returns(6592.8875665045034d);
-                yield return new TestCaseData(typeof(HolyNova)).Returns(303.74699427273612d);
+                yield return new TestCaseData(typeof(HolyNova)).Returns(1440.1938858869064d);
                 yield return new TestCaseData(typeof(Smite)).Returns(3223.2910779373606d);
                 yield return new TestCaseData(typeof(HolyWordChastise)).Returns(2249.9777353536001d);
                 yield return new TestCaseData(typeof(ShadowWordPain)).Returns(6086.3880958888785d);
@@ -367,7 +367,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(FlashHeal)).Returns(6666.1027564218493d);
                 yield return new TestCaseData(typeof(Halo)).Returns(22563.645627424463d);
                 yield return new TestCaseData(typeof(Heal)).Returns(7546.7975737984298d);
-                yield return new TestCaseData(typeof(HolyNova)).Returns(2079.8231691174842d);
+                yield return new TestCaseData(typeof(HolyNova)).Returns(9861.3275797534006d);
                 yield return new TestCaseData(typeof(HolyWordSalvation)).Returns(19532.860284081518d);
                 yield return new TestCaseData(typeof(HolyWordSanctify)).Returns(12876.416331469578d);
                 yield return new TestCaseData(typeof(HolyWordSerenity)).Returns(7689.4551590247747d);
@@ -394,7 +394,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(FlashHeal)).Returns(810.45933018860001d);
                 yield return new TestCaseData(typeof(Halo)).Returns(13014.4774054113d);
                 yield return new TestCaseData(typeof(Heal)).Returns(3318.1571826058998d);
-                yield return new TestCaseData(typeof(HolyNova)).Returns(367.02761807960002d);
+                yield return new TestCaseData(typeof(HolyNova)).Returns(1740.2342787800001d);
                 yield return new TestCaseData(typeof(HolyWordSalvation)).Returns(8949.0007309105004d);
                 yield return new TestCaseData(typeof(HolyWordSanctify)).Returns(6154.6453467295996d);
                 yield return new TestCaseData(typeof(HolyWordSerenity)).Returns(1372.9551639271999d);
@@ -421,7 +421,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(FlashHeal)).Returns(7476.5620866104191d);
                 yield return new TestCaseData(typeof(Halo)).Returns(35578.1230328358d);
                 yield return new TestCaseData(typeof(Heal)).Returns(10864.954756404304d);
-                yield return new TestCaseData(typeof(HolyNova)).Returns(2446.8507871970405d);
+                yield return new TestCaseData(typeof(HolyNova)).Returns(11601.561858533412d);
                 yield return new TestCaseData(typeof(HolyWordSalvation)).Returns(28481.86101499201d);
                 yield return new TestCaseData(typeof(HolyWordSanctify)).Returns(19031.061678199199d);
                 yield return new TestCaseData(typeof(HolyWordSerenity)).Returns(9062.4103229520024d);
@@ -531,7 +531,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(FlashHeal)).Returns(40.487619047599999d);
                 yield return new TestCaseData(typeof(Halo)).Returns(1.5975462760000001d);
                 yield return new TestCaseData(typeof(Heal)).Returns(24.292571428599999d);
-                yield return new TestCaseData(typeof(HolyNova)).Returns(43.103030302999997d);
+                yield return new TestCaseData(typeof(HolyNova)).Returns(40.487619047599999d);
                 yield return new TestCaseData(typeof(HolyWordSalvation)).Returns(0.3485806924d);
                 yield return new TestCaseData(typeof(HolyWordSanctify)).Returns(2.1509442082999999d);
                 yield return new TestCaseData(typeof(HolyWordSerenity)).Returns(1.5827672467d);

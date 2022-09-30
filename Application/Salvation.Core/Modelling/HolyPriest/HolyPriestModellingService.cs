@@ -39,12 +39,12 @@ namespace Salvation.Core.Modelling.HolyPriest
             // Display some basic information.
             DisplayState(state);
             
-            _logger?.LogTrace("Registering base spells...");
             _gameStateService.RegisterSpells(state, GetBaseSpells());
-            _logger?.LogTrace("Done registering base spells.");
 
             foreach (var spell in _gameStateService.GetRegisteredSpells(state))
             {
+                _gameStateService.JournalEntry(state, $"[{spell.Spell}] Generating result...");
+
                 if (spell.SpellService != null)
                 {
                     var castResults = spell.SpellService.GetCastResults(state, spell.SpellData);

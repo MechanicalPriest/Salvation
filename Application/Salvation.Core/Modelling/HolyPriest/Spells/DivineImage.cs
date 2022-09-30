@@ -3,10 +3,11 @@ using Salvation.Core.Constants.Data;
 using Salvation.Core.Interfaces.Modelling;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
+using Salvation.Core.Modelling.Common;
 using Salvation.Core.State;
 using System;
 
-namespace Salvation.Core.Modelling.Common.Items
+namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
     public interface IDivineImageSpellService : ISpellService { }
     class DivineImage : SpellService, ISpellService<IDivineImageSpellService>
@@ -100,7 +101,7 @@ namespace Salvation.Core.Modelling.Common.Items
             hwCpm += _sanctifySpellService.GetActualCastsPerMinute(gameState, null);
             hwCpm += _chastiseSpellService.GetActualCastsPerMinute(gameState, null);
 
-            var hwPerProc = (1 / procChance) + (hwCpm / (60 / GetDuration(gameState, spellData)));
+            var hwPerProc = 1 / procChance + hwCpm / (60 / GetDuration(gameState, spellData));
 
             return hwCpm / hwPerProc;
         }

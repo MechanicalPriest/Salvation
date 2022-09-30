@@ -13,6 +13,8 @@ namespace Salvation.Utility.SpellDataUpdate
         private readonly ISimcGenerationService _simcGenerationService;
         private readonly IList<uint> _spells;
 
+        private static uint PLAYER_LEVEL = 70;
+
         public HolyPriestSpellDataService(ISimcGenerationService simcGenerationService)
         {
             _simcGenerationService = simcGenerationService;
@@ -51,7 +53,6 @@ namespace Salvation.Utility.SpellDataUpdate
                 // Spells
                 (uint)Spell.PrayerOfHealing,
                 (uint)Spell.HolyNova,
-                (uint)Spell.HolyNovaRank2,
                 (uint)Spell.CircleOfHealing,
                 (uint)Spell.DivineHymn,
                 (uint)Spell.HolyWordSanctify,
@@ -66,7 +67,8 @@ namespace Salvation.Utility.SpellDataUpdate
                 
                 // Covenant
                 (uint)Spell.Mindgames,
-                (uint)Spell.MindgamesHeal,
+                // TODO: re-add once this is pulled from simc
+                //(uint)Spell.MindgamesHeal,
 
                 // Legendaries
                 (uint)Spell.HarmoniousApparatus,
@@ -101,20 +103,20 @@ namespace Salvation.Utility.SpellDataUpdate
                 HasteBase = 0.0,
                 VersBase = 0.0,
                 MasteryBase = 0.1,
-                IntBase = 2501,
-                StamBase = 1910,
+                IntBase = 2089, // From a human/panda in-game
+                StamBase = 1599,
                 ManaBase = 250000, // __base_mp in sc_scale_data.inc
                 // This is set to 1.0 as part of #159
                 ArmorSkillsMultiplier = 1.00, // 5% extra main stat from Armor Skills
 
                 // These come from __combat_ratings in sc_scale_data.inc
-                CritCost = 220,
-                HasteCost = 210,
-                VersCost = 250, // Ver damage taken cost is 80
-                MasteryCost = 176, // This is the 35 base cost * 0.80 holy priest modifier
-                LeechCost = 132,
-                SpeedCost = 62, 
-                AvoidanceCost = 88,
+                CritCost = 180,
+                HasteCost = 170,
+                VersCost = 205, // Ver damage taken cost is double
+                MasteryCost = 144, // This is the base cost * 0.80 holy priest modifier
+                LeechCost = 110,
+                SpeedCost = 50, 
+                AvoidanceCost = 72,
                 StamCost = 20
             };
 
@@ -123,11 +125,10 @@ namespace Salvation.Utility.SpellDataUpdate
 
             foreach (var spell in _spells)
             {
-                // TODO: feed up level 60 from somewhere else. Now level 70.
                 var spellOptions = new SimcSpellOptions()
                 {
                     SpellId = spell,
-                    PlayerLevel = 60
+                    PlayerLevel = PLAYER_LEVEL
                 };
 
                 var spellData = await _simcGenerationService.GenerateSpellAsync(spellOptions);
@@ -225,9 +226,9 @@ namespace Salvation.Utility.SpellDataUpdate
                 Type = effect.EffectType,
             };
 
-            // Add the level 60 spellbudget value if it exists in the spelldata.
+            // Add the level spellbudget value if it exists in the spelldata.
             if (effect.ScaleBudget != 0)
-                newEffect.ScaleValues.Add(60, effect.ScaleBudget);
+                newEffect.ScaleValues.Add((int)PLAYER_LEVEL, effect.ScaleBudget);
 
             return newEffect;
         }
@@ -243,7 +244,6 @@ namespace Salvation.Utility.SpellDataUpdate
             {
                 case (uint)Spell.CircleOfHealing:
                 case (uint)Spell.PrayerOfMending:
-                case (uint)Spell.ShadowWordDeath:
                 case (uint)Spell.PowerWordShield:
                     // This comes from the Priest aura 137030 effect #1 179714
                     baseSpellData.IsCooldownHasted = true;

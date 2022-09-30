@@ -1,5 +1,5 @@
 {
-  "GameVersion": "10.0.2.45569",
+  "GameVersion": "10.0.2.45779",
   "Specs": [
     {
       "Class": "Priest",
@@ -10,15 +10,15 @@
       "HasteBase": 0.0,
       "VersBase": 0.0,
       "MasteryBase": 0.1,
-      "IntBase": 2501.0,
-      "StamBase": 1910.0,
-      "CritCost": 220.0,
-      "HasteCost": 210.0,
-      "VersCost": 250.0,
-      "MasteryCost": 176.0,
-      "LeechCost": 132.0,
-      "SpeedCost": 62.0,
-      "AvoidanceCost": 88.0,
+      "IntBase": 2089.0,
+      "StamBase": 1599.0,
+      "CritCost": 180.0,
+      "HasteCost": 170.0,
+      "VersCost": 205.0,
+      "MasteryCost": 144.0,
+      "LeechCost": 110.0,
+      "SpeedCost": 50.0,
+      "AvoidanceCost": 72.0,
       "StamCost": 20.0,
       "Spells": [
         {
@@ -141,6 +141,28 @@
             {
               "Id": 914765,
               "BaseValue": 15.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 1032422,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 1032423,
+              "BaseValue": 0.0,
               "SpCoefficient": 0.0,
               "Coefficient": 0.0,
               "TriggerSpellid": 0,
@@ -1163,48 +1185,6 @@
           ]
         },
         {
-          "Id": 322112,
-          "Name": "Improved Holy Nova",
-          "ManaCost": 0.0,
-          "MaxRange": 0.0,
-          "BaseCastTime": 0.0,
-          "BaseCooldown": 0.0,
-          "IsCooldownHasted": false,
-          "Duration": 0.0,
-          "Gcd": 0.0,
-          "ChargeCooldown": 0,
-          "Charges": 0,
-          "MaxStacks": 0.0,
-          "ProcChance": 0.0,
-          "InternalCooldown": 0.0,
-          "Rppm": 0.0,
-          "RppmIsHasted": false,
-          "Effects": [
-            {
-              "Id": 810253,
-              "BaseValue": 3.0,
-              "SpCoefficient": 0.0,
-              "Coefficient": 0.0,
-              "TriggerSpellid": 0,
-              "Amplitude": 0.0,
-              "TriggerSpell": null,
-              "Type": 6,
-              "ScaleValues": {}
-            },
-            {
-              "Id": 844508,
-              "BaseValue": 50.0,
-              "SpCoefficient": 0.0,
-              "Coefficient": 0.0,
-              "TriggerSpellid": 0,
-              "Amplitude": 0.0,
-              "TriggerSpell": null,
-              "Type": 0,
-              "ScaleValues": {}
-            }
-          ]
-        },
-        {
           "Id": 204883,
           "Name": "Circle of Healing",
           "ManaCost": 3.3,
@@ -1559,7 +1539,7 @@
           "MaxRange": 40.0,
           "BaseCastTime": 0.0,
           "BaseCooldown": 0.0,
-          "IsCooldownHasted": true,
+          "IsCooldownHasted": false,
           "Duration": 0.0,
           "Gcd": 1.5,
           "ChargeCooldown": 20000,
@@ -1606,7 +1586,7 @@
           ]
         },
         {
-          "Id": 323673,
+          "Id": 375901,
           "Name": "Mindgames",
           "ManaCost": 2.0,
           "MaxRange": 40.0,
@@ -1624,7 +1604,7 @@
           "RppmIsHasted": false,
           "Effects": [
             {
-              "Id": 812771,
+              "Id": 1002578,
               "BaseValue": 0.0,
               "SpCoefficient": 3.0,
               "Coefficient": 0.0,
@@ -1635,8 +1615,8 @@
               "ScaleValues": {}
             },
             {
-              "Id": 812776,
-              "BaseValue": 450.0,
+              "Id": 1002579,
+              "BaseValue": 300.0,
               "SpCoefficient": 0.0,
               "Coefficient": 0.0,
               "TriggerSpellid": 0,
@@ -1646,7 +1626,7 @@
               "ScaleValues": {}
             },
             {
-              "Id": 812810,
+              "Id": 1002580,
               "BaseValue": 100.0,
               "SpCoefficient": 0.0,
               "Coefficient": 0.0,
@@ -1657,14 +1637,14 @@
               "ScaleValues": {}
             },
             {
-              "Id": 812816,
+              "Id": 1002581,
               "BaseValue": 0.0,
               "SpCoefficient": 0.0,
               "Coefficient": 0.0,
-              "TriggerSpellid": 323701,
+              "TriggerSpellid": 375902,
               "Amplitude": 0.0,
               "TriggerSpell": {
-                "Id": 323701,
+                "Id": 375902,
                 "Name": "Mindgames",
                 "ManaCost": 0.0,
                 "MaxRange": 100.0,
@@ -1682,7 +1662,7 @@
                 "RppmIsHasted": false,
                 "Effects": [
                   {
-                    "Id": 812814,
+                    "Id": 1002585,
                     "BaseValue": 0.0,
                     "SpCoefficient": 0.0,
                     "Coefficient": 0.0,
@@ -1698,7 +1678,18 @@
               "ScaleValues": {}
             },
             {
-              "Id": 812823,
+              "Id": 1002582,
+              "BaseValue": 300.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 1002583,
               "BaseValue": 450.0,
               "SpCoefficient": 0.0,
               "Coefficient": 0.0,
@@ -1709,25 +1700,14 @@
               "ScaleValues": {}
             },
             {
-              "Id": 819553,
-              "BaseValue": 450.0,
-              "SpCoefficient": 0.0,
-              "Coefficient": 0.0,
-              "TriggerSpellid": 0,
-              "Amplitude": 0.0,
-              "TriggerSpell": null,
-              "Type": 6,
-              "ScaleValues": {}
-            },
-            {
-              "Id": 872982,
+              "Id": 1002584,
               "BaseValue": 0.0,
               "SpCoefficient": 0.0,
               "Coefficient": 0.0,
-              "TriggerSpellid": 323705,
+              "TriggerSpellid": 375903,
               "Amplitude": 0.0,
               "TriggerSpell": {
-                "Id": 323705,
+                "Id": 375903,
                 "Name": "Mindgames",
                 "ManaCost": 0.0,
                 "MaxRange": 100.0,
@@ -1745,7 +1725,7 @@
                 "RppmIsHasted": false,
                 "Effects": [
                   {
-                    "Id": 812821,
+                    "Id": 1002587,
                     "BaseValue": 0.0,
                     "SpCoefficient": 0.0,
                     "Coefficient": 0.0,
@@ -1758,59 +1738,6 @@
                 ]
               },
               "Type": 64,
-              "ScaleValues": {}
-            }
-          ]
-        },
-        {
-          "Id": 323706,
-          "Name": "Mindgames",
-          "ManaCost": 0.0,
-          "MaxRange": 100.0,
-          "BaseCastTime": 0.0,
-          "BaseCooldown": 0.0,
-          "IsCooldownHasted": false,
-          "Duration": 0.0,
-          "Gcd": 0.0,
-          "ChargeCooldown": 0,
-          "Charges": 0,
-          "MaxStacks": 0.0,
-          "ProcChance": 0.0,
-          "InternalCooldown": 0.0,
-          "Rppm": 0.0,
-          "RppmIsHasted": false,
-          "Effects": [
-            {
-              "Id": 812824,
-              "BaseValue": 0.0,
-              "SpCoefficient": 0.0,
-              "Coefficient": 0.0,
-              "TriggerSpellid": 0,
-              "Amplitude": 0.0,
-              "TriggerSpell": null,
-              "Type": 10,
-              "ScaleValues": {}
-            },
-            {
-              "Id": 819551,
-              "BaseValue": 10.0,
-              "SpCoefficient": 0.0,
-              "Coefficient": 0.0,
-              "TriggerSpellid": 0,
-              "Amplitude": 0.0,
-              "TriggerSpell": null,
-              "Type": 30,
-              "ScaleValues": {}
-            },
-            {
-              "Id": 819578,
-              "BaseValue": 2.0,
-              "SpCoefficient": 0.0,
-              "Coefficient": 0.0,
-              "TriggerSpellid": 0,
-              "Amplitude": 0.0,
-              "TriggerSpell": null,
-              "Type": 137,
               "ScaleValues": {}
             }
           ]

@@ -34,11 +34,24 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {averageHeal:0.##}");
 
-            averageHeal *= _gameStateService.GetCriticalStrikeMultiplier(gameState)
+            // Halo healing goes down after 6 targets
+            var targetReductionNum = 6;
+            var totalHealingDone = 0d;
+            var numHealingTargets = GetNumberOfHealingTargets(gameState, spellData);
+
+            for (var i = 1; i <= numHealingTargets; i++)
+            {
+                var healAmount = averageHeal * (1 / Math.Sqrt(Math.Max(0, i - targetReductionNum) + 1));
+                totalHealingDone += healAmount;
+                _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Targets: {i:##} Healing Total: {totalHealingDone:0.##} ({healAmount:0.##})", 25);
+            }
+
+            totalHealingDone *= _gameStateService.GetCriticalStrikeMultiplier(gameState)
                 * _gameStateService.GetGlobalHealingMultiplier(gameState);
 
-            // Halo caps at roughly 6 targets worth of healing
-            return averageHeal * Math.Min(6, GetNumberOfHealingTargets(gameState, spellData));
+            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Targets: {numHealingTargets:##} Healing Total: {totalHealingDone:0.##} (overall)");
+
+            return totalHealingDone;
         }
 
         public override double GetAverageDamage(GameState gameState, BaseSpellData spellData = null)

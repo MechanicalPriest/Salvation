@@ -491,13 +491,9 @@ namespace Salvation.Core.State
 
             double intellect = 0;
 
-            // Get base intellect based on class
-            // From sc_extra_data.inc
-            intellect += state.Profile.Class switch
-            {
-                Class.Priest => 2501,
-                _ => throw new NotImplementedException("This class is not yet implemented."),
-            };
+            // Get base intellect 
+            var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.Spec).FirstOrDefault();
+            intellect += specData.IntBase;
 
             // Apply race modifiers
             switch (state.Profile.Race)
@@ -693,11 +689,22 @@ namespace Salvation.Core.State
         {
             var registeredSpells = new List<RegisteredSpell>(additionalSpells);
 
-            // TALENTS: Add the profiles talents
-            foreach(var talent in state.Profile.Talents)
+            JournalEntry(state, $"Registering baseline spells...");
+            foreach (var spell in registeredSpells)
             {
-                registeredSpells.Add(new RegisteredSpell((Spell)talent.SpellId));
+                JournalEntry(state, $"Registered {spell.Spell}.");
             }
+            JournalEntry(state, $"Registering baseline spells... Done!");
+
+            // TALENTS: Add the profiles talents
+            JournalEntry(state, $"Registering talent spells...");
+            foreach (var talent in state.Profile.Talents)
+            {
+
+                registeredSpells.Add(new RegisteredSpell((Spell)talent.SpellId));
+                JournalEntry(state, $"Registered {registeredSpells.LastOrDefault()?.Spell}.");
+            }
+            JournalEntry(state, $"Registering talent spells... Done!");
 
             // TODO: Consumables
 
@@ -872,10 +879,10 @@ namespace Salvation.Core.State
             state.Profile.PlaystyleEntries.Add(newPlaystyle);
         }
 
-        public void JournalEntry(GameState state, string message)
+        public void JournalEntry(GameState state, string message, int historyToCheck = 5)
         {
             if (state.JournalEntries.Count == 0 ||
-                !state.JournalEntries.Skip(Math.Max(0, state.JournalEntries.Count() - 5)).Where(j => j == message).Any())
+                !state.JournalEntries.Skip(Math.Max(0, state.JournalEntries.Count() - historyToCheck)).Where(j => j == message).Any())
             {
 #if DEBUG
 

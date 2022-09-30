@@ -29,6 +29,7 @@
 
   <ItemGroup>
     <Folder Include="Modelling\Common\Consumables\" />
+    <Folder Include="Modelling\Common\Items\" />
   </ItemGroup>
 
 </Project>

@@ -37,8 +37,8 @@ namespace Salvation.CoreTests.HolyPriest.Spells
             var resultOverride = spellService.GetAverageRawHealing(_gameState, spellData);
 
             // Assert
-            Assert.AreEqual(12605.628221374516d, resultDefault);
-            Assert.AreEqual(6302.8141106872572d, resultOverride);
+            Assert.AreEqual(11110.240341148095d, resultDefault);
+            Assert.AreEqual(5555.1201705740477d, resultOverride);
         }
 
         [Test]

@@ -32,10 +32,12 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
                 * holyPriestAuraDamagesBonus
                 * holyPriestAuraDamagesReduction;
 
+            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip (Dmg): {averageDamage:0.##}");
+
             double executePercent = _gameStateService.GetPlaystyle(gameState, "ShadowWordDeathPercentExecute").Value;
             double executeBonus = (spellData.GetEffect(340366).BaseValue / 100) - 1;
 
-            // Check this math in the morning but percent of exe time multiplied by bonus should be right?
+            // percent of execute time multiplied by bonus
             averageDamage *= 1 + (executePercent * executeBonus);
 
             averageDamage *= _gameStateService.GetCriticalStrikeMultiplier(gameState);

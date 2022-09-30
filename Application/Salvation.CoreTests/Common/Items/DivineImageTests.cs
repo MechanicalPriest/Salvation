@@ -2,7 +2,6 @@
 using Salvation.Core.Constants.Data;
 using Salvation.Core.Interfaces.Modelling;
 using Salvation.Core.Interfaces.State;
-using Salvation.Core.Modelling.Common.Items;
 using Salvation.Core.Modelling.HolyPriest.Spells;
 using Salvation.Core.State;
 using System;
@@ -85,7 +84,7 @@ namespace Salvation.CoreTests.Common.Items
             var value = _spell.GetActualCastsPerMinute(_gameState, null);
 
             // Assert
-            Assert.AreEqual(1.2135765424775473d, value);
+            Assert.AreEqual(1.1664471613238547d, value);
         }
 
         [Test]
@@ -97,7 +96,7 @@ namespace Salvation.CoreTests.Common.Items
             var value = _spell.GetUptime(_gameState, null);
 
             // Assert
-            Assert.AreEqual(0.30339413561938683d, value);
+            Assert.AreEqual(0.29161179033096368d, value);
         }
     }
 }

@@ -72,6 +72,12 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             return maximumPotentialCasts;
         }
 
+        public override double GetAverageHealingBonus(GameState gameState, BaseSpellData spellData)
+        {
+            // TODO: Implement the bonus healing stacks
+            return base.GetAverageHealingBonus(gameState, spellData);
+        }
+
         public override double GetMinimumHealTargets(GameState gameState, BaseSpellData spellData)
         {
             return 1;
@@ -79,7 +85,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
         public override double GetMaximumHealTargets(GameState gameState, BaseSpellData spellData)
         {
-            // TODO: Clamp to raid size?
+            // TODO: Clamp to raid max size?
             return double.MaxValue;
         }
     }

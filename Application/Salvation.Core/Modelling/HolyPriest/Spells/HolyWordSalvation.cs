@@ -58,7 +58,6 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             // Salv is (60 + (SerenityCPM + SancCPM) * SalvCDR) / (CastTime + Cooldown) + 1 / (FightLength / 60)
             // Essentially the CDR per minute is 60 + the CDR from holy words.
 
-            // TODO: Add sanc here properly once implemented
             var cpmSerenity = _serenitySpellService.GetActualCastsPerMinute(gameState);
             var cpmSanctify = _holyWordSanctifySpellService.GetActualCastsPerMinute(gameState);
 
@@ -71,6 +70,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             double salvCDRPerMin = cpmSerenity * hwCDRSerenity +
                 cpmSanctify * hwCDRSanctify;
+
             double maximumPotentialCasts = (60d + salvCDRPerMin) / (hastedCT + hastedCD)
                 + 1d / (fightLength / 60d);
 

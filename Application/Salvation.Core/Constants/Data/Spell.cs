@@ -25,7 +25,6 @@
         FlashHeal = 2061,
         PrayerOfHealing = 596,
         HolyNova = 132157,
-        HolyNovaRank2 = 322112,
         CircleOfHealing = 204883,
         Renew = 139,
         PowerWordShield = 17,
@@ -84,8 +83,9 @@
         HolyWordSalvation = 265202, // T50
 
         // Cov abilities
-        Mindgames = 323673,
-        MindgamesHeal = 323706,
+        Mindgames = 375901,
+        // TODO: Pull this from simc spelldata
+        //MindgamesHeal = 375904, 
 
         // Legendaries
         HarmoniousApparatus = 336314,

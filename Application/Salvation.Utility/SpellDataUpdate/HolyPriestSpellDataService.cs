@@ -51,7 +51,6 @@ namespace Salvation.Utility.SpellDataUpdate
                 // Spells
                 (uint)Spell.PrayerOfHealing,
                 (uint)Spell.HolyNova,
-                (uint)Spell.HolyNovaRank2,
                 (uint)Spell.CircleOfHealing,
                 (uint)Spell.DivineHymn,
                 (uint)Spell.HolyWordSanctify,
@@ -66,7 +65,8 @@ namespace Salvation.Utility.SpellDataUpdate
                 
                 // Covenant
                 (uint)Spell.Mindgames,
-                (uint)Spell.MindgamesHeal,
+                // TODO: re-add once this is pulled from simc
+                //(uint)Spell.MindgamesHeal,
 
                 // Legendaries
                 (uint)Spell.HarmoniousApparatus,

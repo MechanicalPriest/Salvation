@@ -19,7 +19,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         {
             spellData = ValidateSpellData(gameState, spellData);
 
-            var healingSp = spellData.GetEffect(812776).BaseValue;
+            var healingSp = spellData.GetEffect(1002582).BaseValue;
 
             // Mind Game's average heal is:
             // $damage=${($SPS*$s2/100)*(1+$@versadmg)}
@@ -40,11 +40,20 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         {
             spellData = ValidateSpellData(gameState, spellData);
 
-            var holyPriestAuraDamageBonus = _gameStateService.GetSpellData(gameState, Spell.HolyPriest)
+            // Modifier city, population: Mindgames.
+            var holyPriestAuraDamageBonus1 = _gameStateService.GetSpellData(gameState, Spell.HolyPriest)
                 .GetEffect(191077).BaseValue / 100 + 1;
+            var holyPriestAuraDamageBonus2 = _gameStateService.GetSpellData(gameState, Spell.HolyPriest)
+                .GetEffect(914764).BaseValue / 100 + 1;
+            var holyPriestAuraDamageBonus3 = _gameStateService.GetSpellData(gameState, Spell.HolyPriest)
+                .GetEffect(914765).BaseValue / 100 + 1;
+
+            var holyPriestAuraDamageBonus = holyPriestAuraDamageBonus1
+                * holyPriestAuraDamageBonus2
+                * holyPriestAuraDamageBonus3;
 
             // coeff * int * hpriest dmg mod * vers
-            var reverseDamageSp = spellData.GetEffect(812771).SpCoefficient;
+            var reverseDamageSp = spellData.GetEffect(1002578).SpCoefficient;
             double averageDamage = reverseDamageSp
                 * _gameStateService.GetIntellect(gameState)
                 * holyPriestAuraDamageBonus
@@ -108,10 +117,12 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
         public override bool TriggersMastery(GameState gameState, BaseSpellData spellData)
         {
-            // MindGames Spellid doesnt have the "right" type, heal component does
-            var healData = _gameStateService.GetSpellData(gameState, Spell.MindgamesHeal);
+            // MindGames Spellid doesnt have the "right" type, heal component does in 375904
+            // TODO: Pull 375904 from simc spelldata. 
+            //var healData = _gameStateService.GetSpellData(gameState, Spell.MindgamesHeal);
 
-            return base.TriggersMastery(gameState, healData);
+            //return base.TriggersMastery(gameState, healData);
+            return true;
         }
 
         internal double GetShatteredPerceptionsModifier(GameState gameState)

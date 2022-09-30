@@ -331,7 +331,6 @@ namespace Salvation.Core.Profile
 
                     // ## Damage & Healing overrides
                     new PlaystyleEntry("ShadowWordDeathPercentExecute", 0.2, (uint)Spell.ShadowWordDeath),
-                    new PlaystyleEntry("HolyNovaPercentOfCastsOnThreeOrMore", 0.1, (uint)Spell.HolyNovaRank2),
 
                     // ## Item overrides
                     //new PlaystyleEntry("SoullettingRubyAverageEnemyHP", 0.5, (uint)Spell.SoullettingRuby),

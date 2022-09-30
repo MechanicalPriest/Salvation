@@ -103,20 +103,20 @@ namespace Salvation.Utility.SpellDataUpdate
                 HasteBase = 0.0,
                 VersBase = 0.0,
                 MasteryBase = 0.1,
-                IntBase = 2501,
-                StamBase = 1910,
+                IntBase = 2089, // From a human/panda in-game
+                StamBase = 1599,
                 ManaBase = 250000, // __base_mp in sc_scale_data.inc
                 // This is set to 1.0 as part of #159
                 ArmorSkillsMultiplier = 1.00, // 5% extra main stat from Armor Skills
 
                 // These come from __combat_ratings in sc_scale_data.inc
-                CritCost = 220,
-                HasteCost = 210,
-                VersCost = 250, // Ver damage taken cost is 80
-                MasteryCost = 176, // This is the 35 base cost * 0.80 holy priest modifier
-                LeechCost = 132,
-                SpeedCost = 62, 
-                AvoidanceCost = 88,
+                CritCost = 180,
+                HasteCost = 170,
+                VersCost = 205, // Ver damage taken cost is double
+                MasteryCost = 144, // This is the base cost * 0.80 holy priest modifier
+                LeechCost = 110,
+                SpeedCost = 50, 
+                AvoidanceCost = 72,
                 StamCost = 20
             };
 
@@ -125,7 +125,6 @@ namespace Salvation.Utility.SpellDataUpdate
 
             foreach (var spell in _spells)
             {
-                // TODO: feed up level 60 from somewhere else. Now level 70.
                 var spellOptions = new SimcSpellOptions()
                 {
                     SpellId = spell,
@@ -227,7 +226,7 @@ namespace Salvation.Utility.SpellDataUpdate
                 Type = effect.EffectType,
             };
 
-            // Add the level 60 spellbudget value if it exists in the spelldata.
+            // Add the level spellbudget value if it exists in the spelldata.
             if (effect.ScaleBudget != 0)
                 newEffect.ScaleValues.Add((int)PLAYER_LEVEL, effect.ScaleBudget);
 

@@ -13,6 +13,8 @@ namespace Salvation.Utility.SpellDataUpdate
         private readonly ISimcGenerationService _simcGenerationService;
         private readonly IList<uint> _spells;
 
+        private static uint PLAYER_LEVEL = 70;
+
         public HolyPriestSpellDataService(ISimcGenerationService simcGenerationService)
         {
             _simcGenerationService = simcGenerationService;
@@ -127,7 +129,7 @@ namespace Salvation.Utility.SpellDataUpdate
                 var spellOptions = new SimcSpellOptions()
                 {
                     SpellId = spell,
-                    PlayerLevel = 60
+                    PlayerLevel = PLAYER_LEVEL
                 };
 
                 var spellData = await _simcGenerationService.GenerateSpellAsync(spellOptions);
@@ -227,7 +229,7 @@ namespace Salvation.Utility.SpellDataUpdate
 
             // Add the level 60 spellbudget value if it exists in the spelldata.
             if (effect.ScaleBudget != 0)
-                newEffect.ScaleValues.Add(60, effect.ScaleBudget);
+                newEffect.ScaleValues.Add((int)PLAYER_LEVEL, effect.ScaleBudget);
 
             return newEffect;
         }
@@ -243,7 +245,6 @@ namespace Salvation.Utility.SpellDataUpdate
             {
                 case (uint)Spell.CircleOfHealing:
                 case (uint)Spell.PrayerOfMending:
-                case (uint)Spell.ShadowWordDeath:
                 case (uint)Spell.PowerWordShield:
                     // This comes from the Priest aura 137030 effect #1 179714
                     baseSpellData.IsCooldownHasted = true;

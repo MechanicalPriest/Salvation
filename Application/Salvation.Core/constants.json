@@ -1539,7 +1539,7 @@
           "MaxRange": 40.0,
           "BaseCastTime": 0.0,
           "BaseCooldown": 0.0,
-          "IsCooldownHasted": true,
+          "IsCooldownHasted": false,
           "Duration": 0.0,
           "Gcd": 1.5,
           "ChargeCooldown": 20000,

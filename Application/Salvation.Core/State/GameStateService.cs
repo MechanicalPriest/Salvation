@@ -491,13 +491,9 @@ namespace Salvation.Core.State
 
             double intellect = 0;
 
-            // Get base intellect based on class
-            // From sc_extra_data.inc
-            intellect += state.Profile.Class switch
-            {
-                Class.Priest => 2501,
-                _ => throw new NotImplementedException("This class is not yet implemented."),
-            };
+            // Get base intellect 
+            var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.Spec).FirstOrDefault();
+            intellect += specData.IntBase;
 
             // Apply race modifiers
             switch (state.Profile.Race)

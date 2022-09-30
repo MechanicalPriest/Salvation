@@ -6,42 +6,45 @@ using Salvation.Core.Interfaces.State;
 using Salvation.Core.State;
 using System;
 
-namespace Salvation.Core.Modelling.Common.Items
+namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
-    public interface IDivineImageHealingLightSpellService : ISpellService { }
-    class DivineImageHealingLight : SpellService, ISpellService<IDivineImageHealingLightSpellService>
+    public interface IDivineImageTranquilLightSpellService : ISpellService { }
+    class DivineImageTranquilLight : SpellService, ISpellService<IDivineImageTranquilLightSpellService>
     {
-        private readonly ISpellService<IFlashHealSpellService> _flashHealSpellService;
-        private readonly ISpellService<IHealSpellService> _healSpellService;
-        private readonly ISpellService<IHolyWordSerenitySpellService> _serenitySpellService;
+        private readonly ISpellService<IRenewSpellService> _renewSpellService;
 
-        public DivineImageHealingLight(IGameStateService gameStateService,
-            ISpellService<IFlashHealSpellService> flashHealSpellService,
-            ISpellService<IHealSpellService> healSpellService,
-            ISpellService<IHolyWordSerenitySpellService> serenitySpellService)
+        public DivineImageTranquilLight(IGameStateService gameStateService,
+            ISpellService<IRenewSpellService> renewSpellService)
             : base(gameStateService)
         {
-            Spell = Spell.DivineImageHealingLight;
-            _flashHealSpellService = flashHealSpellService;
-            _healSpellService = healSpellService;
-            _serenitySpellService = serenitySpellService;
+            Spell = Spell.DivineImageTranquilLight;
+            _renewSpellService = renewSpellService;
         }
 
         public override double GetAverageRawHealing(GameState gameState, BaseSpellData spellData)
         {
             spellData = ValidateSpellData(gameState, spellData);
 
-            var healingSp = spellData.GetEffect(288947).SpCoefficient;
+            var healingSp = spellData.GetEffect(288956).SpCoefficient;
 
-            var averageHeal = healingSp
-                * _gameStateService.GetIntellect(gameState)
+            // Ticks is like a regular HoT: total_amount / tick_amount
+            var baseTick = healingSp * _gameStateService.GetIntellect(gameState)
                 * _gameStateService.GetVersatilityMultiplier(gameState);
 
-            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {averageHeal:0.##}");
+            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Base Tick: {baseTick:0.##}");
 
-            averageHeal *= _gameStateService.GetCriticalStrikeMultiplier(gameState);
+            var totalHealing = baseTick
+                * _gameStateService.GetHasteMultiplier(gameState)
+                * 6;
 
-            return averageHeal * GetNumberOfHealingTargets(gameState, spellData);
+            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Actual: {totalHealing / baseTick:0.##} (num ticks)");
+            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Actual: {totalHealing % baseTick:0.##} (partial tick)");
+            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {baseTick + totalHealing:0.##} (total)");
+
+            // Apply crit
+            totalHealing *= _gameStateService.GetCriticalStrikeMultiplier(gameState);
+
+            return totalHealing * GetNumberOfHealingTargets(gameState, spellData);
         }
 
         public override double GetActualCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
@@ -61,9 +64,7 @@ namespace Salvation.Core.Modelling.Common.Items
 
         public override double GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
         {
-            var cpm = _flashHealSpellService.GetActualCastsPerMinute(gameState, null);
-            cpm += _healSpellService.GetActualCastsPerMinute(gameState, null);
-            cpm += _serenitySpellService.GetActualCastsPerMinute(gameState, null);
+            var cpm = _renewSpellService.GetActualCastsPerMinute(gameState, null);
 
             return cpm;
         }

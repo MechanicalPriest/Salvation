@@ -6,26 +6,32 @@ using Salvation.Core.Interfaces.State;
 using Salvation.Core.State;
 using System;
 
-namespace Salvation.Core.Modelling.Common.Items
+namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
-    public interface IDivineImageBlessedLightSpellService : ISpellService { }
-    class DivineImageBlessedLight : SpellService, ISpellService<IDivineImageBlessedLightSpellService>
+    public interface IDivineImageHealingLightSpellService : ISpellService { }
+    class DivineImageHealingLight : SpellService, ISpellService<IDivineImageHealingLightSpellService>
     {
-        private readonly ISpellService<IPrayerOfMendingSpellService> _prayerOfMendingSpellService;
+        private readonly ISpellService<IFlashHealSpellService> _flashHealSpellService;
+        private readonly ISpellService<IHealSpellService> _healSpellService;
+        private readonly ISpellService<IHolyWordSerenitySpellService> _serenitySpellService;
 
-        public DivineImageBlessedLight(IGameStateService gameStateService,
-            ISpellService<IPrayerOfMendingSpellService> prayerOfMendingSpellService)
+        public DivineImageHealingLight(IGameStateService gameStateService,
+            ISpellService<IFlashHealSpellService> flashHealSpellService,
+            ISpellService<IHealSpellService> healSpellService,
+            ISpellService<IHolyWordSerenitySpellService> serenitySpellService)
             : base(gameStateService)
         {
-            Spell = Spell.DivineImageBlessedLight;
-            _prayerOfMendingSpellService = prayerOfMendingSpellService;
+            Spell = Spell.DivineImageHealingLight;
+            _flashHealSpellService = flashHealSpellService;
+            _healSpellService = healSpellService;
+            _serenitySpellService = serenitySpellService;
         }
 
         public override double GetAverageRawHealing(GameState gameState, BaseSpellData spellData)
         {
             spellData = ValidateSpellData(gameState, spellData);
 
-            var healingSp = spellData.GetEffect(288952).SpCoefficient;
+            var healingSp = spellData.GetEffect(288947).SpCoefficient;
 
             var averageHeal = healingSp
                 * _gameStateService.GetIntellect(gameState)
@@ -55,16 +61,16 @@ namespace Salvation.Core.Modelling.Common.Items
 
         public override double GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
         {
-            var cpm = _prayerOfMendingSpellService.GetActualCastsPerMinute(gameState, null);
+            var cpm = _flashHealSpellService.GetActualCastsPerMinute(gameState, null);
+            cpm += _healSpellService.GetActualCastsPerMinute(gameState, null);
+            cpm += _serenitySpellService.GetActualCastsPerMinute(gameState, null);
 
             return cpm;
         }
 
         public override double GetMaximumHealTargets(GameState gameState, BaseSpellData spellData)
         {
-            spellData = ValidateSpellData(gameState, spellData);
-
-            return spellData.GetEffect(336109).BaseValue;
+            return 1;
         }
 
         public override double GetMinimumHealTargets(GameState gameState, BaseSpellData spellData)

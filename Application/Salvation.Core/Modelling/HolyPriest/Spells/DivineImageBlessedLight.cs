@@ -6,41 +6,36 @@ using Salvation.Core.Interfaces.State;
 using Salvation.Core.State;
 using System;
 
-namespace Salvation.Core.Modelling.Common.Items
+namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
-    public interface IDivineImageTranquilLightSpellService : ISpellService { }
-    class DivineImageTranquilLight : SpellService, ISpellService<IDivineImageTranquilLightSpellService>
+    public interface IDivineImageBlessedLightSpellService : ISpellService { }
+    class DivineImageBlessedLight : SpellService, ISpellService<IDivineImageBlessedLightSpellService>
     {
-        private readonly ISpellService<IRenewSpellService> _renewSpellService;
+        private readonly ISpellService<IPrayerOfMendingSpellService> _prayerOfMendingSpellService;
 
-        public DivineImageTranquilLight(IGameStateService gameStateService,
-            ISpellService<IRenewSpellService> renewSpellService)
+        public DivineImageBlessedLight(IGameStateService gameStateService,
+            ISpellService<IPrayerOfMendingSpellService> prayerOfMendingSpellService)
             : base(gameStateService)
         {
-            Spell = Spell.DivineImageTranquilLight;
-            _renewSpellService = renewSpellService;
+            Spell = Spell.DivineImageBlessedLight;
+            _prayerOfMendingSpellService = prayerOfMendingSpellService;
         }
 
         public override double GetAverageRawHealing(GameState gameState, BaseSpellData spellData)
         {
             spellData = ValidateSpellData(gameState, spellData);
 
-            var healingSp = spellData.GetEffect(288956).SpCoefficient;
+            var healingSp = spellData.GetEffect(288952).SpCoefficient;
 
-            // Overall healing for the HoT is: (220 + sp% * int) * int * vers * haste * crit * 6
-            // Each tick is: (220 + sp% * int) * int * vers
-            // Ticks is like a regular HoT: total_amount / tick_amount
-            var baseTick = (healingSp * _gameStateService.GetIntellect(gameState))
+            var averageHeal = healingSp
+                * _gameStateService.GetIntellect(gameState)
                 * _gameStateService.GetVersatilityMultiplier(gameState);
 
-            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Base Tick: {baseTick:0.##}");
+            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {averageHeal:0.##}");
 
-            var totalHealing = baseTick
-                * _gameStateService.GetHasteMultiplier(gameState)
-                * _gameStateService.GetCriticalStrikeMultiplier(gameState)
-                * 6;
+            averageHeal *= _gameStateService.GetCriticalStrikeMultiplier(gameState);
 
-            return totalHealing * GetNumberOfHealingTargets(gameState, spellData);
+            return averageHeal * GetNumberOfHealingTargets(gameState, spellData);
         }
 
         public override double GetActualCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
@@ -60,14 +55,16 @@ namespace Salvation.Core.Modelling.Common.Items
 
         public override double GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
         {
-            var cpm = _renewSpellService.GetActualCastsPerMinute(gameState, null);
+            var cpm = _prayerOfMendingSpellService.GetActualCastsPerMinute(gameState, null);
 
             return cpm;
         }
 
         public override double GetMaximumHealTargets(GameState gameState, BaseSpellData spellData)
         {
-            return 1;
+            spellData = ValidateSpellData(gameState, spellData);
+
+            return spellData.GetEffect(336109).BaseValue;
         }
 
         public override double GetMinimumHealTargets(GameState gameState, BaseSpellData spellData)

@@ -6,7 +6,7 @@ using Salvation.Core.Interfaces.State;
 using Salvation.Core.State;
 using System;
 
-namespace Salvation.Core.Modelling.Common.Items
+namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
     public interface IDivineImageDazzlingsLightSpellService : ISpellService { }
     class DivineImageDazzlingLights : SpellService, ISpellService<IDivineImageDazzlingsLightSpellService>
@@ -75,7 +75,7 @@ namespace Salvation.Core.Modelling.Common.Items
             cpm += _divineHymnSpellService.GetActualCastsPerMinute(gameState, null);
             cpm += _circleOfHealingSpellService.GetActualCastsPerMinute(gameState, null);
 
-            if(_gameStateService.GetTalent(gameState, Spell.DivineStar).Rank > 0)
+            if (_gameStateService.GetTalent(gameState, Spell.DivineStar).Rank > 0)
                 cpm += _divineStarSpellService.GetActualCastsPerMinute(gameState, null);
 
             if (_gameStateService.GetTalent(gameState, Spell.Halo).Rank > 0)

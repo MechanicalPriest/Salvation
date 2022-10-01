@@ -15,6 +15,7 @@ namespace Salvation.Utility.TalentStructureUpdate
     public class TalentStructureUpdateService : ITalentStructureUpdateService
     {
         private readonly string remoteTalentDataUrl = "https://www.raidbots.com/static/data/beta/new-talent-trees.json";
+        private readonly string localRawTalentDataFile = "new-talent-trees.json";
         /// <summary>
         /// This URL was from https://develop.battle.net/documentation/world-of-warcraft/game-data-apis
         /// If it expires you may need to get another one, not
@@ -62,7 +63,8 @@ namespace Salvation.Utility.TalentStructureUpdate
             // This is intended, fix the process if something has changed externally.
 
             // 1. Get data from https://www.raidbots.com/static/data/beta/new-talent-trees.json
-            var rawTalentData = await GetJsonTalentDataAsync();
+            //var rawTalentData = await GetJsonTalentDataAsync();
+            var rawTalentData = await GetJsonTalentDataFromFileAsync();
 
             // 2. Massage it into the format we want 
             var holyPriestData = MassageRawData(rawTalentData);
@@ -81,6 +83,13 @@ namespace Salvation.Utility.TalentStructureUpdate
             using var client = new HttpClient();
 
             var jsonData = await client.GetFromJsonAsync<RawSpec[]>(remoteTalentDataUrl);
+
+            return jsonData;
+        }
+
+        private async Task<RawSpec[]> GetJsonTalentDataFromFileAsync()
+        {
+            var jsonData = await JsonSerializer.DeserializeAsync<RawSpec[]>(File.OpenRead(localRawTalentDataFile));
 
             return jsonData;
         }

@@ -129,43 +129,6 @@ else
         UpdateUnlockedTalents();
     }
 
-    private void UpdateUnlockedTalents()
-    {
-        foreach(var talent in Talents)
-        {
-            var talentIsUnlocked = false;
-
-            // A node is active if:
-
-            // 1. It's a free node
-            if (talent.IsFreeNode)
-                talentIsUnlocked = true;
-
-            // 2. It's a valid entry node
-            if(talent.EntryNode)
-            {
-                talentIsUnlocked = true;
-            }
-
-            // 3. One of its parent nodes is maxed out
-            foreach(var parent in Talents.Where(t => t.NextNodes.Contains(talent.Id)))
-            {
-                if(parent.PointsSpent == parent.MaxRanks)
-                    talentIsUnlocked = true;
-            }
-
-            // Finally, it can't be unlocked if it doesn't meet required total points
-            if (TotalPointsSpent < (talent.RequiredPoints ?? 0))
-                talentIsUnlocked = false;
-
-            // It is unlocked though, if you have any points in it
-            if (talent.PointsSpent > 0)
-                talentIsUnlocked = true;
-
-            talent.IsUnlocked = talentIsUnlocked;
-        }
-    }
-
     public void OnTalentClick(MouseEventArgs eventArgs, Talent talent)
     {
         switch(eventArgs.Button)
@@ -183,23 +146,36 @@ else
 
     private void TalentLeftClick(MouseEventArgs eventArgs, Talent talent)
     {
-        // If there are points to spend, spend them
-        if (talent.PointsSpent < talent.MaxRanks)
+        TrySpendTalentPoint(talent);
+    }
+
+    private void TalentRightClick(MouseEventArgs eventArgs, Talent talent)
+    {
+        TryRefundTalentPoint(talent);
+    }
+
+    public void TrySpendTalentPoint(Talent talent, bool? selectFirstChoiceOption = null)
+    {
+        if (!talent.IsFreeNode && talent.PointsSpent < talent.MaxRanks)
         {
+            // If there are points to spend, spend them
             talent.PointsSpent++;
             TotalPointsSpent++;
         }
-        else if(talent.Type == NodeTypeChoice && talent.PointsSpent > 0)
+        else if (talent.Type == NodeTypeChoice && talent.PointsSpent > 0)
         {
             talent.IsSecondChoiceSelected = !talent.IsSecondChoiceSelected;
         }
+
+        if (selectFirstChoiceOption.HasValue)
+            talent.IsSecondChoiceSelected = !selectFirstChoiceOption.Value;
 
         UpdateSelectedTalent(talent);
 
         UpdateUnlockedTalents();
     }
 
-    private void TalentRightClick(MouseEventArgs eventArgs, Talent talent)
+    public void TryRefundTalentPoint(Talent talent)
     {
         // If there are points spent, remove one
         if (talent.PointsSpent > 0 && !talent.IsFreeNode)
@@ -211,6 +187,24 @@ else
         UpdateSelectedTalent(talent);
 
         UpdateUnlockedTalents();
+    }
+
+    public void ResetTalentTree()
+    {
+        foreach(var talent in Talents)
+        {
+            talent.PointsSpent = 0;
+            talent.IsSecondChoiceSelected = false;
+        }
+
+        TotalPointsSpent = 0;
+
+        UpdateUnlockedTalents();
+
+        foreach (var talent in Talents)
+        {
+            UpdateSelectedTalent(talent);
+        }
     }
 
     // Update the SelectedTalents each time a talent changes
@@ -227,5 +221,42 @@ else
         {
             StateHasChanged();
         });
+    }
+
+    private void UpdateUnlockedTalents()
+    {
+        foreach (var talent in Talents)
+        {
+            var talentIsUnlocked = false;
+
+            // A node is active if:
+
+            // 1. It's a free node
+            if (talent.IsFreeNode)
+                talentIsUnlocked = true;
+
+            // 2. It's a valid entry node
+            if (talent.EntryNode)
+            {
+                talentIsUnlocked = true;
+            }
+
+            // 3. One of its parent nodes is maxed out
+            foreach (var parent in Talents.Where(t => t.NextNodes.Contains(talent.Id)))
+            {
+                if (parent.PointsSpent == parent.MaxRanks)
+                    talentIsUnlocked = true;
+            }
+
+            // Finally, it can't be unlocked if it doesn't meet required total points
+            if (TotalPointsSpent < (talent.RequiredPoints ?? 0))
+                talentIsUnlocked = false;
+
+            // It is unlocked though, if you have any points in it
+            if (talent.PointsSpent > 0)
+                talentIsUnlocked = true;
+
+            talent.IsUnlocked = talentIsUnlocked;
+        }
     }
 }

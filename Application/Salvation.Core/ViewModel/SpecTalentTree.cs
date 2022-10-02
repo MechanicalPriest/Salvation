@@ -16,12 +16,12 @@ namespace Salvation.Core.ViewModel
         public int ClassId { get; set; }
         public string SpecName { get; set; }
         public int SpecId { get; set; }
-        public List<Talent> ClassNodes { get; set; }
-        public List<Talent> SpecNodes { get; set; }
+        public List<TalentNode> ClassNodes { get; set; }
+        public List<TalentNode> SpecNodes { get; set; }
     }
 
     [ExcludeFromCodeCoverage]
-    public class Talent
+    public class TalentNode
     {
         public int Id { get; set; }
         public string Name { get; set; }

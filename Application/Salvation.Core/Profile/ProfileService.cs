@@ -82,11 +82,10 @@ namespace Salvation.Core.Profile
         /// Update a talent's rank. If it doesn't exist, add it. 
         /// </summary>
         /// <param name="profile"></param>
-        /// <param name="talent"></param>
         /// <returns>The associated talent</returns>
-        public Talent UpdateTalent(PlayerProfile profile, Spell spellId, int rank)
+        public Talent UpdateTalent(PlayerProfile profile, Spell spell, int rank)
         {
-            var talent = GetTalent(profile, spellId);
+            var talent = GetTalent(profile, spell);
 
             talent.Rank = rank;
 
@@ -97,16 +96,16 @@ namespace Salvation.Core.Profile
         /// Return a talent if it exists, if not create it and return the new one.
         /// </summary>
         /// <param name="profile"></param>
-        /// <param name="spellId"></param>
+        /// <param name="spell"></param>
         /// <returns></returns>
-        public Talent GetTalent(PlayerProfile profile, Spell spellId)
+        public Talent GetTalent(PlayerProfile profile, Spell spell)
         {
-            var existingTalent = profile.Talents.Where(t => t.SpellId == (int)spellId).FirstOrDefault();
+            var existingTalent = profile.Talents.Where(t => t.SpellId == (int)spell).FirstOrDefault();
 
             if (existingTalent != null)
                 return existingTalent;
 
-            var newTalent = new Talent(spellId, 0);
+            var newTalent = new Talent(spell, 0);
 
             profile.Talents.Add(newTalent);
 
@@ -144,6 +143,133 @@ namespace Salvation.Core.Profile
         public void SetProfileName(PlayerProfile profile, string profileName)
         {
             profile.Name = profileName;
+        }
+
+        public static List<Talent> GetAllTalents(int specId)
+        {
+            switch(specId)
+            {
+                case (int)Spec.HolyPriest:
+                    return GetHolyPriestTalents();
+                case (int)Spec.None:
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(specId), "Spec ID is not implemented.");
+            }
+        }
+
+        private static List<Talent> GetHolyPriestTalents()
+        {
+            // This can be generated from TalentStructureUpdateService::MassageTalentOptions
+            return new List<Talent>()
+            {
+                // Class Talents
+                new Talent(Spell.Renew, 1),
+                new Talent(Spell.DispelMagic, 0),
+                new Talent(Spell.Shadowfiend, 0),
+                new Talent(Spell.PrayerOfMending, 1),
+                new Talent(Spell.ImprovedFlashHeal, 0),
+                new Talent(Spell.ImprovedPurify, 0),
+                new Talent(Spell.PsychicVoice, 0),
+                new Talent(Spell.ShadowWordDeath, 0),
+                new Talent(Spell.FocusedMending, 0),
+                new Talent(Spell.HolyNova, 0),
+                new Talent(Spell.ProtectiveLight, 0),
+                new Talent(Spell.FromDarknessComesLight, 0),
+                new Talent(Spell.AngelicFeather, 0),
+                new Talent(Spell.Phantasm, 0),
+                new Talent(Spell.DeathAndMadness, 0),
+                new Talent(Spell.SpellWarding, 0),
+                new Talent(Spell.BlessedRecovery, 0),
+                new Talent(Spell.Rhapsody, 0),
+                new Talent(Spell.LeapOfFaith, 0),
+                new Talent(Spell.ShackleUndead, 0),
+                new Talent(Spell.SheerTerror, 0),
+                new Talent(Spell.VoidTendrils, 0),
+                new Talent(Spell.MindControl, 0),
+                new Talent(Spell.DominateMind, 0),
+                new Talent(Spell.WordsOfThePious, 0),
+                new Talent(Spell.MassDispel, 0),
+                new Talent(Spell.MoveWithGrace, 0),
+                new Talent(Spell.PowerInfusion, 0),
+                new Talent(Spell.VampiricEmbrace, 0),
+                new Talent(Spell.TitheEvasion, 0),
+                new Talent(Spell.Inspiration, 0),
+                new Talent(Spell.ImprovedMassDispel, 0),
+                new Talent(Spell.BodyAndSoul, 0),
+                new Talent(Spell.TwinsOfTheSunPriestess, 0),
+                new Talent(Spell.VoidShield, 0),
+                new Talent(Spell.Sanlayn, 0),
+                new Talent(Spell.Apathy, 0),
+                new Talent(Spell.UnwaveringWill, 0),
+                new Talent(Spell.TwistOfFate, 0),
+                new Talent(Spell.ThroesOfPain, 0),
+                new Talent(Spell.AngelsMercy, 0),
+                new Talent(Spell.BindingHeals, 0),
+                new Talent(Spell.DivineStar, 0),
+                new Talent(Spell.Halo, 0),
+                new Talent(Spell.TranslucentImage, 0),
+                new Talent(Spell.Mindgames, 0),
+                new Talent(Spell.SurgeOfLight, 0),
+                new Talent(Spell.LightsInspiration, 0),
+                new Talent(Spell.CrystallineReflection, 0),
+                new Talent(Spell.ImprovedFade, 0),
+                new Talent(Spell.Manipulation, 0),
+                new Talent(Spell.PowerWordLife, 0),
+                new Talent(Spell.AngelicBulwark, 0),
+                new Talent(Spell.VoidShift, 0),
+                new Talent(Spell.ShatteredPerceptions, 0),
+                // Spec Talents
+                new Talent(Spell.HolyWordSerenity, 0),
+                new Talent(Spell.PrayerOfHealing, 0),
+                new Talent(Spell.GuardianSpirit, 0),
+                new Talent(Spell.HolyWordChastise, 0),
+                new Talent(Spell.HolyWordSanctify, 0),
+                new Talent(Spell.GuardianAngel, 0),
+                new Talent(Spell.GuardiansOfTheLight, 0),
+                new Talent(Spell.Censure, 0),
+                new Talent(Spell.BurningVehemence, 0),
+                new Talent(Spell.CircleOfHealing, 0),
+                new Talent(Spell.RevitalizingPrayers, 0),
+                new Talent(Spell.SanctifiedPrayers, 0),
+                new Talent(Spell.CosmicRipple, 0),
+                new Talent(Spell.Afterlife, 0),
+                new Talent(Spell.RenewedFaith, 0),
+                new Talent(Spell.EmpyrealBlaze, 0),
+                new Talent(Spell.PrayerCircle, 0),
+                new Talent(Spell.HealingChorus, 0),
+                new Talent(Spell.PrayerfulLitany, 0),
+                new Talent(Spell.TrailOfLight, 0),
+                new Talent(Spell.DivineHymn, 0),
+                new Talent(Spell.Enlightenment, 0),
+                new Talent(Spell.Benediction, 0),
+                new Talent(Spell.HolyMending, 0),
+                new Talent(Spell.Orison, 0),
+                new Talent(Spell.EverlastingLight, 0),
+                new Talent(Spell.GalesOfSong, 0),
+                new Talent(Spell.SymbolOfHope, 0),
+                new Talent(Spell.DivineService, 0),
+                new Talent(Spell.CrisisManagement, 0),
+                new Talent(Spell.PrismaticEchoes, 0),
+                new Talent(Spell.PrayersOfTheVirtuous, 0),
+                new Talent(Spell.Pontifex, 0),
+                new Talent(Spell.Apotheosis, 0),
+                new Talent(Spell.HolyWordSalvation, 0),
+                new Talent(Spell.EmpoweredRenew, 0),
+                new Talent(Spell.RapidRecovery, 0),
+                new Talent(Spell.SayYourPrayers, 0),
+                new Talent(Spell.ResonantWords, 0),
+                new Talent(Spell.DesperateTimes, 0),
+                new Talent(Spell.LightOfTheNaaru, 0),
+                new Talent(Spell.HarmoniousApparatus, 0),
+                new Talent(Spell.SearingLight, 0),
+                new Talent(Spell.AnsweredPrayers, 0),
+                new Talent(Spell.Lightweaver, 0),
+                new Talent(Spell.Lightwell, 0),
+                new Talent(Spell.DivineImage, 0),
+                new Talent(Spell.DivineWord, 0),
+                new Talent(Spell.MiracleWorker, 0),
+                new Talent(Spell.Restitution, 0),
+            };
         }
 
         #region Profile Management
@@ -195,6 +321,9 @@ namespace Salvation.Core.Profile
             }
 
             // Talents
+            // First get all possible talents, then update the ranks.
+            newProfile.Talents = GetAllTalents((int)profile.Spec);
+
             foreach (var talent in profile.Talents)
             {
                 UpdateTalent(newProfile, talent.Spell, talent.Rank);
@@ -286,10 +415,7 @@ namespace Salvation.Core.Profile
                     //new CastProfile((int)Spell.OverflowingAnimaCage, 0.85d, 0.0d, 0, 0),
                     //new CastProfile((int)Spell.SiphoningPhylacteryShard, 0.95d, 0.01d, 1, 0),
                 },
-                Talents = new List<Talent>()
-                {
-                    // TODO: Build up some default talents. Maybe do it as sets of talent builds? Then a default build.
-                },
+                Talents = GetAllTalents((int)Spec.HolyPriest),
                 FightLengthSeconds = 397,
                 PlaystyleEntries = new List<PlaystyleEntry>()
                 {

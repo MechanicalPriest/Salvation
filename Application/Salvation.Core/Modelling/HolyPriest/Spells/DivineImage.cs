@@ -79,7 +79,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         {
             spellData = ValidateSpellData(gameState, spellData);
 
-            var duration = spellData.GetEffect(833842).TriggerSpell.Duration / 1000;
+            var duration = spellData.GetEffect(1031610).TriggerSpell.Duration / 1000;
 
             return duration;
         }

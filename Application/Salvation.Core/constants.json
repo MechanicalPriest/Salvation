@@ -1743,7 +1743,7 @@
           ]
         },
         {
-          "Id": 336314,
+          "Id": 390994,
           "Name": "Harmonious Apparatus",
           "ManaCost": 0.0,
           "MaxRange": 0.0,
@@ -1761,7 +1761,7 @@
           "RppmIsHasted": false,
           "Effects": [
             {
-              "Id": 833714,
+              "Id": 1028210,
               "BaseValue": 4.0,
               "SpCoefficient": 0.0,
               "Coefficient": 0.0,
@@ -1774,7 +1774,7 @@
           ]
         },
         {
-          "Id": 336400,
+          "Id": 392988,
           "Name": "Divine Image",
           "ManaCost": 0.0,
           "MaxRange": 0.0,
@@ -1792,14 +1792,14 @@
           "RppmIsHasted": false,
           "Effects": [
             {
-              "Id": 833842,
+              "Id": 1031610,
               "BaseValue": 6.0,
               "SpCoefficient": 0.0,
               "Coefficient": 0.0,
-              "TriggerSpellid": 336401,
+              "TriggerSpellid": 392990,
               "Amplitude": 0.0,
               "TriggerSpell": {
-                "Id": 336401,
+                "Id": 392990,
                 "Name": "Divine Image",
                 "ManaCost": 0.0,
                 "MaxRange": 100.0,
@@ -1817,7 +1817,7 @@
                 "RppmIsHasted": false,
                 "Effects": [
                   {
-                    "Id": 833843,
+                    "Id": 1031612,
                     "BaseValue": 60.0,
                     "SpCoefficient": 0.0,
                     "Coefficient": 0.0,
@@ -1828,7 +1828,7 @@
                     "ScaleValues": {}
                   },
                   {
-                    "Id": 833844,
+                    "Id": 1031613,
                     "BaseValue": 0.0,
                     "SpCoefficient": 0.0,
                     "Coefficient": 0.0,
@@ -1877,6 +1877,17 @@
                       ]
                     },
                     "Type": 64,
+                    "ScaleValues": {}
+                  },
+                  {
+                    "Id": 1033812,
+                    "BaseValue": 0.0,
+                    "SpCoefficient": 0.0,
+                    "Coefficient": 0.0,
+                    "TriggerSpellid": 0,
+                    "Amplitude": 0.0,
+                    "TriggerSpell": null,
+                    "Type": 6,
                     "ScaleValues": {}
                   }
                 ]

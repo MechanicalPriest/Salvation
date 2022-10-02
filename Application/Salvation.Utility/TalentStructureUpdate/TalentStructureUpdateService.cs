@@ -1,8 +1,9 @@
 ﻿using Microsoft.Extensions.Logging;
-using Salvation.Core.State;
+using Salvation.Core.Profile.Model;
 using Salvation.Core.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
@@ -68,6 +69,9 @@ namespace Salvation.Utility.TalentStructureUpdate
 
             // 2. Massage it into the format we want 
             var holyPriestData = MassageRawData(rawTalentData);
+            // (optionally) generate snippets for code files
+            GenerateCodeSnippets(holyPriestData.ClassNodes);
+            GenerateCodeSnippets(holyPriestData.SpecNodes);
 
             // 3. Save it to file
             using FileStream processedDataFile = File.Create(Path.Combine(staticDataRelativePath, localTalentDataFile));
@@ -114,13 +118,13 @@ namespace Salvation.Utility.TalentStructureUpdate
             return holyPriest;
         }
 
-        private static List<Talent> MassageTalentNodes(List<RawTalent> nodes, int leftOffset, int topOffset)
+        private static List<TalentNode> MassageTalentNodes(List<RawTalent> nodes, int leftOffset, int topOffset)
         {
-            List<Talent> talents = new List<Talent>();
+            List<TalentNode> talents = new List<TalentNode>();
 
             foreach (var node in nodes)
             {
-                var talent = new Talent()
+                var talent = new TalentNode()
                 {
                     Id = node.id,
                     Name = node.name,
@@ -138,10 +142,35 @@ namespace Salvation.Utility.TalentStructureUpdate
                     TreeColumn = (node.posX - leftOffset) / talentColumnWidth
                 };
 
-                talents.Add(talent);
+                talents.Add(talent);               
             }
 
             return talents;
+        }
+
+        private static void GenerateCodeSnippets(List<TalentNode> talents)
+        {
+            TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
+
+            // produce talents for ProfileService::GetHolyPriestTalents
+            foreach (var talent in talents)
+            {
+                foreach (var talentEntry in talent.TalentEntries)
+                {
+                    var name = textInfo.ToTitleCase(talentEntry.Name.ToLower()).Replace(",", "").Replace("'", "").Replace(" ", "").Replace(":", "");
+                    Console.WriteLine($"new Talent(Spell.{name}, {(talent.IsFreeNode ? 1 : 0)}),");
+                }
+            }
+
+            // produce spells for Spell enum
+            foreach (var talent in talents)
+            {
+                foreach (var talentEntry in talent.TalentEntries)
+                {
+                    var name = textInfo.ToTitleCase(talentEntry.Name.ToLower()).Replace(",", "").Replace("'", "").Replace(" ", "").Replace(":", "");
+                    Console.WriteLine($"{name} = {talentEntry.SpellId},");
+                }
+            }
         }
 
         private static List<TalentOption> MassageTalentOptions(List<RawTalentOption> nodes)
@@ -181,11 +210,11 @@ namespace Salvation.Utility.TalentStructureUpdate
         {
             using var client = new HttpClient();
 
-            var allTalents = new List<Talent>();
+            var allTalents = new List<TalentNode>();
             allTalents.AddRange(holyPriestData.ClassNodes);
             allTalents.AddRange(holyPriestData.SpecNodes);
             // Also get the "unknown" icon.
-            allTalents.Add(new Talent()
+            allTalents.Add(new TalentNode()
             {
                 TalentEntries = new List<TalentOption>()
                 {

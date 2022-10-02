@@ -74,7 +74,7 @@ else
     public int PointsTotal { get; set; } = 0;
 
     [Parameter]
-    public List<Talent> Talents { get; set; } = new List<Talent>();
+    public List<TalentNode> Talents { get; set; } = new List<TalentNode>();
 
     [Parameter]
     public Dictionary<int, int> SelectedTalents { get; set; } = new Dictionary<int, int>();
@@ -129,7 +129,7 @@ else
         UpdateUnlockedTalents();
     }
 
-    public void OnTalentClick(MouseEventArgs eventArgs, Talent talent)
+    public void OnTalentClick(MouseEventArgs eventArgs, TalentNode talent)
     {
         switch(eventArgs.Button)
         {
@@ -144,17 +144,17 @@ else
         }
     }
 
-    private void TalentLeftClick(MouseEventArgs eventArgs, Talent talent)
+    private void TalentLeftClick(MouseEventArgs eventArgs, TalentNode talent)
     {
         TrySpendTalentPoint(talent);
     }
 
-    private void TalentRightClick(MouseEventArgs eventArgs, Talent talent)
+    private void TalentRightClick(MouseEventArgs eventArgs, TalentNode talent)
     {
         TryRefundTalentPoint(talent);
     }
 
-    public void TrySpendTalentPoint(Talent talent, bool? selectFirstChoiceOption = null)
+    public void TrySpendTalentPoint(TalentNode talent, bool? selectFirstChoiceOption = null)
     {
         if (!talent.IsFreeNode && talent.PointsSpent < talent.MaxRanks)
         {
@@ -175,7 +175,7 @@ else
         UpdateUnlockedTalents();
     }
 
-    public void TryRefundTalentPoint(Talent talent)
+    public void TryRefundTalentPoint(TalentNode talent)
     {
         // If there are points spent, remove one
         if (talent.PointsSpent > 0 && !talent.IsFreeNode)
@@ -208,7 +208,7 @@ else
     }
 
     // Update the SelectedTalents each time a talent changes
-    private void UpdateSelectedTalent(Talent talent)
+    private void UpdateSelectedTalent(TalentNode talent)
     {
         var spellId = !talent.IsSecondChoiceSelected ? talent.TalentEntries[0].SpellId : talent.TalentEntries[1].SpellId;
 

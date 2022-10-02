@@ -37,7 +37,7 @@ namespace Salvation.Client.Shared.Components
         // Talent viewer
         private Dictionary<int, int> selectedTalents = new Dictionary<int, int>()
         {
-            { 10060, 1 },
+            
         };
 
         // Loading of results
@@ -60,23 +60,27 @@ namespace Salvation.Client.Shared.Components
             if (_appInsights == null)
                 throw new NullReferenceException("App insights logging was not initialised");
 
+            if(data == null)
+                throw new NullReferenceException("There is no profile to generate results from");
+
             var client = _httpClientFactory.CreateClient("Api");
 
             try
             {
+                // Populate the selected talents.
+                foreach(var talent in selectedTalents)
+                {
+                    var dataTalent = data.Talents.Where(t => t.SpellId == talent.Key).FirstOrDefault();
+
+                    if (dataTalent != null)
+                        dataTalent.Rank = talent.Value;
+                }
+
                 var response = await client.PostAsJsonAsync(processModelEndpoint, data);
 
                 if (response.IsSuccessStatusCode)
                 {
                     modellingResults = await response.Content.ReadFromJsonAsync<ModellingResultsViewModel>();
-
-                    //var jsonOptions = new JsonSerializerOptions
-                    //{
-                    //    PropertyNameCaseInsensitive = true,
-                    //};
-                    
-                    //modellingResults = await JsonConvert.DeserializeObject<ModellingResultsViewModel>(responseStream, jsonOptions);
-                    //modellingResults = await JsonSerializer.DeserializeAsync<ModellingResultsViewModel>(responseStream, jsonOptions);
 
                     loadingResults = false;
                 }

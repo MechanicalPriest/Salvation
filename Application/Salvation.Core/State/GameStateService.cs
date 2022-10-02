@@ -700,9 +700,11 @@ namespace Salvation.Core.State
             JournalEntry(state, $"Registering talent spells...");
             foreach (var talent in state.Profile.Talents)
             {
-
-                registeredSpells.Add(new RegisteredSpell((Spell)talent.SpellId));
-                JournalEntry(state, $"Registered {registeredSpells.LastOrDefault()?.Spell}.");
+                if (talent.Rank > 0)
+                {
+                    registeredSpells.Add(new RegisteredSpell((Spell)talent.SpellId));
+                    JournalEntry(state, $"Registered {registeredSpells.LastOrDefault()?.Spell} at rank {talent.Rank}.");
+                }
             }
             JournalEntry(state, $"Registering talent spells... Done!");
 
@@ -951,7 +953,7 @@ namespace Salvation.Core.State
 
             if (IsLegendaryActive(state, Spell.HarmoniousApparatus))
             {
-                haCDRBase = GetSpellData(state, Spell.HarmoniousApparatus).GetEffect(833714).BaseValue;
+                haCDRBase = GetSpellData(state, Spell.HarmoniousApparatus).GetEffect(1028210).BaseValue;
             }
 
             var returnCDR = 0d;

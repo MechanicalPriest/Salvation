@@ -15,7 +15,7 @@ namespace Salvation.Core.Interfaces.Profile
         void SetSpellCastProfile(PlayerProfile profile, CastProfile castProfile);
         void SetProfileName(PlayerProfile profile, string profileName);
         List<Item> GetEquippedItems(PlayerProfile profile);
-        Talent UpdateTalent(PlayerProfile profile, Spell talentId, int rank);
-        Talent GetTalent(PlayerProfile profile, Spell talentId);
+        Talent UpdateTalent(PlayerProfile profile, Spell talentSpell, int rank);
+        Talent GetTalent(PlayerProfile profile, Spell talentSpell);
     }
 }

@@ -5,7 +5,7 @@
     <MudItem xs="12" Class="align-center justify-center">
         <MudText Typo="Typo.h4" Align="Align.Center">Import, Configure, Run!</MudText>
     </MudItem>
-    <MudItem xs="12" md="6" xl="4">
+    <MudItem xs="12" md="6" lg="4">
         <MudPaper Class="d-flex align-center justify-center mud-width-full py-2 px-2">
             <MudStack Class="mud-width-full">
                 <MudText Typo="Typo.h6" Align="Align.Center">Profile</MudText>
@@ -71,7 +71,7 @@
                             </MudDataGrid>
                         </MudExpansionPanel>
                         <MudExpansionPanel Text="Talents" IsInitiallyExpanded="true">
-                            <TalentViewer SelectedTalents=@selectedTalents></TalentViewer>
+                            <TalentViewer SelectedTalents=@selectedTalents DisplayVertical="true"></TalentViewer>
                         </MudExpansionPanel>
                         <MudExpansionPanel Text="Advanced" IsInitiallyExpanded="true">
                             <MudDataGrid Items="@data.AdvancedSettings" Hover="true" Dense="true" ReadOnly="false" EditMode="DataGridEditMode.Cell" QuickFilter="@advancedFilter" Height="300px;" HorizontalScrollbar="false" ShowColumnOptions="false" SortMode="SortMode.None">

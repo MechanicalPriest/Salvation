@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Text.Json.Serialization;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace Salvation.Core.ViewModel
 {
+    [ExcludeFromCodeCoverage]
     public class TalentSpec
     {
         public string ClassName { get; set; }
@@ -18,6 +20,7 @@ namespace Salvation.Core.ViewModel
         public List<Talent> SpecNodes { get; set; }
     }
 
+    [ExcludeFromCodeCoverage]
     public class Talent
     {
         public int Id { get; set; }
@@ -40,6 +43,7 @@ namespace Salvation.Core.ViewModel
         public bool IsSecondChoiceSelected { get; set; }
     }
 
+    [ExcludeFromCodeCoverage]
     public class TalentOption
     {
         public int Id { get; set; }

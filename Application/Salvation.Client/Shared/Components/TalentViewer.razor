@@ -9,13 +9,11 @@
 else
 {
     <MudGrid Justify="Justify.Center">
-        <MudItem xs="12" md="6">
-            <MudText Typo="Typo.h6" Align="Align.Center" Class="mb-4">@holyPriest.ClassName</MudText>
-            <TalentTree @ref="classTalentViewer" Talents=@holyPriest.ClassNodes PointsTotal=@ClassPoints SelectedTalents=@SelectedTalents></TalentTree>
+        <MudItem xs="12" md="@(DisplayVertical ? 12 : 6)">
+            <TalentTree @ref="classTalentViewer" TreeName="@holyPriest.ClassName" Talents=@holyPriest.ClassNodes PointsTotal=@ClassPoints SelectedTalents=@SelectedTalents></TalentTree>
         </MudItem>
-        <MudItem xs="12" md="6">
-            <MudText Typo="Typo.h6" Align="Align.Center" Class="mb-4">@holyPriest.SpecName</MudText>
-            <TalentTree @ref="specTalentViewer" Talents=@holyPriest.SpecNodes PointsTotal=@SpecPoints SelectedTalents=@SelectedTalents></TalentTree>
+        <MudItem xs="12" md="@(DisplayVertical ? 12 : 6)">
+            <TalentTree @ref="specTalentViewer" TreeName="@holyPriest.SpecName" Talents=@holyPriest.SpecNodes PointsTotal=@SpecPoints SelectedTalents=@SelectedTalents></TalentTree>
         </MudItem>
         <MudItem xs="12">
             <MudStack>

@@ -8,7 +8,7 @@
 else
 {
     <div>
-        <MudText Typo="Typo.h6" Align="Align.Center" Class="@($"mb-4 {(TotalPointsSpent > PointsTotal ? "mud-error-text" : "")}")">@TotalPointsSpent / @PointsTotal</MudText>
+        <MudText Typo="Typo.h6" Align="Align.Center" Class="@($"mb-4 {(TotalPointsSpent > PointsTotal ? "mud-error-text" : "")}")">@TreeName @TotalPointsSpent / @PointsTotal</MudText>
     </div>
     <div class="talent-container">
         <div class="talent-grid mud-theme-dark">
@@ -53,7 +53,7 @@ else
                 </a>
                 @if (!talent.IsFreeNode)
                 {
-                    <div class="talent-points-spent talent-col-@(talent.TreeColumn) talent-row-@(talent.TreeRow)">
+                    <div class="talent-points-spent talent-col-@(talent.TreeColumn) talent-row-@(talent.TreeRow)" data-status="@(@talent.PointsSpent == @talent.MaxRanks ? "active" : (@talent.PointsSpent > 0 ? "partial" : "none"))">
                         @talent.PointsSpent/@talent.MaxRanks
                     </div>
                 }
@@ -78,6 +78,9 @@ else
 
     [Parameter]
     public Dictionary<int, int> SelectedTalents { get; set; } = new Dictionary<int, int>();
+
+    [Parameter]
+    public string TreeName { get; set; } = "Talent Tree";
 
     public string GetImageStyle(string talentIcon)
     {

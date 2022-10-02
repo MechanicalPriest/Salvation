@@ -15,6 +15,9 @@ namespace Salvation.Client.Shared.Components
         [Parameter]
         public Dictionary<int, int> SelectedTalents { get; set; } = new Dictionary<int, int>();
 
+        [Parameter]
+        public bool DisplayVertical { get; set; } = false;
+
         private TalentSpec? holyPriest;
         private static int ClassPoints = 31;
         private static int SpecPoints = 30;

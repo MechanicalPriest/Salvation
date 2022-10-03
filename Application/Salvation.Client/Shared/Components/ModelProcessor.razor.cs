@@ -1,14 +1,9 @@
 ﻿using BlazorApplicationInsights;
 using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.WebAssembly.Http;
 using Microsoft.JSInterop;
-using MudBlazor;
-using Newtonsoft.Json;
-using Salvation.Core.Constants;
 using Salvation.Core.Profile.Model;
 using Salvation.Core.ViewModel;
 using System.Net.Http.Json;
-using System.Text.Json;
 
 namespace Salvation.Client.Shared.Components
 {
@@ -50,6 +45,10 @@ namespace Salvation.Client.Shared.Components
         private ChartDataItem[] HpmChartData { get; set; } = Array.Empty<ChartDataItem>();
         private ChartDataItem[] HealCpmChartData { get; set; } = Array.Empty<ChartDataItem>();
         private ChartDataItem[] HealMpsChartData { get; set; } = Array.Empty<ChartDataItem>();
+
+        // Applying simc import string
+        private static readonly string simcImportStringEndpoint = "ApplySimcProfile";
+        private string simcImportString = string.Empty;
 
         protected override async Task OnInitializedAsync()
         {
@@ -119,6 +118,51 @@ namespace Salvation.Client.Shared.Components
             }
 
             DataPostProcessing();
+        }
+
+        private async Task ApplySimcImportString()
+        {
+            if (_httpClientFactory == null)
+                throw new NullReferenceException("Web client was not initialised");
+
+            if (_appInsights == null)
+                throw new NullReferenceException("App insights logging was not initialised");
+
+            var client = _httpClientFactory.CreateClient("Api");
+
+            try
+            {
+                var dataToSend = new ApplySimcProfileRequest()
+                {
+                    Profile = data,
+                    SimcProfileString = simcImportString
+                };
+
+                var response = await client.PostAsJsonAsync(simcImportStringEndpoint, dataToSend);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    data = await response.Content.ReadFromJsonAsync<PlayerProfileViewModel>();
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+                Error error = new()
+                {
+                    Message = ex.Message,
+                    Stack = ex.StackTrace
+                };
+                await _appInsights.TrackException(error);
+            }
+            catch (InvalidOperationException ex)
+            {
+                Error error = new()
+                {
+                    Message = ex.Message,
+                    Stack = ex.StackTrace
+                };
+                await _appInsights.TrackException(error);
+            }
         }
 
         private async Task GetDefaultProfile()

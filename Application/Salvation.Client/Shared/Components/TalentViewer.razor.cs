@@ -25,7 +25,7 @@ namespace Salvation.Client.Shared.Components
         private TalentTree? classTalentViewer;
         private TalentTree? specTalentViewer;
 
-        private string wclImportText = "";
+        private string wclImportText = String.Empty;
 
         protected override async Task OnInitializedAsync()
         {

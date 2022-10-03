@@ -21,9 +21,9 @@
                             <ChildContent>
                                  <MudStack Class="mud-width-full">
                                     <MudText Typo="Typo.subtitle2">To import, download the <MudLink Href="https://www.curseforge.com/wow/addons/simulationcraft" Target="_blank">Simulationcraft Addon</MudLink>, then type <span style="font-family: monospace">/simc</span> in-game.</MudText>
-                                    <MudTextField T="string" Label="Paste /simc output here" Variant="Variant.Outlined" Text="" Lines="3" />
+                                    <MudTextField @bind-Value="simcImportString" T="string" Label="Paste /simc output here" Variant="Variant.Outlined" Lines="3" />
                                     <MudAlert Severity="Severity.Warning">This will override your current profile.</MudAlert>
-                                    <MudButton Variant="Variant.Filled" Color="Color.Primary" FullWidth="true">Import</MudButton>
+                                    <MudButton Variant="Variant.Filled" Color="Color.Primary" FullWidth="true" OnClick="ApplySimcImportString">Import</MudButton>
                                 </MudStack>
                             </ChildContent>
                         </MudExpansionPanel>

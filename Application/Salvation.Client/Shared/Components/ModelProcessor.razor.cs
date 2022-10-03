@@ -195,7 +195,7 @@ namespace Salvation.Client.Shared.Components
                     };
 
                     data = await System.Text.Json.JsonSerializer.DeserializeAsync<PlayerProfileViewModel>(responseStream, jsonOptions);
-
+                    
                     loadingData = false;
                 }
                 else

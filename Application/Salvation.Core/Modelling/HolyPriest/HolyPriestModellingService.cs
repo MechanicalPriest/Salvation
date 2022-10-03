@@ -58,6 +58,7 @@ namespace Salvation.Core.Modelling.HolyPriest
 
             // Create a sumamry for each spell cast that's a sum of its children
             RollUpResults(results);
+            results.RolledUpResultsSummary = results.RolledUpResultsSummary.OrderByDescending(r => r.HPS).ToList();
 
             results.TotalRawHPM = results.TotalRawHPS / results.TotalMPS;
             results.TotalActualHPM = results.TotalActualHPS / results.TotalMPS;

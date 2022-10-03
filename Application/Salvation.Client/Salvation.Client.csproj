@@ -8,6 +8,7 @@
 
   <ItemGroup>
 	  <Content Remove="Shared\Components\TalentTree.razor.css" />
+	  <Content Remove="Shared\Components\ModelProcessor.razor.css" />
   </ItemGroup>
 
   <ItemGroup>

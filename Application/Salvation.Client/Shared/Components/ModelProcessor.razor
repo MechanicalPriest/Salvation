@@ -2,6 +2,7 @@
 @using Salvation.Core.ViewModel
 @inject IJSRuntime JS
 
+<div>
 <MudGrid>
     <MudItem xs="12" Class="align-center justify-center">
         <MudText Typo="Typo.h4" Align="Align.Center">Import, Configure, Run!</MudText>
@@ -132,18 +133,28 @@
                             </MudStack>
                             <MudTabs Centered="true" KeepPanelsAlive="true">
                                 <MudTabPanel Text="Spell Table" Icon="@Icons.Material.Filled.GridOn">
-                                    <MudStack Class="mud-width-full">                                        
+                                    <MudStack Class="mud-width-full" Justify="Justify.Center">
                                         <MudTable Dense="true" Items="@modellingResults.ModelResults.RolledUpResultsSummary">
+                                            <ColGroup>
+                                                <col />
+                                                <col style="min-width: 100px;" />
+                                                <col />
+                                                <col />
+                                                <col />
+                                                <col />
+                                            </ColGroup>
                                             <HeaderContent>
-                                                <MudTh>Spell</MudTh>
+                                                <MudTh><MudTableSortLabel SortBy="new Func<AveragedSpellCastResult, object>(x=>x.SpellName)">Spell</MudTableSortLabel></MudTh>
+                                                <MudTh></MudTh>
                                                 <MudTh><MudTableSortLabel SortBy="new Func<AveragedSpellCastResult, object>(x=>x.HPCT)"><MudTooltip Text="Healing Per Cast Time">HPCT</MudTooltip></MudTableSortLabel></MudTh>
-                                                <MudTh><MudTooltip Text="Healing Per Mana Spent">HPM</MudTooltip></MudTh>
-                                                <MudTh><MudTooltip Text="Casts Per Minute (Maximum CPM)">CPM</MudTooltip></MudTh>
-                                                <MudTh><MudTooltip Text="Healing Per Second">HPS</MudTooltip></MudTh>
+                                                <MudTh><MudTableSortLabel SortBy="new Func<AveragedSpellCastResult, object>(x=>x.HPM)"><MudTooltip Text="Healing Per Mana Spent">HPM</MudTooltip></MudTableSortLabel></MudTh>
+                                                <MudTh><MudTableSortLabel SortBy="new Func<AveragedSpellCastResult, object>(x=>x.CastsPerMinute)"><MudTooltip Text="Casts Per Minute (Maximum CPM)">CPM</MudTooltip></MudTableSortLabel></MudTh>
+                                                <MudTh><MudTableSortLabel InitialDirection="SortDirection.Descending" SortBy="new Func<AveragedSpellCastResult, object>(x=>x.HPS)"><MudTooltip Text="Healing Per Second">HPS</MudTooltip></MudTableSortLabel></MudTh>
                                             </HeaderContent>
                                             <RowTemplate>
-                                                <MudTd DataLabel="Spell">
-                                                    <a href="@GenerateWowheadSpellLink(context.SpellId)" data-wh-icon-size="tiny">@context.SpellName</a>
+                                                <MudTd DataLabel="Spell"><a href="@GenerateWowheadSpellLink(context.SpellId)" data-wh-icon-size="tiny">@context.SpellName</a></MudTd>
+                                                <MudTd>
+                                                    <MudProgressLinear Value="@(context.HPS / modellingResults.ModelResults.TotalActualHPS * 100)" />
                                                 </MudTd>
                                                 <MudTd DataLabel="HPCT"><MudTooltip Text="@(context.NumberOfHealingTargets + " Targets")">@context.HPCT.ToString("N0")</MudTooltip></MudTd>
                                                 <MudTd DataLabel="HPM">@context.HPM.ToString("N2")</MudTd>
@@ -154,15 +165,15 @@
                                     </MudStack>
                                 </MudTabPanel>
                                 <MudTabPanel Text="Stat Weights" Icon="@Icons.Material.Filled.ScatterPlot">
-                                    <MudStack Justify="Justify.Center">
-                                        <MudText Typo="Typo.body2">@modellingResults.EffectiveStatWeightResult.Name Weights</MudText>
-                                        <MudStack Row="true" Justify="Justify.Center">
+                                        <MudStack AlignItems="AlignItems.Center">
+                                        <MudText>@modellingResults.EffectiveStatWeightResult.Name Weights</MudText>
+                                            <MudStack Row="true" Justify="Justify.Center">
                                             @foreach (var entry in modellingResults.EffectiveStatWeightResult.Results)
                                             {
                                                 <MudPaper Class="pa-3">
                                                     <MudStack>
                                                         <MudText Typo="Typo.body1" Align="Align.Center">@entry.Stat</MudText>
-                                                        <MudText Typo="Typo.body2" Align="Align.Center">@entry.Weight.ToString("N2")</MudText>
+                                                        <MudText Typo="Typo.body2" Align="Align.Center"><span class="stat-colour" data-stat="@entry.Stat">@entry.Weight.ToString("N2")</span></MudText>
                                                         <MudText Typo="Typo.body2" Align="Align.Center">@entry.Value.ToString("N2") HPS</MudText>
                                                     </MudStack>
                                                 </MudPaper>
@@ -175,7 +186,7 @@
                                                 <MudPaper Class="pa-3">
                                                     <MudStack>
                                                         <MudText Typo="Typo.body1" Align="Align.Center">@entry.Stat</MudText>
-                                                        <MudText Typo="Typo.body2" Align="Align.Center">@entry.Weight.ToString("N2")</MudText>
+                                                            <MudText Typo="Typo.body2" Align="Align.Center"><span class="stat-colour" data-stat="@entry.Stat">@entry.Weight.ToString("N2")</span></MudText>
                                                         <MudText Typo="Typo.body2" Align="Align.Center">@entry.Value.ToString("N2") HPS</MudText>
                                                     </MudStack>
                                                 </MudPaper>
@@ -262,3 +273,4 @@
         </MudPaper>
     </MudItem>
 </MudGrid>
+</div>

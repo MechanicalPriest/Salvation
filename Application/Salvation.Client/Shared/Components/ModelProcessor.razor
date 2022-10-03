@@ -1,4 +1,5 @@
-﻿@using Salvation.Core.ViewModel
+﻿@using Salvation.Core.Modelling.Common
+@using Salvation.Core.ViewModel
 @inject IJSRuntime JS
 
 <MudGrid>
@@ -38,7 +39,7 @@
                             </MudStack>
                         </MudAlert>
                     }
-                    else
+                    else if(data != null)
                     {
                         <MudExpansionPanel Text="Gear">
                             @foreach(var item in data.Items)
@@ -132,10 +133,10 @@
                             <MudTabs Centered="true">
                                 <MudTabPanel Text="Spell Table" Icon="@Icons.Material.Filled.GridOn">
                                     <MudStack Class="mud-width-full">                                        
-                                        <MudTable Dense="true" Items="@modellingResults.ModelResults.SpellCastResults">
+                                        <MudTable Dense="true" Items="@modellingResults.ModelResults.RolledUpResultsSummary">
                                             <HeaderContent>
                                                 <MudTh>Spell</MudTh>
-                                                <MudTh><MudTooltip Text="Healing Per Cast Time">HPCT</MudTooltip></MudTh>
+                                                <MudTh><MudTableSortLabel SortBy="new Func<AveragedSpellCastResult, object>(x=>x.HPCT)"><MudTooltip Text="Healing Per Cast Time">HPCT</MudTooltip></MudTableSortLabel></MudTh>
                                                 <MudTh><MudTooltip Text="Healing Per Mana Spent">HPM</MudTooltip></MudTh>
                                                 <MudTh><MudTooltip Text="Casts Per Minute (Maximum CPM)">CPM</MudTooltip></MudTh>
                                                 <MudTh><MudTooltip Text="Healing Per Second">HPS</MudTooltip></MudTh>
@@ -144,7 +145,7 @@
                                                 <MudTd DataLabel="Spell">
                                                     <a href="@GenerateWowheadSpellLink(context.SpellId)" data-wh-icon-size="tiny">@context.SpellName</a>
                                                 </MudTd>
-                                                <MudTd DataLabel="HPCT">@context.HPCT.ToString("N0")</MudTd>
+                                                <MudTd DataLabel="HPCT"><MudTooltip Text="@(context.NumberOfHealingTargets + " Targets")">@context.HPCT.ToString("N0")</MudTooltip></MudTd>
                                                 <MudTd DataLabel="HPM">@context.HPM.ToString("N2")</MudTd>
                                                 <MudTd DataLabel="CPM">@context.CastsPerMinute.ToString("N1") (@context.MaximumCastsPerMinute.ToString("N1"))</MudTd>
                                                 <MudTd DataLabel="CPM">@context.HPS.ToString("N0")</MudTd>
@@ -181,6 +182,23 @@
                                             }
                                         </MudStack>
                                     </MudStack>
+                                </MudTabPanel>
+                                <MudTabPanel Text="Charts" Icon="@Icons.Material.Filled.AreaChart">
+                                    <MudGrid>
+                                        <MudItem xs="12" md="6" lg="4">
+                                            <MudPaper Outlined="true" Class="pa-3">
+                                                <MudStack AlignItems="AlignItems.Center">
+                                                    <MudText>Healing Cast Breakdown</MudText>
+                                                    @if (HealCpmChartValues != null && HealCpmChartValues.Length > 0)
+                                                    {
+                                                        <MudChart ChartType="ChartType.Donut" LegendPosition="Position.Right" Width="300px" Height="300px"
+                                                            InputData="@HealCpmChartValues" InputLabels="@HealCpmChartLabels">
+                                                        </MudChart>
+                                                    }
+                                                </MudStack>
+                                            </MudPaper>
+                                        </MudItem>
+                                    </MudGrid>
                                 </MudTabPanel>
                                 <MudTabPanel Text="Journal" Icon="@Icons.Material.Filled.TextSnippet">
                                     <MudStack Spacing="0">

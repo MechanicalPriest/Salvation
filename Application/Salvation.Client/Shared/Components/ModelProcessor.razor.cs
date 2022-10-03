@@ -45,6 +45,10 @@ namespace Salvation.Client.Shared.Components
         private ModellingResultsViewModel? modellingResults = null;
         private bool loadingResults = false;
 
+        // Charts
+        private double[] HealCpmChartValues { get; set; } = { };
+        private string[] HealCpmChartLabels { get; set; } = { };
+
         protected override async Task OnInitializedAsync()
         {
             await GetDefaultProfile();
@@ -111,6 +115,8 @@ namespace Salvation.Client.Shared.Components
 
                 loadingResults = false;
             }
+
+            DataPostProcessing();
         }
 
         private async Task GetDefaultProfile()
@@ -173,6 +179,26 @@ namespace Salvation.Client.Shared.Components
                 errorMessage = $"Unable to generate default profile.";
                 loadingData = false;
             }
+        }
+
+        private void DataPostProcessing()
+        {
+            HealCpmChartValues = Array.Empty<double>();
+            HealCpmChartLabels = Array.Empty<string>();
+
+            if (modellingResults == null)
+                return;
+
+            // Generate CPM chart data
+            HealCpmChartValues = modellingResults.ModelResults.SpellCastResults
+                .Where(s => s.CastsPerMinute > 0 && s.RawHealing > 0)
+                .Select(s => s.CastsPerMinute)
+                .ToArray();
+
+            HealCpmChartLabels = modellingResults.ModelResults.SpellCastResults
+                .Where(s => s.CastsPerMinute > 0 && s.RawHealing > 0)
+                .Select(s => $"{s.SpellName}")
+                .ToArray();
         }
 
         protected override async Task OnAfterRenderAsync(bool firstRender)

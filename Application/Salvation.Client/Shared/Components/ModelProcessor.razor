@@ -130,7 +130,7 @@
                                 <MudPaper Class="pa-3"><MudTooltip Text="Healing Per Mana Spent">@modellingResults.ModelResults.TotalActualHPM.ToString("N1") HPM</MudTooltip></MudPaper>
                                 <MudPaper Class="pa-3"><MudTooltip Text="Time until Out Of Mana">@modellingResults.ModelResults.TimeToOom.ToString("N0")s to OOM</MudTooltip></MudPaper>
                             </MudStack>
-                            <MudTabs Centered="true">
+                            <MudTabs Centered="true" KeepPanelsAlive="true">
                                 <MudTabPanel Text="Spell Table" Icon="@Icons.Material.Filled.GridOn">
                                     <MudStack Class="mud-width-full">                                        
                                         <MudTable Dense="true" Items="@modellingResults.ModelResults.RolledUpResultsSummary">

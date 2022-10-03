@@ -187,13 +187,59 @@
                                     <MudGrid>
                                         <MudItem xs="12" md="6" lg="4">
                                             <MudPaper Outlined="true" Class="pa-3">
-                                                <MudStack AlignItems="AlignItems.Center">
-                                                    <MudText>Healing Cast Breakdown</MudText>
-                                                    @if (HealCpmChartValues != null && HealCpmChartValues.Length > 0)
+                                                <MudStack AlignItems="AlignItems.Center" Justify="Justify.FlexStart">
+                                                    <MudText>Healing per Mana Spent</MudText>
+                                                    @if (HpmChartData != null && HpmChartData.Length > 0)
                                                     {
-                                                        <MudChart ChartType="ChartType.Donut" LegendPosition="Position.Right" Width="300px" Height="300px"
-                                                            InputData="@HealCpmChartValues" InputLabels="@HealCpmChartLabels">
-                                                        </MudChart>
+                                                        <RadzenChart style="width: 100%">
+                                                            <RadzenDonutSeries Data="@HealCpmChartData" CategoryProperty="Name" Title="HPM"
+                                                                     ValueProperty="Value">
+                                                                <RadzenSeriesDataLabels Visible="true" />
+                                                            </RadzenDonutSeries>
+                                                            <RadzenValueAxis FormatString="{0:N1}">
+                                                                <RadzenGridLines Visible="true" />
+                                                            </RadzenValueAxis>
+                                                        </RadzenChart>
+                                                    }
+                                                </MudStack>
+                                            </MudPaper>
+                                        </MudItem>
+                                        <MudItem xs="12" md="6" lg="4">
+                                            <MudPaper Outlined="true" Class="pa-3">
+                                                <MudStack AlignItems="AlignItems.Center" Justify="Justify.FlexStart">
+                                                    <MudText>Mana Usage</MudText>
+                                                    @if (HpmChartData != null && HpmChartData.Length > 0)
+                                                    {
+                                                        <RadzenChart style="width: 100%">
+                                                            <RadzenDonutSeries Data="@HealCpmChartData" CategoryProperty="Name" Title="HPM"
+                                                                     ValueProperty="Value">
+                                                                <RadzenSeriesDataLabels Visible="true" />
+                                                            </RadzenDonutSeries>
+                                                            <RadzenValueAxis FormatString="{0:N1}">
+                                                                <RadzenGridLines Visible="true" />
+                                                            </RadzenValueAxis>
+                                                        </RadzenChart>
+                                                    }
+                                                </MudStack>
+                                            </MudPaper>
+                                        </MudItem>
+                                        <MudItem xs="12" md="6" lg="4">
+                                            <MudPaper Outlined="true" Class="pa-3">
+                                                <MudStack AlignItems="AlignItems.Center" Justify="Justify.FlexStart">
+                                                    <MudText>Healing per Mana Spent</MudText>
+                                                    @if (HpmChartData != null && HpmChartData.Length > 0)
+                                                    {
+                                                        <RadzenChart style="width: 100%">
+                                                            <RadzenBarSeries Data="@HpmChartData" CategoryProperty="Name" Title="HPM"
+                                                                     ValueProperty="Value" LineType="LineType.Dashed">
+                                                                <RadzenSeriesDataLabels Visible="true" />
+                                                            </RadzenBarSeries>
+                                                            <RadzenValueAxis FormatString="{0:N2}">
+                                                                <RadzenGridLines Visible="true" />
+                                                            </RadzenValueAxis>
+                                                            <RadzenLegend Visible="false" />
+                                                            <RadzenBarOptions Radius="2" />
+                                                        </RadzenChart>
                                                     }
                                                 </MudStack>
                                             </MudPaper>

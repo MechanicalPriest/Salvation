@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.WebAssembly.Http;
 using Microsoft.JSInterop;
+using MudBlazor;
 using Newtonsoft.Json;
 using Salvation.Core.Constants;
 using Salvation.Core.Profile.Model;
@@ -31,8 +32,8 @@ namespace Salvation.Client.Shared.Components
         private string errorMessage = string.Empty;
         private bool loadingData = true;
 
-        private string searchString = "";
-        private string advancedSearchString = "";
+        private string searchString = string.Empty;
+        private string advancedSearchString = string.Empty;
 
         // Talent viewer
         private Dictionary<int, int> selectedTalents = new Dictionary<int, int>()
@@ -46,8 +47,9 @@ namespace Salvation.Client.Shared.Components
         private bool loadingResults = false;
 
         // Charts
-        private double[] HealCpmChartValues { get; set; } = { };
-        private string[] HealCpmChartLabels { get; set; } = { };
+        private ChartDataItem[] HpmChartData { get; set; } = Array.Empty<ChartDataItem>();
+        private ChartDataItem[] HealCpmChartData { get; set; } = Array.Empty<ChartDataItem>();
+        private ChartDataItem[] HealMpsChartData { get; set; } = Array.Empty<ChartDataItem>();
 
         protected override async Task OnInitializedAsync()
         {
@@ -183,21 +185,30 @@ namespace Salvation.Client.Shared.Components
 
         private void DataPostProcessing()
         {
-            HealCpmChartValues = Array.Empty<double>();
-            HealCpmChartLabels = Array.Empty<string>();
+            HealCpmChartData = Array.Empty<ChartDataItem>();
+            HealMpsChartData = Array.Empty<ChartDataItem>();
+            HpmChartData = Array.Empty<ChartDataItem>();
 
             if (modellingResults == null)
                 return;
 
             // Generate CPM chart data
-            HealCpmChartValues = modellingResults.ModelResults.SpellCastResults
+            HealCpmChartData = modellingResults.ModelResults.SpellCastResults
                 .Where(s => s.CastsPerMinute > 0 && s.RawHealing > 0)
-                .Select(s => s.CastsPerMinute)
+                .Select(s => new ChartDataItem() { Name = s.SpellName, Value = s.CastsPerMinute })
                 .ToArray();
 
-            HealCpmChartLabels = modellingResults.ModelResults.SpellCastResults
-                .Where(s => s.CastsPerMinute > 0 && s.RawHealing > 0)
-                .Select(s => $"{s.SpellName}")
+            // Generate MPS chart data
+            HealMpsChartData = modellingResults.ModelResults.SpellCastResults
+                .Where(s => s.ManaCost > 0 && s.CastsPerMinute > 0 && s.RawHealing > 0)
+                .Select(s => new ChartDataItem() { Name = s.SpellName, Value = s.MPS })
+                .ToArray();
+
+            // Generate HPM chart data
+            HpmChartData = modellingResults.ModelResults.SpellCastResults
+                .Where(s => s.ManaCost > 0 && s.CastsPerMinute > 0 && s.RawHealing > 0)
+                .OrderByDescending(s => s.HPM)
+                .Select(s => new ChartDataItem() { Name = s.SpellName, Value = s.HPM })
                 .ToArray();
         }
 
@@ -263,5 +274,11 @@ namespace Salvation.Client.Shared.Components
 
             return false;
         };
+
+        class ChartDataItem
+        {
+            public string Name { get; set; } = string.Empty;
+            public double Value { get; set; }
+        }
     }
 }

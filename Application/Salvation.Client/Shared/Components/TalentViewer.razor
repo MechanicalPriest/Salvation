@@ -2,7 +2,7 @@
 @inject IJSRuntime JS
 @using Salvation.Core.ViewModel
 
-@if (holyPriest == null)
+@if (HolyPriest == null)
 {
     <MudProgressCircular Color="Color.Default" Indeterminate="true" />
 }
@@ -10,10 +10,10 @@ else
 {
     <MudGrid Justify="Justify.Center">
         <MudItem xs="12" md="@(DisplayVertical ? 12 : 6)">
-            <TalentTree @ref="classTalentViewer" TreeName="@holyPriest.ClassName" Talents=@holyPriest.ClassNodes PointsTotal=@ClassPoints SelectedTalents=@SelectedTalents></TalentTree>
+            <TalentTree @ref="classTalentViewer" TreeName="@HolyPriest.ClassName" Talents=@HolyPriest.ClassNodes PointsTotal=@ClassPoints SelectedTalents=@SelectedTalents></TalentTree>
         </MudItem>
         <MudItem xs="12" md="@(DisplayVertical ? 12 : 6)">
-            <TalentTree @ref="specTalentViewer" TreeName="@holyPriest.SpecName" Talents=@holyPriest.SpecNodes PointsTotal=@SpecPoints SelectedTalents=@SelectedTalents></TalentTree>
+            <TalentTree @ref="specTalentViewer" TreeName="@HolyPriest.SpecName" Talents=@HolyPriest.SpecNodes PointsTotal=@SpecPoints SelectedTalents=@SelectedTalents></TalentTree>
         </MudItem>
         <MudItem xs="12">
             <MudStack>

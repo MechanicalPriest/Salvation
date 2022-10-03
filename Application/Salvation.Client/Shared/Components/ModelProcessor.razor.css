@@ -20,3 +20,14 @@
     color: #1c8aff;
 }
 
+.talent-row-talent {
+    width: 24px;
+    height: 24px;
+}
+
+.talent-row-image {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+

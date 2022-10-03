@@ -77,7 +77,7 @@
                                 </MudDataGrid>
                             </MudExpansionPanel>
                             <MudExpansionPanel Text="Talents" IsInitiallyExpanded="true">
-                                <TalentViewer SelectedTalents=@selectedTalents DisplayVertical="true"></TalentViewer>
+                                <TalentViewer SelectedTalents=@selectedTalents DisplayVertical="true" TalentDefinitionChanged=@OnTalentDefinitionChanged></TalentViewer>
                             </MudExpansionPanel>
                             <MudExpansionPanel Text="Advanced" IsInitiallyExpanded="true">
                                 <MudDataGrid Items="@data.AdvancedSettings" Hover="true" Dense="true" ReadOnly="false" EditMode="DataGridEditMode.Cell" QuickFilter="@advancedFilter" Height="300px;" HorizontalScrollbar="false" ShowColumnOptions="false" SortMode="SortMode.None">
@@ -260,6 +260,30 @@
                                             </TooltipContent>
                                         </MudTooltip>
                                     </MudPaper>
+                                </MudStack>
+                                <MudStack>
+                                    <MudStack Row="true" Class="mud-width-full" Justify="Justify.Center" Spacing="1" Style="flex-wrap: wrap;">
+                                        @foreach(var talent in ClassTalents)
+                                        {
+                                            <a href="https://www.wowhead.com/beta/spell=@(talent.SpellId)"
+                                                data-wh-rename-link="false"
+                                                data-wowhead="def=@(talent.Rank)" 
+                                                class="talent-row-talent">
+                                                <div style="@GetImageStyle(talent.IconName)" class="talent-row-talent talent-row-image"></div>
+                                            </a>
+                                        }
+                                    </MudStack>
+                                    <MudStack Row="true" Class="mud-width-full" Justify="Justify.Center" Spacing="1" Style="flex-wrap: wrap;">
+                                        @foreach(var talent in SpecTalents)
+                                        {
+                                            <a href="https://www.wowhead.com/beta/spell=@(talent.SpellId)"
+                                                data-wh-rename-link="false"
+                                                data-wowhead="def=@(talent.Rank)" 
+                                                class="talent-row-talent">
+                                                <div style="@GetImageStyle(talent.IconName)" class="talent-row-talent talent-row-image"></div>
+                                            </a>
+                                        }
+                                    </MudStack>
                                 </MudStack>
                                 <MudTabs Centered="true" KeepPanelsAlive="true">
                                     <MudTabPanel Text="Spell Table" Icon="@Icons.Material.Filled.GridOn">

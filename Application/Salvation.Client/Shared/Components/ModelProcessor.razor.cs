@@ -31,10 +31,7 @@ namespace Salvation.Client.Shared.Components
         private string advancedSearchString = string.Empty;
 
         // Talent viewer
-        private Dictionary<int, int> selectedTalents = new Dictionary<int, int>()
-        {
-            
-        };
+        private Dictionary<int, int> selectedTalents = new Dictionary<int, int>();
 
         // Loading of results
         private static readonly string processModelEndpoint = "ProcessModel";
@@ -49,6 +46,12 @@ namespace Salvation.Client.Shared.Components
         // Applying simc import string
         private static readonly string simcImportStringEndpoint = "ApplySimcProfile";
         private string simcImportString = string.Empty;
+
+        // Talent Bar display
+        private TalentSpec? TalentData;
+        private List<TalentBarItem> ClassTalents { get; set; } = new List<TalentBarItem>();
+        private List<TalentBarItem> SpecTalents { get; set; } = new List<TalentBarItem>();
+        private static string UnknownIconName = "inv_misc_questionmark.jpg";
 
         protected override async Task OnInitializedAsync()
         {
@@ -229,6 +232,9 @@ namespace Salvation.Client.Shared.Components
 
         private void DataPostProcessing()
         {
+            if (data == null)
+                throw new NullReferenceException("There are no results to post-process");
+
             HealCpmChartData = Array.Empty<ChartDataItem>();
             HealMpsChartData = Array.Empty<ChartDataItem>();
             HpmChartData = Array.Empty<ChartDataItem>();
@@ -254,6 +260,68 @@ namespace Salvation.Client.Shared.Components
                 .OrderByDescending(s => s.HPM)
                 .Select(s => new ChartDataItem() { Name = s.SpellName, Value = s.HPM })
                 .ToArray();
+
+            // Populate the list of class talents
+            // Pulling this all together without components is very ugly but it'll do for now.
+            if (TalentData == null)
+                throw new NullReferenceException("There are no list of talents to post-process with");
+
+            ClassTalents = new List<TalentBarItem>();
+            foreach(var talent in data.Talents)
+            {
+                if(talent.Rank > 0)
+                {
+                    // Look for it in the talents list
+                    var talentInfo = TalentData.ClassNodes
+                        .Where(t => t.TalentEntries.Where(te => te.SpellId == talent.SpellId).Any())
+                        .Select(s => s.TalentEntries.Where(te => te.SpellId == talent.SpellId).FirstOrDefault())
+                        .FirstOrDefault();
+
+                    if (talentInfo == null)
+                        continue;
+
+                    ClassTalents.Add(new TalentBarItem()
+                    {
+                        SpellId = talent.SpellId,
+                        IconName = talentInfo.Icon,
+                        Rank = talent.Rank,
+                    });
+                }
+            }
+
+            SpecTalents = new List<TalentBarItem>();
+            foreach (var talent in data.Talents)
+            {
+                if (talent.Rank > 0)
+                {
+                    // Look for it in the talents list
+                    var talentInfo = TalentData.SpecNodes
+                        .Where(t => t.TalentEntries.Where(te => te.SpellId == talent.SpellId).Any())
+                        .Select(s => s.TalentEntries.Where(te => te.SpellId == talent.SpellId).FirstOrDefault())
+                        .FirstOrDefault();
+
+                    if (talentInfo == null)
+                        continue;
+
+                    SpecTalents.Add(new TalentBarItem()
+                    {
+                        SpellId = talent.SpellId,
+                        IconName = talentInfo.Icon,
+                        Rank = talent.Rank,
+                    });
+                }
+            }
+        }
+
+        private void OnTalentDefinitionChanged(TalentSpec talentSpec)
+        {
+            TalentData = talentSpec;
+        }
+
+
+        public string GetImageStyle(string talentIcon)
+        {
+            return $"background-image: url('static-data/icons/{talentIcon}.jpg'), url('static-data/icons/{UnknownIconName}');";
         }
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -323,6 +391,13 @@ namespace Salvation.Client.Shared.Components
         {
             public string Name { get; set; } = string.Empty;
             public double Value { get; set; }
+        }
+
+        class TalentBarItem
+        {
+            public int SpellId { get; set; } = 0;
+            public string IconName { get; set; } = string.Empty;
+            public int Rank { get; set; } = 0;
         }
     }
 }

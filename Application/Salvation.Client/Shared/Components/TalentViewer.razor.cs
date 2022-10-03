@@ -18,7 +18,11 @@ namespace Salvation.Client.Shared.Components
         [Parameter]
         public bool DisplayVertical { get; set; } = false;
 
-        private TalentSpec? holyPriest;
+        public TalentSpec? HolyPriest { get; set; }
+
+        [Parameter]
+        public Action<TalentSpec>? TalentDefinitionChanged { get; set; }
+
         private static int ClassPoints = 31;
         private static int SpecPoints = 30;
 
@@ -33,8 +37,10 @@ namespace Salvation.Client.Shared.Components
                 throw new NullReferenceException("Web client was not initialised");
 
             var client = _httpClientFactory.CreateClient("StaticData");
-            holyPriest = await client.GetFromJsonAsync<TalentSpec>("talent-tree.json");
+            HolyPriest = await client.GetFromJsonAsync<TalentSpec>("talent-tree.json");
 
+            if(HolyPriest != null && TalentDefinitionChanged != null)
+                TalentDefinitionChanged(HolyPriest);
         }
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -44,7 +50,7 @@ namespace Salvation.Client.Shared.Components
 
         private void ProcessWclImport()
         {
-            if (holyPriest == null || classTalentViewer == null || specTalentViewer == null)
+            if (HolyPriest == null || classTalentViewer == null || specTalentViewer == null)
                 return;
 
             // Loop through each line and look for potential talents.
@@ -74,7 +80,7 @@ namespace Salvation.Client.Shared.Components
                     var talentName = inputLine.Remove(inputLine.Length - 1, 1);
                     talentName = talentName.Trim();
 
-                    var talent = holyPriest.ClassNodes.Where(n => n.Name.Contains(talentName)).FirstOrDefault();
+                    var talent = HolyPriest.ClassNodes.Where(n => n.Name.Contains(talentName)).FirstOrDefault();
 
                     if (talent != null)
                     {
@@ -91,7 +97,7 @@ namespace Salvation.Client.Shared.Components
                     }
                     else
                     {
-                        talent = holyPriest.SpecNodes.Where(n => n.Name.Contains(talentName)).FirstOrDefault();
+                        talent = HolyPriest.SpecNodes.Where(n => n.Name.Contains(talentName)).FirstOrDefault();
 
                         if (talent == null)
                             continue;

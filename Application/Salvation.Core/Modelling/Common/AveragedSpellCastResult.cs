@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Salvation.Core.Modelling.Common
 {
@@ -77,6 +78,7 @@ namespace Salvation.Core.Modelling.Common
         /// Overhealing per second
         /// </summary>
         public double OPS { get => CalcOPS(); }
+        public double OverhealingPercent { get => CalcOverhealingPercent(); }
         public double MPS { get => CalcMPS(); }
         public double DPS { get => CalcDPS(); }
         public double DPM { get => CalcDPM(); }
@@ -153,6 +155,13 @@ namespace Salvation.Core.Modelling.Common
         private double CalcOPS()
         {
             return Overhealing * CastsPerMinute / 60;
+        }
+
+        private double CalcOverhealingPercent()
+        {
+            if (Overhealing == 0 && RawHealing == 0)
+                return 0;
+            return Overhealing / RawHealing;
         }
 
 

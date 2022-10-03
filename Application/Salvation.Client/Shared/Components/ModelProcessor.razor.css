@@ -16,3 +16,7 @@
 .stat-colour[data-stat="Leech"] {
     color: #27cc4e;
 }
+.stat-colour[data-stat="Mana"] {
+    color: #1c8aff;
+}
+

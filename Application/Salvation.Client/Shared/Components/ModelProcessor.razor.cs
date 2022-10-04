@@ -32,6 +32,7 @@ namespace Salvation.Client.Shared.Components
 
         // Talent viewer
         private Dictionary<int, int> selectedTalents = new Dictionary<int, int>();
+        private TalentViewer? talentViewer;
 
         // Loading of results
         private static readonly string processModelEndpoint = "ProcessModel";
@@ -195,7 +196,32 @@ namespace Salvation.Client.Shared.Components
                     };
 
                     data = await System.Text.Json.JsonSerializer.DeserializeAsync<PlayerProfileViewModel>(responseStream, jsonOptions);
-                    
+
+                    if (data != null)
+                    {
+                        // Load talents into selected talents.
+                        // TODO: This really should be handled as part of the viewmodel, then just passed down to the talentviewer.
+                        var newSelectedTalents = new Dictionary<int, int>();
+                        foreach (var talent in data.Talents)
+                        {
+                            if (talent.Rank > 0)
+                                newSelectedTalents.Add(talent.SpellId, talent.Rank);
+                        }
+
+                        if (talentViewer == null)
+                        {
+                            selectedTalents.Clear();
+                            foreach (var n in newSelectedTalents)
+                            {
+                                selectedTalents.Add(n.Key, n.Value);
+                            }
+                        }
+                        else
+                        {
+                            talentViewer.UpdateSelectedTalents(newSelectedTalents);
+                        }
+                    }
+
                     loadingData = false;
                 }
                 else

@@ -117,5 +117,57 @@ namespace Salvation.Client.Shared.Components
                 }
             }
         }
+
+        public void UpdateSelectedTalents(Dictionary<int, int> SelectedTalents)
+        {
+            if (HolyPriest == null || classTalentViewer == null || specTalentViewer == null)
+                return;
+
+            // First clear the tree
+            classTalentViewer.ResetTalentTree();
+            specTalentViewer.ResetTalentTree();
+
+            foreach (var selectedTalent in SelectedTalents)
+            {
+                var spellId = selectedTalent.Key;
+                var rank = selectedTalent.Value;
+
+                // Find the talent in the list
+                var talent = HolyPriest.ClassNodes.Where(n => n.TalentEntries.Where(te => te.SpellId == spellId).Any()).FirstOrDefault();
+
+                if (talent != null)
+                {
+                    // If it's a choice node, select the right choice node.
+                    bool? selectFirstChoiceOption = null;
+
+                    if (talent.TalentEntries.Count == 2)
+                        selectFirstChoiceOption = talent.TalentEntries[0].SpellId == spellId;
+
+                    classTalentViewer.TrySpendTalentPoint(talent, selectFirstChoiceOption);
+
+                    if (rank == 2)
+                        classTalentViewer.TrySpendTalentPoint(talent, selectFirstChoiceOption);
+                }
+                else
+                {
+                    talent = HolyPriest.SpecNodes.Where(n => n.TalentEntries.Where(te => te.SpellId == spellId).Any()).FirstOrDefault();
+
+                    if (talent == null)
+                        continue;
+
+                    // If it's a choice node, select the right choice node.
+                    bool? selectFirstChoiceOption = null;
+
+                    if (talent.TalentEntries.Count == 2)
+                        selectFirstChoiceOption = talent.TalentEntries[0].SpellId == spellId;
+
+                    specTalentViewer.TrySpendTalentPoint(talent, selectFirstChoiceOption);
+
+                    if (rank == 2)
+                        specTalentViewer.TrySpendTalentPoint(talent, selectFirstChoiceOption);
+
+                }
+            }
+        }
     }
 }

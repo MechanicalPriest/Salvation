@@ -27,7 +27,7 @@ else
                     data-node-type="@talent.Type"
                     data-spell-passive="@(talent.Type != NodeTypeChoice && talent.TalentEntries[0].Type == NodeSpellTypePassive ? 1 : 0)"
                     data-node-unlocked="@(talent.IsUnlocked ? 1 : 0)">
-                    <div class="talent-contents"data-spell-passive="@(talent.Type != NodeTypeChoice && talent.TalentEntries[0].Type == NodeSpellTypePassive ? 1 : 0)">
+                    <div class="talent-contents" data-spell-passive="@(talent.Type != NodeTypeChoice && talent.TalentEntries[0].Type == NodeSpellTypePassive ? 1 : 0)">
                             @if(talent.Type == NodeTypeChoice)
                             {
                                 <div class="talent-image-holder">

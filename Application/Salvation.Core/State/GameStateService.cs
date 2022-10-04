@@ -702,8 +702,16 @@ namespace Salvation.Core.State
             {
                 if (talent.Rank > 0)
                 {
-                    registeredSpells.Add(new RegisteredSpell((Spell)talent.SpellId));
-                    JournalEntry(state, $"Registered {registeredSpells.LastOrDefault()?.Spell} at rank {talent.Rank}.");
+                    if (registeredSpells.Where(s => s.Spell == (Spell)talent.SpellId).Any())
+                    {
+                        // TODO: Update rank if it's already registered 
+                        JournalEntry(state, $"Registering of {(Spell)talent.SpellId} failed, already registered.");
+                    }
+                    else
+                    {
+                        registeredSpells.Add(new RegisteredSpell((Spell)talent.SpellId));
+                        JournalEntry(state, $"Registered {registeredSpells.LastOrDefault()?.Spell} at rank {talent.Rank}.");
+                    }
                 }
             }
             JournalEntry(state, $"Registering talent spells... Done!");

@@ -1,10 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Extensions.Logging;
-using Salvation.Api.Api.Model;
 using Salvation.Core.Interfaces.Profile;
+using Salvation.Core.ViewModel;
 using System;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -33,8 +32,12 @@ namespace Salvation.Api.Api
 
             try
             {
-                var newProfile = await _simcProfileService.ApplySimcProfileAsync(req.SimcProfileString, req.Profile);
-                return new JsonResult(new { Data = newProfile });
+                var incomingProfile = req.Profile.ToModel();
+
+                var newProfile = await _simcProfileService.ApplySimcProfileAsync(req.SimcProfileString, incomingProfile);
+
+                var profileVm = newProfile.ToViewModel();
+                return new JsonResult(profileVm);
             }
             catch (Exception ex)
             {

@@ -520,6 +520,58 @@ namespace Salvation.Core.Profile
                 }
             };
 
+            UpdateTalent(basicProfile, Spell.DispelMagic, 1);
+            UpdateTalent(basicProfile, Spell.Shadowfiend, 1);
+            UpdateTalent(basicProfile, Spell.ImprovedFlashHeal, 1);
+            UpdateTalent(basicProfile, Spell.ImprovedPurify, 1);
+            UpdateTalent(basicProfile, Spell.FocusedMending, 1);
+            UpdateTalent(basicProfile, Spell.HolyNova, 1);
+            UpdateTalent(basicProfile, Spell.ProtectiveLight, 1);
+            UpdateTalent(basicProfile, Spell.AngelicFeather, 1);
+            UpdateTalent(basicProfile, Spell.SpellWarding, 1);
+            UpdateTalent(basicProfile, Spell.Rhapsody, 1);
+            UpdateTalent(basicProfile, Spell.LeapOfFaith, 1);
+            UpdateTalent(basicProfile, Spell.MassDispel, 1);
+            UpdateTalent(basicProfile, Spell.PowerInfusion, 1);
+            UpdateTalent(basicProfile, Spell.ImprovedMassDispel, 1);
+            UpdateTalent(basicProfile, Spell.BodyAndSoul, 1);
+            UpdateTalent(basicProfile, Spell.TwinsOfTheSunPriestess, 1);
+            UpdateTalent(basicProfile, Spell.UnwaveringWill, 2);
+            UpdateTalent(basicProfile, Spell.TwistOfFate, 2);
+            UpdateTalent(basicProfile, Spell.AngelsMercy, 1);
+            UpdateTalent(basicProfile, Spell.Halo, 1);
+            UpdateTalent(basicProfile, Spell.TranslucentImage, 1);
+            UpdateTalent(basicProfile, Spell.SurgeOfLight, 2);
+            UpdateTalent(basicProfile, Spell.LightsInspiration, 2);
+            UpdateTalent(basicProfile, Spell.PowerWordLife, 1);
+            UpdateTalent(basicProfile, Spell.AngelicBulwark, 1);
+
+            UpdateTalent(basicProfile, Spell.HolyWordSerenity, 1);
+            UpdateTalent(basicProfile, Spell.PrayerOfHealing, 1);
+            UpdateTalent(basicProfile, Spell.GuardianSpirit, 1);
+            UpdateTalent(basicProfile, Spell.HolyWordSanctify, 1);
+            UpdateTalent(basicProfile, Spell.GuardianAngel, 1);
+            UpdateTalent(basicProfile, Spell.CircleOfHealing, 1);
+            UpdateTalent(basicProfile, Spell.SanctifiedPrayers, 1);
+            UpdateTalent(basicProfile, Spell.CosmicRipple, 1);
+            UpdateTalent(basicProfile, Spell.RenewedFaith, 1);
+            UpdateTalent(basicProfile, Spell.PrayerCircle, 1);
+            UpdateTalent(basicProfile, Spell.PrayerfulLitany, 1);
+            UpdateTalent(basicProfile, Spell.DivineHymn, 1);
+            UpdateTalent(basicProfile, Spell.Enlightenment, 1);
+            UpdateTalent(basicProfile, Spell.Benediction, 1);
+            UpdateTalent(basicProfile, Spell.Orison, 1);
+            UpdateTalent(basicProfile, Spell.GalesOfSong, 2);
+            UpdateTalent(basicProfile, Spell.SymbolOfHope, 1);
+            UpdateTalent(basicProfile, Spell.PrismaticEchoes, 2);
+            UpdateTalent(basicProfile, Spell.PrayersOfTheVirtuous, 2);
+            UpdateTalent(basicProfile, Spell.HolyWordSalvation, 1);
+            UpdateTalent(basicProfile, Spell.SayYourPrayers, 1);
+            UpdateTalent(basicProfile, Spell.LightOfTheNaaru, 2);
+            UpdateTalent(basicProfile, Spell.AnsweredPrayers, 2);
+            UpdateTalent(basicProfile, Spell.DivineImage, 1);
+            UpdateTalent(basicProfile, Spell.MiracleWorker, 1);
+
             return basicProfile;
         }
 

@@ -16,7 +16,7 @@
             cfg: {
                 connectionString: "InstrumentationKey=d38d2c4d-eebf-4eb4-aa66-9680cd41f128;IngestionEndpoint=https://westus2-1.in.applicationinsights.azure.com/;LiveEndpoint=https://westus2.livediagnostics.monitor.azure.com/",
                 disableFetchTracking: false,
-                enableCorsCorrelation: false, // This will break wowhead tooltips when set to true. 
+                enableCorsCorrelation: false, // This will break wowhead tooltips when set to true.
                 enableRequestHeaderTracking: true,
                 enableResponseHeaderTracking: true
             }
@@ -26,6 +26,7 @@
     <link href="Salvation.Client.styles.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
     <link href="_content/MudBlazor/MudBlazor.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="_content/Radzen.Blazor/css/dark-base.css">
 </head>
 
 <body>
@@ -38,6 +39,7 @@
     </div>
     <script src="_framework/blazor.webassembly.js"></script>
     <script src="_content/MudBlazor/MudBlazor.min.js"></script>
+    <script src="_content/Radzen.Blazor/Radzen.Blazor.js"></script>
     <script>
         window.updateWowheadTooltips = () => {
             window.$WowheadPower.refreshLinks();

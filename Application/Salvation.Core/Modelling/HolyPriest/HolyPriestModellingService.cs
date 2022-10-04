@@ -58,9 +58,23 @@ namespace Salvation.Core.Modelling.HolyPriest
 
             // Create a sumamry for each spell cast that's a sum of its children
             RollUpResults(results);
+            results.RolledUpResultsSummary = results.RolledUpResultsSummary.OrderByDescending(r => r.HPS).ToList();
 
             results.TotalRawHPM = results.TotalRawHPS / results.TotalMPS;
             results.TotalActualHPM = results.TotalActualHPS / results.TotalMPS;
+
+            // Populate stats
+            results.AverageIntellect = _gameStateService.GetIntellect(state);
+            results.AverageHasteRating = _gameStateService.GetHasteRating(state);
+            results.AverageHastePercent = (_gameStateService.GetHasteMultiplier(state) - 1) * 100;
+            results.AverageCritRating = _gameStateService.GetCriticalStrikeRating(state);
+            results.AverageCritPercent = (_gameStateService.GetCriticalStrikeMultiplier(state) - 1) * 100;
+            results.AverageVersatilityRating = _gameStateService.GetVersatilityRating(state);
+            results.AverageVersatilityPercent = (_gameStateService.GetVersatilityMultiplier(state) - 1) * 100;
+            results.AverageMasteryRating = _gameStateService.GetMasteryRating(state);
+            results.AverageMasteryPercent = (_gameStateService.GetMasteryMultiplier(state) - 1) * 100;
+            results.AverageLeechRating = _gameStateService.GetLeechRating(state);
+            results.AverageLeechPercent = (_gameStateService.GetLeechMultiplier(state) - 1) * 100;
 
             // Mana regen / time to oom
             // TODO: re-implement Enlightenment

@@ -36,13 +36,24 @@ namespace Salvation.Api.Api
                 log.LogError("Invalid spec provided");
                 return new BadRequestResult();
             }
+            var spec = (Spec)specId;
+            log.LogTrace("Pulling profile for {spec}", spec);
 
-            var profile = _profileGenerationService.GetDefaultProfile((Spec)specId);
+            var profile = _profileGenerationService.GetDefaultProfile(spec);
+
+            log.LogTrace("Loading default simc profile import");
 
             var profileData = File.ReadAllText(Path.Combine("Profile", "HolyPriest", "dragonflight_fresh.simc"));
+
+            log.LogTrace("Updating profile with simc profile import");
+
             profile = await _simcProfileService.ApplySimcProfileAsync(profileData, profile);
 
+            log.LogTrace("Converting profile to viewmodel");
+
             var profileVM = profile.ToViewModel();
+
+            log.LogTrace("Done building default profile");
 
             return new OkObjectResult(profileVM);
         }

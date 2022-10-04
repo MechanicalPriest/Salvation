@@ -287,63 +287,69 @@ namespace Salvation.Client.Shared.Components
                 .Select(s => new ChartDataItem() { Name = s.SpellName, Value = s.HPM })
                 .ToArray();
 
-            // Populate the list of class talents
-            // Pulling this all together without components is very ugly but it'll do for now.
-            if (TalentData == null)
-                throw new NullReferenceException("There are no list of talents to post-process with");
-
-            ClassTalents = new List<TalentBarItem>();
-            foreach(var talent in data.Talents)
-            {
-                if(talent.Rank > 0)
-                {
-                    // Look for it in the talents list
-                    var talentInfo = TalentData.ClassNodes
-                        .Where(t => t.TalentEntries.Where(te => te.SpellId == talent.SpellId).Any())
-                        .Select(s => s.TalentEntries.Where(te => te.SpellId == talent.SpellId).FirstOrDefault())
-                        .FirstOrDefault();
-
-                    if (talentInfo == null)
-                        continue;
-
-                    ClassTalents.Add(new TalentBarItem()
-                    {
-                        SpellId = talent.SpellId,
-                        IconName = talentInfo.Icon,
-                        Rank = talent.Rank,
-                    });
-                }
-            }
-
-            SpecTalents = new List<TalentBarItem>();
-            foreach (var talent in data.Talents)
-            {
-                if (talent.Rank > 0)
-                {
-                    // Look for it in the talents list
-                    var talentInfo = TalentData.SpecNodes
-                        .Where(t => t.TalentEntries.Where(te => te.SpellId == talent.SpellId).Any())
-                        .Select(s => s.TalentEntries.Where(te => te.SpellId == talent.SpellId).FirstOrDefault())
-                        .FirstOrDefault();
-
-                    if (talentInfo == null)
-                        continue;
-
-                    SpecTalents.Add(new TalentBarItem()
-                    {
-                        SpellId = talent.SpellId,
-                        IconName = talentInfo.Icon,
-                        Rank = talent.Rank,
-                    });
-                }
-            }
+            UpdateTalentTree();
         }
 
         private void OnTalentDefinitionChanged(TalentSpec talentSpec)
         {
             TalentData = talentSpec;
+            UpdateTalentTree();
         }
 
+        private void UpdateTalentTree()
+        {
+            // Populate the list of class talents
+            // Pulling this all together without components is very ugly but it'll do for now.
+            if (TalentData != null && data != null)
+            {
+
+                ClassTalents = new List<TalentBarItem>();
+                foreach (var talent in data.Talents)
+                {
+                    if (talent.Rank > 0)
+                    {
+                        // Look for it in the talents list
+                        var talentInfo = TalentData.ClassNodes
+                            .Where(t => t.TalentEntries.Where(te => te.SpellId == talent.SpellId).Any())
+                            .Select(s => s.TalentEntries.Where(te => te.SpellId == talent.SpellId).FirstOrDefault())
+                            .FirstOrDefault();
+
+                        if (talentInfo == null)
+                            continue;
+
+                        ClassTalents.Add(new TalentBarItem()
+                        {
+                            SpellId = talent.SpellId,
+                            IconName = talentInfo.Icon,
+                            Rank = talent.Rank,
+                        });
+                    }
+                }
+
+                SpecTalents = new List<TalentBarItem>();
+                foreach (var talent in data.Talents)
+                {
+                    if (talent.Rank > 0)
+                    {
+                        // Look for it in the talents list
+                        var talentInfo = TalentData.SpecNodes
+                            .Where(t => t.TalentEntries.Where(te => te.SpellId == talent.SpellId).Any())
+                            .Select(s => s.TalentEntries.Where(te => te.SpellId == talent.SpellId).FirstOrDefault())
+                            .FirstOrDefault();
+
+                        if (talentInfo == null)
+                            continue;
+
+                        SpecTalents.Add(new TalentBarItem()
+                        {
+                            SpellId = talent.SpellId,
+                            IconName = talentInfo.Icon,
+                            Rank = talent.Rank,
+                        });
+                    }
+                }
+            }
+        }
 
         public string GetImageStyle(string talentIcon)
         {

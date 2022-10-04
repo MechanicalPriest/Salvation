@@ -26,7 +26,7 @@ namespace Salvation.Api.Api
         [FunctionName("DefaultProfile")]
         public async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequest req,
-            ILogger log)
+            ILogger log, ExecutionContext context)
         {
             var validSpec = int.TryParse(req.Query["specid"], out int specId);
 
@@ -43,7 +43,7 @@ namespace Salvation.Api.Api
 
             log.LogTrace("Loading default simc profile import");
 
-            var profileData = File.ReadAllText(Path.Combine("Profile", "HolyPriest", "dragonflight_fresh.simc"));
+            var profileData = File.ReadAllText(Path.Combine(context.FunctionAppDirectory, "Profile", "HolyPriest", "dragonflight_fresh.simc"));
 
             log.LogTrace("Updating profile with simc profile import");
 

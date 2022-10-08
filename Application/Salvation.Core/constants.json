@@ -1,5 +1,5 @@
 {
-  "GameVersion": "10.0.2.45779",
+  "GameVersion": "10.0.2.45969",
   "Specs": [
     {
       "Class": "Priest",
@@ -415,141 +415,6 @@
           ]
         },
         {
-          "Id": 33076,
-          "Name": "Prayer of Mending",
-          "ManaCost": 2.0,
-          "MaxRange": 40.0,
-          "BaseCastTime": 0.0,
-          "BaseCooldown": 12000.0,
-          "IsCooldownHasted": true,
-          "Duration": 0.0,
-          "Gcd": 1.5,
-          "ChargeCooldown": 0,
-          "Charges": 0,
-          "MaxStacks": 0.0,
-          "ProcChance": 0.0,
-          "InternalCooldown": 0.0,
-          "Rppm": 0.0,
-          "RppmIsHasted": false,
-          "Effects": [
-            {
-              "Id": 22870,
-              "BaseValue": 5.0,
-              "SpCoefficient": 0.0,
-              "Coefficient": 0.0,
-              "TriggerSpellid": 0,
-              "Amplitude": 0.0,
-              "TriggerSpell": null,
-              "Type": 3,
-              "ScaleValues": {}
-            }
-          ]
-        },
-        {
-          "Id": 41635,
-          "Name": "Prayer of Mending",
-          "ManaCost": 0.0,
-          "MaxRange": 50000.0,
-          "BaseCastTime": 0.0,
-          "BaseCooldown": 0.0,
-          "IsCooldownHasted": false,
-          "Duration": 30000.0,
-          "Gcd": 1.5,
-          "ChargeCooldown": 0,
-          "Charges": 0,
-          "MaxStacks": 10.0,
-          "ProcChance": 100.0,
-          "InternalCooldown": 0.0,
-          "Rppm": 0.0,
-          "RppmIsHasted": false,
-          "Effects": [
-            {
-              "Id": 33141,
-              "BaseValue": 0.0,
-              "SpCoefficient": 0.0,
-              "Coefficient": 0.0,
-              "TriggerSpellid": 0,
-              "Amplitude": 0.0,
-              "TriggerSpell": null,
-              "Type": 6,
-              "ScaleValues": {}
-            }
-          ]
-        },
-        {
-          "Id": 33110,
-          "Name": "Prayer of Mending",
-          "ManaCost": 0.0,
-          "MaxRange": 50000.0,
-          "BaseCastTime": 0.0,
-          "BaseCooldown": 0.0,
-          "IsCooldownHasted": false,
-          "Duration": 0.0,
-          "Gcd": 0.0,
-          "ChargeCooldown": 0,
-          "Charges": 0,
-          "MaxStacks": 0.0,
-          "ProcChance": 0.0,
-          "InternalCooldown": 0.0,
-          "Rppm": 0.0,
-          "RppmIsHasted": false,
-          "Effects": [
-            {
-              "Id": 22918,
-              "BaseValue": 0.0,
-              "SpCoefficient": 0.61,
-              "Coefficient": 0.0,
-              "TriggerSpellid": 0,
-              "Amplitude": 0.0,
-              "TriggerSpell": null,
-              "Type": 10,
-              "ScaleValues": {}
-            }
-          ]
-        },
-        {
-          "Id": 139,
-          "Name": "Renew",
-          "ManaCost": 1.8,
-          "MaxRange": 40.0,
-          "BaseCastTime": 0.0,
-          "BaseCooldown": 0.0,
-          "IsCooldownHasted": false,
-          "Duration": 15000.0,
-          "Gcd": 1.5,
-          "ChargeCooldown": 0,
-          "Charges": 0,
-          "MaxStacks": 0.0,
-          "ProcChance": 0.0,
-          "InternalCooldown": 0.0,
-          "Rppm": 0.0,
-          "RppmIsHasted": false,
-          "Effects": [
-            {
-              "Id": 95,
-              "BaseValue": 0.0,
-              "SpCoefficient": 0.32,
-              "Coefficient": 0.0,
-              "TriggerSpellid": 0,
-              "Amplitude": 3000.0,
-              "TriggerSpell": null,
-              "Type": 6,
-              "ScaleValues": {}
-            },
-            {
-              "Id": 256131,
-              "BaseValue": 0.0,
-              "SpCoefficient": 0.0,
-              "Coefficient": 0.0,
-              "TriggerSpellid": 0,
-              "Amplitude": 0.0,
-              "TriggerSpell": null,
-              "Type": 6,
-              "ScaleValues": {}
-            }
-          ]
-        },
-        {
           "Id": 14914,
           "Name": "Holy Fire",
           "ManaCost": 1.0,
@@ -687,15 +552,15 @@
           ]
         },
         {
-          "Id": 193155,
-          "Name": "Enlightenment",
-          "ManaCost": 0.0,
-          "MaxRange": 0.0,
+          "Id": 33076,
+          "Name": "Prayer of Mending",
+          "ManaCost": 2.0,
+          "MaxRange": 40.0,
           "BaseCastTime": 0.0,
-          "BaseCooldown": 0.0,
-          "IsCooldownHasted": false,
+          "BaseCooldown": 12000.0,
+          "IsCooldownHasted": true,
           "Duration": 0.0,
-          "Gcd": 0.0,
+          "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
           "MaxStacks": 0.0,
@@ -705,28 +570,28 @@
           "RppmIsHasted": false,
           "Effects": [
             {
-              "Id": 283373,
-              "BaseValue": 10.0,
+              "Id": 22870,
+              "BaseValue": 5.0,
               "SpCoefficient": 0.0,
               "Coefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 6,
+              "Type": 3,
               "ScaleValues": {}
             }
           ]
         },
         {
-          "Id": 238136,
-          "Name": "Cosmic Ripple",
-          "ManaCost": 0.0,
-          "MaxRange": 0.0,
+          "Id": 139,
+          "Name": "Renew",
+          "ManaCost": 1.8,
+          "MaxRange": 40.0,
           "BaseCastTime": 0.0,
           "BaseCooldown": 0.0,
           "IsCooldownHasted": false,
-          "Duration": 0.0,
-          "Gcd": 0.0,
+          "Duration": 15000.0,
+          "Gcd": 1.5,
           "ChargeCooldown": 0,
           "Charges": 0,
           "MaxStacks": 0.0,
@@ -736,8 +601,19 @@
           "RppmIsHasted": false,
           "Effects": [
             {
-              "Id": 360821,
-              "BaseValue": 5.0,
+              "Id": 95,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.32,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 3000.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 256131,
+              "BaseValue": 0.0,
               "SpCoefficient": 0.0,
               "Coefficient": 0.0,
               "TriggerSpellid": 0,
@@ -775,6 +651,392 @@
               "Amplitude": 0.0,
               "TriggerSpell": null,
               "Type": 179,
+              "ScaleValues": {}
+            }
+          ]
+        },
+        {
+          "Id": 110744,
+          "Name": "Divine Star",
+          "ManaCost": 2.0,
+          "MaxRange": 30.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 15000.0,
+          "IsCooldownHasted": false,
+          "Duration": 15000.0,
+          "Gcd": 1.5,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 122871,
+              "BaseValue": 6.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 179,
+              "ScaleValues": {}
+            }
+          ]
+        },
+        {
+          "Id": 132157,
+          "Name": "Holy Nova",
+          "ManaCost": 1.6,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 1.5,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 170810,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.315,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 2,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 709210,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 281265,
+              "Amplitude": 0.0,
+              "TriggerSpell": {
+                "Id": 281265,
+                "Name": "Holy Nova",
+                "ManaCost": 0.0,
+                "MaxRange": 0.0,
+                "BaseCastTime": 0.0,
+                "BaseCooldown": 0.0,
+                "IsCooldownHasted": false,
+                "Duration": 0.0,
+                "Gcd": 0.0,
+                "ChargeCooldown": 0,
+                "Charges": 0,
+                "MaxStacks": 0.0,
+                "ProcChance": 0.0,
+                "InternalCooldown": 0.0,
+                "Rppm": 0.0,
+                "RppmIsHasted": false,
+                "Effects": [
+                  {
+                    "Id": 739572,
+                    "BaseValue": 0.0,
+                    "SpCoefficient": 0.315,
+                    "Coefficient": 0.0,
+                    "TriggerSpellid": 0,
+                    "Amplitude": 0.0,
+                    "TriggerSpell": null,
+                    "Type": 10,
+                    "ScaleValues": {}
+                  }
+                ]
+              },
+              "Type": 64,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 845266,
+              "BaseValue": 5.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 3,
+              "ScaleValues": {}
+            }
+          ]
+        },
+        {
+          "Id": 32379,
+          "Name": "Shadow Word: Death",
+          "ManaCost": 0.5,
+          "MaxRange": 40.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 1.5,
+          "ChargeCooldown": 20000,
+          "Charges": 1,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 22171,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.85,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 2,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 165318,
+              "BaseValue": 20.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 3,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 340366,
+              "BaseValue": 150.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 77,
+              "ScaleValues": {}
+            }
+          ]
+        },
+        {
+          "Id": 375901,
+          "Name": "Mindgames",
+          "ManaCost": 2.0,
+          "MaxRange": 40.0,
+          "BaseCastTime": 1500.0,
+          "BaseCooldown": 45000.0,
+          "IsCooldownHasted": false,
+          "Duration": 5000.0,
+          "Gcd": 1.5,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 101.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 1002578,
+              "BaseValue": 0.0,
+              "SpCoefficient": 3.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 2,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 1002579,
+              "BaseValue": 300.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 1002580,
+              "BaseValue": 100.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 1002581,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 375902,
+              "Amplitude": 0.0,
+              "TriggerSpell": {
+                "Id": 375902,
+                "Name": "Mindgames",
+                "ManaCost": 0.0,
+                "MaxRange": 100.0,
+                "BaseCastTime": 0.0,
+                "BaseCooldown": 0.0,
+                "IsCooldownHasted": false,
+                "Duration": 6000.0,
+                "Gcd": 0.0,
+                "ChargeCooldown": 0,
+                "Charges": 0,
+                "MaxStacks": 0.0,
+                "ProcChance": 0.0,
+                "InternalCooldown": 0.0,
+                "Rppm": 0.0,
+                "RppmIsHasted": false,
+                "Effects": [
+                  {
+                    "Id": 1002585,
+                    "BaseValue": 0.0,
+                    "SpCoefficient": 0.0,
+                    "Coefficient": 0.0,
+                    "TriggerSpellid": 0,
+                    "Amplitude": 0.0,
+                    "TriggerSpell": null,
+                    "Type": 6,
+                    "ScaleValues": {}
+                  }
+                ]
+              },
+              "Type": 64,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 1002582,
+              "BaseValue": 300.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 1002583,
+              "BaseValue": 450.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 1002584,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 375903,
+              "Amplitude": 0.0,
+              "TriggerSpell": {
+                "Id": 375903,
+                "Name": "Mindgames",
+                "ManaCost": 0.0,
+                "MaxRange": 100.0,
+                "BaseCastTime": 0.0,
+                "BaseCooldown": 0.0,
+                "IsCooldownHasted": false,
+                "Duration": 6000.0,
+                "Gcd": 0.0,
+                "ChargeCooldown": 0,
+                "Charges": 0,
+                "MaxStacks": 0.0,
+                "ProcChance": 0.0,
+                "InternalCooldown": 0.0,
+                "Rppm": 0.0,
+                "RppmIsHasted": false,
+                "Effects": [
+                  {
+                    "Id": 1002587,
+                    "BaseValue": 0.0,
+                    "SpCoefficient": 0.0,
+                    "Coefficient": 0.0,
+                    "TriggerSpellid": 0,
+                    "Amplitude": 0.0,
+                    "TriggerSpell": null,
+                    "Type": 6,
+                    "ScaleValues": {}
+                  }
+                ]
+              },
+              "Type": 64,
+              "ScaleValues": {}
+            }
+          ]
+        },
+        {
+          "Id": 41635,
+          "Name": "Prayer of Mending",
+          "ManaCost": 0.0,
+          "MaxRange": 50000.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 30000.0,
+          "Gcd": 1.5,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 10.0,
+          "ProcChance": 100.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 33141,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ]
+        },
+        {
+          "Id": 33110,
+          "Name": "Prayer of Mending",
+          "ManaCost": 0.0,
+          "MaxRange": 50000.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 22918,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.61,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 10,
               "ScaleValues": {}
             }
           ]
@@ -842,37 +1104,6 @@
           ]
         },
         {
-          "Id": 110744,
-          "Name": "Divine Star",
-          "ManaCost": 2.0,
-          "MaxRange": 30.0,
-          "BaseCastTime": 0.0,
-          "BaseCooldown": 15000.0,
-          "IsCooldownHasted": false,
-          "Duration": 15000.0,
-          "Gcd": 1.5,
-          "ChargeCooldown": 0,
-          "Charges": 0,
-          "MaxStacks": 0.0,
-          "ProcChance": 0.0,
-          "InternalCooldown": 0.0,
-          "Rppm": 0.0,
-          "RppmIsHasted": false,
-          "Effects": [
-            {
-              "Id": 122871,
-              "BaseValue": 6.0,
-              "SpCoefficient": 0.0,
-              "Coefficient": 0.0,
-              "TriggerSpellid": 0,
-              "Amplitude": 0.0,
-              "TriggerSpell": null,
-              "Type": 179,
-              "ScaleValues": {}
-            }
-          ]
-        },
-        {
           "Id": 110745,
           "Name": "Divine Star",
           "ManaCost": 0.0,
@@ -930,6 +1161,99 @@
               "Amplitude": 0.0,
               "TriggerSpell": null,
               "Type": 2,
+              "ScaleValues": {}
+            }
+          ]
+        },
+        {
+          "Id": 375904,
+          "Name": "Mindgames",
+          "ManaCost": 0.0,
+          "MaxRange": 100.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 1002588,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 10,
+              "ScaleValues": {}
+            }
+          ]
+        },
+        {
+          "Id": 193155,
+          "Name": "Enlightenment",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 283373,
+              "BaseValue": 10.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ]
+        },
+        {
+          "Id": 238136,
+          "Name": "Cosmic Ripple",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 360821,
+              "BaseValue": 5.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
               "ScaleValues": {}
             }
           ]
@@ -1090,89 +1414,6 @@
             },
             {
               "Id": 288930,
-              "BaseValue": 5.0,
-              "SpCoefficient": 0.0,
-              "Coefficient": 0.0,
-              "TriggerSpellid": 0,
-              "Amplitude": 0.0,
-              "TriggerSpell": null,
-              "Type": 3,
-              "ScaleValues": {}
-            }
-          ]
-        },
-        {
-          "Id": 132157,
-          "Name": "Holy Nova",
-          "ManaCost": 1.6,
-          "MaxRange": 0.0,
-          "BaseCastTime": 0.0,
-          "BaseCooldown": 0.0,
-          "IsCooldownHasted": false,
-          "Duration": 0.0,
-          "Gcd": 1.5,
-          "ChargeCooldown": 0,
-          "Charges": 0,
-          "MaxStacks": 0.0,
-          "ProcChance": 0.0,
-          "InternalCooldown": 0.0,
-          "Rppm": 0.0,
-          "RppmIsHasted": false,
-          "Effects": [
-            {
-              "Id": 170810,
-              "BaseValue": 0.0,
-              "SpCoefficient": 0.315,
-              "Coefficient": 0.0,
-              "TriggerSpellid": 0,
-              "Amplitude": 0.0,
-              "TriggerSpell": null,
-              "Type": 2,
-              "ScaleValues": {}
-            },
-            {
-              "Id": 709210,
-              "BaseValue": 0.0,
-              "SpCoefficient": 0.0,
-              "Coefficient": 0.0,
-              "TriggerSpellid": 281265,
-              "Amplitude": 0.0,
-              "TriggerSpell": {
-                "Id": 281265,
-                "Name": "Holy Nova",
-                "ManaCost": 0.0,
-                "MaxRange": 0.0,
-                "BaseCastTime": 0.0,
-                "BaseCooldown": 0.0,
-                "IsCooldownHasted": false,
-                "Duration": 0.0,
-                "Gcd": 0.0,
-                "ChargeCooldown": 0,
-                "Charges": 0,
-                "MaxStacks": 0.0,
-                "ProcChance": 0.0,
-                "InternalCooldown": 0.0,
-                "Rppm": 0.0,
-                "RppmIsHasted": false,
-                "Effects": [
-                  {
-                    "Id": 739572,
-                    "BaseValue": 0.0,
-                    "SpCoefficient": 0.315,
-                    "Coefficient": 0.0,
-                    "TriggerSpellid": 0,
-                    "Amplitude": 0.0,
-                    "TriggerSpell": null,
-                    "Type": 10,
-                    "ScaleValues": {}
-                  }
-                ]
-              },
-              "Type": 64,
-              "ScaleValues": {}
-            },
-            {
-              "Id": 845266,
               "BaseValue": 5.0,
               "SpCoefficient": 0.0,
               "Coefficient": 0.0,
@@ -1491,258 +1732,6 @@
           ]
         },
         {
-          "Id": 88625,
-          "Name": "Holy Word: Chastise",
-          "ManaCost": 2.0,
-          "MaxRange": 30.0,
-          "BaseCastTime": 0.0,
-          "BaseCooldown": 60000.0,
-          "IsCooldownHasted": false,
-          "Duration": 0.0,
-          "Gcd": 1.5,
-          "ChargeCooldown": 0,
-          "Charges": 0,
-          "MaxStacks": 0.0,
-          "ProcChance": 0.0,
-          "InternalCooldown": 0.0,
-          "Rppm": 0.0,
-          "RppmIsHasted": false,
-          "Effects": [
-            {
-              "Id": 91044,
-              "BaseValue": 0.0,
-              "SpCoefficient": 1.4,
-              "Coefficient": 0.0,
-              "TriggerSpellid": 0,
-              "Amplitude": 0.0,
-              "TriggerSpell": null,
-              "Type": 2,
-              "ScaleValues": {}
-            },
-            {
-              "Id": 709477,
-              "BaseValue": 4.0,
-              "SpCoefficient": 0.0,
-              "Coefficient": 0.0,
-              "TriggerSpellid": 0,
-              "Amplitude": 0.0,
-              "TriggerSpell": null,
-              "Type": 3,
-              "ScaleValues": {}
-            }
-          ]
-        },
-        {
-          "Id": 32379,
-          "Name": "Shadow Word: Death",
-          "ManaCost": 0.5,
-          "MaxRange": 40.0,
-          "BaseCastTime": 0.0,
-          "BaseCooldown": 0.0,
-          "IsCooldownHasted": false,
-          "Duration": 0.0,
-          "Gcd": 1.5,
-          "ChargeCooldown": 20000,
-          "Charges": 1,
-          "MaxStacks": 0.0,
-          "ProcChance": 0.0,
-          "InternalCooldown": 0.0,
-          "Rppm": 0.0,
-          "RppmIsHasted": false,
-          "Effects": [
-            {
-              "Id": 22171,
-              "BaseValue": 0.0,
-              "SpCoefficient": 0.85,
-              "Coefficient": 0.0,
-              "TriggerSpellid": 0,
-              "Amplitude": 0.0,
-              "TriggerSpell": null,
-              "Type": 2,
-              "ScaleValues": {}
-            },
-            {
-              "Id": 165318,
-              "BaseValue": 20.0,
-              "SpCoefficient": 0.0,
-              "Coefficient": 0.0,
-              "TriggerSpellid": 0,
-              "Amplitude": 0.0,
-              "TriggerSpell": null,
-              "Type": 3,
-              "ScaleValues": {}
-            },
-            {
-              "Id": 340366,
-              "BaseValue": 150.0,
-              "SpCoefficient": 0.0,
-              "Coefficient": 0.0,
-              "TriggerSpellid": 0,
-              "Amplitude": 0.0,
-              "TriggerSpell": null,
-              "Type": 77,
-              "ScaleValues": {}
-            }
-          ]
-        },
-        {
-          "Id": 375901,
-          "Name": "Mindgames",
-          "ManaCost": 2.0,
-          "MaxRange": 40.0,
-          "BaseCastTime": 1500.0,
-          "BaseCooldown": 45000.0,
-          "IsCooldownHasted": false,
-          "Duration": 5000.0,
-          "Gcd": 1.5,
-          "ChargeCooldown": 0,
-          "Charges": 0,
-          "MaxStacks": 0.0,
-          "ProcChance": 101.0,
-          "InternalCooldown": 0.0,
-          "Rppm": 0.0,
-          "RppmIsHasted": false,
-          "Effects": [
-            {
-              "Id": 1002578,
-              "BaseValue": 0.0,
-              "SpCoefficient": 3.0,
-              "Coefficient": 0.0,
-              "TriggerSpellid": 0,
-              "Amplitude": 0.0,
-              "TriggerSpell": null,
-              "Type": 2,
-              "ScaleValues": {}
-            },
-            {
-              "Id": 1002579,
-              "BaseValue": 300.0,
-              "SpCoefficient": 0.0,
-              "Coefficient": 0.0,
-              "TriggerSpellid": 0,
-              "Amplitude": 0.0,
-              "TriggerSpell": null,
-              "Type": 6,
-              "ScaleValues": {}
-            },
-            {
-              "Id": 1002580,
-              "BaseValue": 100.0,
-              "SpCoefficient": 0.0,
-              "Coefficient": 0.0,
-              "TriggerSpellid": 0,
-              "Amplitude": 0.0,
-              "TriggerSpell": null,
-              "Type": 6,
-              "ScaleValues": {}
-            },
-            {
-              "Id": 1002581,
-              "BaseValue": 0.0,
-              "SpCoefficient": 0.0,
-              "Coefficient": 0.0,
-              "TriggerSpellid": 375902,
-              "Amplitude": 0.0,
-              "TriggerSpell": {
-                "Id": 375902,
-                "Name": "Mindgames",
-                "ManaCost": 0.0,
-                "MaxRange": 100.0,
-                "BaseCastTime": 0.0,
-                "BaseCooldown": 0.0,
-                "IsCooldownHasted": false,
-                "Duration": 6000.0,
-                "Gcd": 0.0,
-                "ChargeCooldown": 0,
-                "Charges": 0,
-                "MaxStacks": 0.0,
-                "ProcChance": 0.0,
-                "InternalCooldown": 0.0,
-                "Rppm": 0.0,
-                "RppmIsHasted": false,
-                "Effects": [
-                  {
-                    "Id": 1002585,
-                    "BaseValue": 0.0,
-                    "SpCoefficient": 0.0,
-                    "Coefficient": 0.0,
-                    "TriggerSpellid": 0,
-                    "Amplitude": 0.0,
-                    "TriggerSpell": null,
-                    "Type": 6,
-                    "ScaleValues": {}
-                  }
-                ]
-              },
-              "Type": 64,
-              "ScaleValues": {}
-            },
-            {
-              "Id": 1002582,
-              "BaseValue": 300.0,
-              "SpCoefficient": 0.0,
-              "Coefficient": 0.0,
-              "TriggerSpellid": 0,
-              "Amplitude": 0.0,
-              "TriggerSpell": null,
-              "Type": 6,
-              "ScaleValues": {}
-            },
-            {
-              "Id": 1002583,
-              "BaseValue": 450.0,
-              "SpCoefficient": 0.0,
-              "Coefficient": 0.0,
-              "TriggerSpellid": 0,
-              "Amplitude": 0.0,
-              "TriggerSpell": null,
-              "Type": 6,
-              "ScaleValues": {}
-            },
-            {
-              "Id": 1002584,
-              "BaseValue": 0.0,
-              "SpCoefficient": 0.0,
-              "Coefficient": 0.0,
-              "TriggerSpellid": 375903,
-              "Amplitude": 0.0,
-              "TriggerSpell": {
-                "Id": 375903,
-                "Name": "Mindgames",
-                "ManaCost": 0.0,
-                "MaxRange": 100.0,
-                "BaseCastTime": 0.0,
-                "BaseCooldown": 0.0,
-                "IsCooldownHasted": false,
-                "Duration": 6000.0,
-                "Gcd": 0.0,
-                "ChargeCooldown": 0,
-                "Charges": 0,
-                "MaxStacks": 0.0,
-                "ProcChance": 0.0,
-                "InternalCooldown": 0.0,
-                "Rppm": 0.0,
-                "RppmIsHasted": false,
-                "Effects": [
-                  {
-                    "Id": 1002587,
-                    "BaseValue": 0.0,
-                    "SpCoefficient": 0.0,
-                    "Coefficient": 0.0,
-                    "TriggerSpellid": 0,
-                    "Amplitude": 0.0,
-                    "TriggerSpell": null,
-                    "Type": 6,
-                    "ScaleValues": {}
-                  }
-                ]
-              },
-              "Type": 64,
-              "ScaleValues": {}
-            }
-          ]
-        },
-        {
           "Id": 390994,
           "Name": "Harmonious Apparatus",
           "ManaCost": 0.0,
@@ -1893,6 +1882,79 @@
                 ]
               },
               "Type": 6,
+              "ScaleValues": {}
+            }
+          ]
+        },
+        {
+          "Id": 88625,
+          "Name": "Holy Word: Chastise",
+          "ManaCost": 2.0,
+          "MaxRange": 30.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 60000.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 1.5,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 91044,
+              "BaseValue": 0.0,
+              "SpCoefficient": 1.4,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 2,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 709477,
+              "BaseValue": 4.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 3,
+              "ScaleValues": {}
+            }
+          ]
+        },
+        {
+          "Id": 243241,
+          "Name": "Cosmic Ripple",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 369498,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.42,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 10,
               "ScaleValues": {}
             }
           ]

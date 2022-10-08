@@ -1,10 +1,10 @@
-﻿## Salvation Core
+﻿# Salvation Core
 
 Core contains all of the modelling logic. It is responsible for building up the model then executing it, then providing results.
 
 This is based heavily on the Holy Priest spreadsheet models used and refined throughout WoD, Legion, BfA and Shadowlands.
 
-### Basic Usage
+## Basic Usage
 
 A modelling run generates results based on a `GameState`.
 
@@ -75,3 +75,129 @@ var newProfile = IProfileService.CloneProfile(oldProfile);
 
 This can be useful for cloning a profile to then make minor modifications and comparing results.
 
+## Implementing a new spell
+
+An example of implementation using a basic passive talent, Cosmic Ripple.
+
+1. Make sure the spell is in the `Spell` enum in `Spell.cs` with the correct SpellId
+
+```csharp
+SanctifiedPrayers = 196489,
+CosmicRipple = 238136,
+Afterlife = 196707,
+```
+
+2. Make sure that `constants.json` contains the appropriate spelldata. 
+
+To do this, check `Salvation.Utility.HolyPriestSpellDataService.cs` and ensure it's in the `_spells` list.
+
+```csharp
+_spells = new List<uint>()
+{
+    ...
+    (uint)Spell.CosmicRipple,
+    ...
+}
+```
+
+Then run `Salvation.Explorer` with the command line argument `-updatespelldata`. This should include any missing spell data in `constants.json`.
+
+3. Create a new interface for the spell implementation in the appropriate `Salvation.Core.Interfaces` namespace.
+
+`ICosmicRipple.cs`
+
+```csharp
+namespace Salvation.Core.Interfaces.Modelling.HolyPriest.Spells
+{
+    public interface ICosmicRippleSpellService : ISpellService
+    {
+
+    }
+}
+```
+
+4. Create a new spell in the appropriate `Salvation.Core.Modelling` namespace. This should inherit `SpellService` and implement `ISpellService<T>`
+
+`CosmicRipple.cs`
+
+```csharp
+namespace Salvation.Core.Modelling.HolyPriest.Spells
+{
+    public class CosmicRipple : SpellService, ISpellService<ICosmicRippleSpellService>
+    {
+        public CosmicRipple(IGameStateService gameStateService)
+            : base(gameStateService)
+        {
+            Spell = Spell.CosmicRipple;
+        }
+    }
+}
+```
+
+5. Create a test for it in `Salvation.CoreTests.HolyPriest.Spells` to test relevant methods.
+
+`CosmicRippleTests.cs`
+
+```csharp
+namespace Salvation.CoreTests.HolyPriest.Spells
+{
+    [TestFixture]
+    public class CosmicRippleTests : BaseTest
+    {
+        private GameState _gameState;
+        private ISpellService _spell;
+
+        [OneTimeSetUp]
+        public void InitOnce()
+        {
+            IGameStateService gameStateService = new GameStateService();
+            _spell = new CosmicRipple(gameStateService);
+
+            _gameState = GetGameState();
+        }
+
+        [Test]
+        public void CosmicRipple_GetMinimumHealTargets()
+        {
+            // Arrange
+
+            // Act
+            var result = _spell.GetMinimumHealTargets(_gameState, null);
+
+            // Assert
+            Assert.AreEqual(1, result);
+        }
+    }
+}
+```
+
+You can then run the test and watch it fail.
+
+6. From here, implement the spell inside `CosmicRipple.cs`, making sure to supply a relevant test for each method 
+(and any variants to improve coveage). Override each of the `SpellService` methods that make sense to give valid 
+output for each.
+
+For Cosmic Ripple this would include methods such as:
+
+- GetAverageRawHealing
+- GetActualCastsPerMinute
+- GetMaximumCastsPerMinute
+
+
+7. Include the spell in the `DependencyInjectionExtensions.cs` which loads up the DI via an extension method.
+
+```csharp
+public static IServiceCollection AddHolyPriestSpells(this IServiceCollection services)
+{
+    ...
+    // Talents
+    services.AddSingleton<ISpellService<ICosmicRippleSpellService>, CosmicRipple>();
+    ...
+}
+```
+
+8. Include the spell in `SpellSreviceFactory.cs:GetSpellService` to map `Spell.CosmicRipple` to `ICosmicRippleSpellService`.
+
+```csharp
+Spell.CosmicRipple => typeof(ICosmicRippleSpellService),
+```

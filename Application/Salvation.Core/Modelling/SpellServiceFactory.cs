@@ -40,7 +40,7 @@ namespace Salvation.Core.Modelling
                 Spell.Mindgames => typeof(IMindgamesSpellService),
                 Spell.PrayerOfHealing => typeof(IPrayerOfHealingSpellService),
                 //Spell.Enlightenment => typeof(IEnlightenmentSpellService),
-                //Spell.CosmicRipple => typeof(ICosmicRippleSpellService),
+                Spell.CosmicRipple => typeof(ICosmicRippleSpellService),
                 //Spell.Benediction => typeof(IBenedictionSpellService),
                 // Priest Talent
                 Spell.DivineStar => typeof(IDivineStarSpellService),

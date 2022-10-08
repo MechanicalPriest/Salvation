@@ -10,20 +10,20 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
     public class HolyWordSalvation : SpellService, ISpellService<IHolyWordSalvationSpellService>
     {
-        private readonly ISpellService<IHolyWordSerenitySpellService> _serenitySpellService;
+        private readonly ISpellService<IHolyWordSerenitySpellService> _holyWordSerenitySpellService;
         private readonly ISpellService<IHolyWordSanctifySpellService> _holyWordSanctifySpellService;
         private readonly ISpellService<IRenewSpellService> _renewSpellService;
         private readonly ISpellService<IPrayerOfMendingSpellService> _prayerOfMendingSpellService;
 
         public HolyWordSalvation(IGameStateService gameStateService,
-            ISpellService<IHolyWordSerenitySpellService> serenitySpellService,
+            ISpellService<IHolyWordSerenitySpellService> holyWordSerenitySpellService,
             ISpellService<IHolyWordSanctifySpellService> holyWordSanctifySpellService,
             ISpellService<IRenewSpellService> renewSpellService,
             ISpellService<IPrayerOfMendingSpellService> prayerOfMendingSpellService)
             : base(gameStateService)
         {
             Spell = Spell.HolyWordSalvation;
-            _serenitySpellService = serenitySpellService;
+            _holyWordSerenitySpellService = holyWordSerenitySpellService;
             _holyWordSanctifySpellService = holyWordSanctifySpellService;
             _renewSpellService = renewSpellService;
             _prayerOfMendingSpellService = prayerOfMendingSpellService;
@@ -58,7 +58,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             // Salv is (60 + (SerenityCPM + SancCPM) * SalvCDR) / (CastTime + Cooldown) + 1 / (FightLength / 60)
             // Essentially the CDR per minute is 60 + the CDR from holy words.
 
-            var cpmSerenity = _serenitySpellService.GetActualCastsPerMinute(gameState);
+            var cpmSerenity = _holyWordSerenitySpellService.GetActualCastsPerMinute(gameState);
             var cpmSanctify = _holyWordSanctifySpellService.GetActualCastsPerMinute(gameState);
 
             var hastedCD = GetHastedCooldown(gameState, spellData);

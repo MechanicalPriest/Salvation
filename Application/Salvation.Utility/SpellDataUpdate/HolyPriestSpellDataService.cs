@@ -1,4 +1,5 @@
-﻿using Salvation.Core.Constants;
+﻿using Microsoft.Extensions.Logging;
+using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
 using SimcProfileParser.Interfaces;
 using SimcProfileParser.Model.Generated;
@@ -10,13 +11,16 @@ namespace Salvation.Utility.SpellDataUpdate
     public class HolyPriestSpellDataService : SpellDataService,
         ISpellDataService<HolyPriestSpellDataService>
     {
+        private readonly ILogger<ISpellDataService<HolyPriestSpellDataService>> _logger;
         private readonly ISimcGenerationService _simcGenerationService;
         private readonly IList<uint> _spells;
 
         private static uint PLAYER_LEVEL = 70;
 
-        public HolyPriestSpellDataService(ISimcGenerationService simcGenerationService)
+        public HolyPriestSpellDataService(ILogger<ISpellDataService<HolyPriestSpellDataService>> logger,
+            ISimcGenerationService simcGenerationService)
         {
+            _logger = logger;
             _simcGenerationService = simcGenerationService;
             _spells = new List<uint>()
             {
@@ -25,67 +29,54 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.Priest,
                 (uint)Spell.LeechHeal,
                 (uint)Spell.EchoOfLight,
-
                 (uint)Spell.Heal,
                 (uint)Spell.FlashHeal,
                 (uint)Spell.PowerWordShield,
-                (uint)Spell.PrayerOfMending,
-                (uint)Spell.PrayerOfMendingBuff,
-                (uint)Spell.PrayerOfMendingHeal,
-                (uint)Spell.Renew,
-
                 (uint)Spell.HolyFire,
                 (uint)Spell.Smite,
                 (uint)Spell.ShadowWordPain,
 
-                // Talents
-                (uint)Spell.Enlightenment,
-                (uint)Spell.CosmicRipple,
+                // Talents - Priest
+                (uint)Spell.PrayerOfMending,
+                (uint)Spell.Renew,
                 (uint)Spell.Halo,
+                (uint)Spell.DivineStar,
+                (uint)Spell.HolyNova,
+                (uint)Spell.ShadowWordDeath,
+                (uint)Spell.Mindgames,
+
+                // Talent - Priest supporting spells
+                (uint)Spell.PrayerOfMendingBuff,
+                (uint)Spell.PrayerOfMendingHeal,
                 (uint)Spell.HaloHeal,
                 (uint)Spell.HaloDamage,
-                (uint)Spell.DivineStar,
                 (uint)Spell.DivineStarHeal,
                 (uint)Spell.DivineStarDamage,
+                (uint)Spell.MindgamesHeal,
+
+                // Talents - Holy
+                (uint)Spell.Enlightenment,
+                (uint)Spell.CosmicRipple,
                 (uint)Spell.Benediction,
                 (uint)Spell.HolyWordSalvation,
-
-                // Spells
                 (uint)Spell.PrayerOfHealing,
-                (uint)Spell.HolyNova,
                 (uint)Spell.CircleOfHealing,
                 (uint)Spell.DivineHymn,
                 (uint)Spell.HolyWordSanctify,
                 (uint)Spell.HolyWordSerenity,
                 (uint)Spell.GuardianSpirit,
-                
-                // DPS
-                (uint)Spell.HolyWordChastise,
-                (uint)Spell.ShadowWordDeath,
-
-                #region Shadowlands spells
-                
-                // Covenant
-                (uint)Spell.Mindgames,
-                // TODO: re-add once this is pulled from simc
-                //(uint)Spell.MindgamesHeal,
-
-                // Legendaries
                 (uint)Spell.HarmoniousApparatus,
                 (uint)Spell.DivineImage,
+                (uint)Spell.HolyWordChastise,
+
+                // Talent - Holy supporting spells
+                (uint)Spell.CosmicRippleHeal,
                 (uint)Spell.DivineImageHealingLight,
                 (uint)Spell.DivineImageDazzlingLight,
                 (uint)Spell.DivineImageSearingLight,
                 (uint)Spell.DivineImageLightEruption,
                 (uint)Spell.DivineImageBlessedLight,
                 (uint)Spell.DivineImageTranquilLight,
-
-                // Consumable
-
-
-                // Trinket
-
-                #endregion
             };
         }
 
@@ -120,6 +111,8 @@ namespace Salvation.Utility.SpellDataUpdate
                 StamCost = 20
             };
 
+            _logger?.LogTrace("Generating SpellData for {class} {spec}", spec.Class, spec.Spec);
+
             // Add the spells
             var spells = new List<BaseSpellData>();
 
@@ -135,10 +128,14 @@ namespace Salvation.Utility.SpellDataUpdate
 
                 var newSpell = GetBaseSpellData(spellData);
 
+                _logger?.LogTrace("Adding spell {spellId}: {spellname}", newSpell.Id, newSpell.Name);
+
                 spells.Add(newSpell);
             }
 
             spec.Spells = spells;
+
+            _logger?.LogTrace("Done generating spelldata.");
 
             return spec;
         }

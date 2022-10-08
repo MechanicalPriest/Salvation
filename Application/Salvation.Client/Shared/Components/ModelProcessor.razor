@@ -58,19 +58,19 @@
                                                   AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
                                     </ToolBarContent>
                                     <Columns>
-                                        <Column T="CastProfileViewModel" Field="SpellId" Title="Spell" IsEditable="false">
+                                        <Column T="CastProfileViewModel" Field="SpellId" Title="Spell" IsEditable="false" CellStyle="max-width:100%; white-space:nowrap;">
                                             <CellTemplate>
                                                 <a href="@GenerateWowheadSpellLink(context.Item.SpellId)" data-wh-icon-size="tiny">@context.Item.SpellId</a>
                                             </CellTemplate>
                                         </Column>
-                                        <Column T="CastProfileViewModel" Field="EfficiencyPercentValue" Title="Efficiency(%)" Filterable="false">
+                                        <Column T="CastProfileViewModel" Field="EfficiencyPercentValue" Title="Efficiency" Filterable="false">
                                             <EditTemplate>
-                                                <MudNumericField @bind-Value="context.Item.EfficiencyPercentValue" Mask="@(new PatternMask("000.00"))" Margin="Margin.Dense" Variant="Variant.Text" Adornment="Adornment.End" AdornmentText="%" Min="0" Max="100" Step="5"></MudNumericField>
+                                                <MudNumericField @bind-Value="context.Item.EfficiencyPercentValue" Mask="@(new PatternMask("000.00"))" Margin="Margin.Dense" Variant="Variant.Text" Adornment="Adornment.End" AdornmentText="%" Min="0" Max="100" Step="5" HideSpinButtons="true" />
                                             </EditTemplate>
                                         </Column>
-                                        <Column T="CastProfileViewModel" Field="OverhealingPercentValue" Title="Overheal(%)" Filterable="false">
+                                        <Column T="CastProfileViewModel" Field="OverhealingPercentValue" Title="Overheal" Filterable="false">
                                             <EditTemplate>
-                                                <MudNumericField @bind-Value="context.Item.OverhealingPercentValue" Mask="@(new PatternMask("000.00"))" Margin="Margin.Dense" Variant="Variant.Text" Adornment="Adornment.End" AdornmentText="%" Min="0" Max="100" Step="5"></MudNumericField>
+                                                <MudNumericField @bind-Value="context.Item.OverhealingPercentValue" Mask="@(new PatternMask("000.00"))" Margin="Margin.Dense" Variant="Variant.Text" Adornment="Adornment.End" AdornmentText="%" Min="0" Max="100" Step="5" HideSpinButtons="true"/>
                                             </EditTemplate>
                                         </Column>
                                     </Columns>

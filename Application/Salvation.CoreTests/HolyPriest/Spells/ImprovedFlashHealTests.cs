@@ -30,30 +30,11 @@ namespace Salvation.CoreTests.HolyPriest.Spells
             var resultDefault = spellService.GetAverageRawHealing(_gameState, null);
 
             gameStateService.SetTalentRank(_gameState, Spell.ImprovedFlashHeal, 1);
-            var resultOverride = spellService.GetAverageRawHealing(_gameState, null);
+            var resultRank1 = spellService.GetAverageRawHealing(_gameState, null);
 
             // Assert
             Assert.AreEqual(7394.684554928077d, resultDefault);
-            Assert.AreEqual(8503.8872381672882d, resultOverride);
-        }
-
-        [Test]
-        public void IFH_GetAverageRawHealing_Calculates_Rank0()
-        {
-            // Arrange
-            IGameStateService gameStateService = new GameStateService();
-            var spellService = new FlashHeal(gameStateService);
-
-            // Act
-            gameStateService.SetTalentRank(_gameState, Spell.ImprovedFlashHeal, 0);
-            var resultDefault = spellService.GetAverageRawHealing(_gameState, null);
-
-            gameStateService.SetTalentRank(_gameState, Spell.ImprovedFlashHeal, 0);
-            var resultOverride = spellService.GetAverageRawHealing(_gameState, null);
-
-            // Assert
-            Assert.AreEqual(7394.684554928077d, resultDefault);
-            Assert.AreEqual(7394.684554928077d, resultOverride);
+            Assert.AreEqual(8503.8872381672882d, resultRank1);
         }
     }
 }

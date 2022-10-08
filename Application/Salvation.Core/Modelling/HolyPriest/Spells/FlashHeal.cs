@@ -35,9 +35,9 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {averageHeal:0.##}");
 
-            averageHeal *= _gameStateService.GetCriticalStrikeMultiplier(gameState)
+            averageHeal *= (_gameStateService.GetCriticalStrikeMultiplier(gameState) + GetCrisisManagementModifier(gameState))
                 * _gameStateService.GetGlobalHealingMultiplier(gameState)
-                * GetImprovedFlashHealMultiplier(gameState, spellData);
+                * GetImprovedFlashHealMultiplier(gameState);
 
             // TODO: Cleanup post implementation
             // * GetResonantWordsMulti(gameState, spellData);
@@ -71,7 +71,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             return 1;
         }
 
-        internal double GetImprovedFlashHealMultiplier(GameState gameState, BaseSpellData spellData)
+        internal double GetImprovedFlashHealMultiplier(GameState gameState)
         {
             var multi = 1d;
 
@@ -85,6 +85,23 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             }
 
             return multi;
+        }
+
+        internal double GetCrisisManagementModifier(GameState gameState)
+        {
+            // TODO: Move this somewhere more neutral rather than copy/paste with FH/Heal.
+            var modifier = 0d;
+
+            var talent = _gameStateService.GetTalent(gameState, Spell.CrisisManagement);
+
+            if (talent != null && talent.Rank > 0)
+            {
+                var talentSpellData = _gameStateService.GetSpellData(gameState, Spell.CrisisManagement);
+
+                modifier += talentSpellData.GetEffect(1028125).BaseValue / 100 * talent.Rank;
+            }
+
+            return modifier;
         }
 
         // TODO: Cleanup post implementation

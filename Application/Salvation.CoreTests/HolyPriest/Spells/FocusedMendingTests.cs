@@ -30,30 +30,11 @@ namespace Salvation.CoreTests.HolyPriest.Spells
             var resultDefault = spellService.GetAverageRawHealing(_gameState, null);
 
             gameStateService.SetTalentRank(_gameState, Spell.FocusedMending, 1);
-            var resultOverride = spellService.GetAverageRawHealing(_gameState, null);
+            var resultRank1 = spellService.GetAverageRawHealing(_gameState, null);
 
             // Assert
             Assert.AreEqual(11110.240341148095d, resultDefault);
-            Assert.AreEqual(13560.048336371252d, resultOverride);
-        }
-
-        [Test]
-        public void FM_GetAverageRawHealing_Calculates_Rank0()
-        {
-            // Arrange
-            IGameStateService gameStateService = new GameStateService();
-            var spellService = new PrayerOfMending(gameStateService);
-
-            // Act
-            gameStateService.SetTalentRank(_gameState, Spell.FocusedMending, 0);
-            var resultDefault = spellService.GetAverageRawHealing(_gameState, null);
-
-            gameStateService.SetTalentRank(_gameState, Spell.FocusedMending, 0);
-            var resultOverride = spellService.GetAverageRawHealing(_gameState, null);
-
-            // Assert
-            Assert.AreEqual(11110.240341148095d, resultDefault);
-            Assert.AreEqual(11110.240341148095d, resultOverride);
+            Assert.AreEqual(13560.048336371252d, resultRank1);
         }
     }
 }

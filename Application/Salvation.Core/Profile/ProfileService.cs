@@ -364,7 +364,7 @@ namespace Salvation.Core.Profile
                     new CastProfile((int)Spell.DivineStar, 0.81d, 0.44d, 10, 10, "Divine Star, Divstar"),
                     new CastProfile((int)Spell.Halo, 0.7596d, 0.3658d, 20, 1, "Halo"),
                     new CastProfile((int)Spell.HolyWordSalvation, 0.804d, 0.3142d, 20, 0, "Holy Word: Salvation"),
-                    new CastProfile((int)Spell.CosmicRipple, 0d, 0.2332d, 5, 0, "Cosmic Ripple, CR"),
+                    new CastProfile((int)Spell.CosmicRipple, 1d, 0.2332d, 5, 0, "Cosmic Ripple, CR"),
                     new CastProfile((int)Spell.PowerWordShield, 0.01d, 0.38d, 1, 0, "Power Word: Shield, PW:S"),
                     new CastProfile((int)Spell.EchoOfLight, 0d, 0.4224d, 1, 0, "Echo of Light, EoL"),
                     new CastProfile((int)Spell.GuardianSpirit, 0.36d, 0d, 1, 0, "Guardian Spirit, GS, Angel"),

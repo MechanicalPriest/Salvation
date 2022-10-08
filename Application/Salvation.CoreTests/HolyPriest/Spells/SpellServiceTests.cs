@@ -77,6 +77,15 @@ namespace Salvation.CoreTests.HolyPriest.Spells
             Spells.Add(new ShadowWordPain(gameStateService));
             Spells.Add(new ShadowWordDeath(gameStateService));
             Spells.Add(new HolyFire(gameStateService));
+            Spells.Add(new CosmicRipple(gameStateService,
+                new HolyWordSerenity(gameStateService,
+                    new FlashHeal(gameStateService),
+                    new Heal(gameStateService),
+                    new PrayerOfMending(gameStateService)),
+                new HolyWordSanctify(gameStateService,
+                    new PrayerOfHealing(gameStateService),
+                    new Renew(gameStateService),
+                    new CircleOfHealing(gameStateService))));
 
             _gameState = gameStateService.CreateValidatedGameState(profile, constants);
         }
@@ -326,6 +335,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(ShadowWordPain)).Returns(750.0d);
                 yield return new TestCaseData(typeof(ShadowWordDeath)).Returns(1250.0d);
                 yield return new TestCaseData(typeof(HolyFire)).Returns(2500.0d);
+                yield return new TestCaseData(typeof(CosmicRipple)).Returns(0.0d);
             }
         }
 
@@ -354,6 +364,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(ShadowWordPain)).Returns(5274.1801233861388d);
                 yield return new TestCaseData(typeof(ShadowWordDeath)).Returns(2989.5926466902674d);
                 yield return new TestCaseData(typeof(HolyFire)).Returns(8334.5878256760934d);
+                yield return new TestCaseData(typeof(CosmicRipple)).Returns(0.0d);
             }
         }
 
@@ -381,6 +392,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(ShadowWordPain)).Returns(0);
                 yield return new TestCaseData(typeof(ShadowWordDeath)).Returns(0);
                 yield return new TestCaseData(typeof(HolyFire)).Returns(0);
+                yield return new TestCaseData(typeof(CosmicRipple)).Returns(5126.8283858823706d);
             }
         }
 
@@ -408,6 +420,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(ShadowWordPain)).Returns(0);
                 yield return new TestCaseData(typeof(ShadowWordDeath)).Returns(0);
                 yield return new TestCaseData(typeof(HolyFire)).Returns(0);
+                yield return new TestCaseData(typeof(CosmicRipple)).Returns(1559.1762905421999d);
             }
         }
 
@@ -435,6 +448,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(ShadowWordPain)).Returns(0);
                 yield return new TestCaseData(typeof(ShadowWordDeath)).Returns(0);
                 yield return new TestCaseData(typeof(HolyFire)).Returns(0);
+                yield return new TestCaseData(typeof(CosmicRipple)).Returns(6686.0046764245835d);
             }
         }
 
@@ -464,6 +478,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(ShadowWordPain)).Returns(16.0d);
                 yield return new TestCaseData(typeof(ShadowWordDeath)).Returns(0);
                 yield return new TestCaseData(typeof(HolyFire)).Returns(7);
+                yield return new TestCaseData(typeof(CosmicRipple)).Returns(0.0d);
             }
         }
 
@@ -491,6 +506,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(ShadowWordPain)).Returns(0);
                 yield return new TestCaseData(typeof(ShadowWordDeath)).Returns(0);
                 yield return new TestCaseData(typeof(HolyFire)).Returns(1.4777468707000001d);
+                yield return new TestCaseData(typeof(CosmicRipple)).Returns(0.0d);
             }
         }
 
@@ -518,6 +534,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(ShadowWordPain)).Returns(0);
                 yield return new TestCaseData(typeof(ShadowWordDeath)).Returns(20.0d);
                 yield return new TestCaseData(typeof(HolyFire)).Returns(10.0d);
+                yield return new TestCaseData(typeof(CosmicRipple)).Returns(0.0d);
             }
         }
 
@@ -545,6 +562,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(ShadowWordPain)).Returns(40.602352941200003d);
                 yield return new TestCaseData(typeof(ShadowWordDeath)).Returns(3.0d);
                 yield return new TestCaseData(typeof(HolyFire)).Returns(5.2275068161d);
+                yield return new TestCaseData(typeof(CosmicRipple)).Returns(3.6506643766d);
             }
         }
 
@@ -573,6 +591,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(ShadowWordPain)).Returns(1);
                 yield return new TestCaseData(typeof(ShadowWordDeath)).Returns(1);
                 yield return new TestCaseData(typeof(HolyFire)).Returns(1);
+                yield return new TestCaseData(typeof(CosmicRipple)).Returns(0.0d);
             }
         }
 
@@ -601,6 +620,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(ShadowWordPain)).Returns(0);
                 yield return new TestCaseData(typeof(ShadowWordDeath)).Returns(0);
                 yield return new TestCaseData(typeof(HolyFire)).Returns(0);
+                yield return new TestCaseData(typeof(CosmicRipple)).Returns(5.0d);
             }
         }
 
@@ -629,6 +649,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(ShadowWordPain)).Returns(1);
                 yield return new TestCaseData(typeof(ShadowWordDeath)).Returns(1);
                 yield return new TestCaseData(typeof(HolyFire)).Returns(1);
+                yield return new TestCaseData(typeof(CosmicRipple)).Returns(0.0d);
             }
         }
 
@@ -657,6 +678,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(ShadowWordPain)).Returns(0);
                 yield return new TestCaseData(typeof(ShadowWordDeath)).Returns(0);
                 yield return new TestCaseData(typeof(HolyFire)).Returns(0);
+                yield return new TestCaseData(typeof(CosmicRipple)).Returns(1.0d);
             }
         }
 
@@ -684,6 +706,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(ShadowWordPain)).Returns(1);
                 yield return new TestCaseData(typeof(ShadowWordDeath)).Returns(1);
                 yield return new TestCaseData(typeof(HolyFire)).Returns(1);
+                yield return new TestCaseData(typeof(CosmicRipple)).Returns(0.0d);
             }
         }
 
@@ -711,6 +734,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(ShadowWordPain)).Returns(0);
                 yield return new TestCaseData(typeof(ShadowWordDeath)).Returns(0);
                 yield return new TestCaseData(typeof(HolyFire)).Returns(0);
+                yield return new TestCaseData(typeof(CosmicRipple)).Returns(5.0d);
             }
         }
 
@@ -739,6 +763,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(ShadowWordPain)).Returns(false);
                 yield return new TestCaseData(typeof(ShadowWordDeath)).Returns(false);
                 yield return new TestCaseData(typeof(HolyFire)).Returns(false);
+                yield return new TestCaseData(typeof(CosmicRipple)).Returns(true);
             }
         }
     }

@@ -156,8 +156,7 @@
         /// The PoM buff people get when it is cast on/bounces to them
         /// </summary>
         PrayerOfMendingBuff = 41635,
-        // TODO: Pull this from simc spelldata
-        //MindgamesHeal = 375904, 
+        MindgamesHeal = 375904, 
         DivineImageHealingLight = 196809,
         DivineImageDazzlingLight = 196810,
         // TODO: Pull this from simc, it's actually 196811
@@ -165,6 +164,7 @@
         DivineImageLightEruption = 196812,
         DivineImageBlessedLight = 196813,
         DivineImageTranquilLight = 196816,
+        CosmicRippleHeal = 243241,
 
         // Consumables
 

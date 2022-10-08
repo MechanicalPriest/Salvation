@@ -91,7 +91,7 @@ namespace Salvation.Explorer.Modelling
             GameState state = _gameStateService.CreateValidatedGameState(profile);
 
             // Make some other modifications if needed
-            _profileService.UpdateTalent(profile, Spell.CosmicRipple, 1);
+            // _profileService.UpdateTalent(profile, Spell.ImprovedFlashHeal, 0);
 
             // Kick off modelling against it.
             var results = _modellingService.GetResults(state);

@@ -68,6 +68,7 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.HarmoniousApparatus,
                 (uint)Spell.DivineImage,
                 (uint)Spell.HolyWordChastise,
+                (uint)Spell.ImprovedFlashHeal,
 
                 // Talent - Holy supporting spells
                 (uint)Spell.CosmicRippleHeal,

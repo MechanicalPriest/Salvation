@@ -170,6 +170,17 @@
               "TriggerSpell": null,
               "Type": 6,
               "ScaleValues": {}
+            },
+            {
+              "Id": 1035936,
+              "BaseValue": 1.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
             }
           ]
         },
@@ -540,7 +551,7 @@
             },
             {
               "Id": 323674,
-              "BaseValue": 400.0,
+              "BaseValue": 300.0,
               "SpCoefficient": 0.0,
               "Coefficient": 0.0,
               "TriggerSpellid": 0,
@@ -1929,6 +1940,37 @@
           ]
         },
         {
+          "Id": 393870,
+          "Name": "Improved Flash Heal",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 1033063,
+              "BaseValue": 15.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ]
+        },
+        {
           "Id": 243241,
           "Name": "Cosmic Ripple",
           "ManaCost": 0.0,
@@ -2033,8 +2075,8 @@
           ]
         },
         {
-          "Id": 196810,
-          "Name": "Dazzling Lights",
+          "Id": 196811,
+          "Name": "Searing Light",
           "ManaCost": 0.0,
           "MaxRange": 100.0,
           "BaseCastTime": 0.0,
@@ -2051,25 +2093,14 @@
           "RppmIsHasted": false,
           "Effects": [
             {
-              "Id": 288949,
+              "Id": 288950,
               "BaseValue": 0.0,
-              "SpCoefficient": 0.4875,
+              "SpCoefficient": 0.57,
               "Coefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
-              "Type": 10,
-              "ScaleValues": {}
-            },
-            {
-              "Id": 336109,
-              "BaseValue": 5.0,
-              "SpCoefficient": 0.0,
-              "Coefficient": 0.0,
-              "TriggerSpellid": 0,
-              "Amplitude": 0.0,
-              "TriggerSpell": null,
-              "Type": 3,
+              "Type": 2,
               "ScaleValues": {}
             }
           ]

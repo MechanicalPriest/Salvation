@@ -44,6 +44,8 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.HolyNova,
                 (uint)Spell.ShadowWordDeath,
                 (uint)Spell.Mindgames,
+                (uint)Spell.ImprovedFlashHeal,
+                (uint)Spell.FocusedMending,
 
                 // Talent - Priest supporting spells
                 (uint)Spell.PrayerOfMendingBuff,
@@ -68,7 +70,6 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.HarmoniousApparatus,
                 (uint)Spell.DivineImage,
                 (uint)Spell.HolyWordChastise,
-                (uint)Spell.ImprovedFlashHeal,
 
                 // Talent - Holy supporting spells
                 (uint)Spell.CosmicRippleHeal,

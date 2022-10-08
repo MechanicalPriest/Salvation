@@ -9,7 +9,7 @@ using System;
 namespace Salvation.CoreTests.HolyPriest.Spells
 {
     [TestFixture]
-    public class ImprovedFlashHealTests : BaseTest
+    public class FocusedMendingTests : BaseTest
     {
         private GameState _gameState;
         [OneTimeSetUp]
@@ -19,41 +19,41 @@ namespace Salvation.CoreTests.HolyPriest.Spells
         }
 
         [Test]
-        public void IFH_GetAverageRawHealing_Calculates_Rank1()
+        public void FM_GetAverageRawHealing_Calculates_Rank1()
         {
             // Arrange
             IGameStateService gameStateService = new GameStateService();
-            var spellService = new FlashHeal(gameStateService);
+            var spellService = new PrayerOfMending(gameStateService);
 
             // Act
-            gameStateService.SetTalentRank(_gameState, Spell.ImprovedFlashHeal, 0);
+            gameStateService.SetTalentRank(_gameState, Spell.FocusedMending, 0);
             var resultDefault = spellService.GetAverageRawHealing(_gameState, null);
 
-            gameStateService.SetTalentRank(_gameState, Spell.ImprovedFlashHeal, 1);
+            gameStateService.SetTalentRank(_gameState, Spell.FocusedMending, 1);
             var resultOverride = spellService.GetAverageRawHealing(_gameState, null);
 
             // Assert
-            Assert.AreEqual(7394.684554928077d, resultDefault);
-            Assert.AreEqual(8503.8872381672882d, resultOverride);
+            Assert.AreEqual(11110.240341148095d, resultDefault);
+            Assert.AreEqual(13560.048336371252d, resultOverride);
         }
 
         [Test]
-        public void IFH_GetAverageRawHealing_Calculates_Rank0()
+        public void FM_GetAverageRawHealing_Calculates_Rank0()
         {
             // Arrange
             IGameStateService gameStateService = new GameStateService();
-            var spellService = new FlashHeal(gameStateService);
+            var spellService = new PrayerOfMending(gameStateService);
 
             // Act
-            gameStateService.SetTalentRank(_gameState, Spell.ImprovedFlashHeal, 0);
+            gameStateService.SetTalentRank(_gameState, Spell.FocusedMending, 0);
             var resultDefault = spellService.GetAverageRawHealing(_gameState, null);
 
-            gameStateService.SetTalentRank(_gameState, Spell.ImprovedFlashHeal, 0);
+            gameStateService.SetTalentRank(_gameState, Spell.FocusedMending, 0);
             var resultOverride = spellService.GetAverageRawHealing(_gameState, null);
 
             // Assert
-            Assert.AreEqual(7394.684554928077d, resultDefault);
-            Assert.AreEqual(7394.684554928077d, resultOverride);
+            Assert.AreEqual(11110.240341148095d, resultDefault);
+            Assert.AreEqual(11110.240341148095d, resultOverride);
         }
     }
 }

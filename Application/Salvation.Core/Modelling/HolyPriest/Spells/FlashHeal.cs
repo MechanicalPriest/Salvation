@@ -79,11 +79,9 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             if (talent != null && talent.Rank > 0)
             {
-                var improvedFHSpellData = _gameStateService.GetSpellData(gameState, Spell.ImprovedFlashHeal);
+                var talentSpellData = _gameStateService.GetSpellData(gameState, Spell.ImprovedFlashHeal);
 
-                var increasedHealingAmount = improvedFHSpellData.GetEffect(1033063).BaseValue;
-
-                multi += increasedHealingAmount / 100;
+                multi += talentSpellData.GetEffect(1033063).BaseValue / 100;
             }
 
             return multi;

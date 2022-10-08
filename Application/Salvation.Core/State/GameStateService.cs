@@ -704,7 +704,6 @@ namespace Salvation.Core.State
                 {
                     if (registeredSpells.Where(s => s.Spell == (Spell)talent.SpellId).Any())
                     {
-                        // TODO: Update rank if it's already registered 
                         JournalEntry(state, $"Registering of {(Spell)talent.SpellId} failed, already registered.");
                     }
                     else

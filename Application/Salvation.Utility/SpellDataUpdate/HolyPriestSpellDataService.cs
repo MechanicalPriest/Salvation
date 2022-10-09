@@ -74,6 +74,7 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.PrayerfulLitany,
                 (uint)Spell.Orison,
                 (uint)Spell.GalesOfSong,
+                (uint)Spell.PrayersOfTheVirtuous,
 
                 // Talent - Holy supporting spells
                 (uint)Spell.CosmicRippleHeal,

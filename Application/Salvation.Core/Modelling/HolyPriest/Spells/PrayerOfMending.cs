@@ -34,7 +34,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {averageHeal:0.##} (per stack)");
 
             // Number of initial PoM stacks
-            var numPoMStacks = spellData.GetEffect(22870).BaseValue;
+            var numPoMStacks = spellData.GetEffect(22870).BaseValue + GetPrayersOfTheVirtuousModifier(gameState);
 
             // Override used by Salvation to apply 2-stack PoMs
             if (spellData.Overrides.ContainsKey(Override.ResultMultiplier))
@@ -116,6 +116,22 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
                 var talentSpellData = _gameStateService.GetSpellData(gameState, Spell.FocusedMending);
 
                 multi += talentSpellData.GetEffect(996915).BaseValue / 100;
+            }
+
+            return multi;
+        }
+
+        internal double GetPrayersOfTheVirtuousModifier(GameState gameState)
+        {
+            var multi = 0d;
+
+            var talent = _gameStateService.GetTalent(gameState, Spell.PrayersOfTheVirtuous);
+
+            if (talent != null && talent.Rank > 0)
+            {
+                var talentSpellData = _gameStateService.GetSpellData(gameState, Spell.PrayersOfTheVirtuous);
+
+                multi += talentSpellData.GetEffect(1028179).BaseValue * talent.Rank;
             }
 
             return multi;

@@ -420,7 +420,7 @@ namespace Salvation.Core.Modelling
         #region Holy Priest Specific
 
         /// <summary>
-        /// This does NOT check to see if mastery applies to this spell
+        /// This does NO check to see if mastery applies to this spell
         /// </summary>
         public virtual AveragedSpellCastResult GetHolyPriestMasteryResult(GameState gameState, BaseSpellData spellData)
         {
@@ -429,7 +429,8 @@ namespace Salvation.Core.Modelling
             AveragedSpellCastResult result = new();
 
             var averageMasteryHeal = GetAverageRawHealing(gameState, spellData)
-                * (_gameStateService.GetMasteryMultiplier(gameState) - 1);
+                * (_gameStateService.GetMasteryMultiplier(gameState) - 1)
+                * GetPrismaticEchoesMultiplier(gameState);
 
             var castProfile = _gameStateService.GetSpellCastProfile(gameState, (int)Spell.EchoOfLight);
 
@@ -442,6 +443,22 @@ namespace Salvation.Core.Modelling
             result.NumberOfHealingTargets = GetNumberOfHealingTargets(gameState, spellData);
 
             return result;
+        }
+
+        internal double GetPrismaticEchoesMultiplier(GameState gameState)
+        {
+            var multi = 1d;
+
+            var talent = _gameStateService.GetTalent(gameState, Spell.PrismaticEchoes);
+
+            if (talent != null && talent.Rank > 0)
+            {
+                var talentSpellData = _gameStateService.GetSpellData(gameState, Spell.PrismaticEchoes);
+
+                multi += (talentSpellData.GetEffect(1028161).BaseValue / 100) * talent.Rank;
+            }
+
+            return multi;
         }
 
         public virtual bool TriggersMastery(GameState gameState, BaseSpellData spellData)

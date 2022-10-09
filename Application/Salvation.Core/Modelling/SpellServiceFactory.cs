@@ -41,7 +41,6 @@ namespace Salvation.Core.Modelling
                 Spell.PrayerOfHealing => typeof(IPrayerOfHealingSpellService),
                 //Spell.Enlightenment => typeof(IEnlightenmentSpellService),
                 Spell.CosmicRipple => typeof(ICosmicRippleSpellService),
-                Spell.PrismaticEchoes => typeof(IPrismaticEchoesSpellService),
                 //Spell.Benediction => typeof(IBenedictionSpellService),
                 // Priest Talent
                 Spell.DivineStar => typeof(IDivineStarSpellService),

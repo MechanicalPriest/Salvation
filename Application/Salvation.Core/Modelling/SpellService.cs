@@ -164,7 +164,12 @@ namespace Salvation.Core.Modelling
         {
             spellData = ValidateSpellData(gameState, spellData);
 
-            var baseCooldown = spellData.BaseCooldown / 1000d;
+            var baseCooldown = spellData.BaseCooldown;
+
+            if (spellData.Overrides.ContainsKey(Override.BaseCooldownModifier))
+                baseCooldown += spellData.Overrides[Override.BaseCooldownModifier];
+
+            baseCooldown /= 1000.0d;
 
             return spellData.IsCooldownHasted
                 ? baseCooldown / _gameStateService.GetHasteMultiplier(gameState)

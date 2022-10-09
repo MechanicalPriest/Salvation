@@ -72,6 +72,7 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.HolyWordChastise,
                 (uint)Spell.CrisisManagement,
                 (uint)Spell.PrayerfulLitany,
+                (uint)Spell.Orison,
 
                 // Talent - Holy supporting spells
                 (uint)Spell.CosmicRippleHeal,

@@ -13,6 +13,7 @@ using Salvation.Core.ViewModel;
 using System;
 using System.IO;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Salvation.Api.Api
@@ -98,6 +99,15 @@ namespace Salvation.Api.Api
 
                 };
 
+#if DEBUG
+                // Log the last results run to json
+                var sOptions = new JsonSerializerOptions()
+                {
+                    NumberHandling = JsonNumberHandling.AllowNamedFloatingPointLiterals
+                };
+                await File.WriteAllTextAsync(Path.Combine(context.FunctionAppDirectory, "last_run_results.json"), JsonSerializer.Serialize(results, sOptions));
+                await File.WriteAllTextAsync(Path.Combine(context.FunctionAppDirectory, "last_run_state.json"), JsonSerializer.Serialize(state, sOptions));
+#endif
                 return new JsonResult(finalResults);
             }
             catch (Exception ex)

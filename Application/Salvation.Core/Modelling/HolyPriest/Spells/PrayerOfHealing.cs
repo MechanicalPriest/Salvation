@@ -4,6 +4,7 @@ using Salvation.Core.Interfaces.Modelling;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.State;
+using System;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
@@ -33,7 +34,11 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             averageHeal *= _gameStateService.GetCriticalStrikeMultiplier(gameState)
                 * _gameStateService.GetGlobalHealingMultiplier(gameState);
 
-            return averageHeal * GetNumberOfHealingTargets(gameState, spellData);
+            // At least one target healed gets bonus healing from Prayerful Litany
+            var averageFirstHeal = averageHeal
+                * GetPrayerfulLitanyMultiplier(gameState);
+
+            return averageFirstHeal + averageHeal * Math.Max(GetNumberOfHealingTargets(gameState, spellData) - 1, 0);
         }
 
         public override double GetMaximumCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
@@ -65,6 +70,22 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             var numTargets = spellData.GetEffect(288930).BaseValue;
 
             return numTargets;
+        }
+
+        internal double GetPrayerfulLitanyMultiplier(GameState gameState)
+        {
+            var multi = 1d;
+
+            var talent = _gameStateService.GetTalent(gameState, Spell.PrayerfulLitany);
+
+            if (talent != null && talent.Rank > 0)
+            {
+                var talentSpellData = _gameStateService.GetSpellData(gameState, Spell.PrayerfulLitany);
+
+                multi += talentSpellData.GetEffect(1028559).BaseValue / 100;
+            }
+
+            return multi;
         }
     }
 }

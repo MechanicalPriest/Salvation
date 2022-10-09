@@ -7,7 +7,7 @@ using Salvation.Core.State;
 namespace Salvation.CoreTests.HolyPriest.Spells
 {
     [TestFixture]
-    public class ImprovedFlashHealTests : BaseTest
+    public class PrayerfulLitanyTests : BaseTest
     {
         private GameState _gameState;
         [OneTimeSetUp]
@@ -17,22 +17,22 @@ namespace Salvation.CoreTests.HolyPriest.Spells
         }
 
         [Test]
-        public void IFH_GetAverageRawHealing_Calculates_Ranks()
+        public void PL_GetAverageRawHealing_Calculates_Ranks()
         {
             // Arrange
             IGameStateService gameStateService = new GameStateService();
-            var spellService = new FlashHeal(gameStateService);
+            var spellService = new PrayerOfHealing(gameStateService);
 
             // Act
-            gameStateService.SetTalentRank(_gameState, Spell.ImprovedFlashHeal, 0);
+            gameStateService.SetTalentRank(_gameState, Spell.PrayerfulLitany, 0);
             var resultDefault = spellService.GetAverageRawHealing(_gameState, null);
 
-            gameStateService.SetTalentRank(_gameState, Spell.ImprovedFlashHeal, 1);
+            gameStateService.SetTalentRank(_gameState, Spell.PrayerfulLitany, 1);
             var resultRank1 = spellService.GetAverageRawHealing(_gameState, null);
 
             // Assert
-            Assert.AreEqual(7394.684554928077d, resultDefault);
-            Assert.AreEqual(8503.8872381672882d, resultRank1);
+            Assert.AreEqual(15936.820161482929d, resultDefault);
+            Assert.AreEqual(16893.029371171906d, resultRank1);
         }
     }
 }

@@ -361,9 +361,19 @@ namespace Salvation.Core.State
                 if (spell.Spell != requestingSpell)
                     addedMasteryPercent += spell.SpellService.GetAverageMasteryPercent(state, spell.SpellData);
             }
+            
+            // This is primarily here for Prismatic Echoes which is a multiplier on mastery.
+            var addedMasteryMultiplier = 1d;
+            foreach (var spell in state.RegisteredSpells.Where(s => s.SpellService != null))
+            {
+                if (spell.Spell != requestingSpell)
+                    addedMasteryMultiplier *= spell.SpellService.GetAverageMasteryIncreaseMultiplier(state, spell.SpellData);
+            }
 
-            return 1 + specData.MasteryBase + (GetDrRating(GetMasteryRating(state), specData.MasteryCost) / specData.MasteryCost / 100)
+            var baseMasteryMultiplier = 1 + specData.MasteryBase + (GetDrRating(GetMasteryRating(state), specData.MasteryCost) / specData.MasteryCost / 100)
                 + addedMasteryPercent;
+
+            return baseMasteryMultiplier * addedMasteryMultiplier;
         }
 
         public double GetLeechRating(GameState state)

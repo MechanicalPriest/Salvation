@@ -309,6 +309,18 @@ namespace Salvation.Core.Modelling
             return 0;
         }
 
+        /// <summary>
+        /// Multiplier on Mastery. 
+        /// Gets the base Mastery multiplier and multiplies it by this prior to sending it elsewhere.
+        /// </summary>
+        /// <param name="gameState"></param>
+        /// <param name="spellData"></param>
+        /// <returns></returns>
+        public virtual double GetAverageMasteryIncreaseMultiplier(GameState gameState, BaseSpellData spellData)
+        {
+            return 1;
+        }
+
         public virtual double GetAverageVersatility(GameState gameState, BaseSpellData spellData)
         {
             return 0;

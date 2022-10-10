@@ -34,7 +34,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {averageHeal:0.##} (per stack)");
 
             // Number of initial PoM stacks
-            var numPoMStacks = spellData.GetEffect(22870).BaseValue;
+            var numPoMStacks = spellData.GetEffect(22870).BaseValue + GetPrayersOfTheVirtuousModifier(gameState);
 
             // Override used by Salvation to apply 2-stack PoMs
             if (spellData.Overrides.ContainsKey(Override.ResultMultiplier))
@@ -50,7 +50,8 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
                 * _gameStateService.GetGlobalHealingMultiplier(gameState);
 
             pomFirstTargetHeal *= _gameStateService.GetCriticalStrikeMultiplier(gameState)
-                * _gameStateService.GetGlobalHealingMultiplier(gameState);
+                * _gameStateService.GetGlobalHealingMultiplier(gameState)
+                * GetFocusedMendingMultiplier(gameState, spellData);
 
             // Apply healing to each PoM stack
             averageHeal = (averageHeal * (numPoMStacks - 1)) + pomFirstTargetHeal; 
@@ -106,22 +107,34 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
         internal double GetFocusedMendingMultiplier(GameState gameState, BaseSpellData spellData)
         {
-            spellData = ValidateSpellData(gameState, spellData);
+            var multi = 1d;
 
-            //if (_gameStateService.IsConduitActive(gameState, Conduit.FocusedMending))
-            //{
-            //    var conduitData = _gameStateService.GetSpellData(gameState, Spell.FocusedMending);
-            //    var rank = _gameStateService.GetConduitRank(gameState, Conduit.FocusedMending);
+            var talent = _gameStateService.GetTalent(gameState, Spell.FocusedMending);
 
-            //    var multiplier = 1 + (conduitData.ConduitRanks[rank] / 100);
+            if (talent != null && talent.Rank > 0)
+            {
+                var talentSpellData = _gameStateService.GetSpellData(gameState, Spell.FocusedMending);
 
-            //    _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Applying FocusedMending ({(int)Conduit.FocusedMending}) conduit " +
-            //        $"multiplier: {multiplier:0.##}");
+                multi += talentSpellData.GetEffect(996915).BaseValue / 100;
+            }
 
-            //    return multiplier;
-            //}
+            return multi;
+        }
 
-            return 1;
+        internal double GetPrayersOfTheVirtuousModifier(GameState gameState)
+        {
+            var multi = 0d;
+
+            var talent = _gameStateService.GetTalent(gameState, Spell.PrayersOfTheVirtuous);
+
+            if (talent != null && talent.Rank > 0)
+            {
+                var talentSpellData = _gameStateService.GetSpellData(gameState, Spell.PrayersOfTheVirtuous);
+
+                multi += talentSpellData.GetEffect(1028179).BaseValue * talent.Rank;
+            }
+
+            return multi;
         }
     }
 }

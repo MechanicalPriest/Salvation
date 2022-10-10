@@ -32,7 +32,8 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             double averageHealFirstTick = healingSp
                 * _gameStateService.GetIntellect(gameState)
                 * _gameStateService.GetVersatilityMultiplier(gameState)
-                * holyPriestAuraHealingBonus;
+                * holyPriestAuraHealingBonus
+                * GetRapidRecoveryHealingMultiplier(gameState);
 
             var journalAverageHealFirstTick = averageHealFirstTick;
             _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Actual: {averageHealFirstTick:0.##} (first)");
@@ -41,14 +42,15 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             averageHealFirstTick *= _gameStateService.GetCriticalStrikeMultiplier(gameState)
                 * _gameStateService.GetGlobalHealingMultiplier(gameState);
 
-            double duration = spellData.Duration / 1000;
+            double duration = (spellData.Duration + GetRapidRecoveryDurationModifier(gameState)) / 1000;
             double tickrate = spellData.GetEffect(95).Amplitude / 1000;
             // HoT is affected by haste
             double averageHealTicks = healingSp
                 * _gameStateService.GetIntellect(gameState)
                 * _gameStateService.GetVersatilityMultiplier(gameState)
                 * holyPriestAuraHealingPeriodicBonus
-                * duration / tickrate;
+                * GetRapidRecoveryHealingMultiplier(gameState)
+                * (duration / tickrate);
 
             _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Actual: {averageHealTicks:0.##} (ticks total)");
             
@@ -106,6 +108,38 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             if (spellData.Overrides.ContainsKey(Override.CastsPerMinute))
                 return spellData.Overrides[Override.CastsPerMinute];
             return base.GetActualCastsPerMinute(gameState, spellData);
+        }
+
+        internal double GetRapidRecoveryHealingMultiplier(GameState gameState)
+        {
+            var multi = 1d;
+
+            var talent = _gameStateService.GetTalent(gameState, Spell.RapidRecovery);
+
+            if (talent != null && talent.Rank > 0)
+            {
+                var talentSpellData = _gameStateService.GetSpellData(gameState, Spell.RapidRecovery);
+
+                multi += talentSpellData.GetEffect(1028836).BaseValue / 100;
+            }
+
+            return multi;
+        }
+
+        internal double GetRapidRecoveryDurationModifier(GameState gameState)
+        {
+            var modifier = 0d;
+
+            var talent = _gameStateService.GetTalent(gameState, Spell.RapidRecovery);
+
+            if (talent != null && talent.Rank > 0)
+            {
+                var talentSpellData = _gameStateService.GetSpellData(gameState, Spell.RapidRecovery);
+
+                modifier += talentSpellData.GetEffect(1028837).BaseValue;
+            }
+
+            return modifier;
         }
     }
 }

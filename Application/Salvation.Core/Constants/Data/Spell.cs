@@ -159,8 +159,7 @@
         MindgamesHeal = 375904, 
         DivineImageHealingLight = 196809,
         DivineImageDazzlingLight = 196810,
-        // TODO: Pull this from simc, it's actually 196811
-        DivineImageSearingLight = 196810, 
+        DivineImageSearingLight = 196811, 
         DivineImageLightEruption = 196812,
         DivineImageBlessedLight = 196813,
         DivineImageTranquilLight = 196816,

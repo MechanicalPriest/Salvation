@@ -338,14 +338,14 @@
                                                     </MudPaper>
                                                 }
                                             </MudStack>
-                                            <MudText Typo="Typo.body2">@modellingResults.RawStatWeightResult.Name Weights</MudText>
+                                            <MudText>@modellingResults.RawStatWeightResult.Name Weights</MudText>
                                             <MudStack Row="true" Justify="Justify.Center">
                                                 @foreach (var entry in modellingResults.RawStatWeightResult.Results)
                                                 {
                                                     <MudPaper Class="pa-3">
                                                         <MudStack>
                                                             <MudText Typo="Typo.body1" Align="Align.Center">@entry.Stat</MudText>
-                                                                <MudText Typo="Typo.body2" Align="Align.Center"><span class="stat-colour" data-stat="@entry.Stat">@entry.Weight.ToString("N2")</span></MudText>
+                                                            <MudText Typo="Typo.body2" Align="Align.Center"><span class="stat-colour" data-stat="@entry.Stat">@entry.Weight.ToString("N2")</span></MudText>
                                                             <MudText Typo="Typo.body2" Align="Align.Center">@entry.Value.ToString("N2") HPS</MudText>
                                                         </MudStack>
                                                     </MudPaper>

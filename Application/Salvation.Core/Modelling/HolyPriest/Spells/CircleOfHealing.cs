@@ -63,7 +63,54 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             // CoH stores its number of targets in 302437.BaseValue
             var numTargets = spellData.GetEffect(302437).BaseValue;
 
-            return numTargets;
+            return numTargets + GetOrisonTargetModifier(gameState);
+        }
+
+        internal double GetOrisonCooldownModifier(GameState gameState)
+        {
+            var modifier = 0d;
+
+            var talent = _gameStateService.GetTalent(gameState, Spell.Orison);
+
+            if (talent != null && talent.Rank > 0)
+            {
+                var talentSpellData = _gameStateService.GetSpellData(gameState, Spell.Orison);
+
+                modifier += talentSpellData.GetEffect(1028118).BaseValue;
+            }
+
+            return modifier;
+        }
+
+        public override double GetHastedCooldown(GameState gameState, BaseSpellData spellData = null)
+        {
+            spellData = ValidateSpellData(gameState, spellData);
+
+            // The Orison cooldown reduction is applied before haste.
+            spellData.Overrides[Override.BaseCooldownModifier] = GetOrisonCooldownModifier(gameState);
+
+            return base.GetHastedCooldown(gameState, spellData);
+        }
+
+        internal double GetOrisonTargetModifier(GameState gameState)
+        {
+            var modifier = 0d;
+
+            var talent = _gameStateService.GetTalent(gameState, Spell.Orison);
+
+            if (talent != null && talent.Rank > 0)
+            {
+                var talentSpellData = _gameStateService.GetSpellData(gameState, Spell.Orison);
+
+                modifier += talentSpellData.GetEffect(1028117).BaseValue;
+            }
+
+            return modifier;
+        }
+
+        public override double GetNumberOfHealingTargets(GameState gameState, BaseSpellData spellData = null)
+        {
+            return base.GetNumberOfHealingTargets(gameState, spellData) + GetOrisonTargetModifier(gameState);
         }
     }
 }

@@ -29,7 +29,11 @@ namespace Salvation.Core.Constants
         /// <summary>
         /// The item level of item spells
         /// </summary>
-        ItemLevel
+        ItemLevel,
+        /// <summary>
+        /// Adjusted the BASE cooldown of a spell by a particular amount.
+        /// </summary>
+        BaseCooldownModifier
     }
 
     public class BaseSpellData

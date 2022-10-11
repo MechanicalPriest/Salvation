@@ -655,7 +655,7 @@ namespace Salvation.Core.State
             // Get healing mod from other spells and effects
             foreach (var spell in state.RegisteredSpells.Where(s => s.SpellService != null))
             {
-                modifier += spell.SpellService.GetAverageHealingBonus(state, spell.SpellData);
+                modifier *= spell.SpellService.GetAverageHealingMultiplier(state, spell.SpellData);
             }
 
             return modifier;

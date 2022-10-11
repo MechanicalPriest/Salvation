@@ -30,10 +30,10 @@ namespace Salvation.CoreTests.HolyPriest.Spells
             // Arrange
 
             // Act
-            var result = _spell.GetAverageHealingBonus(_gameState, null);
+            var result = _spell.GetAverageHealingMultiplier(_gameState, null);
 
             // Assert
-            Assert.AreEqual(0.019378673383711166d, result);
+            Assert.AreEqual(1.019378673383711166d, result);
         }
 
         [Test]

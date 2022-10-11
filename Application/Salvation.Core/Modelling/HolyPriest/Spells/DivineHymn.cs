@@ -75,10 +75,10 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             return maximumPotentialCasts;
         }
 
-        public override double GetAverageHealingBonus(GameState gameState, BaseSpellData spellData)
+        public override double GetAverageHealingMultiplier(GameState gameState, BaseSpellData spellData)
         {
             // TODO: Implement the bonus healing stacks
-            return base.GetAverageHealingBonus(gameState, spellData);
+            return base.GetAverageHealingMultiplier(gameState, spellData);
         }
 
         public override double GetMinimumHealTargets(GameState gameState, BaseSpellData spellData)

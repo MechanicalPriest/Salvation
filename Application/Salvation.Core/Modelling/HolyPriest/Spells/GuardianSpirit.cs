@@ -19,17 +19,19 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             Spell = Spell.GuardianSpirit;
         }
 
-        public override double GetAverageHealingBonus(GameState gameState, BaseSpellData spellData)
+        public override double GetAverageHealingMultiplier(GameState gameState, BaseSpellData spellData)
         {
             // Use GS to apply a small healing bonus to all healing done.
             spellData = ValidateSpellData(gameState, spellData);
 
             // Get the healing bonus
-            var healingBonus = (spellData.GetEffect(40042).BaseValue / 100);
+            var healingBonus = 0.0d;
+            
+            healingBonus += (spellData.GetEffect(40042).BaseValue / 100);
 
             healingBonus += GetLastingSpiritAdditionalHealing(gameState);
 
-            return healingBonus * GetUptime(gameState, spellData);
+            return 1 + (healingBonus * GetUptime(gameState, spellData));
         }
 
         public override double GetUptime(GameState gameState, BaseSpellData spellData)

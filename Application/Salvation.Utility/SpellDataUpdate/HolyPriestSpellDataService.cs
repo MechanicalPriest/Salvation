@@ -46,6 +46,7 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.Mindgames,
                 (uint)Spell.ImprovedFlashHeal,
                 (uint)Spell.FocusedMending,
+                (uint)Spell.TwistOfFate,
 
                 // Talent - Priest supporting spells
                 (uint)Spell.PrayerOfMendingBuff,

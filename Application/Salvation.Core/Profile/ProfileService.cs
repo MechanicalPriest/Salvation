@@ -443,6 +443,10 @@ namespace Salvation.Core.Profile
                     // Amount of average damage taken per second over the course of a fight
                     new PlaystyleEntry("DamageTakenPerSecond", 1500, (uint)Spell.HolyPriest),
                     
+                    // #### Priest ####
+                    // ## Talent overrides
+                    new PlaystyleEntry("TwistOfFateUptime", 0.3354, (uint)Spell.TwistOfFate),
+
                     // #### Holy Priest ####
                     // ## Covenants overrides
 

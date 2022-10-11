@@ -36,11 +36,11 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {averageHeal:0.##}");
 
             averageHeal *= (_gameStateService.GetCriticalStrikeMultiplier(gameState) + GetCrisisManagementModifier(gameState))
-                * _gameStateService.GetGlobalHealingMultiplier(gameState)
-                * GetImprovedFlashHealMultiplier(gameState);
+                * _gameStateService.GetGlobalHealingMultiplier(gameState);
 
-            // TODO: Cleanup post implementation
-            // * GetResonantWordsMulti(gameState, spellData);
+            averageHeal *= GetImprovedFlashHealMultiplier(gameState);
+
+            averageHeal *= GetResonantWordsMulti(gameState, spellData);
 
             return averageHeal * GetNumberOfHealingTargets(gameState, spellData);
         }
@@ -104,57 +104,53 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             return modifier;
         }
 
-        // TODO: Cleanup post implementation
-        //internal double GetResonantWordsMulti(GameState gameState, BaseSpellData spellData)
-        //{
-        //    // TODO: Move this to its own location rather than copy/pasted in Heal & FH
-        //    var multi = 1d;
+        internal double GetResonantWordsMulti(GameState gameState, BaseSpellData spellData)
+        {
+            // TODO: Move this to its own location rather than copy/pasted in Heal & FH
+            var multi = 1d;
 
-        //    // If resonant words is active, attempt to get a value increasing heal (on average).
-        //    if (_gameStateService.IsConduitActive(gameState, Conduit.ResonantWords))
-        //    {
-        //        // This is very much a hack, but including them directly causes a circular dependency error. 
-        //        // This could be resolved in RW becomes its own effect/heal.
-        //        var serenity = _gameStateService.GetRegisteredSpells(gameState).Where(s => s.Spell == Spell.HolyWordSerenity).FirstOrDefault();
-        //        var sanc = _gameStateService.GetRegisteredSpells(gameState).Where(s => s.Spell == Spell.HolyWordSanctify).FirstOrDefault();
-        //        var chastise = _gameStateService.GetRegisteredSpells(gameState).Where(s => s.Spell == Spell.HolyWordChastise).FirstOrDefault();
+            var talent = _gameStateService.GetTalent(gameState, Spell.ResonantWords);
 
-        //        var hwCasts = serenity.SpellService.GetActualCastsPerMinute(gameState, serenity.SpellData)
-        //            + sanc.SpellService.GetActualCastsPerMinute(gameState, sanc.SpellData)
-        //            + chastise.SpellService.GetActualCastsPerMinute(gameState, chastise.SpellData);
+            if (talent != null && talent.Rank > 0)
+            {
+                // Injecting these spells directly causes a circular dependency error. 
+                var serenity = _gameStateService.GetRegisteredSpells(gameState).Where(s => s.Spell == Spell.HolyWordSerenity).FirstOrDefault();
+                var sanc = _gameStateService.GetRegisteredSpells(gameState).Where(s => s.Spell == Spell.HolyWordSanctify).FirstOrDefault();
+                var chastise = _gameStateService.GetRegisteredSpells(gameState).Where(s => s.Spell == Spell.HolyWordChastise).FirstOrDefault();
 
-        //        var numberBuffsUsed = _gameStateService.GetPlaystyle(gameState, "ResonantWordsPercentageBuffsUsed");
+                var hwCasts = serenity.SpellService.GetActualCastsPerMinute(gameState, serenity.SpellData)
+                    + sanc.SpellService.GetActualCastsPerMinute(gameState, sanc.SpellData)
+                    + chastise.SpellService.GetActualCastsPerMinute(gameState, chastise.SpellData);
 
-        //        if (numberBuffsUsed == null)
-        //            throw new ArgumentOutOfRangeException("ResonantWordsPercentageBuffsUsed", $"ResonantWordsPercentageBuffsUsed needs to be set.");
+                var numberBuffsUsed = _gameStateService.GetPlaystyle(gameState, "ResonantWordsPercentageBuffsUsed");
 
-        //        var percentageBuffsForHeal = _gameStateService.GetPlaystyle(gameState, "ResonantWordsPercentageBuffsHeal");
+                if (numberBuffsUsed == null)
+                    throw new ArgumentOutOfRangeException("ResonantWordsPercentageBuffsUsed", $"ResonantWordsPercentageBuffsUsed needs to be set.");
 
-        //        if (percentageBuffsForHeal == null)
-        //            throw new ArgumentOutOfRangeException("ResonantWordsPercentageBuffsHeal", $"ResonantWordsPercentageBuffsHeal needs to be set.");
+                var percentageBuffsForHeal = _gameStateService.GetPlaystyle(gameState, "ResonantWordsPercentageBuffsHeal");
 
-        //        // Finally grab the conduit multi
-        //        var conduitData = _gameStateService.GetSpellData(gameState, Spell.ResonantWords);
-        //        var conduitRank = _gameStateService.GetConduitRank(gameState, Conduit.ResonantWords);
+                if (percentageBuffsForHeal == null)
+                    throw new ArgumentOutOfRangeException("ResonantWordsPercentageBuffsHeal", $"ResonantWordsPercentageBuffsHeal needs to be set.");
 
-        //        var conduitValue = conduitData.ConduitRanks[conduitRank] / 100;
+                var talentSpellData = _gameStateService.GetSpellData(gameState, Spell.ResonantWords);
 
-        //        var numBuffedSpellsTotal = hwCasts * numberBuffsUsed.Value;
+                var numBuffedSpellsTotal = hwCasts * numberBuffsUsed.Value;
 
-        //        // Max number of Heal spells that can be buffed: hwCasts * Heal_percent
-        //        // Actual number of buffed casts: lowest of either max spells cast or actual casts per minute
-        //        var numBuffedCasts = Math.Min(numBuffedSpellsTotal * (1 - percentageBuffsForHeal.Value), GetActualCastsPerMinute(gameState, spellData));
+                // Max number of Flash Heal spells that can be buffed: hwCasts * (1 - Heal_percent)
+                // Actual number of buffed casts: lowest of either max spells cast or actual casts per minute
+                var numBuffedCasts = Math.Min(numBuffedSpellsTotal * (1 - percentageBuffsForHeal.Value), GetActualCastsPerMinute(gameState, spellData));
 
-        //        // This is the extra healing on all the buffed casts
-        //        var extraHealing = numBuffedCasts * conduitValue;
+                // This is the extra healing on all the buffed casts
+                var resonantWordsModifier = talentSpellData.GetEffect(996850).BaseValue / 100 * talent.Rank;
+                var extraHealing = numBuffedCasts * resonantWordsModifier;
 
-        //        // Now divide this by all casts
-        //        var increase = extraHealing / GetActualCastsPerMinute(gameState, spellData);
+                // Now divide this by all casts
+                var increase = extraHealing / GetActualCastsPerMinute(gameState, spellData);
 
-        //        multi += increase;
-        //    }
+                multi += increase;
+            }
 
-        //    return multi;
-        //}
+            return multi;
+        }
     }
 }

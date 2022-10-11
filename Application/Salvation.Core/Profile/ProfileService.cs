@@ -448,7 +448,8 @@ namespace Salvation.Core.Profile
                     new PlaystyleEntry("TwistOfFateUptime", 0.3354, (uint)Spell.TwistOfFate),
 
                     // #### Holy Priest ####
-                    // ## Covenants overrides
+                    // ## Talent overrides
+                    new PlaystyleEntry("EverlastingLightAverageMana", 0.55, (uint)Spell.EverlastingLight),
 
                     //new PlaystyleEntry("FaeBenevolentFaerieSelfUptime", 1, (uint)Spell.BenevolentFaerie),
                     //// The number of times you move the Guardian Faerie around

@@ -39,6 +39,8 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             averageHeal *= GetResonantWordsMulti(gameState, spellData);
 
+            averageHeal *= GetEverlastingLightMultiplier(gameState);
+
             averageHeal *= GetFlashConcentrationHealingModifier(gameState);
 
             return averageHeal * GetNumberOfHealingTargets(gameState, spellData);
@@ -131,6 +133,27 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
                 var increase = extraHealing / GetActualCastsPerMinute(gameState, spellData);
 
                 multi += increase;
+            }
+
+            return multi;
+        }
+
+        internal double GetEverlastingLightMultiplier(GameState gameState)
+        {
+            var multi = 1d;
+
+            var talent = _gameStateService.GetTalent(gameState, Spell.EverlastingLight);
+
+            if (talent != null && talent.Rank > 0)
+            {
+                var talentSpellData = _gameStateService.GetSpellData(gameState, Spell.EverlastingLight);
+
+                var averageMana = _gameStateService.GetPlaystyle(gameState, "EverlastingLightAverageMana");
+
+                if (averageMana == null)
+                    throw new ArgumentOutOfRangeException("EverlastingLightAverageMana", $"EverlastingLightAverageMana needs to be set.");
+
+                multi += talentSpellData.GetEffect(1028484).BaseValue / 100 * averageMana.Value;
             }
 
             return multi;

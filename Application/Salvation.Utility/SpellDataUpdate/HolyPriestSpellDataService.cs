@@ -79,6 +79,7 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.PrismaticEchoes,
                 (uint)Spell.RapidRecovery,
                 (uint)Spell.ResonantWords,
+                (uint)Spell.EverlastingLight,
 
                 // Talent - Holy supporting spells
                 (uint)Spell.CosmicRippleHeal,

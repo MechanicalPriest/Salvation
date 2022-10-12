@@ -1,4 +1,5 @@
 ﻿using Salvation.Core.Constants;
+using Salvation.Core.Interfaces.State;
 using Salvation.Core.Modelling.Common;
 using Salvation.Core.State;
 
@@ -14,6 +15,8 @@ namespace Salvation.Core.Interfaces.Modelling
         /// The spell ID of the spell this service is manipulating
         /// </summary>
         public int SpellId { get; }
+        IGameStateService GameStateService { get; }
+
         // TODO: Rename the return type into SpellResultModel
         /// <summary>
         /// Calculate the results of casting one spell, and the casting efficiency calculations

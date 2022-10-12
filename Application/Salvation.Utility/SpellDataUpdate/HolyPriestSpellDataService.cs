@@ -80,6 +80,7 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.RapidRecovery,
                 (uint)Spell.ResonantWords,
                 (uint)Spell.EverlastingLight,
+                (uint)Spell.Pontifex,
 
                 // Talent - Holy supporting spells
                 (uint)Spell.CosmicRippleHeal,

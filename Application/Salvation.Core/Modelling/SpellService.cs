@@ -33,6 +33,8 @@ namespace Salvation.Core.Modelling
 
         protected readonly IGameStateService _gameStateService;
 
+        public virtual IGameStateService GameStateService { get { return _gameStateService; } }
+
         public virtual int SpellId { get { return (int)Spell; } }
         public virtual Spell Spell { get; protected set; }
 

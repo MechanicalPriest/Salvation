@@ -1,5 +1,5 @@
 {
-  "GameVersion": "10.0.2.45969",
+  "GameVersion": "10.0.2.46091",
   "Specs": [
     {
       "Class": "Priest",
@@ -1974,7 +1974,7 @@
                       "Charges": 0,
                       "MaxStacks": 0.0,
                       "ProcChance": 100.0,
-                      "InternalCooldown": 200.0,
+                      "InternalCooldown": 0.0,
                       "Rppm": 0.0,
                       "RppmIsHasted": false,
                       "Effects": [
@@ -2413,6 +2413,67 @@
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
               "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ]
+        },
+        {
+          "Id": 390980,
+          "Name": "Pontifex",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 101.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 1028183,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 390989,
+              "Amplitude": 0.0,
+              "TriggerSpell": {
+                "Id": 390989,
+                "Name": "Pontifex",
+                "ManaCost": 0.0,
+                "MaxRange": 0.0,
+                "BaseCastTime": 0.0,
+                "BaseCooldown": 0.0,
+                "IsCooldownHasted": false,
+                "Duration": 30000.0,
+                "Gcd": 0.0,
+                "ChargeCooldown": 0,
+                "Charges": 0,
+                "MaxStacks": 2.0,
+                "ProcChance": 101.0,
+                "InternalCooldown": 0.0,
+                "Rppm": 0.0,
+                "RppmIsHasted": false,
+                "Effects": [
+                  {
+                    "Id": 1028200,
+                    "BaseValue": 10.0,
+                    "SpCoefficient": 0.0,
+                    "Coefficient": 0.0,
+                    "TriggerSpellid": 0,
+                    "Amplitude": 0.0,
+                    "TriggerSpell": null,
+                    "Type": 6,
+                    "ScaleValues": {}
+                  }
+                ]
+              },
               "Type": 6,
               "ScaleValues": {}
             }

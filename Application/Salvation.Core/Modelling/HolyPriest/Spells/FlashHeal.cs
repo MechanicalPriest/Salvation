@@ -106,6 +106,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
         internal double GetResonantWordsMulti(GameState gameState, BaseSpellData spellData)
         {
+            spellData = ValidateSpellData(gameState, spellData);
             // TODO: Move this to its own location rather than copy/pasted in Heal & FH
             var multi = 1d;
 

@@ -45,17 +45,20 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             var pomFirstTargetHeal = averageHeal * GetFocusedMendingMultiplier(gameState, spellData);
             _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {pomFirstTargetHeal:0.##} (first heal)");
 
-            // Apply modifiers
-            averageHeal *= _gameStateService.GetCriticalStrikeMultiplier(gameState)
-                * _gameStateService.GetGlobalHealingMultiplier(gameState);
-
-            pomFirstTargetHeal *= _gameStateService.GetCriticalStrikeMultiplier(gameState)
-                * _gameStateService.GetGlobalHealingMultiplier(gameState)
-                * GetFocusedMendingMultiplier(gameState, spellData);
-
             // SYP is down here so it also affects Salv PoM's (Done above witih the ResultMultiplier override.
             numPoMStacks *= GetSayYourPrayersBounceMultiplier(gameState);
             _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {numPoMStacks:0.##} (Avg stacks with SYP)");
+
+            // Apply modifiers
+            // Including Divine Service. Full value to first stack, average out the remaining stacks
+            averageHeal *= _gameStateService.GetCriticalStrikeMultiplier(gameState)
+                * _gameStateService.GetGlobalHealingMultiplier(gameState)
+                * (1 + GetDivineServiceStackMultiplier(gameState) * (numPoMStacks - 1) / 2);
+
+            pomFirstTargetHeal *= _gameStateService.GetCriticalStrikeMultiplier(gameState)
+                * _gameStateService.GetGlobalHealingMultiplier(gameState)
+                * GetFocusedMendingMultiplier(gameState, spellData)
+                * (1 + GetDivineServiceStackMultiplier(gameState) * numPoMStacks);
 
             // Apply healing to each PoM stack
             averageHeal = (averageHeal * (numPoMStacks - 1)) + pomFirstTargetHeal; 
@@ -152,6 +155,22 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
                 var talentSpellData = _gameStateService.GetSpellData(gameState, Spell.SayYourPrayers);
 
                 multi += talentSpellData.GetEffect(1028522).BaseValue / 100;
+            }
+
+            return multi;
+        }
+
+        internal double GetDivineServiceStackMultiplier(GameState gameState)
+        {
+            var multi = 0d;
+
+            var talent = _gameStateService.GetTalent(gameState, Spell.DivineService);
+
+            if (talent != null && talent.Rank > 0)
+            {
+                var talentSpellData = _gameStateService.GetSpellData(gameState, Spell.DivineService);
+
+                multi += talentSpellData.GetEffect(1028593).BaseValue / 100;
             }
 
             return multi;

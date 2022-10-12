@@ -82,6 +82,7 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.EverlastingLight,
                 (uint)Spell.Pontifex,
                 (uint)Spell.SayYourPrayers,
+                (uint)Spell.DivineService,
 
                 // Talent - Holy supporting spells
                 (uint)Spell.CosmicRippleHeal,

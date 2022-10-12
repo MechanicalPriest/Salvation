@@ -6,7 +6,7 @@ using Salvation.Core.Modelling.HolyPriest.Spells;
 using Salvation.Core.State;
 using System;
 
-namespace Salvation.CoreTests.Common.Items
+namespace Salvation.CoreTests.HolyPriest.Spells
 {
     [TestFixture]
     class DivineImageTests : BaseTest
@@ -23,7 +23,7 @@ namespace Salvation.CoreTests.Common.Items
                 new FlashHeal(_gameStateService),
                 new Heal(_gameStateService),
                 new HolyWordSerenity(_gameStateService,
-                    new FlashHeal(_gameStateService), 
+                    new FlashHeal(_gameStateService),
                     new Heal(_gameStateService),
                     new PrayerOfMending(_gameStateService)));
 
@@ -53,8 +53,8 @@ namespace Salvation.CoreTests.Common.Items
                     new PrayerOfHealing(_gameStateService),
                     new Renew(_gameStateService),
                     new CircleOfHealing(_gameStateService)),
-                new HolyWordChastise(_gameStateService, 
-                    new Smite(_gameStateService), 
+                new HolyWordChastise(_gameStateService,
+                    new Smite(_gameStateService),
                     new HolyFire(_gameStateService)),
                 diHealingLight,
                 diTranquilLight,

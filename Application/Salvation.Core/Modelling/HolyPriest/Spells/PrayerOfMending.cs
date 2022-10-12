@@ -53,6 +53,10 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
                 * _gameStateService.GetGlobalHealingMultiplier(gameState)
                 * GetFocusedMendingMultiplier(gameState, spellData);
 
+            // SYP is down here so it also affects Salv PoM's (Done above witih the ResultMultiplier override.
+            numPoMStacks *= GetSayYourPrayersBounceMultiplier(gameState);
+            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {numPoMStacks:0.##} (Avg stacks with SYP)");
+
             // Apply healing to each PoM stack
             averageHeal = (averageHeal * (numPoMStacks - 1)) + pomFirstTargetHeal; 
 
@@ -132,6 +136,22 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
                 var talentSpellData = _gameStateService.GetSpellData(gameState, Spell.PrayersOfTheVirtuous);
 
                 multi += talentSpellData.GetEffect(1028179).BaseValue * talent.Rank;
+            }
+
+            return multi;
+        }
+
+        internal double GetSayYourPrayersBounceMultiplier(GameState gameState)
+        {
+            var multi = 1d;
+
+            var talent = _gameStateService.GetTalent(gameState, Spell.SayYourPrayers);
+
+            if (talent != null && talent.Rank > 0)
+            {
+                var talentSpellData = _gameStateService.GetSpellData(gameState, Spell.SayYourPrayers);
+
+                multi += talentSpellData.GetEffect(1028522).BaseValue / 100;
             }
 
             return multi;

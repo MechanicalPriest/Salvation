@@ -25,8 +25,8 @@ namespace Salvation.CoreTests.HolyPriest.Spells
             _gameStateService = new GameStateService();
 
             _holyWordSerenity = new HolyWordSerenity(_gameStateService,
-                new FlashHeal(_gameStateService),
-                new Heal(_gameStateService),
+                new FlashHeal(_gameStateService, null),
+                new Heal(_gameStateService, null),
                 new PrayerOfMending(_gameStateService));
             _holyWordSanctify = new HolyWordSanctify(_gameStateService,
                 new PrayerOfHealing(_gameStateService),
@@ -36,8 +36,8 @@ namespace Salvation.CoreTests.HolyPriest.Spells
             // Add salv so it'll resolve.
             _holyWordSalvation = new HolyWordSalvation(_gameStateService,
                 new HolyWordSerenity(_gameStateService,
-                    new FlashHeal(_gameStateService),
-                    new Heal(_gameStateService),
+                    new FlashHeal(_gameStateService, null),
+                    new Heal(_gameStateService, null),
                     new PrayerOfMending(_gameStateService)),
                 new HolyWordSanctify(_gameStateService,
                     new PrayerOfHealing(_gameStateService),
@@ -58,13 +58,13 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                     new RegisteredSpell()
                     {
                         Spell = Spell.FlashHeal,
-                        SpellService = new FlashHeal(_gameStateService),
+                        SpellService = new FlashHeal(_gameStateService, null),
                         SpellData = _gameStateService.GetSpellData(_gameState, Spell.HolyWordSalvation)
                     },
                     new RegisteredSpell()
                     {
                         Spell = Spell.Heal,
-                        SpellService = new Heal(_gameStateService),
+                        SpellService = new Heal(_gameStateService, null),
                         SpellData = _gameStateService.GetSpellData(_gameState, Spell.HolyWordSalvation)
                     },
                 }

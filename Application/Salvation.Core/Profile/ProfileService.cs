@@ -368,6 +368,7 @@ namespace Salvation.Core.Profile
                     new CastProfile((int)Spell.PowerWordShield, 0.01d, 0.38d, 1, 0, "Power Word: Shield, PW:S"),
                     new CastProfile((int)Spell.EchoOfLight, 0d, 0.4224d, 1, 0, "Echo of Light, EoL"),
                     new CastProfile((int)Spell.GuardianSpirit, 0.36d, 0d, 1, 0, "Guardian Spirit, GS, Angel"),
+                    new CastProfile((int)Spell.TrailOfLight, 1, 0.329d, 1, 0, "Trail of Light, ToL"),
 
                     // DPS Spells
                     new CastProfile((int)Spell.Smite, 0.12d, 0, 0, 1, "Smite"),

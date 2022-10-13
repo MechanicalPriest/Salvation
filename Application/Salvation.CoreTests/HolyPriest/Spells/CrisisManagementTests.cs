@@ -23,7 +23,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
         {
             // Arrange
             IGameStateService gameStateService = new GameStateService();
-            var spellService = new FlashHeal(gameStateService);
+            var spellService = new FlashHeal(gameStateService, null);
 
             // Act
             gameStateService.SetTalentRank(_gameState, Spell.CrisisManagement, 0);
@@ -46,7 +46,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
         {
             // Arrange
             IGameStateService gameStateService = new GameStateService();
-            var spellService = new Heal(gameStateService);
+            var spellService = new Heal(gameStateService, null);
 
             // Act
             gameStateService.SetTalentRank(_gameState, Spell.CrisisManagement, 0);

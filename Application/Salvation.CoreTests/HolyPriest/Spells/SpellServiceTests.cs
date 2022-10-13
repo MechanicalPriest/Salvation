@@ -43,14 +43,14 @@ namespace Salvation.CoreTests.HolyPriest.Spells
             Spells.Add(new CircleOfHealing(gameStateService));
             Spells.Add(new DivineHymn(gameStateService));
             Spells.Add(new DivineStar(gameStateService));
-            Spells.Add(new FlashHeal(gameStateService));
+            Spells.Add(new FlashHeal(gameStateService, null));
             Spells.Add(new Halo(gameStateService));
-            Spells.Add(new Heal(gameStateService));
+            Spells.Add(new Heal(gameStateService, null));
             Spells.Add(new HolyNova(gameStateService));
             Spells.Add(new HolyWordSalvation(gameStateService,
                 new HolyWordSerenity(gameStateService,
-                    new FlashHeal(gameStateService),
-                    new Heal(gameStateService),
+                    new FlashHeal(gameStateService, null),
+                    new Heal(gameStateService, null),
                     new PrayerOfMending(gameStateService)),
                 new HolyWordSanctify(gameStateService,
                     new PrayerOfHealing(gameStateService),
@@ -63,8 +63,8 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 new Renew(gameStateService),
                 new CircleOfHealing(gameStateService)));
             Spells.Add(new HolyWordSerenity(gameStateService,
-                new FlashHeal(gameStateService),
-                new Heal(gameStateService),
+                new FlashHeal(gameStateService, null),
+                new Heal(gameStateService, null),
                 new PrayerOfMending(gameStateService)));
             Spells.Add(new Mindgames(gameStateService));
             Spells.Add(new PowerWordShield(gameStateService));
@@ -79,8 +79,8 @@ namespace Salvation.CoreTests.HolyPriest.Spells
             Spells.Add(new HolyFire(gameStateService));
             Spells.Add(new CosmicRipple(gameStateService,
                 new HolyWordSerenity(gameStateService,
-                    new FlashHeal(gameStateService),
-                    new Heal(gameStateService),
+                    new FlashHeal(gameStateService, null),
+                    new Heal(gameStateService, null),
                     new PrayerOfMending(gameStateService)),
                 new HolyWordSanctify(gameStateService,
                     new PrayerOfHealing(gameStateService),

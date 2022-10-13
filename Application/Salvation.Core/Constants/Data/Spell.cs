@@ -164,6 +164,7 @@
         DivineImageBlessedLight = 196813,
         DivineImageTranquilLight = 196816,
         CosmicRippleHeal = 243241,
+        TrailOfLightHeal = 234946,
 
         // Consumables
 

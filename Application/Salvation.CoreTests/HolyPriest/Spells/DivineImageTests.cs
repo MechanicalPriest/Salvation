@@ -20,11 +20,11 @@ namespace Salvation.CoreTests.HolyPriest.Spells
             IGameStateService _gameStateService = new GameStateService();
 
             var diHealingLight = new DivineImageHealingLight(_gameStateService,
-                new FlashHeal(_gameStateService),
-                new Heal(_gameStateService),
+                new FlashHeal(_gameStateService, null),
+                new Heal(_gameStateService, null),
                 new HolyWordSerenity(_gameStateService,
-                    new FlashHeal(_gameStateService),
-                    new Heal(_gameStateService),
+                    new FlashHeal(_gameStateService, null),
+                    new Heal(_gameStateService, null),
                     new PrayerOfMending(_gameStateService)));
 
             var diTranquilLight = new DivineImageTranquilLight(_gameStateService,
@@ -46,8 +46,8 @@ namespace Salvation.CoreTests.HolyPriest.Spells
 
             _spell = new DivineImage(_gameStateService,
                 new HolyWordSerenity(_gameStateService,
-                    new FlashHeal(_gameStateService),
-                    new Heal(_gameStateService),
+                    new FlashHeal(_gameStateService, null),
+                    new Heal(_gameStateService, null),
                     new PrayerOfMending(_gameStateService)),
                 new HolyWordSanctify(_gameStateService,
                     new PrayerOfHealing(_gameStateService),

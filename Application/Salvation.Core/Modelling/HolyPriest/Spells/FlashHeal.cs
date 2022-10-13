@@ -3,6 +3,7 @@ using Salvation.Core.Constants.Data;
 using Salvation.Core.Interfaces.Modelling;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
+using Salvation.Core.Modelling.Common;
 using Salvation.Core.State;
 using System;
 using System.Linq;
@@ -11,10 +12,14 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
     public class FlashHeal : SpellService, ISpellService<IFlashHealSpellService>
     {
-        public FlashHeal(IGameStateService gameStateService)
+        private readonly ISpellService<ITrailOfLightSpellService> _trailOfLightSpellService;
+
+        public FlashHeal(IGameStateService gameStateService,
+            ISpellService<ITrailOfLightSpellService> trailOfLightSpellService)
             : base(gameStateService)
         {
             Spell = Spell.FlashHeal;
+            _trailOfLightSpellService = trailOfLightSpellService;
         }
 
         public override double GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
@@ -69,6 +74,31 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         public override double GetMaximumHealTargets(GameState gameState, BaseSpellData spellData)
         {
             return 1;
+        }
+
+        public override AveragedSpellCastResult GetCastResults(GameState gameState, BaseSpellData spellData = null)
+        {
+            // TODO: Move this somewhere more central rather than Copy/Paste with Heal/FH
+            spellData = ValidateSpellData(gameState, spellData);
+
+            AveragedSpellCastResult result = base.GetCastResults(gameState, spellData);
+
+            // Calculate ToL if talented.
+            if (_gameStateService.GetTalent(gameState, Spell.TrailOfLight).Rank > 0)
+            {
+                var trailOfLightSpellData = _gameStateService.GetSpellData(gameState, Spell.TrailOfLight);
+
+                trailOfLightSpellData.Overrides[Override.NumberOfHealingTargets] = GetNumberOfHealingTargets(gameState, spellData);
+                trailOfLightSpellData.Overrides[Override.CastsPerMinute] = GetActualCastsPerMinute(gameState, spellData);
+                trailOfLightSpellData.Overrides[Override.ResultMultiplier] = GetAverageRawHealing(gameState, spellData);
+
+                // grab the result of the spell cast
+                var trailOfLightResult = _trailOfLightSpellService.GetCastResults(gameState, trailOfLightSpellData);
+
+                result.AdditionalCasts.Add(trailOfLightResult);
+            }
+
+            return result;
         }
 
         internal double GetImprovedFlashHealMultiplier(GameState gameState)

@@ -83,6 +83,7 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.Pontifex,
                 (uint)Spell.SayYourPrayers,
                 (uint)Spell.DivineService,
+                (uint)Spell.TrailOfLight,
 
                 // Talent - Holy supporting spells
                 (uint)Spell.CosmicRippleHeal,
@@ -92,6 +93,7 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.DivineImageLightEruption,
                 (uint)Spell.DivineImageBlessedLight,
                 (uint)Spell.DivineImageTranquilLight,
+                (uint)Spell.TrailOfLightHeal,
             };
         }
 

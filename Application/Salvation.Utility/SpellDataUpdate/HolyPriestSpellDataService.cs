@@ -85,6 +85,7 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.SayYourPrayers,
                 (uint)Spell.DivineService,
                 (uint)Spell.TrailOfLight,
+                (uint)Spell.PrayerCircle,
 
                 // Talent - Holy supporting spells
                 (uint)Spell.CosmicRippleHeal,
@@ -96,6 +97,7 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.DivineImageTranquilLight,
                 (uint)Spell.TrailOfLightHeal,
                 (uint)Spell.SanctifiedPrayersBuff,
+                (uint)Spell.PrayerCircleBuff,
             };
         }
 

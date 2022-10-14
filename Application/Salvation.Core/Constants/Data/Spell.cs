@@ -1,4 +1,6 @@
-﻿namespace Salvation.Core.Constants.Data
+﻿using static System.Net.WebRequestMethods;
+
+namespace Salvation.Core.Constants.Data
 {
     public enum Spell
     {
@@ -166,6 +168,7 @@
         CosmicRippleHeal = 243241,
         TrailOfLightHeal = 234946,
         SanctifiedPrayersBuff = 196490,
+        PrayerCircleBuff = 321379,
 
         // Consumables
 

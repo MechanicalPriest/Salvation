@@ -80,6 +80,8 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             hastedCT *= this.GetUnwaveringWillMultiplier(gameState);
 
+            hastedCT *= this.GetPrayerCircleCastTimeMultiplier(gameState);
+
             return hastedCT;
         }
 
@@ -120,6 +122,69 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             }
 
             return multi;
+        }
+
+        internal double GetPrayerCircleCastTimeMultiplier(GameState gameState)
+        {
+            // A basic prayer circle modifier is the percentage of PoH casts inside the PC window
+            // This doesn't increase/decrease with Sanc casts, see #192
+            var multi = 1d;
+
+            var talent = _gameStateService.GetTalent(gameState, Spell.PrayerCircle);
+
+            if (talent != null && talent.Rank > 0)
+            {
+                // Figure out what percentage of buffs the calling spell gets
+                var unwaveringWillUptime = _gameStateService.GetPlaystyle(gameState, "PrayerCircleUptime");
+
+                if (unwaveringWillUptime == null)
+                    throw new ArgumentOutOfRangeException("PrayerCircleUptime", $"PrayerCircleUptime needs to be set.");
+
+                var talentSpellData = _gameStateService.GetSpellData(gameState, Spell.PrayerCircleBuff);
+
+                // Divine this by actual casts to get the average multiplier per cast
+                var castTimeReduction = talentSpellData.GetEffect(809046).BaseValue / 100 * talent.Rank * -1;
+
+                multi -= castTimeReduction * unwaveringWillUptime.Value;
+            }
+
+            return multi;
+        }
+
+        internal double GetPrayerCircleManaReductionMultiplier(GameState gameState)
+        {
+            // A basic prayer circle modifier is the percentage of PoH casts inside the PC window
+            // This doesn't increase/decrease with Sanc casts, see #192
+            var multi = 1d;
+
+            var talent = _gameStateService.GetTalent(gameState, Spell.PrayerCircle);
+
+            if (talent != null && talent.Rank > 0)
+            {
+                // Figure out what percentage of buffs the calling spell gets
+                var unwaveringWillUptime = _gameStateService.GetPlaystyle(gameState, "PrayerCircleUptime");
+
+                if (unwaveringWillUptime == null)
+                    throw new ArgumentOutOfRangeException("PrayerCircleUptime", $"PrayerCircleUptime needs to be set.");
+
+                var talentSpellData = _gameStateService.GetSpellData(gameState, Spell.PrayerCircleBuff);
+
+                // Divine this by actual casts to get the average multiplier per cast
+                var castTimeReduction = talentSpellData.GetEffect(912580).BaseValue / 100 * talent.Rank * -1;
+
+                multi -= castTimeReduction * unwaveringWillUptime.Value;
+            }
+
+            return multi;
+        }
+
+        public override double GetActualManaCost(GameState gameState, BaseSpellData spellData = null)
+        {
+            var manaCost = base.GetActualManaCost(gameState, spellData);
+
+            manaCost *= GetPrayerCircleManaReductionMultiplier(gameState);
+
+            return manaCost;
         }
     }
 }

@@ -27,6 +27,9 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             healingMultiplier *= rank;
 
+            if (!spellData.Overrides.ContainsKey(Override.ResultMultiplier))
+                throw new ArgumentOutOfRangeException("Override.ResultMultiplier", "SpellData Override.ResultMultiplier must be set.");
+
             var triggeringHealAmount = spellData.Overrides[Override.ResultMultiplier];
 
             return healingMultiplier * triggeringHealAmount * GetNumberOfHealingTargets(gameState, spellData);

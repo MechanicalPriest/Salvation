@@ -156,5 +156,37 @@ namespace Salvation.CoreTests.HolyPriest.Spells
             Assert.That(trailCast2.AdditionalCasts.Where(c => c.SpellId == (int)Spell.EchoOfLight).Any(), Is.True);
             Assert.That(trailCast2.RawHealing, Is.EqualTo(3868.5492597702555d));
         }
+
+        [Test]
+        public void GetAverageRawHealing_Throws_No_UnwaveringWillUptime()
+        {
+            // Arrange
+
+            // Act
+            _gameStateService.SetTalentRank(_gameState, Spell.PrayerCircle, 1);
+            var methodCall = new TestDelegate(
+                () => _trailOfLightSpellService.GetAverageRawHealing(_gameState, null));
+
+            // Assert
+            ArgumentOutOfRangeException ex = Assert.Throws<ArgumentOutOfRangeException>(methodCall);
+            Assert.That(ex.Message, Is.EqualTo("SpellData Override.ResultMultiplier must be set. (Parameter 'Override.ResultMultiplier')"));
+            Assert.That(ex.ParamName, Is.EqualTo("Override.ResultMultiplier"));
+        }
+
+        [Test]
+        public void GetActualCastsPerMinute_Throws_No_UnwaveringWillUptime()
+        {
+            // Arrange
+
+            // Act
+            _gameStateService.SetTalentRank(_gameState, Spell.PrayerCircle, 1);
+            var methodCall = new TestDelegate(
+                () => _trailOfLightSpellService.GetActualCastsPerMinute(_gameState, null));
+
+            // Assert
+            ArgumentOutOfRangeException ex = Assert.Throws<ArgumentOutOfRangeException>(methodCall);
+            Assert.That(ex.Message, Is.EqualTo("SpellData Override.CastsPerMinute must be set. (Parameter 'Override.CastsPerMinute')"));
+            Assert.That(ex.ParamName, Is.EqualTo("Override.CastsPerMinute"));
+        }
     }
 }

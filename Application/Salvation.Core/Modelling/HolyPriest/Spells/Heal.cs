@@ -198,6 +198,8 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             var hastedCastTime = castTime / _gameStateService.GetHasteMultiplier(gameState);
 
+            hastedCastTime *= this.GetUnwaveringWillMultiplier(gameState);
+
             return hastedCastTime;
         }
 

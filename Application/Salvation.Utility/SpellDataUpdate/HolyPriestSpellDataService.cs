@@ -47,6 +47,7 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.ImprovedFlashHeal,
                 (uint)Spell.FocusedMending,
                 (uint)Spell.TwistOfFate,
+                (uint)Spell.UnwaveringWill,
 
                 // Talent - Priest supporting spells
                 (uint)Spell.PrayerOfMendingBuff,

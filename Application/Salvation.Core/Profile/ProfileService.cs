@@ -451,8 +451,9 @@ namespace Salvation.Core.Profile
                     // #### Holy Priest ####
                     // ## Talent overrides
                     new PlaystyleEntry("EverlastingLightAverageMana", 0.55, (uint)Spell.EverlastingLight),
-                    new PlaystyleEntry("PontifexAverageSalvationStacks", 0.2, (uint)Spell.EverlastingLight),
-                    new PlaystyleEntry("PontifexPercentUsageSerenity", 0.25, (uint)Spell.EverlastingLight),
+                    new PlaystyleEntry("PontifexAverageSalvationStacks", 0.2, (uint)Spell.Pontifex),
+                    new PlaystyleEntry("PontifexPercentUsageSerenity", 0.25, (uint)Spell.Pontifex),
+                    new PlaystyleEntry("UnwaveringWillUptime", 0.9, (uint)Spell.UnwaveringWill),
 
                     //new PlaystyleEntry("FaeBenevolentFaerieSelfUptime", 1, (uint)Spell.BenevolentFaerie),
                     //// The number of times you move the Guardian Faerie around

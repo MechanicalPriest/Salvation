@@ -72,6 +72,15 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             return numTargets;
         }
 
+        public override double GetHastedCastTime(GameState gameState, BaseSpellData spellData = null)
+        {
+            var hastedCT = base.GetHastedCastTime(gameState, spellData);
+
+            hastedCT *= this.GetUnwaveringWillMultiplier(gameState);
+
+            return hastedCT;
+        }
+
         internal double GetPrayerfulLitanyMultiplier(GameState gameState)
         {
             var multi = 1d;

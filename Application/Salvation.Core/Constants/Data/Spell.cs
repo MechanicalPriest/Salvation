@@ -165,6 +165,7 @@
         DivineImageTranquilLight = 196816,
         CosmicRippleHeal = 243241,
         TrailOfLightHeal = 234946,
+        SanctifiedPrayersBuff = 196490,
 
         // Consumables
 

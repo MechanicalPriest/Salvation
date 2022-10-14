@@ -34,6 +34,8 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             averageHeal *= _gameStateService.GetCriticalStrikeMultiplier(gameState)
                 * _gameStateService.GetGlobalHealingMultiplier(gameState);
 
+            averageHeal *= GetSanctifiedPrayersMultiplier(gameState);
+
             // At least one target healed gets bonus healing from Prayerful Litany
             var averageFirstHeal = averageHeal
                 * GetPrayerfulLitanyMultiplier(gameState);
@@ -92,6 +94,29 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
                 var talentSpellData = _gameStateService.GetSpellData(gameState, Spell.PrayerfulLitany);
 
                 multi += talentSpellData.GetEffect(1028559).BaseValue / 100;
+            }
+
+            return multi;
+        }
+
+        internal double GetSanctifiedPrayersMultiplier(GameState gameState)
+        {
+            // A basic santified prayers modifier is the percentage of PoH casts inside the SP window
+            // This doesn't increase/decrease with Sanc casts, see #192
+            var multi = 1d;
+
+            var talent = _gameStateService.GetTalent(gameState, Spell.SanctifiedPrayers);
+
+            if (talent != null && talent.Rank > 0)
+            {
+                var talentSpellData = _gameStateService.GetSpellData(gameState, Spell.SanctifiedPrayersBuff);
+
+                var sanctifiedPrayersUptime = _gameStateService.GetPlaystyle(gameState, "SanctifiedPrayersUptime");
+
+                if (sanctifiedPrayersUptime == null)
+                    throw new ArgumentOutOfRangeException("SanctifiedPrayersUptime", $"SanctifiedPrayersUptime needs to be set.");
+
+                multi += talentSpellData.GetEffect(288402).BaseValue / 100 * sanctifiedPrayersUptime.Value;
             }
 
             return multi;

@@ -95,6 +95,7 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.DivineImageBlessedLight,
                 (uint)Spell.DivineImageTranquilLight,
                 (uint)Spell.TrailOfLightHeal,
+                (uint)Spell.SanctifiedPrayersBuff,
             };
         }
 

@@ -368,6 +368,8 @@ namespace Salvation.Core.Profile
                     new CastProfile((int)Spell.PowerWordShield, 0.01d, 0.38d, 1, 0, "Power Word: Shield, PW:S"),
                     new CastProfile((int)Spell.EchoOfLight, 0d, 0.4224d, 1, 0, "Echo of Light, EoL"),
                     new CastProfile((int)Spell.GuardianSpirit, 0.36d, 0d, 1, 0, "Guardian Spirit, GS, Angel"),
+                    new CastProfile((int)Spell.TrailOfLight, 1, 0.329d, 1, 0, "Trail of Light, ToL"),
+                    new CastProfile((int)Spell.BindingHeals, 1, 0.411d, 1, 0, "Binding Heals, BH"),
 
                     // DPS Spells
                     new CastProfile((int)Spell.Smite, 0.12d, 0, 0, 1, "Smite"),
@@ -443,8 +445,19 @@ namespace Salvation.Core.Profile
                     // Amount of average damage taken per second over the course of a fight
                     new PlaystyleEntry("DamageTakenPerSecond", 1500, (uint)Spell.HolyPriest),
                     
+                    // #### Priest ####
+                    // ## Talent overrides
+                    new PlaystyleEntry("TwistOfFateUptime", 0.3354, (uint)Spell.TwistOfFate),
+
                     // #### Holy Priest ####
-                    // ## Covenants overrides
+                    // ## Talent overrides
+                    new PlaystyleEntry("EverlastingLightAverageMana", 0.55, (uint)Spell.EverlastingLight),
+                    new PlaystyleEntry("PontifexAverageSalvationStacks", 0.2, (uint)Spell.Pontifex),
+                    new PlaystyleEntry("PontifexPercentUsageSerenity", 0.25, (uint)Spell.Pontifex),
+                    new PlaystyleEntry("UnwaveringWillUptime", 0.9, (uint)Spell.UnwaveringWill),
+                    new PlaystyleEntry("SanctifiedPrayersUptime", 0.8, (uint)Spell.SanctifiedPrayers),
+                    new PlaystyleEntry("PrayerCircleUptime", 0.8, (uint)Spell.PrayerCircle),
+                    new PlaystyleEntry("BindingHealsSelfCastPercentage", 0.15, (uint)Spell.BindingHeals),
 
                     //new PlaystyleEntry("FaeBenevolentFaerieSelfUptime", 1, (uint)Spell.BenevolentFaerie),
                     //// The number of times you move the Guardian Faerie around

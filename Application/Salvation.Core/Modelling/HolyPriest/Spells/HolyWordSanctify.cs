@@ -44,6 +44,8 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             averageHeal *= _gameStateService.GetCriticalStrikeMultiplier(gameState)
                 * _gameStateService.GetGlobalHealingMultiplier(gameState);
 
+            averageHeal *= this.GetPontifexMultiplier(gameState);
+
             return averageHeal * GetNumberOfHealingTargets(gameState, spellData);
         }
 

@@ -33,6 +33,8 @@ namespace Salvation.Core.Modelling
 
         protected readonly IGameStateService _gameStateService;
 
+        public virtual IGameStateService GameStateService { get { return _gameStateService; } }
+
         public virtual int SpellId { get { return (int)Spell; } }
         public virtual Spell Spell { get; protected set; }
 
@@ -346,9 +348,16 @@ namespace Salvation.Core.Modelling
             return 0;
         }
 
-        public virtual double GetAverageHealingBonus(GameState gameState, BaseSpellData spellData)
+        /// <summary>
+        /// A decimal percentage bonus. This will be added to 1 and multiplied by any other bonuses.
+        /// e.g. global_bonus *= (1 + GetAverageHealingBonus())
+        /// </summary>
+        /// <param name="gameState"></param>
+        /// <param name="spellData"></param>
+        /// <returns></returns>
+        public virtual double GetAverageHealingMultiplier(GameState gameState, BaseSpellData spellData)
         {
-            return 0;
+            return 1;
         }
 
         #endregion

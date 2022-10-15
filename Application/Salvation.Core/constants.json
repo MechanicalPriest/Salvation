@@ -1,5 +1,5 @@
 {
-  "GameVersion": "10.0.2.45969",
+  "GameVersion": "10.0.2.46092",
   "Specs": [
     {
       "Class": "Priest",
@@ -1053,6 +1053,123 @@
           ]
         },
         {
+          "Id": 390972,
+          "Name": "Twist of Fate",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 101.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 1028172,
+              "BaseValue": 5.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 1028173,
+              "BaseValue": 5.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 1028187,
+              "BaseValue": 35.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 1028188,
+              "BaseValue": 35.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 0,
+              "ScaleValues": {}
+            }
+          ]
+        },
+        {
+          "Id": 373456,
+          "Name": "Unwavering Will",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 998678,
+              "BaseValue": -5.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 998679,
+              "BaseValue": 75.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 998680,
+              "BaseValue": -5.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ]
+        },
+        {
           "Id": 41635,
           "Name": "Prayer of Mending",
           "ManaCost": 0.0,
@@ -1910,7 +2027,7 @@
                       "Charges": 0,
                       "MaxStacks": 0.0,
                       "ProcChance": 100.0,
-                      "InternalCooldown": 200.0,
+                      "InternalCooldown": 0.0,
                       "Rppm": 0.0,
                       "RppmIsHasted": false,
                       "Effects": [
@@ -2252,6 +2369,366 @@
           ]
         },
         {
+          "Id": 372309,
+          "Name": "Resonant Words",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 101.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 996850,
+              "BaseValue": 15.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 1035639,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 372313,
+              "Amplitude": 0.0,
+              "TriggerSpell": {
+                "Id": 372313,
+                "Name": "Resonant Words",
+                "ManaCost": 0.0,
+                "MaxRange": 0.0,
+                "BaseCastTime": 0.0,
+                "BaseCooldown": 0.0,
+                "IsCooldownHasted": false,
+                "Duration": 30000.0,
+                "Gcd": 0.0,
+                "ChargeCooldown": 0,
+                "Charges": 0,
+                "MaxStacks": 0.0,
+                "ProcChance": 0.0,
+                "InternalCooldown": 0.0,
+                "Rppm": 0.0,
+                "RppmIsHasted": false,
+                "Effects": [
+                  {
+                    "Id": 996854,
+                    "BaseValue": 0.0,
+                    "SpCoefficient": 0.0,
+                    "Coefficient": 0.0,
+                    "TriggerSpellid": 0,
+                    "Amplitude": 0.0,
+                    "TriggerSpell": null,
+                    "Type": 6,
+                    "ScaleValues": {}
+                  }
+                ]
+              },
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ]
+        },
+        {
+          "Id": 391161,
+          "Name": "Everlasting Light",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 1028484,
+              "BaseValue": 15.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ]
+        },
+        {
+          "Id": 390980,
+          "Name": "Pontifex",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 101.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 1028183,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 390989,
+              "Amplitude": 0.0,
+              "TriggerSpell": {
+                "Id": 390989,
+                "Name": "Pontifex",
+                "ManaCost": 0.0,
+                "MaxRange": 0.0,
+                "BaseCastTime": 0.0,
+                "BaseCooldown": 0.0,
+                "IsCooldownHasted": false,
+                "Duration": 30000.0,
+                "Gcd": 0.0,
+                "ChargeCooldown": 0,
+                "Charges": 0,
+                "MaxStacks": 2.0,
+                "ProcChance": 101.0,
+                "InternalCooldown": 0.0,
+                "Rppm": 0.0,
+                "RppmIsHasted": false,
+                "Effects": [
+                  {
+                    "Id": 1028200,
+                    "BaseValue": 10.0,
+                    "SpCoefficient": 0.0,
+                    "Coefficient": 0.0,
+                    "TriggerSpellid": 0,
+                    "Amplitude": 0.0,
+                    "TriggerSpell": null,
+                    "Type": 6,
+                    "ScaleValues": {}
+                  }
+                ]
+              },
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ]
+        },
+        {
+          "Id": 391186,
+          "Name": "Say Your Prayers",
+          "ManaCost": 0.0,
+          "MaxRange": 100.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 1028522,
+              "BaseValue": 15.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ]
+        },
+        {
+          "Id": 391233,
+          "Name": "Divine Service",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 1028593,
+              "BaseValue": 4.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ]
+        },
+        {
+          "Id": 200128,
+          "Name": "Trail of Light",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 100.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 294596,
+              "BaseValue": 18.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ]
+        },
+        {
+          "Id": 321377,
+          "Name": "Prayer Circle",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 100.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 809044,
+              "BaseValue": 1.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 321379,
+              "Amplitude": 0.0,
+              "TriggerSpell": {
+                "Id": 321379,
+                "Name": "Prayer Circle",
+                "ManaCost": 0.0,
+                "MaxRange": 0.0,
+                "BaseCastTime": 0.0,
+                "BaseCooldown": 0.0,
+                "IsCooldownHasted": false,
+                "Duration": 8000.0,
+                "Gcd": 0.0,
+                "ChargeCooldown": 0,
+                "Charges": 0,
+                "MaxStacks": 0.0,
+                "ProcChance": 101.0,
+                "InternalCooldown": 0.0,
+                "Rppm": 0.0,
+                "RppmIsHasted": false,
+                "Effects": [
+                  {
+                    "Id": 809046,
+                    "BaseValue": -25.0,
+                    "SpCoefficient": 0.0,
+                    "Coefficient": 0.0,
+                    "TriggerSpellid": 0,
+                    "Amplitude": 0.0,
+                    "TriggerSpell": null,
+                    "Type": 6,
+                    "ScaleValues": {}
+                  },
+                  {
+                    "Id": 912580,
+                    "BaseValue": -25.0,
+                    "SpCoefficient": 0.0,
+                    "Coefficient": 0.0,
+                    "TriggerSpellid": 0,
+                    "Amplitude": 0.0,
+                    "TriggerSpell": null,
+                    "Type": 6,
+                    "ScaleValues": {}
+                  }
+                ]
+              },
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ]
+        },
+        {
+          "Id": 368275,
+          "Name": "Binding Heals",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 100.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 912575,
+              "BaseValue": 20.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ]
+        },
+        {
           "Id": 243241,
           "Name": "Cosmic Ripple",
           "ManaCost": 0.0,
@@ -2475,6 +2952,141 @@
               "Amplitude": 1000.0,
               "TriggerSpell": null,
               "Type": 6,
+              "ScaleValues": {}
+            }
+          ]
+        },
+        {
+          "Id": 234946,
+          "Name": "Trail of Light",
+          "ManaCost": 0.0,
+          "MaxRange": 100.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 355080,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 10,
+              "ScaleValues": {}
+            }
+          ]
+        },
+        {
+          "Id": 196490,
+          "Name": "Sanctified Prayers",
+          "ManaCost": 0.0,
+          "MaxRange": 100.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 15000.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 288402,
+              "BaseValue": 15.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ]
+        },
+        {
+          "Id": 321379,
+          "Name": "Prayer Circle",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 8000.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 101.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 809046,
+              "BaseValue": -25.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 912580,
+              "BaseValue": -25.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ]
+        },
+        {
+          "Id": 368276,
+          "Name": "Binding Heal",
+          "ManaCost": 0.0,
+          "MaxRange": 100.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 912576,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 10,
               "ScaleValues": {}
             }
           ]

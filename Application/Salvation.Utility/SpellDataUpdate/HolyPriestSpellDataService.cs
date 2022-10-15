@@ -46,6 +46,8 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.Mindgames,
                 (uint)Spell.ImprovedFlashHeal,
                 (uint)Spell.FocusedMending,
+                (uint)Spell.TwistOfFate,
+                (uint)Spell.UnwaveringWill,
 
                 // Talent - Priest supporting spells
                 (uint)Spell.PrayerOfMendingBuff,
@@ -77,6 +79,14 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.PrayersOfTheVirtuous,
                 (uint)Spell.PrismaticEchoes,
                 (uint)Spell.RapidRecovery,
+                (uint)Spell.ResonantWords,
+                (uint)Spell.EverlastingLight,
+                (uint)Spell.Pontifex,
+                (uint)Spell.SayYourPrayers,
+                (uint)Spell.DivineService,
+                (uint)Spell.TrailOfLight,
+                (uint)Spell.PrayerCircle,
+                (uint)Spell.BindingHeals,
 
                 // Talent - Holy supporting spells
                 (uint)Spell.CosmicRippleHeal,
@@ -86,6 +96,10 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.DivineImageLightEruption,
                 (uint)Spell.DivineImageBlessedLight,
                 (uint)Spell.DivineImageTranquilLight,
+                (uint)Spell.TrailOfLightHeal,
+                (uint)Spell.SanctifiedPrayersBuff,
+                (uint)Spell.PrayerCircleBuff,
+                (uint)Spell.BindingHealsHeal,
             };
         }
 

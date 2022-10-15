@@ -14,7 +14,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace Salvation.CoreTests.Common.Items
+namespace Salvation.CoreTests.HolyPriest.Spells
 {
     [TestFixture]
     class DivineImageSpellTests : BaseTest
@@ -38,10 +38,10 @@ namespace Salvation.CoreTests.Common.Items
                 File.ReadAllText(Path.Combine("TestData", "BaseTests_profile.json")));
 
             Spells.Add(new DivineImageHealingLight(_gameStateService,
-                new FlashHeal(_gameStateService),
-                new Heal(_gameStateService),
-                new HolyWordSerenity(_gameStateService, 
-                    new FlashHeal(_gameStateService), new Heal(_gameStateService), 
+                new FlashHeal(_gameStateService, null, null),
+                new Heal(_gameStateService, null, null),
+                new HolyWordSerenity(_gameStateService,
+                    new FlashHeal(_gameStateService, null, null), new Heal(_gameStateService, null, null),
                     new PrayerOfMending(_gameStateService))));
 
             Spells.Add(new DivineImageTranquilLight(_gameStateService,

@@ -6,7 +6,7 @@ using Salvation.Core.Modelling.HolyPriest.Spells;
 using Salvation.Core.State;
 using System;
 
-namespace Salvation.CoreTests.Common.Items
+namespace Salvation.CoreTests.HolyPriest.Spells
 {
     [TestFixture]
     class DivineImageTests : BaseTest
@@ -20,11 +20,11 @@ namespace Salvation.CoreTests.Common.Items
             IGameStateService _gameStateService = new GameStateService();
 
             var diHealingLight = new DivineImageHealingLight(_gameStateService,
-                new FlashHeal(_gameStateService),
-                new Heal(_gameStateService),
+                new FlashHeal(_gameStateService, null, null),
+                new Heal(_gameStateService, null, null),
                 new HolyWordSerenity(_gameStateService,
-                    new FlashHeal(_gameStateService), 
-                    new Heal(_gameStateService),
+                    new FlashHeal(_gameStateService, null, null),
+                    new Heal(_gameStateService, null, null),
                     new PrayerOfMending(_gameStateService)));
 
             var diTranquilLight = new DivineImageTranquilLight(_gameStateService,
@@ -46,15 +46,15 @@ namespace Salvation.CoreTests.Common.Items
 
             _spell = new DivineImage(_gameStateService,
                 new HolyWordSerenity(_gameStateService,
-                    new FlashHeal(_gameStateService),
-                    new Heal(_gameStateService),
+                    new FlashHeal(_gameStateService, null, null),
+                    new Heal(_gameStateService, null, null),
                     new PrayerOfMending(_gameStateService)),
                 new HolyWordSanctify(_gameStateService,
                     new PrayerOfHealing(_gameStateService),
                     new Renew(_gameStateService),
                     new CircleOfHealing(_gameStateService)),
-                new HolyWordChastise(_gameStateService, 
-                    new Smite(_gameStateService), 
+                new HolyWordChastise(_gameStateService,
+                    new Smite(_gameStateService),
                     new HolyFire(_gameStateService)),
                 diHealingLight,
                 diTranquilLight,

@@ -3,6 +3,8 @@ using Salvation.Core.Constants.Data;
 using Salvation.Core.Interfaces.Modelling;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
+using Salvation.Core.Modelling.Common;
+using Salvation.Core.Profile.Model;
 using Salvation.Core.State;
 using System;
 using System.Linq;
@@ -11,10 +13,17 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
     public class Heal : SpellService, ISpellService<IHealSpellService>
     {
-        public Heal(IGameStateService gameStateService)
+        private readonly ISpellService<ITrailOfLightSpellService> _trailOfLightSpellService;
+        private readonly ISpellService<IBindingHealsSpellService> _bindingHealsSpellService;
+
+        public Heal(IGameStateService gameStateService,
+            ISpellService<ITrailOfLightSpellService> trailOfLightSpellService,
+            ISpellService<IBindingHealsSpellService> bindingHealsSpellService)
             : base(gameStateService)
         {
             Spell = Spell.Heal;
+            _trailOfLightSpellService = trailOfLightSpellService;
+            _bindingHealsSpellService = bindingHealsSpellService;
         }
 
         public override double GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
@@ -37,6 +46,8 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
                 * _gameStateService.GetGlobalHealingMultiplier(gameState);
 
             averageHeal *= GetResonantWordsMulti(gameState, spellData);
+
+            averageHeal *= GetEverlastingLightMultiplier(gameState);
 
             averageHeal *= GetFlashConcentrationHealingModifier(gameState);
 
@@ -68,6 +79,46 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         {
             return 1;
         }
+        public override AveragedSpellCastResult GetCastResults(GameState gameState, BaseSpellData spellData = null)
+        {
+            spellData = ValidateSpellData(gameState, spellData);
+
+            AveragedSpellCastResult result = base.GetCastResults(gameState, spellData);
+
+            // TODO: Move this somewhere more central rather than Copy/Paste with Heal/FH
+            // Calculate ToL if talented.
+            if (_gameStateService.GetTalent(gameState, Spell.TrailOfLight).Rank > 0)
+            {
+                var trailOfLightSpellData = _gameStateService.GetSpellData(gameState, Spell.TrailOfLight);
+
+                trailOfLightSpellData.Overrides[Override.NumberOfHealingTargets] = GetNumberOfHealingTargets(gameState, spellData);
+                trailOfLightSpellData.Overrides[Override.CastsPerMinute] = GetActualCastsPerMinute(gameState, spellData);
+                trailOfLightSpellData.Overrides[Override.ResultMultiplier] = GetAverageRawHealing(gameState, spellData);
+
+                // grab the result of the spell cast
+                var trailOfLightResult = _trailOfLightSpellService.GetCastResults(gameState, trailOfLightSpellData);
+
+                result.AdditionalCasts.Add(trailOfLightResult);
+            }
+
+            // TODO: Move this somewhere more central rather than Copy/Paste with Heal/FH
+            // Calculate BHs if talented.
+            if (_gameStateService.GetTalent(gameState, Spell.BindingHeals).Rank > 0)
+            {
+                var bindingHealsSpellData = _gameStateService.GetSpellData(gameState, Spell.BindingHeals);
+
+                bindingHealsSpellData.Overrides[Override.NumberOfHealingTargets] = GetNumberOfHealingTargets(gameState, spellData);
+                bindingHealsSpellData.Overrides[Override.CastsPerMinute] = GetActualCastsPerMinute(gameState, spellData);
+                bindingHealsSpellData.Overrides[Override.ResultMultiplier] = GetAverageRawHealing(gameState, spellData);
+
+                // grab the result of the spell cast
+                var bindingHealsResult = _bindingHealsSpellService.GetCastResults(gameState, bindingHealsSpellData);
+
+                result.AdditionalCasts.Add(bindingHealsResult);
+            }
+
+            return result;
+        }
 
         internal double GetCrisisManagementModifier(GameState gameState)
         {
@@ -91,50 +142,67 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             // TODO: Move this to its own location rather than copy/pasted in Heal & FH
             var multi = 1d;
 
-            // TODO: Clean up post-implementation
-            //// If resonant words is active, attempt to get a value increasing heal (on average).
-            //if (_gameStateService.IsConduitActive(gameState, Conduit.ResonantWords))
-            //{
-            //    // This is very much a hack, but including them directly causes a circular dependency error. 
-            //    // This could be resolved in RW becomes its own effect/heal.
-            //    var serenity = _gameStateService.GetRegisteredSpells(gameState).Where(s => s.Spell == Spell.HolyWordSerenity).FirstOrDefault();
-            //    var sanc = _gameStateService.GetRegisteredSpells(gameState).Where(s => s.Spell == Spell.HolyWordSanctify).FirstOrDefault();
-            //    var chastise = _gameStateService.GetRegisteredSpells(gameState).Where(s => s.Spell == Spell.HolyWordChastise).FirstOrDefault();
+            var talent = _gameStateService.GetTalent(gameState, Spell.ResonantWords);
 
-            //    var hwCasts = serenity.SpellService.GetActualCastsPerMinute(gameState, serenity.SpellData)
-            //        + sanc.SpellService.GetActualCastsPerMinute(gameState, sanc.SpellData)
-            //        + chastise.SpellService.GetActualCastsPerMinute(gameState, chastise.SpellData);
+            if (talent != null && talent.Rank > 0)
+            {
+                // Injecting these spells directly causes a circular dependency error. 
+                var serenity = _gameStateService.GetRegisteredSpells(gameState).Where(s => s.Spell == Spell.HolyWordSerenity).FirstOrDefault();
+                var sanc = _gameStateService.GetRegisteredSpells(gameState).Where(s => s.Spell == Spell.HolyWordSanctify).FirstOrDefault();
+                var chastise = _gameStateService.GetRegisteredSpells(gameState).Where(s => s.Spell == Spell.HolyWordChastise).FirstOrDefault();
 
-            //    var numberBuffsUsed = _gameStateService.GetPlaystyle(gameState, "ResonantWordsPercentageBuffsUsed");
+                var hwCasts = serenity.SpellService.GetActualCastsPerMinute(gameState, serenity.SpellData)
+                    + sanc.SpellService.GetActualCastsPerMinute(gameState, sanc.SpellData)
+                    + chastise.SpellService.GetActualCastsPerMinute(gameState, chastise.SpellData);
 
-            //    if(numberBuffsUsed == null)
-            //        throw new ArgumentOutOfRangeException("ResonantWordsPercentageBuffsUsed", $"ResonantWordsPercentageBuffsUsed needs to be set.");
+                var numberBuffsUsed = _gameStateService.GetPlaystyle(gameState, "ResonantWordsPercentageBuffsUsed");
 
-            //    var percentageBuffsForHeal = _gameStateService.GetPlaystyle(gameState, "ResonantWordsPercentageBuffsHeal");
+                if (numberBuffsUsed == null)
+                    throw new ArgumentOutOfRangeException("ResonantWordsPercentageBuffsUsed", $"ResonantWordsPercentageBuffsUsed needs to be set.");
 
-            //    if (percentageBuffsForHeal == null)
-            //        throw new ArgumentOutOfRangeException("ResonantWordsPercentageBuffsHeal", $"ResonantWordsPercentageBuffsHeal needs to be set.");
+                var percentageBuffsForHeal = _gameStateService.GetPlaystyle(gameState, "ResonantWordsPercentageBuffsHeal");
 
-            //    // Finally grab the conduit multi
-            //    var conduitData = _gameStateService.GetSpellData(gameState, Spell.ResonantWords);
-            //    var conduitRank = _gameStateService.GetConduitRank(gameState, Conduit.ResonantWords);
+                if (percentageBuffsForHeal == null)
+                    throw new ArgumentOutOfRangeException("ResonantWordsPercentageBuffsHeal", $"ResonantWordsPercentageBuffsHeal needs to be set.");
 
-            //    var conduitValue = conduitData.ConduitRanks[conduitRank] / 100;
+                var talentSpellData = _gameStateService.GetSpellData(gameState, Spell.ResonantWords);
 
-            //    var numBuffedSpellsTotal = hwCasts * numberBuffsUsed.Value;
+                var numBuffedSpellsTotal = hwCasts * numberBuffsUsed.Value;
 
-            //    // Max number of Heal spells that can be buffed: hwCasts * Heal_percent
-            //    // Actual number of buffed casts: lowest of either max spells cast or actual casts per minute
-            //    var numBuffedCasts = Math.Min(numBuffedSpellsTotal * percentageBuffsForHeal.Value, GetActualCastsPerMinute(gameState, spellData));
+                // Max number of Heal spells that can be buffed: hwCasts * Heal_percent
+                // Actual number of buffed casts: lowest of either max spells cast or actual casts per minute
+                var numBuffedCasts = Math.Min(numBuffedSpellsTotal * percentageBuffsForHeal.Value, GetActualCastsPerMinute(gameState, spellData));
 
-            //    // This is the extra healing on all the buffed casts
-            //    var extraHealing = numBuffedCasts * conduitValue;
+                // This is the extra healing on all the buffed casts
+                var resonantWordsModifier = talentSpellData.GetEffect(996850).BaseValue / 100 * talent.Rank;
+                var extraHealing = numBuffedCasts * resonantWordsModifier;
 
-            //    // Now divide this by all casts
-            //    var increase = extraHealing / GetActualCastsPerMinute(gameState, spellData);
+                // Now divide this by all casts
+                var increase = extraHealing / GetActualCastsPerMinute(gameState, spellData);
 
-            //    multi += increase;
-            //}
+                multi += increase;
+            }
+
+            return multi;
+        }
+
+        internal double GetEverlastingLightMultiplier(GameState gameState)
+        {
+            var multi = 1d;
+
+            var talent = _gameStateService.GetTalent(gameState, Spell.EverlastingLight);
+
+            if (talent != null && talent.Rank > 0)
+            {
+                var talentSpellData = _gameStateService.GetSpellData(gameState, Spell.EverlastingLight);
+
+                var averageMana = _gameStateService.GetPlaystyle(gameState, "EverlastingLightAverageMana");
+
+                if (averageMana == null)
+                    throw new ArgumentOutOfRangeException("EverlastingLightAverageMana", $"EverlastingLightAverageMana needs to be set.");
+
+                multi += talentSpellData.GetEffect(1028484).BaseValue / 100 * averageMana.Value;
+            }
 
             return multi;
         }
@@ -148,6 +216,8 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             castTime -= GetFlashConcentrationCastTimeReduction(gameState);
 
             var hastedCastTime = castTime / _gameStateService.GetHasteMultiplier(gameState);
+
+            hastedCastTime *= this.GetUnwaveringWillMultiplier(gameState);
 
             return hastedCastTime;
         }

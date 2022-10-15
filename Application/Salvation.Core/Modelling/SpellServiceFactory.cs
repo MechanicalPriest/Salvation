@@ -47,6 +47,7 @@ namespace Salvation.Core.Modelling
                 Spell.Halo => typeof(IHaloSpellService),
                 Spell.HolyNova => typeof(IHolyNovaSpellService),
                 Spell.ShadowWordDeath => typeof(IShadowWordDeathSpellService),
+                Spell.TwistOfFate => typeof(ITwistOfFateSpellService),
                 // Consumables
                 // Items
                 _ => null

@@ -44,4 +44,8 @@
     <ProjectReference Include="..\Salvation.Core\Salvation.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Common\Items\" />
+  </ItemGroup>
+
 </Project>

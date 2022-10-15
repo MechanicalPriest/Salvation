@@ -1941,7 +1941,7 @@
           "Effects": [
             {
               "Id": 1028210,
-              "BaseValue": 4.0,
+              "BaseValue": 2.0,
               "SpCoefficient": 0.0,
               "Coefficient": 0.0,
               "TriggerSpellid": 0,

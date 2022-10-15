@@ -276,6 +276,10 @@ namespace Salvation.Utility.SpellDataUpdate
                     // We don't get chain targets through yet, so set it manually
                     baseSpellData.GetEffect(288952).BaseValue = 5;
                     break;
+                case (uint)Spell.HarmoniousApparatus:
+                    // Because of #202, this is manually set to 2
+                    baseSpellData.GetEffect(1028210).BaseValue = 2;
+                    break;
                 default:
                     break;
             }

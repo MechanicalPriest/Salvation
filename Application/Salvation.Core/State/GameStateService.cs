@@ -956,12 +956,12 @@ namespace Salvation.Core.State
 
             var isLotnActive = GetTalent(state, Spell.LightOfTheNaaru).Rank > 0;
 
+            // Harmonious Apparatus
             var haCDRBase = 0d;
 
-            if (IsLegendaryActive(state, Spell.HarmoniousApparatus))
-            {
-                haCDRBase = GetSpellData(state, Spell.HarmoniousApparatus).GetEffect(1028210).BaseValue;
-            }
+            var haTalent = GetTalent(state, Spell.HarmoniousApparatus);
+            if(haTalent.Rank > 0)
+                haCDRBase = GetSpellData(state, Spell.HarmoniousApparatus).GetEffect(1028210).BaseValue * haTalent.Rank;
 
             var returnCDR = 0d;
 

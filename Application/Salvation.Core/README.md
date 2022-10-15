@@ -77,14 +77,27 @@ This can be useful for cloning a profile to then make minor modifications and co
 
 ## Implementing a new spell
 
-An example of implementation using a basic passive talent, Cosmic Ripple.
+An example of implementation using a basic passive talent, Lightwell.
 
 1. Make sure the spell is in the `Spell` enum in `Spell.cs` with the correct SpellId
 
 ```csharp
-SanctifiedPrayers = 196489,
-CosmicRipple = 238136,
-Afterlife = 196707,
+...
+Lightwell = 372835,
+...
+/// <summary>
+/// The heal portion of Lightwell
+/// </summary>
+LightwellHeal = 372847,
+/// <summary>
+/// This is the buff the lightwell has, which stores remaining charges
+/// </summary>
+LightwellCharges = 372838,
+/// <summary>
+/// Stores how often it tries to heal someone
+/// </summary>
+LightwellTrigger = 372845,
+...
 ```
 
 2. Make sure that `constants.json` contains the appropriate spelldata. 
@@ -95,7 +108,11 @@ To do this, check `Salvation.Utility.HolyPriestSpellDataService.cs` and ensure i
 _spells = new List<uint>()
 {
     ...
-    (uint)Spell.CosmicRipple,
+    (uint)Spell.Lightwell,
+    ...
+    (uint)Spell.LightwellHeal,
+    (uint)Spell.LightwellTrigger,
+    (uint)Spell.LightwellCharges,
     ...
 }
 ```
@@ -104,12 +121,12 @@ Then run `Salvation.Explorer` with the command line argument `-updatespelldata`.
 
 3. Create a new interface for the spell implementation in the appropriate `Salvation.Core.Interfaces` namespace.
 
-`ICosmicRipple.cs`
+`ILightwellSpellService.cs`
 
 ```csharp
 namespace Salvation.Core.Interfaces.Modelling.HolyPriest.Spells
 {
-    public interface ICosmicRippleSpellService : ISpellService
+    public interface ILightwellSpellService : ISpellService
     {
 
     }
@@ -118,71 +135,57 @@ namespace Salvation.Core.Interfaces.Modelling.HolyPriest.Spells
 
 4. Create a new spell in the appropriate `Salvation.Core.Modelling` namespace. This should inherit `SpellService` and implement `ISpellService<T>`
 
-`CosmicRipple.cs`
+`Lightwell.cs`
 
 ```csharp
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
-    public class CosmicRipple : SpellService, ISpellService<ICosmicRippleSpellService>
+    public class Lightwell : SpellService, ISpellService<ILightwellSpellService>
     {
-        public CosmicRipple(IGameStateService gameStateService)
+        public Lightwell(IGameStateService gameStateService)
             : base(gameStateService)
         {
-            Spell = Spell.CosmicRipple;
+            Spell = Spell.Lightwell;
         }
     }
 }
 ```
 
-5. Create a test for it in `Salvation.CoreTests.HolyPriest.Spells` to test relevant methods.
+5. Create a test for it in `Salvation.CoreTests.HolyPriest.Spells` to test relevant methods. 
 
-`CosmicRippleTests.cs`
+Casted healing spells can have most of their basic tests put in `SpellServiceTests.cs`, just add an entry for each test for the new spell.
 
 ```csharp
-namespace Salvation.CoreTests.HolyPriest.Spells
-{
-    [TestFixture]
-    public class CosmicRippleTests : BaseTest
-    {
-        private GameState _gameState;
-        private ISpellService _spell;
-
-        [OneTimeSetUp]
-        public void InitOnce()
-        {
-            IGameStateService gameStateService = new GameStateService();
-            _spell = new CosmicRipple(gameStateService);
-
-            _gameState = GetGameState();
-        }
-
-        [Test]
-        public void CosmicRipple_GetMinimumHealTargets()
-        {
-            // Arrange
-
-            // Act
-            var result = _spell.GetMinimumHealTargets(_gameState, null);
-
-            // Assert
-            Assert.AreEqual(1, result);
-        }
-    }
-}
+    ...
+    yield return new TestCaseData(typeof(Lightwell)).Returns(false);
+    ...
 ```
 
-You can then run the test and watch it fail.
+For any additional tests that don't fit inside this, create a new file named after the spell and include any 
+tests required. Use one of the existing spell test sets as a template, it should inherit `BaseTest` to 
+save on scaffolding.
 
-6. From here, implement the spell inside `CosmicRipple.cs`, making sure to supply a relevant test for each method 
-(and any variants to improve coveage). Override each of the `SpellService` methods that make sense to give valid 
+You can then run the tests and watch it fail.
+
+6. From here, implement the spell inside `Lightwell.cs`, making sure to supply a relevant test for each method 
+(and any variants to improve coverage). Override each of the `SpellService` methods that make sense to give valid 
 output for each.
 
-For Cosmic Ripple this would include methods such as:
+For Lightwell this would include methods such as:
 
 - GetAverageRawHealing
-- GetActualCastsPerMinute
+- GetMinimumHealTargets
+- GetMaximumHealTargets
 - GetMaximumCastsPerMinute
 
+Sometimes the data needed won't be in the spelldata for the defined spell, and is contained in additional spells. 
+Add these in steps 1 & 2. Then you can pull the data as required.
+
+```csharp
+var lightwellRenewSpelldata = _gameStateService.GetSpellData(gameState, Spell.LightwellHeal);
+
+var healingSp = lightwellRenewSpelldata.GetEffect(997691).SpCoefficient;
+```
 
 7. Include the spell in the `DependencyInjectionExtensions.cs` which loads up the DI via an extension method.
 
@@ -191,13 +194,13 @@ public static IServiceCollection AddHolyPriestSpells(this IServiceCollection ser
 {
     ...
     // Talents
-    services.AddSingleton<ISpellService<ICosmicRippleSpellService>, CosmicRipple>();
+    services.AddSingleton<ISpellService<ILightwellSpellService>, Lightwell>();
     ...
 }
 ```
 
-8. Include the spell in `SpellSreviceFactory.cs:GetSpellService` to map `Spell.CosmicRipple` to `ICosmicRippleSpellService`.
+8. Include the spell in `SpellServiceFactory.cs:GetSpellService` to map `Spell.Lightwell` to `ILightwellSpellService`.
 
 ```csharp
-Spell.CosmicRipple => typeof(ICosmicRippleSpellService),
+Spell.Lightwell => typeof(ILightwellSpellService),
 ```

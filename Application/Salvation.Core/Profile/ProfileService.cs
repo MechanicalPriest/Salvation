@@ -370,6 +370,7 @@ namespace Salvation.Core.Profile
                     new CastProfile((int)Spell.GuardianSpirit, 0.36d, 0d, 1, 0, "Guardian Spirit, GS, Angel"),
                     new CastProfile((int)Spell.TrailOfLight, 1, 0.329d, 1, 0, "Trail of Light, ToL"),
                     new CastProfile((int)Spell.BindingHeals, 1, 0.411d, 1, 0, "Binding Heals, BH"),
+                    new CastProfile((int)Spell.Lightwell, 1, 0.243d, 15, 0, "Lightwell, LW"),
 
                     // DPS Spells
                     new CastProfile((int)Spell.Smite, 0.12d, 0, 0, 1, "Smite"),

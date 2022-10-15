@@ -170,6 +170,18 @@ namespace Salvation.Core.Constants.Data
         SanctifiedPrayersBuff = 196490,
         PrayerCircleBuff = 321379,
         BindingHealsHeal = 368276,
+        /// <summary>
+        /// The heal portion of Lightwell
+        /// </summary>
+        LightwellHeal = 372847,
+        /// <summary>
+        /// This is the buff the lightwell has, which stores remaining charges
+        /// </summary>
+        LightwellCharges = 372838,
+        /// <summary>
+        /// Stores how often it tries to heal someone
+        /// </summary>
+        LightwellTrigger = 372845,
 
         // Consumables
 

@@ -60,6 +60,20 @@ namespace Salvation.CoreTests.State
             return Math.Round(_gameStateService.GetTotalHolyWordCooldownReduction(_state, spell, true), 10);
         }
 
+        [TestCaseSource(typeof(HolyWordTestSpells), nameof(HolyWordTestSpells.ApothLotnValueTests))]
+        public double HWCDR_Apoth_LotN_Values(Spell spell, int rank)
+        {
+            // Arrange
+            _gameStateService.SetTalentRank(_state, Spell.Apotheosis, 1);
+            _gameStateService.SetTalentRank(_state, Spell.LightOfTheNaaru, rank);
+
+            // Act
+
+
+            // Assert
+            return Math.Round(_gameStateService.GetTotalHolyWordCooldownReduction(_state, spell), 10);
+        }
+
         [Test]
         public void HWCDR_Invalid_Spell()
         {
@@ -105,6 +119,7 @@ namespace Salvation.CoreTests.State
                 yield return new TestCaseData(Spell.HolyWordSanctify, 1).Returns(33.0d);
                 yield return new TestCaseData(Spell.Smite, 1).Returns(4.4d);
                 yield return new TestCaseData(Spell.HolyFire, 1).Returns(0);
+
                 yield return new TestCaseData(Spell.FlashHeal, 2).Returns(7.2d);
                 yield return new TestCaseData(Spell.Heal, 2).Returns(7.2d);
                 yield return new TestCaseData(Spell.PrayerOfHealing, 2).Returns(7.2d);
@@ -131,6 +146,33 @@ namespace Salvation.CoreTests.State
                 yield return new TestCaseData(Spell.HolyWordSanctify).Returns(30d);
                 yield return new TestCaseData(Spell.Smite).Returns(16d);
                 yield return new TestCaseData(Spell.HolyFire).Returns(0);
+            }
+        }
+        public static IEnumerable ApothLotnValueTests
+        {
+            get
+            {
+                yield return new TestCaseData(Spell.FlashHeal, 1).Returns(26.4d);
+                yield return new TestCaseData(Spell.Heal, 1).Returns(26.4d);
+                yield return new TestCaseData(Spell.PrayerOfHealing, 1).Returns(26.4d);
+                yield return new TestCaseData(Spell.Renew, 1).Returns(8.8d);
+                yield return new TestCaseData(Spell.CircleOfHealing, 1).Returns(0);
+                yield return new TestCaseData(Spell.PrayerOfMending, 1).Returns(0);
+                yield return new TestCaseData(Spell.HolyWordSerenity, 1).Returns(33.0d);
+                yield return new TestCaseData(Spell.HolyWordSanctify, 1).Returns(33.0d);
+                yield return new TestCaseData(Spell.Smite, 1).Returns(17.6d);
+                yield return new TestCaseData(Spell.HolyFire, 1).Returns(0);
+
+                yield return new TestCaseData(Spell.FlashHeal, 2).Returns(28.8d);
+                yield return new TestCaseData(Spell.Heal, 2).Returns(28.8d);
+                yield return new TestCaseData(Spell.PrayerOfHealing, 2).Returns(28.8d);
+                yield return new TestCaseData(Spell.Renew, 2).Returns(9.6d);
+                yield return new TestCaseData(Spell.CircleOfHealing, 2).Returns(0);
+                yield return new TestCaseData(Spell.PrayerOfMending, 2).Returns(0);
+                yield return new TestCaseData(Spell.HolyWordSerenity, 2).Returns(36.0d);
+                yield return new TestCaseData(Spell.HolyWordSanctify, 2).Returns(36.0d);
+                yield return new TestCaseData(Spell.Smite, 2).Returns(19.2d);
+                yield return new TestCaseData(Spell.HolyFire, 2).Returns(0);
             }
         }
     }

@@ -944,78 +944,90 @@ namespace Salvation.Core.State
 
         public double GetTotalHolyWordCooldownReduction(GameState state, Spell spell, bool isApotheosisActive = false)
         {
-            // Only let Apoth actually benefit if apoth is talented
+            // Apotheosis - the 300% increase is 4x the regular CDR.
+            var apothCDRIncrease = 1.0d;
+            var apothTalent = GetTalent(state, Spell.Apotheosis);
+            if (apothTalent.Rank > 0)
+                apothCDRIncrease += GetSpellData(state, Spell.Apotheosis).GetEffect(294682).BaseValue / 100;
+
             if (GetTalent(state, Spell.Apotheosis).Rank == 0)
                 isApotheosisActive = false;
 
-            var serenityCDRBase = GetSpellData(state, Spell.HolyWordSerenity).GetEffect(709474).BaseValue;
-            var sancCDRPoH = GetSpellData(state, Spell.HolyWordSanctify).GetEffect(709475).BaseValue;
-            var sancCDRRenew = GetSpellData(state, Spell.HolyWordSanctify).GetEffect(709476).BaseValue;
-            var salvCDRBase = GetSpellData(state, Spell.HolyWordSalvation).GetEffect(709211).BaseValue;
-            var chastiseCDRBase = GetSpellData(state, Spell.HolyWordChastise).GetEffect(709477).BaseValue;
-
+            // Light of the Naaru - 10% or 20% increase depending on rank.
             var lotnCDRIncrease = 1.0d; 
             var lotnTalent = GetTalent(state, Spell.LightOfTheNaaru);
             if (lotnTalent.Rank > 0)
                 lotnCDRIncrease += GetSpellData(state, Spell.LightOfTheNaaru)
                     .GetEffect(289244).BaseValue / 100 * lotnTalent.Rank;
 
-            // Harmonious Apparatus
+            // Harmonious Apparatus - 2 or 4 seconds depending on rank.
             var haCDRBase = 0d;
-
             var haTalent = GetTalent(state, Spell.HarmoniousApparatus);
             if(haTalent.Rank > 0)
                 haCDRBase = GetSpellData(state, Spell.HarmoniousApparatus).GetEffect(1028210).BaseValue * haTalent.Rank;
 
-            var returnCDR = 0d;
-
             // This is a bit more verbose than it needs to be for the sake of clarity
             // See #58 for some of the testing/math behind these values
+            var returnCDR = 0d;
+
+            // Base Holy Word CDR
             switch (spell)
             {
                 case Spell.FlashHeal:
                 case Spell.Heal:
+                    var serenityCDRBase = GetSpellData(state, Spell.HolyWordSerenity).GetEffect(709474).BaseValue;
                     returnCDR = serenityCDRBase;
-                    returnCDR *= lotnCDRIncrease; // LotN adds 10-20% more CDR.
-                    returnCDR *= isApotheosisActive ? 4d : 1d; // Apotheosis adds 200% more CDR
                     break;
+
                 case Spell.PrayerOfHealing:
+                    var sancCDRPoH = GetSpellData(state, Spell.HolyWordSanctify).GetEffect(709475).BaseValue;
                     returnCDR = sancCDRPoH;
-                    returnCDR *= lotnCDRIncrease; // LotN adds 10-20% more CDR.
-                    returnCDR *= isApotheosisActive ? 4d : 1d; // Apotheosis adds 200% more CDR
                     break;
 
                 case Spell.Renew:
-                    returnCDR = sancCDRRenew; // Renew gets a third of the CDR benefit
-                    returnCDR *= lotnCDRIncrease; // LotN adds 10-20% more CDR.
-                    returnCDR *= isApotheosisActive ? 4d : 1d; // Apotheosis adds 200% more CDR
-                    break;
-
-                case Spell.CircleOfHealing:
-                case Spell.PrayerOfMending:
-                    returnCDR = haCDRBase;
-                    returnCDR *= lotnCDRIncrease; // LotN adds 10-20% more CDR.
-                    returnCDR *= isApotheosisActive ? 4d : 1d; // Apotheosis adds 200% more CDR
+                    var sancCDRRenew = GetSpellData(state, Spell.HolyWordSanctify).GetEffect(709476).BaseValue;
+                    returnCDR = sancCDRRenew;
                     break;
 
                 case Spell.HolyWordSerenity:
                 case Spell.HolyWordSanctify:
+                    var salvCDRBase = GetSpellData(state, Spell.HolyWordSalvation).GetEffect(709211).BaseValue;
                     returnCDR = salvCDRBase;
-                    returnCDR *= lotnCDRIncrease; // LotN adds 10-20% more CDR.
                     break;
 
                 case Spell.Smite:
+                    var chastiseCDRBase = GetSpellData(state, Spell.HolyWordChastise).GetEffect(709477).BaseValue;
                     returnCDR = chastiseCDRBase;
-                    returnCDR *= lotnCDRIncrease; // LotN adds 10-20% more CDR.
-                    returnCDR *= isApotheosisActive ? 4d : 1d; // Apotheosis adds 200% more CDR
                     break;
 
+                case Spell.CircleOfHealing:
+                case Spell.PrayerOfMending:
                 case Spell.HolyFire:
                     returnCDR = haCDRBase;
-                    returnCDR *= lotnCDRIncrease; // LotN adds 10-20% more CDR.
-                    returnCDR *= isApotheosisActive ? 4d : 1d; // Apotheosis adds 200% more CDR
                     break;
 
+                default:
+                    break;
+            }
+
+            // Now apply modifiers
+            switch(spell)
+            {
+                case Spell.FlashHeal:
+                case Spell.Heal:
+                case Spell.PrayerOfHealing:
+                case Spell.Renew:
+                case Spell.CircleOfHealing:
+                case Spell.Smite:
+                case Spell.PrayerOfMending:
+                case Spell.HolyFire:
+                    returnCDR *= lotnCDRIncrease; // LotN adds 10-20% more CDR.
+                    returnCDR *= apothCDRIncrease; // Apotheosis adds 300% more CDR.
+                    break;
+                case Spell.HolyWordSerenity:
+                case Spell.HolyWordSanctify:
+                    returnCDR *= lotnCDRIncrease; // LotN adds 10-20% more CDR.
+                    break;
                 default:
                     break;
             }

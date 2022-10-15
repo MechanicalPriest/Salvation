@@ -26,7 +26,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
         public void GetAverageRawHealing_Calculates_Ranks()
         {
             // Arrange
-            var spellService = new Heal(_gameStateService, null);
+            var spellService = new Heal(_gameStateService, null, null);
 
             _gameStateService.OverridePlaystyle(_gameState,
                 new PlaystyleEntry("EverlastingLightAverageMana", 0.45));
@@ -47,7 +47,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
         public void GetEverlastingLightMultiplier_Calculates_Ranks()
         {
             // Arrange
-            var spellService = new Heal(_gameStateService, null);
+            var spellService = new Heal(_gameStateService, null, null);
 
             _gameStateService.OverridePlaystyle(_gameState,
                 new PlaystyleEntry("EverlastingLightAverageMana", 0.45));
@@ -68,7 +68,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
         public void GetEverlastingLightMultiplier_THrows_No_ResonantWordsPercentageBuffsUsed()
         {
             // Arrange
-            var spellService = new Heal(_gameStateService, null);
+            var spellService = new Heal(_gameStateService, null, null);
 
             // Act
             _gameStateService.SetTalentRank(_gameState, Spell.EverlastingLight, 1);

@@ -13,13 +13,16 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
     public class FlashHeal : SpellService, ISpellService<IFlashHealSpellService>
     {
         private readonly ISpellService<ITrailOfLightSpellService> _trailOfLightSpellService;
+        private readonly ISpellService<IBindingHealsSpellService> _bindingHealsSpellService;
 
         public FlashHeal(IGameStateService gameStateService,
-            ISpellService<ITrailOfLightSpellService> trailOfLightSpellService)
+            ISpellService<ITrailOfLightSpellService> trailOfLightSpellService,
+            ISpellService<IBindingHealsSpellService> bindingHealsSpellService)
             : base(gameStateService)
         {
             Spell = Spell.FlashHeal;
             _trailOfLightSpellService = trailOfLightSpellService;
+            _bindingHealsSpellService = bindingHealsSpellService;
         }
 
         public override double GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
@@ -78,11 +81,11 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
         public override AveragedSpellCastResult GetCastResults(GameState gameState, BaseSpellData spellData = null)
         {
-            // TODO: Move this somewhere more central rather than Copy/Paste with Heal/FH
             spellData = ValidateSpellData(gameState, spellData);
 
             AveragedSpellCastResult result = base.GetCastResults(gameState, spellData);
 
+            // TODO: Move this somewhere more central rather than Copy/Paste with Heal/FH
             // Calculate ToL if talented.
             if (_gameStateService.GetTalent(gameState, Spell.TrailOfLight).Rank > 0)
             {
@@ -96,6 +99,22 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
                 var trailOfLightResult = _trailOfLightSpellService.GetCastResults(gameState, trailOfLightSpellData);
 
                 result.AdditionalCasts.Add(trailOfLightResult);
+            }
+
+            // TODO: Move this somewhere more central rather than Copy/Paste with Heal/FH
+            // Calculate BHs if talented.
+            if (_gameStateService.GetTalent(gameState, Spell.BindingHeals).Rank > 0)
+            {
+                var bindingHealsSpellData = _gameStateService.GetSpellData(gameState, Spell.BindingHeals);
+
+                bindingHealsSpellData.Overrides[Override.NumberOfHealingTargets] = GetNumberOfHealingTargets(gameState, spellData);
+                bindingHealsSpellData.Overrides[Override.CastsPerMinute] = GetActualCastsPerMinute(gameState, spellData);
+                bindingHealsSpellData.Overrides[Override.ResultMultiplier] = GetAverageRawHealing(gameState, spellData);
+
+                // grab the result of the spell cast
+                var bindingHealsResult = _bindingHealsSpellService.GetCastResults(gameState, bindingHealsSpellData);
+
+                result.AdditionalCasts.Add(bindingHealsResult);
             }
 
             return result;

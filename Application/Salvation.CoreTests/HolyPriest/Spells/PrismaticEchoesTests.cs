@@ -47,7 +47,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
         {
             // Arrange
             IGameStateService gameStateService = new GameStateService();
-            var spellService = new FlashHeal(gameStateService, null);
+            var spellService = new FlashHeal(gameStateService, null, null);
 
             // Act
             gameStateService.SetTalentRank(_gameState, Spell.PrismaticEchoes, 0);

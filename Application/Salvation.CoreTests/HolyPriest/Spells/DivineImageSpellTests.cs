@@ -38,10 +38,10 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 File.ReadAllText(Path.Combine("TestData", "BaseTests_profile.json")));
 
             Spells.Add(new DivineImageHealingLight(_gameStateService,
-                new FlashHeal(_gameStateService, null),
-                new Heal(_gameStateService, null),
+                new FlashHeal(_gameStateService, null, null),
+                new Heal(_gameStateService, null, null),
                 new HolyWordSerenity(_gameStateService,
-                    new FlashHeal(_gameStateService, null), new Heal(_gameStateService, null),
+                    new FlashHeal(_gameStateService, null, null), new Heal(_gameStateService, null, null),
                     new PrayerOfMending(_gameStateService))));
 
             Spells.Add(new DivineImageTranquilLight(_gameStateService,

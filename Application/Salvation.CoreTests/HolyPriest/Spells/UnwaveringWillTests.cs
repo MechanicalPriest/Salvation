@@ -25,8 +25,8 @@ namespace Salvation.CoreTests.HolyPriest.Spells
             _gameState = GetGameState();
             _gameStateService = new GameStateService();
 
-            _flashHeal = new FlashHeal(_gameStateService, null);
-            _heal = new Heal(_gameStateService, null);
+            _flashHeal = new FlashHeal(_gameStateService, null, null);
+            _heal = new Heal(_gameStateService, null, null);
             _prayerOfHealing = new PrayerOfHealing(_gameStateService);
             _smite = new Smite(_gameStateService);
         }

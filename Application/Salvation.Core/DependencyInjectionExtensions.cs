@@ -89,6 +89,7 @@ namespace Salvation.Core
             services.AddSingleton<ISpellService<ICosmicRippleSpellService>, CosmicRipple>();
             services.AddSingleton<ISpellService<ITwistOfFateSpellService>, TwistOfFate>();
             services.AddSingleton<ISpellService<ITrailOfLightSpellService>, TrailOfLight>();
+            services.AddSingleton<ISpellService<IBindingHealsSpellService>, BindingHeals>();
 
             // Covenants
             services.AddSingleton<ISpellService<IMindgamesSpellService>, Mindgames>();

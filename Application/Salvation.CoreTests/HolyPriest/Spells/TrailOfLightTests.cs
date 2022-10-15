@@ -79,7 +79,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
         public void FH_Calculates_Ranks()
         {
             // Arrange
-            var fhSpellService = new FlashHeal(_gameStateService, _trailOfLightSpellService);
+            var fhSpellService = new FlashHeal(_gameStateService, _trailOfLightSpellService, null);
 
             // Act
             _gameStateService.SetTalentRank(_gameState, Spell.TrailOfLight, 0);
@@ -120,7 +120,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
         public void Heal_Calculates_Ranks()
         {
             // Arrange
-            var healSpellService = new Heal(_gameStateService, _trailOfLightSpellService);
+            var healSpellService = new Heal(_gameStateService, _trailOfLightSpellService, null);
 
             // Act
             _gameStateService.SetTalentRank(_gameState, Spell.TrailOfLight, 0);

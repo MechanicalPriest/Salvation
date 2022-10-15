@@ -22,8 +22,8 @@ namespace Salvation.CoreTests.HolyPriest.Spells
             _gameStateService = new GameStateService();
 
             var serenity = new HolyWordSerenity(_gameStateService,
-                new FlashHeal(_gameStateService, null),
-                new Heal(_gameStateService, null),
+                new FlashHeal(_gameStateService, null, null),
+                new Heal(_gameStateService, null, null),
                 new PrayerOfMending(_gameStateService));
 
             var sanc = new HolyWordSanctify(_gameStateService,
@@ -64,7 +64,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
         public void RW_FH_GetAverageRawHealing_Calculates_Ranks()
         {
             // Arrange
-            var spellService = new FlashHeal(_gameStateService, null);
+            var spellService = new FlashHeal(_gameStateService, null, null);
 
             _gameStateService.OverridePlaystyle(_gameState,
                 new PlaystyleEntry("ResonantWordsPercentageBuffsUsed", 0.99));
@@ -92,7 +92,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
         public void RW_FH_GetResonantWordsMulti_Calculates_Ranks()
         {
             // Arrange
-            var spellService = new FlashHeal(_gameStateService, null);
+            var spellService = new FlashHeal(_gameStateService, null, null);
 
             _gameStateService.OverridePlaystyle(_gameState,
                 new PlaystyleEntry("ResonantWordsPercentageBuffsUsed", 0.99));
@@ -120,7 +120,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
         public void RW_FH_THrows_No_ResonantWordsPercentageBuffsUsed()
         {
             // Arrange
-            var spellService = new FlashHeal(_gameStateService, null);
+            var spellService = new FlashHeal(_gameStateService, null, null);
 
             // Act
             _gameStateService.SetTalentRank(_gameState, Spell.ResonantWords, 1);
@@ -137,7 +137,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
         public void RW_FH_THrows_No_ResonantWordsPercentageBuffsHeal()
         {
             // Arrange
-            var spellService = new FlashHeal(_gameStateService, null);
+            var spellService = new FlashHeal(_gameStateService, null, null);
 
             _gameStateService.OverridePlaystyle(_gameState,
                 new PlaystyleEntry("ResonantWordsPercentageBuffsUsed", 0.99));
@@ -157,7 +157,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
         public void RW_Heal_GetAverageRawHealing_Calculates_Ranks()
         {
             // Arrange
-            var spellService = new Heal(_gameStateService, null);
+            var spellService = new Heal(_gameStateService, null, null);
 
             _gameStateService.OverridePlaystyle(_gameState,
                 new PlaystyleEntry("ResonantWordsPercentageBuffsUsed", 0.99));
@@ -185,7 +185,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
         public void RW_Heal_GetResonantWordsMulti_Calculates_Ranks()
         {
             // Arrange
-            var spellService = new Heal(_gameStateService, null);
+            var spellService = new Heal(_gameStateService, null, null);
 
             _gameStateService.OverridePlaystyle(_gameState,
                 new PlaystyleEntry("ResonantWordsPercentageBuffsUsed", 0.99));
@@ -213,7 +213,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
         public void RW_Heal_THrows_No_ResonantWordsPercentageBuffsUsed()
         {
             // Arrange
-            var spellService = new Heal(_gameStateService, null);
+            var spellService = new Heal(_gameStateService, null, null);
 
             // Act
             _gameStateService.SetTalentRank(_gameState, Spell.ResonantWords, 1);
@@ -230,7 +230,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
         public void RW_Heal_THrows_No_ResonantWordsPercentageBuffsHeal()
         {
             // Arrange
-            var spellService = new Heal(_gameStateService, null);
+            var spellService = new Heal(_gameStateService, null, null);
 
             _gameStateService.OverridePlaystyle(_gameState,
                 new PlaystyleEntry("ResonantWordsPercentageBuffsUsed", 0.99));

@@ -169,6 +169,7 @@ namespace Salvation.Core.Constants.Data
         TrailOfLightHeal = 234946,
         SanctifiedPrayersBuff = 196490,
         PrayerCircleBuff = 321379,
+        BindingHealsHeal = 368276,
 
         // Consumables
 

@@ -2729,6 +2729,48 @@
           ]
         },
         {
+          "Id": 372835,
+          "Name": "Lightwell",
+          "ManaCost": 3.7,
+          "MaxRange": 40.0,
+          "BaseCastTime": 500.0,
+          "BaseCooldown": 180000.0,
+          "IsCooldownHasted": false,
+          "Duration": 180000.0,
+          "Gcd": 1.5,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 997676,
+              "BaseValue": 1.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 28,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 997853,
+              "BaseValue": 50.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 0,
+              "ScaleValues": {}
+            }
+          ]
+        },
+        {
           "Id": 243241,
           "Name": "Cosmic Ripple",
           "ManaCost": 0.0,
@@ -3090,12 +3132,105 @@
               "ScaleValues": {}
             }
           ]
+        },
+        {
+          "Id": 372847,
+          "Name": "Lightwell Renew",
+          "ManaCost": 0.0,
+          "MaxRange": 50000.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 6000.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 997691,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.274725,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 2000.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ]
+        },
+        {
+          "Id": 372845,
+          "Name": "Lightwell Trigger",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 997689,
+              "BaseValue": 1.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 3,
+              "ScaleValues": {}
+            }
+          ]
+        },
+        {
+          "Id": 372838,
+          "Name": "Lightwell Charges",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": -1.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 15.0,
+          "ProcChance": 100.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 997680,
+              "BaseValue": 1.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ]
         }
       ],
       "Conduits": [],
       "GCDFloor": 0.75,
       "CritMultiplier": 2.0,
-      "ArmorSkillsMultiplier": 1.0
+      "ArmorSkillsMultiplier": 1.00
     }
   ],
   "GlobalModifiers": [],

@@ -87,6 +87,7 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.TrailOfLight,
                 (uint)Spell.PrayerCircle,
                 (uint)Spell.BindingHeals,
+                (uint)Spell.Lightwell,
 
                 // Talent - Holy supporting spells
                 (uint)Spell.CosmicRippleHeal,
@@ -100,6 +101,9 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.SanctifiedPrayersBuff,
                 (uint)Spell.PrayerCircleBuff,
                 (uint)Spell.BindingHealsHeal,
+                (uint)Spell.LightwellHeal,
+                (uint)Spell.LightwellTrigger,
+                (uint)Spell.LightwellCharges,
             };
         }
 
@@ -120,8 +124,7 @@ namespace Salvation.Utility.SpellDataUpdate
                 IntBase = 2089, // From a human/panda in-game
                 StamBase = 1599,
                 ManaBase = 250000, // __base_mp in sc_scale_data.inc
-                // This is set to 1.0 as part of #159
-                ArmorSkillsMultiplier = 1.00, // 5% extra main stat from Armor Skills
+                ArmorSkillsMultiplier = 1.05, // 5% extra main stat from Armor Skills
 
                 // These come from __combat_ratings in sc_scale_data.inc
                 CritCost = 180,

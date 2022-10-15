@@ -87,11 +87,11 @@ namespace Salvation.Explorer.Modelling
             var profileData = File.ReadAllText(Path.Combine("Profile", "HolyPriest", "dragonflight_fresh.simc"));
             profile = await _simcProfileService.ApplySimcProfileAsync(profileData, profile);
 
+            // Make some other modifications if needed
+            //_profileService.UpdateTalent(profile, Spell.Lightwell, 1);
+
             // Create the gamestate
             GameState state = _gameStateService.CreateValidatedGameState(profile);
-
-            // Make some other modifications if needed
-            // _profileService.UpdateTalent(profile, Spell.ImprovedFlashHeal, 0);
 
             // Kick off modelling against it.
             var results = _modellingService.GetResults(state);

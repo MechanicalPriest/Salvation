@@ -954,7 +954,11 @@ namespace Salvation.Core.State
             var salvCDRBase = GetSpellData(state, Spell.HolyWordSalvation).GetEffect(709211).BaseValue;
             var chastiseCDRBase = GetSpellData(state, Spell.HolyWordChastise).GetEffect(709477).BaseValue;
 
-            var isLotnActive = GetTalent(state, Spell.LightOfTheNaaru).Rank > 0;
+            var lotnCDRIncrease = 1.0d; 
+            var lotnTalent = GetTalent(state, Spell.LightOfTheNaaru);
+            if (lotnTalent.Rank > 0)
+                lotnCDRIncrease += GetSpellData(state, Spell.LightOfTheNaaru)
+                    .GetEffect(289244).BaseValue / 100 * lotnTalent.Rank;
 
             // Harmonious Apparatus
             var haCDRBase = 0d;
@@ -972,42 +976,43 @@ namespace Salvation.Core.State
                 case Spell.FlashHeal:
                 case Spell.Heal:
                     returnCDR = serenityCDRBase;
-                    returnCDR *= isLotnActive ? 1d + 1d / 3d : 1d; // LotN adds 33% more CDR.
+                    returnCDR *= lotnCDRIncrease; // LotN adds 10-20% more CDR.
                     returnCDR *= isApotheosisActive ? 4d : 1d; // Apotheosis adds 200% more CDR
                     break;
                 case Spell.PrayerOfHealing:
                     returnCDR = sancCDRPoH;
-                    returnCDR *= isLotnActive ? 1d + 1d / 3d : 1d; // LotN adds 33% more CDR.
+                    returnCDR *= lotnCDRIncrease; // LotN adds 10-20% more CDR.
                     returnCDR *= isApotheosisActive ? 4d : 1d; // Apotheosis adds 200% more CDR
                     break;
 
                 case Spell.Renew:
                     returnCDR = sancCDRRenew; // Renew gets a third of the CDR benefit
-                    returnCDR *= isLotnActive ? 1d + 1d / 3d : 1d; // LotN adds 33% more CDR.
+                    returnCDR *= lotnCDRIncrease; // LotN adds 10-20% more CDR.
                     returnCDR *= isApotheosisActive ? 4d : 1d; // Apotheosis adds 200% more CDR
                     break;
 
                 case Spell.CircleOfHealing:
                 case Spell.PrayerOfMending:
                     returnCDR = haCDRBase;
-                    returnCDR *= isLotnActive ? 1d + 1d / 3d : 1d; // LotN adds 33% more CDR.
+                    returnCDR *= lotnCDRIncrease; // LotN adds 10-20% more CDR.
                     returnCDR *= isApotheosisActive ? 4d : 1d; // Apotheosis adds 200% more CDR
                     break;
 
                 case Spell.HolyWordSerenity:
                 case Spell.HolyWordSanctify:
                     returnCDR = salvCDRBase;
+                    returnCDR *= lotnCDRIncrease; // LotN adds 10-20% more CDR.
                     break;
 
                 case Spell.Smite:
                     returnCDR = chastiseCDRBase;
-                    returnCDR *= isLotnActive ? 1d + 1d / 3d : 1d; // LotN adds 33% more CDR.
+                    returnCDR *= lotnCDRIncrease; // LotN adds 10-20% more CDR.
                     returnCDR *= isApotheosisActive ? 4d : 1d; // Apotheosis adds 200% more CDR
                     break;
 
                 case Spell.HolyFire:
                     returnCDR = haCDRBase;
-                    returnCDR *= isLotnActive ? 1d + 1d / 3d : 1d; // LotN adds 33% more CDR.
+                    returnCDR *= lotnCDRIncrease; // LotN adds 10-20% more CDR.
                     returnCDR *= isApotheosisActive ? 4d : 1d; // Apotheosis adds 200% more CDR
                     break;
 

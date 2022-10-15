@@ -13,7 +13,6 @@ namespace Salvation.CoreTests.HolyPriest.Spells
     public class HarmoniousApparatusTests : BaseTest
     {
         IGameStateService _gameStateService;
-        ProfileService _profileService;
         GameState _state;
 
         [SetUp]
@@ -21,7 +20,6 @@ namespace Salvation.CoreTests.HolyPriest.Spells
         {
             _state = GetGameState();
             _gameStateService = new GameStateService();
-            _profileService = new ProfileService();
         }
 
         [TestCaseSource(typeof(HarmoniousApparatusTestSpells), nameof(HarmoniousApparatusTestSpells.BaseValueTests))]
@@ -38,17 +36,17 @@ namespace Salvation.CoreTests.HolyPriest.Spells
         }
 
         [TestCaseSource(typeof(HarmoniousApparatusTestSpells), nameof(HarmoniousApparatusTestSpells.LotnValueTests))]
-        public double HWCDR_LotN_Values(Spell spell, int rank)
+        public double HWCDR_LotN_Values(Spell spell, int haRank, int lotnRank)
         {
             // Arrange
-            _gameStateService.SetTalentRank(_state, Spell.LightOfTheNaaru, 1);
-            _gameStateService.SetTalentRank(_state, Spell.HarmoniousApparatus, rank);
+            _gameStateService.SetTalentRank(_state, Spell.LightOfTheNaaru, lotnRank);
+            _gameStateService.SetTalentRank(_state, Spell.HarmoniousApparatus, haRank);
 
             // Act
 
 
             // Assert
-            return Math.Round(_gameStateService.GetTotalHolyWordCooldownReduction(_state, spell), 10);
+            return _gameStateService.GetTotalHolyWordCooldownReduction(_state, spell);
         }
 
         [TestCaseSource(typeof(HarmoniousApparatusTestSpells), nameof(HarmoniousApparatusTestSpells.ApothValueTests))]
@@ -96,12 +94,18 @@ namespace Salvation.CoreTests.HolyPriest.Spells
         {
             get
             {
-                yield return new TestCaseData(Spell.CircleOfHealing, 1).Returns(5.3333333333d);
-                yield return new TestCaseData(Spell.PrayerOfMending, 1).Returns(5.3333333333d);
-                yield return new TestCaseData(Spell.HolyFire, 1).Returns(5.3333333333d);
-                yield return new TestCaseData(Spell.CircleOfHealing, 2).Returns(5.3333333333d);
-                yield return new TestCaseData(Spell.PrayerOfMending, 2).Returns(5.3333333333d);
-                yield return new TestCaseData(Spell.HolyFire, 2).Returns(5.3333333333d);
+                yield return new TestCaseData(Spell.CircleOfHealing, 1, 1).Returns(2.2d);
+                yield return new TestCaseData(Spell.PrayerOfMending, 1, 1).Returns(2.2d);
+                yield return new TestCaseData(Spell.HolyFire, 1, 1).Returns(2.2d);
+                yield return new TestCaseData(Spell.CircleOfHealing, 2, 1).Returns(4.4d);
+                yield return new TestCaseData(Spell.PrayerOfMending, 2, 1).Returns(4.4d);
+                yield return new TestCaseData(Spell.HolyFire, 2, 1).Returns(4.4d);
+                yield return new TestCaseData(Spell.CircleOfHealing, 1, 2).Returns(2.4d);
+                yield return new TestCaseData(Spell.PrayerOfMending, 1, 2).Returns(2.4d);
+                yield return new TestCaseData(Spell.HolyFire, 1, 2).Returns(2.4d);
+                yield return new TestCaseData(Spell.CircleOfHealing, 2, 2).Returns(4.8d);
+                yield return new TestCaseData(Spell.PrayerOfMending, 2, 2).Returns(4.8d);
+                yield return new TestCaseData(Spell.HolyFire, 2, 2).Returns(4.8d);
             }
         }
         public static IEnumerable ApothValueTests

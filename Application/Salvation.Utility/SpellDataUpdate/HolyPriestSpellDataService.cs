@@ -88,6 +88,7 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.PrayerCircle,
                 (uint)Spell.BindingHeals,
                 (uint)Spell.Lightwell,
+                (uint)Spell.LightOfTheNaaru,
 
                 // Talent - Holy supporting spells
                 (uint)Spell.CosmicRippleHeal,

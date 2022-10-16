@@ -68,12 +68,12 @@ namespace Salvation.CoreTests
 
             _modellingService.GetResults(gameState);
 
-            await Task.Delay(1);
+            await Task.Delay(1, cancellationToken);
         }
 
         public Task StopAsync(CancellationToken cancellationToken)
         {
-            return Task.Delay(1);
+            return Task.Delay(1, cancellationToken);
         }
     }
 }

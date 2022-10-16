@@ -1,6 +1,8 @@
 ﻿using NUnit.Framework;
+using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
 using Salvation.Core.Interfaces.State;
+using Salvation.Core.Modelling.HolyPriest.Spells;
 using Salvation.Core.Profile;
 using Salvation.Core.Profile.Model;
 using Salvation.Core.State;
@@ -53,6 +55,12 @@ namespace Salvation.CoreTests.HolyPriest.Spells
         public double HWCDR_Apoth_Values(Spell spell, int rank)
         {
             // Arrange
+            _state.RegisteredSpells.Add(new RegisteredSpell()
+            {
+                Spell = Spell.Apotheosis,
+                SpellData = _gameStateService.GetSpellData(_state, Spell.Apotheosis),
+                SpellService = new ApotheosisMax(_gameStateService),
+            });
             _gameStateService.SetTalentRank(_state, Spell.Apotheosis, 1);
             _gameStateService.SetTalentRank(_state, Spell.HarmoniousApparatus, rank);
 
@@ -60,13 +68,19 @@ namespace Salvation.CoreTests.HolyPriest.Spells
 
 
             // Assert
-            return Math.Round(_gameStateService.GetTotalHolyWordCooldownReduction(_state, spell, true), 10);
+            return Math.Round(_gameStateService.GetTotalHolyWordCooldownReduction(_state, spell), 10);
         }
 
         [TestCaseSource(typeof(HarmoniousApparatusTestSpells), nameof(HarmoniousApparatusTestSpells.ApothLotnValueTests))]
         public double HWCDR_Apoth_LotN_Values(Spell spell, int haRank, int lotnRank)
         {
             // Arrange
+            _state.RegisteredSpells.Add(new RegisteredSpell()
+            {
+                Spell = Spell.Apotheosis,
+                SpellData = _gameStateService.GetSpellData(_state, Spell.Apotheosis),
+                SpellService = new ApotheosisMax(_gameStateService),
+            });
             _gameStateService.SetTalentRank(_state, Spell.Apotheosis, 1);
             _gameStateService.SetTalentRank(_state, Spell.HarmoniousApparatus, haRank);
             _gameStateService.SetTalentRank(_state, Spell.LightOfTheNaaru, lotnRank);
@@ -75,7 +89,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
 
 
             // Assert
-            return Math.Round(_gameStateService.GetTotalHolyWordCooldownReduction(_state, spell, true), 10);
+            return Math.Round(_gameStateService.GetTotalHolyWordCooldownReduction(_state, spell), 10);
         }
 
         [Test]
@@ -84,7 +98,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
             // Arrange
 
             // Act
-            var result = _gameStateService.GetTotalHolyWordCooldownReduction(_state, Spell.DivineStar, true);
+            var result = _gameStateService.GetTotalHolyWordCooldownReduction(_state, Spell.DivineStar);
 
             // Assert
             Assert.AreEqual(0, result);
@@ -158,6 +172,19 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(Spell.PrayerOfMending, 2, 2).Returns(19.2d);
                 yield return new TestCaseData(Spell.HolyFire, 2, 2).Returns(19.2d);
             }
+        }
+    }
+
+    public class ApotheosisMax : Apotheosis
+    {
+        public ApotheosisMax(IGameStateService gameStateService) : base(gameStateService)
+        {
+
+        }
+
+        public override double GetUptime(GameState gameState, BaseSpellData spellData)
+        {
+            return 1;
         }
     }
 }

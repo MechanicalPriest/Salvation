@@ -4,6 +4,7 @@ using Salvation.Core.Interfaces.State;
 using Salvation.Core.Profile;
 using Salvation.Core.Profile.Model;
 using Salvation.Core.State;
+using Salvation.CoreTests.HolyPriest.Spells;
 using System;
 using System.Collections;
 
@@ -51,19 +52,31 @@ namespace Salvation.CoreTests.State
         public double HWCDR_Apoth_Values(Spell spell)
         {
             // Arrange
+            _state.RegisteredSpells.Add(new RegisteredSpell()
+            {
+                Spell = Spell.Apotheosis,
+                SpellData = _gameStateService.GetSpellData(_state, Spell.Apotheosis),
+                SpellService = new ApotheosisMax(_gameStateService),
+            });
             _gameStateService.SetTalentRank(_state, Spell.Apotheosis, 1);
 
             // Act
 
 
             // Assert
-            return Math.Round(_gameStateService.GetTotalHolyWordCooldownReduction(_state, spell, true), 10);
+            return Math.Round(_gameStateService.GetTotalHolyWordCooldownReduction(_state, spell), 10);
         }
 
         [TestCaseSource(typeof(HolyWordTestSpells), nameof(HolyWordTestSpells.ApothLotnValueTests))]
         public double HWCDR_Apoth_LotN_Values(Spell spell, int rank)
         {
             // Arrange
+            _state.RegisteredSpells.Add(new RegisteredSpell()
+            {
+                Spell = Spell.Apotheosis,
+                SpellData = _gameStateService.GetSpellData(_state, Spell.Apotheosis),
+                SpellService = new ApotheosisMax(_gameStateService),
+            });
             _gameStateService.SetTalentRank(_state, Spell.Apotheosis, 1);
             _gameStateService.SetTalentRank(_state, Spell.LightOfTheNaaru, rank);
 
@@ -78,9 +91,10 @@ namespace Salvation.CoreTests.State
         public void HWCDR_Invalid_Spell()
         {
             // Arrange
+            _gameStateService.SetTalentRank(_state, Spell.Apotheosis, 1);
 
             // Act
-            var result = _gameStateService.GetTotalHolyWordCooldownReduction(_state, Spell.DivineStar, true);
+            var result = _gameStateService.GetTotalHolyWordCooldownReduction(_state, Spell.DivineStar);
 
             // Assert
             Assert.AreEqual(0, result);

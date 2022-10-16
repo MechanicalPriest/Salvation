@@ -6,6 +6,7 @@ using Salvation.Core.Interfaces.Constants;
 using Salvation.Core.Interfaces.Modelling;
 using Salvation.Core.Interfaces.Profile;
 using Salvation.Core.Interfaces.State;
+using Salvation.Core.Modelling;
 using Salvation.Core.Profile;
 using Salvation.Core.Profile.Model;
 using System;
@@ -921,16 +922,21 @@ namespace Salvation.Core.State
         #region Holy Priest Specific
         // TODO: Move this out to a holy priest specific file at some point.
 
-        public double GetTotalHolyWordCooldownReduction(GameState state, Spell spell, bool isApotheosisActive = false)
+        public double GetTotalHolyWordCooldownReduction(GameState state, Spell spell)
         {
             // Apotheosis - the 300% increase is 4x the regular CDR.
             var apothCDRIncrease = 1.0d;
             var apothTalent = GetTalent(state, Spell.Apotheosis);
             if (apothTalent.Rank > 0)
-                apothCDRIncrease += GetSpellData(state, Spell.Apotheosis).GetEffect(294682).BaseValue / 100;
-
-            if (GetTalent(state, Spell.Apotheosis).Rank == 0)
-                isApotheosisActive = false;
+            {
+                // Pull Apotheosis and figure out what it's uptime is.
+                var apotheosis = GetRegisteredSpells(state).Where(s => s.Spell == Spell.Apotheosis).FirstOrDefault();
+                if (apotheosis != null)
+                {
+                    var uptime = apotheosis.SpellService.GetUptime(state, apotheosis.SpellData);
+                    apothCDRIncrease += apotheosis.SpellData.GetEffect(294682).BaseValue / 100 * uptime;
+                }
+            }
 
             // Light of the Naaru - 10% or 20% increase depending on rank.
             var lotnCDRIncrease = 1.0d; 

@@ -73,13 +73,13 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             double hwCDR = cpmFlashHeal * hwCDRFlashHeal +
                 cpmHeal * hwCDRHeal;
 
-            // TODO: Clean up post implementation
-            //if (_gameStateService.IsLegendaryActive(gameState, Spell.HarmoniousApparatus))
-            //{
-            //    var cpmPoM = _prayerOfMendingSpellService.GetActualCastsPerMinute(gameState);
-            //    var hwCDRPoM = _gameStateService.GetTotalHolyWordCooldownReduction(gameState, Spell.PrayerOfMending);
-            //    hwCDR += cpmPoM * hwCDRPoM;
-            //}
+            if (_gameStateService.GetTalent(gameState, Spell.HarmoniousApparatus).Rank > 0)
+            {
+                var cpmPoM = _prayerOfMendingSpellService.GetActualCastsPerMinute(gameState);
+                var hwCDRPoM = _gameStateService.GetTotalHolyWordCooldownReduction(gameState, Spell.PrayerOfMending);
+
+                hwCDR += cpmPoM * hwCDRPoM;
+            }
 
             double maximumPotentialCasts = (60d + hwCDR) / hastedCD
                 + 1d / (fightLength / 60d);

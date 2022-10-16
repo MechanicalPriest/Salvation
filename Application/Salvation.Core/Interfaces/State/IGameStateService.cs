@@ -62,7 +62,7 @@ namespace Salvation.Core.Interfaces.State
         public void JournalEntry(GameState state, string message, int historyToCheck = 5);
 
         // Holy Priest specific
-        double GetTotalHolyWordCooldownReduction(GameState state, Spell spell, bool IsApotheosisActive = false);
+        double GetTotalHolyWordCooldownReduction(GameState state, Spell spell);
         double GetStamina(GameState state);
         double GetHitpoints(GameState state);
     }

@@ -459,6 +459,7 @@ namespace Salvation.Core.Profile
                     new PlaystyleEntry("SanctifiedPrayersUptime", 0.8, (uint)Spell.SanctifiedPrayers),
                     new PlaystyleEntry("PrayerCircleUptime", 0.8, (uint)Spell.PrayerCircle),
                     new PlaystyleEntry("BindingHealsSelfCastPercentage", 0.15, (uint)Spell.BindingHeals),
+                    new PlaystyleEntry("PoMPercentageStacksExpired", 0.01, (uint)Spell.PrayerOfMending),
 
                     //new PlaystyleEntry("FaeBenevolentFaerieSelfUptime", 1, (uint)Spell.BenevolentFaerie),
                     //// The number of times you move the Guardian Faerie around

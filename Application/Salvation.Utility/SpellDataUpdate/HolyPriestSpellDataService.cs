@@ -91,6 +91,7 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.LightOfTheNaaru,
                 (uint)Spell.Apotheosis,
                 (uint)Spell.MiracleWorker,
+                (uint)Spell.AnsweredPrayers,
 
                 // Talent - Holy supporting spells
                 (uint)Spell.CosmicRippleHeal,

@@ -13,19 +13,29 @@ using System.Threading.Tasks;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
-    public class Apotheosis : SpellService, ISpellService<IApotheosisSpellService>
+    public interface IAnsweredPrayersSpellService : ISpellService { }
+    public class AnsweredPrayers : SpellService, ISpellService<IAnsweredPrayersSpellService>
     {
-        public Apotheosis(IGameStateService gameStateService)
+        private readonly ISpellService<IPrayerOfMendingSpellService> _prayerOfMendingSpellService;
+
+        public AnsweredPrayers(IGameStateService gameStateService,
+            ISpellService<IPrayerOfMendingSpellService> prayerOfMendingSpellService)
             : base(gameStateService)
         {
-            Spell = Spell.Apotheosis;
+            Spell = Spell.AnsweredPrayers;
+            _prayerOfMendingSpellService = prayerOfMendingSpellService;
         }
 
+        /// <summary>
+        /// The duration of the Apotheosis buff when it procs
+        /// </summary>
         public override double GetDuration(GameState gameState, BaseSpellData spellData = null)
         {
             spellData = ValidateSpellData(gameState, spellData);
 
-            return base.GetDuration(gameState, spellData);
+            var duration = spellData.GetEffect(1028870).BaseValue;
+
+            return duration;
         }
 
         public override double GetUptime(GameState gameState, BaseSpellData spellData)
@@ -45,14 +55,16 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         {
             spellData = ValidateSpellData(gameState, spellData);
 
-            // Halo is simply 60 / (CastTime + CD) + 1 / (FightLength / 60)
-            // Number of casts per minute plus one cast at the start of the encounter
-            var hastedCastTime = GetHastedCastTime(gameState, spellData);
-            var hastedCd = GetHastedCooldown(gameState, spellData);
-            var fightLength = _gameStateService.GetFightLength(gameState);
+            // This will depend on PoM casts, bounces and how many PoM's expire.
+            var cpmPoM = _prayerOfMendingSpellService.GetActualCastsPerMinute(gameState);
 
-            double maximumPotentialCasts = 60d / (hastedCastTime + hastedCd)
-                + 1d / (fightLength / 60d);
+            var numPoMBounces = ((IPrayerOfMendingExtensions)_prayerOfMendingSpellService).GetAverageBounces(gameState, null);
+
+            var rank = _gameStateService.GetTalent(gameState, Spell.AnsweredPrayers).Rank;
+
+            var bouncesPerBuff = spellData.GetEffect(1028869).BaseValue * 2 / rank;
+
+            double maximumPotentialCasts = (cpmPoM * numPoMBounces) / bouncesPerBuff;
 
             return maximumPotentialCasts;
         }

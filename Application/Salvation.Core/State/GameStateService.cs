@@ -925,18 +925,7 @@ namespace Salvation.Core.State
         public double GetTotalHolyWordCooldownReduction(GameState state, Spell spell)
         {
             // Apotheosis - the 300% increase is 4x the regular CDR.
-            var apothCDRIncrease = 1.0d;
-            var apothTalent = GetTalent(state, Spell.Apotheosis);
-            if (apothTalent.Rank > 0)
-            {
-                // Pull Apotheosis and figure out what it's uptime is.
-                var apotheosis = GetRegisteredSpells(state).Where(s => s.Spell == Spell.Apotheosis).FirstOrDefault();
-                if (apotheosis != null)
-                {
-                    var uptime = apotheosis.SpellService.GetUptime(state, apotheosis.SpellData);
-                    apothCDRIncrease += apotheosis.SpellData.GetEffect(294682).BaseValue / 100 * uptime;
-                }
-            }
+            var apothCDRIncrease = GetAverageApotheosisIncrease(state);
 
             // Light of the Naaru - 10% or 20% increase depending on rank.
             var lotnCDRIncrease = 1.0d; 
@@ -1018,6 +1007,44 @@ namespace Salvation.Core.State
             }
 
             return returnCDR;
+        }
+
+        internal double GetAverageApotheosisIncrease(GameState state)
+        {
+            var apothCDRIncrease = 1.0d;
+
+            // Pull multi from spelldata
+            var apothMultiplier = GetSpellData(state, Spell.Apotheosis).GetEffect(294682).BaseValue / 100;
+            var apothUptime = 0d;
+
+            // First get uptime increase from Apotheosis casts
+            var apothTalent = GetTalent(state, Spell.Apotheosis);
+            if (apothTalent.Rank > 0)
+            {
+                // Pull Apotheosis and figure out what it's uptime is.
+                var apotheosis = GetRegisteredSpells(state).Where(s => s.Spell == Spell.Apotheosis).FirstOrDefault();
+                if (apotheosis != null)
+                {
+                    apothUptime += apotheosis.SpellService.GetUptime(state, null);
+                }
+            }
+
+            // Now get uptime increase from Answered Prayers
+            var answeredPrayersTalent = GetTalent(state, Spell.AnsweredPrayers);
+            if (answeredPrayersTalent.Rank > 0)
+            {
+                // Pull Apotheosis and figure out what it's uptime is.
+                var answeredPrayers = GetRegisteredSpells(state).Where(s => s.Spell == Spell.AnsweredPrayers).FirstOrDefault();
+                if (answeredPrayers != null)
+                {
+                    apothUptime += answeredPrayers.SpellService.GetUptime(state, null);
+                }
+            }
+
+            // Clamp the uptime so it can't go past 1 (100%).
+            apothCDRIncrease += apothMultiplier * Math.Min(1, apothUptime);
+
+            return apothCDRIncrease;
         }
 
         #endregion

@@ -1,10 +1,14 @@
 ﻿using Newtonsoft.Json;
 using NUnit.Framework;
+using Salvation.Core.Constants.Data;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.Profile;
 using Salvation.Core.State;
+using Salvation.CoreTests.HolyPriest.Spells;
 using SimcProfileParser;
+using System.Collections;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Salvation.CoreTests.State
@@ -101,10 +105,10 @@ namespace Salvation.CoreTests.State
             // Arrange
 
             // Act
-            var intellect = _gameStateService.GetLeechRating(_state);
+            var leech = _gameStateService.GetLeechRating(_state);
 
             // Assert
-            Assert.AreEqual(0.0d, intellect);
+            Assert.AreEqual(0.0d, leech);
         }
     }
 }

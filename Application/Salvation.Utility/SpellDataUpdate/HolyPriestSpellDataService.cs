@@ -123,8 +123,8 @@ namespace Salvation.Utility.SpellDataUpdate
                 HasteBase = 0.0,
                 VersBase = 0.0,
                 MasteryBase = 0.1,
-                IntBase = 2089, // From a human/panda in-game
-                StamBase = 1599,
+                IntBase = 2089, // From a human/panda in-game and sc_extra_data.inc
+                StamBase = 1597, // From a human/panda in-game and sc_extra_data.inc
                 ManaBase = 250000, // __base_mp in sc_scale_data.inc
                 ArmorSkillsMultiplier = 1.05, // 5% extra main stat from Armor Skills
 

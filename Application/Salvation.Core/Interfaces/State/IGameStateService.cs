@@ -50,7 +50,6 @@ namespace Salvation.Core.Interfaces.State
         // Player Profile Configuration
 
         void SetProfileName(GameState state, string profileName);
-        bool IsLegendaryActive(GameState state, Spell legendary);
         Talent SetTalentRank(GameState state, Spell spell, int rank);
         Talent GetTalent(GameState state, Spell spell);
         List<RegisteredSpell> GetRegisteredSpells(GameState state);

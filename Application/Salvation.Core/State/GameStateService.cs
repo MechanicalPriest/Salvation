@@ -506,6 +506,8 @@ namespace Salvation.Core.State
                 case Race.Mechagnome:
                 case Race.Nightborne:
                 case Race.VoidElf:
+                case Race.DracthyrAlliance:
+                case Race.DracthyrHorde:
                     intellect += 2;
                     break;
 
@@ -568,13 +570,9 @@ namespace Salvation.Core.State
         {
             var stamina = 0d;
 
-            // Apply class base stam
-            // From sc_extra_data.inc
-            stamina += state.Profile.Class switch
-            {
-                Class.Priest => 414,
-                _ => throw new NotImplementedException("This class is not yet implemented."),
-            };
+            // Get base stamina 
+            var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.Spec).FirstOrDefault();
+            stamina += specData.StamBase;
 
             // Apply race modifiers
             switch (state.Profile.Race)
@@ -605,6 +603,11 @@ namespace Salvation.Core.State
                     stamina -= 1;
                     break;
 
+                case Race.DracthyrAlliance:
+                case Race.DracthyrHorde:
+                    stamina -= 2;
+                    break;
+
                 case Race.NoRace:
                 case Race.NightElf:
                 case Race.Troll:
@@ -614,14 +617,6 @@ namespace Salvation.Core.State
                 case Race.VoidElf:
                 case Race.ZandalariTroll:
                 case Race.Human:
-
-                case Race.Vrykul:
-                case Race.Tuskarr:
-                case Race.ForestTroll:
-                case Race.Tanuka:
-                case Race.Skeleton:
-                case Race.IceTroll:
-                case Race.Gilnean:
                 default:
                     break;
             }
@@ -824,22 +819,6 @@ namespace Salvation.Core.State
         }
 
         #endregion
-
-        public bool IsLegendaryActive(GameState state, Spell legendary)
-        {
-            foreach (var item in _profileService.GetEquippedItems(state.Profile))
-            {
-                foreach (var effect in item.Effects)
-                {
-                    if (effect.Spell != null && effect.Spell.Id == (int)legendary)
-                    {
-                        return true;
-                    }
-                }
-            }
-
-            return false;
-        }
 
         public void OverrideSpellData(GameState state, BaseSpellData newData)
         {

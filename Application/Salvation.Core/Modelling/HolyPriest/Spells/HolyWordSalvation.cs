@@ -5,6 +5,7 @@ using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.Modelling.Common;
 using Salvation.Core.State;
+using System;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
@@ -125,6 +126,23 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         {
             // TODO: Clamp to raid size?
             return double.MaxValue;
+        }
+
+        public override double GetRenewUptime(GameState gameState, BaseSpellData spellData)
+        {
+            spellData = ValidateSpellData(gameState, spellData);
+
+            var groupSize = _gameStateService.GetPlaystyle(gameState, "GroupSize");
+
+            if (groupSize == null)
+                throw new ArgumentOutOfRangeException("GroupSize", $"GroupSize needs to be set.");
+
+            var cpm = GetActualCastsPerMinute(gameState, spellData);
+            var duration = _renewSpellService.GetDuration(gameState);
+            var numTargets = GetNumberOfHealingTargets(gameState, spellData);
+            var uptime = cpm * duration * numTargets / groupSize.Value / 60;
+
+            return uptime;
         }
     }
 }

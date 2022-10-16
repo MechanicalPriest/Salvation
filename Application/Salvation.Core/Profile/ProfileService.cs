@@ -422,6 +422,7 @@ namespace Salvation.Core.Profile
                 FightLengthSeconds = 397,
                 PlaystyleEntries = new List<PlaystyleEntry>()
                 {
+                    new PlaystyleEntry("GroupSize", 20, (uint)Spell.HolyPriest),
                     // #### Base Overrides ####
                     // Overrides the stat value to be set directly rather than from items/race/class
                     new PlaystyleEntry("OverrideStatIntellect", 0, (uint)Spell.HolyPriest),

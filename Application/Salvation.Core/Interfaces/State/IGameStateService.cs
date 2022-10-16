@@ -65,5 +65,6 @@ namespace Salvation.Core.Interfaces.State
         double GetTotalHolyWordCooldownReduction(GameState state, Spell spell);
         double GetStamina(GameState state);
         double GetHitpoints(GameState state);
+        double GetRenewUptime(GameState state);
     }
 }

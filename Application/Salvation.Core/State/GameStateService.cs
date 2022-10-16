@@ -1047,6 +1047,20 @@ namespace Salvation.Core.State
             return apothCDRIncrease;
         }
 
+        public double GetRenewUptime(GameState state)
+        {
+            var uptime = 0d;
+
+            // Loop through each spellservice and combine all the renew uptime bonuses.
+            foreach(var spell in GetRegisteredSpells(state))
+            {
+                if(spell.SpellService != null)
+                    uptime += spell.SpellService.GetRenewUptime(state, spell.SpellData);
+            }
+
+            return uptime;
+        }
+
         #endregion
     }
 }

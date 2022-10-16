@@ -110,6 +110,15 @@ namespace Salvation.Core.Interfaces.Modelling
         double GetAverageLeechPercent(GameState gameState, BaseSpellData spellData);
         double GetAverageMp5(GameState gameState, BaseSpellData spellData);
         double GetAverageHealingMultiplier(GameState gameState, BaseSpellData spellData);
+
+        // Model Behaviour
+        // These could be moved to a Holy specific interface?
+        /// <summary>
+        /// Return the Renew Uptime from renew effects associated with this spell.
+        /// This uptime is spread over all RaidSize members. 
+        /// 1 = 100% on everyone, 0 - 0% on everyone.
+        /// </summary>
+        double GetRenewUptime(GameState gameState, BaseSpellData spellData);
     }
 
     public interface ISpellService<T> : ISpellService where T : ISpellService

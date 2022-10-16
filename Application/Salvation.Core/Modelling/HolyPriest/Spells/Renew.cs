@@ -4,6 +4,7 @@ using Salvation.Core.Interfaces.Modelling;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.State;
+using System;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
@@ -107,7 +108,24 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             // Override used by Salvation to apply 2-stack PoMs
             if (spellData.Overrides.ContainsKey(Override.CastsPerMinute))
                 return spellData.Overrides[Override.CastsPerMinute];
+
             return base.GetActualCastsPerMinute(gameState, spellData);
+        }
+
+        public override double GetRenewUptime(GameState gameState, BaseSpellData spellData)
+        {
+            spellData = ValidateSpellData(gameState, spellData);
+
+            var groupSize = _gameStateService.GetPlaystyle(gameState, "GroupSize");
+
+            if (groupSize == null)
+                throw new ArgumentOutOfRangeException("GroupSize", $"GroupSize needs to be set.");
+
+            var cpm = GetActualCastsPerMinute(gameState, spellData);
+            var duration = GetDuration(gameState, spellData);
+            var uptime = cpm * duration / groupSize.Value / 60;
+
+            return uptime;
         }
 
         internal double GetRapidRecoveryHealingMultiplier(GameState gameState)

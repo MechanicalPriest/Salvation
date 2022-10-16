@@ -6,6 +6,7 @@ using Salvation.Core.Interfaces.Constants;
 using Salvation.Core.Interfaces.Modelling;
 using Salvation.Core.Interfaces.Profile;
 using Salvation.Core.Interfaces.State;
+using Salvation.Core.Modelling;
 using Salvation.Core.Profile;
 using Salvation.Core.Profile.Model;
 using System;
@@ -506,6 +507,8 @@ namespace Salvation.Core.State
                 case Race.Mechagnome:
                 case Race.Nightborne:
                 case Race.VoidElf:
+                case Race.DracthyrAlliance:
+                case Race.DracthyrHorde:
                     intellect += 2;
                     break;
 
@@ -568,13 +571,9 @@ namespace Salvation.Core.State
         {
             var stamina = 0d;
 
-            // Apply class base stam
-            // From sc_extra_data.inc
-            stamina += state.Profile.Class switch
-            {
-                Class.Priest => 414,
-                _ => throw new NotImplementedException("This class is not yet implemented."),
-            };
+            // Get base stamina 
+            var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.Spec).FirstOrDefault();
+            stamina += specData.StamBase;
 
             // Apply race modifiers
             switch (state.Profile.Race)
@@ -605,6 +604,11 @@ namespace Salvation.Core.State
                     stamina -= 1;
                     break;
 
+                case Race.DracthyrAlliance:
+                case Race.DracthyrHorde:
+                    stamina -= 2;
+                    break;
+
                 case Race.NoRace:
                 case Race.NightElf:
                 case Race.Troll:
@@ -614,14 +618,6 @@ namespace Salvation.Core.State
                 case Race.VoidElf:
                 case Race.ZandalariTroll:
                 case Race.Human:
-
-                case Race.Vrykul:
-                case Race.Tuskarr:
-                case Race.ForestTroll:
-                case Race.Tanuka:
-                case Race.Skeleton:
-                case Race.IceTroll:
-                case Race.Gilnean:
                 default:
                     break;
             }
@@ -825,22 +821,6 @@ namespace Salvation.Core.State
 
         #endregion
 
-        public bool IsLegendaryActive(GameState state, Spell legendary)
-        {
-            foreach (var item in _profileService.GetEquippedItems(state.Profile))
-            {
-                foreach (var effect in item.Effects)
-                {
-                    if (effect.Spell != null && effect.Spell.Id == (int)legendary)
-                    {
-                        return true;
-                    }
-                }
-            }
-
-            return false;
-        }
-
         public void OverrideSpellData(GameState state, BaseSpellData newData)
         {
             var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.Spec).FirstOrDefault();
@@ -942,80 +922,129 @@ namespace Salvation.Core.State
         #region Holy Priest Specific
         // TODO: Move this out to a holy priest specific file at some point.
 
-        public double GetTotalHolyWordCooldownReduction(GameState state, Spell spell, bool isApotheosisActive = false)
+        public double GetTotalHolyWordCooldownReduction(GameState state, Spell spell)
         {
-            // Only let Apoth actually benefit if apoth is talented
-            if (GetTalent(state, Spell.Apotheosis).Rank == 0)
-                isApotheosisActive = false;
+            // Apotheosis - the 300% increase is 4x the regular CDR.
+            var apothCDRIncrease = GetAverageApotheosisIncrease(state);
 
-            var serenityCDRBase = GetSpellData(state, Spell.HolyWordSerenity).GetEffect(709474).BaseValue;
-            var sancCDRPoH = GetSpellData(state, Spell.HolyWordSanctify).GetEffect(709475).BaseValue;
-            var sancCDRRenew = GetSpellData(state, Spell.HolyWordSanctify).GetEffect(709476).BaseValue;
-            var salvCDRBase = GetSpellData(state, Spell.HolyWordSalvation).GetEffect(709211).BaseValue;
-            var chastiseCDRBase = GetSpellData(state, Spell.HolyWordChastise).GetEffect(709477).BaseValue;
+            // Light of the Naaru - 10% or 20% increase depending on rank.
+            var lotnCDRIncrease = 1.0d; 
+            var lotnTalent = GetTalent(state, Spell.LightOfTheNaaru);
+            if (lotnTalent.Rank > 0)
+                lotnCDRIncrease += GetSpellData(state, Spell.LightOfTheNaaru)
+                    .GetEffect(289244).BaseValue / 100 * lotnTalent.Rank;
 
-            var isLotnActive = GetTalent(state, Spell.LightOfTheNaaru).Rank > 0;
-
+            // Harmonious Apparatus - 2 or 4 seconds depending on rank.
             var haCDRBase = 0d;
-
-            if (IsLegendaryActive(state, Spell.HarmoniousApparatus))
-            {
-                haCDRBase = GetSpellData(state, Spell.HarmoniousApparatus).GetEffect(1028210).BaseValue;
-            }
-
-            var returnCDR = 0d;
+            var haTalent = GetTalent(state, Spell.HarmoniousApparatus);
+            if(haTalent.Rank > 0)
+                haCDRBase = GetSpellData(state, Spell.HarmoniousApparatus).GetEffect(1028210).BaseValue * haTalent.Rank;
 
             // This is a bit more verbose than it needs to be for the sake of clarity
             // See #58 for some of the testing/math behind these values
+            var returnCDR = 0d;
+
+            // Base Holy Word CDR
             switch (spell)
             {
                 case Spell.FlashHeal:
                 case Spell.Heal:
+                    var serenityCDRBase = GetSpellData(state, Spell.HolyWordSerenity).GetEffect(709474).BaseValue;
                     returnCDR = serenityCDRBase;
-                    returnCDR *= isLotnActive ? 1d + 1d / 3d : 1d; // LotN adds 33% more CDR.
-                    returnCDR *= isApotheosisActive ? 4d : 1d; // Apotheosis adds 200% more CDR
                     break;
+
                 case Spell.PrayerOfHealing:
+                    var sancCDRPoH = GetSpellData(state, Spell.HolyWordSanctify).GetEffect(709475).BaseValue;
                     returnCDR = sancCDRPoH;
-                    returnCDR *= isLotnActive ? 1d + 1d / 3d : 1d; // LotN adds 33% more CDR.
-                    returnCDR *= isApotheosisActive ? 4d : 1d; // Apotheosis adds 200% more CDR
                     break;
 
                 case Spell.Renew:
-                    returnCDR = sancCDRRenew; // Renew gets a third of the CDR benefit
-                    returnCDR *= isLotnActive ? 1d + 1d / 3d : 1d; // LotN adds 33% more CDR.
-                    returnCDR *= isApotheosisActive ? 4d : 1d; // Apotheosis adds 200% more CDR
-                    break;
-
-                case Spell.CircleOfHealing:
-                case Spell.PrayerOfMending:
-                    returnCDR = haCDRBase;
-                    returnCDR *= isLotnActive ? 1d + 1d / 3d : 1d; // LotN adds 33% more CDR.
-                    returnCDR *= isApotheosisActive ? 4d : 1d; // Apotheosis adds 200% more CDR
+                    var sancCDRRenew = GetSpellData(state, Spell.HolyWordSanctify).GetEffect(709476).BaseValue;
+                    returnCDR = sancCDRRenew;
                     break;
 
                 case Spell.HolyWordSerenity:
                 case Spell.HolyWordSanctify:
+                    var salvCDRBase = GetSpellData(state, Spell.HolyWordSalvation).GetEffect(709211).BaseValue;
                     returnCDR = salvCDRBase;
                     break;
 
                 case Spell.Smite:
+                    var chastiseCDRBase = GetSpellData(state, Spell.HolyWordChastise).GetEffect(709477).BaseValue;
                     returnCDR = chastiseCDRBase;
-                    returnCDR *= isLotnActive ? 1d + 1d / 3d : 1d; // LotN adds 33% more CDR.
-                    returnCDR *= isApotheosisActive ? 4d : 1d; // Apotheosis adds 200% more CDR
                     break;
 
+                case Spell.CircleOfHealing:
+                case Spell.PrayerOfMending:
                 case Spell.HolyFire:
                     returnCDR = haCDRBase;
-                    returnCDR *= isLotnActive ? 1d + 1d / 3d : 1d; // LotN adds 33% more CDR.
-                    returnCDR *= isApotheosisActive ? 4d : 1d; // Apotheosis adds 200% more CDR
                     break;
 
                 default:
                     break;
             }
 
+            // Now apply modifiers
+            switch(spell)
+            {
+                case Spell.FlashHeal:
+                case Spell.Heal:
+                case Spell.PrayerOfHealing:
+                case Spell.Renew:
+                case Spell.CircleOfHealing:
+                case Spell.Smite:
+                case Spell.PrayerOfMending:
+                case Spell.HolyFire:
+                    returnCDR *= lotnCDRIncrease; // LotN adds 10-20% more CDR.
+                    returnCDR *= apothCDRIncrease; // Apotheosis adds 300% more CDR.
+                    break;
+                case Spell.HolyWordSerenity:
+                case Spell.HolyWordSanctify:
+                    returnCDR *= lotnCDRIncrease; // LotN adds 10-20% more CDR.
+                    break;
+                default:
+                    break;
+            }
+
             return returnCDR;
+        }
+
+        internal double GetAverageApotheosisIncrease(GameState state)
+        {
+            var apothCDRIncrease = 1.0d;
+
+            // Pull multi from spelldata
+            var apothMultiplier = GetSpellData(state, Spell.Apotheosis).GetEffect(294682).BaseValue / 100;
+            var apothUptime = 0d;
+
+            // First get uptime increase from Apotheosis casts
+            var apothTalent = GetTalent(state, Spell.Apotheosis);
+            if (apothTalent.Rank > 0)
+            {
+                // Pull Apotheosis and figure out what it's uptime is.
+                var apotheosis = GetRegisteredSpells(state).Where(s => s.Spell == Spell.Apotheosis).FirstOrDefault();
+                if (apotheosis != null)
+                {
+                    apothUptime += apotheosis.SpellService.GetUptime(state, null);
+                }
+            }
+
+            // Now get uptime increase from Answered Prayers
+            var answeredPrayersTalent = GetTalent(state, Spell.AnsweredPrayers);
+            if (answeredPrayersTalent.Rank > 0)
+            {
+                // Pull Apotheosis and figure out what it's uptime is.
+                var answeredPrayers = GetRegisteredSpells(state).Where(s => s.Spell == Spell.AnsweredPrayers).FirstOrDefault();
+                if (answeredPrayers != null)
+                {
+                    apothUptime += answeredPrayers.SpellService.GetUptime(state, null);
+                }
+            }
+
+            // Clamp the uptime so it can't go past 1 (100%).
+            apothCDRIncrease += apothMultiplier * Math.Min(1, apothUptime);
+
+            return apothCDRIncrease;
         }
 
         #endregion

@@ -4,10 +4,11 @@ using Salvation.Core.Interfaces.Modelling;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.State;
+using System;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
-    public class PrayerOfMending : SpellService, ISpellService<IPrayerOfMendingSpellService>
+    public class PrayerOfMending : SpellService, ISpellService<IPrayerOfMendingSpellService>, IPrayerOfMendingExtensions
     {
         public PrayerOfMending(IGameStateService gameStateService)
             : base(gameStateService)
@@ -34,20 +35,10 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {averageHeal:0.##} (per stack)");
 
             // Number of initial PoM stacks
-            var numPoMStacks = spellData.GetEffect(22870).BaseValue + GetPrayersOfTheVirtuousModifier(gameState);
-
-            // Override used by Salvation to apply 2-stack PoMs
-            if (spellData.Overrides.ContainsKey(Override.ResultMultiplier))
-                numPoMStacks = spellData.Overrides[Override.ResultMultiplier];
-
-            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Actual: {numPoMStacks:0.##} (stacks)");
+            var numPoMStacks = GetAverageBounces(gameState, spellData);
 
             var pomFirstTargetHeal = averageHeal * GetFocusedMendingMultiplier(gameState, spellData);
             _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {pomFirstTargetHeal:0.##} (first heal)");
-
-            // SYP is down here so it also affects Salv PoM's (Done above witih the ResultMultiplier override.
-            numPoMStacks *= GetSayYourPrayersBounceMultiplier(gameState);
-            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {numPoMStacks:0.##} (Avg stacks with SYP)");
 
             // Apply modifiers
             // Including Divine Service. Full value to first stack, average out the remaining stacks
@@ -174,6 +165,30 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             }
 
             return multi;
+        }
+
+        public double GetAverageBounces(GameState gameState, BaseSpellData spellData)
+        {
+            spellData = ValidateSpellData(gameState, spellData);
+
+            var numPoMStacks = spellData.GetEffect(22870).BaseValue + GetPrayersOfTheVirtuousModifier(gameState);
+
+            // Override used by Salvation to apply 2-stack PoMs
+            if (spellData.Overrides.ContainsKey(Override.ResultMultiplier))
+                numPoMStacks = spellData.Overrides[Override.ResultMultiplier];
+
+            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Actual: {numPoMStacks:0.##} (stacks)");
+
+            // SYP is down here so it also affects Salv PoM's (Done above witih the ResultMultiplier override.
+            numPoMStacks *= GetSayYourPrayersBounceMultiplier(gameState);
+            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {numPoMStacks:0.##} (Avg stacks with SYP)");
+
+            var percentageStacksExpired = _gameStateService.GetPlaystyle(gameState, "PoMPercentageStacksExpired");
+
+            if (percentageStacksExpired == null)
+                throw new ArgumentOutOfRangeException("PoMPercentageStacksExpired", $"PoMPercentageStacksExpired needs to be set.");
+
+            return numPoMStacks * (1 - percentageStacksExpired.Value);
         }
     }
 }

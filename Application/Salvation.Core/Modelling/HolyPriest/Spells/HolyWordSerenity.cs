@@ -73,16 +73,18 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             double hwCDR = cpmFlashHeal * hwCDRFlashHeal +
                 cpmHeal * hwCDRHeal;
 
-            // TODO: Clean up post implementation
-            //if (_gameStateService.IsLegendaryActive(gameState, Spell.HarmoniousApparatus))
-            //{
-            //    var cpmPoM = _prayerOfMendingSpellService.GetActualCastsPerMinute(gameState);
-            //    var hwCDRPoM = _gameStateService.GetTotalHolyWordCooldownReduction(gameState, Spell.PrayerOfMending);
-            //    hwCDR += cpmPoM * hwCDRPoM;
-            //}
+            if (_gameStateService.GetTalent(gameState, Spell.HarmoniousApparatus).Rank > 0)
+            {
+                var cpmPoM = _prayerOfMendingSpellService.GetActualCastsPerMinute(gameState);
+                var hwCDRPoM = _gameStateService.GetTotalHolyWordCooldownReduction(gameState, Spell.PrayerOfMending);
+
+                hwCDR += cpmPoM * hwCDRPoM;
+            }
+
+            double charges = spellData.Charges + GetMiracleWorkerCharges(gameState, spellData);
 
             double maximumPotentialCasts = (60d + hwCDR) / hastedCD
-                + 1d / (fightLength / 60d);
+                + charges / (fightLength / 60d);
 
             return maximumPotentialCasts;
         }
@@ -107,6 +109,21 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             return spellData.IsCooldownHasted
                 ? cooldown / _gameStateService.GetHasteMultiplier(gameState)
                 : cooldown;
+        }
+
+        internal double GetMiracleWorkerCharges(GameState gameState, BaseSpellData spellData)
+        {
+            spellData = ValidateSpellData(gameState, spellData);
+
+            var miracleWorkerCharges = 0d;
+
+            if (_gameStateService.GetTalent(gameState, Spell.MiracleWorker).Rank > 0)
+            {
+                var miracleWorkerSpellData = _gameStateService.GetSpellData(gameState, Spell.MiracleWorker);
+                miracleWorkerCharges += miracleWorkerSpellData.GetEffect(356036).BaseValue;
+            }
+
+            return miracleWorkerCharges;
         }
     }
 }

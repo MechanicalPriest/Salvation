@@ -3965,6 +3965,11 @@
       "Name": "DamageTakenPerSecond",
       "Value": 1500,
       "SpellId": 0
+    },
+    {
+      "Name": "PoMPercentageStacksExpired",
+      "Value": 0.01,
+      "SpellId": 33076
     }
   ]
 }

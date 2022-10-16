@@ -11,7 +11,7 @@
       "VersBase": 0.0,
       "MasteryBase": 0.1,
       "IntBase": 2089.0,
-      "StamBase": 1599.0,
+      "StamBase": 1597.0,
       "CritCost": 180.0,
       "HasteCost": 170.0,
       "VersCost": 205.0,
@@ -1941,7 +1941,7 @@
           "Effects": [
             {
               "Id": 1028210,
-              "BaseValue": 4.0,
+              "BaseValue": 2.0,
               "SpCoefficient": 0.0,
               "Coefficient": 0.0,
               "TriggerSpellid": 0,
@@ -2766,6 +2766,174 @@
               "Amplitude": 0.0,
               "TriggerSpell": null,
               "Type": 0,
+              "ScaleValues": {}
+            }
+          ]
+        },
+        {
+          "Id": 196985,
+          "Name": "Light of the Naaru",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 289244,
+              "BaseValue": 10.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ]
+        },
+        {
+          "Id": 200183,
+          "Name": "Apotheosis",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 120000.0,
+          "IsCooldownHasted": false,
+          "Duration": 20000.0,
+          "Gcd": 1.5,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 294682,
+              "BaseValue": 300.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 334777,
+              "BaseValue": -100.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 476563,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ]
+        },
+        {
+          "Id": 235587,
+          "Name": "Miracle Worker",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 356036,
+              "BaseValue": 1.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 1031547,
+              "BaseValue": 1.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ]
+        },
+        {
+          "Id": 391387,
+          "Name": "Answered Prayers",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 101.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 1028869,
+              "BaseValue": 50.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 1028870,
+              "BaseValue": 8.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
               "ScaleValues": {}
             }
           ]

@@ -27,7 +27,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
             _holyWordSerenity = new HolyWordSerenity(_gameStateService,
                 new FlashHeal(_gameStateService, null, null),
                 new Heal(_gameStateService, null, null),
-                new PrayerOfMending(_gameStateService));
+                new PrayerOfMending(_gameStateService, null));
             _holyWordSanctify = new HolyWordSanctify(_gameStateService,
                 new PrayerOfHealing(_gameStateService),
                 new Renew(_gameStateService),
@@ -38,13 +38,13 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 new HolyWordSerenity(_gameStateService,
                     new FlashHeal(_gameStateService, null, null),
                     new Heal(_gameStateService, null, null),
-                    new PrayerOfMending(_gameStateService)),
+                    new PrayerOfMending(_gameStateService, null)),
                 new HolyWordSanctify(_gameStateService,
                     new PrayerOfHealing(_gameStateService),
                     new Renew(_gameStateService),
                     new CircleOfHealing(_gameStateService)),
                 new Renew(_gameStateService),
-                new PrayerOfMending(_gameStateService));
+                new PrayerOfMending(_gameStateService, null));
 
             _gameState.RegisteredSpells.AddRange(
                 new List<RegisteredSpell>()

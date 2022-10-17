@@ -25,7 +25,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
             _serenity = new HolyWordSerenity(_gameStateService,
                 new FlashHeal(_gameStateService, null, null),
                 new Heal(_gameStateService, null, null),
-                new PrayerOfMending(_gameStateService));
+                new PrayerOfMending(_gameStateService, null));
 
             _sanctify = new HolyWordSanctify(_gameStateService,
                 new PrayerOfHealing(_gameStateService),

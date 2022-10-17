@@ -11,7 +11,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
     {
         private GameState _gameState;
         [SetUp]
-        public void InitOnce()
+        public void Init()
         {
             _gameState = GetGameState();
         }
@@ -22,7 +22,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
             // Arrange
             // Arrange
             IGameStateService gameStateService = new GameStateService();
-            var spellService = new PrayerOfMending(gameStateService);
+            var spellService = new PrayerOfMending(gameStateService, null);
 
             // Act
             gameStateService.SetTalentRank(_gameState, Spell.PrayersOfTheVirtuous, 0);
@@ -45,7 +45,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
         {
             // Arrange
             IGameStateService gameStateService = new GameStateService();
-            var spellService = new PrayerOfMending(gameStateService);
+            var spellService = new PrayerOfMending(gameStateService, null);
 
             // Act
             gameStateService.SetTalentRank(_gameState, Spell.PrayersOfTheVirtuous, 0);

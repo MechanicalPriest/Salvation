@@ -23,7 +23,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
         {
             // Arrange
             IGameStateService gameStateService = new GameStateService();
-            var spellService = new PrayerOfMending(gameStateService);
+            var spellService = new PrayerOfMending(gameStateService, null);
 
             // Act
             gameStateService.SetTalentRank(_gameState, Spell.FocusedMending, 0);

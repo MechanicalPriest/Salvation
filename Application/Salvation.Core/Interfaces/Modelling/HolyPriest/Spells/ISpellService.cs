@@ -119,6 +119,10 @@ namespace Salvation.Core.Interfaces.Modelling
         /// 1 = 100% on everyone, 0 - 0% on everyone.
         /// </summary>
         double GetRenewUptime(GameState gameState, BaseSpellData spellData);
+        /// <summary>
+        /// The total number of renew ticks per minute that this spell contributes to the model.
+        /// </summary>
+        double GetRenewTicksPerMinute(GameState gameState, BaseSpellData spellData);
     }
 
     public interface ISpellService<T> : ISpellService where T : ISpellService

@@ -500,6 +500,11 @@ namespace Salvation.Core.Modelling
             return 0d;
         }
 
+        public virtual double GetRenewTicksPerMinute(GameState gameState, BaseSpellData spellData)
+        {
+            return 0d;
+        }
+
         #endregion
     }
 }

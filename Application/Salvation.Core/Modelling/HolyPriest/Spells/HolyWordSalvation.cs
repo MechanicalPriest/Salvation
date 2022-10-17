@@ -144,5 +144,26 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             return uptime;
         }
+
+        public override double GetRenewTicksPerMinute(GameState gameState, BaseSpellData spellData)
+        {
+            spellData = ValidateSpellData(gameState, spellData);
+
+            var renewSpellData = _gameStateService.GetSpellData(gameState, Spell.Renew);
+            var salvCpm = GetActualCastsPerMinute(gameState, spellData);
+
+            renewSpellData.Overrides[Override.NumberOfHealingTargets] = 1;
+            renewSpellData.Overrides[Override.CastsPerMinute] = salvCpm; // Force the number of casts
+
+            // Get total ticks per minute from all renews
+            var numTargets = GetNumberOfHealingTargets(gameState, spellData);
+            var ticksPerRenew = _renewSpellService.GetRenewTicksPerMinute(gameState, renewSpellData);
+
+            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] on {numTargets} targets ticking {ticksPerRenew:N3} times/min with {salvCpm:N3} Salv CPM.");
+
+            var renewTicksPerMinute = numTargets * ticksPerRenew;
+
+            return renewTicksPerMinute;
+        }
     }
 }

@@ -59,12 +59,13 @@ namespace Salvation.Core.Interfaces.State
         GameState CloneGameState(GameState state);
         GameState CreateValidatedGameState(PlayerProfile profile, GlobalConstants constants = null);
         public List<string> GetJournal(GameState state, bool removeDuplicates = false);
-        public void JournalEntry(GameState state, string message, int historyToCheck = 5);
+        public void JournalEntry(GameState state, string message, int historyToCheck = 20);
 
         // Holy Priest specific
         double GetTotalHolyWordCooldownReduction(GameState state, Spell spell);
         double GetStamina(GameState state);
         double GetHitpoints(GameState state);
         double GetRenewUptime(GameState state);
+        double GetRenewTicksPerMinute(GameState state);
     }
 }

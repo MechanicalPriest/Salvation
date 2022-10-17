@@ -128,6 +128,23 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             return uptime;
         }
 
+        public override double GetRenewTicksPerMinute(GameState gameState, BaseSpellData spellData)
+        {
+            spellData = ValidateSpellData(gameState, spellData);
+
+            // Number of base ticks
+            double duration = (spellData.Duration + GetRapidRecoveryDurationModifier(gameState)) / 1000;
+            double tickrate = spellData.GetEffect(95).Amplitude / 1000;
+
+            var baseTicks = (duration / tickrate);
+
+            // Add haste - and round up because we don't care if the tick is a partial or not.
+            // The 1 is for the initial tick, which happens on cast. This initial tick isn't part of the bonus tick calculations though.
+            var totalTicks = 1 + Math.Ceiling(baseTicks * _gameStateService.GetHasteMultiplier(gameState));
+
+            return totalTicks * GetActualCastsPerMinute(gameState, spellData);
+        }
+
         internal double GetRapidRecoveryHealingMultiplier(GameState gameState)
         {
             var multi = 1d;

@@ -50,6 +50,23 @@ namespace Salvation.CoreTests.HolyPriest.Spells
         }
 
         [Test]
+        public void GetRenewTicksPerMinute_Calculates_Ranks()
+        {
+            // Arrange
+
+            // Act
+            _gameStateService.SetTalentRank(_gameState, Spell.Benediction, 0);
+            var result = _prayerOfMendingSpellService.GetRenewTicksPerMinute(_gameState, null);
+
+            _gameStateService.SetTalentRank(_gameState, Spell.Benediction, 1);
+            var resultRank1 = _prayerOfMendingSpellService.GetRenewTicksPerMinute(_gameState, null);
+
+            // Assert
+            Assert.That(result, Is.EqualTo(0.0d));
+            Assert.That(resultRank1, Is.EqualTo(24.125405738823524d));
+        }
+
+        [Test]
         public void GetRenewUptime_Calculates_Ranks()
         {
             // Arrange

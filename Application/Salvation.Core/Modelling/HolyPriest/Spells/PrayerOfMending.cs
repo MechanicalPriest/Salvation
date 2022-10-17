@@ -261,5 +261,28 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             return cpm;
         }
+
+        public override double GetRenewTicksPerMinute(GameState gameState, BaseSpellData spellData)
+        {
+            spellData = ValidateSpellData(gameState, spellData);
+
+            var renewTicksPerMinute = 0d;
+
+            if (_gameStateService.GetTalent(gameState, Spell.Benediction).Rank > 0)
+            {
+                var renewSpellData = _gameStateService.GetSpellData(gameState, Spell.Renew);
+                var beneRenewCpm = GetBenedictionRenewCpm(gameState, spellData);
+
+                renewSpellData.Overrides[Override.NumberOfHealingTargets] = 1;
+                renewSpellData.Overrides[Override.CastsPerMinute] = beneRenewCpm; // Force the number of cpm
+
+                renewTicksPerMinute = _renewSpellService.GetRenewTicksPerMinute(gameState, renewSpellData);
+
+                var avgNumBounces = GetAverageBounces(gameState, spellData);
+                _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Benediction renew CPM: {beneRenewCpm:N3} (Average bounces {avgNumBounces:N3}.");
+            }
+
+            return renewTicksPerMinute;
+        }
     }
 }

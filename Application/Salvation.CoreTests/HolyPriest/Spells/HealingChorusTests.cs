@@ -32,7 +32,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 {
                     Spell = Spell.Renew,
                     SpellData = _gameStateService.GetSpellData(_gameState, Spell.Renew),
-                    SpellService = new Renew(_gameStateService)
+                    SpellService = new Renew(_gameStateService, null)
                 });
 
             _gameStateService.OverridePlaystyle(_gameState,

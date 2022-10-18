@@ -28,13 +28,13 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                     new PrayerOfMending(_gameStateService, null)));
 
             var diTranquilLight = new DivineImageTranquilLight(_gameStateService,
-                new Renew(_gameStateService));
+                new Renew(_gameStateService, null));
 
             var diDazzlingLights = new DivineImageDazzlingLights(_gameStateService,
-                new PrayerOfHealing(_gameStateService, new Renew(_gameStateService)),
+                new PrayerOfHealing(_gameStateService, new Renew(_gameStateService, null)),
                 new HolyWordSanctify(_gameStateService,
-                    new PrayerOfHealing(_gameStateService, new Renew(_gameStateService)),
-                    new Renew(_gameStateService),
+                    new PrayerOfHealing(_gameStateService, new Renew(_gameStateService, null)),
+                    new Renew(_gameStateService, null),
                     new CircleOfHealing(_gameStateService)),
                 new DivineStar(_gameStateService),
                 new Halo(_gameStateService),
@@ -50,8 +50,8 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                     new Heal(_gameStateService, null, null),
                     new PrayerOfMending(_gameStateService, null)),
                 new HolyWordSanctify(_gameStateService,
-                    new PrayerOfHealing(_gameStateService, new Renew(_gameStateService)),
-                    new Renew(_gameStateService),
+                    new PrayerOfHealing(_gameStateService, new Renew(_gameStateService, null)),
+                    new Renew(_gameStateService, null),
                     new CircleOfHealing(_gameStateService)),
                 new HolyWordChastise(_gameStateService,
                     new Smite(_gameStateService),

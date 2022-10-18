@@ -3,6 +3,7 @@ using Salvation.Core.Constants.Data;
 using Salvation.Core.Interfaces.Modelling;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
+using Salvation.Core.Modelling.Common;
 using Salvation.Core.State;
 using System;
 
@@ -10,10 +11,14 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
     public class Renew : SpellService, ISpellService<IRenewSpellService>
     {
-        public Renew(IGameStateService gameStateService)
+        private readonly ISpellService<IEmpoweredRenewSpellService> _empoweredRenewSpellService;
+
+        public Renew(IGameStateService gameStateService,
+            ISpellService<IEmpoweredRenewSpellService> empoweredRenewSpellService)
             : base(gameStateService)
         {
             Spell = Spell.Renew;
+            _empoweredRenewSpellService = empoweredRenewSpellService;
         }
 
         public override double GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
@@ -143,6 +148,29 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             var totalTicks = 1 + Math.Ceiling(baseTicks * _gameStateService.GetHasteMultiplier(gameState));
 
             return totalTicks * GetActualCastsPerMinute(gameState, spellData);
+        }
+
+        public override AveragedSpellCastResult GetCastResults(GameState gameState, BaseSpellData spellData = null)
+        {
+            spellData = ValidateSpellData(gameState, spellData);
+
+            AveragedSpellCastResult result = base.GetCastResults(gameState, spellData);
+
+            // Calculate Emp Renew if talented.
+            if (_gameStateService.GetTalent(gameState, Spell.EmpoweredRenew).Rank > 0)
+            {
+                var empoweredRenewSpellData = _gameStateService.GetSpellData(gameState, Spell.EmpoweredRenew);
+
+                empoweredRenewSpellData.Overrides[Override.CastsPerMinute] = GetActualCastsPerMinute(gameState, spellData);
+                empoweredRenewSpellData.Overrides[Override.ResultMultiplier] = GetAverageRawHealing(gameState, spellData);
+
+                // grab the result of the spell cast
+                var empoweredRenewResult = _empoweredRenewSpellService.GetCastResults(gameState, empoweredRenewSpellData);
+
+                result.AdditionalCasts.Add(empoweredRenewResult);
+            }
+
+            return result;
         }
 
         internal double GetRapidRecoveryHealingMultiplier(GameState gameState)

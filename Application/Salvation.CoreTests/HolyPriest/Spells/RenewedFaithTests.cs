@@ -35,7 +35,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 {
                     Spell = Spell.Renew,
                     SpellData = _gameStateService.GetSpellData(_gameState, Spell.Renew),
-                    SpellService = new Renew(_gameStateService)
+                    SpellService = new Renew(_gameStateService, null)
                 });
             _gameState.RegisteredSpells.Add(
                 new RegisteredSpell()
@@ -48,10 +48,10 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                             new Heal(_gameStateService, null, null),
                             new PrayerOfMending(_gameStateService, null)),
                         new HolyWordSanctify(_gameStateService,
-                            new PrayerOfHealing(_gameStateService, new Renew(_gameStateService)),
-                            new Renew(_gameStateService),
+                            new PrayerOfHealing(_gameStateService, new Renew(_gameStateService, null)),
+                            new Renew(_gameStateService, null),
                             new CircleOfHealing(_gameStateService)),
-                        new Renew(_gameStateService),
+                        new Renew(_gameStateService, null),
                         new PrayerOfMending(_gameStateService, null))
                 });
         }

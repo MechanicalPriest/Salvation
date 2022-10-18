@@ -53,14 +53,14 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                     new Heal(gameStateService, null, null),
                     new PrayerOfMending(gameStateService, null)),
                 new HolyWordSanctify(gameStateService,
-                    new PrayerOfHealing(gameStateService, new Renew(gameStateService)),
-                    new Renew(gameStateService),
+                    new PrayerOfHealing(gameStateService, new Renew(gameStateService, null)),
+                    new Renew(gameStateService, null),
                     new CircleOfHealing(gameStateService)),
-                new Renew(gameStateService),
+                new Renew(gameStateService, null),
                 new PrayerOfMending(gameStateService, null)));
             Spells.Add(new HolyWordSanctify(gameStateService,
-                new PrayerOfHealing(gameStateService, new Renew(gameStateService)),
-                new Renew(gameStateService),
+                new PrayerOfHealing(gameStateService, new Renew(gameStateService, null)),
+                new Renew(gameStateService, null),
                 new CircleOfHealing(gameStateService)));
             Spells.Add(new HolyWordSerenity(gameStateService,
                 new FlashHeal(gameStateService, null, null),
@@ -68,9 +68,9 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 new PrayerOfMending(gameStateService, null)));
             Spells.Add(new Mindgames(gameStateService));
             Spells.Add(new PowerWordShield(gameStateService));
-            Spells.Add(new PrayerOfHealing(gameStateService, new Renew(gameStateService)));
+            Spells.Add(new PrayerOfHealing(gameStateService, new Renew(gameStateService, null)));
             Spells.Add(new PrayerOfMending(gameStateService, null));
-            Spells.Add(new Renew(gameStateService));
+            Spells.Add(new Renew(gameStateService, null));
             Spells.Add(new SpellService(gameStateService));
             Spells.Add(new Smite(gameStateService));
             Spells.Add(new HolyWordChastise(gameStateService, new Smite(gameStateService), new HolyFire(gameStateService)));
@@ -83,8 +83,8 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                     new Heal(gameStateService, null, null),
                     new PrayerOfMending(gameStateService, null)),
                 new HolyWordSanctify(gameStateService,
-                    new PrayerOfHealing(gameStateService, new Renew(gameStateService)),
-                    new Renew(gameStateService),
+                    new PrayerOfHealing(gameStateService, new Renew(gameStateService, null)),
+                    new Renew(gameStateService, null),
                     new CircleOfHealing(gameStateService))));
             Spells.Add(new Lightwell(gameStateService));
 

@@ -45,12 +45,12 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                     new PrayerOfMending(_gameStateService, null))));
 
             Spells.Add(new DivineImageTranquilLight(_gameStateService,
-                new Renew(_gameStateService)));
+                new Renew(_gameStateService, null)));
 
             Spells.Add(new DivineImageDazzlingLights(_gameStateService,
-                new PrayerOfHealing(_gameStateService, new Renew(_gameStateService)),
+                new PrayerOfHealing(_gameStateService, new Renew(_gameStateService, null)),
                 new HolyWordSanctify(_gameStateService,
-                    new PrayerOfHealing(_gameStateService, new Renew(_gameStateService)), new Renew(_gameStateService),
+                    new PrayerOfHealing(_gameStateService, new Renew(_gameStateService, null)), new Renew(_gameStateService, null),
                     new CircleOfHealing(_gameStateService)),
                 new DivineStar(_gameStateService),
                 new Halo(_gameStateService),

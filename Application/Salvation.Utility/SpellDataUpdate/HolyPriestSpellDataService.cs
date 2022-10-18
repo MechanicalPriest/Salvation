@@ -95,6 +95,8 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.RenewedFaith,
                 (uint)Spell.HealingChorus,
                 (uint)Spell.RevitalizingPrayers,
+                (uint)Spell.EmpoweredRenew,
+                (uint)Spell.HolyMending,
 
                 // Talent - Holy supporting spells
                 (uint)Spell.CosmicRippleHeal,
@@ -111,6 +113,8 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.LightwellHeal,
                 (uint)Spell.LightwellTrigger,
                 (uint)Spell.LightwellCharges,
+                (uint)Spell.EmpoweredRenewHeal,
+                (uint)Spell.HolyMendingHeal,
             };
         }
 

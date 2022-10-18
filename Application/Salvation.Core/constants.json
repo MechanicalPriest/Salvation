@@ -1,5 +1,5 @@
 {
-  "GameVersion": "10.0.2.46092",
+  "GameVersion": "10.0.2.46157",
   "Specs": [
     {
       "Class": "Priest",
@@ -3073,6 +3073,68 @@
           ]
         },
         {
+          "Id": 391339,
+          "Name": "Empowered Renew",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 101.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 1028796,
+              "BaseValue": 10.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ]
+        },
+        {
+          "Id": 391154,
+          "Name": "Holy Mending",
+          "ManaCost": 0.0,
+          "MaxRange": 100.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 101.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 1028472,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ]
+        },
+        {
           "Id": 243241,
           "Name": "Cosmic Ripple",
           "ManaCost": 0.0,
@@ -3524,6 +3586,68 @@
               "Amplitude": 0.0,
               "TriggerSpell": null,
               "Type": 6,
+              "ScaleValues": {}
+            }
+          ]
+        },
+        {
+          "Id": 391359,
+          "Name": "Empowered Renew",
+          "ManaCost": 0.0,
+          "MaxRange": 100.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 1028825,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 10,
+              "ScaleValues": {}
+            }
+          ]
+        },
+        {
+          "Id": 391156,
+          "Name": "Holy Mending",
+          "ManaCost": 0.0,
+          "MaxRange": 100.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 1028476,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.375,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 10,
               "ScaleValues": {}
             }
           ]

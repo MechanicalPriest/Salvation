@@ -868,7 +868,7 @@ namespace Salvation.Core.State
             state.Profile.PlaystyleEntries.Add(newPlaystyle);
         }
 
-        public void JournalEntry(GameState state, string message, int historyToCheck = 5)
+        public void JournalEntry(GameState state, string message, int historyToCheck = 20)
         {
             if (state.JournalEntries.Count == 0 ||
                 !state.JournalEntries.Skip(Math.Max(0, state.JournalEntries.Count() - historyToCheck)).Where(j => j == message).Any())
@@ -1045,6 +1045,58 @@ namespace Salvation.Core.State
             apothCDRIncrease += apothMultiplier * Math.Min(1, apothUptime);
 
             return apothCDRIncrease;
+        }
+
+        public double GetRenewUptime(GameState state)
+        {
+            var uptime = 0d;
+
+            JournalEntry(state, $"[GetRenewUptime] Calculating...");
+
+            // Loop through each spellservice and combine all the renew uptime bonuses.
+            foreach (var spell in GetRegisteredSpells(state))
+            {
+                if (spell.SpellService != null)
+                {
+                    var newUptime = spell.SpellService.GetRenewUptime(state, spell.SpellData);
+
+                    if (newUptime > 0)
+                    {
+                        JournalEntry(state, $"[GetRenewUptime] Adding {newUptime} from {spell.Spell}");
+                    }
+
+                    uptime += newUptime;
+                }
+            }
+
+            return uptime;
+        }
+
+        public double GetRenewTicksPerMinute(GameState state)
+        {
+            var ticksPerMinute = 0d;
+
+            JournalEntry(state, $"[GetRenewTicksPerMinute] Calculating...");
+
+            // Loop through each spellservice and combine all the renew ticks per minute.
+            foreach (var spell in GetRegisteredSpells(state))
+            {
+                if (spell.SpellService != null)
+                {
+                    var spellTicksPerMinute = spell.SpellService.GetRenewTicksPerMinute(state, spell.SpellData);
+                    
+                    if(spellTicksPerMinute > 0)
+                    {
+                        JournalEntry(state, $"[GetRenewTicksPerMinute] Adding {spellTicksPerMinute} from {spell.Spell}");
+                    }
+
+                    ticksPerMinute += spellTicksPerMinute;
+                }
+            }
+
+            JournalEntry(state, $"[GetRenewTicksPerMinute] Done. Ticks per minute: {ticksPerMinute}.");
+
+            return ticksPerMinute;
         }
 
         #endregion

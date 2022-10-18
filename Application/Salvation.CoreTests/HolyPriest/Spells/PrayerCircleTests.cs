@@ -19,7 +19,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
         {
             _gameState = GetGameState();
             _gameStateService = new GameStateService();
-            _spell = new PrayerOfHealing(_gameStateService);
+            _spell = new PrayerOfHealing(_gameStateService, new Renew(_gameStateService, null));
         }
 
         [Test]

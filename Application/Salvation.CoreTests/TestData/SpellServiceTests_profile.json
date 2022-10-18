@@ -831,6 +831,11 @@
       "Name": "PoMPercentageStacksExpired",
       "Value": 0.01,
       "SpellId": 33076
+    },
+    {
+      "Name": "GroupSize",
+      "Value": 20,
+      "SpellId": 0
     }
   ],
   "Level": 60

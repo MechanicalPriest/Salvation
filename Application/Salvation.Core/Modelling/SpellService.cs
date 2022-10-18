@@ -495,6 +495,16 @@ namespace Salvation.Core.Modelling
             return false;
         }
 
+        public virtual double GetRenewUptime(GameState gameState, BaseSpellData spellData)
+        {
+            return 0d;
+        }
+
+        public virtual double GetRenewTicksPerMinute(GameState gameState, BaseSpellData spellData)
+        {
+            return 0d;
+        }
+
         #endregion
     }
 }

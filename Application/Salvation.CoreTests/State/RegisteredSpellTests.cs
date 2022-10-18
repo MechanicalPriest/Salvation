@@ -63,7 +63,7 @@ namespace Salvation.CoreTests.State
         {
             if (serviceType == typeof(ISpellService<IRenewSpellService>))
             {
-                return new Renew(null);
+                return new Renew(null, null);
             }
 
             return null;

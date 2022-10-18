@@ -44,6 +44,7 @@ namespace Salvation.Core.Modelling
                 Spell.Lightwell => typeof(ILightwellSpellService),
                 Spell.Apotheosis => typeof(IApotheosisSpellService),
                 Spell.AnsweredPrayers => typeof(IAnsweredPrayersSpellService),
+                Spell.RenewedFaith => typeof(IRenewedFaithSpellService),
                 //Spell.Benediction => typeof(IBenedictionSpellService),
                 // Priest Talent
                 Spell.DivineStar => typeof(IDivineStarSpellService),

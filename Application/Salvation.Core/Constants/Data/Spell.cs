@@ -182,6 +182,8 @@ namespace Salvation.Core.Constants.Data
         /// Stores how often it tries to heal someone
         /// </summary>
         LightwellTrigger = 372845,
+        EmpoweredRenewHeal = 391359,
+        HolyMendingHeal = 391156,
 
         // Consumables
 

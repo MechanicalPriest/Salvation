@@ -24,11 +24,11 @@ namespace Salvation.CoreTests.HolyPriest.Spells
             var serenity = new HolyWordSerenity(_gameStateService,
                 new FlashHeal(_gameStateService, null, null),
                 new Heal(_gameStateService, null, null),
-                new PrayerOfMending(_gameStateService));
+                new PrayerOfMending(_gameStateService, null, null));
 
             var sanc = new HolyWordSanctify(_gameStateService,
-                new PrayerOfHealing(_gameStateService),
-                new Renew(_gameStateService),
+                new PrayerOfHealing(_gameStateService, new Renew(_gameStateService, null)),
+                new Renew(_gameStateService, null),
                 new CircleOfHealing(_gameStateService));
 
             var chastise = new HolyWordChastise(_gameStateService, 

@@ -21,7 +21,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
         {
             // Arrange
             IGameStateService gameStateService = new GameStateService();
-            var spellService = new Renew(gameStateService);
+            var spellService = new Renew(gameStateService, null);
 
             // Act
             gameStateService.SetTalentRank(_gameState, Spell.RapidRecovery, 0);
@@ -40,7 +40,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
         {
             // Arrange
             IGameStateService gameStateService = new GameStateService();
-            var spellService = new Renew(gameStateService);
+            var spellService = new Renew(gameStateService, null);
 
             // Act
             gameStateService.SetTalentRank(_gameState, Spell.RapidRecovery, 0);
@@ -59,7 +59,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
         {
             // Arrange
             IGameStateService gameStateService = new GameStateService();
-            var spellService = new Renew(gameStateService);
+            var spellService = new Renew(gameStateService, null);
 
             // Act
             gameStateService.SetTalentRank(_gameState, Spell.RapidRecovery, 0);

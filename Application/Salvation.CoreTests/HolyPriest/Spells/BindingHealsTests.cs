@@ -108,7 +108,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
         }
 
         [Test]
-        public void GetActualCastsPerMinute_Throws_No_UnwaveringWillUptime()
+        public void GetActualCastsPerMinute_Throws_No_CastsPerMinute()
         {
             // Arrange
 
@@ -175,10 +175,10 @@ namespace Salvation.CoreTests.HolyPriest.Spells
             Assert.That(resultRank2.AdditionalCasts.Where(c => c.SpellId == (int)Spell.EchoOfLight).Any(), Is.True);
             Assert.That(resultRank2.AdditionalCasts.Where(c => c.SpellId == (int)Spell.BindingHeals).Any(), Is.True);
 
-            var trailCast2 = resultRank2.AdditionalCasts.Where(c => c.SpellId == (int)Spell.BindingHeals).First();
-            Assert.That(trailCast2.AdditionalCasts.Count, Is.EqualTo(1));
-            Assert.That(trailCast2.AdditionalCasts.Where(c => c.SpellId == (int)Spell.EchoOfLight).Any(), Is.True);
-            Assert.That(trailCast2.RawHealing, Is.EqualTo(2366.299057576985d));
+            var bhsCast2 = resultRank2.AdditionalCasts.Where(c => c.SpellId == (int)Spell.BindingHeals).First();
+            Assert.That(bhsCast2.AdditionalCasts.Count, Is.EqualTo(1));
+            Assert.That(bhsCast2.AdditionalCasts.Where(c => c.SpellId == (int)Spell.EchoOfLight).Any(), Is.True);
+            Assert.That(bhsCast2.RawHealing, Is.EqualTo(2366.299057576985d));
         }
 
         [Test]
@@ -208,20 +208,20 @@ namespace Salvation.CoreTests.HolyPriest.Spells
             Assert.That(resultRank1.AdditionalCasts.Where(c => c.SpellId == (int)Spell.EchoOfLight).Any(), Is.True);
             Assert.That(resultRank1.AdditionalCasts.Where(c => c.SpellId == (int)Spell.BindingHeals).Any(), Is.True);
 
-            var trailCast1 = resultRank1.AdditionalCasts.Where(c => c.SpellId == (int)Spell.BindingHeals).First();
-            Assert.That(trailCast1.AdditionalCasts.Count, Is.EqualTo(1));
-            Assert.That(trailCast1.AdditionalCasts.Where(c => c.SpellId == (int)Spell.EchoOfLight).Any(), Is.True);
-            Assert.That(trailCast1.RawHealing, Is.EqualTo(1719.3552265645585d));
+            var bhsCast1 = resultRank1.AdditionalCasts.Where(c => c.SpellId == (int)Spell.BindingHeals).First();
+            Assert.That(bhsCast1.AdditionalCasts.Count, Is.EqualTo(1));
+            Assert.That(bhsCast1.AdditionalCasts.Where(c => c.SpellId == (int)Spell.EchoOfLight).Any(), Is.True);
+            Assert.That(bhsCast1.RawHealing, Is.EqualTo(1719.3552265645585d));
 
             Assert.That(resultRank2.AdditionalCasts.Count, Is.EqualTo(2));
             Assert.That(resultRank2.RawHealing, Is.EqualTo(10745.970166028488d));
             Assert.That(resultRank2.AdditionalCasts.Where(c => c.SpellId == (int)Spell.EchoOfLight).Any(), Is.True);
             Assert.That(resultRank2.AdditionalCasts.Where(c => c.SpellId == (int)Spell.BindingHeals).Any(), Is.True);
 
-            var trailCast2 = resultRank2.AdditionalCasts.Where(c => c.SpellId == (int)Spell.BindingHeals).First();
-            Assert.That(trailCast2.AdditionalCasts.Count, Is.EqualTo(1));
-            Assert.That(trailCast2.AdditionalCasts.Where(c => c.SpellId == (int)Spell.EchoOfLight).Any(), Is.True);
-            Assert.That(trailCast2.RawHealing, Is.EqualTo(3438.710453129117d));
+            var bhsCast2 = resultRank2.AdditionalCasts.Where(c => c.SpellId == (int)Spell.BindingHeals).First();
+            Assert.That(bhsCast2.AdditionalCasts.Count, Is.EqualTo(1));
+            Assert.That(bhsCast2.AdditionalCasts.Where(c => c.SpellId == (int)Spell.EchoOfLight).Any(), Is.True);
+            Assert.That(bhsCast2.RawHealing, Is.EqualTo(3438.710453129117d));
         }
     }
 }

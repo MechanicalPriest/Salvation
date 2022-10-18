@@ -371,6 +371,8 @@ namespace Salvation.Core.Profile
                     new CastProfile((int)Spell.TrailOfLight, 1, 0.329d, 1, 0, "Trail of Light, ToL"),
                     new CastProfile((int)Spell.BindingHeals, 1, 0.411d, 1, 0, "Binding Heals, BH"),
                     new CastProfile((int)Spell.Lightwell, 1, 0.243d, 15, 0, "Lightwell, LW"),
+                    new CastProfile((int)Spell.EmpoweredRenew, 1, 0.196d, 1, 0, "Empowered Renew"),
+                    new CastProfile((int)Spell.HolyMending, 1, 0.189d, 1, 0, "Empowered Renew"),
 
                     // DPS Spells
                     new CastProfile((int)Spell.Smite, 0.12d, 0, 0, 1, "Smite"),
@@ -422,6 +424,7 @@ namespace Salvation.Core.Profile
                 FightLengthSeconds = 397,
                 PlaystyleEntries = new List<PlaystyleEntry>()
                 {
+                    new PlaystyleEntry("GroupSize", 20, (uint)Spell.HolyPriest),
                     // #### Base Overrides ####
                     // Overrides the stat value to be set directly rather than from items/race/class
                     new PlaystyleEntry("OverrideStatIntellect", 0, (uint)Spell.HolyPriest),
@@ -460,6 +463,7 @@ namespace Salvation.Core.Profile
                     new PlaystyleEntry("PrayerCircleUptime", 0.8, (uint)Spell.PrayerCircle),
                     new PlaystyleEntry("BindingHealsSelfCastPercentage", 0.15, (uint)Spell.BindingHeals),
                     new PlaystyleEntry("PoMPercentageStacksExpired", 0.01, (uint)Spell.PrayerOfMending),
+                    new PlaystyleEntry("HealingChorusStacksWastedPerMinute", 3.29, (uint)Spell.HealingChorus),
 
                     //new PlaystyleEntry("FaeBenevolentFaerieSelfUptime", 1, (uint)Spell.BenevolentFaerie),
                     //// The number of times you move the Guardian Faerie around

@@ -5,6 +5,7 @@ using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.Modelling.Common;
 using Salvation.Core.State;
+using System;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
@@ -125,6 +126,44 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         {
             // TODO: Clamp to raid size?
             return double.MaxValue;
+        }
+
+        public override double GetRenewUptime(GameState gameState, BaseSpellData spellData)
+        {
+            spellData = ValidateSpellData(gameState, spellData);
+
+            var groupSize = _gameStateService.GetPlaystyle(gameState, "GroupSize");
+
+            if (groupSize == null)
+                throw new ArgumentOutOfRangeException("GroupSize", $"GroupSize needs to be set.");
+
+            var cpm = GetActualCastsPerMinute(gameState, spellData);
+            var duration = _renewSpellService.GetDuration(gameState);
+            var numTargets = GetNumberOfHealingTargets(gameState, spellData);
+            var uptime = cpm * duration * numTargets / groupSize.Value / 60;
+
+            return uptime;
+        }
+
+        public override double GetRenewTicksPerMinute(GameState gameState, BaseSpellData spellData)
+        {
+            spellData = ValidateSpellData(gameState, spellData);
+
+            var renewSpellData = _gameStateService.GetSpellData(gameState, Spell.Renew);
+            var salvCpm = GetActualCastsPerMinute(gameState, spellData);
+
+            renewSpellData.Overrides[Override.NumberOfHealingTargets] = 1;
+            renewSpellData.Overrides[Override.CastsPerMinute] = salvCpm; // Force the number of casts
+
+            // Get total ticks per minute from all renews
+            var numTargets = GetNumberOfHealingTargets(gameState, spellData);
+            var ticksPerRenew = _renewSpellService.GetRenewTicksPerMinute(gameState, renewSpellData);
+
+            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] on {numTargets} targets ticking {ticksPerRenew:N3} times/min with {salvCpm:N3} Salv CPM.");
+
+            var renewTicksPerMinute = numTargets * ticksPerRenew;
+
+            return renewTicksPerMinute;
         }
     }
 }

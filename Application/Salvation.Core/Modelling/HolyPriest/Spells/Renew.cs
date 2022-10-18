@@ -3,16 +3,22 @@ using Salvation.Core.Constants.Data;
 using Salvation.Core.Interfaces.Modelling;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
+using Salvation.Core.Modelling.Common;
 using Salvation.Core.State;
+using System;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
     public class Renew : SpellService, ISpellService<IRenewSpellService>
     {
-        public Renew(IGameStateService gameStateService)
+        private readonly ISpellService<IEmpoweredRenewSpellService> _empoweredRenewSpellService;
+
+        public Renew(IGameStateService gameStateService,
+            ISpellService<IEmpoweredRenewSpellService> empoweredRenewSpellService)
             : base(gameStateService)
         {
             Spell = Spell.Renew;
+            _empoweredRenewSpellService = empoweredRenewSpellService;
         }
 
         public override double GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
@@ -107,7 +113,64 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             // Override used by Salvation to apply 2-stack PoMs
             if (spellData.Overrides.ContainsKey(Override.CastsPerMinute))
                 return spellData.Overrides[Override.CastsPerMinute];
+
             return base.GetActualCastsPerMinute(gameState, spellData);
+        }
+
+        public override double GetRenewUptime(GameState gameState, BaseSpellData spellData)
+        {
+            spellData = ValidateSpellData(gameState, spellData);
+
+            var groupSize = _gameStateService.GetPlaystyle(gameState, "GroupSize");
+
+            if (groupSize == null)
+                throw new ArgumentOutOfRangeException("GroupSize", $"GroupSize needs to be set.");
+
+            var cpm = GetActualCastsPerMinute(gameState, spellData);
+            var duration = GetDuration(gameState, spellData);
+            var uptime = cpm * duration / groupSize.Value / 60;
+
+            return uptime;
+        }
+
+        public override double GetRenewTicksPerMinute(GameState gameState, BaseSpellData spellData)
+        {
+            spellData = ValidateSpellData(gameState, spellData);
+
+            // Number of base ticks
+            double duration = (spellData.Duration + GetRapidRecoveryDurationModifier(gameState)) / 1000;
+            double tickrate = spellData.GetEffect(95).Amplitude / 1000;
+
+            var baseTicks = (duration / tickrate);
+
+            // Add haste - and round up because we don't care if the tick is a partial or not.
+            // The 1 is for the initial tick, which happens on cast. This initial tick isn't part of the bonus tick calculations though.
+            var totalTicks = 1 + Math.Ceiling(baseTicks * _gameStateService.GetHasteMultiplier(gameState));
+
+            return totalTicks * GetActualCastsPerMinute(gameState, spellData);
+        }
+
+        public override AveragedSpellCastResult GetCastResults(GameState gameState, BaseSpellData spellData = null)
+        {
+            spellData = ValidateSpellData(gameState, spellData);
+
+            AveragedSpellCastResult result = base.GetCastResults(gameState, spellData);
+
+            // Calculate Emp Renew if talented.
+            if (_gameStateService.GetTalent(gameState, Spell.EmpoweredRenew).Rank > 0)
+            {
+                var empoweredRenewSpellData = _gameStateService.GetSpellData(gameState, Spell.EmpoweredRenew);
+
+                empoweredRenewSpellData.Overrides[Override.CastsPerMinute] = GetActualCastsPerMinute(gameState, spellData);
+                empoweredRenewSpellData.Overrides[Override.ResultMultiplier] = GetAverageRawHealing(gameState, spellData);
+
+                // grab the result of the spell cast
+                var empoweredRenewResult = _empoweredRenewSpellService.GetCastResults(gameState, empoweredRenewSpellData);
+
+                result.AdditionalCasts.Add(empoweredRenewResult);
+            }
+
+            return result;
         }
 
         internal double GetRapidRecoveryHealingMultiplier(GameState gameState)

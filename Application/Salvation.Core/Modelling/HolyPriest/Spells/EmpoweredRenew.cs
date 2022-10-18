@@ -8,22 +8,22 @@ using System;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
-    public interface IBindingHealsSpellService : ISpellService { }
-    class BindingHeals : SpellService, ISpellService<IBindingHealsSpellService>
+    public interface IEmpoweredRenewSpellService : ISpellService { }
+    class EmpoweredRenew : SpellService, ISpellService<IEmpoweredRenewSpellService>
     {
-        public BindingHeals(IGameStateService gameStateService)
+        public EmpoweredRenew(IGameStateService gameStateService)
             : base(gameStateService)
         {
-            Spell = Spell.BindingHeals;
+            Spell = Spell.EmpoweredRenew;
         }
 
         public override double GetAverageRawHealing(GameState gameState, BaseSpellData spellData)
         {
             spellData = ValidateSpellData(gameState, spellData);
 
-            var healingMultiplier = spellData.GetEffect(912575).BaseValue / 100;
+            var healingMultiplier = spellData.GetEffect(1028796).BaseValue / 100;
 
-            var rank = _gameStateService.GetTalent(gameState, Spell.BindingHeals).Rank;
+            var rank = _gameStateService.GetTalent(gameState, Spell.EmpoweredRenew).Rank;
 
             healingMultiplier *= rank;
 
@@ -32,14 +32,13 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             var triggeringHealAmount = spellData.Overrides[Override.ResultMultiplier];
 
-            var selfCastPercentage = _gameStateService.GetPlaystyle(gameState, "BindingHealsSelfCastPercentage");
-
-            if (selfCastPercentage == null)
-                throw new ArgumentOutOfRangeException("BindingHealsSelfCastPercentage", $"BindingHealsSelfCastPercentage needs to be set.");
-
+            // Healing amount is whatever renew heals for + vers.
+            // While Emp Renew can crit, we inherit the crit multiplier from the renew heal amount so it isn't added here. 
+            // Alternatively we could send the base healing amount through and apply crit afterwards.
+            // Healing multipliers are not added to Empowered Renew, nor is the Holy Priest aura.
             var healingAmount = healingMultiplier
                 * triggeringHealAmount
-                * (1 - selfCastPercentage.Value);
+                * _gameStateService.GetVersatilityMultiplier(gameState);
 
             return healingAmount * GetNumberOfHealingTargets(gameState, spellData);
         }
@@ -68,9 +67,9 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
         public override bool TriggersMastery(GameState gameState, BaseSpellData spellData)
         {
-            var trailHealSpellData = _gameStateService.GetSpellData(gameState, Spell.BindingHealsHeal);
+            var healSpellData = _gameStateService.GetSpellData(gameState, Spell.EmpoweredRenewHeal);
 
-            return base.TriggersMastery(gameState, trailHealSpellData);
+            return base.TriggersMastery(gameState, healSpellData);
         }
     }
 }

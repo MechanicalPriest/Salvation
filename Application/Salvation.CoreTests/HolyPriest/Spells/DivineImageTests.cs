@@ -25,16 +25,16 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 new HolyWordSerenity(_gameStateService,
                     new FlashHeal(_gameStateService, null, null),
                     new Heal(_gameStateService, null, null),
-                    new PrayerOfMending(_gameStateService)));
+                    new PrayerOfMending(_gameStateService, null, null)));
 
             var diTranquilLight = new DivineImageTranquilLight(_gameStateService,
-                new Renew(_gameStateService));
+                new Renew(_gameStateService, null));
 
             var diDazzlingLights = new DivineImageDazzlingLights(_gameStateService,
-                new PrayerOfHealing(_gameStateService),
+                new PrayerOfHealing(_gameStateService, new Renew(_gameStateService, null)),
                 new HolyWordSanctify(_gameStateService,
-                    new PrayerOfHealing(_gameStateService),
-                    new Renew(_gameStateService),
+                    new PrayerOfHealing(_gameStateService, new Renew(_gameStateService, null)),
+                    new Renew(_gameStateService, null),
                     new CircleOfHealing(_gameStateService)),
                 new DivineStar(_gameStateService),
                 new Halo(_gameStateService),
@@ -42,16 +42,16 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 new CircleOfHealing(_gameStateService));
 
             var diBlessedLight = new DivineImageBlessedLight(_gameStateService,
-                new PrayerOfMending(_gameStateService));
+                new PrayerOfMending(_gameStateService, null, null));
 
             _spell = new DivineImage(_gameStateService,
                 new HolyWordSerenity(_gameStateService,
                     new FlashHeal(_gameStateService, null, null),
                     new Heal(_gameStateService, null, null),
-                    new PrayerOfMending(_gameStateService)),
+                    new PrayerOfMending(_gameStateService, null, null)),
                 new HolyWordSanctify(_gameStateService,
-                    new PrayerOfHealing(_gameStateService),
-                    new Renew(_gameStateService),
+                    new PrayerOfHealing(_gameStateService, new Renew(_gameStateService, null)),
+                    new Renew(_gameStateService, null),
                     new CircleOfHealing(_gameStateService)),
                 new HolyWordChastise(_gameStateService,
                     new Smite(_gameStateService),

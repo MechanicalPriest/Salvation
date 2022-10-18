@@ -23,7 +23,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
         {
             // Arrange
             IGameStateService gameStateService = new GameStateService();
-            var spellService = new PrayerOfMending(gameStateService);
+            var spellService = new PrayerOfMending(gameStateService, null, null);
 
             // Act
 
@@ -60,7 +60,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
     public class PoMTestGetHastedCastTime : PrayerOfMending
     {
         public PoMTestGetHastedCastTime(IGameStateService gameStateService)
-            : base(gameStateService)
+            : base(gameStateService, null, null)
         {
 
         }

@@ -3,6 +3,7 @@ using Salvation.Core.Constants.Data;
 using Salvation.Core.Interfaces.Modelling;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
+using Salvation.Core.Modelling.Common;
 using Salvation.Core.State;
 using System;
 
@@ -10,10 +11,14 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
     public class PrayerOfHealing : SpellService, ISpellService<IPrayerOfHealingSpellService>
     {
-        public PrayerOfHealing(IGameStateService gameStateService)
+        private readonly ISpellService<IRenewSpellService> _renewSpellService;
+
+        public PrayerOfHealing(IGameStateService gameStateService,
+            ISpellService<IRenewSpellService> renewSpellService)
             : base(gameStateService)
         {
             Spell = Spell.PrayerOfHealing;
+            _renewSpellService = renewSpellService;
         }
 
         public override double GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
@@ -185,6 +190,106 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             manaCost *= GetPrayerCircleManaReductionMultiplier(gameState);
 
             return manaCost;
+        }
+
+        public override AveragedSpellCastResult GetCastResults(GameState gameState, BaseSpellData spellData = null)
+        {
+            spellData = ValidateSpellData(gameState, spellData);
+
+            AveragedSpellCastResult result = base.GetCastResults(gameState, spellData);
+
+            if (_gameStateService.GetTalent(gameState, Spell.RevitalizingPrayers).Rank > 0)
+            {
+                var procsPerMinute = GetRevitalizingPrayersCpm(gameState, spellData);
+                var talentSpellData = _gameStateService.GetSpellData(gameState, Spell.RevitalizingPrayers);
+
+                // We need to add the 0-cost renews:
+                var renewSpellData = _gameStateService.GetSpellData(gameState, Spell.Renew);
+
+                renewSpellData.ManaCost = 0;
+                renewSpellData.Gcd = 0;
+                renewSpellData.BaseCastTime = 0;
+                renewSpellData.Duration = talentSpellData.GetEffect(1028558).BaseValue * 1000;
+                renewSpellData.Overrides[Override.NumberOfHealingTargets] = 1;
+                renewSpellData.Overrides[Override.CastsPerMinute] = procsPerMinute; // Force the number of cpm
+
+                // grab the result of the spell cast
+                var renewResult = _renewSpellService.GetCastResults(gameState, renewSpellData);
+
+                result.AdditionalCasts.Add(renewResult);
+            }
+
+            return result;
+        }
+
+        internal double GetRevitalizingPrayersCpm(GameState gameState, BaseSpellData spellData = null)
+        {
+            spellData = ValidateSpellData(gameState, spellData);
+
+            var cpm = 0d;
+
+            if (_gameStateService.GetTalent(gameState, Spell.RevitalizingPrayers).Rank > 0)
+            {
+                var talentSpellData = _gameStateService.GetSpellData(gameState, Spell.RevitalizingPrayers);
+
+                // Calculate the CPM. It's a percentage chance per target healed by PoH.
+                var numTargetsPerCast = GetNumberOfHealingTargets(gameState, spellData);
+                var procChance = talentSpellData.GetEffect(1028557).BaseValue / 100;
+
+                var procsPerCast = numTargetsPerCast * procChance;
+
+                cpm = GetActualCastsPerMinute(gameState, spellData) * procsPerCast;
+            }
+
+            return cpm;
+        }
+
+        public override double GetRenewTicksPerMinute(GameState gameState, BaseSpellData spellData)
+        {
+            spellData = ValidateSpellData(gameState, spellData);
+
+            var renewTicksPerMinute = 0d;
+
+            if (_gameStateService.GetTalent(gameState, Spell.RevitalizingPrayers).Rank > 0)
+            {
+                var procsPerMinute = GetRevitalizingPrayersCpm(gameState, spellData);
+                var talentSpellData = _gameStateService.GetSpellData(gameState, Spell.RevitalizingPrayers);
+                var renewSpellData = _gameStateService.GetSpellData(gameState, Spell.Renew);
+
+                renewSpellData.Duration = talentSpellData.GetEffect(1028558).BaseValue * 1000;
+                renewSpellData.Overrides[Override.NumberOfHealingTargets] = 1;
+                renewSpellData.Overrides[Override.CastsPerMinute] = procsPerMinute; // Force the number of cpm
+
+                renewTicksPerMinute = _renewSpellService.GetRenewTicksPerMinute(gameState, renewSpellData);
+
+                _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Revitalizing Prayers renew CPM: {procsPerMinute:N3}.");
+            }
+
+            return renewTicksPerMinute;
+        }
+
+        public override double GetRenewUptime(GameState gameState, BaseSpellData spellData)
+        {
+            spellData = ValidateSpellData(gameState, spellData);
+
+            if (_gameStateService.GetTalent(gameState, Spell.RevitalizingPrayers).Rank > 0)
+            {
+                var procsPerMinute = GetRevitalizingPrayersCpm(gameState, spellData);
+
+                var groupSize = _gameStateService.GetPlaystyle(gameState, "GroupSize");
+
+                if (groupSize == null)
+                    throw new ArgumentOutOfRangeException("GroupSize", $"GroupSize needs to be set.");
+
+                var talentSpellData = _gameStateService.GetSpellData(gameState, Spell.RevitalizingPrayers);
+
+                var duration = talentSpellData.GetEffect(1028558).BaseValue;
+                var uptime = procsPerMinute * duration / groupSize.Value / 60;
+
+                return uptime;
+            }
+
+            return 0;
         }
     }
 }

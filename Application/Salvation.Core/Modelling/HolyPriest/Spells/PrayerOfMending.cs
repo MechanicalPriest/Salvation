@@ -3,6 +3,7 @@ using Salvation.Core.Constants.Data;
 using Salvation.Core.Interfaces.Modelling;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
+using Salvation.Core.Modelling.Common;
 using Salvation.Core.State;
 using System;
 
@@ -10,10 +11,17 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
     public class PrayerOfMending : SpellService, ISpellService<IPrayerOfMendingSpellService>, IPrayerOfMendingExtensions
     {
-        public PrayerOfMending(IGameStateService gameStateService)
+        private readonly ISpellService<IRenewSpellService> _renewSpellService;
+        private readonly ISpellService<IHolyMendingSpellService> _holyMendingSpellService;
+
+        public PrayerOfMending(IGameStateService gameStateService,
+            ISpellService<IRenewSpellService> renewSpellService,
+            ISpellService<IHolyMendingSpellService> holyMendingSpellService)
             : base(gameStateService)
         {
             Spell = Spell.PrayerOfMending;
+            _renewSpellService = renewSpellService;
+            _holyMendingSpellService = holyMendingSpellService;
         }
 
         public override double GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
@@ -189,6 +197,113 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
                 throw new ArgumentOutOfRangeException("PoMPercentageStacksExpired", $"PoMPercentageStacksExpired needs to be set.");
 
             return numPoMStacks * (1 - percentageStacksExpired.Value);
+        }
+
+        public override AveragedSpellCastResult GetCastResults(GameState gameState, BaseSpellData spellData = null)
+        {
+            spellData = ValidateSpellData(gameState, spellData);
+
+            AveragedSpellCastResult result = base.GetCastResults(gameState, spellData);
+
+            if (_gameStateService.GetTalent(gameState, Spell.Benediction).Rank > 0)
+            {
+                // We need to add the 0-cost renews:
+                var renewSpellData = _gameStateService.GetSpellData(gameState, Spell.Renew);
+
+                renewSpellData.ManaCost = 0;
+                renewSpellData.Gcd = 0;
+                renewSpellData.BaseCastTime = 0;
+                renewSpellData.Overrides[Override.NumberOfHealingTargets] = 1;
+                renewSpellData.Overrides[Override.CastsPerMinute] = GetBenedictionRenewCpm(gameState, spellData); // Force the number of cpm
+
+                // grab the result of the spell cast
+                var renewResult = _renewSpellService.GetCastResults(gameState, renewSpellData);
+
+                result.AdditionalCasts.Add(renewResult);
+            }
+
+            if (_gameStateService.GetTalent(gameState, Spell.HolyMending).Rank > 0)
+            {
+                // We need to add cpm for Holy Mending
+                // This is the chance PoM has to heal someone who also happens to have renew on them.
+                var holyMendingSpellData = _gameStateService.GetSpellData(gameState, Spell.HolyMending);
+
+                var renewUptime = _gameStateService.GetRenewUptime(gameState);
+                var pomBouncesPerMinute = GetAverageBounces(gameState, spellData) * GetActualCastsPerMinute(gameState, spellData);
+                var holyMendingCpm = renewUptime * pomBouncesPerMinute;
+
+                holyMendingSpellData.Overrides[Override.CastsPerMinute] = holyMendingCpm;
+
+                // grab the result of the spell cast
+                var holyMendingResult = _holyMendingSpellService.GetCastResults(gameState, holyMendingSpellData);
+
+                result.AdditionalCasts.Add(holyMendingResult);
+            }
+
+            return result;
+        }
+
+        public override double GetRenewUptime(GameState gameState, BaseSpellData spellData)
+        {
+            spellData = ValidateSpellData(gameState, spellData);
+
+            if (_gameStateService.GetTalent(gameState, Spell.Benediction).Rank > 0)
+            { 
+                var cpm = GetBenedictionRenewCpm(gameState, spellData);
+
+                var groupSize = _gameStateService.GetPlaystyle(gameState, "GroupSize");
+
+                if (groupSize == null)
+                    throw new ArgumentOutOfRangeException("GroupSize", $"GroupSize needs to be set.");
+
+                var duration = _renewSpellService.GetDuration(gameState);
+                var uptime = cpm * duration / groupSize.Value / 60;
+
+                return uptime;
+            }
+
+            return 0;
+        }
+
+        internal double GetBenedictionRenewCpm(GameState gameState, BaseSpellData spellData)
+        {
+            spellData = ValidateSpellData(gameState, spellData);
+
+            var cpm = 0d;
+
+            if (_gameStateService.GetTalent(gameState, Spell.Benediction).Rank > 0)
+            {
+                // Calculate the CPM. It's a percentage chance per PoM bounce.
+                var beneTriggerChance = _gameStateService.GetSpellData(gameState, Spell.Benediction).GetEffect(283376).BaseValue / 100;
+                cpm = GetActualCastsPerMinute(gameState, spellData)
+                    * GetAverageBounces(gameState, spellData)
+                    * beneTriggerChance;
+            }
+
+            return cpm;
+        }
+
+        public override double GetRenewTicksPerMinute(GameState gameState, BaseSpellData spellData)
+        {
+            spellData = ValidateSpellData(gameState, spellData);
+
+            var renewTicksPerMinute = 0d;
+
+            if (_gameStateService.GetTalent(gameState, Spell.Benediction).Rank > 0)
+            {
+                var renewSpellData = _gameStateService.GetSpellData(gameState, Spell.Renew);
+                var beneRenewCpm = GetBenedictionRenewCpm(gameState, spellData);
+
+                renewSpellData.Overrides[Override.NumberOfHealingTargets] = 1;
+                renewSpellData.Overrides[Override.CastsPerMinute] = beneRenewCpm; // Force the number of cpm
+
+                renewTicksPerMinute = _renewSpellService.GetRenewTicksPerMinute(gameState, renewSpellData);
+
+                var avgNumBounces = GetAverageBounces(gameState, spellData);
+                _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Benediction renew CPM: {beneRenewCpm:N3} (Average bounces {avgNumBounces:N3}.");
+            }
+
+            return renewTicksPerMinute;
         }
     }
 }

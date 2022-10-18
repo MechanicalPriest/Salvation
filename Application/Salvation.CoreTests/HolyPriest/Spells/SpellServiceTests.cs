@@ -51,26 +51,26 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 new HolyWordSerenity(gameStateService,
                     new FlashHeal(gameStateService, null, null),
                     new Heal(gameStateService, null, null),
-                    new PrayerOfMending(gameStateService)),
+                    new PrayerOfMending(gameStateService, null, null)),
                 new HolyWordSanctify(gameStateService,
-                    new PrayerOfHealing(gameStateService),
-                    new Renew(gameStateService),
+                    new PrayerOfHealing(gameStateService, new Renew(gameStateService, null)),
+                    new Renew(gameStateService, null),
                     new CircleOfHealing(gameStateService)),
-                new Renew(gameStateService),
-                new PrayerOfMending(gameStateService)));
+                new Renew(gameStateService, null),
+                new PrayerOfMending(gameStateService, null, null)));
             Spells.Add(new HolyWordSanctify(gameStateService,
-                new PrayerOfHealing(gameStateService),
-                new Renew(gameStateService),
+                new PrayerOfHealing(gameStateService, new Renew(gameStateService, null)),
+                new Renew(gameStateService, null),
                 new CircleOfHealing(gameStateService)));
             Spells.Add(new HolyWordSerenity(gameStateService,
                 new FlashHeal(gameStateService, null, null),
                 new Heal(gameStateService, null, null),
-                new PrayerOfMending(gameStateService)));
+                new PrayerOfMending(gameStateService, null, null)));
             Spells.Add(new Mindgames(gameStateService));
             Spells.Add(new PowerWordShield(gameStateService));
-            Spells.Add(new PrayerOfHealing(gameStateService));
-            Spells.Add(new PrayerOfMending(gameStateService));
-            Spells.Add(new Renew(gameStateService));
+            Spells.Add(new PrayerOfHealing(gameStateService, new Renew(gameStateService, null)));
+            Spells.Add(new PrayerOfMending(gameStateService, null, null));
+            Spells.Add(new Renew(gameStateService, null));
             Spells.Add(new SpellService(gameStateService));
             Spells.Add(new Smite(gameStateService));
             Spells.Add(new HolyWordChastise(gameStateService, new Smite(gameStateService), new HolyFire(gameStateService)));
@@ -81,10 +81,10 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 new HolyWordSerenity(gameStateService,
                     new FlashHeal(gameStateService, null, null),
                     new Heal(gameStateService, null, null),
-                    new PrayerOfMending(gameStateService)),
+                    new PrayerOfMending(gameStateService, null, null)),
                 new HolyWordSanctify(gameStateService,
-                    new PrayerOfHealing(gameStateService),
-                    new Renew(gameStateService),
+                    new PrayerOfHealing(gameStateService, new Renew(gameStateService, null)),
+                    new Renew(gameStateService, null),
                     new CircleOfHealing(gameStateService))));
             Spells.Add(new Lightwell(gameStateService));
 
@@ -303,6 +303,32 @@ namespace Salvation.CoreTests.HolyPriest.Spells
 
             // Act
             var result = spellService.TriggersMastery(_gameState, null);
+
+            // Assert
+            return result;
+        }
+
+        [TestCaseSource(typeof(SpellServiceTestsData), nameof(SpellServiceTestsData.GetRenewUptime))]
+        public double GetRenewUptime(Type t)
+        {
+            // Arrange
+            var spellService = Spells.Where(s => s.GetType() == t).FirstOrDefault();
+
+            // Act
+            var result = spellService.GetRenewUptime(_gameState, null);
+
+            // Assert
+            return result;
+        }
+
+        [TestCaseSource(typeof(SpellServiceTestsData), nameof(SpellServiceTestsData.GetRenewTicksPerMinute))]
+        public double GetRenewTicksPerMinute(Type t)
+        {
+            // Arrange
+            var spellService = Spells.Where(s => s.GetType() == t).FirstOrDefault();
+
+            // Act
+            var result = spellService.GetRenewTicksPerMinute(_gameState, null);
 
             // Assert
             return result;
@@ -754,7 +780,6 @@ namespace Salvation.CoreTests.HolyPriest.Spells
             }
         }
 
-
         public static IEnumerable TriggersMastery
         {
             get
@@ -781,6 +806,64 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(HolyFire)).Returns(false);
                 yield return new TestCaseData(typeof(CosmicRipple)).Returns(true);
                 yield return new TestCaseData(typeof(Lightwell)).Returns(false);
+            }
+        }
+        
+        public static IEnumerable GetRenewUptime
+        {
+            get
+            {
+                yield return new TestCaseData(typeof(CircleOfHealing)).Returns(0);
+                yield return new TestCaseData(typeof(DivineHymn)).Returns(0);
+                yield return new TestCaseData(typeof(DivineStar)).Returns(0);
+                yield return new TestCaseData(typeof(FlashHeal)).Returns(0);
+                yield return new TestCaseData(typeof(Halo)).Returns(0);
+                yield return new TestCaseData(typeof(Heal)).Returns(0);
+                yield return new TestCaseData(typeof(HolyNova)).Returns(0);
+                yield return new TestCaseData(typeof(HolyWordSalvation)).Returns(0.075590865517687705d);
+                yield return new TestCaseData(typeof(HolyWordSanctify)).Returns(0);
+                yield return new TestCaseData(typeof(HolyWordSerenity)).Returns(0);
+                yield return new TestCaseData(typeof(Mindgames)).Returns(0);
+                yield return new TestCaseData(typeof(PowerWordShield)).Returns(0);
+                yield return new TestCaseData(typeof(PrayerOfHealing)).Returns(0);
+                yield return new TestCaseData(typeof(PrayerOfMending)).Returns(0);
+                yield return new TestCaseData(typeof(Renew)).Returns(0.018474070588235292d);
+                yield return new TestCaseData(typeof(Smite)).Returns(0);
+                yield return new TestCaseData(typeof(HolyWordChastise)).Returns(0);
+                yield return new TestCaseData(typeof(ShadowWordPain)).Returns(0);
+                yield return new TestCaseData(typeof(ShadowWordDeath)).Returns(0);
+                yield return new TestCaseData(typeof(HolyFire)).Returns(0);
+                yield return new TestCaseData(typeof(CosmicRipple)).Returns(0);
+                yield return new TestCaseData(typeof(Lightwell)).Returns(0);
+            }
+        }
+
+        public static IEnumerable GetRenewTicksPerMinute
+        {
+            get
+            {
+                yield return new TestCaseData(typeof(CircleOfHealing)).Returns(0);
+                yield return new TestCaseData(typeof(DivineHymn)).Returns(0);
+                yield return new TestCaseData(typeof(DivineStar)).Returns(0);
+                yield return new TestCaseData(typeof(FlashHeal)).Returns(0);
+                yield return new TestCaseData(typeof(Halo)).Returns(0);
+                yield return new TestCaseData(typeof(Heal)).Returns(0);
+                yield return new TestCaseData(typeof(HolyNova)).Returns(0);
+                yield return new TestCaseData(typeof(HolyWordSalvation)).Returns(42.330884689905119d);
+                yield return new TestCaseData(typeof(HolyWordSanctify)).Returns(0);
+                yield return new TestCaseData(typeof(HolyWordSerenity)).Returns(0);
+                yield return new TestCaseData(typeof(Mindgames)).Returns(0);
+                yield return new TestCaseData(typeof(PowerWordShield)).Returns(0);
+                yield return new TestCaseData(typeof(PrayerOfHealing)).Returns(0);
+                yield return new TestCaseData(typeof(PrayerOfMending)).Returns(0);
+                yield return new TestCaseData(typeof(Renew)).Returns(10.345479529411765d);
+                yield return new TestCaseData(typeof(Smite)).Returns(0);
+                yield return new TestCaseData(typeof(HolyWordChastise)).Returns(0);
+                yield return new TestCaseData(typeof(ShadowWordPain)).Returns(0);
+                yield return new TestCaseData(typeof(ShadowWordDeath)).Returns(0);
+                yield return new TestCaseData(typeof(HolyFire)).Returns(0);
+                yield return new TestCaseData(typeof(CosmicRipple)).Returns(0);
+                yield return new TestCaseData(typeof(Lightwell)).Returns(0);
             }
         }
     }

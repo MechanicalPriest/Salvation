@@ -8,40 +8,37 @@ using System;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
-    public interface IBindingHealsSpellService : ISpellService { }
-    class BindingHeals : SpellService, ISpellService<IBindingHealsSpellService>
+    public interface IHolyMendingSpellService : ISpellService { }
+    class HolyMending : SpellService, ISpellService<IHolyMendingSpellService>
     {
-        public BindingHeals(IGameStateService gameStateService)
+        public HolyMending(IGameStateService gameStateService)
             : base(gameStateService)
         {
-            Spell = Spell.BindingHeals;
+            Spell = Spell.HolyMending;
         }
 
         public override double GetAverageRawHealing(GameState gameState, BaseSpellData spellData)
         {
             spellData = ValidateSpellData(gameState, spellData);
 
-            var healingMultiplier = spellData.GetEffect(912575).BaseValue / 100;
+            var holyPriestAuraHealingBonus = _gameStateService.GetSpellData(gameState, Spell.HolyPriest)
+                .GetEffect(179715).BaseValue / 100 + 1;
 
-            var rank = _gameStateService.GetTalent(gameState, Spell.BindingHeals).Rank;
+            var healSpellData = _gameStateService.GetSpellData(gameState, Spell.HolyMendingHeal);
 
-            healingMultiplier *= rank;
+            var healingSp = healSpellData.GetEffect(1028476).SpCoefficient;
 
-            if (!spellData.Overrides.ContainsKey(Override.ResultMultiplier))
-                throw new ArgumentOutOfRangeException("Override.ResultMultiplier", "SpellData Override.ResultMultiplier must be set.");
+            var averageHeal = healingSp
+                * _gameStateService.GetIntellect(gameState)
+                * _gameStateService.GetVersatilityMultiplier(gameState)
+                * holyPriestAuraHealingBonus;
 
-            var triggeringHealAmount = spellData.Overrides[Override.ResultMultiplier];
+            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {averageHeal:0.##}");
 
-            var selfCastPercentage = _gameStateService.GetPlaystyle(gameState, "BindingHealsSelfCastPercentage");
+            averageHeal *= _gameStateService.GetCriticalStrikeMultiplier(gameState)
+                * _gameStateService.GetGlobalHealingMultiplier(gameState);
 
-            if (selfCastPercentage == null)
-                throw new ArgumentOutOfRangeException("BindingHealsSelfCastPercentage", $"BindingHealsSelfCastPercentage needs to be set.");
-
-            var healingAmount = healingMultiplier
-                * triggeringHealAmount
-                * (1 - selfCastPercentage.Value);
-
-            return healingAmount * GetNumberOfHealingTargets(gameState, spellData);
+            return averageHeal * GetNumberOfHealingTargets(gameState, spellData);
         }
 
         public override double GetActualCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
@@ -68,9 +65,9 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
         public override bool TriggersMastery(GameState gameState, BaseSpellData spellData)
         {
-            var trailHealSpellData = _gameStateService.GetSpellData(gameState, Spell.BindingHealsHeal);
+            var healSpellData = _gameStateService.GetSpellData(gameState, Spell.HolyMendingHeal);
 
-            return base.TriggersMastery(gameState, trailHealSpellData);
+            return base.TriggersMastery(gameState, healSpellData);
         }
     }
 }

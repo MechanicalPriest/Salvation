@@ -53,13 +53,13 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                     new Heal(gameStateService, null, null),
                     new PrayerOfMending(gameStateService, null)),
                 new HolyWordSanctify(gameStateService,
-                    new PrayerOfHealing(gameStateService),
+                    new PrayerOfHealing(gameStateService, new Renew(gameStateService)),
                     new Renew(gameStateService),
                     new CircleOfHealing(gameStateService)),
                 new Renew(gameStateService),
                 new PrayerOfMending(gameStateService, null)));
             Spells.Add(new HolyWordSanctify(gameStateService,
-                new PrayerOfHealing(gameStateService),
+                new PrayerOfHealing(gameStateService, new Renew(gameStateService)),
                 new Renew(gameStateService),
                 new CircleOfHealing(gameStateService)));
             Spells.Add(new HolyWordSerenity(gameStateService,
@@ -68,7 +68,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 new PrayerOfMending(gameStateService, null)));
             Spells.Add(new Mindgames(gameStateService));
             Spells.Add(new PowerWordShield(gameStateService));
-            Spells.Add(new PrayerOfHealing(gameStateService));
+            Spells.Add(new PrayerOfHealing(gameStateService, new Renew(gameStateService)));
             Spells.Add(new PrayerOfMending(gameStateService, null));
             Spells.Add(new Renew(gameStateService));
             Spells.Add(new SpellService(gameStateService));
@@ -83,7 +83,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                     new Heal(gameStateService, null, null),
                     new PrayerOfMending(gameStateService, null)),
                 new HolyWordSanctify(gameStateService,
-                    new PrayerOfHealing(gameStateService),
+                    new PrayerOfHealing(gameStateService, new Renew(gameStateService)),
                     new Renew(gameStateService),
                     new CircleOfHealing(gameStateService))));
             Spells.Add(new Lightwell(gameStateService));

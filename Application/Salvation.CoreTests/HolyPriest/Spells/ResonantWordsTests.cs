@@ -27,7 +27,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 new PrayerOfMending(_gameStateService, null));
 
             var sanc = new HolyWordSanctify(_gameStateService,
-                new PrayerOfHealing(_gameStateService),
+                new PrayerOfHealing(_gameStateService, new Renew(_gameStateService)),
                 new Renew(_gameStateService),
                 new CircleOfHealing(_gameStateService));
 

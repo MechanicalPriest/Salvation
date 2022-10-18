@@ -94,6 +94,7 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.AnsweredPrayers,
                 (uint)Spell.RenewedFaith,
                 (uint)Spell.HealingChorus,
+                (uint)Spell.RevitalizingPrayers,
 
                 // Talent - Holy supporting spells
                 (uint)Spell.CosmicRippleHeal,

@@ -21,7 +21,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
         {
             // Arrange
             IGameStateService gameStateService = new GameStateService();
-            var spellService = new PrayerOfHealing(gameStateService);
+            var spellService = new PrayerOfHealing(gameStateService, new Renew(gameStateService));
 
             // Act
             gameStateService.SetTalentRank(_gameState, Spell.PrayerfulLitany, 0);

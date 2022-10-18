@@ -372,6 +372,7 @@ namespace Salvation.Core.Profile
                     new CastProfile((int)Spell.BindingHeals, 1, 0.411d, 1, 0, "Binding Heals, BH"),
                     new CastProfile((int)Spell.Lightwell, 1, 0.243d, 15, 0, "Lightwell, LW"),
                     new CastProfile((int)Spell.EmpoweredRenew, 1, 0.196d, 1, 0, "Empowered Renew"),
+                    new CastProfile((int)Spell.HolyMending, 1, 0.189d, 1, 0, "Empowered Renew"),
 
                     // DPS Spells
                     new CastProfile((int)Spell.Smite, 0.12d, 0, 0, 1, "Smite"),

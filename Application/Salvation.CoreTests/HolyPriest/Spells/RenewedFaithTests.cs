@@ -46,13 +46,13 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                         new HolyWordSerenity(_gameStateService,
                             new FlashHeal(_gameStateService, null, null),
                             new Heal(_gameStateService, null, null),
-                            new PrayerOfMending(_gameStateService, null)),
+                            new PrayerOfMending(_gameStateService, null, null)),
                         new HolyWordSanctify(_gameStateService,
                             new PrayerOfHealing(_gameStateService, new Renew(_gameStateService, null)),
                             new Renew(_gameStateService, null),
                             new CircleOfHealing(_gameStateService)),
                         new Renew(_gameStateService, null),
-                        new PrayerOfMending(_gameStateService, null))
+                        new PrayerOfMending(_gameStateService, null, null))
                 });
         }
 

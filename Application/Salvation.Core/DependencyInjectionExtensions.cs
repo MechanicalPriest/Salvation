@@ -95,6 +95,7 @@ namespace Salvation.Core
             services.AddSingleton<ISpellService<IAnsweredPrayersSpellService>, AnsweredPrayers>();
             services.AddSingleton<ISpellService<IRenewedFaithSpellService>, RenewedFaith>();
             services.AddSingleton<ISpellService<IEmpoweredRenewSpellService>, EmpoweredRenew>();
+            services.AddSingleton<ISpellService<IHolyMendingSpellService>, HolyMending>();
 
             // Covenants
             services.AddSingleton<ISpellService<IMindgamesSpellService>, Mindgames>();

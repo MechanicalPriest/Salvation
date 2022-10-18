@@ -12,13 +12,16 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
     public class PrayerOfMending : SpellService, ISpellService<IPrayerOfMendingSpellService>, IPrayerOfMendingExtensions
     {
         private readonly ISpellService<IRenewSpellService> _renewSpellService;
+        private readonly ISpellService<IHolyMendingSpellService> _holyMendingSpellService;
 
         public PrayerOfMending(IGameStateService gameStateService,
-            ISpellService<IRenewSpellService> renewSpellService)
+            ISpellService<IRenewSpellService> renewSpellService,
+            ISpellService<IHolyMendingSpellService> holyMendingSpellService)
             : base(gameStateService)
         {
             Spell = Spell.PrayerOfMending;
             _renewSpellService = renewSpellService;
+            _holyMendingSpellService = holyMendingSpellService;
         }
 
         public override double GetAverageRawHealing(GameState gameState, BaseSpellData spellData = null)
@@ -217,6 +220,24 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
                 var renewResult = _renewSpellService.GetCastResults(gameState, renewSpellData);
 
                 result.AdditionalCasts.Add(renewResult);
+            }
+
+            if (_gameStateService.GetTalent(gameState, Spell.HolyMending).Rank > 0)
+            {
+                // We need to add cpm for Holy Mending
+                // This is the chance PoM has to heal someone who also happens to have renew on them.
+                var holyMendingSpellData = _gameStateService.GetSpellData(gameState, Spell.HolyMending);
+
+                var renewUptime = _gameStateService.GetRenewUptime(gameState);
+                var pomBouncesPerMinute = GetAverageBounces(gameState, spellData) * GetActualCastsPerMinute(gameState, spellData);
+                var holyMendingCpm = renewUptime * pomBouncesPerMinute;
+
+                holyMendingSpellData.Overrides[Override.CastsPerMinute] = holyMendingCpm;
+
+                // grab the result of the spell cast
+                var holyMendingResult = _holyMendingSpellService.GetCastResults(gameState, holyMendingSpellData);
+
+                result.AdditionalCasts.Add(holyMendingResult);
             }
 
             return result;

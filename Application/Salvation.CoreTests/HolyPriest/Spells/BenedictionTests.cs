@@ -24,7 +24,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
         {
             _gameStateService = new GameStateService();
             _prayerOfMendingSpellService = new PrayerOfMending(_gameStateService, 
-                new Renew(_gameStateService, null));
+                new Renew(_gameStateService, null), null);
 
             _gameState = GetGameState(); 
 

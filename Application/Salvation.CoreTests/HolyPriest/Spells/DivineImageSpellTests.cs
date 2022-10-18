@@ -42,7 +42,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 new Heal(_gameStateService, null, null),
                 new HolyWordSerenity(_gameStateService,
                     new FlashHeal(_gameStateService, null, null), new Heal(_gameStateService, null, null),
-                    new PrayerOfMending(_gameStateService, null))));
+                    new PrayerOfMending(_gameStateService, null, null))));
 
             Spells.Add(new DivineImageTranquilLight(_gameStateService,
                 new Renew(_gameStateService, null)));
@@ -58,7 +58,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 new CircleOfHealing(_gameStateService)));
 
             Spells.Add(new DivineImageBlessedLight(_gameStateService,
-                new PrayerOfMending(_gameStateService, null)));
+                new PrayerOfMending(_gameStateService, null, null)));
 
             _gameState = _gameStateService.CreateValidatedGameState(profile, constants);
         }

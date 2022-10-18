@@ -8,39 +8,37 @@ using System;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
-    public interface IEmpoweredRenewSpellService : ISpellService { }
-    class EmpoweredRenew : SpellService, ISpellService<IEmpoweredRenewSpellService>
+    public interface IHolyMendingSpellService : ISpellService { }
+    class HolyMending : SpellService, ISpellService<IHolyMendingSpellService>
     {
-        public EmpoweredRenew(IGameStateService gameStateService)
+        public HolyMending(IGameStateService gameStateService)
             : base(gameStateService)
         {
-            Spell = Spell.EmpoweredRenew;
+            Spell = Spell.HolyMending;
         }
 
         public override double GetAverageRawHealing(GameState gameState, BaseSpellData spellData)
         {
             spellData = ValidateSpellData(gameState, spellData);
 
-            var healingMultiplier = spellData.GetEffect(1028796).BaseValue / 100;
+            var holyPriestAuraHealingBonus = _gameStateService.GetSpellData(gameState, Spell.HolyPriest)
+                .GetEffect(179715).BaseValue / 100 + 1;
 
-            var rank = _gameStateService.GetTalent(gameState, Spell.EmpoweredRenew).Rank;
+            var healSpellData = _gameStateService.GetSpellData(gameState, Spell.HolyMendingHeal);
 
-            healingMultiplier *= rank;
+            var healingSp = healSpellData.GetEffect(1028476).SpCoefficient;
 
-            if (!spellData.Overrides.ContainsKey(Override.ResultMultiplier))
-                throw new ArgumentOutOfRangeException("Override.ResultMultiplier", "SpellData Override.ResultMultiplier must be set.");
+            var averageHeal = healingSp
+                * _gameStateService.GetIntellect(gameState)
+                * _gameStateService.GetVersatilityMultiplier(gameState)
+                * holyPriestAuraHealingBonus;
 
-            var triggeringHealAmount = spellData.Overrides[Override.ResultMultiplier];
+            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {averageHeal:0.##}");
 
-            // Healing amount is whatever renew heals for + vers.
-            // While Emp Renew can crit, we inherit the crit multiplier from the renew heal amount so it isn't added here. 
-            // Alternatively we could send the base healing amount through and apply crit afterwards.
-            // Healing multipliers are not added to Empowered Renew, nor is the Holy Priest aura.
-            var healingAmount = healingMultiplier
-                * triggeringHealAmount
-                * _gameStateService.GetVersatilityMultiplier(gameState);
+            averageHeal *= _gameStateService.GetCriticalStrikeMultiplier(gameState)
+                * _gameStateService.GetGlobalHealingMultiplier(gameState);
 
-            return healingAmount * GetNumberOfHealingTargets(gameState, spellData);
+            return averageHeal * GetNumberOfHealingTargets(gameState, spellData);
         }
 
         public override double GetActualCastsPerMinute(GameState gameState, BaseSpellData spellData = null)
@@ -67,7 +65,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
         public override bool TriggersMastery(GameState gameState, BaseSpellData spellData)
         {
-            var healSpellData = _gameStateService.GetSpellData(gameState, Spell.EmpoweredRenewHeal);
+            var healSpellData = _gameStateService.GetSpellData(gameState, Spell.HolyMendingHeal);
 
             return base.TriggersMastery(gameState, healSpellData);
         }

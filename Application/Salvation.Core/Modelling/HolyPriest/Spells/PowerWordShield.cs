@@ -67,7 +67,8 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             // TODO: For some reason PW:S is done kinda weird. No basevalue of spcoeff.
             // It just seems to use $shield=${$SP*2.8*(1+$@versadmg)*$<rapture>*$<shadow>*$<pvp>*$<weal>
             // It also doesn't scaling with the healing aura bonus, see issue #71
-            var absorbSp = 2.8;
+            // This amount is manually set in HolyPriestSpellDataService.cs::ApplyOverrides() into effect #13.
+            var absorbSp = spellData.GetEffect(13).SpCoefficient;
 
             double averageHeal = absorbSp
                 * _gameStateService.GetIntellect(gameState)

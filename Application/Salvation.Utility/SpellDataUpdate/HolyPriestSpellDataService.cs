@@ -278,9 +278,14 @@ namespace Salvation.Utility.SpellDataUpdate
         {
             switch (baseSpellData.Id)
             {
+                case (uint)Spell.PowerWordShield:
+                    // PW:S stores the coefficient in the description for some reason. We set it manually on effect #13 (See #214)
+                    baseSpellData.GetEffect(13).SpCoefficient = 3.36;
+                    // This comes from the Priest aura 137030 effect #1 179714
+                    baseSpellData.IsCooldownHasted = true;
+                    break;
                 case (uint)Spell.CircleOfHealing:
                 case (uint)Spell.PrayerOfMending:
-                case (uint)Spell.PowerWordShield:
                     // This comes from the Priest aura 137030 effect #1 179714
                     baseSpellData.IsCooldownHasted = true;
                     break;

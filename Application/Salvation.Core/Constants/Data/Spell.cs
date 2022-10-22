@@ -184,6 +184,7 @@ namespace Salvation.Core.Constants.Data
         LightwellTrigger = 372845,
         EmpoweredRenewHeal = 391359,
         HolyMendingHeal = 391156,
+        LightweaverBuff = 390993,
 
         // Consumables
 

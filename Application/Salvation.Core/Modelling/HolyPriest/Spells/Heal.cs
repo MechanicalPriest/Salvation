@@ -49,7 +49,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             averageHeal *= GetEverlastingLightMultiplier(gameState);
 
-            averageHeal *= GetFlashConcentrationHealingModifier(gameState);
+            averageHeal *= GetLightweaverHealingModifier(gameState);
 
             return averageHeal * GetNumberOfHealingTargets(gameState, spellData);
         }
@@ -213,55 +213,55 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             var castTime = spellData.BaseCastTime / 1000;
 
-            castTime -= GetFlashConcentrationCastTimeReduction(gameState);
-
             var hastedCastTime = castTime / _gameStateService.GetHasteMultiplier(gameState);
 
             hastedCastTime *= this.GetUnwaveringWillMultiplier(gameState);
 
+            hastedCastTime *= GetLightweaverCastTimeReduction(gameState);
+
             return hastedCastTime;
         }
 
-        internal double GetFlashConcentrationCastTimeReduction(GameState gameState)
+        internal double GetLightweaverCastTimeReduction(GameState gameState)
         {
-            var castTimeReduction = 0d;
+            var totalCastTimeReduction = 1d;
 
-            //if(_gameStateService.IsLegendaryActive(gameState, Spell.FlashConcentration))
-            //{
-            //    var fcSpellData = _gameStateService.GetSpellData(gameState, Spell.FlashConcentration);
+            if (_gameStateService.GetTalent(gameState, Spell.Lightweaver).Rank > 0)
+            {
+                var lwSpellData = _gameStateService.GetSpellData(gameState, Spell.LightweaverBuff);
 
-            //    // This value comes through as -150 for -0.15s cast time
-            //    var castTimeReductionPerStack = fcSpellData.GetEffect(833393).TriggerSpell.GetEffect(833395).BaseValue / 1000;
+                // This value comes through as -30 for 30% reduced cast time
+                var castTimeReduction = lwSpellData.GetEffect(1028208).BaseValue / 100 * -1;
 
-            //    var averageStacks = _gameStateService.GetPlaystyle(gameState, "FlashConcentrationAverageStacks");
+                var averageBuffedCasts = _gameStateService.GetPlaystyle(gameState, "LightweaverAverageBuffedCasts");
 
-            //    if (averageStacks == null)
-            //        throw new ArgumentOutOfRangeException("FlashConcentrationAverageStacks", $"FlashConcentrationAverageStacks needs to be set.");
+                if (averageBuffedCasts == null)
+                    throw new ArgumentOutOfRangeException("LightweaverAverageBuffedCasts", $"LightweaverAverageBuffedCasts needs to be set.");
 
-            //    castTimeReduction += (castTimeReductionPerStack * averageStacks.Value * -1);
-            //}
+                totalCastTimeReduction = (1 - castTimeReduction * averageBuffedCasts.Value);
+            }
 
-            return castTimeReduction;
+            return totalCastTimeReduction;
         }
 
-        internal double GetFlashConcentrationHealingModifier(GameState gameState)
+        internal double GetLightweaverHealingModifier(GameState gameState)
         {
             var modifier = 1d;
 
-            //if (_gameStateService.IsLegendaryActive(gameState, Spell.FlashConcentration))
-            //{
-            //    var fcSpellData = _gameStateService.GetSpellData(gameState, Spell.FlashConcentration);
+            if (_gameStateService.GetTalent(gameState, Spell.Lightweaver).Rank > 0)
+            {
+                var fcSpellData = _gameStateService.GetSpellData(gameState, Spell.LightweaverBuff);
 
-            //    // This comes through as 3 for 3%.
-            //    var increasedHealingPerStack = fcSpellData.GetEffect(833393).TriggerSpell.GetEffect(833396).BaseValue / 100;
+                // This comes through as 15 for 15% increased healing done.
+                var increasedHealing = fcSpellData.GetEffect(1028207).BaseValue / 100;
 
-            //    var averageStacks = _gameStateService.GetPlaystyle(gameState, "FlashConcentrationAverageStacks");
+                var averageBuffedCasts = _gameStateService.GetPlaystyle(gameState, "LightweaverAverageBuffedCasts");
 
-            //    if (averageStacks == null)
-            //        throw new ArgumentOutOfRangeException("FlashConcentrationAverageStacks", $"FlashConcentrationAverageStacks needs to be set.");
+                if (averageBuffedCasts == null)
+                    throw new ArgumentOutOfRangeException("LightweaverAverageBuffedCasts", $"LightweaverAverageBuffedCasts needs to be set.");
 
-            //    modifier += increasedHealingPerStack * averageStacks.Value;
-            //}
+                modifier += increasedHealing * averageBuffedCasts.Value;
+            }
 
             return modifier;
         }

@@ -3135,6 +3135,78 @@
           ]
         },
         {
+          "Id": 390992,
+          "Name": "Lightweaver",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 0.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 101.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 1028206,
+              "BaseValue": 0.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 390993,
+              "Amplitude": 0.0,
+              "TriggerSpell": {
+                "Id": 390993,
+                "Name": "Lightweaver",
+                "ManaCost": 0.0,
+                "MaxRange": 0.0,
+                "BaseCastTime": 0.0,
+                "BaseCooldown": 0.0,
+                "IsCooldownHasted": false,
+                "Duration": 20000.0,
+                "Gcd": 0.0,
+                "ChargeCooldown": 0,
+                "Charges": 0,
+                "MaxStacks": 2.0,
+                "ProcChance": 101.0,
+                "InternalCooldown": 0.0,
+                "Rppm": 0.0,
+                "RppmIsHasted": false,
+                "Effects": [
+                  {
+                    "Id": 1028207,
+                    "BaseValue": 15.0,
+                    "SpCoefficient": 0.0,
+                    "Coefficient": 0.0,
+                    "TriggerSpellid": 0,
+                    "Amplitude": 0.0,
+                    "TriggerSpell": null,
+                    "Type": 6,
+                    "ScaleValues": {}
+                  },
+                  {
+                    "Id": 1028208,
+                    "BaseValue": -30.0,
+                    "SpCoefficient": 0.0,
+                    "Coefficient": 0.0,
+                    "TriggerSpellid": 0,
+                    "Amplitude": 0.0,
+                    "TriggerSpell": null,
+                    "Type": 6,
+                    "ScaleValues": {}
+                  }
+                ]
+              },
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ]
+        },
+        {
           "Id": 243241,
           "Name": "Cosmic Ripple",
           "ManaCost": 0.0,
@@ -3648,6 +3720,48 @@
               "Amplitude": 0.0,
               "TriggerSpell": null,
               "Type": 10,
+              "ScaleValues": {}
+            }
+          ]
+        },
+        {
+          "Id": 390993,
+          "Name": "Lightweaver",
+          "ManaCost": 0.0,
+          "MaxRange": 0.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 20000.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 2.0,
+          "ProcChance": 101.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 1028207,
+              "BaseValue": 15.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 1028208,
+              "BaseValue": -30.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
               "ScaleValues": {}
             }
           ]

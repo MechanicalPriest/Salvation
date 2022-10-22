@@ -404,7 +404,7 @@
             {
               "Id": 13,
               "BaseValue": 0.0,
-              "SpCoefficient": 0.0,
+              "SpCoefficient": 3.36,
               "Coefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,

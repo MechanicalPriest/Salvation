@@ -124,7 +124,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
 
             var renewCast1 = resultRank1.AdditionalCasts.Where(c => c.SpellId == (int)Spell.Renew).First();
             Assert.That(renewCast1.AdditionalCasts.Count, Is.EqualTo(0));
-            Assert.That(renewCast1.RawHealing, Is.EqualTo(3555.5511831815993d));
+            Assert.That(renewCast1.RawHealing, Is.EqualTo(3199.9960648634387d));
         }
     }
 }

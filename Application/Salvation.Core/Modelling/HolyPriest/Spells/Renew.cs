@@ -31,6 +31,9 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             var holyPriestAuraHealingPeriodicBonus = _gameStateService.GetSpellData(gameState, Spell.HolyPriest)
                 .GetEffect(191076).BaseValue / 100 + 1;
 
+            var holyPriestAuraRenewModifier = _gameStateService.GetSpellData(gameState, Spell.HolyPriest)
+                .GetEffect(1039629).BaseValue / 100 + 1;
+
             var healingSp = spellData.GetEffect(95).SpCoefficient;
 
             // This is broken up a bit for the sake of logging.
@@ -39,6 +42,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
                 * _gameStateService.GetIntellect(gameState)
                 * _gameStateService.GetVersatilityMultiplier(gameState)
                 * holyPriestAuraHealingBonus
+                * holyPriestAuraRenewModifier
                 * GetRapidRecoveryHealingMultiplier(gameState);
 
             var journalAverageHealFirstTick = averageHealFirstTick;
@@ -55,6 +59,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
                 * _gameStateService.GetIntellect(gameState)
                 * _gameStateService.GetVersatilityMultiplier(gameState)
                 * holyPriestAuraHealingPeriodicBonus
+                * holyPriestAuraRenewModifier
                 * GetRapidRecoveryHealingMultiplier(gameState)
                 * (duration / tickrate);
 

@@ -10,6 +10,9 @@ namespace Salvation.Core.Constants
         NumberOfHealingTargets,
         NumberOfDamageTargets,
         CastsPerMinute,
+        /// <summary>
+        /// Duration in milliseconds
+        /// </summary>
         Duration,
         /// <summary>
         /// Used to store the allowed duration a spell can use to calculate its CPM from 

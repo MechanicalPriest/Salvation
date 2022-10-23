@@ -191,8 +191,13 @@ namespace Salvation.Core.Modelling
         {
             spellData = ValidateSpellData(gameState, spellData);
 
+            var duration = spellData.Duration;
+
+            if (spellData.Overrides.ContainsKey(Override.Duration))
+                duration = spellData.Overrides[Override.Duration];
+
             // Spells are stored with duration in milliseconds. We want seconds.
-            return spellData.Duration / 1000;
+            return duration / 1000;
         }
 
         /// <summary>

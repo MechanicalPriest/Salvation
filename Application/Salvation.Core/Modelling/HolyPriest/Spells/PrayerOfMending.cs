@@ -179,7 +179,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         {
             spellData = ValidateSpellData(gameState, spellData);
 
-            var numPoMStacks = spellData.GetEffect(22870).BaseValue + GetPrayersOfTheVirtuousModifier(gameState);
+            var numPoMStacks = 1 + spellData.GetEffect(22870).BaseValue + GetPrayersOfTheVirtuousModifier(gameState);
 
             // Override used by Salvation to apply 2-stack PoMs
             if (spellData.Overrides.ContainsKey(Override.ResultMultiplier))

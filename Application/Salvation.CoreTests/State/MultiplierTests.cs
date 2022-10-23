@@ -72,7 +72,7 @@ namespace Salvation.CoreTests.State
             var mastery = _gameStateService.GetMasteryMultiplier(_state);
 
             // Assert
-            Assert.AreEqual(1.1069444444444445d, mastery);
+            Assert.AreEqual(1.0962500000000002d, mastery);
         }
 
         [Test]

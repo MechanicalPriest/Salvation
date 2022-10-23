@@ -140,17 +140,17 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             if (talent != null && talent.Rank > 0)
             {
                 // Figure out what percentage of buffs the calling spell gets
-                var unwaveringWillUptime = _gameStateService.GetPlaystyle(gameState, "PrayerCircleUptime");
+                var prayerCircleUptime = _gameStateService.GetPlaystyle(gameState, "PrayerCircleUptime");
 
-                if (unwaveringWillUptime == null)
+                if (prayerCircleUptime == null)
                     throw new ArgumentOutOfRangeException("PrayerCircleUptime", $"PrayerCircleUptime needs to be set.");
 
                 var talentSpellData = _gameStateService.GetSpellData(gameState, Spell.PrayerCircleBuff);
 
-                // Divine this by actual casts to get the average multiplier per cast
-                var castTimeReduction = talentSpellData.GetEffect(809046).BaseValue / 100 * talent.Rank * -1;
+                // Divide this by actual casts to get the average multiplier per cast
+                var castTimeReduction = talentSpellData.GetEffect(809046).BaseValue / 100 * -1;
 
-                multi -= castTimeReduction * unwaveringWillUptime.Value;
+                multi -= castTimeReduction * prayerCircleUptime.Value;
             }
 
             return multi;
@@ -167,17 +167,17 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             if (talent != null && talent.Rank > 0)
             {
                 // Figure out what percentage of buffs the calling spell gets
-                var unwaveringWillUptime = _gameStateService.GetPlaystyle(gameState, "PrayerCircleUptime");
+                var prayerCircleUptime = _gameStateService.GetPlaystyle(gameState, "PrayerCircleUptime");
 
-                if (unwaveringWillUptime == null)
+                if (prayerCircleUptime == null)
                     throw new ArgumentOutOfRangeException("PrayerCircleUptime", $"PrayerCircleUptime needs to be set.");
 
                 var talentSpellData = _gameStateService.GetSpellData(gameState, Spell.PrayerCircleBuff);
 
-                // Divine this by actual casts to get the average multiplier per cast
-                var castTimeReduction = talentSpellData.GetEffect(912580).BaseValue / 100 * talent.Rank * -1;
+                // Divide this by actual casts to get the average multiplier per cast
+                var manaReduction = talentSpellData.GetEffect(912580).BaseValue / 100 * -1;
 
-                multi -= castTimeReduction * unwaveringWillUptime.Value;
+                multi -= manaReduction * prayerCircleUptime.Value;
             }
 
             return multi;
@@ -206,10 +206,18 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
                 // We need to add the 0-cost renews:
                 var renewSpellData = _gameStateService.GetSpellData(gameState, Spell.Renew);
 
+                // Force the correct duration
+                var duration = talentSpellData.GetEffect(1028558).BaseValue * 1000;
+                if(_gameStateService.GetTalent(gameState, Spell.RapidRecovery).Rank > 0)
+                {
+                    var rapidRecoverySpellData = _gameStateService.GetSpellData(gameState, Spell.RapidRecovery);
+                    duration -= rapidRecoverySpellData.GetEffect(1039631).BaseValue * 1000 * -1;
+                }
+
                 renewSpellData.ManaCost = 0;
                 renewSpellData.Gcd = 0;
                 renewSpellData.BaseCastTime = 0;
-                renewSpellData.Duration = talentSpellData.GetEffect(1028558).BaseValue * 1000;
+                renewSpellData.Overrides[Override.Duration] = duration;
                 renewSpellData.Overrides[Override.NumberOfHealingTargets] = 1;
                 renewSpellData.Overrides[Override.CastsPerMinute] = procsPerMinute; // Force the number of cpm
 

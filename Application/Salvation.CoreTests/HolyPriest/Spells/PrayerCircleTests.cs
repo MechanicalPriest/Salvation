@@ -38,7 +38,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
 
             // Assert
             Assert.That(resultDefault, Is.EqualTo(1.95099558156883d));
-            Assert.That(resultRank1, Is.EqualTo(1.5607964652550641d));
+            Assert.That(resultRank1, Is.EqualTo(1.6388362885178172d));
         }
 
         [Test]
@@ -57,7 +57,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
 
             // Assert
             Assert.That(resultDefault, Is.EqualTo(1.0d));
-            Assert.That(resultRank1, Is.EqualTo(0.80000000000000004d));
+            Assert.That(resultRank1, Is.EqualTo(0.83999999999999997d));
         }
 
         [Test]
@@ -91,8 +91,8 @@ namespace Salvation.CoreTests.HolyPriest.Spells
             var resultRank1 = _spell.GetActualManaCost(_gameState, null);
 
             // Assert
-            Assert.That(resultDefault, Is.EqualTo(10000.0d));
-            Assert.That(resultRank1, Is.EqualTo(8000.0d));
+            Assert.That(resultDefault, Is.EqualTo(11000.000000000002d));
+            Assert.That(resultRank1, Is.EqualTo(9240.0000000000018d));
         }
 
         [Test]
@@ -111,7 +111,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
 
             // Assert
             Assert.That(resultDefault, Is.EqualTo(1.0d));
-            Assert.That(resultRank1, Is.EqualTo(0.80000000000000004d));
+            Assert.That(resultRank1, Is.EqualTo(0.83999999999999997d));
         }
 
         [Test]

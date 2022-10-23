@@ -31,6 +31,9 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             var holyPriestAuraHealingPeriodicBonus = _gameStateService.GetSpellData(gameState, Spell.HolyPriest)
                 .GetEffect(191076).BaseValue / 100 + 1;
 
+            var holyPriestAuraRenewModifier = _gameStateService.GetSpellData(gameState, Spell.HolyPriest)
+                .GetEffect(1039629).BaseValue / 100 + 1;
+
             var healingSp = spellData.GetEffect(95).SpCoefficient;
 
             // This is broken up a bit for the sake of logging.
@@ -39,6 +42,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
                 * _gameStateService.GetIntellect(gameState)
                 * _gameStateService.GetVersatilityMultiplier(gameState)
                 * holyPriestAuraHealingBonus
+                * holyPriestAuraRenewModifier
                 * GetRapidRecoveryHealingMultiplier(gameState);
 
             var journalAverageHealFirstTick = averageHealFirstTick;
@@ -48,13 +52,14 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             averageHealFirstTick *= _gameStateService.GetCriticalStrikeMultiplier(gameState)
                 * _gameStateService.GetGlobalHealingMultiplier(gameState);
 
-            double duration = (spellData.Duration + GetRapidRecoveryDurationModifier(gameState)) / 1000;
+            double duration = GetDuration(gameState, spellData);
             double tickrate = spellData.GetEffect(95).Amplitude / 1000;
             // HoT is affected by haste
             double averageHealTicks = healingSp
                 * _gameStateService.GetIntellect(gameState)
                 * _gameStateService.GetVersatilityMultiplier(gameState)
                 * holyPriestAuraHealingPeriodicBonus
+                * holyPriestAuraRenewModifier
                 * GetRapidRecoveryHealingMultiplier(gameState)
                 * (duration / tickrate);
 
@@ -148,6 +153,19 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             var totalTicks = 1 + Math.Ceiling(baseTicks * _gameStateService.GetHasteMultiplier(gameState));
 
             return totalTicks * GetActualCastsPerMinute(gameState, spellData);
+        }
+
+        public override double GetDuration(GameState gameState, BaseSpellData spellData = null)
+        {
+            spellData = ValidateSpellData(gameState, spellData);
+
+            var duration = base.GetDuration(gameState, spellData) + GetRapidRecoveryDurationModifier(gameState) / 1000;
+
+            // This override is used by Revitalizing Prayers renews. It applies rapid recovery itself when setting duration.
+            if (spellData.Overrides.ContainsKey(Override.Duration))
+                duration = spellData.Overrides[Override.Duration] / 1000;
+
+            return duration;
         }
 
         public override AveragedSpellCastResult GetCastResults(GameState gameState, BaseSpellData spellData = null)

@@ -362,8 +362,12 @@ namespace Salvation.Core.State
                 if (spell.Spell != requestingSpell)
                     addedMasteryPercent += spell.SpellService.GetAverageMasteryPercent(state, spell.SpellData);
             }
+            
+            // This part is holy specific and should be moved if used for another spec.
+            var masteryActualCost = specData.MasteryCost / GetHolyPriestMasteryModifier(state);
 
-            return 1 + specData.MasteryBase + (GetDrRating(GetMasteryRating(state), specData.MasteryCost) / specData.MasteryCost / 100)
+            return 1 + specData.MasteryBase 
+                + (GetDrRating(GetMasteryRating(state), specData.MasteryCost) / masteryActualCost / 100)
                 + addedMasteryPercent;
         }
 
@@ -1097,6 +1101,12 @@ namespace Salvation.Core.State
             JournalEntry(state, $"[GetRenewTicksPerMinute] Done. Ticks per minute: {ticksPerMinute}.");
 
             return ticksPerMinute;
+        }
+
+        public double GetHolyPriestMasteryModifier(GameState state)
+        {
+            var masterySpellData = GetSpellData(state, Spell.EchoOfLight);
+            return masterySpellData.GetEffect(68102).SpCoefficient;
         }
 
         #endregion

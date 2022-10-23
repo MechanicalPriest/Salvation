@@ -29,6 +29,7 @@ namespace Salvation.Utility.SpellDataUpdate
                 (uint)Spell.Priest,
                 (uint)Spell.LeechHeal,
                 (uint)Spell.EchoOfLight,
+                (uint)Spell.EchoOfLightHeal,
                 (uint)Spell.Heal,
                 (uint)Spell.FlashHeal,
                 (uint)Spell.PowerWordShield,
@@ -133,7 +134,7 @@ namespace Salvation.Utility.SpellDataUpdate
                 CritBase = 0.05,
                 HasteBase = 0.0,
                 VersBase = 0.0,
-                MasteryBase = 0.1,
+                MasteryBase = 0.09,
                 IntBase = 2089, // From a human/panda in-game and sc_extra_data.inc
                 StamBase = 1597, // From a human/panda in-game and sc_extra_data.inc
                 ManaBase = 250000, // __base_mp in sc_scale_data.inc
@@ -143,7 +144,7 @@ namespace Salvation.Utility.SpellDataUpdate
                 CritCost = 180,
                 HasteCost = 170,
                 VersCost = 205, // Ver damage taken cost is double
-                MasteryCost = 144, // This is the base cost * 0.80 holy priest modifier
+                MasteryCost = 180, // This is the base modifier. Divide by the mastery multiplier
                 LeechCost = 110,
                 SpeedCost = 50, 
                 AvoidanceCost = 72,
@@ -278,9 +279,14 @@ namespace Salvation.Utility.SpellDataUpdate
         {
             switch (baseSpellData.Id)
             {
+                case (uint)Spell.PowerWordShield:
+                    // PW:S stores the coefficient in the description for some reason. We set it manually on effect #13 (See #214)
+                    baseSpellData.GetEffect(13).SpCoefficient = 3.36;
+                    // This comes from the Priest aura 137030 effect #1 179714
+                    baseSpellData.IsCooldownHasted = true;
+                    break;
                 case (uint)Spell.CircleOfHealing:
                 case (uint)Spell.PrayerOfMending:
-                case (uint)Spell.PowerWordShield:
                     // This comes from the Priest aura 137030 effect #1 179714
                     baseSpellData.IsCooldownHasted = true;
                     break;

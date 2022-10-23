@@ -1,5 +1,5 @@
 {
-  "GameVersion": "10.0.2.46157",
+  "GameVersion": "10.0.2.46144",
   "Specs": [
     {
       "Class": "Priest",
@@ -9,13 +9,13 @@
       "CritBase": 0.05,
       "HasteBase": 0.0,
       "VersBase": 0.0,
-      "MasteryBase": 0.1,
+      "MasteryBase": 0.09,
       "IntBase": 2089.0,
       "StamBase": 1597.0,
       "CritCost": 180.0,
       "HasteCost": 170.0,
       "VersCost": 205.0,
-      "MasteryCost": 144.0,
+      "MasteryCost": 180.0,
       "LeechCost": 110.0,
       "SpeedCost": 50.0,
       "AvoidanceCost": 72.0,
@@ -181,6 +181,17 @@
               "TriggerSpell": null,
               "Type": 6,
               "ScaleValues": {}
+            },
+            {
+              "Id": 1039629,
+              "BaseValue": -10.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
             }
           ]
         },
@@ -300,7 +311,7 @@
             {
               "Id": 68102,
               "BaseValue": 0.0,
-              "SpCoefficient": 1.25,
+              "SpCoefficient": 1.125,
               "Coefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
@@ -315,6 +326,37 @@
               "Coefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            }
+          ]
+        },
+        {
+          "Id": 77489,
+          "Name": "Echo of Light",
+          "ManaCost": 0.0,
+          "MaxRange": 100.0,
+          "BaseCastTime": 0.0,
+          "BaseCooldown": 0.0,
+          "IsCooldownHasted": false,
+          "Duration": 6000.0,
+          "Gcd": 0.0,
+          "ChargeCooldown": 0,
+          "Charges": 0,
+          "MaxStacks": 0.0,
+          "ProcChance": 0.0,
+          "InternalCooldown": 0.0,
+          "Rppm": 0.0,
+          "RppmIsHasted": false,
+          "Effects": [
+            {
+              "Id": 68109,
+              "BaseValue": 1.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 3000.0,
               "TriggerSpell": null,
               "Type": 6,
               "ScaleValues": {}
@@ -404,7 +446,7 @@
             {
               "Id": 13,
               "BaseValue": 0.0,
-              "SpCoefficient": 0.0,
+              "SpCoefficient": 3.36,
               "Coefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
@@ -582,7 +624,7 @@
           "Effects": [
             {
               "Id": 22870,
-              "BaseValue": 5.0,
+              "BaseValue": 4.0,
               "SpCoefficient": 0.0,
               "Coefficient": 0.0,
               "TriggerSpellid": 0,
@@ -1468,7 +1510,7 @@
           "Effects": [
             {
               "Id": 283376,
-              "BaseValue": 15.0,
+              "BaseValue": 12.0,
               "SpCoefficient": 0.0,
               "Coefficient": 0.0,
               "TriggerSpellid": 0,
@@ -1535,7 +1577,7 @@
         {
           "Id": 596,
           "Name": "Prayer of Healing",
-          "ManaCost": 4.0,
+          "ManaCost": 4.4,
           "MaxRange": 40.0,
           "BaseCastTime": 2000.0,
           "BaseCooldown": 0.0,
@@ -2365,6 +2407,17 @@
               "TriggerSpell": null,
               "Type": 6,
               "ScaleValues": {}
+            },
+            {
+              "Id": 1039631,
+              "BaseValue": -1.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
             }
           ]
         },
@@ -2670,7 +2723,7 @@
                 "Effects": [
                   {
                     "Id": 809046,
-                    "BaseValue": -25.0,
+                    "BaseValue": -20.0,
                     "SpCoefficient": 0.0,
                     "Coefficient": 0.0,
                     "TriggerSpellid": 0,
@@ -2681,7 +2734,7 @@
                   },
                   {
                     "Id": 912580,
-                    "BaseValue": -25.0,
+                    "BaseValue": -20.0,
                     "SpCoefficient": 0.0,
                     "Coefficient": 0.0,
                     "TriggerSpellid": 0,
@@ -2958,7 +3011,7 @@
           "Effects": [
             {
               "Id": 842754,
-              "BaseValue": 8.0,
+              "BaseValue": 6.0,
               "SpCoefficient": 0.0,
               "Coefficient": 0.0,
               "TriggerSpellid": 0,
@@ -3050,7 +3103,7 @@
           "Effects": [
             {
               "Id": 1028557,
-              "BaseValue": 30.0,
+              "BaseValue": 25.0,
               "SpCoefficient": 0.0,
               "Coefficient": 0.0,
               "TriggerSpellid": 0,
@@ -3516,7 +3569,7 @@
           "Effects": [
             {
               "Id": 809046,
-              "BaseValue": -25.0,
+              "BaseValue": -20.0,
               "SpCoefficient": 0.0,
               "Coefficient": 0.0,
               "TriggerSpellid": 0,
@@ -3527,7 +3580,7 @@
             },
             {
               "Id": 912580,
-              "BaseValue": -25.0,
+              "BaseValue": -20.0,
               "SpCoefficient": 0.0,
               "Coefficient": 0.0,
               "TriggerSpellid": 0,

@@ -46,7 +46,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
 
             // Assert
             Assert.That(result, Is.EqualTo(0.0d));
-            Assert.That(resultRank1, Is.EqualTo(13.520789205882355d));
+            Assert.That(resultRank1, Is.EqualTo(11.267324338235296d));
         }
 
         [Test]
@@ -63,7 +63,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
 
             // Assert
             Assert.That(result, Is.EqualTo(0.0d));
-            Assert.That(resultRank1, Is.EqualTo(54.083156823529421d));
+            Assert.That(resultRank1, Is.EqualTo(45.069297352941184d));
         }
 
         [Test]
@@ -80,7 +80,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
 
             // Assert
             Assert.That(result, Is.EqualTo(0.0d));
-            Assert.That(resultRank1, Is.EqualTo(0.067603946029411777d));
+            Assert.That(resultRank1, Is.EqualTo(0.056336621691176481d));
         }
 
         [Test]
@@ -124,7 +124,34 @@ namespace Salvation.CoreTests.HolyPriest.Spells
 
             var renewCast1 = resultRank1.AdditionalCasts.Where(c => c.SpellId == (int)Spell.Renew).First();
             Assert.That(renewCast1.AdditionalCasts.Count, Is.EqualTo(0));
-            Assert.That(renewCast1.RawHealing, Is.EqualTo(3555.5511831815993d));
+            Assert.That(renewCast1.RawHealing, Is.EqualTo(3199.9960648634387d));
+        }
+
+        [Test]
+        public void GetCastResults_Calculates_RapidRecovery()
+        {
+            // Arrange
+
+            // Act
+            _gameStateService.SetTalentRank(_gameState, Spell.RevitalizingPrayers, 0);
+            var resultRank0 = _prayerOfHealingSpellService.GetCastResults(_gameState, null);
+
+            _gameStateService.SetTalentRank(_gameState, Spell.RevitalizingPrayers, 1);
+            _gameStateService.SetTalentRank(_gameState, Spell.RapidRecovery, 1);
+            var resultRank1 = _prayerOfHealingSpellService.GetCastResults(_gameState, null);
+
+            // Assert
+            Assert.That(resultRank0.AdditionalCasts.Count, Is.EqualTo(1));
+            Assert.That(resultRank0.AdditionalCasts.Where(c => c.SpellId == (int)Spell.EchoOfLight).Any(), Is.True);
+
+            Assert.That(resultRank1.AdditionalCasts.Count, Is.EqualTo(2));
+            Assert.That(resultRank1.RawHealing, Is.EqualTo(15936.820161482929d));
+            Assert.That(resultRank1.AdditionalCasts.Where(c => c.SpellId == (int)Spell.EchoOfLight).Any(), Is.True);
+            Assert.That(resultRank1.AdditionalCasts.Where(c => c.SpellId == (int)Spell.Renew).Any(), Is.True);
+
+            var renewCast1 = resultRank1.AdditionalCasts.Where(c => c.SpellId == (int)Spell.Renew).First();
+            Assert.That(renewCast1.AdditionalCasts.Count, Is.EqualTo(0));
+            Assert.That(renewCast1.RawHealing, Is.EqualTo(3836.0426464488755d));
         }
     }
 }

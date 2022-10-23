@@ -31,6 +31,7 @@ namespace Salvation.Core.Constants.Data
         DivineStarHeal = 110745,
         DivineStarDamage = 122128,
         EchoOfLight = 77485,
+        EchoOfLightHeal = 77489,
 
         // Base damage spells
         Smite = 585,

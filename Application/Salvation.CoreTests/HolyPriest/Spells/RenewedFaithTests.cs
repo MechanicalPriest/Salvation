@@ -94,7 +94,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
             var result = _renewedFaithSpellService.GetAverageHealingMultiplier(_gameState, null);
 
             // Assert
-            Assert.That(result, Is.EqualTo(1.0075472334871722d));
+            Assert.That(result, Is.EqualTo(1.0056604251153791d));
         }
 
         [Test]

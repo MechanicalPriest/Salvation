@@ -30,7 +30,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
             var resultDefault = spellService.GetAverageRawHealing(_gameState, null);
 
             var spellData = gameStateService.GetSpellData(_gameState, Spell.PrayerOfMending);
-            var defaultNumStacks = spellData.GetEffect(22870).BaseValue;
+            var defaultNumStacks = spellData.GetEffect(22870).BaseValue + 1;
             spellData.Overrides.Add(Override.ResultMultiplier, defaultNumStacks / 2);
 
 

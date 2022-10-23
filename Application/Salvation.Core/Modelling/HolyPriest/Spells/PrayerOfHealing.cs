@@ -140,17 +140,17 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             if (talent != null && talent.Rank > 0)
             {
                 // Figure out what percentage of buffs the calling spell gets
-                var unwaveringWillUptime = _gameStateService.GetPlaystyle(gameState, "PrayerCircleUptime");
+                var prayerCircleUptime = _gameStateService.GetPlaystyle(gameState, "PrayerCircleUptime");
 
-                if (unwaveringWillUptime == null)
+                if (prayerCircleUptime == null)
                     throw new ArgumentOutOfRangeException("PrayerCircleUptime", $"PrayerCircleUptime needs to be set.");
 
                 var talentSpellData = _gameStateService.GetSpellData(gameState, Spell.PrayerCircleBuff);
 
-                // Divine this by actual casts to get the average multiplier per cast
-                var castTimeReduction = talentSpellData.GetEffect(809046).BaseValue / 100 * talent.Rank * -1;
+                // Divide this by actual casts to get the average multiplier per cast
+                var castTimeReduction = talentSpellData.GetEffect(809046).BaseValue / 100 * -1;
 
-                multi -= castTimeReduction * unwaveringWillUptime.Value;
+                multi -= castTimeReduction * prayerCircleUptime.Value;
             }
 
             return multi;
@@ -167,17 +167,17 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             if (talent != null && talent.Rank > 0)
             {
                 // Figure out what percentage of buffs the calling spell gets
-                var unwaveringWillUptime = _gameStateService.GetPlaystyle(gameState, "PrayerCircleUptime");
+                var prayerCircleUptime = _gameStateService.GetPlaystyle(gameState, "PrayerCircleUptime");
 
-                if (unwaveringWillUptime == null)
+                if (prayerCircleUptime == null)
                     throw new ArgumentOutOfRangeException("PrayerCircleUptime", $"PrayerCircleUptime needs to be set.");
 
                 var talentSpellData = _gameStateService.GetSpellData(gameState, Spell.PrayerCircleBuff);
 
-                // Divine this by actual casts to get the average multiplier per cast
-                var castTimeReduction = talentSpellData.GetEffect(912580).BaseValue / 100 * talent.Rank * -1;
+                // Divide this by actual casts to get the average multiplier per cast
+                var manaReduction = talentSpellData.GetEffect(912580).BaseValue / 100 * -1;
 
-                multi -= castTimeReduction * unwaveringWillUptime.Value;
+                multi -= manaReduction * prayerCircleUptime.Value;
             }
 
             return multi;

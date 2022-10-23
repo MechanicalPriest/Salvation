@@ -46,7 +46,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
 
             // Assert
             Assert.That(result, Is.EqualTo(0.0d));
-            Assert.That(resultRank1, Is.EqualTo(13.520789205882355d));
+            Assert.That(resultRank1, Is.EqualTo(11.267324338235296d));
         }
 
         [Test]
@@ -63,7 +63,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
 
             // Assert
             Assert.That(result, Is.EqualTo(0.0d));
-            Assert.That(resultRank1, Is.EqualTo(54.083156823529421d));
+            Assert.That(resultRank1, Is.EqualTo(45.069297352941184d));
         }
 
         [Test]
@@ -80,7 +80,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
 
             // Assert
             Assert.That(result, Is.EqualTo(0.0d));
-            Assert.That(resultRank1, Is.EqualTo(0.067603946029411777d));
+            Assert.That(resultRank1, Is.EqualTo(0.056336621691176481d));
         }
 
         [Test]

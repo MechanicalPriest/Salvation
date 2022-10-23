@@ -354,7 +354,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 yield return new TestCaseData(typeof(HolyWordSerenity)).Returns(6250.0d);
                 yield return new TestCaseData(typeof(Mindgames)).Returns(5000.0d);
                 yield return new TestCaseData(typeof(PowerWordShield)).Returns(7750.0d);
-                yield return new TestCaseData(typeof(PrayerOfHealing)).Returns(10000.0d);
+                yield return new TestCaseData(typeof(PrayerOfHealing)).Returns(11000.0d);
                 yield return new TestCaseData(typeof(PrayerOfMending)).Returns(5000.0d);
                 yield return new TestCaseData(typeof(Renew)).Returns(4500.0d);
                 yield return new TestCaseData(typeof(Smite)).Returns(500.0d);
@@ -493,7 +493,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
                 // For some reason Divstar has a duration of 15?
                 yield return new TestCaseData(typeof(DivineStar)).Returns(15);
                 yield return new TestCaseData(typeof(FlashHeal)).Returns(0);
-                // Halo has a 3.2s duration, travel time of the expansion?
+                // Halo has a 2.150s duration, travel time of the expansion?
                 yield return new TestCaseData(typeof(Halo)).Returns(2.150);
                 yield return new TestCaseData(typeof(Heal)).Returns(0);
                 yield return new TestCaseData(typeof(HolyNova)).Returns(0);

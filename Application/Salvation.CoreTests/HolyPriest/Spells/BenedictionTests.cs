@@ -46,7 +46,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
 
             // Assert
             Assert.That(result, Is.EqualTo(0.0d));
-            Assert.That(resultRank1, Is.EqualTo(3.4464865341176463d));
+            Assert.That(resultRank1, Is.EqualTo(2.7571892272941168d));
         }
 
         [Test]
@@ -63,7 +63,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
 
             // Assert
             Assert.That(result, Is.EqualTo(0.0d));
-            Assert.That(resultRank1, Is.EqualTo(24.125405738823524d));
+            Assert.That(resultRank1, Is.EqualTo(19.300324591058818d));
         }
 
         [Test]
@@ -80,7 +80,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
 
             // Assert
             Assert.That(result, Is.EqualTo(0.0d));
-            Assert.That(resultRank1, Is.EqualTo(0.043081081676470581d));
+            Assert.That(resultRank1, Is.EqualTo(0.034464865341176452d));
         }
 
         [Test]
@@ -124,7 +124,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
 
             var renewCast1 = resultRank1.AdditionalCasts.Where(c => c.SpellId == (int)Spell.Renew).First();
             Assert.That(renewCast1.AdditionalCasts.Count, Is.EqualTo(0));
-            Assert.That(renewCast1.RawHealing, Is.EqualTo(7140.3811173798704d));
+            Assert.That(renewCast1.RawHealing, Is.EqualTo(6426.3430056418829d));
         }
     }
 }

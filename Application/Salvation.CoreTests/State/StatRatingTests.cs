@@ -48,7 +48,7 @@ namespace Salvation.CoreTests.State
             var crit = _gameStateService.GetCriticalStrikeRating(_state);
 
             // Assert
-            Assert.AreEqual(208.0d, crit);
+            Assert.AreEqual(237.0d, crit);
         }
 
         [Test]
@@ -60,7 +60,7 @@ namespace Salvation.CoreTests.State
             var haste = _gameStateService.GetHasteRating(_state);
 
             // Assert
-            Assert.AreEqual(384.0d, haste);
+            Assert.AreEqual(426.0d, haste);
         }
 
         [Test]
@@ -72,7 +72,7 @@ namespace Salvation.CoreTests.State
             var mastery = _gameStateService.GetMasteryRating(_state);
 
             // Assert
-            Assert.AreEqual(95.0d, mastery);
+            Assert.AreEqual(100.0d, mastery);
         }
 
         [Test]
@@ -84,7 +84,7 @@ namespace Salvation.CoreTests.State
             var vers = _gameStateService.GetVersatilityRating(_state);
 
             // Assert
-            Assert.AreEqual(719.0d, vers);
+            Assert.AreEqual(812.0d, vers);
         }
 
         [Test]
@@ -96,7 +96,7 @@ namespace Salvation.CoreTests.State
             var intellect = _gameStateService.GetIntellect(_state);
 
             // Assert
-            Assert.AreEqual(2835.0d, intellect);
+            Assert.AreEqual(2982.0d, intellect);
         }
 
         [Test]

@@ -36,9 +36,9 @@ namespace Salvation.CoreTests.HolyPriest.Spells
             var resultRank2 = spellService.GetAverageRawHealing(_gameState, null);
 
             // Assert
-            Assert.AreEqual(7394.684554928077d, resultDefault);
-            Assert.AreEqual(7951.0825985635893d, resultRank1);
-            Assert.AreEqual(8507.4806421990997d, resultRank2);
+            Assert.AreEqual(7376.1978435407573d, resultDefault);
+            Assert.AreEqual(7931.2048920671805d, resultRank1);
+            Assert.AreEqual(8486.2119405936028d, resultRank2);
         }
 
         [Test]
@@ -59,9 +59,9 @@ namespace Salvation.CoreTests.HolyPriest.Spells
             var resultRank2 = spellService.GetAverageRawHealing(_gameState, null);
 
             // Assert
-            Assert.AreEqual(10745.970166028488d, resultDefault);
-            Assert.AreEqual(11554.52889939044d, resultRank1);
-            Assert.AreEqual(12363.087632752389d, resultRank2);
+            Assert.AreEqual(10719.105240613419d, resultDefault);
+            Assert.AreEqual(11525.642577141965d, resultRank1);
+            Assert.AreEqual(12332.17991367051d, resultRank2);
         }
     }
 }

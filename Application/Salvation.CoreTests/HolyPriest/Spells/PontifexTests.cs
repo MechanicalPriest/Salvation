@@ -88,8 +88,8 @@ namespace Salvation.CoreTests.HolyPriest.Spells
             var resultRank1 = _holyWordSerenity.GetAverageRawHealing(_gameState, null);
 
             // Assert
-            Assert.AreEqual(25498.912258372686d, resultDefault);
-            Assert.AreEqual(25577.22242887651d, resultRank1);
+            Assert.AreEqual(25435.164977726752d, resultDefault);
+            Assert.AreEqual(25513.279372804318d, resultRank1);
         }
 
         [Test]
@@ -166,8 +166,8 @@ namespace Salvation.CoreTests.HolyPriest.Spells
             var resultRank1 = _holyWordSanctify.GetAverageRawHealing(_gameState, null);
 
             // Assert
-            Assert.AreEqual(53547.71574258263d, resultDefault);
-            Assert.AreEqual(53794.438402115811d, resultRank1);
+            Assert.AreEqual(53413.846453226186d, resultDefault);
+            Assert.AreEqual(53659.952306110528d, resultRank1);
         }
 
         [Test]
@@ -242,8 +242,8 @@ namespace Salvation.CoreTests.HolyPriest.Spells
             var resultRank1 = _holyWordSalvation.GetAverageRawHealing(_gameState, null);
 
             // Assert
-            Assert.AreEqual(80139.438526314159d, resultDefault);
-            Assert.AreEqual(84146.410452629862d, resultRank1);
+            Assert.AreEqual(79939.089929998358d, resultDefault);
+            Assert.AreEqual(83936.04442649828d, resultRank1);
         }
 
         [Test]

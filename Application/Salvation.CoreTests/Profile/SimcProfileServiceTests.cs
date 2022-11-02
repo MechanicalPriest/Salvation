@@ -82,11 +82,11 @@ namespace Salvation.CoreTests.Profile
 
             // Assert
             Assert.IsNotNull(profile);
-            Assert.AreEqual(2835.0d, gameStateService.GetIntellect(gameState));
-            Assert.AreEqual(719.0d, gameStateService.GetVersatilityRating(gameState));
-            Assert.AreEqual(208.0d, gameStateService.GetCriticalStrikeRating(gameState));
-            Assert.AreEqual(384.0d, gameStateService.GetHasteRating(gameState));
-            Assert.AreEqual(95.0d, gameStateService.GetMasteryRating(gameState));
+            Assert.AreEqual(2982.0d, gameStateService.GetIntellect(gameState));
+            Assert.AreEqual(812.0d, gameStateService.GetVersatilityRating(gameState));
+            Assert.AreEqual(237.0d, gameStateService.GetCriticalStrikeRating(gameState));
+            Assert.AreEqual(426.0d, gameStateService.GetHasteRating(gameState));
+            Assert.AreEqual(100.0d, gameStateService.GetMasteryRating(gameState));
         }
 
         [Test]

@@ -131,10 +131,10 @@ namespace Salvation.CoreTests.HolyPriest.Spells
         {
             get
             {
-                yield return new TestCaseData(typeof(DivineImageHealingLight)).Returns(3140.2601303414635d);
-                yield return new TestCaseData(typeof(DivineImageTranquilLight)).Returns(3766.3892088828825d);
-                yield return new TestCaseData(typeof(DivineImageDazzlingLights)).Returns(7654.3840677073185d);
-                yield return new TestCaseData(typeof(DivineImageBlessedLight)).Returns(18841.560782048778d);
+                yield return new TestCaseData(typeof(DivineImageBlessedLight)).Returns(19783.638821151224d);
+                yield return new TestCaseData(typeof(DivineImageDazzlingLights)).Returns(8037.1032710926838d);
+                yield return new TestCaseData(typeof(DivineImageHealingLight)).Returns(3297.2731368585369d);
+                yield return new TestCaseData(typeof(DivineImageTranquilLight)).Returns(3954.7086693270267d);
             }
         }
 
@@ -142,10 +142,10 @@ namespace Salvation.CoreTests.HolyPriest.Spells
         {
             get
             {
+                yield return new TestCaseData(typeof(DivineImageBlessedLight)).Returns(1.160433176470588d);
+                yield return new TestCaseData(typeof(DivineImageDazzlingLights)).Returns(3.6909356396092057d);
                 yield return new TestCaseData(typeof(DivineImageHealingLight)).Returns(1.2908797822093376d);
                 yield return new TestCaseData(typeof(DivineImageTranquilLight)).Returns(0.37314282352941175d);
-                yield return new TestCaseData(typeof(DivineImageDazzlingLights)).Returns(3.6909356396092057d);
-                yield return new TestCaseData(typeof(DivineImageBlessedLight)).Returns(1.160433176470588d);
             }
         }
 
@@ -153,10 +153,10 @@ namespace Salvation.CoreTests.HolyPriest.Spells
         {
             get
             {
+                yield return new TestCaseData(typeof(DivineImageBlessedLight)).Returns(4.6417327058823519d);
+                yield return new TestCaseData(typeof(DivineImageDazzlingLights)).Returns(14.763742558436823d);
                 yield return new TestCaseData(typeof(DivineImageHealingLight)).Returns(5.1635191288373505d);
                 yield return new TestCaseData(typeof(DivineImageTranquilLight)).Returns(1.492571294117647d);
-                yield return new TestCaseData(typeof(DivineImageDazzlingLights)).Returns(14.763742558436823d);
-                yield return new TestCaseData(typeof(DivineImageBlessedLight)).Returns(4.6417327058823519d);
             }
         }
 
@@ -164,10 +164,10 @@ namespace Salvation.CoreTests.HolyPriest.Spells
         {
             get
             {
+                yield return new TestCaseData(typeof(DivineImageBlessedLight)).Returns(true);
+                yield return new TestCaseData(typeof(DivineImageDazzlingLights)).Returns(true);
                 yield return new TestCaseData(typeof(DivineImageHealingLight)).Returns(true);
                 yield return new TestCaseData(typeof(DivineImageTranquilLight)).Returns(true);
-                yield return new TestCaseData(typeof(DivineImageDazzlingLights)).Returns(true);
-                yield return new TestCaseData(typeof(DivineImageBlessedLight)).Returns(true);
             }
         }
     }

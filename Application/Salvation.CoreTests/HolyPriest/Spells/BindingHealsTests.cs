@@ -161,24 +161,24 @@ namespace Salvation.CoreTests.HolyPriest.Spells
             Assert.That(resultRank0.AdditionalCasts.Where(c => c.SpellId == (int)Spell.EchoOfLight).Any(), Is.True);
 
             Assert.That(resultRank1.AdditionalCasts.Count, Is.EqualTo(2));
-            Assert.That(resultRank1.RawHealing, Is.EqualTo(7394.684554928077d));
+            Assert.That(resultRank1.RawHealing, Is.EqualTo(7376.1978435407573d));
             Assert.That(resultRank1.AdditionalCasts.Where(c => c.SpellId == (int)Spell.EchoOfLight).Any(), Is.True);
             Assert.That(resultRank1.AdditionalCasts.Where(c => c.SpellId == (int)Spell.BindingHeals).Any(), Is.True);
 
             var bhsCast1 = resultRank1.AdditionalCasts.Where(c => c.SpellId == (int)Spell.BindingHeals).First();
             Assert.That(bhsCast1.AdditionalCasts.Count, Is.EqualTo(1));
             Assert.That(bhsCast1.AdditionalCasts.Where(c => c.SpellId == (int)Spell.EchoOfLight).Any(), Is.True);
-            Assert.That(bhsCast1.RawHealing, Is.EqualTo(1183.1495287884925d));
+            Assert.That(bhsCast1.RawHealing, Is.EqualTo(1180.1916549665214d));
 
             Assert.That(resultRank2.AdditionalCasts.Count, Is.EqualTo(2));
-            Assert.That(resultRank2.RawHealing, Is.EqualTo(7394.684554928077d));
+            Assert.That(resultRank2.RawHealing, Is.EqualTo(7376.1978435407573d));
             Assert.That(resultRank2.AdditionalCasts.Where(c => c.SpellId == (int)Spell.EchoOfLight).Any(), Is.True);
             Assert.That(resultRank2.AdditionalCasts.Where(c => c.SpellId == (int)Spell.BindingHeals).Any(), Is.True);
 
             var bhsCast2 = resultRank2.AdditionalCasts.Where(c => c.SpellId == (int)Spell.BindingHeals).First();
             Assert.That(bhsCast2.AdditionalCasts.Count, Is.EqualTo(1));
             Assert.That(bhsCast2.AdditionalCasts.Where(c => c.SpellId == (int)Spell.EchoOfLight).Any(), Is.True);
-            Assert.That(bhsCast2.RawHealing, Is.EqualTo(2366.299057576985d));
+            Assert.That(bhsCast2.RawHealing, Is.EqualTo(2360.3833099330427d));
         }
 
         [Test]
@@ -204,24 +204,24 @@ namespace Salvation.CoreTests.HolyPriest.Spells
             Assert.That(resultRank0.AdditionalCasts.Where(c => c.SpellId == (int)Spell.EchoOfLight).Any(), Is.True);
 
             Assert.That(resultRank1.AdditionalCasts.Count, Is.EqualTo(2));
-            Assert.That(resultRank1.RawHealing, Is.EqualTo(10745.970166028488d));
+            Assert.That(resultRank1.RawHealing, Is.EqualTo(10719.105240613419d));
             Assert.That(resultRank1.AdditionalCasts.Where(c => c.SpellId == (int)Spell.EchoOfLight).Any(), Is.True);
             Assert.That(resultRank1.AdditionalCasts.Where(c => c.SpellId == (int)Spell.BindingHeals).Any(), Is.True);
 
             var bhsCast1 = resultRank1.AdditionalCasts.Where(c => c.SpellId == (int)Spell.BindingHeals).First();
             Assert.That(bhsCast1.AdditionalCasts.Count, Is.EqualTo(1));
             Assert.That(bhsCast1.AdditionalCasts.Where(c => c.SpellId == (int)Spell.EchoOfLight).Any(), Is.True);
-            Assert.That(bhsCast1.RawHealing, Is.EqualTo(1719.3552265645585d));
+            Assert.That(bhsCast1.RawHealing, Is.EqualTo(1715.056838498147d));
 
             Assert.That(resultRank2.AdditionalCasts.Count, Is.EqualTo(2));
-            Assert.That(resultRank2.RawHealing, Is.EqualTo(10745.970166028488d));
+            Assert.That(resultRank2.RawHealing, Is.EqualTo(10719.105240613419d));
             Assert.That(resultRank2.AdditionalCasts.Where(c => c.SpellId == (int)Spell.EchoOfLight).Any(), Is.True);
             Assert.That(resultRank2.AdditionalCasts.Where(c => c.SpellId == (int)Spell.BindingHeals).Any(), Is.True);
 
             var bhsCast2 = resultRank2.AdditionalCasts.Where(c => c.SpellId == (int)Spell.BindingHeals).First();
             Assert.That(bhsCast2.AdditionalCasts.Count, Is.EqualTo(1));
             Assert.That(bhsCast2.AdditionalCasts.Where(c => c.SpellId == (int)Spell.EchoOfLight).Any(), Is.True);
-            Assert.That(bhsCast2.RawHealing, Is.EqualTo(3438.710453129117d));
+            Assert.That(bhsCast2.RawHealing, Is.EqualTo(3430.1136769962941d));
         }
     }
 }

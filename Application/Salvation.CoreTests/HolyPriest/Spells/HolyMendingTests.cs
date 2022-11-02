@@ -48,7 +48,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
             var resultRank0 = _holyMendingSpellService.GetAverageRawHealing(_gameState, null);
 
             // Assert
-            Assert.That(resultRank0, Is.EqualTo(1366.0131566985367d));
+            Assert.That(resultRank0, Is.EqualTo(1434.3138145334638d));
         }
 
         [Test]
@@ -97,13 +97,13 @@ namespace Salvation.CoreTests.HolyPriest.Spells
             Assert.That(resultRank0.AdditionalCasts.Count, Is.EqualTo(1));
 
             Assert.That(resultRank1.AdditionalCasts.Count, Is.EqualTo(2));
-            Assert.That(resultRank1.RawHealing, Is.EqualTo(10999.137937736617d));
+            Assert.That(resultRank1.RawHealing, Is.EqualTo(10971.640092892278d));
             Assert.That(resultRank1.AdditionalCasts.Where(c => c.SpellId == (int)Spell.HolyMending).Any(), Is.True);
 
-            var empRenewCast1 = resultRank1.AdditionalCasts.Where(c => c.SpellId == (int)Spell.HolyMending).First();
-            Assert.That(empRenewCast1.AdditionalCasts.Count, Is.EqualTo(1));
-            Assert.That(empRenewCast1.AdditionalCasts.Where(c => c.SpellId == (int)Spell.EchoOfLight).Any(), Is.True);
-            Assert.That(empRenewCast1.RawHealing, Is.EqualTo(1366.0131566985367d));
+            var holyMendingCast1 = resultRank1.AdditionalCasts.Where(c => c.SpellId == (int)Spell.HolyMending).First();
+            Assert.That(holyMendingCast1.AdditionalCasts.Count, Is.EqualTo(1));
+            Assert.That(holyMendingCast1.AdditionalCasts.Where(c => c.SpellId == (int)Spell.EchoOfLight).Any(), Is.True);
+            Assert.That(holyMendingCast1.RawHealing, Is.EqualTo(1434.3138145334638d));
         }
     }
 }

@@ -60,9 +60,9 @@ namespace Salvation.CoreTests.HolyPriest.Spells
             var resultGamestateRank2 = spellService.GetHolyPriestMasteryResult(_gameState, null);
 
             // Assert
-            Assert.AreEqual(711.73838841182862d, resultGamestateDefault.RawHealing);
-            Assert.AreEqual(754.44269171653843d, resultGamestateRank1.RawHealing);
-            Assert.AreEqual(797.14699502124813d, resultGamestateRank2.RawHealing);
+            Assert.AreEqual(709.95904244079918d, resultGamestateDefault.RawHealing);
+            Assert.AreEqual(752.55658498724722d, resultGamestateRank1.RawHealing);
+            Assert.AreEqual(795.15412753369515d, resultGamestateRank2.RawHealing);
         }
     }
 }

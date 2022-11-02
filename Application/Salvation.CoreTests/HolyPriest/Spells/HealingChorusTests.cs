@@ -69,8 +69,8 @@ namespace Salvation.CoreTests.HolyPriest.Spells
             var resultRank1 = _circleOfHealingSpellService.GetAverageRawHealing(_gameState);
 
             // Assert
-            Assert.That(result, Is.EqualTo(19124.184193779514d));
-            Assert.That(resultRank1, Is.EqualTo(19511.355364052793d));
+            Assert.That(result, Is.EqualTo(19076.373733295066d));
+            Assert.That(resultRank1, Is.EqualTo(19462.576975642663d));
         }
 
         [Test]

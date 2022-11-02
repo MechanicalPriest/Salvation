@@ -33,10 +33,10 @@ namespace Salvation.CoreTests.HolyPriest.Spells
             var resultRank1HastedCD = spellService.GetHastedCooldown(_gameState, null);
 
             // Assert
-            Assert.AreEqual(19124.184193779514d, resultDefaultHeal);
+            Assert.AreEqual(19076.373733295066d, resultDefaultHeal);
             Assert.AreEqual(14.632466861766225d, resultHastedCD);
 
-            Assert.AreEqual(22949.021032535416d, resultRank1Heal);
+            Assert.AreEqual(22891.648479954078d, resultRank1Heal);
             Assert.AreEqual(11.705973489412981d, resultRank1HastedCD);
         }
     }

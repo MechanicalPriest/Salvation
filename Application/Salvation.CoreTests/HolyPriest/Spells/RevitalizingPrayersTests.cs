@@ -118,13 +118,13 @@ namespace Salvation.CoreTests.HolyPriest.Spells
             Assert.That(resultRank0.AdditionalCasts.Where(c => c.SpellId == (int)Spell.EchoOfLight).Any(), Is.True);
 
             Assert.That(resultRank1.AdditionalCasts.Count, Is.EqualTo(2));
-            Assert.That(resultRank1.RawHealing, Is.EqualTo(15936.820161482929d));
+            Assert.That(resultRank1.RawHealing, Is.EqualTo(15896.978111079221d));
             Assert.That(resultRank1.AdditionalCasts.Where(c => c.SpellId == (int)Spell.EchoOfLight).Any(), Is.True);
             Assert.That(resultRank1.AdditionalCasts.Where(c => c.SpellId == (int)Spell.Renew).Any(), Is.True);
 
             var renewCast1 = resultRank1.AdditionalCasts.Where(c => c.SpellId == (int)Spell.Renew).First();
             Assert.That(renewCast1.AdditionalCasts.Count, Is.EqualTo(0));
-            Assert.That(renewCast1.RawHealing, Is.EqualTo(3199.9960648634387d));
+            Assert.That(renewCast1.RawHealing, Is.EqualTo(3191.9960747012801d));
         }
 
         [Test]
@@ -145,13 +145,13 @@ namespace Salvation.CoreTests.HolyPriest.Spells
             Assert.That(resultRank0.AdditionalCasts.Where(c => c.SpellId == (int)Spell.EchoOfLight).Any(), Is.True);
 
             Assert.That(resultRank1.AdditionalCasts.Count, Is.EqualTo(2));
-            Assert.That(resultRank1.RawHealing, Is.EqualTo(15936.820161482929d));
+            Assert.That(resultRank1.RawHealing, Is.EqualTo(15896.978111079221d));
             Assert.That(resultRank1.AdditionalCasts.Where(c => c.SpellId == (int)Spell.EchoOfLight).Any(), Is.True);
             Assert.That(resultRank1.AdditionalCasts.Where(c => c.SpellId == (int)Spell.Renew).Any(), Is.True);
 
             var renewCast1 = resultRank1.AdditionalCasts.Where(c => c.SpellId == (int)Spell.Renew).First();
             Assert.That(renewCast1.AdditionalCasts.Count, Is.EqualTo(0));
-            Assert.That(renewCast1.RawHealing, Is.EqualTo(3836.0426464488755d));
+            Assert.That(renewCast1.RawHealing, Is.EqualTo(3826.4525398327542d));
         }
     }
 }

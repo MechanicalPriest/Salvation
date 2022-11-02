@@ -9,13 +9,9 @@
   <ItemGroup>
     <None Remove="TestData\BaseTests_constants.json" />
     <None Remove="TestData\BaseTests_profile.json" />
-    <None Remove="TestData\Niphcovtest.simc" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="TestData\Niphcovtest.simc">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="TestData\SpellServiceTests_profile.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

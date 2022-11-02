@@ -118,13 +118,13 @@ namespace Salvation.CoreTests.HolyPriest.Spells
             Assert.That(resultRank0.AdditionalCasts.Where(c => c.SpellId == (int)Spell.EchoOfLight).Any(), Is.True);
 
             Assert.That(resultRank1.AdditionalCasts.Count, Is.EqualTo(2));
-            Assert.That(resultRank1.RawHealing, Is.EqualTo(10999.137937736617d));
+            Assert.That(resultRank1.RawHealing, Is.EqualTo(10971.640092892278d));
             Assert.That(resultRank1.AdditionalCasts.Where(c => c.SpellId == (int)Spell.EchoOfLight).Any(), Is.True);
             Assert.That(resultRank1.AdditionalCasts.Where(c => c.SpellId == (int)Spell.Renew).Any(), Is.True);
 
             var renewCast1 = resultRank1.AdditionalCasts.Where(c => c.SpellId == (int)Spell.Renew).First();
             Assert.That(renewCast1.AdditionalCasts.Count, Is.EqualTo(0));
-            Assert.That(renewCast1.RawHealing, Is.EqualTo(6426.3430056418829d));
+            Assert.That(renewCast1.RawHealing, Is.EqualTo(6410.2771481277778d));
         }
     }
 }

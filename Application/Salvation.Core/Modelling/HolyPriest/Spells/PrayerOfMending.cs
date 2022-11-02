@@ -31,6 +31,9 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             var holyPriestAuraHealingBonus = _gameStateService.GetSpellData(gameState, Spell.HolyPriest)
                 .GetEffect(179715).BaseValue / 100 + 1;
 
+            var holyPriestAuraPoMReduction = _gameStateService.GetSpellData(gameState, Spell.HolyPriest)
+                .GetEffect(1040387).BaseValue / 100 + 1;
+
             var pomHealData = _gameStateService.GetSpellData(gameState, Spell.PrayerOfMendingHeal);
 
             var healingSp = pomHealData.GetEffect(22918).SpCoefficient;
@@ -38,7 +41,8 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             double averageHeal = healingSp
                 * _gameStateService.GetIntellect(gameState)
                 * _gameStateService.GetVersatilityMultiplier(gameState)
-                * holyPriestAuraHealingBonus;
+                * holyPriestAuraHealingBonus
+                * holyPriestAuraPoMReduction;
 
             _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip: {averageHeal:0.##} (per stack)");
 
@@ -179,7 +183,8 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         {
             spellData = ValidateSpellData(gameState, spellData);
 
-            var numPoMStacks = 1 + spellData.GetEffect(22870).BaseValue + GetPrayersOfTheVirtuousModifier(gameState);
+            // This is +1 on beta, still the spelldata value on live.
+            var numPoMStacks = spellData.GetEffect(22870).BaseValue + GetPrayersOfTheVirtuousModifier(gameState);
 
             // Override used by Salvation to apply 2-stack PoMs
             if (spellData.Overrides.ContainsKey(Override.ResultMultiplier))

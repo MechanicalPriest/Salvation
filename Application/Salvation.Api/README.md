@@ -39,6 +39,9 @@ Functions:
 
 Note: This can also be run outside of Visual Studio using the Azure Functions Tools `func.exe` against the location of the built Salvation.Api folder.
 
+```
+func start
+```
 
 ### External References
 - [Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/functions-overview)

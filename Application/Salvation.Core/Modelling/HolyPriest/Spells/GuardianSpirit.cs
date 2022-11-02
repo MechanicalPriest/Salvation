@@ -19,17 +19,19 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             Spell = Spell.GuardianSpirit;
         }
 
-        public override double GetAverageHealingBonus(GameState gameState, BaseSpellData spellData)
+        public override double GetAverageHealingMultiplier(GameState gameState, BaseSpellData spellData)
         {
             // Use GS to apply a small healing bonus to all healing done.
             spellData = ValidateSpellData(gameState, spellData);
 
             // Get the healing bonus
-            var healingBonus = (spellData.GetEffect(40042).BaseValue / 100);
+            var healingBonus = 0.0d;
+            
+            healingBonus += (spellData.GetEffect(40042).BaseValue / 100);
 
             healingBonus += GetLastingSpiritAdditionalHealing(gameState);
 
-            return healingBonus * GetUptime(gameState, spellData);
+            return 1 + (healingBonus * GetUptime(gameState, spellData));
         }
 
         public override double GetUptime(GameState gameState, BaseSpellData spellData)
@@ -74,12 +76,13 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             var duration = base.GetDuration(gameState, spellData);
 
-            if (_gameStateService.IsConduitActive(gameState, Conduit.LastingSpirit))
-            {
-                var conduitData = _gameStateService.GetSpellData(gameState, Spell.LastingSpirit);
+            // TODO: Clean up post-implementation
+            //if (_gameStateService.IsConduitActive(gameState, Conduit.LastingSpirit))
+            //{
+            //    var conduitData = _gameStateService.GetSpellData(gameState, Spell.LastingSpirit);
 
-                duration += (conduitData.GetEffect(836029).BaseValue / 1000);
-            }
+            //    duration += (conduitData.GetEffect(836029).BaseValue / 1000);
+            //}
 
             return duration;
         }
@@ -88,13 +91,14 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         {
             var additionalHealing = 0d;
 
-            if (_gameStateService.IsConduitActive(gameState, Conduit.LastingSpirit))
-            {
-                var conduitData = _gameStateService.GetSpellData(gameState, Spell.LastingSpirit);
-                var rank = _gameStateService.GetConduitRank(gameState, Conduit.FocusedMending);
+            // TODO: Clean up post-implementation
+            //if (_gameStateService.IsConduitActive(gameState, Conduit.LastingSpirit))
+            //{
+            //    var conduitData = _gameStateService.GetSpellData(gameState, Spell.LastingSpirit);
+            //    var rank = _gameStateService.GetConduitRank(gameState, Conduit.FocusedMending);
 
-                additionalHealing += (conduitData.ConduitRanks[rank] / 100);
-            }
+            //    additionalHealing += (conduitData.ConduitRanks[rank] / 100);
+            //}
 
             return additionalHealing;
         }

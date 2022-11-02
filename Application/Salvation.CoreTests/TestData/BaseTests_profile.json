@@ -1,9 +1,9 @@
 {
   "Spec": 257,
-  "Name": "Beitaky",
+  "Name": "DfBirthday",
   "Server": "torghast",
   "Region": "us",
-  "Level": 60,
+  "Level": 70,
   "Race": 0,
   "Class": 5,
   "Intellect": 0,
@@ -112,7 +112,7 @@
     },
     {
       "SpellId": 238136,
-      "Efficiency": 0.0,
+      "Efficiency": 1.0,
       "OverhealPercent": 0.2332,
       "AverageHealingTargets": 5.0,
       "AverageDamageTargets": 0.0
@@ -167,7 +167,7 @@
       "AverageDamageTargets": 1.0
     },
     {
-      "SpellId": 323673,
+      "SpellId": 375901,
       "Efficiency": 1.0,
       "OverhealPercent": 0.01,
       "AverageHealingTargets": 1.0,
@@ -272,6 +272,13 @@
       "AverageDamageTargets": 0.0
     },
     {
+      "SpellId": 200128,
+      "Efficiency": 1.0,
+      "OverhealPercent": 0.329,
+      "AverageHealingTargets": 1.0,
+      "AverageDamageTargets": 0.0
+    },
+    {
       "SpellId": 196809,
       "Efficiency": 0.0,
       "OverhealPercent": 0.20,
@@ -352,6 +359,34 @@
       "SpellId": 345549,
       "Efficiency": 0.95,
       "OverhealPercent": 0.01,
+      "AverageHealingTargets": 1.0,
+      "AverageDamageTargets": 0.0
+    },
+    {
+      "SpellId": 368275,
+      "Efficiency": 1,
+      "OverhealPercent": 0.411,
+      "AverageHealingTargets": 1.0,
+      "AverageDamageTargets": 0.0
+    },
+    {
+      "SpellId": 372835,
+      "Efficiency": 1,
+      "OverhealPercent": 0.243,
+      "AverageHealingTargets": 15.0,
+      "AverageDamageTargets": 0.0
+    },
+    {
+      "SpellId": 391339,
+      "Efficiency": 1,
+      "OverhealPercent": 0.196,
+      "AverageHealingTargets": 1.0,
+      "AverageDamageTargets": 0.0
+    },
+    {
+      "SpellId": 391154,
+      "Efficiency": 1,
+      "OverhealPercent": 0.189,
       "AverageHealingTargets": 1.0,
       "AverageDamageTargets": 0.0
     }
@@ -3820,7 +3855,11 @@
     }
   ],
   "Talents": [
-    193155
+    {
+      "Spell": 193155,
+      "SpellId": 193155,
+      "Rank":  1
+    }
   ],
   "Covenant": {
     "Covenant": 1,
@@ -3940,6 +3979,11 @@
       "Name": "DamageTakenPerSecond",
       "Value": 1500,
       "SpellId": 0
+    },
+    {
+      "Name": "PoMPercentageStacksExpired",
+      "Value": 0.01,
+      "SpellId": 33076
     }
   ]
 }

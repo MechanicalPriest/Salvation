@@ -1,0 +1,33 @@
+﻿.stat-colour[data-stat="Intellect"] {
+    color: #ffd955;
+}
+.stat-colour[data-stat="Critical Strike"] {
+    color: #e01c1c;
+}
+.stat-colour[data-stat="Haste"] {
+    color: #0ed59b;
+}
+.stat-colour[data-stat="Mastery"] {
+    color: #9256ff;
+}
+.stat-colour[data-stat="Versatility"] {
+    color: #bfbfbf;
+}
+.stat-colour[data-stat="Leech"] {
+    color: #27cc4e;
+}
+.stat-colour[data-stat="Mana"] {
+    color: #1c8aff;
+}
+
+.talent-row-talent {
+    width: 24px;
+    height: 24px;
+}
+
+.talent-row-image {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+

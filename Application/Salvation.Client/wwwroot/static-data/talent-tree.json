@@ -5,7 +5,7 @@
   "SpecId": 257,
   "ClassNodes": [
     {
-      "Id": 62815,
+      "Id": 82717,
       "Name": "Renew",
       "Type": "single",
       "TreePosX": 3300,
@@ -13,18 +13,18 @@
       "MaxRanks": 1,
       "EntryNode": true,
       "NextNodes": [
-        62816,
-        62814
+        82718,
+        82714
       ],
       "TalentEntries": [
         {
-          "Id": 80998,
+          "Id": 103869,
           "MaxRanks": 1,
           "Type": "active",
           "Name": "Renew",
           "SpellId": 139,
           "Icon": "spell_holy_renew",
-          "DefinitionId": 86001
+          "DefinitionId": 108874
         }
       ],
       "IsFreeNode": true,
@@ -36,7 +36,7 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62813,
+      "Id": 82715,
       "Name": "Dispel Magic",
       "Type": "single",
       "TreePosX": 4500,
@@ -44,19 +44,19 @@
       "MaxRanks": 1,
       "EntryNode": true,
       "NextNodes": [
-        62814,
-        62768,
-        62812
+        82714,
+        82705,
+        82695
       ],
       "TalentEntries": [
         {
-          "Id": 80996,
+          "Id": 103867,
           "MaxRanks": 1,
           "Type": "active",
           "Name": "Dispel Magic",
           "SpellId": 528,
           "Icon": "spell_nature_nullifydisease",
-          "DefinitionId": 85999
+          "DefinitionId": 108872
         }
       ],
       "IsFreeNode": false,
@@ -68,7 +68,7 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62811,
+      "Id": 82713,
       "Name": "Shadowfiend",
       "Type": "single",
       "TreePosX": 5700,
@@ -76,18 +76,18 @@
       "MaxRanks": 1,
       "EntryNode": true,
       "NextNodes": [
-        62812,
-        62810
+        82695,
+        82712
       ],
       "TalentEntries": [
         {
-          "Id": 80994,
+          "Id": 103865,
           "MaxRanks": 1,
           "Type": "active",
           "Name": "Shadowfiend",
           "SpellId": 34433,
           "Icon": "spell_shadow_shadowfiend",
-          "DefinitionId": 85997
+          "DefinitionId": 108870
         }
       ],
       "IsFreeNode": false,
@@ -99,7 +99,7 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62816,
+      "Id": 82718,
       "Name": "Prayer of Mending",
       "Type": "single",
       "TreePosX": 2700,
@@ -107,19 +107,19 @@
       "MaxRanks": 1,
       "EntryNode": false,
       "NextNodes": [
-        62817,
-        62788,
-        62818
+        82719,
+        82701,
+        82720
       ],
       "TalentEntries": [
         {
-          "Id": 80999,
+          "Id": 103870,
           "MaxRanks": 1,
           "Type": "active",
           "Name": "Prayer of Mending",
           "SpellId": 33076,
           "Icon": "spell_holy_prayerofmendingtga",
-          "DefinitionId": 86002
+          "DefinitionId": 108875
         }
       ],
       "IsFreeNode": true,
@@ -131,27 +131,27 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62814,
-      "Name": "Leap of Faith",
+      "Id": 82714,
+      "Name": "Improved Flash Heal",
       "Type": "single",
       "TreePosX": 3900,
       "TreePosY": 2100,
       "MaxRanks": 1,
       "EntryNode": false,
       "NextNodes": [
-        62788,
-        62786,
-        62793
+        82701,
+        82707,
+        82703
       ],
       "TalentEntries": [
         {
-          "Id": 80997,
+          "Id": 103866,
           "MaxRanks": 1,
-          "Type": "active",
-          "Name": "Leap of Faith",
-          "SpellId": 73325,
-          "Icon": "priest_spell_leapoffaith_a",
-          "DefinitionId": 86000
+          "Type": "passive",
+          "Name": "Improved Flash Heal",
+          "SpellId": 393870,
+          "Icon": "spell_holy_heal",
+          "DefinitionId": 108871
         }
       ],
       "IsFreeNode": false,
@@ -163,7 +163,7 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62768,
+      "Id": 82705,
       "Name": "Improved Purify",
       "Type": "single",
       "TreePosX": 4500,
@@ -171,17 +171,17 @@
       "MaxRanks": 1,
       "EntryNode": false,
       "NextNodes": [
-        62793
+        82703
       ],
       "TalentEntries": [
         {
-          "Id": 80944,
+          "Id": 103855,
           "MaxRanks": 1,
           "Type": "passive",
           "Name": "Improved Purify",
           "SpellId": 390632,
           "Icon": "spell_holy_nullifydisease",
-          "DefinitionId": 85947
+          "DefinitionId": 108860
         }
       ],
       "IsFreeNode": false,
@@ -193,27 +193,26 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62812,
-      "Name": "Shadow Mend",
+      "Id": 82695,
+      "Name": "Psychic Voice",
       "Type": "single",
       "TreePosX": 5100,
       "TreePosY": 2100,
       "MaxRanks": 1,
       "EntryNode": false,
       "NextNodes": [
-        62793,
-        62783,
-        62782
+        82703,
+        82556
       ],
       "TalentEntries": [
         {
-          "Id": 80995,
+          "Id": 103845,
           "MaxRanks": 1,
-          "Type": "active",
-          "Name": "Shadow Mend",
-          "SpellId": 186263,
-          "Icon": "spell_shadow_shadowmend",
-          "DefinitionId": 85998
+          "Type": "passive",
+          "Name": "Psychic Voice",
+          "SpellId": 196704,
+          "Icon": "ability_warrior_commandingshout",
+          "DefinitionId": 108850
         }
       ],
       "IsFreeNode": false,
@@ -225,7 +224,7 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62810,
+      "Id": 82712,
       "Name": "Shadow Word: Death",
       "Type": "single",
       "TreePosX": 6300,
@@ -233,19 +232,18 @@
       "MaxRanks": 1,
       "EntryNode": false,
       "NextNodes": [
-        62782,
-        62808,
-        62809
+        82556,
+        82711
       ],
       "TalentEntries": [
         {
-          "Id": 80993,
+          "Id": 103864,
           "MaxRanks": 1,
           "Type": "active",
           "Name": "Shadow Word: Death",
           "SpellId": 32379,
           "Icon": "spell_shadow_demonicfortitude",
-          "DefinitionId": 85996
+          "DefinitionId": 108869
         }
       ],
       "IsFreeNode": false,
@@ -257,7 +255,7 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62817,
+      "Id": 82719,
       "Name": "Focused Mending",
       "Type": "single",
       "TreePosX": 2100,
@@ -265,17 +263,17 @@
       "MaxRanks": 1,
       "EntryNode": false,
       "NextNodes": [
-        62818
+        82720
       ],
       "TalentEntries": [
         {
-          "Id": 81000,
+          "Id": 103871,
           "MaxRanks": 1,
           "Type": "passive",
           "Name": "Focused Mending",
           "SpellId": 372354,
           "Icon": "achievement_bg_returnxflags_def_wsg",
-          "DefinitionId": 86003
+          "DefinitionId": 108876
         }
       ],
       "IsFreeNode": false,
@@ -287,7 +285,7 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62788,
+      "Id": 82701,
       "Name": "Holy Nova",
       "Type": "single",
       "TreePosX": 3300,
@@ -295,19 +293,19 @@
       "MaxRanks": 1,
       "EntryNode": false,
       "NextNodes": [
-        62818,
-        62787,
-        62789
+        82720,
+        82700,
+        82716
       ],
       "TalentEntries": [
         {
-          "Id": 80967,
+          "Id": 103851,
           "MaxRanks": 1,
           "Type": "active",
           "Name": "Holy Nova",
           "SpellId": 132157,
           "Icon": "spell_holy_holynova",
-          "DefinitionId": 85970
+          "DefinitionId": 108856
         }
       ],
       "IsFreeNode": false,
@@ -319,25 +317,34 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62786,
-      "Name": "Move with Grace",
-      "Type": "single",
+      "Id": 82707,
+      "Name": "Protective Light / From Darkness Comes Light",
+      "Type": "choice",
       "TreePosX": 3900,
       "TreePosY": 2700,
       "MaxRanks": 1,
       "EntryNode": false,
       "NextNodes": [
-        62789
+        82716
       ],
       "TalentEntries": [
         {
-          "Id": 80965,
+          "Id": 103858,
           "MaxRanks": 1,
           "Type": "passive",
-          "Name": "Move with Grace",
-          "SpellId": 390620,
-          "Icon": "ability_priest_savinggrace",
-          "DefinitionId": 85968
+          "Name": "Protective Light",
+          "SpellId": 193063,
+          "Icon": "spell_holy_holyprotection",
+          "DefinitionId": 108863
+        },
+        {
+          "Id": 103857,
+          "MaxRanks": 1,
+          "Type": "passive",
+          "Name": "From Darkness Comes Light",
+          "SpellId": 390615,
+          "Icon": "spell_holy_flashheal",
+          "DefinitionId": 108862
         }
       ],
       "IsFreeNode": false,
@@ -349,27 +356,27 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62793,
-      "Name": "Body and Soul",
+      "Id": 82703,
+      "Name": "Angelic Feather",
       "Type": "single",
       "TreePosX": 4500,
       "TreePosY": 2700,
       "MaxRanks": 1,
       "EntryNode": false,
       "NextNodes": [
-        62789,
-        62791,
-        62794
+        82716,
+        82693,
+        82708
       ],
       "TalentEntries": [
         {
-          "Id": 80972,
+          "Id": 103853,
           "MaxRanks": 1,
-          "Type": "passive",
-          "Name": "Body and Soul",
-          "SpellId": 64129,
-          "Icon": "spell_holy_symbolofhope",
-          "DefinitionId": 85975
+          "Type": "active",
+          "Name": "Angelic Feather",
+          "SpellId": 121536,
+          "Icon": "ability_priest_angelicfeather",
+          "DefinitionId": 108858
         }
       ],
       "IsFreeNode": false,
@@ -381,65 +388,26 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62783,
-      "Name": "Masochism / Depth of the Shadows",
-      "Type": "choice",
-      "TreePosX": 5100,
-      "TreePosY": 2700,
-      "MaxRanks": 1,
-      "EntryNode": false,
-      "NextNodes": [
-        62794
-      ],
-      "TalentEntries": [
-        {
-          "Id": 80962,
-          "MaxRanks": 1,
-          "Type": "passive",
-          "Name": "Masochism",
-          "SpellId": 193063,
-          "Icon": "spell_shadow_misery",
-          "DefinitionId": 85965
-        },
-        {
-          "Id": 80961,
-          "MaxRanks": 1,
-          "Type": "passive",
-          "Name": "Depth of the Shadows",
-          "SpellId": 390615,
-          "Icon": "spell_shadow_shadowmend",
-          "DefinitionId": 85964
-        }
-      ],
-      "IsFreeNode": false,
-      "RequiredPoints": null,
-      "TreeRow": 3,
-      "TreeColumn": 11,
-      "PointsSpent": 0,
-      "IsUnlocked": false,
-      "IsSecondChoiceSelected": false
-    },
-    {
-      "Id": 62782,
-      "Name": "Throes of Pain",
+      "Id": 82556,
+      "Name": "Phantasm",
       "Type": "single",
       "TreePosX": 5700,
       "TreePosY": 2700,
       "MaxRanks": 1,
       "EntryNode": false,
       "NextNodes": [
-        62794,
-        62809
+        82708,
+        82710
       ],
       "TalentEntries": [
         {
-          "Id": 80960,
+          "Id": 103834,
           "MaxRanks": 1,
           "Type": "passive",
-          "Name": "Throes of Pain",
-          "SpellId": 377422,
-          "Icon": "spell_shadow_haunting",
-          "DefinitionId": 85963
+          "Name": "Phantasm",
+          "SpellId": 108942,
+          "Icon": "ability_priest_phantasm",
+          "DefinitionId": 108839
         }
       ],
       "IsFreeNode": false,
@@ -451,7 +419,7 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62808,
+      "Id": 82711,
       "Name": "Death and Madness",
       "Type": "single",
       "TreePosX": 6900,
@@ -459,17 +427,18 @@
       "MaxRanks": 1,
       "EntryNode": false,
       "NextNodes": [
-        62809
+        82710,
+        82688
       ],
       "TalentEntries": [
         {
-          "Id": 80991,
+          "Id": 103863,
           "MaxRanks": 1,
           "Type": "passive",
           "Name": "Death and Madness",
           "SpellId": 321291,
           "Icon": "spell_shadow_demonicfortitude",
-          "DefinitionId": 85994
+          "DefinitionId": 108868
         }
       ],
       "IsFreeNode": false,
@@ -481,27 +450,36 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62818,
-      "Name": "Spell Warding",
-      "Type": "single",
+      "Id": 82720,
+      "Name": "Spell Warding / Blessed Recovery",
+      "Type": "choice",
       "TreePosX": 2700,
       "TreePosY": 3300,
       "MaxRanks": 1,
       "EntryNode": false,
       "NextNodes": [
-        62803,
-        62819,
-        62804
+        82721,
+        82699,
+        82696
       ],
       "TalentEntries": [
         {
-          "Id": 81001,
+          "Id": 103872,
           "MaxRanks": 1,
           "Type": "passive",
           "Name": "Spell Warding",
           "SpellId": 390667,
           "Icon": "spell_holy_spellwarding",
-          "DefinitionId": 86004
+          "DefinitionId": 108877
+        },
+        {
+          "Id": 103677,
+          "MaxRanks": 1,
+          "Type": "passive",
+          "Name": "Blessed Recovery",
+          "SpellId": 390767,
+          "Icon": "spell_holy_blessedrecovery",
+          "DefinitionId": 108682
         }
       ],
       "IsFreeNode": false,
@@ -513,7 +491,7 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62787,
+      "Id": 82700,
       "Name": "Rhapsody",
       "Type": "single",
       "TreePosX": 3300,
@@ -521,17 +499,17 @@
       "MaxRanks": 1,
       "EntryNode": false,
       "NextNodes": [
-        62819
+        82699
       ],
       "TalentEntries": [
         {
-          "Id": 80966,
+          "Id": 103850,
           "MaxRanks": 1,
           "Type": "passive",
           "Name": "Rhapsody",
           "SpellId": 390622,
           "Icon": "spell_holy_holynova",
-          "DefinitionId": 85969
+          "DefinitionId": 108855
         }
       ],
       "IsFreeNode": false,
@@ -543,26 +521,27 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62789,
-      "Name": "Angelic Feather",
+      "Id": 82716,
+      "Name": "Leap of Faith",
       "Type": "single",
       "TreePosX": 3900,
       "TreePosY": 3300,
       "MaxRanks": 1,
       "EntryNode": false,
       "NextNodes": [
-        62819,
-        62790
+        82699,
+        82702,
+        82694
       ],
       "TalentEntries": [
         {
-          "Id": 80968,
+          "Id": 103868,
           "MaxRanks": 1,
           "Type": "active",
-          "Name": "Angelic Feather",
-          "SpellId": 121536,
-          "Icon": "ability_priest_angelicfeather",
-          "DefinitionId": 85971
+          "Name": "Leap of Faith",
+          "SpellId": 73325,
+          "Icon": "priest_spell_leapoffaith_a",
+          "DefinitionId": 108873
         }
       ],
       "IsFreeNode": false,
@@ -574,7 +553,7 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62791,
+      "Id": 82693,
       "Name": "Shackle Undead",
       "Type": "single",
       "TreePosX": 4500,
@@ -582,17 +561,17 @@
       "MaxRanks": 1,
       "EntryNode": false,
       "NextNodes": [
-        62790
+        82694
       ],
       "TalentEntries": [
         {
-          "Id": 80970,
+          "Id": 103843,
           "MaxRanks": 1,
           "Type": "active",
           "Name": "Shackle Undead",
           "SpellId": 9484,
           "Icon": "spell_nature_slow",
-          "DefinitionId": 85973
+          "DefinitionId": 108848
         }
       ],
       "IsFreeNode": false,
@@ -604,7 +583,7 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62794,
+      "Id": 82708,
       "Name": "Sheer Terror / Void Tendrils",
       "Type": "choice",
       "TreePosX": 5100,
@@ -612,27 +591,27 @@
       "MaxRanks": 1,
       "EntryNode": false,
       "NextNodes": [
-        62790,
-        62766
+        82694,
+        82691
       ],
       "TalentEntries": [
         {
-          "Id": 80974,
+          "Id": 103860,
           "MaxRanks": 1,
           "Type": "passive",
           "Name": "Sheer Terror",
           "SpellId": 390919,
           "Icon": "spell_nzinsanity_fearofdeath",
-          "DefinitionId": 85977
+          "DefinitionId": 108865
         },
         {
-          "Id": 80973,
+          "Id": 103859,
           "MaxRanks": 1,
           "Type": "active",
           "Name": "Void Tendrils",
           "SpellId": 108920,
           "Icon": "spell_priest_voidtendrils",
-          "DefinitionId": 85976
+          "DefinitionId": 108864
         }
       ],
       "IsFreeNode": false,
@@ -644,26 +623,35 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62809,
-      "Name": "Mind Control",
-      "Type": "single",
+      "Id": 82710,
+      "Name": "Mind Control / Dominate Mind",
+      "Type": "choice",
       "TreePosX": 6300,
       "TreePosY": 3300,
       "MaxRanks": 1,
       "EntryNode": false,
       "NextNodes": [
-        62766,
-        62795
+        82691,
+        82689
       ],
       "TalentEntries": [
         {
-          "Id": 80992,
+          "Id": 103862,
           "MaxRanks": 1,
           "Type": "active",
           "Name": "Mind Control",
           "SpellId": 605,
           "Icon": "spell_shadow_shadowworddominate",
-          "DefinitionId": 85995
+          "DefinitionId": 108867
+        },
+        {
+          "Id": 103678,
+          "MaxRanks": 1,
+          "Type": "active",
+          "Name": "Dominate Mind",
+          "SpellId": 205364,
+          "Icon": "spell_priest_voidflay",
+          "DefinitionId": 108683
         }
       ],
       "IsFreeNode": false,
@@ -675,25 +663,25 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62803,
-      "Name": "Tools of the Cloth",
+      "Id": 82721,
+      "Name": "Words of the Pious",
       "Type": "single",
       "TreePosX": 2100,
       "TreePosY": 3900,
       "MaxRanks": 1,
       "EntryNode": false,
       "NextNodes": [
-        62804
+        82696
       ],
       "TalentEntries": [
         {
-          "Id": 80984,
+          "Id": 103873,
           "MaxRanks": 1,
           "Type": "passive",
-          "Name": "Tools of the Cloth",
+          "Name": "Words of the Pious",
           "SpellId": 377438,
-          "Icon": "spell_holy_devineaegis",
-          "DefinitionId": 85987
+          "Icon": "ability_priest_clarityofwill",
+          "DefinitionId": 108878
         }
       ],
       "IsFreeNode": false,
@@ -705,7 +693,7 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62819,
+      "Id": 82699,
       "Name": "Mass Dispel",
       "Type": "single",
       "TreePosX": 3300,
@@ -713,19 +701,19 @@
       "MaxRanks": 1,
       "EntryNode": false,
       "NextNodes": [
-        62804,
-        62802,
-        62820
+        82696,
+        82698,
+        82706
       ],
       "TalentEntries": [
         {
-          "Id": 81002,
+          "Id": 103849,
           "MaxRanks": 1,
           "Type": "active",
           "Name": "Mass Dispel",
           "SpellId": 32375,
           "Icon": "spell_arcane_massdispel",
-          "DefinitionId": 86005
+          "DefinitionId": 108854
         }
       ],
       "IsFreeNode": false,
@@ -737,7 +725,37 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62790,
+      "Id": 82702,
+      "Name": "Move with Grace",
+      "Type": "single",
+      "TreePosX": 3900,
+      "TreePosY": 3900,
+      "MaxRanks": 1,
+      "EntryNode": false,
+      "NextNodes": [
+        82706
+      ],
+      "TalentEntries": [
+        {
+          "Id": 103852,
+          "MaxRanks": 1,
+          "Type": "passive",
+          "Name": "Move with Grace",
+          "SpellId": 390620,
+          "Icon": "ability_priest_savinggrace",
+          "DefinitionId": 108857
+        }
+      ],
+      "IsFreeNode": false,
+      "RequiredPoints": 8,
+      "TreeRow": 5,
+      "TreeColumn": 7,
+      "PointsSpent": 0,
+      "IsUnlocked": false,
+      "IsSecondChoiceSelected": false
+    },
+    {
+      "Id": 82694,
       "Name": "Power Infusion",
       "Type": "single",
       "TreePosX": 4500,
@@ -745,19 +763,19 @@
       "MaxRanks": 1,
       "EntryNode": false,
       "NextNodes": [
-        62820,
-        62785,
-        62784
+        82706,
+        82683,
+        82692
       ],
       "TalentEntries": [
         {
-          "Id": 80969,
+          "Id": 103844,
           "MaxRanks": 1,
           "Type": "active",
           "Name": "Power Infusion",
           "SpellId": 10060,
           "Icon": "spell_holy_powerinfusion",
-          "DefinitionId": 85972
+          "DefinitionId": 108849
         }
       ],
       "IsFreeNode": false,
@@ -769,7 +787,7 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62766,
+      "Id": 82691,
       "Name": "Vampiric Embrace",
       "Type": "single",
       "TreePosX": 5700,
@@ -777,19 +795,19 @@
       "MaxRanks": 1,
       "EntryNode": false,
       "NextNodes": [
-        62784,
-        62781,
-        62796
+        82692,
+        82690,
+        82689
       ],
       "TalentEntries": [
         {
-          "Id": 80940,
+          "Id": 103841,
           "MaxRanks": 1,
           "Type": "active",
           "Name": "Vampiric Embrace",
           "SpellId": 15286,
           "Icon": "spell_shadow_unsummonbuilding",
-          "DefinitionId": 85943
+          "DefinitionId": 108846
         }
       ],
       "IsFreeNode": false,
@@ -801,25 +819,25 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62795,
-      "Name": "Dominant Mind",
+      "Id": 82688,
+      "Name": "Tithe Evasion",
       "Type": "single",
       "TreePosX": 6900,
       "TreePosY": 3900,
       "MaxRanks": 1,
       "EntryNode": false,
       "NextNodes": [
-        62796
+        82689
       ],
       "TalentEntries": [
         {
-          "Id": 80975,
+          "Id": 103838,
           "MaxRanks": 1,
           "Type": "passive",
-          "Name": "Dominant Mind",
-          "SpellId": 205367,
-          "Icon": "spell_priest_voidflay",
-          "DefinitionId": 85978
+          "Name": "Tithe Evasion",
+          "SpellId": 373223,
+          "Icon": "spell_nzinsanity_bloodthirst",
+          "DefinitionId": 108843
         }
       ],
       "IsFreeNode": false,
@@ -831,34 +849,25 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62804,
-      "Name": "Inspiration / Blessed Recovery",
-      "Type": "choice",
+      "Id": 82696,
+      "Name": "Inspiration",
+      "Type": "single",
       "TreePosX": 2700,
       "TreePosY": 4500,
       "MaxRanks": 1,
       "EntryNode": false,
       "NextNodes": [
-        62805
+        82697
       ],
       "TalentEntries": [
         {
-          "Id": 80986,
+          "Id": 103846,
           "MaxRanks": 1,
           "Type": "passive",
           "Name": "Inspiration",
           "SpellId": 390676,
           "Icon": "spell_holy_layonhands",
-          "DefinitionId": 85989
-        },
-        {
-          "Id": 80985,
-          "MaxRanks": 1,
-          "Type": "passive",
-          "Name": "Blessed Recovery",
-          "SpellId": 390767,
-          "Icon": "spell_holy_blessedrecovery",
-          "DefinitionId": 85988
+          "DefinitionId": 108851
         }
       ],
       "IsFreeNode": false,
@@ -870,7 +879,7 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62802,
+      "Id": 82698,
       "Name": "Improved Mass Dispel",
       "Type": "single",
       "TreePosX": 3300,
@@ -878,17 +887,17 @@
       "MaxRanks": 1,
       "EntryNode": false,
       "NextNodes": [
-        62805
+        82697
       ],
       "TalentEntries": [
         {
-          "Id": 80983,
+          "Id": 103848,
           "MaxRanks": 1,
           "Type": "passive",
           "Name": "Improved Mass Dispel",
           "SpellId": 341167,
           "Icon": "spell_arcane_massdispel",
-          "DefinitionId": 85986
+          "DefinitionId": 108853
         }
       ],
       "IsFreeNode": false,
@@ -900,26 +909,26 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62820,
-      "Name": "Psychic Voice",
+      "Id": 82706,
+      "Name": "Body and Soul",
       "Type": "single",
       "TreePosX": 3900,
       "TreePosY": 4500,
       "MaxRanks": 1,
       "EntryNode": false,
       "NextNodes": [
-        62805,
-        62821
+        82697,
+        82684
       ],
       "TalentEntries": [
         {
-          "Id": 81003,
+          "Id": 103856,
           "MaxRanks": 1,
           "Type": "passive",
-          "Name": "Psychic Voice",
-          "SpellId": 196704,
-          "Icon": "ability_warrior_commandingshout",
-          "DefinitionId": 86006
+          "Name": "Body and Soul",
+          "SpellId": 64129,
+          "Icon": "spell_holy_symbolofhope",
+          "DefinitionId": 108861
         }
       ],
       "IsFreeNode": false,
@@ -931,7 +940,7 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62785,
+      "Id": 82683,
       "Name": "Twins of the Sun Priestess",
       "Type": "single",
       "TreePosX": 4500,
@@ -939,17 +948,17 @@
       "MaxRanks": 1,
       "EntryNode": false,
       "NextNodes": [
-        62821
+        82684
       ],
       "TalentEntries": [
         {
-          "Id": 80964,
+          "Id": 103832,
           "MaxRanks": 1,
           "Type": "passive",
           "Name": "Twins of the Sun Priestess",
           "SpellId": 373466,
           "Icon": "spell_fire_felflamering_red",
-          "DefinitionId": 85967
+          "DefinitionId": 108837
         }
       ],
       "IsFreeNode": false,
@@ -961,7 +970,7 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62784,
+      "Id": 82692,
       "Name": "Void Shield",
       "Type": "single",
       "TreePosX": 5100,
@@ -969,18 +978,18 @@
       "MaxRanks": 1,
       "EntryNode": false,
       "NextNodes": [
-        62821,
-        62797
+        82684,
+        82709
       ],
       "TalentEntries": [
         {
-          "Id": 80963,
+          "Id": 103842,
           "MaxRanks": 1,
           "Type": "passive",
           "Name": "Void Shield",
           "SpellId": 280749,
           "Icon": "inv_enchant_voidsphere",
-          "DefinitionId": 85966
+          "DefinitionId": 108847
         }
       ],
       "IsFreeNode": false,
@@ -992,7 +1001,7 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62781,
+      "Id": 82690,
       "Name": "San\u0027layn",
       "Type": "single",
       "TreePosX": 5700,
@@ -1000,17 +1009,17 @@
       "MaxRanks": 1,
       "EntryNode": false,
       "NextNodes": [
-        62797
+        82709
       ],
       "TalentEntries": [
         {
-          "Id": 80959,
+          "Id": 103840,
           "MaxRanks": 1,
           "Type": "passive",
           "Name": "San\u0027layn",
           "SpellId": 199855,
           "Icon": "achievement_boss_lanathel",
-          "DefinitionId": 85962
+          "DefinitionId": 108845
         }
       ],
       "IsFreeNode": false,
@@ -1022,7 +1031,7 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62796,
+      "Id": 82689,
       "Name": "Apathy",
       "Type": "single",
       "TreePosX": 6300,
@@ -1030,17 +1039,17 @@
       "MaxRanks": 1,
       "EntryNode": false,
       "NextNodes": [
-        62797
+        82709
       ],
       "TalentEntries": [
         {
-          "Id": 80976,
+          "Id": 103839,
           "MaxRanks": 1,
           "Type": "passive",
           "Name": "Apathy",
           "SpellId": 390668,
           "Icon": "ability_rogue_masterofsubtlety",
-          "DefinitionId": 85979
+          "DefinitionId": 108844
         }
       ],
       "IsFreeNode": false,
@@ -1052,7 +1061,7 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62805,
+      "Id": 82697,
       "Name": "Unwavering Will",
       "Type": "single",
       "TreePosX": 3300,
@@ -1060,18 +1069,18 @@
       "MaxRanks": 2,
       "EntryNode": false,
       "NextNodes": [
-        62806,
-        62801
+        82678,
+        82682
       ],
       "TalentEntries": [
         {
-          "Id": 80987,
+          "Id": 103847,
           "MaxRanks": 2,
           "Type": "passive",
           "Name": "Unwavering Will",
           "SpellId": 373456,
           "Icon": "ability_warrior_unrelentingassault",
-          "DefinitionId": 85990
+          "DefinitionId": 108852
         }
       ],
       "IsFreeNode": false,
@@ -1083,7 +1092,7 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62821,
+      "Id": 82684,
       "Name": "Twist of Fate",
       "Type": "single",
       "TreePosX": 4500,
@@ -1091,18 +1100,18 @@
       "MaxRanks": 2,
       "EntryNode": false,
       "NextNodes": [
-        62801,
-        62822
+        82682,
+        82685
       ],
       "TalentEntries": [
         {
-          "Id": 81004,
+          "Id": 103833,
           "MaxRanks": 2,
           "Type": "passive",
           "Name": "Twist of Fate",
           "SpellId": 390972,
           "Icon": "spell_shadow_mindtwisting",
-          "DefinitionId": 86007
+          "DefinitionId": 108838
         }
       ],
       "IsFreeNode": false,
@@ -1114,26 +1123,26 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62797,
-      "Name": "Improved Mind Blast",
+      "Id": 82709,
+      "Name": "Throes of Pain",
       "Type": "single",
       "TreePosX": 5700,
       "TreePosY": 5100,
       "MaxRanks": 2,
       "EntryNode": false,
       "NextNodes": [
-        62822,
-        62798
+        82685,
+        82687
       ],
       "TalentEntries": [
         {
-          "Id": 80977,
+          "Id": 103861,
           "MaxRanks": 2,
           "Type": "passive",
-          "Name": "Improved Mind Blast",
-          "SpellId": 319899,
-          "Icon": "spell_shadow_unholyfrenzy",
-          "DefinitionId": 85980
+          "Name": "Throes of Pain",
+          "SpellId": 377422,
+          "Icon": "spell_shadow_haunting",
+          "DefinitionId": 108866
         }
       ],
       "IsFreeNode": false,
@@ -1145,7 +1154,7 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62806,
+      "Id": 82678,
       "Name": "Angel\u0027s Mercy / Binding Heals",
       "Type": "choice",
       "TreePosX": 2700,
@@ -1153,27 +1162,27 @@
       "MaxRanks": 1,
       "EntryNode": false,
       "NextNodes": [
-        62775,
-        62807
+        82677,
+        82679
       ],
       "TalentEntries": [
         {
-          "Id": 80989,
+          "Id": 103825,
           "MaxRanks": 1,
           "Type": "passive",
           "Name": "Angel\u0027s Mercy",
           "SpellId": 238100,
           "Icon": "spell_holy_testoffaith",
-          "DefinitionId": 85992
+          "DefinitionId": 108830
         },
         {
-          "Id": 80988,
+          "Id": 103824,
           "MaxRanks": 1,
           "Type": "passive",
           "Name": "Binding Heals",
           "SpellId": 368275,
           "Icon": "spell_holy_blindingheal",
-          "DefinitionId": 85991
+          "DefinitionId": 108829
         }
       ],
       "IsFreeNode": false,
@@ -1185,7 +1194,7 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62801,
+      "Id": 82682,
       "Name": "Divine Star / Halo",
       "Type": "choice",
       "TreePosX": 3900,
@@ -1193,27 +1202,27 @@
       "MaxRanks": 1,
       "EntryNode": false,
       "NextNodes": [
-        62807,
-        62800
+        82679,
+        82681
       ],
       "TalentEntries": [
         {
-          "Id": 80982,
+          "Id": 103831,
           "MaxRanks": 1,
           "Type": "active",
           "Name": "Divine Star",
           "SpellId": 110744,
           "Icon": "spell_priest_divinestar",
-          "DefinitionId": 85985
+          "DefinitionId": 108836
         },
         {
-          "Id": 80981,
+          "Id": 103830,
           "MaxRanks": 1,
           "Type": "active",
           "Name": "Halo",
           "SpellId": 120517,
           "Icon": "ability_priest_halo",
-          "DefinitionId": 85984
+          "DefinitionId": 108835
         }
       ],
       "IsFreeNode": false,
@@ -1225,35 +1234,26 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62822,
-      "Name": "Translucent Image / Phantasm",
-      "Type": "choice",
+      "Id": 82685,
+      "Name": "Translucent Image",
+      "Type": "single",
       "TreePosX": 5100,
       "TreePosY": 5700,
       "MaxRanks": 1,
       "EntryNode": false,
       "NextNodes": [
-        62800,
-        62780
+        82681,
+        82686
       ],
       "TalentEntries": [
         {
-          "Id": 81006,
+          "Id": 103835,
           "MaxRanks": 1,
           "Type": "passive",
           "Name": "Translucent Image",
           "SpellId": 373446,
           "Icon": "spell_nature_invisibilty",
-          "DefinitionId": 86009
-        },
-        {
-          "Id": 81005,
-          "MaxRanks": 1,
-          "Type": "passive",
-          "Name": "Phantasm",
-          "SpellId": 108942,
-          "Icon": "ability_priest_phantasm",
-          "DefinitionId": 86008
+          "DefinitionId": 108840
         }
       ],
       "IsFreeNode": false,
@@ -1265,7 +1265,7 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62798,
+      "Id": 82687,
       "Name": "Mindgames",
       "Type": "single",
       "TreePosX": 6300,
@@ -1273,18 +1273,18 @@
       "MaxRanks": 1,
       "EntryNode": false,
       "NextNodes": [
-        62780,
-        62778
+        82686,
+        82672
       ],
       "TalentEntries": [
         {
-          "Id": 80978,
+          "Id": 103837,
           "MaxRanks": 1,
           "Type": "active",
           "Name": "Mindgames",
           "SpellId": 375901,
           "Icon": "ability_revendreth_priest",
-          "DefinitionId": 85981
+          "DefinitionId": 108842
         }
       ],
       "IsFreeNode": false,
@@ -1296,7 +1296,7 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62775,
+      "Id": 82677,
       "Name": "Surge of Light",
       "Type": "single",
       "TreePosX": 2700,
@@ -1304,17 +1304,17 @@
       "MaxRanks": 2,
       "EntryNode": false,
       "NextNodes": [
-        62776
+        82676
       ],
       "TalentEntries": [
         {
-          "Id": 80953,
+          "Id": 103823,
           "MaxRanks": 2,
           "Type": "passive",
           "Name": "Surge of Light",
           "SpellId": 109186,
           "Icon": "spell_holy_surgeoflight",
-          "DefinitionId": 85956
+          "DefinitionId": 108828
         }
       ],
       "IsFreeNode": false,
@@ -1326,7 +1326,7 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62807,
+      "Id": 82679,
       "Name": "Light\u0027s Inspiration",
       "Type": "single",
       "TreePosX": 3300,
@@ -1334,17 +1334,17 @@
       "MaxRanks": 2,
       "EntryNode": false,
       "NextNodes": [
-        62799
+        82675
       ],
       "TalentEntries": [
         {
-          "Id": 80990,
+          "Id": 103826,
           "MaxRanks": 2,
           "Type": "passive",
           "Name": "Light\u0027s Inspiration",
           "SpellId": 373450,
           "Icon": "spell_holy_restoration",
-          "DefinitionId": 85993
+          "DefinitionId": 108831
         }
       ],
       "IsFreeNode": false,
@@ -1356,7 +1356,7 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62800,
+      "Id": 82681,
       "Name": "Crystalline Reflection",
       "Type": "single",
       "TreePosX": 4500,
@@ -1364,18 +1364,18 @@
       "MaxRanks": 2,
       "EntryNode": false,
       "NextNodes": [
-        62799,
-        62779
+        82675,
+        82674
       ],
       "TalentEntries": [
         {
-          "Id": 80980,
+          "Id": 103829,
           "MaxRanks": 2,
           "Type": "passive",
           "Name": "Crystalline Reflection",
           "SpellId": 373457,
           "Icon": "ability_priest_reflectiveshield",
-          "DefinitionId": 85983
+          "DefinitionId": 108834
         }
       ],
       "IsFreeNode": false,
@@ -1387,7 +1387,7 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62780,
+      "Id": 82686,
       "Name": "Improved Fade",
       "Type": "single",
       "TreePosX": 5700,
@@ -1395,17 +1395,17 @@
       "MaxRanks": 2,
       "EntryNode": false,
       "NextNodes": [
-        62779
+        82674
       ],
       "TalentEntries": [
         {
-          "Id": 80958,
+          "Id": 103836,
           "MaxRanks": 2,
           "Type": "passive",
           "Name": "Improved Fade",
           "SpellId": 390670,
           "Icon": "spell_magic_lesserinvisibilty",
-          "DefinitionId": 85961
+          "DefinitionId": 108841
         }
       ],
       "IsFreeNode": false,
@@ -1417,7 +1417,7 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62778,
+      "Id": 82672,
       "Name": "Manipulation",
       "Type": "single",
       "TreePosX": 6300,
@@ -1425,17 +1425,17 @@
       "MaxRanks": 2,
       "EntryNode": false,
       "NextNodes": [
-        62777
+        82673
       ],
       "TalentEntries": [
         {
-          "Id": 80956,
+          "Id": 103818,
           "MaxRanks": 2,
           "Type": "passive",
           "Name": "Manipulation",
           "SpellId": 390996,
           "Icon": "ability_revendreth_priest",
-          "DefinitionId": 85959
+          "DefinitionId": 108823
         }
       ],
       "IsFreeNode": false,
@@ -1447,8 +1447,8 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62776,
-      "Name": "Holy Word: Life",
+      "Id": 82676,
+      "Name": "Power Word: Life",
       "Type": "single",
       "TreePosX": 2700,
       "TreePosY": 6900,
@@ -1457,13 +1457,13 @@
       "NextNodes": [],
       "TalentEntries": [
         {
-          "Id": 80954,
+          "Id": 103822,
           "MaxRanks": 1,
           "Type": "active",
-          "Name": "Holy Word: Life",
+          "Name": "Power Word: Life",
           "SpellId": 373481,
           "Icon": "ability_priest_holywordlife",
-          "DefinitionId": 85957
+          "DefinitionId": 108827
         }
       ],
       "IsFreeNode": false,
@@ -1475,7 +1475,7 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62799,
+      "Id": 82675,
       "Name": "Angelic Bulwark",
       "Type": "single",
       "TreePosX": 3900,
@@ -1485,13 +1485,13 @@
       "NextNodes": [],
       "TalentEntries": [
         {
-          "Id": 80979,
+          "Id": 103821,
           "MaxRanks": 1,
           "Type": "passive",
           "Name": "Angelic Bulwark",
           "SpellId": 108945,
           "Icon": "ability_priest_angelicbulwark",
-          "DefinitionId": 85982
+          "DefinitionId": 108826
         }
       ],
       "IsFreeNode": false,
@@ -1503,7 +1503,7 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62779,
+      "Id": 82674,
       "Name": "Void Shift",
       "Type": "single",
       "TreePosX": 5100,
@@ -1513,13 +1513,13 @@
       "NextNodes": [],
       "TalentEntries": [
         {
-          "Id": 80957,
+          "Id": 103820,
           "MaxRanks": 1,
           "Type": "active",
           "Name": "Void Shift",
           "SpellId": 108968,
           "Icon": "spell_priest_voidshift",
-          "DefinitionId": 85960
+          "DefinitionId": 108825
         }
       ],
       "IsFreeNode": false,
@@ -1531,7 +1531,7 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62777,
+      "Id": 82673,
       "Name": "Shattered Perceptions",
       "Type": "single",
       "TreePosX": 6300,
@@ -1541,13 +1541,13 @@
       "NextNodes": [],
       "TalentEntries": [
         {
-          "Id": 80955,
+          "Id": 103819,
           "MaxRanks": 1,
           "Type": "passive",
           "Name": "Shattered Perceptions",
           "SpellId": 391112,
           "Icon": "spell_animarevendreth_debuff",
-          "DefinitionId": 85958
+          "DefinitionId": 108824
         }
       ],
       "IsFreeNode": false,
@@ -1561,7 +1561,7 @@
   ],
   "SpecNodes": [
     {
-      "Id": 62874,
+      "Id": 82638,
       "Name": "Holy Word: Serenity",
       "Type": "single",
       "TreePosX": 12300,
@@ -1569,19 +1569,19 @@
       "MaxRanks": 1,
       "EntryNode": true,
       "NextNodes": [
-        62875,
-        62867,
-        62873
+        82631,
+        82637,
+        82639
       ],
       "TalentEntries": [
         {
-          "Id": 81069,
+          "Id": 103775,
           "MaxRanks": 1,
           "Type": "active",
           "Name": "Holy Word: Serenity",
           "SpellId": 2050,
           "Icon": "spell_holy_persuitofjustice",
-          "DefinitionId": 86072
+          "DefinitionId": 108780
         }
       ],
       "IsFreeNode": false,
@@ -1593,7 +1593,7 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62875,
+      "Id": 82631,
       "Name": "Prayer of Healing",
       "Type": "single",
       "TreePosX": 11700,
@@ -1601,18 +1601,18 @@
       "MaxRanks": 1,
       "EntryNode": false,
       "NextNodes": [
-        62876,
-        62869
+        82632,
+        82630
       ],
       "TalentEntries": [
         {
-          "Id": 81070,
+          "Id": 103766,
           "MaxRanks": 1,
           "Type": "active",
           "Name": "Prayer of Healing",
           "SpellId": 596,
           "Icon": "spell_holy_prayerofhealing02",
-          "DefinitionId": 86073
+          "DefinitionId": 108771
         }
       ],
       "IsFreeNode": false,
@@ -1624,7 +1624,7 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62867,
+      "Id": 82637,
       "Name": "Guardian Spirit",
       "Type": "single",
       "TreePosX": 12300,
@@ -1632,17 +1632,17 @@
       "MaxRanks": 1,
       "EntryNode": false,
       "NextNodes": [
-        62868
+        82636
       ],
       "TalentEntries": [
         {
-          "Id": 81060,
+          "Id": 103774,
           "MaxRanks": 1,
           "Type": "active",
           "Name": "Guardian Spirit",
           "SpellId": 47788,
           "Icon": "spell_holy_guardianspirit",
-          "DefinitionId": 86063
+          "DefinitionId": 108779
         }
       ],
       "IsFreeNode": false,
@@ -1654,7 +1654,7 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62873,
+      "Id": 82639,
       "Name": "Holy Word: Chastise",
       "Type": "single",
       "TreePosX": 12900,
@@ -1662,18 +1662,18 @@
       "MaxRanks": 1,
       "EntryNode": false,
       "NextNodes": [
-        62870,
-        62872
+        82619,
+        82640
       ],
       "TalentEntries": [
         {
-          "Id": 81068,
+          "Id": 103776,
           "MaxRanks": 1,
           "Type": "active",
           "Name": "Holy Word: Chastise",
           "SpellId": 88625,
           "Icon": "spell_holy_chastise",
-          "DefinitionId": 86071
+          "DefinitionId": 108781
         }
       ],
       "IsFreeNode": false,
@@ -1685,7 +1685,7 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62876,
+      "Id": 82632,
       "Name": "Holy Word: Sanctify",
       "Type": "single",
       "TreePosX": 11100,
@@ -1693,19 +1693,19 @@
       "MaxRanks": 1,
       "EntryNode": false,
       "NextNodes": [
-        62877,
-        62864,
-        62869
+        82624,
+        82633,
+        82630
       ],
       "TalentEntries": [
         {
-          "Id": 81071,
+          "Id": 103767,
           "MaxRanks": 1,
           "Type": "active",
           "Name": "Holy Word: Sanctify",
           "SpellId": 34861,
           "Icon": "spell_holy_divineprovidence",
-          "DefinitionId": 86074
+          "DefinitionId": 108772
         }
       ],
       "IsFreeNode": false,
@@ -1717,7 +1717,7 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62868,
+      "Id": 82636,
       "Name": "Guardian Angel / Guardians of the Light",
       "Type": "choice",
       "TreePosX": 12300,
@@ -1725,28 +1725,28 @@
       "MaxRanks": 1,
       "EntryNode": false,
       "NextNodes": [
-        62869,
-        62866,
-        62871
+        82630,
+        82635,
+        82620
       ],
       "TalentEntries": [
         {
-          "Id": 81062,
+          "Id": 103773,
           "MaxRanks": 1,
           "Type": "passive",
           "Name": "Guardian Angel",
           "SpellId": 200209,
           "Icon": "ability_priest_pathofthedevout",
-          "DefinitionId": 86065
+          "DefinitionId": 108778
         },
         {
-          "Id": 81061,
+          "Id": 103772,
           "MaxRanks": 1,
           "Type": "passive",
           "Name": "Guardians of the Light",
           "SpellId": 196437,
           "Icon": "spell_holy_guardianspirit",
-          "DefinitionId": 86064
+          "DefinitionId": 108777
         }
       ],
       "IsFreeNode": false,
@@ -1758,7 +1758,7 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62870,
+      "Id": 82619,
       "Name": "Censure",
       "Type": "single",
       "TreePosX": 12900,
@@ -1766,17 +1766,17 @@
       "MaxRanks": 1,
       "EntryNode": false,
       "NextNodes": [
-        62871
+        82620
       ],
       "TalentEntries": [
         {
-          "Id": 81064,
+          "Id": 103753,
           "MaxRanks": 1,
           "Type": "passive",
           "Name": "Censure",
           "SpellId": 200199,
           "Icon": "spell_holy_eyeforaneye",
-          "DefinitionId": 86067
+          "DefinitionId": 108758
         }
       ],
       "IsFreeNode": false,
@@ -1788,26 +1788,26 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62872,
-      "Name": "Holy Fire",
+      "Id": 82640,
+      "Name": "Burning Vehemence",
       "Type": "single",
       "TreePosX": 13500,
       "TreePosY": 2700,
       "MaxRanks": 1,
       "EntryNode": false,
       "NextNodes": [
-        62871,
-        62856
+        82620,
+        82607
       ],
       "TalentEntries": [
         {
-          "Id": 81067,
+          "Id": 103777,
           "MaxRanks": 1,
-          "Type": "active",
-          "Name": "Holy Fire",
-          "SpellId": 14914,
-          "Icon": "spell_holy_searinglight",
-          "DefinitionId": 86070
+          "Type": "passive",
+          "Name": "Burning Vehemence",
+          "SpellId": 372307,
+          "Icon": "spell_nature_unleashedrage",
+          "DefinitionId": 108782
         }
       ],
       "IsFreeNode": false,
@@ -1819,7 +1819,7 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62877,
+      "Id": 82624,
       "Name": "Circle of Healing",
       "Type": "single",
       "TreePosX": 10500,
@@ -1827,18 +1827,18 @@
       "MaxRanks": 1,
       "EntryNode": false,
       "NextNodes": [
-        62878,
-        62863
+        82625,
+        82623
       ],
       "TalentEntries": [
         {
-          "Id": 81072,
+          "Id": 103758,
           "MaxRanks": 1,
           "Type": "active",
           "Name": "Circle of Healing",
           "SpellId": 204883,
           "Icon": "spell_holy_circleofrenewal",
-          "DefinitionId": 86075
+          "DefinitionId": 108763
         }
       ],
       "IsFreeNode": false,
@@ -1850,7 +1850,7 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62864,
+      "Id": 82633,
       "Name": "Revitalizing Prayers / Sanctified Prayers",
       "Type": "choice",
       "TreePosX": 11100,
@@ -1858,27 +1858,27 @@
       "MaxRanks": 1,
       "EntryNode": false,
       "NextNodes": [
-        62863,
-        62865
+        82623,
+        82634
       ],
       "TalentEntries": [
         {
-          "Id": 81056,
+          "Id": 103769,
           "MaxRanks": 1,
           "Type": "passive",
           "Name": "Revitalizing Prayers",
           "SpellId": 391208,
           "Icon": "inv_staff_2h_artifacttome_d_06",
-          "DefinitionId": 86059
+          "DefinitionId": 108774
         },
         {
-          "Id": 81055,
+          "Id": 103768,
           "MaxRanks": 1,
           "Type": "passive",
           "Name": "Sanctified Prayers",
           "SpellId": 196489,
           "Icon": "spell_holy_pureofheart",
-          "DefinitionId": 86058
+          "DefinitionId": 108773
         }
       ],
       "IsFreeNode": false,
@@ -1890,7 +1890,7 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62869,
+      "Id": 82630,
       "Name": "Cosmic Ripple",
       "Type": "single",
       "TreePosX": 11700,
@@ -1898,17 +1898,18 @@
       "MaxRanks": 1,
       "EntryNode": false,
       "NextNodes": [
-        62865
+        82634,
+        82621
       ],
       "TalentEntries": [
         {
-          "Id": 81063,
+          "Id": 103765,
           "MaxRanks": 1,
           "Type": "passive",
           "Name": "Cosmic Ripple",
           "SpellId": 238136,
           "Icon": "spell_holy_summonlightwell",
-          "DefinitionId": 86066
+          "DefinitionId": 108770
         }
       ],
       "IsFreeNode": false,
@@ -1920,35 +1921,25 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62866,
-      "Name": "Afterlife / Archbishop Benedictus\u0027 Restitution",
-      "Type": "choice",
+      "Id": 82635,
+      "Name": "Afterlife",
+      "Type": "single",
       "TreePosX": 12300,
       "TreePosY": 3300,
       "MaxRanks": 1,
       "EntryNode": false,
       "NextNodes": [
-        62865,
-        62861
+        82621
       ],
       "TalentEntries": [
         {
-          "Id": 81059,
+          "Id": 103771,
           "MaxRanks": 1,
           "Type": "passive",
           "Name": "Afterlife",
           "SpellId": 196707,
           "Icon": "inv_enchant_essencemagiclarge",
-          "DefinitionId": 86062
-        },
-        {
-          "Id": 81058,
-          "MaxRanks": 1,
-          "Type": "passive",
-          "Name": "Archbishop Benedictus\u0027 Restitution",
-          "SpellId": 391124,
-          "Icon": "inv_staff_2h_artifactheartofkure_d_03",
-          "DefinitionId": 86061
+          "DefinitionId": 108776
         }
       ],
       "IsFreeNode": false,
@@ -1960,36 +1951,27 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62871,
-      "Name": "Benediction / Holy Mending",
-      "Type": "choice",
+      "Id": 82620,
+      "Name": "Renewed Faith",
+      "Type": "single",
       "TreePosX": 12900,
       "TreePosY": 3300,
       "MaxRanks": 1,
       "EntryNode": false,
       "NextNodes": [
-        62861,
-        62844,
-        62857
+        82621,
+        82618,
+        82641
       ],
       "TalentEntries": [
         {
-          "Id": 81066,
+          "Id": 103754,
           "MaxRanks": 1,
           "Type": "passive",
-          "Name": "Benediction",
-          "SpellId": 193157,
-          "Icon": "spell_monk_diffusemagic",
-          "DefinitionId": 86069
-        },
-        {
-          "Id": 81065,
-          "MaxRanks": 1,
-          "Type": "passive",
-          "Name": "Holy Mending",
-          "SpellId": 391154,
-          "Icon": "spell_holy_healingfocus",
-          "DefinitionId": 86068
+          "Name": "Renewed Faith",
+          "SpellId": 341997,
+          "Icon": "ability_pvp_innerrenewal",
+          "DefinitionId": 108759
         }
       ],
       "IsFreeNode": false,
@@ -2001,25 +1983,25 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62856,
-      "Name": "Burning Vehemence",
+      "Id": 82607,
+      "Name": "Empyreal Blaze",
       "Type": "single",
       "TreePosX": 14100,
       "TreePosY": 3300,
       "MaxRanks": 1,
       "EntryNode": false,
       "NextNodes": [
-        62857
+        82641
       ],
       "TalentEntries": [
         {
-          "Id": 81047,
+          "Id": 103739,
           "MaxRanks": 1,
-          "Type": "passive",
-          "Name": "Burning Vehemence",
-          "SpellId": 372307,
-          "Icon": "spell_nature_unleashedrage",
-          "DefinitionId": 86050
+          "Type": "active",
+          "Name": "Empyreal Blaze",
+          "SpellId": 372616,
+          "Icon": "spell_fire_ragnaros_lavabolt",
+          "DefinitionId": 108744
         }
       ],
       "IsFreeNode": false,
@@ -2031,7 +2013,7 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62878,
+      "Id": 82625,
       "Name": "Prayer Circle / Healing Chorus",
       "Type": "choice",
       "TreePosX": 10500,
@@ -2039,26 +2021,26 @@
       "MaxRanks": 1,
       "EntryNode": false,
       "NextNodes": [
-        62879
+        82626
       ],
       "TalentEntries": [
         {
-          "Id": 81074,
+          "Id": 103760,
           "MaxRanks": 1,
           "Type": "passive",
           "Name": "Prayer Circle",
           "SpellId": 321377,
           "Icon": "spell_paladin_divinecircle",
-          "DefinitionId": 86077
+          "DefinitionId": 108765
         },
         {
-          "Id": 81073,
+          "Id": 103759,
           "MaxRanks": 1,
           "Type": "passive",
           "Name": "Healing Chorus",
           "SpellId": 390881,
           "Icon": "spell_holy_circleofrenewal",
-          "DefinitionId": 86076
+          "DefinitionId": 108764
         }
       ],
       "IsFreeNode": false,
@@ -2070,7 +2052,7 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62863,
+      "Id": 82623,
       "Name": "Prayerful Litany",
       "Type": "single",
       "TreePosX": 11100,
@@ -2078,18 +2060,18 @@
       "MaxRanks": 1,
       "EntryNode": false,
       "NextNodes": [
-        62862,
-        62880
+        82622,
+        82627
       ],
       "TalentEntries": [
         {
-          "Id": 81054,
+          "Id": 103757,
           "MaxRanks": 1,
           "Type": "passive",
           "Name": "Prayerful Litany",
           "SpellId": 391209,
           "Icon": "spell_holy_prayerofhealing02",
-          "DefinitionId": 86057
+          "DefinitionId": 108762
         }
       ],
       "IsFreeNode": false,
@@ -2101,7 +2083,7 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62865,
+      "Id": 82634,
       "Name": "Trail of Light",
       "Type": "single",
       "TreePosX": 11700,
@@ -2109,17 +2091,17 @@
       "MaxRanks": 2,
       "EntryNode": false,
       "NextNodes": [
-        62862
+        82622
       ],
       "TalentEntries": [
         {
-          "Id": 81057,
+          "Id": 103770,
           "MaxRanks": 2,
           "Type": "passive",
           "Name": "Trail of Light",
           "SpellId": 200128,
           "Icon": "ability_priest_wordsofmeaning",
-          "DefinitionId": 86060
+          "DefinitionId": 108775
         }
       ],
       "IsFreeNode": false,
@@ -2131,7 +2113,7 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62861,
+      "Id": 82621,
       "Name": "Divine Hymn",
       "Type": "single",
       "TreePosX": 12300,
@@ -2139,19 +2121,19 @@
       "MaxRanks": 1,
       "EntryNode": false,
       "NextNodes": [
-        62862,
-        62860,
-        62858
+        82622,
+        82613,
+        82617
       ],
       "TalentEntries": [
         {
-          "Id": 81052,
+          "Id": 103755,
           "MaxRanks": 1,
           "Type": "active",
           "Name": "Divine Hymn",
           "SpellId": 64843,
           "Icon": "spell_holy_divinehymn",
-          "DefinitionId": 86055
+          "DefinitionId": 108760
         }
       ],
       "IsFreeNode": false,
@@ -2163,25 +2145,25 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62844,
-      "Name": "Converted Followers [NYI]",
+      "Id": 82618,
+      "Name": "Enlightenment",
       "Type": "single",
       "TreePosX": 12900,
       "TreePosY": 3900,
       "MaxRanks": 1,
       "EntryNode": false,
       "NextNodes": [
-        62858
+        82617
       ],
       "TalentEntries": [
         {
-          "Id": 81032,
+          "Id": 103752,
           "MaxRanks": 1,
           "Type": "passive",
-          "Name": "Converted Followers [NYI]",
-          "SpellId": 391233,
-          "Icon": "spell_holy_prayerofspirit",
-          "DefinitionId": 86035
+          "Name": "Enlightenment",
+          "SpellId": 193155,
+          "Icon": "spell_arcane_mindmastery",
+          "DefinitionId": 108757
         }
       ],
       "IsFreeNode": false,
@@ -2193,26 +2175,35 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62857,
-      "Name": "Renewed Faith",
-      "Type": "single",
+      "Id": 82641,
+      "Name": "Benediction / Holy Mending",
+      "Type": "choice",
       "TreePosX": 13500,
       "TreePosY": 3900,
       "MaxRanks": 1,
       "EntryNode": false,
       "NextNodes": [
-        62858,
-        62855
+        82617,
+        82642
       ],
       "TalentEntries": [
         {
-          "Id": 81048,
+          "Id": 103779,
           "MaxRanks": 1,
           "Type": "passive",
-          "Name": "Renewed Faith",
-          "SpellId": 341997,
-          "Icon": "ability_pvp_innerrenewal",
-          "DefinitionId": 86051
+          "Name": "Benediction",
+          "SpellId": 193157,
+          "Icon": "spell_monk_diffusemagic",
+          "DefinitionId": 108784
+        },
+        {
+          "Id": 103778,
+          "MaxRanks": 1,
+          "Type": "passive",
+          "Name": "Holy Mending",
+          "SpellId": 391154,
+          "Icon": "spell_holy_healingfocus",
+          "DefinitionId": 108783
         }
       ],
       "IsFreeNode": false,
@@ -2224,7 +2215,7 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62879,
+      "Id": 82626,
       "Name": "Orison",
       "Type": "single",
       "TreePosX": 10500,
@@ -2232,17 +2223,17 @@
       "MaxRanks": 1,
       "EntryNode": false,
       "NextNodes": [
-        62880
+        82627
       ],
       "TalentEntries": [
         {
-          "Id": 81075,
+          "Id": 103761,
           "MaxRanks": 1,
           "Type": "passive",
           "Name": "Orison",
           "SpellId": 390947,
           "Icon": "spell_holy_fanaticism",
-          "DefinitionId": 86078
+          "DefinitionId": 108766
         }
       ],
       "IsFreeNode": false,
@@ -2254,7 +2245,7 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62862,
+      "Id": 82622,
       "Name": "Everlasting Light",
       "Type": "single",
       "TreePosX": 11700,
@@ -2262,18 +2253,18 @@
       "MaxRanks": 1,
       "EntryNode": false,
       "NextNodes": [
-        62859,
-        62880
+        82614,
+        82627
       ],
       "TalentEntries": [
         {
-          "Id": 81053,
+          "Id": 103756,
           "MaxRanks": 1,
           "Type": "passive",
           "Name": "Everlasting Light",
           "SpellId": 391161,
           "Icon": "inv_mace_1h_artifactheartofkure_d_01",
-          "DefinitionId": 86056
+          "DefinitionId": 108761
         }
       ],
       "IsFreeNode": false,
@@ -2285,7 +2276,7 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62860,
+      "Id": 82613,
       "Name": "Gales of Song",
       "Type": "single",
       "TreePosX": 12300,
@@ -2293,17 +2284,17 @@
       "MaxRanks": 2,
       "EntryNode": false,
       "NextNodes": [
-        62859
+        82614
       ],
       "TalentEntries": [
         {
-          "Id": 81051,
+          "Id": 103747,
           "MaxRanks": 2,
           "Type": "passive",
           "Name": "Gales of Song",
           "SpellId": 372370,
           "Icon": "inv_misc_volatileair",
-          "DefinitionId": 86054
+          "DefinitionId": 108752
         }
       ],
       "IsFreeNode": false,
@@ -2315,7 +2306,7 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62858,
+      "Id": 82617,
       "Name": "Symbol of Hope",
       "Type": "single",
       "TreePosX": 12900,
@@ -2323,18 +2314,18 @@
       "MaxRanks": 1,
       "EntryNode": false,
       "NextNodes": [
-        62859,
-        62854
+        82614,
+        82616
       ],
       "TalentEntries": [
         {
-          "Id": 81049,
+          "Id": 103751,
           "MaxRanks": 1,
           "Type": "active",
           "Name": "Symbol of Hope",
           "SpellId": 64901,
           "Icon": "spell_holy_symbolofhope",
-          "DefinitionId": 86052
+          "DefinitionId": 108756
         }
       ],
       "IsFreeNode": false,
@@ -2346,25 +2337,25 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62855,
-      "Name": "Enlightenment",
+      "Id": 82642,
+      "Name": "Divine Service",
       "Type": "single",
       "TreePosX": 14100,
       "TreePosY": 4500,
       "MaxRanks": 1,
       "EntryNode": false,
       "NextNodes": [
-        62854
+        82616
       ],
       "TalentEntries": [
         {
-          "Id": 81046,
+          "Id": 103780,
           "MaxRanks": 1,
           "Type": "passive",
-          "Name": "Enlightenment",
-          "SpellId": 193155,
-          "Icon": "spell_arcane_mindmastery",
-          "DefinitionId": 86049
+          "Name": "Divine Service",
+          "SpellId": 391233,
+          "Icon": "spell_holy_prayerofspirit",
+          "DefinitionId": 108785
         }
       ],
       "IsFreeNode": false,
@@ -2376,7 +2367,7 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62880,
+      "Id": 82627,
       "Name": "Crisis Management",
       "Type": "single",
       "TreePosX": 11100,
@@ -2384,18 +2375,18 @@
       "MaxRanks": 2,
       "EntryNode": false,
       "NextNodes": [
-        62881,
-        62847
+        82628,
+        82610
       ],
       "TalentEntries": [
         {
-          "Id": 81076,
+          "Id": 103762,
           "MaxRanks": 2,
           "Type": "passive",
           "Name": "Crisis Management",
           "SpellId": 390954,
           "Icon": "spell_holy_flashheal",
-          "DefinitionId": 86079
+          "DefinitionId": 108767
         }
       ],
       "IsFreeNode": false,
@@ -2407,7 +2398,7 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62859,
+      "Id": 82614,
       "Name": "Prismatic Echoes",
       "Type": "single",
       "TreePosX": 12300,
@@ -2415,18 +2406,18 @@
       "MaxRanks": 2,
       "EntryNode": false,
       "NextNodes": [
-        62847,
-        62849
+        82610,
+        82612
       ],
       "TalentEntries": [
         {
-          "Id": 81050,
+          "Id": 103748,
           "MaxRanks": 2,
           "Type": "passive",
           "Name": "Prismatic Echoes",
           "SpellId": 390967,
           "Icon": "spell_holy_aspiration",
-          "DefinitionId": 86053
+          "DefinitionId": 108753
         }
       ],
       "IsFreeNode": false,
@@ -2438,7 +2429,7 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62854,
+      "Id": 82616,
       "Name": "Prayers of the Virtuous",
       "Type": "single",
       "TreePosX": 13500,
@@ -2446,18 +2437,18 @@
       "MaxRanks": 2,
       "EntryNode": false,
       "NextNodes": [
-        62849,
-        62853
+        82612,
+        82615
       ],
       "TalentEntries": [
         {
-          "Id": 81045,
+          "Id": 103750,
           "MaxRanks": 2,
           "Type": "passive",
           "Name": "Prayers of the Virtuous",
           "SpellId": 390977,
           "Icon": "spell_holy_prayerofmendingtga",
-          "DefinitionId": 86048
+          "DefinitionId": 108755
         }
       ],
       "IsFreeNode": false,
@@ -2469,7 +2460,7 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62881,
+      "Id": 82628,
       "Name": "Pontifex",
       "Type": "single",
       "TreePosX": 10500,
@@ -2477,18 +2468,18 @@
       "MaxRanks": 1,
       "EntryNode": false,
       "NextNodes": [
-        62843,
-        62882
+        82604,
+        82609
       ],
       "TalentEntries": [
         {
-          "Id": 81077,
+          "Id": 103763,
           "MaxRanks": 1,
           "Type": "passive",
           "Name": "Pontifex",
           "SpellId": 390980,
           "Icon": "spell_priest_pontifex",
-          "DefinitionId": 86080
+          "DefinitionId": 108768
         }
       ],
       "IsFreeNode": false,
@@ -2500,36 +2491,36 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62847,
-      "Name": "Empowered Renew / Rapid Recovery",
+      "Id": 82610,
+      "Name": "Apotheosis / Holy Word: Salvation",
       "Type": "choice",
       "TreePosX": 11700,
       "TreePosY": 5700,
       "MaxRanks": 1,
       "EntryNode": false,
       "NextNodes": [
-        62882,
-        62846,
-        62848
+        82609,
+        82629,
+        82611
       ],
       "TalentEntries": [
         {
-          "Id": 81037,
+          "Id": 103743,
           "MaxRanks": 1,
-          "Type": "passive",
-          "Name": "Empowered Renew",
-          "SpellId": 391339,
-          "Icon": "ability_paladin_infusionoflight",
-          "DefinitionId": 86040
+          "Type": "active",
+          "Name": "Apotheosis",
+          "SpellId": 200183,
+          "Icon": "ability_priest_ascension",
+          "DefinitionId": 108748
         },
         {
-          "Id": 81036,
+          "Id": 103742,
           "MaxRanks": 1,
-          "Type": "passive",
-          "Name": "Rapid Recovery",
-          "SpellId": 391368,
-          "Icon": "spell_holy_renew",
-          "DefinitionId": 86039
+          "Type": "active",
+          "Name": "Holy Word: Salvation",
+          "SpellId": 265202,
+          "Icon": "ability_priest_archangel",
+          "DefinitionId": 108747
         }
       ],
       "IsFreeNode": false,
@@ -2541,26 +2532,35 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62849,
-      "Name": "Say Your Prayers",
-      "Type": "single",
+      "Id": 82612,
+      "Name": "Empowered Renew / Rapid Recovery",
+      "Type": "choice",
       "TreePosX": 12900,
       "TreePosY": 5700,
       "MaxRanks": 1,
       "EntryNode": false,
       "NextNodes": [
-        62848,
-        62850
+        82611,
+        82606
       ],
       "TalentEntries": [
         {
-          "Id": 81039,
+          "Id": 103746,
           "MaxRanks": 1,
           "Type": "passive",
-          "Name": "Say Your Prayers",
-          "SpellId": 391186,
-          "Icon": "ability_priest_bindingprayers",
-          "DefinitionId": 86042
+          "Name": "Empowered Renew",
+          "SpellId": 391339,
+          "Icon": "ability_paladin_infusionoflight",
+          "DefinitionId": 108751
+        },
+        {
+          "Id": 103745,
+          "MaxRanks": 1,
+          "Type": "passive",
+          "Name": "Rapid Recovery",
+          "SpellId": 391368,
+          "Icon": "spell_holy_renew",
+          "DefinitionId": 108750
         }
       ],
       "IsFreeNode": false,
@@ -2572,25 +2572,26 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62853,
-      "Name": "Empyreal Blaze",
+      "Id": 82615,
+      "Name": "Say Your Prayers",
       "Type": "single",
       "TreePosX": 14100,
       "TreePosY": 5700,
       "MaxRanks": 1,
       "EntryNode": false,
       "NextNodes": [
-        62850
+        82606,
+        82608
       ],
       "TalentEntries": [
         {
-          "Id": 81044,
+          "Id": 103749,
           "MaxRanks": 1,
-          "Type": "active",
-          "Name": "Empyreal Blaze",
-          "SpellId": 372616,
-          "Icon": "spell_fire_ragnaros_lavabolt",
-          "DefinitionId": 86047
+          "Type": "passive",
+          "Name": "Say Your Prayers",
+          "SpellId": 391186,
+          "Icon": "ability_priest_bindingprayers",
+          "DefinitionId": 108754
         }
       ],
       "IsFreeNode": false,
@@ -2602,7 +2603,7 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62843,
+      "Id": 82604,
       "Name": "Resonant Words",
       "Type": "single",
       "TreePosX": 10500,
@@ -2610,17 +2611,17 @@
       "MaxRanks": 2,
       "EntryNode": false,
       "NextNodes": [
-        62883
+        82603
       ],
       "TalentEntries": [
         {
-          "Id": 81031,
+          "Id": 103735,
           "MaxRanks": 2,
           "Type": "passive",
           "Name": "Resonant Words",
           "SpellId": 372309,
           "Icon": "spell_holy_holybolt",
-          "DefinitionId": 86034
+          "DefinitionId": 108740
         }
       ],
       "IsFreeNode": false,
@@ -2632,25 +2633,25 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62882,
-      "Name": "Light of the Naaru",
+      "Id": 82609,
+      "Name": "Desperate Times",
       "Type": "single",
       "TreePosX": 11100,
       "TreePosY": 6300,
       "MaxRanks": 2,
       "EntryNode": false,
       "NextNodes": [
-        62883
+        82603
       ],
       "TalentEntries": [
         {
-          "Id": 81078,
+          "Id": 103741,
           "MaxRanks": 2,
           "Type": "passive",
-          "Name": "Light of the Naaru",
-          "SpellId": 196985,
-          "Icon": "inv_pet_naaru",
-          "DefinitionId": 86081
+          "Name": "Desperate Times",
+          "SpellId": 391381,
+          "Icon": "ability_pvp_defenderoftheweak",
+          "DefinitionId": 108746
         }
       ],
       "IsFreeNode": false,
@@ -2662,25 +2663,25 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62846,
-      "Name": "Desperate Times",
+      "Id": 82629,
+      "Name": "Light of the Naaru",
       "Type": "single",
       "TreePosX": 11700,
       "TreePosY": 6300,
       "MaxRanks": 2,
       "EntryNode": false,
       "NextNodes": [
-        62845
+        82554
       ],
       "TalentEntries": [
         {
-          "Id": 81035,
+          "Id": 103764,
           "MaxRanks": 2,
           "Type": "passive",
-          "Name": "Desperate Times",
-          "SpellId": 391381,
-          "Icon": "ability_paladin_infusionoflight",
-          "DefinitionId": 86038
+          "Name": "Light of the Naaru",
+          "SpellId": 196985,
+          "Icon": "inv_pet_naaru",
+          "DefinitionId": 108769
         }
       ],
       "IsFreeNode": false,
@@ -2692,7 +2693,7 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62848,
+      "Id": 82611,
       "Name": "Harmonious Apparatus",
       "Type": "single",
       "TreePosX": 12300,
@@ -2700,17 +2701,17 @@
       "MaxRanks": 2,
       "EntryNode": false,
       "NextNodes": [
-        62845
+        82554
       ],
       "TalentEntries": [
         {
-          "Id": 81038,
+          "Id": 103744,
           "MaxRanks": 2,
           "Type": "passive",
           "Name": "Harmonious Apparatus",
           "SpellId": 390994,
           "Icon": "spell_holy_serendipity",
-          "DefinitionId": 86041
+          "DefinitionId": 108749
         }
       ],
       "IsFreeNode": false,
@@ -2722,25 +2723,25 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62850,
-      "Name": "Spirited Litany",
+      "Id": 82606,
+      "Name": "Searing Light",
       "Type": "single",
       "TreePosX": 13500,
       "TreePosY": 6300,
       "MaxRanks": 2,
       "EntryNode": false,
       "NextNodes": [
-        62851
+        82605
       ],
       "TalentEntries": [
         {
-          "Id": 81040,
+          "Id": 103738,
           "MaxRanks": 2,
           "Type": "passive",
-          "Name": "Spirited Litany",
-          "SpellId": 391387,
-          "Icon": "spell_holy_absolution",
-          "DefinitionId": 86043
+          "Name": "Searing Light",
+          "SpellId": 372611,
+          "Icon": "inv_summerfest_firespirit",
+          "DefinitionId": 108743
         }
       ],
       "IsFreeNode": false,
@@ -2752,25 +2753,25 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62852,
-      "Name": "Searing Light",
+      "Id": 82608,
+      "Name": "Answered Prayers",
       "Type": "single",
       "TreePosX": 14100,
       "TreePosY": 6300,
       "MaxRanks": 2,
-      "EntryNode": true,
+      "EntryNode": false,
       "NextNodes": [
-        62851
+        82605
       ],
       "TalentEntries": [
         {
-          "Id": 81043,
+          "Id": 103740,
           "MaxRanks": 2,
           "Type": "passive",
-          "Name": "Searing Light",
-          "SpellId": 372611,
-          "Icon": "inv_summerfest_firespirit",
-          "DefinitionId": 86046
+          "Name": "Answered Prayers",
+          "SpellId": 391387,
+          "Icon": "inv_staff_2h_artifactheartofkure_d_06",
+          "DefinitionId": 108745
         }
       ],
       "IsFreeNode": false,
@@ -2782,7 +2783,7 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62883,
+      "Id": 82603,
       "Name": "Lightweaver / Lightwell",
       "Type": "choice",
       "TreePosX": 11100,
@@ -2792,22 +2793,22 @@
       "NextNodes": [],
       "TalentEntries": [
         {
-          "Id": 81080,
+          "Id": 103734,
           "MaxRanks": 1,
           "Type": "passive",
           "Name": "Lightweaver",
           "SpellId": 390992,
           "Icon": "spell_holy_greaterheal",
-          "DefinitionId": 86083
+          "DefinitionId": 108739
         },
         {
-          "Id": 81079,
+          "Id": 103733,
           "MaxRanks": 1,
           "Type": "active",
           "Name": "Lightwell",
           "SpellId": 372835,
           "Icon": "spell_holy_summonlightwell",
-          "DefinitionId": 86082
+          "DefinitionId": 108738
         }
       ],
       "IsFreeNode": false,
@@ -2819,8 +2820,8 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62845,
-      "Name": "Apotheosis / Holy Word: Salvation",
+      "Id": 82554,
+      "Name": "Divine Image / Divine Word",
       "Type": "choice",
       "TreePosX": 12300,
       "TreePosY": 6900,
@@ -2829,22 +2830,22 @@
       "NextNodes": [],
       "TalentEntries": [
         {
-          "Id": 81034,
+          "Id": 103736,
           "MaxRanks": 1,
-          "Type": "active",
-          "Name": "Apotheosis",
-          "SpellId": 200183,
-          "Icon": "ability_priest_ascension",
-          "DefinitionId": 86037
+          "Type": "passive",
+          "Name": "Divine Image",
+          "SpellId": 392988,
+          "Icon": "inv_staff_2h_artifactheartofkure_d_04",
+          "DefinitionId": 108741
         },
         {
-          "Id": 81033,
+          "Id": 103675,
           "MaxRanks": 1,
           "Type": "active",
-          "Name": "Holy Word: Salvation",
-          "SpellId": 265202,
-          "Icon": "ability_priest_archangel",
-          "DefinitionId": 86036
+          "Name": "Divine Word",
+          "SpellId": 372760,
+          "Icon": "spell_priest_chakra",
+          "DefinitionId": 108680
         }
       ],
       "IsFreeNode": false,
@@ -2856,8 +2857,8 @@
       "IsSecondChoiceSelected": false
     },
     {
-      "Id": 62851,
-      "Name": "Miracle Worker / Divine Word",
+      "Id": 82605,
+      "Name": "Miracle Worker / Restitution",
       "Type": "choice",
       "TreePosX": 13500,
       "TreePosY": 6900,
@@ -2866,22 +2867,22 @@
       "NextNodes": [],
       "TalentEntries": [
         {
-          "Id": 81042,
+          "Id": 103737,
           "MaxRanks": 1,
           "Type": "passive",
           "Name": "Miracle Worker",
           "SpellId": 235587,
           "Icon": "spell_holy_persuitofjustice",
-          "DefinitionId": 86045
+          "DefinitionId": 108742
         },
         {
-          "Id": 81041,
+          "Id": 103676,
           "MaxRanks": 1,
-          "Type": "active",
-          "Name": "Divine Word",
-          "SpellId": 372760,
-          "Icon": "spell_priest_chakra",
-          "DefinitionId": 86044
+          "Type": "passive",
+          "Name": "Restitution",
+          "SpellId": 391124,
+          "Icon": "inv_staff_2h_artifactheartofkure_d_03",
+          "DefinitionId": 108681
         }
       ],
       "IsFreeNode": false,

@@ -111,7 +111,7 @@
     },
     {
       "SpellId": 238136,
-      "Efficiency": 0.0,
+      "Efficiency": 1.0,
       "OverhealPercent": 0.2332,
       "AverageHealingTargets": 5.0,
       "AverageDamageTargets": 0.0
@@ -166,7 +166,7 @@
       "AverageDamageTargets": 1.0
     },
     {
-      "SpellId": 323673,
+      "SpellId": 375901,
       "Efficiency": 1.0,
       "OverhealPercent": 0.01,
       "AverageHealingTargets": 1.0,
@@ -226,6 +226,13 @@
       "Efficiency": 0.9,
       "OverhealPercent": 0.00,
       "AverageHealingTargets": 0.0,
+      "AverageDamageTargets": 0.0
+    },
+    {
+      "SpellId": 372835,
+      "Efficiency": 1,
+      "OverhealPercent": 0.243,
+      "AverageHealingTargets": 15.0,
       "AverageDamageTargets": 0.0
     }
   ],
@@ -738,7 +745,11 @@
     }
   ],
   "Talents": [
-    193155
+    {
+      "Spell": 193155,
+      "SpellId": 193155,
+      "Rank": 1
+    }
   ],
   "Conduits": {},
   "Soulbinds": [],
@@ -814,6 +825,16 @@
     {
       "Name": "DamageTakenPerSecond",
       "Value": 1500,
+      "SpellId": 0
+    },
+    {
+      "Name": "PoMPercentageStacksExpired",
+      "Value": 0.01,
+      "SpellId": 33076
+    },
+    {
+      "Name": "GroupSize",
+      "Value": 20,
       "SpellId": 0
     }
   ],

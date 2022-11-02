@@ -1,22 +1,27 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Salvation.Core.ViewModel
 {
-    public class Spec
+    [ExcludeFromCodeCoverage]
+    public class TalentSpec
     {
         public string ClassName { get; set; }
         public int ClassId { get; set; }
         public string SpecName { get; set; }
         public int SpecId { get; set; }
-        public List<Talent> ClassNodes { get; set; }
-        public List<Talent> SpecNodes { get; set; }
+        public List<TalentNode> ClassNodes { get; set; }
+        public List<TalentNode> SpecNodes { get; set; }
     }
 
-    public class Talent
+    [ExcludeFromCodeCoverage]
+    public class TalentNode
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -38,6 +43,7 @@ namespace Salvation.Core.ViewModel
         public bool IsSecondChoiceSelected { get; set; }
     }
 
+    [ExcludeFromCodeCoverage]
     public class TalentOption
     {
         public int Id { get; set; }

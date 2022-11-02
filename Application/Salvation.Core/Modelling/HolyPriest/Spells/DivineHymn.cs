@@ -27,6 +27,8 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             // Effect 59166 holds the aura bonus, 4% per stack.
             var divineHymnAura = spellData.GetEffect(59162).TriggerSpell.GetEffect(59166).BaseValue / 100;
 
+            divineHymnAura += GetGalesOfSongStackModifier(gameState);
+
             // DH's average heal for the first tick is:
             // SP% * Intellect * Vers * Hpriest Aura
             var healingSp = spellData.GetEffect(59162).TriggerSpell.GetEffect(59165).SpCoefficient;
@@ -34,7 +36,8 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             double firstTickRaid = healingSp
                 * _gameStateService.GetIntellect(gameState)
                 * _gameStateService.GetVersatilityMultiplier(gameState)
-                * holyPriestAuraHealingBonus;
+                * holyPriestAuraHealingBonus
+                * GetGalesOfSongHealMultiplier(gameState);
 
             // double it if we have 5 or less (dungeon group buff)
             double firstTickParty = firstTickRaid * 2;
@@ -72,6 +75,12 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             return maximumPotentialCasts;
         }
 
+        public override double GetAverageHealingMultiplier(GameState gameState, BaseSpellData spellData)
+        {
+            // TODO: Implement the bonus healing stacks
+            return base.GetAverageHealingMultiplier(gameState, spellData);
+        }
+
         public override double GetMinimumHealTargets(GameState gameState, BaseSpellData spellData)
         {
             return 1;
@@ -79,8 +88,40 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
         public override double GetMaximumHealTargets(GameState gameState, BaseSpellData spellData)
         {
-            // TODO: Clamp to raid size?
+            // TODO: Clamp to raid max size?
             return double.MaxValue;
+        }
+
+        internal double GetGalesOfSongStackModifier(GameState gameState)
+        {
+            var modifier = 0d;
+
+            var talent = _gameStateService.GetTalent(gameState, Spell.GalesOfSong);
+
+            if (talent != null && talent.Rank > 0)
+            {
+                var talentSpellData = _gameStateService.GetSpellData(gameState, Spell.GalesOfSong);
+
+                modifier += talentSpellData.GetEffect(996938).BaseValue / 100 * talent.Rank;
+            }
+
+            return modifier;
+        }
+
+        internal double GetGalesOfSongHealMultiplier(GameState gameState)
+        {
+            var modifier = 1d;
+
+            var talent = _gameStateService.GetTalent(gameState, Spell.GalesOfSong);
+
+            if (talent != null && talent.Rank > 0)
+            {
+                var talentSpellData = _gameStateService.GetSpellData(gameState, Spell.GalesOfSong);
+
+                modifier += talentSpellData.GetEffect(996937).BaseValue / 100 * talent.Rank;
+            }
+
+            return modifier;
         }
     }
 }

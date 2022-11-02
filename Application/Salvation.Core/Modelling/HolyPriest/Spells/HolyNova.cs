@@ -20,8 +20,6 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         {
             spellData = ValidateSpellData(gameState, spellData);
 
-            BaseSpellData spellDataRank2 = _gameStateService.GetSpellData(gameState, Spell.HolyNovaRank2);
-
             var holyPriestAuraHealingBonus = _gameStateService.GetSpellData(gameState, Spell.HolyPriest)
                 .GetEffect(179715).BaseValue / 100 + 1;
 
@@ -37,11 +35,6 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             averageHeal *= _gameStateService.GetCriticalStrikeMultiplier(gameState)
                 * _gameStateService.GetGlobalHealingMultiplier(gameState);
 
-            // Rank 2 stuff
-            double threeTargetPercent = _gameStateService.GetPlaystyle(gameState, "HolyNovaPercentOfCastsOnThreeOrMore").Value;
-
-            averageHeal *= 1 + threeTargetPercent * spellDataRank2.GetEffect(844508).BaseValue / 100;
-
             // Apply the relative square root scaling
             var numTargets = GetNumberOfHealingTargets(gameState, spellData);
             averageHeal *= GetTargetScaling(numTargets);
@@ -52,8 +45,6 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         public override double GetAverageDamage(GameState gameState, BaseSpellData spellData = null)
         {
             spellData = ValidateSpellData(gameState, spellData);
-
-            BaseSpellData spellDataRank2 = _gameStateService.GetSpellData(gameState, Spell.HolyNovaRank2);
 
             var holyPriestAuraDamageBonus = _gameStateService.GetSpellData(gameState, Spell.HolyPriest).GetEffect(191077).BaseValue / 100 + 1;
 
@@ -69,11 +60,6 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] Tooltip (Damage): {averageDamage:0.##}");
 
-            // Rank 2 stuff
-            double threeTargetPercent = _gameStateService.GetPlaystyle(gameState, "HolyNovaPercentOfCastsOnThreeOrMore").Value;
-
-            averageDamage *= 1 + threeTargetPercent * spellDataRank2.GetEffect(844508).BaseValue / 100;
-
             averageDamage *= _gameStateService.GetCriticalStrikeMultiplier(gameState);
 
             return averageDamage * GetTargetScaling(GetNumberOfDamageTargets(gameState, spellData));
@@ -81,6 +67,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
         internal double GetTargetScaling(double numTargets)
         {
+            // Note: Pets don't count towards this when calculating the healing amount.
             return (1 / Math.Sqrt(Math.Max(5, numTargets))) / (1 / Math.Sqrt(5));
         }
 

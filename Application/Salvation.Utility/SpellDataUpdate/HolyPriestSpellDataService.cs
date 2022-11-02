@@ -1,4 +1,5 @@
-﻿using Salvation.Core.Constants;
+﻿using Microsoft.Extensions.Logging;
+using Salvation.Core.Constants;
 using Salvation.Core.Constants.Data;
 using SimcProfileParser.Interfaces;
 using SimcProfileParser.Model.Generated;
@@ -10,176 +11,113 @@ namespace Salvation.Utility.SpellDataUpdate
     public class HolyPriestSpellDataService : SpellDataService,
         ISpellDataService<HolyPriestSpellDataService>
     {
+        private readonly ILogger<ISpellDataService<HolyPriestSpellDataService>> _logger;
         private readonly ISimcGenerationService _simcGenerationService;
         private readonly IList<uint> _spells;
 
-        public HolyPriestSpellDataService(ISimcGenerationService simcGenerationService)
+        private static uint PLAYER_LEVEL = 70;
+
+        public HolyPriestSpellDataService(ILogger<ISpellDataService<HolyPriestSpellDataService>> logger,
+            ISimcGenerationService simcGenerationService)
         {
+            _logger = logger;
             _simcGenerationService = simcGenerationService;
             _spells = new List<uint>()
             {
+                // Baseline Spells
                 (uint)Spell.HolyPriest,
                 (uint)Spell.Priest,
                 (uint)Spell.LeechHeal,
-
-                // Talents
-                (uint)Spell.Enlightenment,
-                (uint)Spell.CosmicRipple,
-                (uint)Spell.Halo,
-                (uint)Spell.HaloHeal,
-                (uint)Spell.HaloDamage,
-                (uint)Spell.DivineStar,
-                (uint)Spell.DivineStarHeal,
-                (uint)Spell.DivineStarDamage,
-                (uint)Spell.Benediction,
-                (uint)Spell.HolyWordSalvation,
-
-                // Spells
+                (uint)Spell.EchoOfLight,
+                (uint)Spell.EchoOfLightHeal,
                 (uint)Spell.Heal,
                 (uint)Spell.FlashHeal,
-                (uint)Spell.PrayerOfHealing,
-                (uint)Spell.HolyNova,
-                (uint)Spell.HolyNovaRank2,
-                (uint)Spell.CircleOfHealing,
-                (uint)Spell.Renew,
                 (uint)Spell.PowerWordShield,
+                (uint)Spell.HolyFire,
+                (uint)Spell.Smite,
+                (uint)Spell.ShadowWordPain,
+
+                // Talents - Priest
+                (uint)Spell.PrayerOfMending,
+                (uint)Spell.Renew,
+                (uint)Spell.Halo,
+                (uint)Spell.DivineStar,
+                (uint)Spell.HolyNova,
+                (uint)Spell.ShadowWordDeath,
+                (uint)Spell.Mindgames,
+                (uint)Spell.ImprovedFlashHeal,
+                (uint)Spell.FocusedMending,
+                (uint)Spell.TwistOfFate,
+                (uint)Spell.UnwaveringWill,
+
+                // Talent - Priest supporting spells
+                (uint)Spell.PrayerOfMendingBuff,
+                (uint)Spell.PrayerOfMendingHeal,
+                (uint)Spell.HaloHeal,
+                (uint)Spell.HaloDamage,
+                (uint)Spell.DivineStarHeal,
+                (uint)Spell.DivineStarDamage,
+                (uint)Spell.MindgamesHeal,
+
+                // Talents - Holy
+                (uint)Spell.Enlightenment,
+                (uint)Spell.CosmicRipple,
+                (uint)Spell.Benediction,
+                (uint)Spell.HolyWordSalvation,
+                (uint)Spell.PrayerOfHealing,
+                (uint)Spell.CircleOfHealing,
                 (uint)Spell.DivineHymn,
                 (uint)Spell.HolyWordSanctify,
                 (uint)Spell.HolyWordSerenity,
-                (uint)Spell.PrayerOfMending,
-                (uint)Spell.PrayerOfMendingBuff,
-                (uint)Spell.PrayerOfMendingHeal,
-                (uint)Spell.EchoOfLight,
                 (uint)Spell.GuardianSpirit,
-
-                // Covenant
-                (uint)Spell.Mindgames,
-                (uint)Spell.MindgamesHeal,
-                (uint)Spell.FaeGuardians,
-                (uint)Spell.BenevolentFaerie,
-                (uint)Spell.GuardianFaerie,
-                (uint)Spell.BoonOfTheAscended,
-                (uint)Spell.AscendedNova,
-                (uint)Spell.AscendedBlast,
-                (uint)Spell.AscendedBlastHeal,
-                (uint)Spell.AscendedEruption,
-                (uint)Spell.UnholyNova,
-                (uint)Spell.UnholyTransfusion,
-                (uint)Spell.UnholyTransfusionDoT,
-                (uint)Spell.Fleshcraft,
-
-                // Legendaries
                 (uint)Spell.HarmoniousApparatus,
-                (uint)Spell.EchoOfEonar,
-                (uint)Spell.EchoOfEonarHealingBuffSelf,
-                (uint)Spell.CauterizingShadows,
-                (uint)Spell.CauterizingShadowsHeal,
-                (uint)Spell.FlashConcentration,
                 (uint)Spell.DivineImage,
+                (uint)Spell.HolyWordChastise,
+                (uint)Spell.CrisisManagement,
+                (uint)Spell.PrayerfulLitany,
+                (uint)Spell.Orison,
+                (uint)Spell.GalesOfSong,
+                (uint)Spell.PrayersOfTheVirtuous,
+                (uint)Spell.PrismaticEchoes,
+                (uint)Spell.RapidRecovery,
+                (uint)Spell.ResonantWords,
+                (uint)Spell.EverlastingLight,
+                (uint)Spell.Pontifex,
+                (uint)Spell.SayYourPrayers,
+                (uint)Spell.DivineService,
+                (uint)Spell.TrailOfLight,
+                (uint)Spell.PrayerCircle,
+                (uint)Spell.BindingHeals,
+                (uint)Spell.Lightwell,
+                (uint)Spell.LightOfTheNaaru,
+                (uint)Spell.Apotheosis,
+                (uint)Spell.MiracleWorker,
+                (uint)Spell.AnsweredPrayers,
+                (uint)Spell.RenewedFaith,
+                (uint)Spell.HealingChorus,
+                (uint)Spell.RevitalizingPrayers,
+                (uint)Spell.EmpoweredRenew,
+                (uint)Spell.HolyMending,
+                (uint)Spell.Lightweaver,
+
+                // Talent - Holy supporting spells
+                (uint)Spell.CosmicRippleHeal,
                 (uint)Spell.DivineImageHealingLight,
                 (uint)Spell.DivineImageDazzlingLight,
                 (uint)Spell.DivineImageSearingLight,
                 (uint)Spell.DivineImageLightEruption,
                 (uint)Spell.DivineImageBlessedLight,
                 (uint)Spell.DivineImageTranquilLight,
-
-                // Conduits
-                (uint)Spell.CharitableSoul,
-                (uint)Spell.CourageousAscension,
-                (uint)Spell.FesteringTransfusion,
-                (uint)Spell.FaeFermata,
-                (uint)Spell.ShatteredPerceptions,
-                (uint)Spell.HolyOration,
-                (uint)Spell.FocusedMending,
-                (uint)Spell.ResonantWords,
-                (uint)Spell.LastingSpirit,
-                
-                // DPS
-                (uint)Spell.Smite,
-                (uint)Spell.HolyWordChastise,
-                (uint)Spell.ShadowWordPain,
-                (uint)Spell.ShadowWordDeath,
-                (uint)Spell.HolyFire,
-
-                // Consumable
-                (uint)Spell.SpectralFlaskOfPower,
-                (uint)Spell.SpiritualManaPotion,
-
-                // Trinket
-                (uint)Spell.UnboundChangeling,
-                (uint)Spell.UnboundChangelingBuff,
-                (uint)Spell.CabalistsHymnal,
-                (uint)Spell.CabalistsHymnalBuff,
-                (uint)Spell.SoullettingRuby,
-                (uint)Spell.SoullettingRubyBuff,
-                (uint)Spell.SoullettingRubyHeal,
-                (uint)Spell.SoullettingRubyTrigger,
-                (uint)Spell.ManaboundMirror,
-                (uint)Spell.ManaboundMirrorBuff,
-                (uint)Spell.ManaboundMirrorHeal,
-                (uint)Spell.MacabreSheetMusic,
-                (uint)Spell.MacabreSheetMusicTrigger,
-                (uint)Spell.MacabreSheetMusicBuff,
-                (uint)Spell.TuftOfSmolderingPlumage,
-                (uint)Spell.TuftOfSmolderingPlumageBuff,
-                (uint)Spell.ConsumptiveInfusion,
-                (uint)Spell.ConsumptiveInfusionBuff,
-                (uint)Spell.ConsumptiveInfusionDebuff,
-                (uint)Spell.DarkmoonDeckRepose,
-                (uint)Spell.DarkmoonDeckReposeAce,
-                (uint)Spell.DarkmoonDeckReposeEight,
-                (uint)Spell.VialOfSpectralEssence,
-                (uint)Spell.OverflowingAnimaCage,
-                (uint)Spell.OverflowingAnimaCageBuff,
-                (uint)Spell.SiphoningPhylacteryShard,
-                (uint)Spell.SiphoningPhylacteryShardBuff,
-
-                // Trait
-                // Kyrian
-                (uint)Spell.CombatMeditation,
-                (uint)Spell.CombatMeditationBuff,
-                (uint)Spell.CombatMeditationExtension,
-                (uint)Spell.LetGoOfThePast,
-                (uint)Spell.LetGoOfThePastBuff,
-                (uint)Spell.PointedCourage,
-                (uint)Spell.PointedCourageBuff,
-                (uint)Spell.ValiantStrikes,
-                (uint)Spell.ValiantStrikesBuff,
-                (uint)Spell.ResonantAccolades,
-                (uint)Spell.ResonantAccoladesBuff,
-                (uint)Spell.BronsCallToAction,
-                // Necrolord
-                (uint)Spell.VolatileSolvent,
-                (uint)Spell.VolatileSolventHumanoid,
-                (uint)Spell.VolatileSolventBeast,
-                (uint)Spell.VolatileSolventDragonkin,
-                (uint)Spell.VolatileSolventElemental,
-                //(uint)Spell.VolatileSolventMechanical, // TOOD: Not coming through on spelldata
-                (uint)Spell.UltimateForm,
-                (uint)Spell.UltimateFormHeal,
-                (uint)Spell.LeadByExample,
-                (uint)Spell.LeadByExampleBuff,
-                (uint)Spell.MarrowedGemstone,
-                (uint)Spell.MarrowedGemstoneStacks,
-                (uint)Spell.MarrowedGemstoneBuff,
-                (uint)Spell.MarrowedGemstoneCooldown,
-                (uint)Spell.ForgeborneReveries,
-                (uint)Spell.ForgeborneReveriesBuff,
-                // Night Fae
-                (uint)Spell.GroveInvigoration,
-                (uint)Spell.GroveInvigorationAnimaBuff,
-                (uint)Spell.FieldOfBlossoms,
-                (uint)Spell.FieldOfBlossomsEffect,
-                (uint)Spell.FieldOfBlossomsBuff,
-                (uint)Spell.NiyasToolsHerbs,
-                (uint)Spell.NiyasToolsHerbsBuff,
-                // Venthyr
-                (uint)Spell.ThrillSeeker,
-                (uint)Spell.ThrillSeekerBuff,
-                (uint)Spell.ThrillSeekerStacks,
-                (uint)Spell.SoothingShade,
-                (uint)Spell.SoothingShadeBuff,
-                (uint)Spell.SoothingShadeEffect,
+                (uint)Spell.TrailOfLightHeal,
+                (uint)Spell.SanctifiedPrayersBuff,
+                (uint)Spell.PrayerCircleBuff,
+                (uint)Spell.BindingHealsHeal,
+                (uint)Spell.LightwellHeal,
+                (uint)Spell.LightwellTrigger,
+                (uint)Spell.LightwellCharges,
+                (uint)Spell.EmpoweredRenewHeal,
+                (uint)Spell.HolyMendingHeal,
+                (uint)Spell.LightweaverBuff,
             };
         }
 
@@ -196,42 +134,48 @@ namespace Salvation.Utility.SpellDataUpdate
                 CritBase = 0.05,
                 HasteBase = 0.0,
                 VersBase = 0.0,
-                MasteryBase = 0.1,
-                IntBase = 450,
-                StamBase = 416,
-                ManaBase = 50000, // __base_mp in sc_scale_data.inc
+                MasteryBase = 0.09,
+                IntBase = 2089, // From a human/panda in-game and sc_extra_data.inc
+                StamBase = 1597, // From a human/panda in-game and sc_extra_data.inc
+                ManaBase = 250000, // __base_mp in sc_scale_data.inc
+                ArmorSkillsMultiplier = 1.05, // 5% extra main stat from Armor Skills
 
                 // These come from __combat_ratings in sc_scale_data.inc
-                CritCost = 35,
-                HasteCost = 33,
-                VersCost = 40, // Ver damage taken cost is 80
-                MasteryCost = 28, // This is the 35 base cost * 0.80 holy priest modifier
-                LeechCost = 21,
-                SpeedCost = 10,
-                AvoidanceCost = 14,
+                CritCost = 180,
+                HasteCost = 170,
+                VersCost = 205, // Ver damage taken cost is double
+                MasteryCost = 180, // This is the base modifier. Divide by the mastery multiplier
+                LeechCost = 110,
+                SpeedCost = 50, 
+                AvoidanceCost = 72,
                 StamCost = 20
             };
+
+            _logger?.LogTrace("Generating SpellData for {class} {spec}", spec.Class, spec.Spec);
 
             // Add the spells
             var spells = new List<BaseSpellData>();
 
             foreach (var spell in _spells)
             {
-                // TODO: feed up level 60 from somewhere else. Now level 70.
                 var spellOptions = new SimcSpellOptions()
                 {
                     SpellId = spell,
-                    PlayerLevel = 60
+                    PlayerLevel = PLAYER_LEVEL
                 };
 
                 var spellData = await _simcGenerationService.GenerateSpellAsync(spellOptions);
 
                 var newSpell = GetBaseSpellData(spellData);
 
+                _logger?.LogTrace("Adding spell {spellId}: {spellname}", newSpell.Id, newSpell.Name);
+
                 spells.Add(newSpell);
             }
 
             spec.Spells = spells;
+
+            _logger?.LogTrace("Done generating spelldata.");
 
             return spec;
         }
@@ -253,7 +197,6 @@ namespace Salvation.Utility.SpellDataUpdate
                 MaxStacks = spell.MaxStacks,
                 Duration = spell.Duration,
                 Gcd = spell.Gcd / 1000d,
-                ConduitRanks = spell.ConduitRanks,
                 Rppm = spell.Rppm,
                 ProcChance = spell.ProcChance,
                 InternalCooldown = spell.InternalCooldown
@@ -320,9 +263,9 @@ namespace Salvation.Utility.SpellDataUpdate
                 Type = effect.EffectType,
             };
 
-            // Add the level 60 spellbudget value if it exists in the spelldata.
+            // Add the level spellbudget value if it exists in the spelldata.
             if (effect.ScaleBudget != 0)
-                newEffect.ScaleValues.Add(60, effect.ScaleBudget);
+                newEffect.ScaleValues.Add((int)PLAYER_LEVEL, effect.ScaleBudget);
 
             return newEffect;
         }
@@ -336,9 +279,14 @@ namespace Salvation.Utility.SpellDataUpdate
         {
             switch (baseSpellData.Id)
             {
+                case (uint)Spell.PowerWordShield:
+                    // PW:S stores the coefficient in the description for some reason. We set it manually on effect #13 (See #214)
+                    baseSpellData.GetEffect(13).SpCoefficient = 3.36;
+                    // This comes from the Priest aura 137030 effect #1 179714
+                    baseSpellData.IsCooldownHasted = true;
+                    break;
                 case (uint)Spell.CircleOfHealing:
                 case (uint)Spell.PrayerOfMending:
-                case (uint)Spell.ShadowWordDeath:
                     // This comes from the Priest aura 137030 effect #1 179714
                     baseSpellData.IsCooldownHasted = true;
                     break;
@@ -346,6 +294,10 @@ namespace Salvation.Utility.SpellDataUpdate
                     // Blessed light's spelldata for targets is now in Effect #1 288952 as part of chain targets
                     // We don't get chain targets through yet, so set it manually
                     baseSpellData.GetEffect(288952).BaseValue = 5;
+                    break;
+                case (uint)Spell.HarmoniousApparatus:
+                    // Because of #202, this is manually set to 2
+                    baseSpellData.GetEffect(1028210).BaseValue = 2;
                     break;
                 default:
                     break;

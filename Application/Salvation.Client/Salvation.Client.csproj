@@ -8,12 +8,16 @@
 
   <ItemGroup>
 	  <Content Remove="Shared\Components\TalentTree.razor.css" />
+	  <Content Remove="Shared\Components\ModelProcessor.razor.css" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.8" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.8" PrivateAssets="all" />
-    <PackageReference Include="MudBlazor" Version="6.0.15" />
+    <PackageReference Include="BlazorApplicationInsights" Version="1.6.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.10" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.10" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="7.0.0-rc.2.22472.3" />
+    <PackageReference Include="MudBlazor" Version="6.0.17" />
+    <PackageReference Include="Radzen.Blazor" Version="4.1.9" />
   </ItemGroup>
 
   <ItemGroup>

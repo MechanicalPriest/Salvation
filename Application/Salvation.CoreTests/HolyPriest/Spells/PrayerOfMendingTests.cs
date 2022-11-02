@@ -23,22 +23,22 @@ namespace Salvation.CoreTests.HolyPriest.Spells
         {
             // Arrange
             IGameStateService gameStateService = new GameStateService();
-            var spellService = new PrayerOfMending(gameStateService);
+            var spellService = new PrayerOfMending(gameStateService, null, null);
 
             // Act
 
             var resultDefault = spellService.GetAverageRawHealing(_gameState, null);
 
             var spellData = gameStateService.GetSpellData(_gameState, Spell.PrayerOfMending);
-            var defaultNumStacks = spellData.GetEffect(22870).BaseValue;
+            var defaultNumStacks = spellData.GetEffect(22870).BaseValue + 1;
             spellData.Overrides.Add(Override.ResultMultiplier, defaultNumStacks / 2);
 
 
             var resultOverride = spellService.GetAverageRawHealing(_gameState, spellData);
 
             // Assert
-            Assert.AreEqual(6005.6362767492019d, resultDefault);
-            Assert.AreEqual(3002.8181383746014d, resultOverride);
+            Assert.AreEqual(10971.640092892278d, resultDefault);
+            Assert.AreEqual(6582.9840557353655d, resultOverride);
         }
 
         [Test]
@@ -60,7 +60,7 @@ namespace Salvation.CoreTests.HolyPriest.Spells
     public class PoMTestGetHastedCastTime : PrayerOfMending
     {
         public PoMTestGetHastedCastTime(IGameStateService gameStateService)
-            : base(gameStateService)
+            : base(gameStateService, null, null)
         {
 
         }

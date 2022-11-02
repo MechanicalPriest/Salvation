@@ -1,6 +1,7 @@
 ﻿using Salvation.Core.Constants.Data;
 using Salvation.Core.Profile.Model;
 using System.Collections.Generic;
+using Talent = Salvation.Core.Profile.Model.Talent;
 
 namespace Salvation.Core.Interfaces.Profile
 {
@@ -14,7 +15,7 @@ namespace Salvation.Core.Interfaces.Profile
         void SetSpellCastProfile(PlayerProfile profile, CastProfile castProfile);
         void SetProfileName(PlayerProfile profile, string profileName);
         List<Item> GetEquippedItems(PlayerProfile profile);
-        void SetCovenant(PlayerProfile profile, CovenantProfile covenant);
-        void AddTalent(PlayerProfile profile, Talent talent);
+        Talent UpdateTalent(PlayerProfile profile, Spell talentSpell, int rank);
+        Talent GetTalent(PlayerProfile profile, Spell talentSpell);
     }
 }

@@ -1,0 +1,435 @@
+﻿@using Salvation.Core.Modelling.Common
+@using Salvation.Core.ViewModel
+@inject IJSRuntime JS
+
+<div>
+    <MudGrid>
+        <MudItem xs="12" Class="align-center justify-center">
+            <MudText Typo="Typo.h4" Align="Align.Center">Import, Configure, Run!</MudText>
+        </MudItem>
+        <MudItem xs="12" md="6" lg="4">
+            <MudPaper Class="d-flex align-center justify-center mud-width-full py-2 px-2">
+                <MudStack Class="mud-width-full">
+                    <MudText Typo="Typo.h6" Align="Align.Center">Profile</MudText>
+                    <MudExpansionPanels MultiExpansion="true" Dense="true">
+                        <MudExpansionPanel>
+                            <TitleContent>
+                                <MudStack Row="true" Class="align-center">
+                                    <MudText>Import in-game profile</MudText>
+                                </MudStack>
+                            </TitleContent>
+                            <ChildContent>
+                                 <MudStack Class="mud-width-full">
+                                    <MudText Typo="Typo.subtitle2">To import, download the <MudLink Href="https://www.curseforge.com/wow/addons/simulationcraft" Target="_blank">Simulationcraft Addon</MudLink>, then type <span style="font-family: monospace">/simc</span> in-game.</MudText>
+                                    <MudTextField @bind-Value="simcImportString" T="string" Label="Paste /simc output here" Variant="Variant.Outlined" Lines="3" />
+                                    <MudAlert Severity="Severity.Warning">This will override your current profile.</MudAlert>
+                                    <MudButton Variant="Variant.Filled" Color="Color.Primary" FullWidth="true" OnClick="ApplySimcImportString">Import</MudButton>
+                                </MudStack>
+                            </ChildContent>
+                        </MudExpansionPanel>
+                        @if (loadingData)
+                        {
+                            <MudProgressCircular Color="Color.Secondary" Indeterminate="true" />
+                        }
+                        else if(!loadingData && !string.IsNullOrEmpty(errorMessage))
+                        {
+                            <MudAlert Severity="Severity.Error">
+                                <MudStack Class="mud-width-full">
+                                    <MudText>@errorMessage</MudText>
+                                    <MudButton Variant="Variant.Filled" Color="Color.Secondary" OnClick="GetDefaultProfile">Try Again</MudButton>
+                                </MudStack>
+                            </MudAlert>
+                        }
+                        else if(data != null)
+                        {
+                            <MudExpansionPanel Text="Gear">
+                                <MudStack Spacing="0">
+                                @foreach(var item in data.Items)
+                                {
+                                        <MudText>
+                                            <a href="@GenerateWowheadItemLink(item)" data-wh-icon-size="tiny">@item.Name</a> (@item.ItemLevel)
+                                        </MudText>
+                                }
+                                </MudStack>
+                            </MudExpansionPanel><MudExpansionPanel Text="Playstyle" IsInitiallyExpanded="true">
+                                <MudDataGrid T="CastProfileViewModel" Items="@data.Casts" Hover="true" Dense="true" ReadOnly="false" EditMode="DataGridEditMode.Cell" QuickFilter="@playstyleFilter" Height="300px;" ShowColumnOptions="false" SortMode="SortMode.None">
+                                    <ToolBarContent>
+                                        <MudTextField @bind-Value="searchString" Placeholder="Search" Adornment="Adornment.Start" Immediate="true"
+                                                  AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+                                    </ToolBarContent>
+                                    <Columns>
+                                        <Column T="CastProfileViewModel" Field="SpellId" Title="Spell" IsEditable="false" CellStyle="max-width:100%; white-space:nowrap;">
+                                            <CellTemplate>
+                                                <a href="@GenerateWowheadSpellLink(context.Item.SpellId)" data-wh-icon-size="tiny">@context.Item.SpellId</a>
+                                            </CellTemplate>
+                                        </Column>
+                                        <Column T="CastProfileViewModel" Field="EfficiencyPercentValue" Title="Efficiency" Filterable="false">
+                                            <EditTemplate>
+                                                <MudNumericField @bind-Value="context.Item.EfficiencyPercentValue" Mask="@(new PatternMask("000.00"))" Margin="Margin.Dense" Variant="Variant.Text" Adornment="Adornment.End" AdornmentText="%" Min="0" Max="100" Step="5" HideSpinButtons="true" />
+                                            </EditTemplate>
+                                        </Column>
+                                        <Column T="CastProfileViewModel" Field="OverhealingPercentValue" Title="Overheal" Filterable="false">
+                                            <EditTemplate>
+                                                <MudNumericField @bind-Value="context.Item.OverhealingPercentValue" Mask="@(new PatternMask("000.00"))" Margin="Margin.Dense" Variant="Variant.Text" Adornment="Adornment.End" AdornmentText="%" Min="0" Max="100" Step="5" HideSpinButtons="true"/>
+                                            </EditTemplate>
+                                        </Column>
+                                    </Columns>
+                                </MudDataGrid>
+                            </MudExpansionPanel>
+                            <MudExpansionPanel Text="Talents" IsInitiallyExpanded="true">
+                                <TalentViewer @ref="talentViewer" SelectedTalents=@selectedTalents DisplayVertical="true" TalentDefinitionChanged=@OnTalentDefinitionChanged></TalentViewer>
+                            </MudExpansionPanel>
+                            <MudExpansionPanel Text="Advanced" IsInitiallyExpanded="true">
+                                <MudDataGrid Items="@data.AdvancedSettings" Hover="true" Dense="true" ReadOnly="false" EditMode="DataGridEditMode.Cell" QuickFilter="@advancedFilter" Height="300px;" HorizontalScrollbar="false" ShowColumnOptions="false" SortMode="SortMode.None">
+                                    <ToolBarContent>
+                                        <MudTextField @bind-Value="advancedSearchString" Placeholder="Search" Adornment="Adornment.Start" Immediate="true"
+                                                  AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+                                    </ToolBarContent>
+                                    <Columns>
+                                        <Column T="AdvancedSettingsViewModel" Field="SpellId" Title="Spell" IsEditable="false">
+                                            <CellTemplate>
+                                                <a href="@GenerateWowheadSpellLink(context.Item.SpellId)" data-wh-icon-size="tiny">@context.Item.SpellId</a>
+                                            </CellTemplate>
+                                        </Column>
+                                        <Column T="AdvancedSettingsViewModel" Field="Name" Title="Setting" IsEditable="false">
+                                            <CellTemplate>
+                                                <MudTooltip Text="@context.Item.Name">
+                                                    <MudText Typo="Typo.body2" Style="max-width: 130px; overflow: hidden; text-overflow:ellipsis">@context.Item.Name</MudText>
+                                                </MudTooltip>
+                                            </CellTemplate>
+                                        </Column>
+                                        <Column T="AdvancedSettingsViewModel" Field="Value" Title="Value" Filterable="false">
+                                            <EditTemplate>
+                                                <MudNumericField @bind-Value="context.Item.Value" Margin="Margin.Dense" Variant="Variant.Text"></MudNumericField>
+                                            </EditTemplate>
+                                        </Column>
+                                    </Columns>
+                                </MudDataGrid>
+                            </MudExpansionPanel>
+                        }
+                    </MudExpansionPanels>
+                </MudStack>
+            </MudPaper>
+        </MudItem>
+        <MudItem xs="12" md="6" lg="8">
+            <MudPaper Class="d-flex align-center justify-center mud-width-full py-8 px-2">
+                <MudStack Class="mud-width-full">
+                    <MudText Typo="Typo.h6" Align="Align.Center">Results</MudText>
+                    <MudButton Variant="Variant.Filled" OnClick="GenerateResults" Color="Color.Primary" FullWidth="true" Size="Size.Small" Disabled="@loadingResults">
+                        @if (loadingResults)
+                        {
+                            <MudProgressCircular Class="ms-n1" Size="Size.Small" Indeterminate="true" />
+                            <MudText>Generating...</MudText>
+                        }
+                        else
+                        {
+                            <MudText>Generate Results!</MudText>
+                        }
+                    </MudButton>
+                    <MudPaper Class="py-1 px-1">
+                        @if(modellingResults != null)
+                        {
+                            <MudStack>
+                                <MudStack Row="true" Class="mud-width-full" Justify="Justify.Center">
+                                    <MudPaper Class="pa-3">
+                                        <MudStack>
+                                            <MudText Typo="Typo.body1" Align="Align.Center"><MudTooltip Text="Healing Per Second">HPS</MudTooltip></MudText>
+                                            <MudText Typo="Typo.body2" Align="Align.Center"><span class="stat-colour" data-stat="Mana"><b>@modellingResults.ModelResults.TotalActualHPS.ToString("N0")</b></span></MudText>
+                                        </MudStack>
+                                    </MudPaper>
+                                    <MudPaper Class="pa-3">
+                                        <MudTooltip Text="Healing Per Mana Spent">
+                                            <MudStack>
+                                                <MudText Typo="Typo.body1" Align="Align.Center">HPM</MudText>
+                                                <MudText Typo="Typo.body2" Align="Align.Center">@modellingResults.ModelResults.TotalActualHPM.ToString("N1")</MudText>
+                                            </MudStack>
+                                        </MudTooltip>
+                                    </MudPaper>
+                                    <MudPaper Class="pa-3">
+                                        <MudTooltip Text="Time until Out Of Mana">
+                                            <MudStack>
+                                                <MudText Typo="Typo.body1" Align="Align.Center">OOM in</MudText>
+                                                <MudText Typo="Typo.body2" Align="Align.Center">@modellingResults.ModelResults.TimeToOom.ToString("N0")s</MudText>
+                                            </MudStack>
+                                        </MudTooltip>
+                                    </MudPaper>
+                                    <MudPaper Class="pa-3">
+                                        <MudTooltip>
+                                            <ChildContent>
+                                            <MudStack>
+                                                <MudText Typo="Typo.body1" Align="Align.Center"><MudTooltip Text="">Intellect</MudTooltip></MudText>
+                                                <MudText Typo="Typo.body2" Align="Align.Center">
+                                                    <span class="stat-colour" data-stat="Intellect">
+                                                        @modellingResults.ModelResults.AverageIntellect.ToString("N0")
+                                                    </span>
+                                                </MudText>
+                                            </MudStack>
+                                            </ChildContent>
+                                            <TooltipContent>
+                                                <MudText Typo="Typo.body2">Average Intellect including items, consumables and procs.</MudText>
+                                            </TooltipContent>
+                                        </MudTooltip>
+                                    </MudPaper>
+                                    <MudPaper Class="pa-3">
+                                        <MudTooltip>
+                                            <ChildContent>
+                                            <MudStack>
+                                                <MudText Typo="Typo.body1" Align="Align.Center"><MudTooltip Text="">Crit</MudTooltip></MudText>
+                                                <MudText Typo="Typo.body2" Align="Align.Center">
+                                                    <span class="stat-colour" data-stat="Critical Strike">
+                                                        @modellingResults.ModelResults.AverageCritPercent.ToString("N2")%
+                                                    </span>
+                                                </MudText>
+                                            </MudStack>
+                                            </ChildContent>
+                                            <TooltipContent>
+                                                <MudText Typo="Typo.body2">Average Critical Strike including items, consumables and procs.</MudText>
+                                                <MudText Typo="Typo.body2">Average rating: @modellingResults.ModelResults.AverageCritRating.ToString("N0")</MudText>
+                                            </TooltipContent>
+                                        </MudTooltip>
+                                    </MudPaper>
+                                    <MudPaper Class="pa-3">
+                                        <MudTooltip>
+                                            <ChildContent>
+                                            <MudStack>
+                                                <MudText Typo="Typo.body1" Align="Align.Center"><MudTooltip Text="">Haste</MudTooltip></MudText>
+                                                <MudText Typo="Typo.body2" Align="Align.Center">
+                                                    <span class="stat-colour" data-stat="Haste">
+                                                        @modellingResults.ModelResults.AverageHastePercent.ToString("N2")%
+                                                    </span>
+                                                </MudText>
+                                            </MudStack>
+                                            </ChildContent>
+                                            <TooltipContent>
+                                                <MudText Typo="Typo.body2">Average Haste including items, consumables and procs.</MudText>
+                                                <MudText Typo="Typo.body2">Average rating: @modellingResults.ModelResults.AverageHasteRating.ToString("N0")</MudText>
+                                            </TooltipContent>
+                                        </MudTooltip>
+                                    </MudPaper>
+                                    <MudPaper Class="pa-3">
+                                        <MudTooltip>
+                                            <ChildContent>
+                                            <MudStack>
+                                                <MudText Typo="Typo.body1" Align="Align.Center"><MudTooltip Text="">Mastery</MudTooltip></MudText>
+                                                <MudText Typo="Typo.body2" Align="Align.Center">
+                                                    <span class="stat-colour" data-stat="Mastery">
+                                                        @modellingResults.ModelResults.AverageMasteryPercent.ToString("N2")%
+                                                    </span>
+                                                </MudText>
+                                            </MudStack>
+                                            </ChildContent>
+                                            <TooltipContent>
+                                                <MudText Typo="Typo.body2">Average Mastery including items, consumables and procs.</MudText>
+                                                <MudText Typo="Typo.body2">Average rating: @modellingResults.ModelResults.AverageMasteryRating.ToString("N0")</MudText>
+                                            </TooltipContent>
+                                        </MudTooltip>
+                                    </MudPaper>
+                                    <MudPaper Class="pa-3">
+                                        <MudTooltip>
+                                            <ChildContent>
+                                            <MudStack>
+                                                <MudText Typo="Typo.body1" Align="Align.Center"><MudTooltip Text="">Versatility</MudTooltip></MudText>
+                                                <MudText Typo="Typo.body2" Align="Align.Center">
+                                                    <span class="stat-colour" data-stat="Versatility">
+                                                        @modellingResults.ModelResults.AverageVersatilityPercent.ToString("N2")%
+                                                    </span>
+                                                </MudText>
+                                            </MudStack>
+                                            </ChildContent>
+                                            <TooltipContent>
+                                                <MudText Typo="Typo.body2">Average Versatility including items, consumables and procs.</MudText>
+                                                <MudText Typo="Typo.body2">Average rating: @modellingResults.ModelResults.AverageVersatilityRating.ToString("N0")</MudText>
+                                            </TooltipContent>
+                                        </MudTooltip>
+                                    </MudPaper>
+                                    <MudPaper Class="pa-3">
+                                        <MudTooltip>
+                                            <ChildContent>
+                                            <MudStack>
+                                                <MudText Typo="Typo.body1" Align="Align.Center"><MudTooltip Text="">Leech</MudTooltip></MudText>
+                                                <MudText Typo="Typo.body2" Align="Align.Center">
+                                                    <span class="stat-colour" data-stat="Leech">
+                                                        @modellingResults.ModelResults.AverageLeechPercent.ToString("N2")%
+                                                    </span>
+                                                </MudText>
+                                            </MudStack>
+                                            </ChildContent>
+                                            <TooltipContent>
+                                                <MudText Typo="Typo.body2">Average Leech including items, consumables and procs.</MudText>
+                                                <MudText Typo="Typo.body2">Average rating: @modellingResults.ModelResults.AverageLeechRating.ToString("N0")</MudText>
+                                            </TooltipContent>
+                                        </MudTooltip>
+                                    </MudPaper>
+                                </MudStack>
+                                <MudStack>
+                                    <MudStack Row="true" Class="mud-width-full" Justify="Justify.Center" Spacing="1" Style="flex-wrap: wrap;">
+                                        @foreach(var talent in ClassTalents)
+                                        {
+                                            <a href="https://www.wowhead.com/beta/spell=@(talent.SpellId)"
+                                                data-wh-rename-link="false"
+                                                data-wowhead="def=@(talent.Rank)" 
+                                                class="talent-row-talent">
+                                                <div style="@GetImageStyle(talent.IconName)" class="talent-row-talent talent-row-image"></div>
+                                            </a>
+                                        }
+                                    </MudStack>
+                                    <MudStack Row="true" Class="mud-width-full" Justify="Justify.Center" Spacing="1" Style="flex-wrap: wrap;">
+                                        @foreach(var talent in SpecTalents)
+                                        {
+                                            <a href="https://www.wowhead.com/beta/spell=@(talent.SpellId)"
+                                                data-wh-rename-link="false"
+                                                data-wowhead="def=@(talent.Rank)" 
+                                                class="talent-row-talent">
+                                                <div style="@GetImageStyle(talent.IconName)" class="talent-row-talent talent-row-image"></div>
+                                            </a>
+                                        }
+                                    </MudStack>
+                                </MudStack>
+                                <MudTabs Centered="true" KeepPanelsAlive="true">
+                                    <MudTabPanel Text="Spell Table" Icon="@Icons.Material.Filled.GridOn">
+                                        <MudStack Class="mud-width-full" Justify="Justify.Center">
+                                            <MudTable Dense="true" Items="@modellingResults.ModelResults.RolledUpResultsSummary">
+                                                <ColGroup>
+                                                    <col />
+                                                    <col style="min-width: 100px;" />
+                                                    <col />
+                                                    <col />
+                                                    <col />
+                                                    <col />
+                                                </ColGroup>
+                                                <HeaderContent>
+                                                    <MudTh><MudTableSortLabel SortBy="new Func<AveragedSpellCastResult, object>(x=>x.SpellName)">Spell</MudTableSortLabel></MudTh>
+                                                    <MudTh></MudTh>
+                                                    <MudTh><MudTableSortLabel SortBy="new Func<AveragedSpellCastResult, object>(x=>x.HPCT)"><MudTooltip Text="Healing Per Cast Time">HPCT</MudTooltip></MudTableSortLabel></MudTh>
+                                                    <MudTh><MudTableSortLabel SortBy="new Func<AveragedSpellCastResult, object>(x=>x.HPM)"><MudTooltip Text="Healing Per Mana Spent">HPM</MudTooltip></MudTableSortLabel></MudTh>
+                                                    <MudTh><MudTableSortLabel SortBy="new Func<AveragedSpellCastResult, object>(x=>x.MPS)"><MudTooltip Text="Mana Consumed Per Second">MPS</MudTooltip></MudTableSortLabel></MudTh>
+                                                    <MudTh><MudTableSortLabel SortBy="new Func<AveragedSpellCastResult, object>(x=>x.CastsPerMinute)"><MudTooltip Text="Casts Per Minute (Cast Time or GCD for instants)">CPM (CT)</MudTooltip></MudTableSortLabel></MudTh>
+                                                    <MudTh><MudTableSortLabel SortBy="new Func<AveragedSpellCastResult, object>(x=>x.OverhealingPercent)"><MudTooltip Text="Percentage of Overhealing">OH%</MudTooltip></MudTableSortLabel></MudTh>
+                                                    <MudTh><MudTableSortLabel InitialDirection="SortDirection.Descending" SortBy="new Func<AveragedSpellCastResult, object>(x=>x.HPS)"><MudTooltip Text="Healing Per Second">HPS</MudTooltip></MudTableSortLabel></MudTh>
+                                                    
+                                                </HeaderContent>
+                                                <RowTemplate>
+                                                    <MudTd DataLabel="Spell"><a href="@GenerateWowheadSpellLink(context.SpellId)" data-wh-icon-size="tiny">@context.SpellName</a></MudTd>
+                                                    <MudTd>
+                                                        <MudProgressLinear Value="@(context.HPS / modellingResults.ModelResults.TotalActualHPS * 100)" />
+                                                    </MudTd>
+                                                    <MudTd DataLabel="HPCT"><MudTooltip Text="@(context.NumberOfHealingTargets + " Targets")">@context.HPCT.ToString("N0")</MudTooltip></MudTd>
+                                                    <MudTd DataLabel="HPM">@context.HPM.ToString("N2")</MudTd>
+                                                    <MudTd DataLabel="MPS"><MudTooltip Text="@(context.ManaCost.ToString("N0") + " mana per cast")">@context.MPS.ToString("N0")</MudTooltip></MudTd>
+                                                    <MudTd DataLabel="CPM"><MudTooltip Text="@(context.MaximumCastsPerMinute.ToString("N1") + " maximum CPM")">@context.CastsPerMinute.ToString("N1") (@(context.CastTime > 0 ? context.CastTime.ToString("N2") : context.Gcd.ToString("N2")))</MudTooltip></MudTd>
+                                                    <MudTd DataLabel="OH%">@context.OverhealingPercent.ToString("P1")</MudTd>
+                                                    <MudTd DataLabel="HPS"><b>@context.HPS.ToString("N0")</b></MudTd>
+                                                </RowTemplate>
+                                            </MudTable>
+                                        </MudStack>
+                                    </MudTabPanel>
+                                    <MudTabPanel Text="Stat Weights" Icon="@Icons.Material.Filled.ScatterPlot">
+                                            <MudStack AlignItems="AlignItems.Center">
+                                            <MudText>@modellingResults.EffectiveStatWeightResult.Name Weights</MudText>
+                                                <MudStack Row="true" Justify="Justify.Center">
+                                                @foreach (var entry in modellingResults.EffectiveStatWeightResult.Results)
+                                                {
+                                                    <MudPaper Class="pa-3">
+                                                        <MudStack>
+                                                            <MudText Typo="Typo.body1" Align="Align.Center">@entry.Stat</MudText>
+                                                            <MudText Typo="Typo.body2" Align="Align.Center"><span class="stat-colour" data-stat="@entry.Stat">@entry.Weight.ToString("N2")</span></MudText>
+                                                            <MudText Typo="Typo.body2" Align="Align.Center">@entry.Value.ToString("N2") HPS</MudText>
+                                                        </MudStack>
+                                                    </MudPaper>
+                                                }
+                                            </MudStack>
+                                            <MudText>@modellingResults.RawStatWeightResult.Name Weights</MudText>
+                                            <MudStack Row="true" Justify="Justify.Center">
+                                                @foreach (var entry in modellingResults.RawStatWeightResult.Results)
+                                                {
+                                                    <MudPaper Class="pa-3">
+                                                        <MudStack>
+                                                            <MudText Typo="Typo.body1" Align="Align.Center">@entry.Stat</MudText>
+                                                            <MudText Typo="Typo.body2" Align="Align.Center"><span class="stat-colour" data-stat="@entry.Stat">@entry.Weight.ToString("N2")</span></MudText>
+                                                            <MudText Typo="Typo.body2" Align="Align.Center">@entry.Value.ToString("N2") HPS</MudText>
+                                                        </MudStack>
+                                                    </MudPaper>
+                                                }
+                                            </MudStack>
+                                        </MudStack>
+                                    </MudTabPanel>
+                                    <MudTabPanel Text="Charts" Icon="@Icons.Material.Filled.AreaChart">
+                                        <MudGrid>
+                                            <MudItem xs="12" md="6" lg="4">
+                                                <MudPaper Outlined="true" Class="pa-3">
+                                                    <MudStack AlignItems="AlignItems.Center" Justify="Justify.FlexStart">
+                                                        <MudText>Healing per Mana Spent</MudText>
+                                                        @if (HpmChartData != null && HpmChartData.Length > 0)
+                                                        {
+                                                            <RadzenChart style="width: 100%">
+                                                                <RadzenDonutSeries Data="@HealCpmChartData" CategoryProperty="Name" Title="HPM"
+                                                                         ValueProperty="Value">
+                                                                    <RadzenSeriesDataLabels Visible="true" />
+                                                                </RadzenDonutSeries>
+                                                                <RadzenValueAxis FormatString="{0:N1}">
+                                                                    <RadzenGridLines Visible="true" />
+                                                                </RadzenValueAxis>
+                                                            </RadzenChart>
+                                                        }
+                                                    </MudStack>
+                                                </MudPaper>
+                                            </MudItem>
+                                            <MudItem xs="12" md="6" lg="4">
+                                                <MudPaper Outlined="true" Class="pa-3">
+                                                    <MudStack AlignItems="AlignItems.Center" Justify="Justify.FlexStart">
+                                                        <MudText>Mana Usage</MudText>
+                                                        @if (HealMpsChartData != null && HealMpsChartData.Length > 0)
+                                                        {
+                                                            <RadzenChart style="width: 100%">
+                                                                <RadzenDonutSeries Data="@HealMpsChartData" CategoryProperty="Name" Title="MPS"
+                                                                         ValueProperty="Value">
+                                                                    <RadzenSeriesDataLabels Visible="true" />
+                                                                </RadzenDonutSeries>
+                                                                <RadzenValueAxis FormatString="{0:N1}">
+                                                                    <RadzenGridLines Visible="true" />
+                                                                </RadzenValueAxis>
+                                                            </RadzenChart>
+                                                        }
+                                                    </MudStack>
+                                                </MudPaper>
+                                            </MudItem>
+                                            <MudItem xs="12" md="6" lg="4">
+                                                <MudPaper Outlined="true" Class="pa-3">
+                                                    <MudStack AlignItems="AlignItems.Center" Justify="Justify.FlexStart">
+                                                        <MudText>Healing per Mana Spent</MudText>
+                                                        @if (HpmChartData != null && HpmChartData.Length > 0)
+                                                        {
+                                                            <RadzenChart style="width: 100%">
+                                                                <RadzenBarSeries Data="@HpmChartData" CategoryProperty="Name" Title="HPM"
+                                                                         ValueProperty="Value" LineType="LineType.Dashed">
+                                                                    <RadzenSeriesDataLabels Visible="true" />
+                                                                </RadzenBarSeries>
+                                                                <RadzenValueAxis FormatString="{0:N2}">
+                                                                    <RadzenGridLines Visible="true" />
+                                                                </RadzenValueAxis>
+                                                                <RadzenLegend Visible="false" />
+                                                                <RadzenBarOptions Radius="2" />
+                                                            </RadzenChart>
+                                                        }
+                                                    </MudStack>
+                                                </MudPaper>
+                                            </MudItem>
+                                        </MudGrid>
+                                    </MudTabPanel>
+                                    <MudTabPanel Text="Journal" Icon="@Icons.Material.Filled.TextSnippet">
+                                        <MudStack Spacing="0">
+                                            @foreach(var entry in modellingResults.JournalEntries)
+                                            {
+                                                <MudText Typo="Typo.body2"><span style="font-family: monospace">@entry</span></MudText>
+                                            }
+                                        </MudStack>
+                                    </MudTabPanel>
+                                </MudTabs>
+                            </MudStack>
+                        }
+                    </MudPaper>
+                </MudStack>
+            </MudPaper>
+        </MudItem>
+    </MudGrid>
+</div>

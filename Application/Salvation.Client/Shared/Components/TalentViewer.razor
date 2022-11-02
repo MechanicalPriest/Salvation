@@ -1,0 +1,31 @@
+﻿@inject HttpClient Http
+@inject IJSRuntime JS
+@using Salvation.Core.ViewModel
+
+@if (HolyPriest == null)
+{
+    <MudProgressCircular Color="Color.Default" Indeterminate="true" />
+}
+else
+{
+    <MudGrid Justify="Justify.Center">
+        <MudItem xs="12" md="@(DisplayVertical ? 12 : 6)">
+            <TalentTree @ref="classTalentViewer" TreeName="@HolyPriest.ClassName" Talents=@HolyPriest.ClassNodes PointsTotal=@ClassPoints SelectedTalents=@SelectedTalents></TalentTree>
+        </MudItem>
+        <MudItem xs="12" md="@(DisplayVertical ? 12 : 6)">
+            <TalentTree @ref="specTalentViewer" TreeName="@HolyPriest.SpecName" Talents=@HolyPriest.SpecNodes PointsTotal=@SpecPoints SelectedTalents=@SelectedTalents></TalentTree>
+        </MudItem>
+        <MudItem xs="12">
+            <MudStack>
+                <MudAlert Severity="Severity.Warning">
+                    <MudText>THIS WILL OVERRIDE YOUR CURRENT TREE.</MudText>
+                    <MudText>1. Go to a log and for the desired Holy Priest, open the Summary tab.</MudText>
+                    <MudText>2. Paste the contents of the Talents section below. Easiest way is to drag from the word "Talents" to "Gear" and copy that all in.</MudText>
+                    <MudText>Note: You can copy as much or as little of the page as you like, it should magically just work.</MudText>
+                </MudAlert>
+                <MudTextField T="string" Label="Paste warcraftlogs talent table here" Variant="Variant.Outlined" @bind-Value="wclImportText" Lines="3" />
+                <MudButton Variant="Variant.Filled" OnClick="ProcessWclImport" Color="Color.Primary" FullWidth="true" Size="Size.Small">Import</MudButton>
+            </MudStack>
+        </MudItem>
+    </MudGrid>
+}

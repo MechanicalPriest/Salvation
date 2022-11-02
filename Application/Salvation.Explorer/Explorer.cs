@@ -40,12 +40,6 @@ namespace Salvation.Explorer
                     case "generatestatweights":
                         await _holyPriestExplorer.GenerateStatWeights();
                         break;
-                    case "comparecovenants":
-                        await _holyPriestExplorer.CompareCovenants();
-                        break;
-                    case "comparecovenantsadvanced":
-                        await _holyPriestExplorer.CompareCovenantsAdvanced();
-                        break;
                     case "testholypriest":
                         await _holyPriestExplorer.TestHolyPriestModelAsync(); // Test stat weights
                         break;

@@ -30,9 +30,8 @@ namespace Salvation.Core.Profile
             var simcProfile = await _simcGenerationService.GenerateProfileAsync(simcAddonString);
 
             ApplyCharacterDetails(profile, simcProfile.ParsedProfile);
-            ApplyCovenant(profile, simcProfile.ParsedProfile);
             ApplyItems(profile, simcProfile.GeneratedItems);
-            ApplyTalents(profile, simcProfile.ParsedProfile.Talents);
+            ApplyTalents(profile, simcProfile.Talents);
 
             return _profileService.ValidateProfile(profile);
         }
@@ -61,90 +60,6 @@ namespace Salvation.Core.Profile
                 profile.Level = parsedProfile.Level;
             // Other fields not included: Role, Simc addon version
         }
-
-        internal void ApplyCovenant(PlayerProfile profile, SimcParsedProfile simcProfile)
-        {
-            CovenantProfile cp = profile.Covenant;
-
-            // Create a new covenant profile if the covenant has changed
-            if (simcProfile.Covenant != null)
-            {
-                var newCovenant = simcProfile.Covenant.ToLower() switch
-                {
-                    "kyrian" => Covenant.Kyrian,
-                    "night fae" => Covenant.NightFae,
-                    "necrolord" => Covenant.Necrolord,
-                    "venthyr" => Covenant.Venthyr,
-                    _ => Covenant.None,
-                };
-
-                if (newCovenant != profile.Covenant.Covenant)
-                {
-                    cp = new CovenantProfile
-                    {
-                        Covenant = newCovenant
-                    };
-                }
-            }
-
-            // Set Conduits - wipe them if we have a new set of available conduits
-            if (simcProfile.Conduits.Count > 0)
-                cp.AvailableConduits = new Dictionary<Conduit, int>();
-
-            foreach (var conduit in simcProfile.Conduits)
-            {
-                cp.AvailableConduits.Add((Conduit)conduit.SpellId, conduit.Rank);
-            }
-
-            // Set Soulbinds
-            foreach (var soulbind in simcProfile.Soulbinds)
-            {
-                var newSoulbind = new SoulbindProfile();
-
-                // Update the existing soulbind if it already exists
-                if (soulbind.SoulbindId != 0)
-                {
-                    var existingSoulbind = cp.Soulbinds.Where(s => s.SoulbindId == soulbind.SoulbindId).FirstOrDefault();
-                    if (existingSoulbind != null)
-                        newSoulbind = existingSoulbind;
-                    else
-                    {
-                        newSoulbind.SoulbindId = soulbind.SoulbindId;
-                        cp.Soulbinds.Add(newSoulbind);
-                    }
-                }
-
-                if(!String.IsNullOrEmpty(soulbind.Name))
-                    newSoulbind.Name = soulbind.Name;
-
-                newSoulbind.IsActive = soulbind.IsActive;
-
-                // Add the active soulbind spells - wipe them if we have new incoming ones
-                if (soulbind.SoulbindSpells.Count > 0)
-                    newSoulbind.ActiveTraits = new List<SoulbindTrait>();
-
-                foreach (var soulbindSpell in soulbind.SoulbindSpells)
-                {
-                    newSoulbind.ActiveTraits.Add((SoulbindTrait)soulbindSpell);
-                }
-
-                // Add the active conduits - wipe them if we have new incoming ones
-                if (soulbind.SocketedConduits.Count > 0)
-                    newSoulbind.ActiveConduits = new Dictionary<Conduit, uint>();
-
-                foreach (var conduit in soulbind.SocketedConduits)
-                {
-                    newSoulbind.ActiveConduits.Add((Conduit)conduit.SpellId, (uint)conduit.Rank);
-                }
-            }
-
-            // Set renown
-            if(simcProfile.Renown != 0)
-                cp.Renown = simcProfile.Renown;
-
-            profile.Covenant = cp;
-        }
-
         public Item CreateItem(SimcItem item)
         {
             var newItem = new Item
@@ -186,18 +101,19 @@ namespace Salvation.Core.Profile
             switch(item.ItemId)
             {
                 // Consumptive Infusion
-                case 184022:
+                // TODO: Cleanup post-implementation
+                //case 184022:
 
-                    var buffSpell = _simcGenerationService.GenerateSpellAsync(new SimcSpellOptions()
-                    {
-                        ItemInventoryType = item.InventoryType,
-                        ItemLevel = item.ItemLevel,
-                        ItemQuality = item.Quality,
-                        SpellId = (uint)Spell.ConsumptiveInfusionBuff
-                    }).Result;
+                //    var buffSpell = _simcGenerationService.GenerateSpellAsync(new SimcSpellOptions()
+                //    {
+                //        ItemInventoryType = item.InventoryType,
+                //        ItemLevel = item.ItemLevel,
+                //        ItemQuality = item.Quality,
+                //        SpellId = (uint)Spell.ConsumptiveInfusionBuff
+                //    }).Result;
 
-                    item.Effects.Add(new SimcItemEffect() { Spell = buffSpell });
-                    break;
+                //    item.Effects.Add(new SimcItemEffect() { Spell = buffSpell });
+                //    break;
 
                 default:;
                     break;
@@ -256,7 +172,6 @@ namespace Salvation.Core.Profile
                 Charges = spell.Charges,
                 Duration = spell.Duration,
                 Gcd = spell.Gcd / 1000d,
-                ConduitRanks = spell.ConduitRanks,
                 Rppm = spell.Rppm
             };
 
@@ -325,29 +240,22 @@ namespace Salvation.Core.Profile
             return newEffect;
         }
 
-        private void ApplyTalents(PlayerProfile profile, IReadOnlyList<int> talents)
+        private void ApplyTalents(PlayerProfile profile, IList<SimcTalent> talents)
         {
             if (talents.Count == 0)
                 return;
 
             profile.Talents = new List<Talent>();
 
-            for(var i = 0; i < talents.Count; i++)
+            foreach(var talent in talents)
             {
-                if (talents[i] != 0)
-                    profile.Talents.Add(HolyPriestTalents[i][talents[i] - 1]);
+                profile.Talents.Add(new Talent()
+                {
+                    Spell = (Spell)talent.SpellId,
+                    SpellId = (int)talent.SpellId,
+                    Rank = talent.Rank
+                });
             }
         }
-
-        internal List<List<Talent>> HolyPriestTalents = new List<List<Talent>>()
-        {
-            new List<Talent>() { Talent.Enlightenment, Talent.TrailOfLight, Talent.RenewedFaith },
-            new List<Talent>() { Talent.AngelsMercy, Talent.BodyAndSoul, Talent.AngelicFeather },
-            new List<Talent>() { Talent.CosmicRipple, Talent.GuardianAngel, Talent.Afterlife },
-            new List<Talent>() { Talent.PsychicVoice, Talent.Censure, Talent.ShiningForce },
-            new List<Talent>() { Talent.SurgeOfLight, Talent.BindingHeal, Talent.PrayerCircle },
-            new List<Talent>() { Talent.Benediction, Talent.DivineStar, Talent.Halo },
-            new List<Talent>() { Talent.LightOfTheNaaru, Talent.Apotheosis, Talent.HolyWordSalvation },
-        };
     }
 }

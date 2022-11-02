@@ -54,10 +54,10 @@ namespace Salvation.Core.Modelling
             switch (swType)
             {
                 case StatWeightType.EffectiveHealing:
-                    result = GenerateEffectiveHealingStatWeights(modelResults, "Effective Healing", baseState.Profile.Name, "Intellect Profile");
+                    result = GenerateEffectiveHealingStatWeights(modelResults, "Effective Healing", baseState.Profile.Name, "Intellect");
                     break;
                 case StatWeightType.RawHealing:
-                    result = GenerateRawHealingStatWeights(modelResults, "Raw Healing", baseState.Profile.Name, "Intellect Profile");
+                    result = GenerateRawHealingStatWeights(modelResults, "Raw Healing", baseState.Profile.Name, "Intellect");
                     break;
                 case StatWeightType.Damage:
                     //result = GenerateDamageStatWeights(modelResults);
@@ -86,42 +86,42 @@ namespace Salvation.Core.Modelling
             var intState = _gameStateService.CloneGameState(baselineState);
             _gameStateService.OverridePlaystyle(intState, 
                 new PlaystyleEntry("GrantAdditionalStatIntellect", numAdditionalStats));
-            _gameStateService.SetProfileName(intState, "Intellect Profile");
+            _gameStateService.SetProfileName(intState, "Intellect");
             states.Add(intState);
 
             // Haste
             var hasteState = _gameStateService.CloneGameState(baselineState);
             _gameStateService.OverridePlaystyle(hasteState,
                 new PlaystyleEntry("GrantAdditionalStatHaste", numAdditionalStats));
-            _gameStateService.SetProfileName(hasteState, "Haste Profile");
+            _gameStateService.SetProfileName(hasteState, "Haste");
             states.Add(hasteState);
 
             // Crit
             var critState = _gameStateService.CloneGameState(baselineState);
             _gameStateService.OverridePlaystyle(critState,
                 new PlaystyleEntry("GrantAdditionalStatCriticalStrike", numAdditionalStats));
-            _gameStateService.SetProfileName(critState, "Critical Strike Profile");
+            _gameStateService.SetProfileName(critState, "Critical Strike");
             states.Add(critState);
 
             // Vers
             var versState = _gameStateService.CloneGameState(baselineState);
             _gameStateService.OverridePlaystyle(versState,
                 new PlaystyleEntry("GrantAdditionalStatVersatility", numAdditionalStats));
-            _gameStateService.SetProfileName(versState, "Versatility Profile");
+            _gameStateService.SetProfileName(versState, "Versatility");
             states.Add(versState);
 
             // Mastery
             var masteryState = _gameStateService.CloneGameState(baselineState);
             _gameStateService.OverridePlaystyle(masteryState,
                 new PlaystyleEntry("GrantAdditionalStatMastery", numAdditionalStats));
-            _gameStateService.SetProfileName(masteryState, "Mastery Profile");
+            _gameStateService.SetProfileName(masteryState, "Mastery");
             states.Add(masteryState);
 
             // Leech
             var leechState = _gameStateService.CloneGameState(baselineState);
             _gameStateService.OverridePlaystyle(leechState,
                 new PlaystyleEntry("GrantAdditionalStatLeech", numAdditionalStats));
-            _gameStateService.SetProfileName(leechState, "Leech Profile");
+            _gameStateService.SetProfileName(leechState, "Leech");
             states.Add(leechState);
 
             return states;

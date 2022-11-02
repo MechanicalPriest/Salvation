@@ -4,6 +4,9 @@ using Salvation.Core.Interfaces.Modelling;
 using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.State;
+using System;
+using System.IO;
+using System.Linq;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
@@ -44,6 +47,8 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             averageHeal *= _gameStateService.GetCriticalStrikeMultiplier(gameState)
                 * _gameStateService.GetGlobalHealingMultiplier(gameState);
 
+            averageHeal *= this.GetPontifexMultiplier(gameState);
+
             return averageHeal * GetNumberOfHealingTargets(gameState, spellData);
         }
 
@@ -68,15 +73,18 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             double hwCDR = cpmFlashHeal * hwCDRFlashHeal +
                 cpmHeal * hwCDRHeal;
 
-            if (_gameStateService.IsLegendaryActive(gameState, Spell.HarmoniousApparatus))
+            if (_gameStateService.GetTalent(gameState, Spell.HarmoniousApparatus).Rank > 0)
             {
                 var cpmPoM = _prayerOfMendingSpellService.GetActualCastsPerMinute(gameState);
                 var hwCDRPoM = _gameStateService.GetTotalHolyWordCooldownReduction(gameState, Spell.PrayerOfMending);
+
                 hwCDR += cpmPoM * hwCDRPoM;
             }
 
+            double charges = spellData.Charges + GetMiracleWorkerCharges(gameState, spellData);
+
             double maximumPotentialCasts = (60d + hwCDR) / hastedCD
-                + 1d / (fightLength / 60d);
+                + charges / (fightLength / 60d);
 
             return maximumPotentialCasts;
         }
@@ -101,6 +109,21 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             return spellData.IsCooldownHasted
                 ? cooldown / _gameStateService.GetHasteMultiplier(gameState)
                 : cooldown;
+        }
+
+        internal double GetMiracleWorkerCharges(GameState gameState, BaseSpellData spellData)
+        {
+            spellData = ValidateSpellData(gameState, spellData);
+
+            var miracleWorkerCharges = 0d;
+
+            if (_gameStateService.GetTalent(gameState, Spell.MiracleWorker).Rank > 0)
+            {
+                var miracleWorkerSpellData = _gameStateService.GetSpellData(gameState, Spell.MiracleWorker);
+                miracleWorkerCharges += miracleWorkerSpellData.GetEffect(356036).BaseValue;
+            }
+
+            return miracleWorkerCharges;
         }
     }
 }

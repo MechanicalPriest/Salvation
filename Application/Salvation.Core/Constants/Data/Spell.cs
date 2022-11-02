@@ -1,4 +1,6 @@
-﻿namespace Salvation.Core.Constants.Data
+﻿using static System.Net.WebRequestMethods;
+
+namespace Salvation.Core.Constants.Data
 {
     public enum Spell
     {
@@ -23,19 +25,132 @@
         // Base healing spells
         Heal = 2060,
         FlashHeal = 2061,
-        PrayerOfHealing = 596,
-        HolyNova = 132157,
-        HolyNovaRank2 = 322112,
-        CircleOfHealing = 204883,
-        Renew = 139,
         PowerWordShield = 17,
-        DivineHymn = 64843,
-        HolyWordSanctify = 34861,
-        HolyWordSerenity = 2050,
+        HaloHeal = 120692,
+        HaloDamage = 120696,
+        DivineStarHeal = 110745,
+        DivineStarDamage = 122128,
+        EchoOfLight = 77485,
+        EchoOfLightHeal = 77489,
+
+        // Base damage spells
+        Smite = 585,
+        ShadowWordPain = 589,
+        HolyFire = 14914,
+
+        // Talents - Class
+        Renew = 139,
+        DispelMagic = 528,
+        Shadowfiend = 34433,
         /// <summary>
         /// The PoM spell cast
         /// </summary>
         PrayerOfMending = 33076,
+        ImprovedFlashHeal = 393870,
+        ImprovedPurify = 390632,
+        PsychicVoice = 196704,
+        ShadowWordDeath = 32379,
+        FocusedMending = 372354,
+        HolyNova = 132157,
+        ProtectiveLight = 193063,
+        FromDarknessComesLight = 390615,
+        AngelicFeather = 121536,
+        Phantasm = 108942,
+        DeathAndMadness = 321291,
+        SpellWarding = 390667,
+        BlessedRecovery = 390767,
+        Rhapsody = 390622,
+        LeapOfFaith = 73325,
+        ShackleUndead = 9484,
+        SheerTerror = 390919,
+        VoidTendrils = 108920,
+        MindControl = 605,
+        DominateMind = 205364,
+        WordsOfThePious = 377438,
+        MassDispel = 32375,
+        MoveWithGrace = 390620,
+        PowerInfusion = 10060,
+        VampiricEmbrace = 15286,
+        TitheEvasion = 373223,
+        Inspiration = 390676,
+        ImprovedMassDispel = 341167,
+        BodyAndSoul = 64129,
+        TwinsOfTheSunPriestess = 373466,
+        VoidShield = 280749,
+        Sanlayn = 199855,
+        Apathy = 390668,
+        UnwaveringWill = 373456,
+        TwistOfFate = 390972,
+        ThroesOfPain = 377422,
+        AngelsMercy = 238100,
+        BindingHeals = 368275,
+        DivineStar = 110744,
+        Halo = 120517,
+        TranslucentImage = 373446,
+        Mindgames = 375901,
+        SurgeOfLight = 109186,
+        LightsInspiration = 373450,
+        CrystallineReflection = 373457,
+        ImprovedFade = 390670,
+        Manipulation = 390996,
+        PowerWordLife = 373481,
+        AngelicBulwark = 108945,
+        VoidShift = 108968,
+        ShatteredPerceptions = 391112,
+
+        // Talents - Holy
+        HolyWordSerenity = 2050,
+        PrayerOfHealing = 596,
+        GuardianSpirit = 47788,
+        HolyWordChastise = 88625,
+        HolyWordSanctify = 34861,
+        GuardianAngel = 200209,
+        GuardiansOfTheLight = 196437,
+        Censure = 200199,
+        BurningVehemence = 372307,
+        CircleOfHealing = 204883,
+        RevitalizingPrayers = 391208,
+        SanctifiedPrayers = 196489,
+        CosmicRipple = 238136,
+        Afterlife = 196707,
+        RenewedFaith = 341997,
+        EmpyrealBlaze = 372616,
+        PrayerCircle = 321377,
+        HealingChorus = 390881,
+        PrayerfulLitany = 391209,
+        TrailOfLight = 200128,
+        DivineHymn = 64843,
+        Enlightenment = 193155,
+        Benediction = 193157,
+        HolyMending = 391154,
+        Orison = 390947,
+        EverlastingLight = 391161,
+        GalesOfSong = 372370,
+        SymbolOfHope = 64901,
+        DivineService = 391233,
+        CrisisManagement = 390954,
+        PrismaticEchoes = 390967,
+        PrayersOfTheVirtuous = 390977,
+        Pontifex = 390980,
+        Apotheosis = 200183,
+        HolyWordSalvation = 265202,
+        EmpoweredRenew = 391339,
+        RapidRecovery = 391368,
+        SayYourPrayers = 391186,
+        ResonantWords = 372309,
+        DesperateTimes = 391381,
+        LightOfTheNaaru = 196985,
+        HarmoniousApparatus = 390994,
+        SearingLight = 372611,
+        AnsweredPrayers = 391387,
+        Lightweaver = 390992,
+        Lightwell = 372835,
+        DivineImage = 392988,
+        DivineWord = 372760,
+        MiracleWorker = 235587,
+        Restitution = 391124,
+
+        // Talents - Complimentary Spells
         /// <summary>
         /// The PoM spell that heals people
         /// </summary>
@@ -44,181 +159,38 @@
         /// The PoM buff people get when it is cast on/bounces to them
         /// </summary>
         PrayerOfMendingBuff = 41635,
-        /// <summary>
-        /// Makes PoM instant cast
-        /// </summary>
-        Halo = 120517,
-        HaloHeal = 120692,
-        HaloDamage = 120696,
-        DivineStar = 110744,
-        DivineStarHeal = 110745,
-        DivineStarDamage = 122128,
-        HolyWordSalvation = 265202,
-        EchoOfLight = 77485,
-        GuardianSpirit = 47788,
-
-        // Talents
-        Enlightenment = 193155,
-        CosmicRipple = 238136,
-        Benediction = 193157,
-
-        // Cov abilities
-        Mindgames = 323673,
-        MindgamesHeal = 323706,
-        FaeGuardians = 327661,
-        BenevolentFaerie = 327710,
-        GuardianFaerie = 327694,
-        BoonOfTheAscended = 325013,
-        AscendedNova = 325020,
-        AscendedBlast = 325283,
-        AscendedBlastHeal = 325315,
-        AscendedEruption = 325326,
-        UnholyNova = 324724,
-        UnholyTransfusion = 325118,
-        Fleshcraft = 324631,
-        /// <summary>
-        /// The enemy debuff applied that does damage
-        /// </summary>
-        UnholyTransfusionDoT = 325203,
-
-        // Legendaries
-        HarmoniousApparatus = 336314,
-        EchoOfEonar = 338477,
-        EchoOfEonarHealingBuffSelf = 347660,
-        EchoOfEonarDamageBuffSelf = 338489,
-        EchoOfEonarHealingBuffOther = 347663, // TODO: This needs to be whitelisted in simc.
-        CauterizingShadows = 336370,
-        CauterizingShadowsHeal = 336373,
-        FlashConcentration = 336266,
-        DivineImage = 336400,
+        MindgamesHeal = 375904, 
         DivineImageHealingLight = 196809,
         DivineImageDazzlingLight = 196810,
-        DivineImageSearingLight = 196810,
+        DivineImageSearingLight = 196811, 
         DivineImageLightEruption = 196812,
         DivineImageBlessedLight = 196813,
         DivineImageTranquilLight = 196816,
-
-        // Conduits
-        CharitableSoul = 337715,
-        CourageousAscension = 337966,
-        FesteringTransfusion = 337979,
-        FaeFermata = 338305,
-        ShatteredPerceptions = 338315,
-        HolyOration = 338345,
-        FocusedMending = 337914,
-        ResonantWords = 337947,
-        LastingSpirit = 337811,
-
-        // DPS
-        Smite = 585,
-        HolyWordChastise = 88625,
-        ShadowWordPain = 589,
-        ShadowWordDeath = 32379,
-        HolyFire = 14914,
+        CosmicRippleHeal = 243241,
+        TrailOfLightHeal = 234946,
+        SanctifiedPrayersBuff = 196490,
+        PrayerCircleBuff = 321379,
+        BindingHealsHeal = 368276,
+        /// <summary>
+        /// The heal portion of Lightwell
+        /// </summary>
+        LightwellHeal = 372847,
+        /// <summary>
+        /// This is the buff the lightwell has, which stores remaining charges
+        /// </summary>
+        LightwellCharges = 372838,
+        /// <summary>
+        /// Stores how often it tries to heal someone
+        /// </summary>
+        LightwellTrigger = 372845,
+        EmpoweredRenewHeal = 391359,
+        HolyMendingHeal = 391156,
+        LightweaverBuff = 390993,
 
         // Consumables
-        SpectralFlaskOfPower = 307185,
-        SpiritualManaPotion = 307193,
 
         // Items
-        /// <summary>
-        /// Trinket 178708
-        /// </summary>
-        UnboundChangeling = 330733,
-        UnboundChangelingBuff = 330747,
-        CabalistsHymnal = 344806,
-        CabalistsHymnalBuff = 344803,
-        SoullettingRuby = 345801,
-        SoullettingRubyBuff = 345805,
-        SoullettingRubyHeal = 345806,
-        SoullettingRubyTrigger = 345807,
-        ManaboundMirror = 344243,
-        ManaboundMirrorBuff = 344244,
-        ManaboundMirrorHeal = 344245,
-        MacabreSheetMusic = 345432,
-        MacabreSheetMusicTrigger = 345431,
-        MacabreSheetMusicBuff = 345439,
-        TuftOfSmolderingPlumage = 344916,
-        TuftOfSmolderingPlumageBuff = 344915,
-        TuftOfSmolderingPlumageHeal = 344917,
-        ConsumptiveInfusion = 344221,
-        ConsumptiveInfusionBuff = 344227,
-        ConsumptiveInfusionDebuff = 344229,
-        DarkmoonDeckRepose = 333734,
-        DarkmoonDeckReposeAce = 311474,
-        DarkmoonDeckReposeEight = 311481,
-        VialOfSpectralEssence = 345695,
-        OverflowingAnimaCage = 343385,
-        OverflowingAnimaCageBuff = 343387,
-        SiphoningPhylacteryShard = 345549,
-        SiphoningPhylacteryShardBuff = 345551,
 
         // Traits
-        // Kyrian - Pelagos
-        CombatMeditation = 328266,
-        CombatMeditationBuff = 328908,
-        CombatMeditationExtension = 328913,
-        LetGoOfThePast = 328257,
-        LetGoOfThePastBuff = 328900,
-        // Kyrian - Kleia
-        PointedCourage = 329778,
-        PointedCourageBuff = 330511,
-        ValiantStrikes = 329791,
-        ValiantStrikesBuff = 330943,
-        ResonantAccolades = 329781,
-        ResonantAccoladesBuff = 330859,
-        // Kyrian - Mikanikos
-        BronsCallToAction = 333950,
-        // Necro - Marileth
-        VolatileSolvent = 323074,
-        UltimateForm = 323095,
-        UltimateFormHeal = 323524,
-        // Necro - Emeni
-        LeadByExample = 342156,
-        LeadByExampleBuff = 342181,
-        // Necro - Bonesmith Heirmir
-        ForgeborneReveries = 326514,
-        ForgeborneReveriesBuff = 348272,
-        MarrowedGemstone = 326572,
-        MarrowedGemstoneStacks = 327066,
-        MarrowedGemstoneBuff = 327069,
-        MarrowedGemstoneCooldown = 327073,
-        /// <summary>
-        /// Mastery buff
-        /// </summary>
-        VolatileSolventHumanoid = 323491,
-        /// <summary>
-        /// Int buff
-        /// </summary>
-        VolatileSolventBeast = 323498,
-        /// <summary>
-        /// Crit buff
-        /// </summary>
-        VolatileSolventDragonkin = 323502,
-        /// <summary>
-        /// Magic damage
-        /// </summary>
-        VolatileSolventElemental = 323504,
-        /// <summary>
-        /// Magic damage taken reduced
-        /// </summary>
-        VolatileSolventMechanical = 323507,
-        // NF - Niya
-        GroveInvigoration = 322721,
-        GroveInvigorationAnimaBuff = 342814,
-        NiyasToolsHerbs = 320662,
-        NiyasToolsHerbsBuff = 321510,
-        // NF - Dreamweaver
-        FieldOfBlossoms = 319191,
-        FieldOfBlossomsEffect = 342761,
-        FieldOfBlossomsBuff = 342774,
-        // Venthyr - Nadjia
-        ThrillSeeker = 331586,
-        ThrillSeekerStacks = 331939,
-        ThrillSeekerBuff = 331937,
-        // Venthyr - Theotar
-        SoothingShade = 336239,
-        SoothingShadeBuff = 336885,
-        SoothingShadeEffect = 336808,
     }
 }

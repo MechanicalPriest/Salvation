@@ -6,6 +6,7 @@ using Salvation.Core.Interfaces.Constants;
 using Salvation.Core.Interfaces.Modelling;
 using Salvation.Core.Interfaces.Profile;
 using Salvation.Core.Interfaces.State;
+using Salvation.Core.Modelling;
 using Salvation.Core.Profile;
 using Salvation.Core.Profile.Model;
 using System;
@@ -361,8 +362,12 @@ namespace Salvation.Core.State
                 if (spell.Spell != requestingSpell)
                     addedMasteryPercent += spell.SpellService.GetAverageMasteryPercent(state, spell.SpellData);
             }
+            
+            // This part is holy specific and should be moved if used for another spec.
+            var masteryActualCost = specData.MasteryCost / GetHolyPriestMasteryModifier(state);
 
-            return 1 + specData.MasteryBase + (GetDrRating(GetMasteryRating(state), specData.MasteryCost) / specData.MasteryCost / 100)
+            return 1 + specData.MasteryBase 
+                + (GetDrRating(GetMasteryRating(state), specData.MasteryCost) / masteryActualCost / 100)
                 + addedMasteryPercent;
         }
 
@@ -460,8 +465,9 @@ namespace Salvation.Core.State
                 }
             }
 
+            var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.Spec).FirstOrDefault();
             if (clothCount == 8)
-                intellect *= 1.05d;
+                intellect *= specData.ArmorSkillsMultiplier; 
 
             intellect *= GetIntellectMultiplier(state);
 
@@ -490,13 +496,9 @@ namespace Salvation.Core.State
 
             double intellect = 0;
 
-            // Get base intellect based on class
-            // From sc_extra_data.inc
-            intellect += state.Profile.Class switch
-            {
-                Class.Priest => 450,
-                _ => throw new NotImplementedException("This class is not yet implemented."),
-            };
+            // Get base intellect 
+            var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.Spec).FirstOrDefault();
+            intellect += specData.IntBase;
 
             // Apply race modifiers
             switch (state.Profile.Race)
@@ -509,6 +511,8 @@ namespace Salvation.Core.State
                 case Race.Mechagnome:
                 case Race.Nightborne:
                 case Race.VoidElf:
+                case Race.DracthyrAlliance:
+                case Race.DracthyrHorde:
                     intellect += 2;
                     break;
 
@@ -571,13 +575,9 @@ namespace Salvation.Core.State
         {
             var stamina = 0d;
 
-            // Apply class base stam
-            // From sc_extra_data.inc
-            stamina += state.Profile.Class switch
-            {
-                Class.Priest => 414,
-                _ => throw new NotImplementedException("This class is not yet implemented."),
-            };
+            // Get base stamina 
+            var specData = state.Constants.Specs.Where(s => s.SpecId == (int)state.Profile.Spec).FirstOrDefault();
+            stamina += specData.StamBase;
 
             // Apply race modifiers
             switch (state.Profile.Race)
@@ -608,6 +608,11 @@ namespace Salvation.Core.State
                     stamina -= 1;
                     break;
 
+                case Race.DracthyrAlliance:
+                case Race.DracthyrHorde:
+                    stamina -= 2;
+                    break;
+
                 case Race.NoRace:
                 case Race.NightElf:
                 case Race.Troll:
@@ -617,14 +622,6 @@ namespace Salvation.Core.State
                 case Race.VoidElf:
                 case Race.ZandalariTroll:
                 case Race.Human:
-
-                case Race.Vrykul:
-                case Race.Tuskarr:
-                case Race.ForestTroll:
-                case Race.Tanuka:
-                case Race.Skeleton:
-                case Race.IceTroll:
-                case Race.Gilnean:
                 default:
                     break;
             }
@@ -658,7 +655,7 @@ namespace Salvation.Core.State
             // Get healing mod from other spells and effects
             foreach (var spell in state.RegisteredSpells.Where(s => s.SpellService != null))
             {
-                modifier += spell.SpellService.GetAverageHealingBonus(state, spell.SpellData);
+                modifier *= spell.SpellService.GetAverageHealingMultiplier(state, spell.SpellData);
             }
 
             return modifier;
@@ -673,29 +670,6 @@ namespace Salvation.Core.State
             spell = JsonConvert.DeserializeObject<BaseSpellData>(JsonConvert.SerializeObject(spell));
 
             return spell;
-        }
-
-        public bool IsConduitActive(GameState state, Conduit conduit)
-        {
-            var soulbind = state.Profile.Covenant.Soulbinds.Where(s => s.IsActive).FirstOrDefault();
-            if (soulbind == null)
-                return false;
-
-            return soulbind.ActiveConduits.ContainsKey(conduit);
-        }
-
-        public uint GetConduitRank(GameState state, Conduit conduit)
-        {
-            var rank = 0u;
-
-            if (IsConduitActive(state, conduit))
-            {
-                var soulbind = state.Profile.Covenant.Soulbinds.Where(s => s.IsActive).FirstOrDefault();
-                if (soulbind.ActiveConduits.ContainsKey(conduit))
-                    return soulbind.ActiveConduits[conduit];
-            }
-
-            return rank;
         }
 
         #region Registered Spells
@@ -715,11 +689,31 @@ namespace Salvation.Core.State
         {
             var registeredSpells = new List<RegisteredSpell>(additionalSpells);
 
-            // TALENTS: Add the profiles talents
-            foreach(var talent in state.Profile.Talents)
+            JournalEntry(state, $"Registering baseline spells...");
+            foreach (var spell in registeredSpells)
             {
-                registeredSpells.Add(new RegisteredSpell((Spell)talent));
+                JournalEntry(state, $"Registered {spell.Spell}.");
             }
+            JournalEntry(state, $"Registering baseline spells... Done!");
+
+            // TALENTS: Add the profiles talents
+            JournalEntry(state, $"Registering talent spells...");
+            foreach (var talent in state.Profile.Talents)
+            {
+                if (talent.Rank > 0)
+                {
+                    if (registeredSpells.Where(s => s.Spell == (Spell)talent.SpellId).Any())
+                    {
+                        JournalEntry(state, $"Registering of {(Spell)talent.SpellId} failed, already registered.");
+                    }
+                    else
+                    {
+                        registeredSpells.Add(new RegisteredSpell((Spell)talent.SpellId));
+                        JournalEntry(state, $"Registered {registeredSpells.LastOrDefault()?.Spell} at rank {talent.Rank}.");
+                    }
+                }
+            }
+            JournalEntry(state, $"Registering talent spells... Done!");
 
             // TODO: Consumables
 
@@ -732,48 +726,6 @@ namespace Salvation.Core.State
                     registeredSpells.AddRange(GetTriggerSpellRecursive(effect.Spell, item.ItemLevel));
                 }
             }
-
-            // COVENANT: Add covenant ability
-            switch (GetActiveCovenant(state))
-            {
-                case Covenant.Kyrian:
-                    registeredSpells.Add(new RegisteredSpell(Spell.BoonOfTheAscended));
-                    break;
-                case Covenant.Venthyr:
-                    registeredSpells.Add(new RegisteredSpell(Spell.Mindgames));
-                    break;
-                case Covenant.NightFae:
-                    registeredSpells.Add(new RegisteredSpell(Spell.FaeGuardians));
-                    break;
-                case Covenant.Necrolord:
-                    registeredSpells.Add(new RegisteredSpell(Spell.UnholyNova));
-                    registeredSpells.Add(new RegisteredSpell(Spell.Fleshcraft));
-                    break;
-                case Covenant.None:
-                default:
-                    break;
-            }
-
-
-            // SOULBINDS: Loop through each trait and add it to the list
-            if (state.Profile.Covenant.Soulbinds.Where(s => s.IsActive).FirstOrDefault() != null)
-            {
-                foreach (var trait in state.Profile.Covenant.Soulbinds
-                    .Where(s => s.IsActive).FirstOrDefault().ActiveTraits)
-                {
-                    if (Enum.IsDefined(typeof(Spell), (int)trait))
-                    {
-                        var registeredSpell = new RegisteredSpell()
-                        {
-                            Spell = (Spell)trait,
-                        };
-
-                        registeredSpells.Add(registeredSpell);
-                    }
-                }
-            }
-
-            // TODO: Conduits
 
             // Process all the registered spells
             foreach (var spell in registeredSpells)
@@ -859,51 +811,19 @@ namespace Salvation.Core.State
 
         #endregion
 
-        #region Covenant
-
-        public void SetCovenant(GameState state, CovenantProfile covenant)
-        {
-            _profileService.SetCovenant(state.Profile, covenant);
-        }
-
-        public Covenant GetActiveCovenant(GameState state)
-        {
-            return state.Profile.Covenant.Covenant;
-        }
-
-        #endregion
-
         #region Talents
 
-        public bool IsTalentActive(GameState state, Talent talent)
+        public Talent GetTalent(GameState state, Spell spell)
         {
-            var exists = state.Profile.Talents.Contains(talent);
-
-            return exists;
+            return _profileService.GetTalent(state.Profile, spell);
         }
 
-        public void SetActiveTalent(GameState state, Talent talent)
+        public Talent SetTalentRank(GameState state, Spell spell, int rank)
         {
-            _profileService.AddTalent(state.Profile, talent);
+            return _profileService.UpdateTalent(state.Profile, spell, rank);
         }
 
         #endregion
-
-        public bool IsLegendaryActive(GameState state, Spell legendary)
-        {
-            foreach (var item in _profileService.GetEquippedItems(state.Profile))
-            {
-                foreach (var effect in item.Effects)
-                {
-                    if (effect.Spell != null && effect.Spell.Id == (int)legendary)
-                    {
-                        return true;
-                    }
-                }
-            }
-
-            return false;
-        }
 
         public void OverrideSpellData(GameState state, BaseSpellData newData)
         {
@@ -952,9 +872,17 @@ namespace Salvation.Core.State
             state.Profile.PlaystyleEntries.Add(newPlaystyle);
         }
 
-        public void JournalEntry(GameState state, string message)
+        public void JournalEntry(GameState state, string message, int historyToCheck = 20)
         {
-            state.JournalEntries.Add(message);
+            if (state.JournalEntries.Count == 0 ||
+                !state.JournalEntries.Skip(Math.Max(0, state.JournalEntries.Count() - historyToCheck)).Where(j => j == message).Any())
+            {
+#if DEBUG
+
+                _logger?.LogTrace("[JRN] {0}", message);
+#endif
+                state.JournalEntries.Add(message);
+            }
         }
 
         public List<string> GetJournal(GameState state, bool removeDuplicates = false)
@@ -998,105 +926,187 @@ namespace Salvation.Core.State
         #region Holy Priest Specific
         // TODO: Move this out to a holy priest specific file at some point.
 
-        public double GetTotalHolyWordCooldownReduction(GameState state, Spell spell, bool isApotheosisActive = false)
+        public double GetTotalHolyWordCooldownReduction(GameState state, Spell spell)
         {
-            // Only let Apoth actually benefit if apoth is talented
-            if (!IsTalentActive(state, Talent.Apotheosis))
-                isApotheosisActive = false;
+            // Apotheosis - the 300% increase is 4x the regular CDR.
+            var apothCDRIncrease = GetAverageApotheosisIncrease(state);
 
-            var serenityCDRBase = GetSpellData(state, Spell.HolyWordSerenity).GetEffect(709474).BaseValue;
-            var sancCDRPoH = GetSpellData(state, Spell.HolyWordSanctify).GetEffect(709475).BaseValue;
-            var sancCDRRenew = GetSpellData(state, Spell.HolyWordSanctify).GetEffect(709476).BaseValue;
-            var salvCDRBase = GetSpellData(state, Spell.HolyWordSalvation).GetEffect(709211).BaseValue;
-            var chastiseCDRBase = GetSpellData(state, Spell.HolyWordChastise).GetEffect(709477).BaseValue;
+            // Light of the Naaru - 10% or 20% increase depending on rank.
+            var lotnCDRIncrease = 1.0d; 
+            var lotnTalent = GetTalent(state, Spell.LightOfTheNaaru);
+            if (lotnTalent.Rank > 0)
+                lotnCDRIncrease += GetSpellData(state, Spell.LightOfTheNaaru)
+                    .GetEffect(289244).BaseValue / 100 * lotnTalent.Rank;
 
-            var isLotnActive = IsTalentActive(state, Talent.LightOfTheNaaru);
-
-            // Holy Oration
-            var isHolyOrationActive = IsConduitActive(state, Conduit.HolyOration);
-            var holyOrationModifier = 0d;
-            if (isHolyOrationActive)
-            {
-                var holyOrationRank = GetConduitRank(state, Conduit.HolyOration);
-                var holyOrationSpellData = GetSpellData(state, Spell.HolyOration);
-
-                holyOrationModifier = holyOrationSpellData.ConduitRanks[holyOrationRank] / 100;
-            }
-
+            // Harmonious Apparatus - 2 or 4 seconds depending on rank.
             var haCDRBase = 0d;
-
-            if (IsLegendaryActive(state, Spell.HarmoniousApparatus))
-            {
-                haCDRBase = GetSpellData(state, Spell.HarmoniousApparatus).GetEffect(833714).BaseValue;
-            }
-
-            var returnCDR = 0d;
+            var haTalent = GetTalent(state, Spell.HarmoniousApparatus);
+            if(haTalent.Rank > 0)
+                haCDRBase = GetSpellData(state, Spell.HarmoniousApparatus).GetEffect(1028210).BaseValue * haTalent.Rank;
 
             // This is a bit more verbose than it needs to be for the sake of clarity
             // See #58 for some of the testing/math behind these values
+            var returnCDR = 0d;
+
+            // Base Holy Word CDR
             switch (spell)
             {
                 case Spell.FlashHeal:
                 case Spell.Heal:
+                    var serenityCDRBase = GetSpellData(state, Spell.HolyWordSerenity).GetEffect(709474).BaseValue;
                     returnCDR = serenityCDRBase;
-                    returnCDR *= isLotnActive ? 1d + 1d / 3d : 1d; // LotN adds 33% more CDR.
-                    returnCDR *= isApotheosisActive ? 4d : 1d; // Apotheosis adds 200% more CDR
-                    // Apply this last as it's additive overall and not multiplicative with others
-                    returnCDR += isHolyOrationActive ? serenityCDRBase * holyOrationModifier : 0d;
                     break;
+
                 case Spell.PrayerOfHealing:
+                    var sancCDRPoH = GetSpellData(state, Spell.HolyWordSanctify).GetEffect(709475).BaseValue;
                     returnCDR = sancCDRPoH;
-                    returnCDR *= isLotnActive ? 1d + 1d / 3d : 1d; // LotN adds 33% more CDR.
-                    returnCDR *= isApotheosisActive ? 4d : 1d; // Apotheosis adds 200% more CDR
-                    // Apply this last as it's additive overall and not multiplicative with others
-                    returnCDR += isHolyOrationActive ? sancCDRPoH * holyOrationModifier : 0d;
                     break;
 
                 case Spell.Renew:
-                    returnCDR = sancCDRRenew; // Renew gets a third of the CDR benefit
-                    returnCDR *= isLotnActive ? 1d + 1d / 3d : 1d; // LotN adds 33% more CDR.
-                    returnCDR *= isApotheosisActive ? 4d : 1d; // Apotheosis adds 200% more CDR
-                    // Apply this last as it's additive overall and not multiplicative with others
-                    returnCDR += isHolyOrationActive ? sancCDRRenew * holyOrationModifier : 0d;
-                    break;
-
-                case Spell.CircleOfHealing:
-                case Spell.PrayerOfMending:
-                    returnCDR = haCDRBase;
-                    returnCDR *= isLotnActive ? 1d + 1d / 3d : 1d; // LotN adds 33% more CDR.
-                    returnCDR *= isApotheosisActive ? 4d : 1d; // Apotheosis adds 200% more CDR
-                    // Apply this last as it's additive overall and not multiplicative with others
-                    returnCDR += isHolyOrationActive ? haCDRBase * holyOrationModifier : 0d;
+                    var sancCDRRenew = GetSpellData(state, Spell.HolyWordSanctify).GetEffect(709476).BaseValue;
+                    returnCDR = sancCDRRenew;
                     break;
 
                 case Spell.HolyWordSerenity:
                 case Spell.HolyWordSanctify:
+                    var salvCDRBase = GetSpellData(state, Spell.HolyWordSalvation).GetEffect(709211).BaseValue;
                     returnCDR = salvCDRBase;
-                    // Apply this last as it's additive overall and not multiplicative with others
-                    returnCDR += isHolyOrationActive ? salvCDRBase * holyOrationModifier : 0;
                     break;
 
                 case Spell.Smite:
+                    var chastiseCDRBase = GetSpellData(state, Spell.HolyWordChastise).GetEffect(709477).BaseValue;
                     returnCDR = chastiseCDRBase;
-                    returnCDR *= isLotnActive ? 1d + 1d / 3d : 1d; // LotN adds 33% more CDR.
-                    returnCDR *= isApotheosisActive ? 4d : 1d; // Apotheosis adds 200% more CDR
-                    // Apply this last as it's additive overall and not multiplicative with others
-                    returnCDR += isHolyOrationActive ? chastiseCDRBase * holyOrationModifier : 0d;
                     break;
 
+                case Spell.CircleOfHealing:
+                case Spell.PrayerOfMending:
                 case Spell.HolyFire:
                     returnCDR = haCDRBase;
-                    returnCDR *= isLotnActive ? 1d + 1d / 3d : 1d; // LotN adds 33% more CDR.
-                    returnCDR *= isApotheosisActive ? 4d : 1d; // Apotheosis adds 200% more CDR
-                    // Apply this last as it's additive overall and not multiplicative with others
-                    returnCDR += isHolyOrationActive ? haCDRBase * holyOrationModifier : 0d;
                     break;
 
                 default:
                     break;
             }
 
+            // Now apply modifiers
+            switch(spell)
+            {
+                case Spell.FlashHeal:
+                case Spell.Heal:
+                case Spell.PrayerOfHealing:
+                case Spell.Renew:
+                case Spell.CircleOfHealing:
+                case Spell.Smite:
+                case Spell.PrayerOfMending:
+                case Spell.HolyFire:
+                    returnCDR *= lotnCDRIncrease; // LotN adds 10-20% more CDR.
+                    returnCDR *= apothCDRIncrease; // Apotheosis adds 300% more CDR.
+                    break;
+                case Spell.HolyWordSerenity:
+                case Spell.HolyWordSanctify:
+                    returnCDR *= lotnCDRIncrease; // LotN adds 10-20% more CDR.
+                    break;
+                default:
+                    break;
+            }
+
             return returnCDR;
+        }
+
+        internal double GetAverageApotheosisIncrease(GameState state)
+        {
+            var apothCDRIncrease = 1.0d;
+
+            // Pull multi from spelldata
+            var apothMultiplier = GetSpellData(state, Spell.Apotheosis).GetEffect(294682).BaseValue / 100;
+            var apothUptime = 0d;
+
+            // First get uptime increase from Apotheosis casts
+            var apothTalent = GetTalent(state, Spell.Apotheosis);
+            if (apothTalent.Rank > 0)
+            {
+                // Pull Apotheosis and figure out what it's uptime is.
+                var apotheosis = GetRegisteredSpells(state).Where(s => s.Spell == Spell.Apotheosis).FirstOrDefault();
+                if (apotheosis != null)
+                {
+                    apothUptime += apotheosis.SpellService.GetUptime(state, null);
+                }
+            }
+
+            // Now get uptime increase from Answered Prayers
+            var answeredPrayersTalent = GetTalent(state, Spell.AnsweredPrayers);
+            if (answeredPrayersTalent.Rank > 0)
+            {
+                // Pull Apotheosis and figure out what it's uptime is.
+                var answeredPrayers = GetRegisteredSpells(state).Where(s => s.Spell == Spell.AnsweredPrayers).FirstOrDefault();
+                if (answeredPrayers != null)
+                {
+                    apothUptime += answeredPrayers.SpellService.GetUptime(state, null);
+                }
+            }
+
+            // Clamp the uptime so it can't go past 1 (100%).
+            apothCDRIncrease += apothMultiplier * Math.Min(1, apothUptime);
+
+            return apothCDRIncrease;
+        }
+
+        public double GetRenewUptime(GameState state)
+        {
+            var uptime = 0d;
+
+            JournalEntry(state, $"[GetRenewUptime] Calculating...");
+
+            // Loop through each spellservice and combine all the renew uptime bonuses.
+            foreach (var spell in GetRegisteredSpells(state))
+            {
+                if (spell.SpellService != null)
+                {
+                    var newUptime = spell.SpellService.GetRenewUptime(state, spell.SpellData);
+
+                    if (newUptime > 0)
+                    {
+                        JournalEntry(state, $"[GetRenewUptime] Adding {newUptime} from {spell.Spell}");
+                    }
+
+                    uptime += newUptime;
+                }
+            }
+
+            return uptime;
+        }
+
+        public double GetRenewTicksPerMinute(GameState state)
+        {
+            var ticksPerMinute = 0d;
+
+            JournalEntry(state, $"[GetRenewTicksPerMinute] Calculating...");
+
+            // Loop through each spellservice and combine all the renew ticks per minute.
+            foreach (var spell in GetRegisteredSpells(state))
+            {
+                if (spell.SpellService != null)
+                {
+                    var spellTicksPerMinute = spell.SpellService.GetRenewTicksPerMinute(state, spell.SpellData);
+                    
+                    if(spellTicksPerMinute > 0)
+                    {
+                        JournalEntry(state, $"[GetRenewTicksPerMinute] Adding {spellTicksPerMinute} from {spell.Spell}");
+                    }
+
+                    ticksPerMinute += spellTicksPerMinute;
+                }
+            }
+
+            JournalEntry(state, $"[GetRenewTicksPerMinute] Done. Ticks per minute: {ticksPerMinute}.");
+
+            return ticksPerMinute;
+        }
+
+        public double GetHolyPriestMasteryModifier(GameState state)
+        {
+            var masterySpellData = GetSpellData(state, Spell.EchoOfLight);
+            return masterySpellData.GetEffect(68102).SpCoefficient;
         }
 
         #endregion

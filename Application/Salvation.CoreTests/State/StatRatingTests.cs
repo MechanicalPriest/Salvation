@@ -1,10 +1,14 @@
 ﻿using Newtonsoft.Json;
 using NUnit.Framework;
+using Salvation.Core.Constants.Data;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.Profile;
 using Salvation.Core.State;
+using Salvation.CoreTests.HolyPriest.Spells;
 using SimcProfileParser;
+using System.Collections;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Salvation.CoreTests.State
@@ -44,7 +48,7 @@ namespace Salvation.CoreTests.State
             var crit = _gameStateService.GetCriticalStrikeRating(_state);
 
             // Assert
-            Assert.AreEqual(237, crit);
+            Assert.AreEqual(237.0d, crit);
         }
 
         [Test]
@@ -56,7 +60,7 @@ namespace Salvation.CoreTests.State
             var haste = _gameStateService.GetHasteRating(_state);
 
             // Assert
-            Assert.AreEqual(426, haste);
+            Assert.AreEqual(426.0d, haste);
         }
 
         [Test]
@@ -68,7 +72,7 @@ namespace Salvation.CoreTests.State
             var mastery = _gameStateService.GetMasteryRating(_state);
 
             // Assert
-            Assert.AreEqual(100, mastery);
+            Assert.AreEqual(100.0d, mastery);
         }
 
         [Test]
@@ -80,7 +84,7 @@ namespace Salvation.CoreTests.State
             var vers = _gameStateService.GetVersatilityRating(_state);
 
             // Assert
-            Assert.AreEqual(812, vers);
+            Assert.AreEqual(812.0d, vers);
         }
 
         [Test]
@@ -92,7 +96,7 @@ namespace Salvation.CoreTests.State
             var intellect = _gameStateService.GetIntellect(_state);
 
             // Assert
-            Assert.AreEqual(1261.05d, intellect);
+            Assert.AreEqual(2982.0d, intellect);
         }
 
         [Test]
@@ -101,10 +105,10 @@ namespace Salvation.CoreTests.State
             // Arrange
 
             // Act
-            var intellect = _gameStateService.GetLeechRating(_state);
+            var leech = _gameStateService.GetLeechRating(_state);
 
             // Assert
-            Assert.AreEqual(0.0d, intellect);
+            Assert.AreEqual(0.0d, leech);
         }
     }
 }

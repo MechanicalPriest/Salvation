@@ -1,0 +1,38 @@
+﻿using NUnit.Framework;
+using Salvation.Core.Constants.Data;
+using Salvation.Core.Interfaces.State;
+using Salvation.Core.Modelling.HolyPriest.Spells;
+using Salvation.Core.State;
+
+namespace Salvation.CoreTests.HolyPriest.Spells
+{
+    [TestFixture]
+    public class ImprovedFlashHealTests : BaseTest
+    {
+        private GameState _gameState;
+        [OneTimeSetUp]
+        public void InitOnce()
+        {
+            _gameState = GetGameState();
+        }
+
+        [Test]
+        public void IFH_GetAverageRawHealing_Calculates_Ranks()
+        {
+            // Arrange
+            IGameStateService gameStateService = new GameStateService();
+            var spellService = new FlashHeal(gameStateService, null, null);
+
+            // Act
+            gameStateService.SetTalentRank(_gameState, Spell.ImprovedFlashHeal, 0);
+            var resultDefault = spellService.GetAverageRawHealing(_gameState, null);
+
+            gameStateService.SetTalentRank(_gameState, Spell.ImprovedFlashHeal, 1);
+            var resultRank1 = spellService.GetAverageRawHealing(_gameState, null);
+
+            // Assert
+            Assert.AreEqual(7376.1978435407573d, resultDefault);
+            Assert.AreEqual(8482.6275200718701d, resultRank1);
+        }
+    }
+}

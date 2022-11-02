@@ -1,4 +1,5 @@
 ﻿using Salvation.Core.Constants;
+using Salvation.Core.Interfaces.State;
 using Salvation.Core.Modelling.Common;
 using Salvation.Core.State;
 
@@ -14,6 +15,8 @@ namespace Salvation.Core.Interfaces.Modelling
         /// The spell ID of the spell this service is manipulating
         /// </summary>
         public int SpellId { get; }
+        IGameStateService GameStateService { get; }
+
         // TODO: Rename the return type into SpellResultModel
         /// <summary>
         /// Calculate the results of casting one spell, and the casting efficiency calculations
@@ -106,7 +109,20 @@ namespace Salvation.Core.Interfaces.Modelling
         double GetAverageLeech(GameState gameState, BaseSpellData spellData);
         double GetAverageLeechPercent(GameState gameState, BaseSpellData spellData);
         double GetAverageMp5(GameState gameState, BaseSpellData spellData);
-        double GetAverageHealingBonus(GameState gameState, BaseSpellData spellData);
+        double GetAverageHealingMultiplier(GameState gameState, BaseSpellData spellData);
+
+        // Model Behaviour
+        // These could be moved to a Holy specific interface?
+        /// <summary>
+        /// Return the Renew Uptime from renew effects associated with this spell.
+        /// This uptime is spread over all RaidSize members. 
+        /// 1 = 100% on everyone, 0 - 0% on everyone.
+        /// </summary>
+        double GetRenewUptime(GameState gameState, BaseSpellData spellData);
+        /// <summary>
+        /// The total number of renew ticks per minute that this spell contributes to the model.
+        /// </summary>
+        double GetRenewTicksPerMinute(GameState gameState, BaseSpellData spellData);
     }
 
     public interface ISpellService<T> : ISpellService where T : ISpellService

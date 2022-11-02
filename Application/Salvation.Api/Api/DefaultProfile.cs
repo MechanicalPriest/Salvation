@@ -3,28 +3,30 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Extensions.Logging;
-using Salvation.Core.Constants.Data;
 using Salvation.Core.Interfaces.Profile;
-using Salvation.Core.Profile.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using Salvation.Core.Profile;
+using Salvation.Core.ViewModel;
+using System.IO;
+using System.Threading.Tasks;
+using Spec = Salvation.Core.Constants.Data.Spec;
 
 namespace Salvation.Api.Api
 {
     public class DefaultProfile
     {
         private readonly IProfileService _profileGenerationService;
+        private readonly ISimcProfileService _simcProfileService;
 
-        public DefaultProfile(IProfileService profileGenerationService)
+        public DefaultProfile(IProfileService profileGenerationService, ISimcProfileService simcProfileService)
         {
             _profileGenerationService = profileGenerationService;
+            _simcProfileService = simcProfileService;
         }
 
         [FunctionName("DefaultProfile")]
-        public IActionResult Run(
+        public async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequest req,
-            ILogger log)
+            ILogger log, ExecutionContext context)
         {
             var validSpec = int.TryParse(req.Query["specid"], out int specId);
 
@@ -34,42 +36,26 @@ namespace Salvation.Api.Api
                 log.LogError("Invalid spec provided");
                 return new BadRequestResult();
             }
+            var spec = (Spec)specId;
+            log.LogTrace("Pulling profile for {spec}", spec);
 
-            var response = BuildProfileResponse(specId);
+            var profile = _profileGenerationService.GetDefaultProfile(spec);
 
-            // Remove the .Profile to return the full response - requires client support
-            return new OkObjectResult(new { Data = response.Profile });
-        }
+            log.LogTrace("Loading default simc profile import");
 
-        internal class ProfileResponse
-        {
-            public PlayerProfile Profile;
-            public Dictionary<string, int> Covenants;
-        }
+            var profileData = File.ReadAllText(Path.Combine(context.FunctionAppDirectory, "Profile", "HolyPriest", "dragonflight_fresh.simc"));
 
-        private ProfileResponse BuildProfileResponse(int specId)
-        {
-            ProfileResponse response = new ProfileResponse
-            {
-                Profile = _profileGenerationService.GetDefaultProfile((Spec)specId),
-                Covenants = GetCovenants()
-            };
+            log.LogTrace("Updating profile with simc profile import");
 
-            return response;
-        }
+            profile = await _simcProfileService.ApplySimcProfileAsync(profileData, profile);
 
-        private Dictionary<string, int> GetCovenants()
-        {
-            var covenantList = Enum.GetValues(typeof(Covenant)).Cast<Covenant>();
+            log.LogTrace("Converting profile to viewmodel");
 
-            var values = new Dictionary<string, int>();
+            var profileVM = profile.ToViewModel();
 
-            foreach (var covenant in covenantList)
-            {
-                values.Add(covenant.GetDescription(), (int)covenant);
-            }
+            log.LogTrace("Done building default profile");
 
-            return values;
+            return new OkObjectResult(profileVM);
         }
     }
 

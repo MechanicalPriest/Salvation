@@ -24,8 +24,6 @@ namespace Salvation.Core.Interfaces.State
         /// <param name="name"></param>
         /// <returns></returns>
         PlaystyleEntry GetPlaystyle(GameState state, string name);
-        void SetCovenant(GameState state, CovenantProfile covenant);
-        Covenant GetActiveCovenant(GameState state);
         void OverrideSpellData(GameState state, BaseSpellData newData);
         void OverridePlaystyle(GameState state, PlaystyleEntry newPlaystyle);
         /// <summary>
@@ -52,11 +50,8 @@ namespace Salvation.Core.Interfaces.State
         // Player Profile Configuration
 
         void SetProfileName(GameState state, string profileName);
-        bool IsConduitActive(GameState state, Conduit conduit);
-        uint GetConduitRank(GameState state, Conduit conduit);
-        bool IsLegendaryActive(GameState state, Spell legendary);
-        void SetActiveTalent(GameState state, Talent talent);
-        bool IsTalentActive(GameState state, Talent talent);
+        Talent SetTalentRank(GameState state, Spell spell, int rank);
+        Talent GetTalent(GameState state, Spell spell);
         List<RegisteredSpell> GetRegisteredSpells(GameState state);
         void RegisterSpells(GameState state, List<RegisteredSpell> additionalSpells);
 
@@ -64,11 +59,13 @@ namespace Salvation.Core.Interfaces.State
         GameState CloneGameState(GameState state);
         GameState CreateValidatedGameState(PlayerProfile profile, GlobalConstants constants = null);
         public List<string> GetJournal(GameState state, bool removeDuplicates = false);
-        public void JournalEntry(GameState state, string message);
+        public void JournalEntry(GameState state, string message, int historyToCheck = 20);
 
         // Holy Priest specific
-        double GetTotalHolyWordCooldownReduction(GameState state, Spell spell, bool IsApotheosisActive = false);
+        double GetTotalHolyWordCooldownReduction(GameState state, Spell spell);
         double GetStamina(GameState state);
         double GetHitpoints(GameState state);
+        double GetRenewUptime(GameState state);
+        double GetRenewTicksPerMinute(GameState state);
     }
 }

@@ -5,25 +5,26 @@ using Salvation.Core.Interfaces.Modelling.HolyPriest.Spells;
 using Salvation.Core.Interfaces.State;
 using Salvation.Core.Modelling.Common;
 using Salvation.Core.State;
+using System;
 
 namespace Salvation.Core.Modelling.HolyPriest.Spells
 {
     public class HolyWordSalvation : SpellService, ISpellService<IHolyWordSalvationSpellService>
     {
-        private readonly ISpellService<IHolyWordSerenitySpellService> _serenitySpellService;
+        private readonly ISpellService<IHolyWordSerenitySpellService> _holyWordSerenitySpellService;
         private readonly ISpellService<IHolyWordSanctifySpellService> _holyWordSanctifySpellService;
         private readonly ISpellService<IRenewSpellService> _renewSpellService;
         private readonly ISpellService<IPrayerOfMendingSpellService> _prayerOfMendingSpellService;
 
         public HolyWordSalvation(IGameStateService gameStateService,
-            ISpellService<IHolyWordSerenitySpellService> serenitySpellService,
+            ISpellService<IHolyWordSerenitySpellService> holyWordSerenitySpellService,
             ISpellService<IHolyWordSanctifySpellService> holyWordSanctifySpellService,
             ISpellService<IRenewSpellService> renewSpellService,
             ISpellService<IPrayerOfMendingSpellService> prayerOfMendingSpellService)
             : base(gameStateService)
         {
             Spell = Spell.HolyWordSalvation;
-            _serenitySpellService = serenitySpellService;
+            _holyWordSerenitySpellService = holyWordSerenitySpellService;
             _holyWordSanctifySpellService = holyWordSanctifySpellService;
             _renewSpellService = renewSpellService;
             _prayerOfMendingSpellService = prayerOfMendingSpellService;
@@ -48,6 +49,8 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             averageHeal *= _gameStateService.GetCriticalStrikeMultiplier(gameState)
                 * _gameStateService.GetGlobalHealingMultiplier(gameState);
 
+            averageHeal *= this.GetPontifexMultiplier(gameState);
+
             return averageHeal * GetNumberOfHealingTargets(gameState, spellData);
         }
 
@@ -58,8 +61,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             // Salv is (60 + (SerenityCPM + SancCPM) * SalvCDR) / (CastTime + Cooldown) + 1 / (FightLength / 60)
             // Essentially the CDR per minute is 60 + the CDR from holy words.
 
-            // TODO: Add sanc here properly once implemented
-            var cpmSerenity = _serenitySpellService.GetActualCastsPerMinute(gameState);
+            var cpmSerenity = _holyWordSerenitySpellService.GetActualCastsPerMinute(gameState);
             var cpmSanctify = _holyWordSanctifySpellService.GetActualCastsPerMinute(gameState);
 
             var hastedCD = GetHastedCooldown(gameState, spellData);
@@ -71,6 +73,7 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
 
             double salvCDRPerMin = cpmSerenity * hwCDRSerenity +
                 cpmSanctify * hwCDRSanctify;
+
             double maximumPotentialCasts = (60d + salvCDRPerMin) / (hastedCT + hastedCD)
                 + 1d / (fightLength / 60d);
 
@@ -123,6 +126,44 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
         {
             // TODO: Clamp to raid size?
             return double.MaxValue;
+        }
+
+        public override double GetRenewUptime(GameState gameState, BaseSpellData spellData)
+        {
+            spellData = ValidateSpellData(gameState, spellData);
+
+            var groupSize = _gameStateService.GetPlaystyle(gameState, "GroupSize");
+
+            if (groupSize == null)
+                throw new ArgumentOutOfRangeException("GroupSize", $"GroupSize needs to be set.");
+
+            var cpm = GetActualCastsPerMinute(gameState, spellData);
+            var duration = _renewSpellService.GetDuration(gameState);
+            var numTargets = GetNumberOfHealingTargets(gameState, spellData);
+            var uptime = cpm * duration * numTargets / groupSize.Value / 60;
+
+            return uptime;
+        }
+
+        public override double GetRenewTicksPerMinute(GameState gameState, BaseSpellData spellData)
+        {
+            spellData = ValidateSpellData(gameState, spellData);
+
+            var renewSpellData = _gameStateService.GetSpellData(gameState, Spell.Renew);
+            var salvCpm = GetActualCastsPerMinute(gameState, spellData);
+
+            renewSpellData.Overrides[Override.NumberOfHealingTargets] = 1;
+            renewSpellData.Overrides[Override.CastsPerMinute] = salvCpm; // Force the number of casts
+
+            // Get total ticks per minute from all renews
+            var numTargets = GetNumberOfHealingTargets(gameState, spellData);
+            var ticksPerRenew = _renewSpellService.GetRenewTicksPerMinute(gameState, renewSpellData);
+
+            _gameStateService.JournalEntry(gameState, $"[{spellData.Name}] on {numTargets} targets ticking {ticksPerRenew:N3} times/min with {salvCpm:N3} Salv CPM.");
+
+            var renewTicksPerMinute = numTargets * ticksPerRenew;
+
+            return renewTicksPerMinute;
         }
     }
 }

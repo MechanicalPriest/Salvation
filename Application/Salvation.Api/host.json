@@ -3,7 +3,8 @@
     "applicationInsights": {
       "samplingSettings": {
         "isEnabled": true
-      }
+      },
+      "enableLiveMetrics": true
     },
     "logLevel": {
       "default": "Trace" 

@@ -33,6 +33,8 @@ namespace Salvation.Core.Modelling
 
         protected readonly IGameStateService _gameStateService;
 
+        public virtual IGameStateService GameStateService { get { return _gameStateService; } }
+
         public virtual int SpellId { get { return (int)Spell; } }
         public virtual Spell Spell { get; protected set; }
 
@@ -46,7 +48,7 @@ namespace Salvation.Core.Modelling
         {
             spellData = ValidateSpellData(gameState, spellData);
 
-            AveragedSpellCastResult result = new AveragedSpellCastResult
+            AveragedSpellCastResult result = new()
             {
                 SpellName = spellData.Name,
                 SpellId = SpellId,
@@ -164,7 +166,12 @@ namespace Salvation.Core.Modelling
         {
             spellData = ValidateSpellData(gameState, spellData);
 
-            var baseCooldown = spellData.BaseCooldown / 1000d;
+            var baseCooldown = spellData.BaseCooldown;
+
+            if (spellData.Overrides.ContainsKey(Override.BaseCooldownModifier))
+                baseCooldown += spellData.Overrides[Override.BaseCooldownModifier];
+
+            baseCooldown /= 1000.0d;
 
             return spellData.IsCooldownHasted
                 ? baseCooldown / _gameStateService.GetHasteMultiplier(gameState)
@@ -184,8 +191,13 @@ namespace Salvation.Core.Modelling
         {
             spellData = ValidateSpellData(gameState, spellData);
 
+            var duration = spellData.Duration;
+
+            if (spellData.Overrides.ContainsKey(Override.Duration))
+                duration = spellData.Overrides[Override.Duration];
+
             // Spells are stored with duration in milliseconds. We want seconds.
-            return spellData.Duration / 1000;
+            return duration / 1000;
         }
 
         /// <summary>
@@ -244,11 +256,10 @@ namespace Salvation.Core.Modelling
 
         internal virtual BaseSpellData ValidateSpellData(GameState gameState, BaseSpellData spellData)
         {
-            if (spellData == null)
-                spellData = _gameStateService.GetSpellData(gameState, Spell);
+            spellData ??= _gameStateService.GetSpellData(gameState, Spell);
 
             if (spellData == null)
-                throw new ArgumentOutOfRangeException(nameof(SpellId),
+                throw new ArgumentOutOfRangeException(nameof(spellData),
                     $"Spelldata for SpellId ({SpellId}) not found: {Spell}");
 
             return spellData;
@@ -305,6 +316,18 @@ namespace Salvation.Core.Modelling
             return 0;
         }
 
+        /// <summary>
+        /// Multiplier on Mastery. 
+        /// Gets the base Mastery multiplier and multiplies it by this prior to sending it elsewhere.
+        /// </summary>
+        /// <param name="gameState"></param>
+        /// <param name="spellData"></param>
+        /// <returns></returns>
+        public virtual double GetAverageMasteryIncreaseMultiplier(GameState gameState, BaseSpellData spellData)
+        {
+            return 1;
+        }
+
         public virtual double GetAverageVersatility(GameState gameState, BaseSpellData spellData)
         {
             return 0;
@@ -330,9 +353,16 @@ namespace Salvation.Core.Modelling
             return 0;
         }
 
-        public virtual double GetAverageHealingBonus(GameState gameState, BaseSpellData spellData)
+        /// <summary>
+        /// A decimal percentage bonus. This will be added to 1 and multiplied by any other bonuses.
+        /// e.g. global_bonus *= (1 + GetAverageHealingBonus())
+        /// </summary>
+        /// <param name="gameState"></param>
+        /// <param name="spellData"></param>
+        /// <returns></returns>
+        public virtual double GetAverageHealingMultiplier(GameState gameState, BaseSpellData spellData)
         {
-            return 0;
+            return 1;
         }
 
         #endregion
@@ -368,7 +398,7 @@ namespace Salvation.Core.Modelling
                 || _gameStateService.GetLeechMultiplier(gameState) == 1)
                 return null;
 
-            AveragedSpellCastResult result = new AveragedSpellCastResult();
+            AveragedSpellCastResult result = new();
 
             var averageLeechHeal = totalDamageHealing
                 * (_gameStateService.GetLeechMultiplier(gameState) - 1);
@@ -404,16 +434,17 @@ namespace Salvation.Core.Modelling
         #region Holy Priest Specific
 
         /// <summary>
-        /// This does NOT check to see if mastery applies to this spell
+        /// This does NO check to see if mastery applies to this spell
         /// </summary>
         public virtual AveragedSpellCastResult GetHolyPriestMasteryResult(GameState gameState, BaseSpellData spellData)
         {
             spellData = ValidateSpellData(gameState, spellData);
 
-            AveragedSpellCastResult result = new AveragedSpellCastResult();
+            AveragedSpellCastResult result = new();
 
             var averageMasteryHeal = GetAverageRawHealing(gameState, spellData)
-                * (_gameStateService.GetMasteryMultiplier(gameState) - 1);
+                * (_gameStateService.GetMasteryMultiplier(gameState) - 1)
+                * GetPrismaticEchoesMultiplier(gameState);
 
             var castProfile = _gameStateService.GetSpellCastProfile(gameState, (int)Spell.EchoOfLight);
 
@@ -426,6 +457,22 @@ namespace Salvation.Core.Modelling
             result.NumberOfHealingTargets = GetNumberOfHealingTargets(gameState, spellData);
 
             return result;
+        }
+
+        internal double GetPrismaticEchoesMultiplier(GameState gameState)
+        {
+            var multi = 1d;
+
+            var talent = _gameStateService.GetTalent(gameState, Spell.PrismaticEchoes);
+
+            if (talent != null && talent.Rank > 0)
+            {
+                var talentSpellData = _gameStateService.GetSpellData(gameState, Spell.PrismaticEchoes);
+
+                multi += (talentSpellData.GetEffect(1028161).BaseValue / 100) * talent.Rank;
+            }
+
+            return multi;
         }
 
         public virtual bool TriggersMastery(GameState gameState, BaseSpellData spellData)
@@ -451,6 +498,16 @@ namespace Salvation.Core.Modelling
                 }
             }
             return false;
+        }
+
+        public virtual double GetRenewUptime(GameState gameState, BaseSpellData spellData)
+        {
+            return 0d;
+        }
+
+        public virtual double GetRenewTicksPerMinute(GameState gameState, BaseSpellData spellData)
+        {
+            return 0d;
         }
 
         #endregion

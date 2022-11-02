@@ -10,6 +10,9 @@ namespace Salvation.Core.Constants
         NumberOfHealingTargets,
         NumberOfDamageTargets,
         CastsPerMinute,
+        /// <summary>
+        /// Duration in milliseconds
+        /// </summary>
         Duration,
         /// <summary>
         /// Used to store the allowed duration a spell can use to calculate its CPM from 
@@ -29,7 +32,11 @@ namespace Salvation.Core.Constants
         /// <summary>
         /// The item level of item spells
         /// </summary>
-        ItemLevel
+        ItemLevel,
+        /// <summary>
+        /// Adjusted the BASE cooldown of a spell by a particular amount.
+        /// </summary>
+        BaseCooldownModifier
     }
 
     public class BaseSpellData
@@ -59,7 +66,6 @@ namespace Salvation.Core.Constants
         public bool RppmIsHasted { get; set; }
 
         public IList<BaseSpellDataEffect> Effects { get; set; }
-        public IDictionary<uint, double> ConduitRanks { get; set; }
         /// <summary>
         /// Stores value overrides for this particular spell
         /// </summary>

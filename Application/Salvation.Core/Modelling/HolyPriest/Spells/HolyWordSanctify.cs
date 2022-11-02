@@ -44,6 +44,8 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             averageHeal *= _gameStateService.GetCriticalStrikeMultiplier(gameState)
                 * _gameStateService.GetGlobalHealingMultiplier(gameState);
 
+            averageHeal *= this.GetPontifexMultiplier(gameState);
+
             return averageHeal * GetNumberOfHealingTargets(gameState, spellData);
         }
 
@@ -56,7 +58,6 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             // 1 from regular CD + reductions from fillers divided by the cooldown to get base CPM
             // Then add the one charge we start with, 1 per fight, into seconds.
 
-            // TODO: Update these to point to their spells when implemented
             var cpmPoH = _prayerOfHealingSpellService.GetActualCastsPerMinute(gameState);
             var cpmRenew = _renewSpellService.GetActualCastsPerMinute(gameState);
 
@@ -69,15 +70,17 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             double hwCDR = cpmPoH * hwCDRPoH +
                 cpmRenew * hwCDRRenew;
 
-            if (_gameStateService.IsLegendaryActive(gameState, Spell.HarmoniousApparatus))
+            if (_gameStateService.GetTalent(gameState, Spell.HarmoniousApparatus).Rank > 0)
             {
                 var cpmCoH = _circleOfHealingSpellService.GetActualCastsPerMinute(gameState);
                 var hwCDRCoH = _gameStateService.GetTotalHolyWordCooldownReduction(gameState, Spell.CircleOfHealing);
                 hwCDR += cpmCoH * hwCDRCoH;
             }
 
+            double charges = spellData.Charges + GetMiracleWorkerCharges(gameState, spellData);
+
             double maximumPotentialCasts = (60d + hwCDR) / hastedCD
-                + 1d / (fightLength / 60d);
+                + charges / (fightLength / 60d);
 
             return maximumPotentialCasts;
         }
@@ -90,6 +93,33 @@ namespace Salvation.Core.Modelling.HolyPriest.Spells
             var numTargets = spellData.GetEffect(288932).BaseValue;
 
             return numTargets;
+        }
+
+        public override double GetHastedCooldown(GameState gameState, BaseSpellData spellData = null)
+        {
+            spellData = ValidateSpellData(gameState, spellData);
+
+            // Cooldown for Sanctify is stored in the chargecooldown instead as it has charges
+            var cooldown = spellData.ChargeCooldown / 1000;
+
+            return spellData.IsCooldownHasted
+                ? cooldown / _gameStateService.GetHasteMultiplier(gameState)
+                : cooldown;
+        }
+
+        internal double GetMiracleWorkerCharges(GameState gameState, BaseSpellData spellData)
+        {
+            spellData = ValidateSpellData(gameState, spellData);
+
+            var miracleWorkerCharges = 0d;
+
+            if (_gameStateService.GetTalent(gameState, Spell.MiracleWorker).Rank > 0)
+            {
+                var miracleWorkerSpellData = _gameStateService.GetSpellData(gameState, Spell.MiracleWorker);
+                miracleWorkerCharges += miracleWorkerSpellData.GetEffect(356036).BaseValue;
+            }
+
+            return miracleWorkerCharges;
         }
     }
 }

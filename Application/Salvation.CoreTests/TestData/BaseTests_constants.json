@@ -1,5 +1,5 @@
 {
-  "GameVersion": "10.0.2.46144",
+  "GameVersion": "10.0.0.46366",
   "Specs": [
     {
       "Class": "Priest",
@@ -184,7 +184,29 @@
             },
             {
               "Id": 1039629,
-              "BaseValue": -10.0,
+              "BaseValue": -14.5,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 1040387,
+              "BaseValue": -5.0,
+              "SpCoefficient": 0.0,
+              "Coefficient": 0.0,
+              "TriggerSpellid": 0,
+              "Amplitude": 0.0,
+              "TriggerSpell": null,
+              "Type": 6,
+              "ScaleValues": {}
+            },
+            {
+              "Id": 1040388,
+              "BaseValue": -5.0,
               "SpCoefficient": 0.0,
               "Coefficient": 0.0,
               "TriggerSpellid": 0,
@@ -384,7 +406,7 @@
             {
               "Id": 612,
               "BaseValue": 0.0,
-              "SpCoefficient": 2.95,
+              "SpCoefficient": 2.8025,
               "Coefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
@@ -624,7 +646,7 @@
           "Effects": [
             {
               "Id": 22870,
-              "BaseValue": 4.0,
+              "BaseValue": 5.0,
               "SpCoefficient": 0.0,
               "Coefficient": 0.0,
               "TriggerSpellid": 0,
@@ -896,7 +918,7 @@
             {
               "Id": 1002578,
               "BaseValue": 0.0,
-              "SpCoefficient": 3.0,
+              "SpCoefficient": 2.25,
               "Coefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
@@ -1542,7 +1564,7 @@
             {
               "Id": 709207,
               "BaseValue": 0.0,
-              "SpCoefficient": 1.1,
+              "SpCoefficient": 1.045,
               "Coefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
@@ -1636,7 +1658,7 @@
             {
               "Id": 105332,
               "BaseValue": 0.0,
-              "SpCoefficient": 0.875,
+              "SpCoefficient": 0.83125,
               "Coefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
@@ -1678,7 +1700,7 @@
             {
               "Id": 302436,
               "BaseValue": 0.0,
-              "SpCoefficient": 1.05,
+              "SpCoefficient": 0.9975,
               "Coefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
@@ -1745,7 +1767,7 @@
                   {
                     "Id": 59165,
                     "BaseValue": 0.0,
-                    "SpCoefficient": 0.6,
+                    "SpCoefficient": 0.57,
                     "Coefficient": 0.0,
                     "TriggerSpellid": 0,
                     "Amplitude": 0.0,
@@ -1825,7 +1847,7 @@
             {
               "Id": 24949,
               "BaseValue": 0.0,
-              "SpCoefficient": 2.45,
+              "SpCoefficient": 2.3275,
               "Coefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
@@ -1889,7 +1911,7 @@
             {
               "Id": 611,
               "BaseValue": 0.0,
-              "SpCoefficient": 7.0,
+              "SpCoefficient": 6.65,
               "Coefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
@@ -2039,7 +2061,7 @@
                 "Effects": [
                   {
                     "Id": 1031612,
-                    "BaseValue": 60.0,
+                    "BaseValue": 0.0,
                     "SpCoefficient": 0.0,
                     "Coefficient": 0.0,
                     "TriggerSpellid": 0,
@@ -3280,7 +3302,7 @@
             {
               "Id": 369498,
               "BaseValue": 0.0,
-              "SpCoefficient": 0.42,
+              "SpCoefficient": 0.399,
               "Coefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 0.0,
@@ -3643,7 +3665,7 @@
             {
               "Id": 997691,
               "BaseValue": 0.0,
-              "SpCoefficient": 0.274725,
+              "SpCoefficient": 0.824175,
               "Coefficient": 0.0,
               "TriggerSpellid": 0,
               "Amplitude": 2000.0,
@@ -3692,7 +3714,7 @@
           "BaseCastTime": 0.0,
           "BaseCooldown": 0.0,
           "IsCooldownHasted": false,
-          "Duration": -1.0,
+          "Duration": 180000.0,
           "Gcd": 0.0,
           "ChargeCooldown": 0,
           "Charges": 0,
@@ -3820,10 +3842,9 @@
           ]
         }
       ],
-      "Conduits": [],
       "GCDFloor": 0.75,
       "CritMultiplier": 2.0,
-      "ArmorSkillsMultiplier": 1.00
+      "ArmorSkillsMultiplier": 1.05
     }
   ],
   "GlobalModifiers": [],
